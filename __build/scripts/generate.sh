@@ -1,0 +1,94 @@
+#!/bin/bash
+# Generate TypeScript declarations for Node.js CLR library
+#
+# This script regenerates all TypeScript type declarations from the nodejs.dll
+# assembly using tsbindgen.
+#
+# Prerequisites:
+#   - .NET 10 SDK installed
+#   - tsbindgen repository cloned at ../tsbindgen (sibling directory)
+#   - nodejs-clr repository cloned at ../nodejs-clr (sibling directory)
+#
+# Usage:
+#   ./__build/scripts/generate.sh
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+TSBINDGEN_DIR="$PROJECT_DIR/../tsbindgen"
+NODEJS_CLR_DIR="$PROJECT_DIR/../nodejs-clr"
+
+# .NET runtime path (needed for BCL type resolution)
+DOTNET_VERSION="${DOTNET_VERSION:-10.0.0}"
+DOTNET_HOME="${DOTNET_HOME:-$HOME/.dotnet}"
+DOTNET_RUNTIME_PATH="$DOTNET_HOME/shared/Microsoft.NETCore.App/$DOTNET_VERSION"
+
+# nodejs.dll path
+NODEJS_DLL="$NODEJS_CLR_DIR/artifacts/bin/nodejs/Release/net10.0/nodejs.dll"
+
+echo "================================================================"
+echo "Generating Node.js CLR TypeScript Declarations"
+echo "================================================================"
+echo ""
+echo "Configuration:"
+echo "  nodejs.dll:   $NODEJS_DLL"
+echo "  .NET Runtime: $DOTNET_RUNTIME_PATH"
+echo "  tsbindgen:    $TSBINDGEN_DIR"
+echo "  Output:       $PROJECT_DIR"
+echo "  Naming:       JS (camelCase)"
+echo ""
+
+# Verify prerequisites
+if [ ! -f "$NODEJS_DLL" ]; then
+    echo "ERROR: nodejs.dll not found at $NODEJS_DLL"
+    echo "Build it first: cd ../nodejs-clr && dotnet build -c Release"
+    exit 1
+fi
+
+if [ ! -d "$DOTNET_RUNTIME_PATH" ]; then
+    echo "ERROR: .NET runtime not found at $DOTNET_RUNTIME_PATH"
+    echo "Set DOTNET_HOME or DOTNET_VERSION environment variables"
+    exit 1
+fi
+
+if [ ! -d "$TSBINDGEN_DIR" ]; then
+    echo "ERROR: tsbindgen not found at $TSBINDGEN_DIR"
+    echo "Clone it: git clone https://github.com/tsoniclang/tsbindgen ../tsbindgen"
+    exit 1
+fi
+
+# Clean output directory (keep config files)
+echo "[1/3] Cleaning output directory..."
+cd "$PROJECT_DIR"
+
+# Remove all namespace directories (but keep config files, __build, node_modules, .git)
+find . -maxdepth 1 -type d \
+    ! -name '.' \
+    ! -name '.git' \
+    ! -name '.tests' \
+    ! -name 'node_modules' \
+    ! -name '__build' \
+    -exec rm -rf {} \; 2>/dev/null || true
+
+# Remove generated files at root
+rm -f *.d.ts *.js 2>/dev/null || true
+
+echo "  Done"
+
+# Build tsbindgen
+echo "[2/3] Building tsbindgen..."
+cd "$TSBINDGEN_DIR"
+dotnet build src/tsbindgen/tsbindgen.csproj -c Release --verbosity quiet
+echo "  Done"
+
+# Generate types with JavaScript-style naming
+echo "[3/3] Generating TypeScript declarations..."
+dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
+    generate -a "$NODEJS_DLL" -d "$DOTNET_RUNTIME_PATH" -o "$PROJECT_DIR" \
+    --naming js
+
+echo ""
+echo "================================================================"
+echo "Generation Complete"
+echo "================================================================"

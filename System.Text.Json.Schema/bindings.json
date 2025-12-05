@@ -1,0 +1,472 @@
+{
+  "namespace": "System.Text.Json.Schema",
+  "types": [
+    {
+      "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterContext",
+      "clrName": "System.Text.Json.Schema.JsonSchemaExporterContext",
+      "tsEmitName": "JsonSchemaExporterContext",
+      "assemblyName": "System.Text.Json",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterContext::TypeInfo:System.Text.Json.Serialization.Metadata.JsonTypeInfo",
+          "clrName": "TypeInfo",
+          "tsEmitName": "typeInfo",
+          "metadataToken": 385876384,
+          "canonicalSignature": ":System.Text.Json.Serialization.Metadata.JsonTypeInfo",
+          "normalizedSignature": "TypeInfo|:System.Text.Json.Serialization.Metadata.JsonTypeInfo|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+          "declaringAssemblyName": "System.Text.Json"
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterContext::PropertyInfo:System.Text.Json.Serialization.Metadata.JsonPropertyInfo",
+          "clrName": "PropertyInfo",
+          "tsEmitName": "propertyInfo",
+          "metadataToken": 385876385,
+          "canonicalSignature": ":System.Text.Json.Serialization.Metadata.JsonPropertyInfo",
+          "normalizedSignature": "PropertyInfo|:System.Text.Json.Serialization.Metadata.JsonPropertyInfo|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+          "declaringAssemblyName": "System.Text.Json"
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterContext::BaseTypeInfo:System.Text.Json.Serialization.Metadata.JsonTypeInfo",
+          "clrName": "BaseTypeInfo",
+          "tsEmitName": "baseTypeInfo",
+          "metadataToken": 385876386,
+          "canonicalSignature": ":System.Text.Json.Serialization.Metadata.JsonTypeInfo",
+          "normalizedSignature": "BaseTypeInfo|:System.Text.Json.Serialization.Metadata.JsonTypeInfo|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+          "declaringAssemblyName": "System.Text.Json"
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterContext::Path:System.ReadOnlySpan_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "clrName": "Path",
+          "tsEmitName": "path",
+          "metadataToken": 385876387,
+          "canonicalSignature": ":System.ReadOnlySpan_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "normalizedSignature": "Path|:System.ReadOnlySpan_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+          "declaringAssemblyName": "System.Text.Json"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.ValueType",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100665958
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.ValueType",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100665961
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.ValueType",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100665963
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "typeInfo",
+          "isStatic": false,
+          "tsSignatureId": "TypeInfo|:System.Text.Json.Serialization.Metadata.JsonTypeInfo|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876384
+          }
+        },
+        {
+          "tsName": "propertyInfo",
+          "isStatic": false,
+          "tsSignatureId": "PropertyInfo|:System.Text.Json.Serialization.Metadata.JsonPropertyInfo|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876385
+          }
+        },
+        {
+          "tsName": "baseTypeInfo",
+          "isStatic": false,
+          "tsSignatureId": "BaseTypeInfo|:System.Text.Json.Serialization.Metadata.JsonTypeInfo|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876386
+          }
+        },
+        {
+          "tsName": "path",
+          "isStatic": false,
+          "tsSignatureId": "Path|:System.ReadOnlySpan_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterContext",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876387
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterOptions",
+      "clrName": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+      "tsEmitName": "JsonSchemaExporterOptions",
+      "assemblyName": "System.Text.Json",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterOptions::Default:System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "clrName": "Default",
+          "tsEmitName": "default_",
+          "metadataToken": 385876381,
+          "canonicalSignature": ":System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "normalizedSignature": "Default|:System.Text.Json.Schema.JsonSchemaExporterOptions|static=true|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "declaringAssemblyName": "System.Text.Json"
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterOptions::TreatNullObliviousAsNonNullable:System.Boolean",
+          "clrName": "TreatNullObliviousAsNonNullable",
+          "tsEmitName": "treatNullObliviousAsNonNullable",
+          "metadataToken": 385876382,
+          "canonicalSignature": ":System.Boolean",
+          "normalizedSignature": "TreatNullObliviousAsNonNullable|:System.Boolean|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "declaringAssemblyName": "System.Text.Json"
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterOptions::TransformSchemaNode:System.Func_3[[System.Text.Json.Schema.JsonSchemaExporterContext,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]",
+          "clrName": "TransformSchemaNode",
+          "tsEmitName": "transformSchemaNode",
+          "metadataToken": 385876383,
+          "canonicalSignature": ":System.Func_3[[System.Text.Json.Schema.JsonSchemaExporterContext,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]",
+          "normalizedSignature": "TransformSchemaNode|:System.Func_3[[System.Text.Json.Schema.JsonSchemaExporterContext,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "declaringAssemblyName": "System.Text.Json"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporterOptions::.ctor():void",
+          "metadataToken": 100665307,
+          "canonicalSignature": "():void",
+          "normalizedSignature": "constructor|():void|static=false",
+          "isStatic": false,
+          "parameterCount": 0,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+          "declaringAssemblyName": "System.Text.Json"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664829
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "default_",
+          "isStatic": true,
+          "tsSignatureId": "Default|:System.Text.Json.Schema.JsonSchemaExporterOptions|static=true|accessor=get",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876381
+          }
+        },
+        {
+          "tsName": "treatNullObliviousAsNonNullable",
+          "isStatic": false,
+          "tsSignatureId": "TreatNullObliviousAsNonNullable|:System.Boolean|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876382
+          }
+        },
+        {
+          "tsName": "transformSchemaNode",
+          "isStatic": false,
+          "tsSignatureId": "TransformSchemaNode|:System.Func_3[[System.Text.Json.Schema.JsonSchemaExporterContext,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51],[System.Text.Json.Nodes.JsonNode,System.Text.Json,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 385876383
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|():void|static=false",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporterOptions",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 100665307
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporter",
+      "clrName": "System.Text.Json.Schema.JsonSchemaExporter",
+      "tsEmitName": "JsonSchemaExporter",
+      "assemblyName": "System.Text.Json",
+      "metadataToken": 0,
+      "methods": [
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporter::GetJsonSchemaAsNode(System.Text.Json.JsonSerializerOptions,System.Type,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode",
+          "clrName": "GetJsonSchemaAsNode",
+          "tsEmitName": "getJsonSchemaAsNode",
+          "metadataToken": 100665283,
+          "canonicalSignature": "(System.Text.Json.JsonSerializerOptions,System.Type,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode",
+          "normalizedSignature": "GetJsonSchemaAsNode|(System.Text.Json.JsonSerializerOptions,System.Type,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporter",
+          "declaringAssemblyName": "System.Text.Json",
+          "isExtensionMethod": true
+        },
+        {
+          "stableId": "System.Text.Json:System.Text.Json.Schema.JsonSchemaExporter::GetJsonSchemaAsNode(System.Text.Json.Serialization.Metadata.JsonTypeInfo,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode",
+          "clrName": "GetJsonSchemaAsNode",
+          "tsEmitName": "getJsonSchemaAsNode",
+          "metadataToken": 100665284,
+          "canonicalSignature": "(System.Text.Json.Serialization.Metadata.JsonTypeInfo,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode",
+          "normalizedSignature": "GetJsonSchemaAsNode|(System.Text.Json.Serialization.Metadata.JsonTypeInfo,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 2,
+          "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporter",
+          "declaringAssemblyName": "System.Text.Json",
+          "isExtensionMethod": true
+        }
+      ],
+      "properties": [],
+      "fields": [],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "getJsonSchemaAsNode",
+          "isStatic": true,
+          "tsSignatureId": "GetJsonSchemaAsNode|(System.Text.Json.JsonSerializerOptions,System.Type,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode|static=true",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporter",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 100665283
+          }
+        },
+        {
+          "tsName": "getJsonSchemaAsNode",
+          "isStatic": true,
+          "tsSignatureId": "GetJsonSchemaAsNode|(System.Text.Json.Serialization.Metadata.JsonTypeInfo,System.Text.Json.Schema.JsonSchemaExporterOptions):System.Text.Json.Nodes.JsonNode|static=true",
+          "target": {
+            "declaringClrType": "System.Text.Json.Schema.JsonSchemaExporter",
+            "declaringAssemblyName": "System.Text.Json",
+            "metadataToken": 100665284
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664829
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@tsonic/nodejs",
+  "version": "0.1.0",
+  "description": "TypeScript type definitions for Node.js CLR library",
+  "type": "module",
+  "files": [
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.json",
+    "!node_modules",
+    "!__build"
+  ],
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "types",
+    "tsonic",
+    "dotnet",
+    "clr"
+  ],
+  "author": "Tsonic Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsoniclang/nodejs.git"
+  },
+  "dependencies": {
+    "@tsonic/types": "^0.2.0"
+  }
+}

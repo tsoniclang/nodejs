@@ -18,7 +18,7 @@
         {
           "stableId": "nodejs:nodejs.DebugLogFunction::Invoke(System.String,System.Object[]):System.Void",
           "clrName": "Invoke",
-          "tsEmitName": "Invoke",
+          "tsEmitName": "invoke",
           "normalizedSignature": "Invoke|(System.String,System.Object[]):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -34,7 +34,7 @@
         {
           "stableId": "nodejs:nodejs.DebugLogFunction::BeginInvoke(System.String,System.Object[],System.AsyncCallback,System.Object):System.IAsyncResult",
           "clrName": "BeginInvoke",
-          "tsEmitName": "BeginInvoke",
+          "tsEmitName": "beginInvoke",
           "normalizedSignature": "BeginInvoke|(System.String,System.Object[],System.AsyncCallback,System.Object):System.IAsyncResult|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -50,7 +50,7 @@
         {
           "stableId": "nodejs:nodejs.DebugLogFunction::EndInvoke(System.IAsyncResult):System.Void",
           "clrName": "EndInvoke",
-          "tsEmitName": "EndInvoke",
+          "tsEmitName": "endInvoke",
           "normalizedSignature": "EndInvoke|(System.IAsyncResult):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -701,7 +701,41 @@
       "isSealed": false,
       "isStatic": false,
       "arity": 0,
-      "methods": [],
+      "methods": [
+        {
+          "stableId": "System.Private.CoreLib:System.Runtime.Serialization.ISerializable::GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void",
+          "clrName": "GetObjectData",
+          "tsEmitName": "getObjectData$view",
+          "normalizedSignature": "GetObjectData|(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 2,
+          "sourceInterface": "System.Runtime.Serialization.ISerializable",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.AssertionError::GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void",
+          "clrName": "GetObjectData",
+          "tsEmitName": "getObjectData",
+          "normalizedSignature": "GetObjectData|(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void|static=false",
+          "provenance": "BaseOverload",
+          "emitScope": "ClassSurface",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 2,
+          "isExtensionMethod": false
+        }
+      ],
       "properties": [
         {
           "stableId": "nodejs:nodejs.AssertionError::actual:System.Object",
@@ -2530,7 +2564,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::Item[System.Int32]:System.Byte",
           "clrName": "Item",
-          "tsEmitName": "Item",
+          "tsEmitName": "item",
           "normalizedSignature": "Item|[System.Int32]:System.Byte|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -3064,7 +3098,7 @@
         {
           "stableId": "nodejs:nodejs.Cipher::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -3226,7 +3260,7 @@
         {
           "stableId": "nodejs:nodejs.CommonConnectionOptions::ALPNProtocols:System.String[]",
           "clrName": "ALPNProtocols",
-          "tsEmitName": "ALPNProtocols",
+          "tsEmitName": "alpnProtocols",
           "normalizedSignature": "ALPNProtocols|:System.String[]|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -3721,7 +3755,7 @@
         {
           "stableId": "nodejs:nodejs.Decipher::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4673,7 +4707,7 @@
         {
           "stableId": "nodejs:nodejs.DiffieHellman::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4684,6 +4718,23 @@
           "isSealed": true,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -4722,7 +4773,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPrivateKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4733,6 +4784,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -4817,7 +4885,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPublicKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4828,6 +4896,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -5268,7 +5353,7 @@
         {
           "stableId": "nodejs:nodejs.ECDH::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5279,6 +5364,23 @@
           "isSealed": true,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -5317,7 +5419,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPrivateKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5328,6 +5430,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -5412,7 +5531,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPublicKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5423,6 +5542,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -6198,7 +6334,7 @@
         {
           "stableId": "nodejs:nodejs.Hash::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6295,7 +6431,7 @@
         {
           "stableId": "nodejs:nodejs.Hmac::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6376,7 +6512,7 @@
         {
           "stableId": "nodejs:nodejs.Immediate::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6387,6 +6523,23 @@
           "isSealed": true,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -6829,7 +6982,7 @@
         {
           "stableId": "nodejs:nodejs.KeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6840,6 +6993,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -7788,7 +7958,7 @@
         {
           "stableId": "nodejs:nodejs.PathModule::Instance:nodejs.PathModule",
           "clrName": "Instance",
-          "tsEmitName": "Instance",
+          "tsEmitName": "instance",
           "normalizedSignature": "Instance|:nodejs.PathModule|static=true|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8478,7 +8648,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8489,6 +8659,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -8557,7 +8744,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Add(System.String,System.String):System.Void",
           "clrName": "Add",
-          "tsEmitName": "Add",
+          "tsEmitName": "add",
           "normalizedSignature": "Add|(System.String,System.String):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8573,7 +8760,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::ContainsKey(System.String):System.Boolean",
           "clrName": "ContainsKey",
-          "tsEmitName": "ContainsKey",
+          "tsEmitName": "containsKey",
           "normalizedSignature": "ContainsKey|(System.String):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8589,7 +8776,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Remove(System.String):System.Boolean",
           "clrName": "Remove",
-          "tsEmitName": "Remove",
+          "tsEmitName": "remove",
           "normalizedSignature": "Remove|(System.String):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8605,7 +8792,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::TryGetValue(System.String,System.String\u0026):System.Boolean",
           "clrName": "TryGetValue",
-          "tsEmitName": "TryGetValue",
+          "tsEmitName": "tryGetValue",
           "normalizedSignature": "TryGetValue|(System.String,System.String\u0026):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8621,7 +8808,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Add(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void",
           "clrName": "Add",
-          "tsEmitName": "Add",
+          "tsEmitName": "add",
           "normalizedSignature": "Add|(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8637,7 +8824,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Clear():System.Void",
           "clrName": "Clear",
-          "tsEmitName": "Clear",
+          "tsEmitName": "clear",
           "normalizedSignature": "Clear|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8653,7 +8840,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Contains(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean",
           "clrName": "Contains",
-          "tsEmitName": "Contains",
+          "tsEmitName": "contains",
           "normalizedSignature": "Contains|(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8669,7 +8856,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::CopyTo(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]][],System.Int32):System.Void",
           "clrName": "CopyTo",
-          "tsEmitName": "CopyTo",
+          "tsEmitName": "copyTo",
           "normalizedSignature": "CopyTo|(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]][],System.Int32):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8685,7 +8872,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Remove(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean",
           "clrName": "Remove",
-          "tsEmitName": "Remove",
+          "tsEmitName": "remove",
           "normalizedSignature": "Remove|(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8701,7 +8888,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::GetEnumerator():System.Collections.Generic.IEnumerator_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "GetEnumerator",
-          "tsEmitName": "GetEnumerator",
+          "tsEmitName": "getEnumerator",
           "normalizedSignature": "GetEnumerator|():System.Collections.Generic.IEnumerator_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8713,13 +8900,166 @@
           "arity": 0,
           "parameterCount": 0,
           "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IDictionary\u00602::ContainsKey(TKey):System.Boolean",
+          "clrName": "ContainsKey",
+          "tsEmitName": "containsKey$view",
+          "normalizedSignature": "ContainsKey|(TKey):System.Boolean|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 1,
+          "sourceInterface": "System.Collections.Generic.IDictionary\u00602",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IDictionary\u00602::Add(TKey,TValue):System.Void",
+          "clrName": "Add",
+          "tsEmitName": "add$view",
+          "normalizedSignature": "Add|(TKey,TValue):System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 2,
+          "sourceInterface": "System.Collections.Generic.IDictionary\u00602",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IDictionary\u00602::TryGetValue(TKey,TValue\u0026):System.Boolean",
+          "clrName": "TryGetValue",
+          "tsEmitName": "tryGetValue$view",
+          "normalizedSignature": "TryGetValue|(TKey,TValue\u0026):System.Boolean|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 2,
+          "sourceInterface": "System.Collections.Generic.IDictionary\u00602",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::Add(T):System.Void",
+          "clrName": "Add",
+          "tsEmitName": "add$view",
+          "normalizedSignature": "Add|(T):System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 1,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::Contains(T):System.Boolean",
+          "clrName": "Contains",
+          "tsEmitName": "contains$view",
+          "normalizedSignature": "Contains|(T):System.Boolean|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 1,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::CopyTo(T[],System.Int32):System.Void",
+          "clrName": "CopyTo",
+          "tsEmitName": "copyTo$view",
+          "normalizedSignature": "CopyTo|(T[],System.Int32):System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 2,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IEnumerable\u00601::GetEnumerator():IEnumerator_1",
+          "clrName": "GetEnumerator",
+          "tsEmitName": "getEnumerator$view",
+          "normalizedSignature": "GetEnumerator|():IEnumerator_1|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.Collections.Generic.IEnumerable\u00601",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.IEnumerable::GetEnumerator():System.Collections.IEnumerator",
+          "clrName": "GetEnumerator",
+          "tsEmitName": "getEnumerator$view",
+          "normalizedSignature": "GetEnumerator|():System.Collections.IEnumerator|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.Collections.IEnumerable",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::Clear():System.Void",
+          "clrName": "Clear",
+          "tsEmitName": "clear$view",
+          "normalizedSignature": "Clear|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601",
+          "isExtensionMethod": false
         }
       ],
       "properties": [
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Item[System.String]:System.String",
           "clrName": "Item",
-          "tsEmitName": "Item",
+          "tsEmitName": "item",
           "normalizedSignature": "Item|[System.String]:System.String|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8734,7 +9074,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Keys:System.Collections.Generic.ICollection_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "Keys",
-          "tsEmitName": "Keys",
+          "tsEmitName": "keys",
           "normalizedSignature": "Keys|:System.Collections.Generic.ICollection_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8749,7 +9089,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Values:System.Collections.Generic.ICollection_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "Values",
-          "tsEmitName": "Values",
+          "tsEmitName": "values",
           "normalizedSignature": "Values|:System.Collections.Generic.ICollection_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8764,7 +9104,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Count:System.Int32",
           "clrName": "Count",
-          "tsEmitName": "Count",
+          "tsEmitName": "count",
           "normalizedSignature": "Count|:System.Int32|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8779,7 +9119,7 @@
         {
           "stableId": "nodejs:nodejs.ProcessEnv::IsReadOnly:System.Boolean",
           "clrName": "IsReadOnly",
-          "tsEmitName": "IsReadOnly",
+          "tsEmitName": "isReadOnly",
           "normalizedSignature": "IsReadOnly|:System.Boolean|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8790,6 +9130,70 @@
           "isIndexer": false,
           "hasGetter": true,
           "hasSetter": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IDictionary\u00602::Keys:ICollection_1",
+          "clrName": "Keys",
+          "tsEmitName": "keys$view",
+          "normalizedSignature": "Keys|:ICollection_1|static=false|accessor=get",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "sourceInterface": "System.Collections.Generic.IDictionary\u00602"
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.IDictionary\u00602::Values:ICollection_1",
+          "clrName": "Values",
+          "tsEmitName": "values$view",
+          "normalizedSignature": "Values|:ICollection_1|static=false|accessor=get",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "sourceInterface": "System.Collections.Generic.IDictionary\u00602"
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::Count:System.Int32",
+          "clrName": "Count",
+          "tsEmitName": "count$view",
+          "normalizedSignature": "Count|:System.Int32|static=false|accessor=get",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601"
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.Collections.Generic.ICollection\u00601::IsReadOnly:System.Boolean",
+          "clrName": "IsReadOnly",
+          "tsEmitName": "isReadOnly$view",
+          "normalizedSignature": "IsReadOnly|:System.Boolean|static=false|accessor=get",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "sourceInterface": "System.Collections.Generic.ICollection\u00601"
         }
       ],
       "fields": [],
@@ -8931,7 +9335,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8942,6 +9346,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -9907,7 +10328,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -9918,6 +10339,23 @@
           "isSealed": false,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -9986,7 +10424,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::LoadCertificate(System.Object,System.Object,System.String):System.Void",
           "clrName": "LoadCertificate",
-          "tsEmitName": "LoadCertificate",
+          "tsEmitName": "loadCertificate",
           "normalizedSignature": "LoadCertificate|(System.Object,System.Object,System.String):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10002,7 +10440,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::LoadCACertificates(System.Object):System.Void",
           "clrName": "LoadCACertificates",
-          "tsEmitName": "LoadCACertificates",
+          "tsEmitName": "loadCACertificates",
           "normalizedSignature": "LoadCACertificates|(System.Object):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10018,7 +10456,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::SetProtocols(System.String,System.String):System.Void",
           "clrName": "SetProtocols",
-          "tsEmitName": "SetProtocols",
+          "tsEmitName": "setProtocols",
           "normalizedSignature": "SetProtocols|(System.String,System.String):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10036,7 +10474,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::Certificate:System.Security.Cryptography.X509Certificates.X509Certificate2",
           "clrName": "Certificate",
-          "tsEmitName": "Certificate",
+          "tsEmitName": "certificate",
           "normalizedSignature": "Certificate|:System.Security.Cryptography.X509Certificates.X509Certificate2|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10051,7 +10489,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::CACertificates:System.Security.Cryptography.X509Certificates.X509Certificate2Collection",
           "clrName": "CACertificates",
-          "tsEmitName": "CACertificates",
+          "tsEmitName": "caCertificates",
           "normalizedSignature": "CACertificates|:System.Security.Cryptography.X509Certificates.X509Certificate2Collection|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10066,7 +10504,7 @@
         {
           "stableId": "nodejs:nodejs.SecureContext::Protocols:System.Security.Authentication.SslProtocols",
           "clrName": "Protocols",
-          "tsEmitName": "Protocols",
+          "tsEmitName": "protocols",
           "normalizedSignature": "Protocols|:System.Security.Authentication.SslProtocols|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -10634,7 +11072,7 @@
         {
           "stableId": "nodejs:nodejs.Sign::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11898,7 +12336,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsFile():System.Boolean",
           "clrName": "IsFile",
-          "tsEmitName": "IsFile",
+          "tsEmitName": "isFile",
           "normalizedSignature": "IsFile|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11914,7 +12352,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsDirectory():System.Boolean",
           "clrName": "IsDirectory",
-          "tsEmitName": "IsDirectory",
+          "tsEmitName": "isDirectory",
           "normalizedSignature": "IsDirectory|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11930,7 +12368,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsSymbolicLink():System.Boolean",
           "clrName": "IsSymbolicLink",
-          "tsEmitName": "IsSymbolicLink",
+          "tsEmitName": "isSymbolicLink",
           "normalizedSignature": "IsSymbolicLink|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11946,7 +12384,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsBlockDevice():System.Boolean",
           "clrName": "IsBlockDevice",
-          "tsEmitName": "IsBlockDevice",
+          "tsEmitName": "isBlockDevice",
           "normalizedSignature": "IsBlockDevice|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11962,7 +12400,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsCharacterDevice():System.Boolean",
           "clrName": "IsCharacterDevice",
-          "tsEmitName": "IsCharacterDevice",
+          "tsEmitName": "isCharacterDevice",
           "normalizedSignature": "IsCharacterDevice|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11978,7 +12416,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsFIFO():System.Boolean",
           "clrName": "IsFIFO",
-          "tsEmitName": "IsFIFO",
+          "tsEmitName": "isFIFO",
           "normalizedSignature": "IsFIFO|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11994,7 +12432,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::IsSocket():System.Boolean",
           "clrName": "IsSocket",
-          "tsEmitName": "IsSocket",
+          "tsEmitName": "isSocket",
           "normalizedSignature": "IsSocket|():System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -12102,7 +12540,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::isFile:System.Boolean",
           "clrName": "isFile",
-          "tsEmitName": "isFile",
+          "tsEmitName": "isFile2",
           "normalizedSignature": "isFile|:System.Boolean|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -12117,7 +12555,7 @@
         {
           "stableId": "nodejs:nodejs.Stats::isDirectory:System.Boolean",
           "clrName": "isDirectory",
-          "tsEmitName": "isDirectory",
+          "tsEmitName": "isDirectory2",
           "normalizedSignature": "isDirectory|:System.Boolean|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -12502,7 +12940,7 @@
         {
           "stableId": "nodejs:nodejs.Timeout::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -12513,6 +12951,23 @@
           "isSealed": true,
           "arity": 0,
           "parameterCount": 0,
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "provenance": "ExplicitView",
+          "emitScope": "ViewOnly",
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": true,
+          "isOverride": false,
+          "isSealed": false,
+          "arity": 0,
+          "parameterCount": 0,
+          "sourceInterface": "System.IDisposable",
           "isExtensionMethod": false
         }
       ],
@@ -13307,7 +13762,7 @@
         {
           "stableId": "nodejs:nodejs.TLSSocket::StartReading():System.Void",
           "clrName": "StartReading",
-          "tsEmitName": "StartReading",
+          "tsEmitName": "startReading",
           "normalizedSignature": "StartReading|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -13589,7 +14044,7 @@
         {
           "stableId": "nodejs:nodejs.URL::ToString():System.String",
           "clrName": "ToString",
-          "tsEmitName": "ToString",
+          "tsEmitName": "toString",
           "normalizedSignature": "ToString|():System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -14033,7 +14488,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::ToString():System.String",
           "clrName": "ToString",
-          "tsEmitName": "ToString",
+          "tsEmitName": "toString",
           "normalizedSignature": "ToString|():System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -14282,7 +14737,7 @@
         {
           "stableId": "nodejs:nodejs.Verify::Dispose():System.Void",
           "clrName": "Dispose",
-          "tsEmitName": "Dispose",
+          "tsEmitName": "dispose",
           "normalizedSignature": "Dispose|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -14590,7 +15045,7 @@
         {
           "stableId": "nodejs:nodejs.X509CertificateInfo::ToString():System.String",
           "clrName": "ToString",
-          "tsEmitName": "ToString",
+          "tsEmitName": "toString",
           "normalizedSignature": "ToString|():System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -20441,7 +20896,7 @@
         {
           "stableId": "nodejs:nodejs.X509CertificateExtensions::ParseCertificate(System.String):nodejs.X509CertificateInfo",
           "clrName": "ParseCertificate",
-          "tsEmitName": "ParseCertificate",
+          "tsEmitName": "parseCertificate",
           "normalizedSignature": "ParseCertificate|(System.String):nodejs.X509CertificateInfo|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -20457,7 +20912,7 @@
         {
           "stableId": "nodejs:nodejs.X509CertificateExtensions::ParseCertificate(System.Byte[]):nodejs.X509CertificateInfo",
           "clrName": "ParseCertificate",
-          "tsEmitName": "ParseCertificate",
+          "tsEmitName": "parseCertificate",
           "normalizedSignature": "ParseCertificate|(System.Byte[]):nodejs.X509CertificateInfo|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",

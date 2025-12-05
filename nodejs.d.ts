@@ -5,16 +5,24 @@
 // Import internal declarations
 import * as Internal from './nodejs/internal/index.js';
 
-export * from './nodejs/internal/index.js';
+// Cross-namespace type imports for constraints
+import type { Dictionary_2, IAsyncEnumerable_1, ICollection_1, IDictionary_2, IEnumerable_1, IEnumerator_1, KeyValuePair_2 } from './System.Collections.Generic/internal/index.js';
+import type { IDictionary, IEnumerable, IEnumerator } from './System.Collections/internal/index.js';
+import type { MethodBase, MethodInfo } from './System.Reflection/internal/index.js';
+import type { ISerializable, SerializationInfo, StreamingContext } from './System.Runtime.Serialization/internal/index.js';
+import type { SslProtocols } from './System.Security.Authentication/internal/index.js';
+import type { X509Certificate2, X509Certificate2Collection } from './System.Security.Cryptography.X509Certificates/internal/index.js';
+import type { Regex } from './System.Text.RegularExpressions/internal/index.js';
+import type { Task, Task_1 } from './System.Threading.Tasks/internal/index.js';
+import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, Type, UInt16, UInt32, UInt64, ValueTuple_2, Void } from './System/internal/index.js';
 
-// Individual type exports for convenience
+// Public API exports (curated - no internal $instance/$views leakage)
 export { assert$instance as assert } from './nodejs/internal/index.js';
 export { AssertionError as AssertionError } from './nodejs/internal/index.js';
 export { Buffer as Buffer } from './nodejs/internal/index.js';
 export { ChildProcess as ChildProcess } from './nodejs/internal/index.js';
 export { ExecOptions as ExecOptions } from './nodejs/internal/index.js';
 export { child_process$instance as child_process } from './nodejs/internal/index.js';
-export { SpawnSyncReturns_1 as SpawnSyncReturns_1 } from './nodejs/internal/index.js';
 export { SpawnSyncReturns_1 as SpawnSyncReturns } from './nodejs/internal/index.js';
 export { console$instance as console } from './nodejs/internal/index.js';
 export { Certificate$instance as Certificate } from './nodejs/internal/index.js';

@@ -9,7 +9,19 @@ import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint12
 import type { ptr, ref } from "@tsonic/types";
 
 // Import types from other namespaces
-import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
+import * as System_Collections_Generic_Internal from "../../System.Collections.Generic/internal/index.js";
+import type { Dictionary_2, IAsyncEnumerable_1, ICollection_1, IDictionary_2, IEnumerable_1, IEnumerator_1, KeyValuePair_2 } from "../../System.Collections.Generic/internal/index.js";
+import * as System_Collections_Internal from "../../System.Collections/internal/index.js";
+import type { IDictionary, IEnumerable, IEnumerator } from "../../System.Collections/internal/index.js";
+import type { MethodBase, MethodInfo } from "../../System.Reflection/internal/index.js";
+import * as System_Runtime_Serialization_Internal from "../../System.Runtime.Serialization/internal/index.js";
+import type { ISerializable, SerializationInfo, StreamingContext } from "../../System.Runtime.Serialization/internal/index.js";
+import type { SslProtocols } from "../../System.Security.Authentication/internal/index.js";
+import type { X509Certificate2, X509Certificate2Collection } from "../../System.Security.Cryptography.X509Certificates/internal/index.js";
+import type { Regex } from "../../System.Text.RegularExpressions/internal/index.js";
+import type { Task, Task_1 } from "../../System.Threading.Tasks/internal/index.js";
+import * as System_Internal from "../../System/internal/index.js";
+import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, Type, UInt16, UInt32, UInt64, ValueTuple_2, Void } from "../../System/internal/index.js";
 
 // CLROf<T> - Maps ergonomic primitives to their CLR types for generic constraints
 // This utility is used ONLY in generic type arguments to satisfy CLR interface constraints
@@ -218,6 +230,7 @@ export interface AssertionError$instance extends Exception {
     expected: unknown;
     generatedMessage: boolean;
     operator: string;
+    getObjectData(info: SerializationInfo, context: StreamingContext): void;
 }
 
 
@@ -226,7 +239,12 @@ export const AssertionError: {
 };
 
 
-export type AssertionError = AssertionError$instance;
+export interface __AssertionError$views {
+    As_ISerializable(): System_Runtime_Serialization_Internal.ISerializable$instance;
+}
+
+export type AssertionError = AssertionError$instance & __AssertionError$views;
+
 
 export interface BindOptions$instance {
     address: string;
@@ -274,7 +292,7 @@ export const BrotliOptions: {
 export type BrotliOptions = BrotliOptions$instance;
 
 export interface Buffer$instance {
-    Item: byte;
+    item: byte;
     readonly length: int;
     compare(target: Buffer, targetStart?: Nullable_1<CLROf<int>>, targetEnd?: Nullable_1<CLROf<int>>, sourceStart?: Nullable_1<CLROf<int>>, sourceEnd?: Nullable_1<CLROf<int>>): int;
     copy(target: Buffer, targetStart?: int, sourceStart?: Nullable_1<CLROf<int>>, sourceEnd?: Nullable_1<CLROf<int>>): int;
@@ -423,7 +441,7 @@ export const ChildProcess: {
 export type ChildProcess = ChildProcess$instance;
 
 export interface Cipher$instance extends Transform {
-    Dispose(): void;
+    dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
     getAuthTag(): byte[];
@@ -456,7 +474,7 @@ export const CipherNameAndProtocol: {
 export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
-    ALPNProtocols: string[];
+    alpnProtocols: string[];
     enableTrace: Nullable_1<CLROf<boolean>>;
     rejectUnauthorized: Nullable_1<CLROf<boolean>>;
     requestCert: Nullable_1<CLROf<boolean>>;
@@ -534,7 +552,7 @@ export const CursorPosition: {
 export type CursorPosition = CursorPosition$instance;
 
 export interface Decipher$instance extends Transform {
-    Dispose(): void;
+    dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
     setAAD(buffer: byte[]): void;
@@ -614,7 +632,7 @@ export interface DiffieHellman$instance {
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
-    Dispose(): void;
+    dispose(): void;
     generateKeys(encoding?: string): string;
     generateKeys(): byte[];
     getGenerator(encoding?: string): string;
@@ -638,13 +656,20 @@ export const DiffieHellman: {
 };
 
 
-export type DiffieHellman = DiffieHellman$instance;
+export interface __DiffieHellman$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
 
-export interface DSAPrivateKeyObject$instance extends KeyObject {
+export interface DiffieHellman$instance extends System_Internal.IDisposable$instance {}
+
+export type DiffieHellman = DiffieHellman$instance & __DiffieHellman$views;
+
+
+export interface DSAPrivateKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
 }
 
@@ -654,13 +679,18 @@ export const DSAPrivateKeyObject: {
 };
 
 
-export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
+export interface __DSAPrivateKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
 
-export interface DSAPublicKeyObject$instance extends KeyObject {
+export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance & __DSAPrivateKeyObject$views;
+
+
+export interface DSAPublicKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
 }
 
@@ -670,7 +700,12 @@ export const DSAPublicKeyObject: {
 };
 
 
-export type DSAPublicKeyObject = DSAPublicKeyObject$instance;
+export interface __DSAPublicKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export type DSAPublicKeyObject = DSAPublicKeyObject$instance & __DSAPublicKeyObject$views;
+
 
 export interface Duplex$instance extends Readable {
     readonly writable: boolean;
@@ -696,7 +731,7 @@ export interface ECDH$instance {
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
-    Dispose(): void;
+    dispose(): void;
     generateKeys(encoding?: string, format?: string): string;
     generateKeys(): byte[];
     getPrivateKey(encoding?: string): string;
@@ -715,13 +750,20 @@ export const ECDH: {
 };
 
 
-export type ECDH = ECDH$instance;
+export interface __ECDH$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
 
-export interface EdDSAPrivateKeyObject$instance extends KeyObject {
+export interface ECDH$instance extends System_Internal.IDisposable$instance {}
+
+export type ECDH = ECDH$instance & __ECDH$views;
+
+
+export interface EdDSAPrivateKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
 }
 
@@ -731,13 +773,18 @@ export const EdDSAPrivateKeyObject: {
 };
 
 
-export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
+export interface __EdDSAPrivateKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
 
-export interface EdDSAPublicKeyObject$instance extends KeyObject {
+export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance & __EdDSAPrivateKeyObject$views;
+
+
+export interface EdDSAPublicKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
 }
 
@@ -747,7 +794,12 @@ export const EdDSAPublicKeyObject: {
 };
 
 
-export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance;
+export interface __EdDSAPublicKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance & __EdDSAPublicKeyObject$views;
+
 
 export interface EphemeralKeyInfo$instance {
     name: string;
@@ -822,7 +874,7 @@ export interface Hash$instance extends Transform {
     digest(encoding: string): string;
     digest(): byte[];
     digest(outputLength: int): byte[];
-    Dispose(): void;
+    dispose(): void;
     update(data: string, inputEncoding?: string): Hash;
     update(data: byte[]): Hash;
 }
@@ -838,7 +890,7 @@ export type Hash = Hash$instance;
 export interface Hmac$instance extends Transform {
     digest(encoding?: string): string;
     digest(): byte[];
-    Dispose(): void;
+    dispose(): void;
     update(data: string, inputEncoding?: string): Hmac;
     update(data: byte[]): Hmac;
 }
@@ -852,7 +904,7 @@ export const Hmac: {
 export type Hmac = Hmac$instance;
 
 export interface Immediate$instance {
-    Dispose(): void;
+    dispose(): void;
     hasRef(): boolean;
     ref(): Immediate;
     unref(): Immediate;
@@ -864,7 +916,14 @@ export const Immediate: {
 };
 
 
-export type Immediate = Immediate$instance;
+export interface __Immediate$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export interface Immediate$instance extends System_Internal.IDisposable$instance {}
+
+export type Immediate = Immediate$instance & __Immediate$views;
+
 
 export interface Interface$instance extends EventEmitter {
     readonly cursor: int;
@@ -925,7 +984,7 @@ export interface KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
 }
 
@@ -934,7 +993,14 @@ export const KeyObject: {
 };
 
 
-export type KeyObject = KeyObject$instance;
+export interface __KeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export interface KeyObject$instance extends System_Internal.IDisposable$instance {}
+
+export type KeyObject = KeyObject$instance & __KeyObject$views;
+
 
 export interface ListenOptions$instance {
     backlog: Nullable_1<CLROf<int>>;
@@ -1089,7 +1155,7 @@ export interface PathModule$instance {
 
 export const PathModule: {
     new(): PathModule$instance;
-    readonly Instance: PathModule;
+    readonly instance: PathModule;
 };
 
 
@@ -1199,13 +1265,12 @@ export const PerformanceObserverOptions: {
 
 export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 
-export interface PrivateKeyObject$instance extends KeyObject {
+export interface PrivateKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
-    export_(format: string, type_?: string, cipher?: string, passphrase?: string): string;
 }
 
 
@@ -1214,24 +1279,29 @@ export const PrivateKeyObject: {
 };
 
 
-export type PrivateKeyObject = PrivateKeyObject$instance;
+export interface __PrivateKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export type PrivateKeyObject = PrivateKeyObject$instance & __PrivateKeyObject$views;
+
 
 export interface ProcessEnv$instance {
-    readonly Count: int;
-    readonly IsReadOnly: boolean;
-    Item: string;
-    readonly Keys: ICollection_1<CLROf<string>>;
-    readonly Values: ICollection_1<CLROf<string>>;
-    Add(key: string, value: string): void;
-    Add(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): void;
-    Clear(): void;
-    Contains(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
-    ContainsKey(key: string): boolean;
-    CopyTo(array: KeyValuePair_2<CLROf<string>, CLROf<string>>[], arrayIndex: int): void;
-    GetEnumerator(): IEnumerator_1<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
-    Remove(key: string): boolean;
-    Remove(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
-    TryGetValue(key: string, value: { value: ref<string> }): boolean;
+    readonly count: int;
+    readonly isReadOnly: boolean;
+    item: string;
+    readonly keys: ICollection_1<CLROf<string>>;
+    readonly values: ICollection_1<CLROf<string>>;
+    add(key: string, value: string): void;
+    add(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): void;
+    clear(): void;
+    contains(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
+    containsKey(key: string): boolean;
+    copyTo(array: KeyValuePair_2<CLROf<string>, CLROf<string>>[], arrayIndex: int): void;
+    getEnumerator(): IEnumerator_1<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
+    remove(key: string): boolean;
+    remove(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
+    tryGetValue(key: string, value: { value: ref<string> }): boolean;
 }
 
 
@@ -1240,7 +1310,15 @@ export const ProcessEnv: {
 };
 
 
-export type ProcessEnv = ProcessEnv$instance;
+export interface __ProcessEnv$views {
+    As_ICollection_1(): System_Collections_Generic_Internal.ICollection_1$instance<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
+    As_IDictionary_2(): System_Collections_Generic_Internal.IDictionary_2$instance<CLROf<string>, CLROf<string>>;
+    As_IEnumerable_1(): System_Collections_Generic_Internal.IEnumerable_1$instance<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
+    As_IEnumerable(): System_Collections_Internal.IEnumerable$instance;
+}
+
+export type ProcessEnv = ProcessEnv$instance & __ProcessEnv$views;
+
 
 export interface ProcessVersions$instance {
     dotnet: string;
@@ -1257,13 +1335,12 @@ export const ProcessVersions: {
 
 export type ProcessVersions = ProcessVersions$instance;
 
-export interface PublicKeyObject$instance extends KeyObject {
+export interface PublicKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
-    export_(format: string, type_?: string): string;
 }
 
 
@@ -1272,7 +1349,12 @@ export const PublicKeyObject: {
 };
 
 
-export type PublicKeyObject = PublicKeyObject$instance;
+export interface __PublicKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export type PublicKeyObject = PublicKeyObject$instance & __PublicKeyObject$views;
+
 
 export interface Readable$instance extends Stream {
     readonly destroyed: boolean;
@@ -1387,13 +1469,12 @@ export const ResolverOptions: {
 
 export type ResolverOptions = ResolverOptions$instance;
 
-export interface SecretKeyObject$instance extends KeyObject {
+export interface SecretKeyObject$instance extends KeyObject$instance {
     readonly asymmetricKeyType: string;
     readonly symmetricKeySize: Nullable_1<CLROf<int>>;
     readonly type_: string;
-    Dispose(): void;
+    dispose(): void;
     export_(options?: unknown): unknown;
-    export_(): byte[];
 }
 
 
@@ -1402,16 +1483,21 @@ export const SecretKeyObject: {
 };
 
 
-export type SecretKeyObject = SecretKeyObject$instance;
+export interface __SecretKeyObject$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export type SecretKeyObject = SecretKeyObject$instance & __SecretKeyObject$views;
+
 
 export interface SecureContext$instance {
-    readonly CACertificates: X509Certificate2Collection;
-    readonly Certificate: X509Certificate2;
+    readonly caCertificates: X509Certificate2Collection;
+    readonly certificate: X509Certificate2;
     context: unknown;
-    readonly Protocols: SslProtocols;
-    LoadCACertificates(ca: unknown): void;
-    LoadCertificate(cert: unknown, key: unknown, passphrase: string): void;
-    SetProtocols(minVersion: string, maxVersion: string): void;
+    readonly protocols: SslProtocols;
+    loadCACertificates(ca: unknown): void;
+    loadCertificate(cert: unknown, key: unknown, passphrase: string): void;
+    setProtocols(minVersion: string, maxVersion: string): void;
 }
 
 
@@ -1480,7 +1566,7 @@ export const ServerOpts: {
 export type ServerOpts = ServerOpts$instance;
 
 export interface Sign$instance extends Transform {
-    Dispose(): void;
+    dispose(): void;
     sign(privateKey: string, outputEncoding?: string): string;
     sign(privateKey: string): byte[];
     sign(privateKey: unknown, outputEncoding?: string): string;
@@ -1658,18 +1744,18 @@ export interface Stats$instance {
     atime: DateTime;
     birthtime: DateTime;
     ctime: DateTime;
-    isDirectory: boolean;
-    isFile: boolean;
+    isDirectory2: boolean;
+    isFile2: boolean;
     mode: int;
     mtime: DateTime;
     size: long;
-    IsBlockDevice(): boolean;
-    IsCharacterDevice(): boolean;
-    IsDirectory(): boolean;
-    IsFIFO(): boolean;
-    IsFile(): boolean;
-    IsSocket(): boolean;
-    IsSymbolicLink(): boolean;
+    isBlockDevice(): boolean;
+    isCharacterDevice(): boolean;
+    isDirectory(): boolean;
+    isFIFO(): boolean;
+    isFile(): boolean;
+    isSocket(): boolean;
+    isSymbolicLink(): boolean;
 }
 
 
@@ -1728,7 +1814,7 @@ export type TcpSocketConnectOpts = TcpSocketConnectOpts$instance;
 
 export interface Timeout$instance {
     close(): void;
-    Dispose(): void;
+    dispose(): void;
     hasRef(): boolean;
     ref(): Timeout;
     refresh(): Timeout;
@@ -1741,7 +1827,14 @@ export const Timeout: {
 };
 
 
-export type Timeout = Timeout$instance;
+export interface __Timeout$views {
+    As_IDisposable(): System_Internal.IDisposable$instance;
+}
+
+export interface Timeout$instance extends System_Internal.IDisposable$instance {}
+
+export type Timeout = Timeout$instance & __Timeout$views;
+
 
 export interface TlsaRecord$instance {
     certUsage: int;
@@ -1835,7 +1928,7 @@ export interface TLSSocket$instance extends Socket {
     renegotiate(options: unknown, callback: Action_1<Exception>): boolean;
     setKeyCert(context: unknown): void;
     setMaxSendFragment(size: int): boolean;
-    StartReading(): void;
+    startReading(): void;
     write(data: byte[], callback?: Action_1<Exception>): boolean;
     write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
     write(data: byte[], callback?: Action_1<Exception>): boolean;
@@ -1893,7 +1986,7 @@ export interface URL$instance {
     readonly searchParams: URLSearchParams;
     username: string;
     toJSON(): string;
-    ToString(): string;
+    toString(): string;
 }
 
 
@@ -1918,7 +2011,7 @@ export interface URLSearchParams$instance {
     keys(): IEnumerable_1<CLROf<string>>;
     set_(name: string, value: string): void;
     sort(): void;
-    ToString(): string;
+    toString(): string;
     values(): IEnumerable_1<CLROf<string>>;
 }
 
@@ -1947,7 +2040,7 @@ export const UserInfo: {
 export type UserInfo = UserInfo$instance;
 
 export interface Verify$instance extends Transform {
-    Dispose(): void;
+    dispose(): void;
     update(data: string, inputEncoding?: string): Verify;
     update(data: byte[]): Verify;
     verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
@@ -2001,7 +2094,7 @@ export interface X509CertificateInfo$instance {
     checkIP(ip: string): string;
     checkIssued(otherCert: X509CertificateInfo): string;
     toPEM(): string;
-    ToString(): string;
+    toString(): string;
     verify(issuerCert: X509CertificateInfo): boolean;
 }
 
@@ -2489,8 +2582,8 @@ export abstract class util$instance {
 export type util = util$instance;
 
 export abstract class X509CertificateExtensions$instance {
-    static ParseCertificate(certificate: byte[]): X509CertificateInfo;
-    static ParseCertificate(certificate: string): X509CertificateInfo;
+    static parseCertificate(certificate: byte[]): X509CertificateInfo;
+    static parseCertificate(certificate: string): X509CertificateInfo;
 }
 
 

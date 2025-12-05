@@ -6,9 +6,16 @@
 import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint128, half, float, double, decimal, nint, nuint, char } from '@tsonic/types';
 
 // Import types from other namespaces
-import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
 import * as nodejs_Internal from "../../nodejs/internal/index.js";
 import type { EventEmitter } from "../../nodejs/internal/index.js";
+import type { Dictionary_2 } from "../../System.Collections.Generic/internal/index.js";
+import type { IDictionary } from "../../System.Collections/internal/index.js";
+import type { MethodBase } from "../../System.Reflection/internal/index.js";
+import * as System_Runtime_Serialization_Internal from "../../System.Runtime.Serialization/internal/index.js";
+import type { ISerializable, SerializationInfo, StreamingContext } from "../../System.Runtime.Serialization/internal/index.js";
+import type { Task, Task_1 } from "../../System.Threading.Tasks/internal/index.js";
+import * as System_Internal from "../../System/internal/index.js";
+import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Type, Void } from "../../System/internal/index.js";
 
 // CLROf<T> - Maps ergonomic primitives to their CLR types for generic constraints
 // This utility is used ONLY in generic type arguments to satisfy CLR interface constraints
@@ -168,6 +175,7 @@ export const ServerResponse: {
 export type ServerResponse = ServerResponse$instance;
 
 export interface TypeError$instance extends Exception {
+    getObjectData(info: SerializationInfo, context: StreamingContext): void;
 }
 
 
@@ -176,7 +184,12 @@ export const TypeError: {
 };
 
 
-export type TypeError = TypeError$instance;
+export interface __TypeError$views {
+    As_ISerializable(): System_Runtime_Serialization_Internal.ISerializable$instance;
+}
+
+export type TypeError = TypeError$instance & __TypeError$views;
+
 
 export abstract class http$instance {
     static globalAgent_maxSockets: Nullable_1<CLROf<int>>;
