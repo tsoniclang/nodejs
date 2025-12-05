@@ -1,0 +1,4771 @@
+{
+  "namespace": "System.Formats.Tar",
+  "types": [
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat",
+      "clrName": "System.Formats.Tar.TarEntryFormat",
+      "tsEmitName": "TarEntryFormat",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [],
+      "fields": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::value__System.Int32",
+          "clrName": "value__",
+          "tsEmitName": "value__",
+          "metadataToken": 67109137,
+          "normalizedSignature": "value__|System.Int32|static=false|const=false",
+          "isStatic": false,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::UnknownSystem.Formats.Tar.TarEntryFormat",
+          "clrName": "Unknown",
+          "tsEmitName": "unknown_",
+          "metadataToken": 67109138,
+          "normalizedSignature": "Unknown|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::V7System.Formats.Tar.TarEntryFormat",
+          "clrName": "V7",
+          "tsEmitName": "V7",
+          "metadataToken": 67109139,
+          "normalizedSignature": "V7|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::UstarSystem.Formats.Tar.TarEntryFormat",
+          "clrName": "Ustar",
+          "tsEmitName": "ustar",
+          "metadataToken": 67109140,
+          "normalizedSignature": "Ustar|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::PaxSystem.Formats.Tar.TarEntryFormat",
+          "clrName": "Pax",
+          "tsEmitName": "pax",
+          "metadataToken": 67109141,
+          "normalizedSignature": "Pax|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryFormat::GnuSystem.Formats.Tar.TarEntryFormat",
+          "clrName": "Gnu",
+          "tsEmitName": "gnu",
+          "metadataToken": 67109142,
+          "normalizedSignature": "Gnu|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "getName",
+          "isStatic": true,
+          "tsSignatureId": "GetName|(TEnum):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664288
+          }
+        },
+        {
+          "tsName": "getName",
+          "isStatic": true,
+          "tsSignatureId": "GetName|(System.Type,System.Object):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664289
+          }
+        },
+        {
+          "tsName": "getNames",
+          "isStatic": true,
+          "tsSignatureId": "GetNames|():System.String[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664293
+          }
+        },
+        {
+          "tsName": "getNames",
+          "isStatic": true,
+          "tsSignatureId": "GetNames|(System.Type):System.String[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664294
+          }
+        },
+        {
+          "tsName": "getUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetUnderlyingType|(System.Type):System.Type|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664296
+          }
+        },
+        {
+          "tsName": "getValues",
+          "isStatic": true,
+          "tsSignatureId": "GetValues|():TEnum[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664297
+          }
+        },
+        {
+          "tsName": "getValues",
+          "isStatic": true,
+          "tsSignatureId": "GetValues|(System.Type):System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664298
+          }
+        },
+        {
+          "tsName": "getValuesAsUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetValuesAsUnderlyingType|():System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664299
+          }
+        },
+        {
+          "tsName": "getValuesAsUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetValuesAsUnderlyingType|(System.Type):System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664300
+          }
+        },
+        {
+          "tsName": "hasFlag",
+          "isStatic": false,
+          "tsSignatureId": "HasFlag|(System.Enum):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664303
+          }
+        },
+        {
+          "tsName": "isDefined",
+          "isStatic": true,
+          "tsSignatureId": "IsDefined|(TEnum):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664304
+          }
+        },
+        {
+          "tsName": "isDefined",
+          "isStatic": true,
+          "tsSignatureId": "IsDefined|(System.Type,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664306
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664309
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664311
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):TEnum|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664313
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean):TEnum|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664315
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Object\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664317
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean,System.Object\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664319
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],TEnum\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664322
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean,TEnum\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664324
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664331
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664332
+          }
+        },
+        {
+          "tsName": "compareTo",
+          "isStatic": false,
+          "tsSignatureId": "CompareTo|(System.Object):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664333
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664334
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664336
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.String,System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664337
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": true,
+          "tsSignatureId": "Format|(System.Type,System.Object,System.String):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664344
+          }
+        },
+        {
+          "tsName": "tryFormat",
+          "isStatic": true,
+          "tsSignatureId": "TryFormat|(TEnum,System.Span_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Int32\u0026,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664346
+          }
+        },
+        {
+          "tsName": "getTypeCode",
+          "isStatic": false,
+          "tsSignatureId": "GetTypeCode|():System.TypeCode|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664361
+          }
+        },
+        {
+          "tsName": "toObject",
+          "isStatic": true,
+          "tsSignatureId": "ToObject|(System.Type,System.Byte):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664381
+          }
+        },
+        {
+          "tsName": "tryFormat$view",
+          "isStatic": false,
+          "tsSignatureId": "TryFormat|(System.Span_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Int32\u0026,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.IFormatProvider):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.ISpanFormattable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100669347
+          }
+        },
+        {
+          "tsName": "toBoolean",
+          "isStatic": false,
+          "tsSignatureId": "ToBoolean|(System.IFormatProvider):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668513
+          }
+        },
+        {
+          "tsName": "toChar",
+          "isStatic": false,
+          "tsSignatureId": "ToChar|(System.IFormatProvider):System.Char|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668514
+          }
+        },
+        {
+          "tsName": "toSByte",
+          "isStatic": false,
+          "tsSignatureId": "ToSByte|(System.IFormatProvider):System.SByte|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668515
+          }
+        },
+        {
+          "tsName": "toByte",
+          "isStatic": false,
+          "tsSignatureId": "ToByte|(System.IFormatProvider):System.Byte|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668516
+          }
+        },
+        {
+          "tsName": "toInt16",
+          "isStatic": false,
+          "tsSignatureId": "ToInt16|(System.IFormatProvider):System.Int16|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668517
+          }
+        },
+        {
+          "tsName": "toUInt16",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt16|(System.IFormatProvider):System.UInt16|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668518
+          }
+        },
+        {
+          "tsName": "toInt32",
+          "isStatic": false,
+          "tsSignatureId": "ToInt32|(System.IFormatProvider):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668519
+          }
+        },
+        {
+          "tsName": "toUInt32",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt32|(System.IFormatProvider):System.UInt32|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668520
+          }
+        },
+        {
+          "tsName": "toInt64",
+          "isStatic": false,
+          "tsSignatureId": "ToInt64|(System.IFormatProvider):System.Int64|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668521
+          }
+        },
+        {
+          "tsName": "toUInt64",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt64|(System.IFormatProvider):System.UInt64|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668522
+          }
+        },
+        {
+          "tsName": "toSingle",
+          "isStatic": false,
+          "tsSignatureId": "ToSingle|(System.IFormatProvider):System.Single|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668523
+          }
+        },
+        {
+          "tsName": "toDouble",
+          "isStatic": false,
+          "tsSignatureId": "ToDouble|(System.IFormatProvider):System.Double|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668524
+          }
+        },
+        {
+          "tsName": "toDecimal",
+          "isStatic": false,
+          "tsSignatureId": "ToDecimal|(System.IFormatProvider):System.Decimal|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668525
+          }
+        },
+        {
+          "tsName": "toDateTime",
+          "isStatic": false,
+          "tsSignatureId": "ToDateTime|(System.IFormatProvider):System.DateTime|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668526
+          }
+        },
+        {
+          "tsName": "toType",
+          "isStatic": false,
+          "tsSignatureId": "ToType|(System.Type,System.IFormatProvider):System.Object|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668528
+          }
+        },
+        {
+          "tsName": "compareTo$view",
+          "isStatic": false,
+          "tsSignatureId": "CompareTo|(System.Object):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.IComparable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668510
+          }
+        },
+        {
+          "tsName": "toString$view",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.String,System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.IFormattable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668533
+          }
+        },
+        {
+          "tsName": "getTypeCode$view",
+          "isStatic": false,
+          "tsSignatureId": "GetTypeCode|():System.TypeCode|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668512
+          }
+        },
+        {
+          "tsName": "toString$view",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668527
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        }
+      ],
+      "exposedFields": [
+        {
+          "tsName": "value__",
+          "isStatic": false,
+          "tsSignatureId": "value__|System.Int32|static=false|const=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109137
+          }
+        },
+        {
+          "tsName": "unknown_",
+          "isStatic": true,
+          "tsSignatureId": "Unknown|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109138
+          }
+        },
+        {
+          "tsName": "V7",
+          "isStatic": true,
+          "tsSignatureId": "V7|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109139
+          }
+        },
+        {
+          "tsName": "ustar",
+          "isStatic": true,
+          "tsSignatureId": "Ustar|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109140
+          }
+        },
+        {
+          "tsName": "pax",
+          "isStatic": true,
+          "tsSignatureId": "Pax|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109141
+          }
+        },
+        {
+          "tsName": "gnu",
+          "isStatic": true,
+          "tsSignatureId": "Gnu|System.Formats.Tar.TarEntryFormat|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryFormat",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109142
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType",
+      "clrName": "System.Formats.Tar.TarEntryType",
+      "tsEmitName": "TarEntryType",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [],
+      "fields": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::value__System.Byte",
+          "clrName": "value__",
+          "tsEmitName": "value__",
+          "metadataToken": 67109145,
+          "normalizedSignature": "value__|System.Byte|static=false|const=false",
+          "isStatic": false,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::RegularFileSystem.Formats.Tar.TarEntryType",
+          "clrName": "RegularFile",
+          "tsEmitName": "regularFile",
+          "metadataToken": 67109146,
+          "normalizedSignature": "RegularFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::HardLinkSystem.Formats.Tar.TarEntryType",
+          "clrName": "HardLink",
+          "tsEmitName": "hardLink",
+          "metadataToken": 67109147,
+          "normalizedSignature": "HardLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::SymbolicLinkSystem.Formats.Tar.TarEntryType",
+          "clrName": "SymbolicLink",
+          "tsEmitName": "symbolicLink",
+          "metadataToken": 67109148,
+          "normalizedSignature": "SymbolicLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::CharacterDeviceSystem.Formats.Tar.TarEntryType",
+          "clrName": "CharacterDevice",
+          "tsEmitName": "characterDevice",
+          "metadataToken": 67109149,
+          "normalizedSignature": "CharacterDevice|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::BlockDeviceSystem.Formats.Tar.TarEntryType",
+          "clrName": "BlockDevice",
+          "tsEmitName": "blockDevice",
+          "metadataToken": 67109150,
+          "normalizedSignature": "BlockDevice|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::DirectorySystem.Formats.Tar.TarEntryType",
+          "clrName": "Directory",
+          "tsEmitName": "directory",
+          "metadataToken": 67109151,
+          "normalizedSignature": "Directory|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::FifoSystem.Formats.Tar.TarEntryType",
+          "clrName": "Fifo",
+          "tsEmitName": "fifo",
+          "metadataToken": 67109152,
+          "normalizedSignature": "Fifo|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::ContiguousFileSystem.Formats.Tar.TarEntryType",
+          "clrName": "ContiguousFile",
+          "tsEmitName": "contiguousFile",
+          "metadataToken": 67109153,
+          "normalizedSignature": "ContiguousFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::ExtendedAttributesSystem.Formats.Tar.TarEntryType",
+          "clrName": "ExtendedAttributes",
+          "tsEmitName": "extendedAttributes",
+          "metadataToken": 67109154,
+          "normalizedSignature": "ExtendedAttributes|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::GlobalExtendedAttributesSystem.Formats.Tar.TarEntryType",
+          "clrName": "GlobalExtendedAttributes",
+          "tsEmitName": "globalExtendedAttributes",
+          "metadataToken": 67109155,
+          "normalizedSignature": "GlobalExtendedAttributes|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::DirectoryListSystem.Formats.Tar.TarEntryType",
+          "clrName": "DirectoryList",
+          "tsEmitName": "directoryList",
+          "metadataToken": 67109156,
+          "normalizedSignature": "DirectoryList|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::LongLinkSystem.Formats.Tar.TarEntryType",
+          "clrName": "LongLink",
+          "tsEmitName": "longLink",
+          "metadataToken": 67109157,
+          "normalizedSignature": "LongLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::LongPathSystem.Formats.Tar.TarEntryType",
+          "clrName": "LongPath",
+          "tsEmitName": "longPath",
+          "metadataToken": 67109158,
+          "normalizedSignature": "LongPath|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::MultiVolumeSystem.Formats.Tar.TarEntryType",
+          "clrName": "MultiVolume",
+          "tsEmitName": "multiVolume",
+          "metadataToken": 67109159,
+          "normalizedSignature": "MultiVolume|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::V7RegularFileSystem.Formats.Tar.TarEntryType",
+          "clrName": "V7RegularFile",
+          "tsEmitName": "v7RegularFile",
+          "metadataToken": 67109160,
+          "normalizedSignature": "V7RegularFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::RenamedOrSymlinkedSystem.Formats.Tar.TarEntryType",
+          "clrName": "RenamedOrSymlinked",
+          "tsEmitName": "renamedOrSymlinked",
+          "metadataToken": 67109161,
+          "normalizedSignature": "RenamedOrSymlinked|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::SparseFileSystem.Formats.Tar.TarEntryType",
+          "clrName": "SparseFile",
+          "tsEmitName": "sparseFile",
+          "metadataToken": 67109162,
+          "normalizedSignature": "SparseFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntryType::TapeVolumeSystem.Formats.Tar.TarEntryType",
+          "clrName": "TapeVolume",
+          "tsEmitName": "tapeVolume",
+          "metadataToken": 67109163,
+          "normalizedSignature": "TapeVolume|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "isStatic": true,
+          "isReadOnly": false,
+          "declaringClrType": "System.Formats.Tar.TarEntryType",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "getName",
+          "isStatic": true,
+          "tsSignatureId": "GetName|(TEnum):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664288
+          }
+        },
+        {
+          "tsName": "getName",
+          "isStatic": true,
+          "tsSignatureId": "GetName|(System.Type,System.Object):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664289
+          }
+        },
+        {
+          "tsName": "getNames",
+          "isStatic": true,
+          "tsSignatureId": "GetNames|():System.String[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664293
+          }
+        },
+        {
+          "tsName": "getNames",
+          "isStatic": true,
+          "tsSignatureId": "GetNames|(System.Type):System.String[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664294
+          }
+        },
+        {
+          "tsName": "getUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetUnderlyingType|(System.Type):System.Type|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664296
+          }
+        },
+        {
+          "tsName": "getValues",
+          "isStatic": true,
+          "tsSignatureId": "GetValues|():TEnum[]|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664297
+          }
+        },
+        {
+          "tsName": "getValues",
+          "isStatic": true,
+          "tsSignatureId": "GetValues|(System.Type):System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664298
+          }
+        },
+        {
+          "tsName": "getValuesAsUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetValuesAsUnderlyingType|():System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664299
+          }
+        },
+        {
+          "tsName": "getValuesAsUnderlyingType",
+          "isStatic": true,
+          "tsSignatureId": "GetValuesAsUnderlyingType|(System.Type):System.Array|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664300
+          }
+        },
+        {
+          "tsName": "hasFlag",
+          "isStatic": false,
+          "tsSignatureId": "HasFlag|(System.Enum):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664303
+          }
+        },
+        {
+          "tsName": "isDefined",
+          "isStatic": true,
+          "tsSignatureId": "IsDefined|(TEnum):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664304
+          }
+        },
+        {
+          "tsName": "isDefined",
+          "isStatic": true,
+          "tsSignatureId": "IsDefined|(System.Type,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664306
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664309
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664311
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):TEnum|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664313
+          }
+        },
+        {
+          "tsName": "parse",
+          "isStatic": true,
+          "tsSignatureId": "Parse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean):TEnum|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664315
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Object\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664317
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.Type,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean,System.Object\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664319
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],TEnum\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664322
+          }
+        },
+        {
+          "tsName": "tryParse",
+          "isStatic": true,
+          "tsSignatureId": "TryParse|(System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Boolean,TEnum\u0026):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664324
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664331
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664332
+          }
+        },
+        {
+          "tsName": "compareTo",
+          "isStatic": false,
+          "tsSignatureId": "CompareTo|(System.Object):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664333
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664334
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664336
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.String,System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664337
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": true,
+          "tsSignatureId": "Format|(System.Type,System.Object,System.String):System.String|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664344
+          }
+        },
+        {
+          "tsName": "tryFormat",
+          "isStatic": true,
+          "tsSignatureId": "TryFormat|(TEnum,System.Span_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Int32\u0026,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664346
+          }
+        },
+        {
+          "tsName": "getTypeCode",
+          "isStatic": false,
+          "tsSignatureId": "GetTypeCode|():System.TypeCode|static=false",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664361
+          }
+        },
+        {
+          "tsName": "toObject",
+          "isStatic": true,
+          "tsSignatureId": "ToObject|(System.Type,System.Byte):System.Object|static=true",
+          "target": {
+            "declaringClrType": "System.Enum",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664381
+          }
+        },
+        {
+          "tsName": "tryFormat$view",
+          "isStatic": false,
+          "tsSignatureId": "TryFormat|(System.Span_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Int32\u0026,System.ReadOnlySpan_1[[System.Char,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.IFormatProvider):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.ISpanFormattable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100669347
+          }
+        },
+        {
+          "tsName": "toBoolean",
+          "isStatic": false,
+          "tsSignatureId": "ToBoolean|(System.IFormatProvider):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668513
+          }
+        },
+        {
+          "tsName": "toChar",
+          "isStatic": false,
+          "tsSignatureId": "ToChar|(System.IFormatProvider):System.Char|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668514
+          }
+        },
+        {
+          "tsName": "toSByte",
+          "isStatic": false,
+          "tsSignatureId": "ToSByte|(System.IFormatProvider):System.SByte|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668515
+          }
+        },
+        {
+          "tsName": "toByte",
+          "isStatic": false,
+          "tsSignatureId": "ToByte|(System.IFormatProvider):System.Byte|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668516
+          }
+        },
+        {
+          "tsName": "toInt16",
+          "isStatic": false,
+          "tsSignatureId": "ToInt16|(System.IFormatProvider):System.Int16|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668517
+          }
+        },
+        {
+          "tsName": "toUInt16",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt16|(System.IFormatProvider):System.UInt16|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668518
+          }
+        },
+        {
+          "tsName": "toInt32",
+          "isStatic": false,
+          "tsSignatureId": "ToInt32|(System.IFormatProvider):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668519
+          }
+        },
+        {
+          "tsName": "toUInt32",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt32|(System.IFormatProvider):System.UInt32|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668520
+          }
+        },
+        {
+          "tsName": "toInt64",
+          "isStatic": false,
+          "tsSignatureId": "ToInt64|(System.IFormatProvider):System.Int64|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668521
+          }
+        },
+        {
+          "tsName": "toUInt64",
+          "isStatic": false,
+          "tsSignatureId": "ToUInt64|(System.IFormatProvider):System.UInt64|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668522
+          }
+        },
+        {
+          "tsName": "toSingle",
+          "isStatic": false,
+          "tsSignatureId": "ToSingle|(System.IFormatProvider):System.Single|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668523
+          }
+        },
+        {
+          "tsName": "toDouble",
+          "isStatic": false,
+          "tsSignatureId": "ToDouble|(System.IFormatProvider):System.Double|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668524
+          }
+        },
+        {
+          "tsName": "toDecimal",
+          "isStatic": false,
+          "tsSignatureId": "ToDecimal|(System.IFormatProvider):System.Decimal|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668525
+          }
+        },
+        {
+          "tsName": "toDateTime",
+          "isStatic": false,
+          "tsSignatureId": "ToDateTime|(System.IFormatProvider):System.DateTime|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668526
+          }
+        },
+        {
+          "tsName": "toType",
+          "isStatic": false,
+          "tsSignatureId": "ToType|(System.Type,System.IFormatProvider):System.Object|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668528
+          }
+        },
+        {
+          "tsName": "compareTo$view",
+          "isStatic": false,
+          "tsSignatureId": "CompareTo|(System.Object):System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.IComparable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668510
+          }
+        },
+        {
+          "tsName": "toString$view",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.String,System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.IFormattable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668533
+          }
+        },
+        {
+          "tsName": "getTypeCode$view",
+          "isStatic": false,
+          "tsSignatureId": "GetTypeCode|():System.TypeCode|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668512
+          }
+        },
+        {
+          "tsName": "toString$view",
+          "isStatic": false,
+          "tsSignatureId": "ToString|(System.IFormatProvider):System.String|static=false",
+          "target": {
+            "declaringClrType": "System.IConvertible",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668527
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        }
+      ],
+      "exposedFields": [
+        {
+          "tsName": "value__",
+          "isStatic": false,
+          "tsSignatureId": "value__|System.Byte|static=false|const=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109145
+          }
+        },
+        {
+          "tsName": "regularFile",
+          "isStatic": true,
+          "tsSignatureId": "RegularFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109146
+          }
+        },
+        {
+          "tsName": "hardLink",
+          "isStatic": true,
+          "tsSignatureId": "HardLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109147
+          }
+        },
+        {
+          "tsName": "symbolicLink",
+          "isStatic": true,
+          "tsSignatureId": "SymbolicLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109148
+          }
+        },
+        {
+          "tsName": "characterDevice",
+          "isStatic": true,
+          "tsSignatureId": "CharacterDevice|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109149
+          }
+        },
+        {
+          "tsName": "blockDevice",
+          "isStatic": true,
+          "tsSignatureId": "BlockDevice|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109150
+          }
+        },
+        {
+          "tsName": "directory",
+          "isStatic": true,
+          "tsSignatureId": "Directory|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109151
+          }
+        },
+        {
+          "tsName": "fifo",
+          "isStatic": true,
+          "tsSignatureId": "Fifo|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109152
+          }
+        },
+        {
+          "tsName": "contiguousFile",
+          "isStatic": true,
+          "tsSignatureId": "ContiguousFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109153
+          }
+        },
+        {
+          "tsName": "extendedAttributes",
+          "isStatic": true,
+          "tsSignatureId": "ExtendedAttributes|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109154
+          }
+        },
+        {
+          "tsName": "globalExtendedAttributes",
+          "isStatic": true,
+          "tsSignatureId": "GlobalExtendedAttributes|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109155
+          }
+        },
+        {
+          "tsName": "directoryList",
+          "isStatic": true,
+          "tsSignatureId": "DirectoryList|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109156
+          }
+        },
+        {
+          "tsName": "longLink",
+          "isStatic": true,
+          "tsSignatureId": "LongLink|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109157
+          }
+        },
+        {
+          "tsName": "longPath",
+          "isStatic": true,
+          "tsSignatureId": "LongPath|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109158
+          }
+        },
+        {
+          "tsName": "multiVolume",
+          "isStatic": true,
+          "tsSignatureId": "MultiVolume|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109159
+          }
+        },
+        {
+          "tsName": "v7RegularFile",
+          "isStatic": true,
+          "tsSignatureId": "V7RegularFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109160
+          }
+        },
+        {
+          "tsName": "renamedOrSymlinked",
+          "isStatic": true,
+          "tsSignatureId": "RenamedOrSymlinked|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109161
+          }
+        },
+        {
+          "tsName": "sparseFile",
+          "isStatic": true,
+          "tsSignatureId": "SparseFile|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109162
+          }
+        },
+        {
+          "tsName": "tapeVolume",
+          "isStatic": true,
+          "tsSignatureId": "TapeVolume|System.Formats.Tar.TarEntryType|static=true|const=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntryType",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 67109163
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.GnuTarEntry",
+      "clrName": "System.Formats.Tar.GnuTarEntry",
+      "tsEmitName": "GnuTarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.GnuTarEntry::AccessTime:System.DateTimeOffset",
+          "clrName": "AccessTime",
+          "tsEmitName": "accessTime",
+          "metadataToken": 385876040,
+          "canonicalSignature": ":System.DateTimeOffset",
+          "normalizedSignature": "AccessTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.GnuTarEntry::ChangeTime:System.DateTimeOffset",
+          "clrName": "ChangeTime",
+          "tsEmitName": "changeTime",
+          "metadataToken": 385876041,
+          "canonicalSignature": ":System.DateTimeOffset",
+          "normalizedSignature": "ChangeTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.GnuTarEntry::.ctor(System.Formats.Tar.TarEntryType,System.String):void",
+          "metadataToken": 100663610,
+          "canonicalSignature": "(System.Formats.Tar.TarEntryType,System.String):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.GnuTarEntry::.ctor(System.Formats.Tar.TarEntry):void",
+          "metadataToken": 100663611,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "accessTime",
+          "isStatic": false,
+          "tsSignatureId": "AccessTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876040
+          }
+        },
+        {
+          "tsName": "changeTime",
+          "isStatic": false,
+          "tsSignatureId": "ChangeTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876041
+          }
+        },
+        {
+          "tsName": "deviceMajor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876017
+          }
+        },
+        {
+          "tsName": "deviceMinor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876018
+          }
+        },
+        {
+          "tsName": "groupName",
+          "isStatic": false,
+          "tsSignatureId": "GroupName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876019
+          }
+        },
+        {
+          "tsName": "userName",
+          "isStatic": false,
+          "tsSignatureId": "UserName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876020
+          }
+        },
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663610
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.GnuTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663611
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+      "clrName": "System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+      "tsEmitName": "PaxGlobalExtendedAttributesTarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry::GlobalExtendedAttributes:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "clrName": "GlobalExtendedAttributes",
+          "tsEmitName": "globalExtendedAttributes",
+          "metadataToken": 385876042,
+          "canonicalSignature": ":System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "normalizedSignature": "GlobalExtendedAttributes|:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry::.ctor(System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void",
+          "metadataToken": 100663618,
+          "canonicalSignature": "(System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void",
+          "normalizedSignature": "constructor|(System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "globalExtendedAttributes",
+          "isStatic": false,
+          "tsSignatureId": "GlobalExtendedAttributes|:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876042
+          }
+        },
+        {
+          "tsName": "deviceMajor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876017
+          }
+        },
+        {
+          "tsName": "deviceMinor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876018
+          }
+        },
+        {
+          "tsName": "groupName",
+          "isStatic": false,
+          "tsSignatureId": "GroupName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876019
+          }
+        },
+        {
+          "tsName": "userName",
+          "isStatic": false,
+          "tsSignatureId": "UserName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876020
+          }
+        },
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxGlobalExtendedAttributesTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663618
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.PaxTarEntry",
+      "clrName": "System.Formats.Tar.PaxTarEntry",
+      "tsEmitName": "PaxTarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxTarEntry::ExtendedAttributes:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "clrName": "ExtendedAttributes",
+          "tsEmitName": "extendedAttributes",
+          "metadataToken": 385876043,
+          "canonicalSignature": ":System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "normalizedSignature": "ExtendedAttributes|:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxTarEntry::.ctor(System.Formats.Tar.TarEntryType,System.String):void",
+          "metadataToken": 100663622,
+          "canonicalSignature": "(System.Formats.Tar.TarEntryType,System.String):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxTarEntry::.ctor(System.Formats.Tar.TarEntryType,System.String,System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void",
+          "metadataToken": 100663623,
+          "canonicalSignature": "(System.Formats.Tar.TarEntryType,System.String,System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntryType,System.String,System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void|static=false",
+          "isStatic": false,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PaxTarEntry::.ctor(System.Formats.Tar.TarEntry):void",
+          "metadataToken": 100663624,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "extendedAttributes",
+          "isStatic": false,
+          "tsSignatureId": "ExtendedAttributes|:System.Collections.Generic.IReadOnlyDictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876043
+          }
+        },
+        {
+          "tsName": "deviceMajor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876017
+          }
+        },
+        {
+          "tsName": "deviceMinor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876018
+          }
+        },
+        {
+          "tsName": "groupName",
+          "isStatic": false,
+          "tsSignatureId": "GroupName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876019
+          }
+        },
+        {
+          "tsName": "userName",
+          "isStatic": false,
+          "tsSignatureId": "UserName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876020
+          }
+        },
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663622
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntryType,System.String,System.Collections.Generic.IEnumerable_1[[System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663623
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PaxTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663624
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.PosixTarEntry",
+      "clrName": "System.Formats.Tar.PosixTarEntry",
+      "tsEmitName": "PosixTarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PosixTarEntry::DeviceMajor:System.Int32",
+          "clrName": "DeviceMajor",
+          "tsEmitName": "deviceMajor",
+          "metadataToken": 385876017,
+          "canonicalSignature": ":System.Int32",
+          "normalizedSignature": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PosixTarEntry::DeviceMinor:System.Int32",
+          "clrName": "DeviceMinor",
+          "tsEmitName": "deviceMinor",
+          "metadataToken": 385876018,
+          "canonicalSignature": ":System.Int32",
+          "normalizedSignature": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PosixTarEntry::GroupName:System.String",
+          "clrName": "GroupName",
+          "tsEmitName": "groupName",
+          "metadataToken": 385876019,
+          "canonicalSignature": ":System.String",
+          "normalizedSignature": "GroupName|:System.String|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.PosixTarEntry::UserName:System.String",
+          "clrName": "UserName",
+          "tsEmitName": "userName",
+          "metadataToken": 385876020,
+          "canonicalSignature": ":System.String",
+          "normalizedSignature": "UserName|:System.String|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "deviceMajor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876017
+          }
+        },
+        {
+          "tsName": "deviceMinor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876018
+          }
+        },
+        {
+          "tsName": "groupName",
+          "isStatic": false,
+          "tsSignatureId": "GroupName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876019
+          }
+        },
+        {
+          "tsName": "userName",
+          "isStatic": false,
+          "tsSignatureId": "UserName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876020
+          }
+        },
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry",
+      "clrName": "System.Formats.Tar.TarEntry",
+      "tsEmitName": "TarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::ExtractToFile(System.String,System.Boolean):System.Void",
+          "clrName": "ExtractToFile",
+          "tsEmitName": "extractToFile",
+          "metadataToken": 100663580,
+          "canonicalSignature": "(System.String,System.Boolean):System.Void",
+          "normalizedSignature": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::ExtractToFileAsync(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "ExtractToFileAsync",
+          "tsEmitName": "extractToFileAsync",
+          "metadataToken": 100663581,
+          "canonicalSignature": "(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::ToString():System.String",
+          "clrName": "ToString",
+          "tsEmitName": "toString",
+          "metadataToken": 100663585,
+          "canonicalSignature": "():System.String",
+          "normalizedSignature": "ToString|():System.String|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        }
+      ],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Checksum:System.Int32",
+          "clrName": "Checksum",
+          "tsEmitName": "checksum",
+          "metadataToken": 385876028,
+          "canonicalSignature": ":System.Int32",
+          "normalizedSignature": "Checksum|:System.Int32|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::EntryType:System.Formats.Tar.TarEntryType",
+          "clrName": "EntryType",
+          "tsEmitName": "entryType",
+          "metadataToken": 385876029,
+          "canonicalSignature": ":System.Formats.Tar.TarEntryType",
+          "normalizedSignature": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Format:System.Formats.Tar.TarEntryFormat",
+          "clrName": "Format",
+          "tsEmitName": "format",
+          "metadataToken": 385876030,
+          "canonicalSignature": ":System.Formats.Tar.TarEntryFormat",
+          "normalizedSignature": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Gid:System.Int32",
+          "clrName": "Gid",
+          "tsEmitName": "gid",
+          "metadataToken": 385876031,
+          "canonicalSignature": ":System.Int32",
+          "normalizedSignature": "Gid|:System.Int32|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::ModificationTime:System.DateTimeOffset",
+          "clrName": "ModificationTime",
+          "tsEmitName": "modificationTime",
+          "metadataToken": 385876032,
+          "canonicalSignature": ":System.DateTimeOffset",
+          "normalizedSignature": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Length:System.Int64",
+          "clrName": "Length",
+          "tsEmitName": "length",
+          "metadataToken": 385876033,
+          "canonicalSignature": ":System.Int64",
+          "normalizedSignature": "Length|:System.Int64|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::LinkName:System.String",
+          "clrName": "LinkName",
+          "tsEmitName": "linkName",
+          "metadataToken": 385876034,
+          "canonicalSignature": ":System.String",
+          "normalizedSignature": "LinkName|:System.String|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Mode:System.IO.UnixFileMode",
+          "clrName": "Mode",
+          "tsEmitName": "mode",
+          "metadataToken": 385876035,
+          "canonicalSignature": ":System.IO.UnixFileMode",
+          "normalizedSignature": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Name:System.String",
+          "clrName": "Name",
+          "tsEmitName": "name",
+          "metadataToken": 385876036,
+          "canonicalSignature": ":System.String",
+          "normalizedSignature": "Name|:System.String|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::Uid:System.Int32",
+          "clrName": "Uid",
+          "tsEmitName": "uid",
+          "metadataToken": 385876037,
+          "canonicalSignature": ":System.Int32",
+          "normalizedSignature": "Uid|:System.Int32|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::DataStream:System.IO.Stream",
+          "clrName": "DataStream",
+          "tsEmitName": "dataStream",
+          "metadataToken": 385876038,
+          "canonicalSignature": ":System.IO.Stream",
+          "normalizedSignature": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": true,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarEntry::DataOffset:System.Int64",
+          "clrName": "DataOffset",
+          "tsEmitName": "dataOffset",
+          "metadataToken": 385876039,
+          "canonicalSignature": ":System.Int64",
+          "normalizedSignature": "DataOffset|:System.Int64|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader",
+      "clrName": "System.Formats.Tar.TarReader",
+      "tsEmitName": "TarReader",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose",
+          "metadataToken": 100663665,
+          "canonicalSignature": "():System.Void",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.Formats.Tar.TarReader",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader::DisposeAsync():System.Threading.Tasks.ValueTask",
+          "clrName": "DisposeAsync",
+          "tsEmitName": "disposeAsync",
+          "metadataToken": 100663666,
+          "canonicalSignature": "():System.Threading.Tasks.ValueTask",
+          "normalizedSignature": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.Formats.Tar.TarReader",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader::GetNextEntry(System.Boolean):System.Formats.Tar.TarEntry",
+          "clrName": "GetNextEntry",
+          "tsEmitName": "getNextEntry",
+          "metadataToken": 100663667,
+          "canonicalSignature": "(System.Boolean):System.Formats.Tar.TarEntry",
+          "normalizedSignature": "GetNextEntry|(System.Boolean):System.Formats.Tar.TarEntry|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.TarReader",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader::GetNextEntryAsync(System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.ValueTask_1[[System.Formats.Tar.TarEntry,System.Formats.Tar,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]",
+          "clrName": "GetNextEntryAsync",
+          "tsEmitName": "getNextEntryAsync",
+          "metadataToken": 100663668,
+          "canonicalSignature": "(System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.ValueTask_1[[System.Formats.Tar.TarEntry,System.Formats.Tar,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]",
+          "normalizedSignature": "GetNextEntryAsync|(System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.ValueTask_1[[System.Formats.Tar.TarEntry,System.Formats.Tar,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarReader",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "metadataToken": 100668530,
+          "canonicalSignature": "():System.Void",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "emitScope": "ViewOnly",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.IDisposable",
+          "declaringAssemblyName": "System.Private.CoreLib",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IAsyncDisposable::DisposeAsync():System.Threading.Tasks.ValueTask",
+          "clrName": "DisposeAsync",
+          "tsEmitName": "disposeAsync$view",
+          "metadataToken": 100668504,
+          "canonicalSignature": "():System.Threading.Tasks.ValueTask",
+          "normalizedSignature": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "emitScope": "ViewOnly",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.IAsyncDisposable",
+          "declaringAssemblyName": "System.Private.CoreLib",
+          "isExtensionMethod": false
+        }
+      ],
+      "properties": [],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarReader::.ctor(System.IO.Stream,System.Boolean):void",
+          "metadataToken": 100663664,
+          "canonicalSignature": "(System.IO.Stream,System.Boolean):void",
+          "normalizedSignature": "constructor|(System.IO.Stream,System.Boolean):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarReader",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "dispose",
+          "isStatic": false,
+          "tsSignatureId": "Dispose|():System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarReader",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663665
+          }
+        },
+        {
+          "tsName": "disposeAsync",
+          "isStatic": false,
+          "tsSignatureId": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarReader",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663666
+          }
+        },
+        {
+          "tsName": "getNextEntry",
+          "isStatic": false,
+          "tsSignatureId": "GetNextEntry|(System.Boolean):System.Formats.Tar.TarEntry|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarReader",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663667
+          }
+        },
+        {
+          "tsName": "getNextEntryAsync",
+          "isStatic": false,
+          "tsSignatureId": "GetNextEntryAsync|(System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.ValueTask_1[[System.Formats.Tar.TarEntry,System.Formats.Tar,Version=10.0.0.0,Culture=neutral,PublicKeyToken=cc7b13ffcd2ddd51]]|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarReader",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663668
+          }
+        },
+        {
+          "tsName": "dispose$view",
+          "isStatic": false,
+          "tsSignatureId": "Dispose|():System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.IDisposable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668530
+          }
+        },
+        {
+          "tsName": "disposeAsync$view",
+          "isStatic": false,
+          "tsSignatureId": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "target": {
+            "declaringClrType": "System.IAsyncDisposable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668504
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664829
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.IO.Stream,System.Boolean):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarReader",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663664
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter",
+      "clrName": "System.Formats.Tar.TarWriter",
+      "tsEmitName": "TarWriter",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose",
+          "metadataToken": 100663695,
+          "canonicalSignature": "():System.Void",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::DisposeAsync():System.Threading.Tasks.ValueTask",
+          "clrName": "DisposeAsync",
+          "tsEmitName": "disposeAsync",
+          "metadataToken": 100663696,
+          "canonicalSignature": "():System.Threading.Tasks.ValueTask",
+          "normalizedSignature": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::WriteEntry(System.String,System.String):System.Void",
+          "clrName": "WriteEntry",
+          "tsEmitName": "writeEntry",
+          "metadataToken": 100663697,
+          "canonicalSignature": "(System.String,System.String):System.Void",
+          "normalizedSignature": "WriteEntry|(System.String,System.String):System.Void|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::WriteEntryAsync(System.String,System.String,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "WriteEntryAsync",
+          "tsEmitName": "writeEntryAsync",
+          "metadataToken": 100663698,
+          "canonicalSignature": "(System.String,System.String,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "WriteEntryAsync|(System.String,System.String,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::WriteEntry(System.Formats.Tar.TarEntry):System.Void",
+          "clrName": "WriteEntry",
+          "tsEmitName": "writeEntry",
+          "metadataToken": 100663701,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry):System.Void",
+          "normalizedSignature": "WriteEntry|(System.Formats.Tar.TarEntry):System.Void|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::WriteEntryAsync(System.Formats.Tar.TarEntry,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "WriteEntryAsync",
+          "tsEmitName": "writeEntryAsync",
+          "metadataToken": 100663702,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "WriteEntryAsync|(System.Formats.Tar.TarEntry,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IDisposable::Dispose():System.Void",
+          "clrName": "Dispose",
+          "tsEmitName": "dispose$view",
+          "metadataToken": 100668530,
+          "canonicalSignature": "():System.Void",
+          "normalizedSignature": "Dispose|():System.Void|static=false",
+          "emitScope": "ViewOnly",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.IDisposable",
+          "declaringAssemblyName": "System.Private.CoreLib",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Private.CoreLib:System.IAsyncDisposable::DisposeAsync():System.Threading.Tasks.ValueTask",
+          "clrName": "DisposeAsync",
+          "tsEmitName": "disposeAsync$view",
+          "metadataToken": 100668504,
+          "canonicalSignature": "():System.Threading.Tasks.ValueTask",
+          "normalizedSignature": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "emitScope": "ViewOnly",
+          "arity": 0,
+          "parameterCount": 0,
+          "declaringClrType": "System.IAsyncDisposable",
+          "declaringAssemblyName": "System.Private.CoreLib",
+          "isExtensionMethod": false
+        }
+      ],
+      "properties": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::Format:System.Formats.Tar.TarEntryFormat",
+          "clrName": "Format",
+          "tsEmitName": "format",
+          "metadataToken": 385876046,
+          "canonicalSignature": ":System.Formats.Tar.TarEntryFormat",
+          "normalizedSignature": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "emitScope": "ClassSurface",
+          "isIndexer": false,
+          "hasGetter": true,
+          "hasSetter": false,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::.ctor(System.IO.Stream):void",
+          "metadataToken": 100663691,
+          "canonicalSignature": "(System.IO.Stream):void",
+          "normalizedSignature": "constructor|(System.IO.Stream):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::.ctor(System.IO.Stream,System.Boolean):void",
+          "metadataToken": 100663692,
+          "canonicalSignature": "(System.IO.Stream,System.Boolean):void",
+          "normalizedSignature": "constructor|(System.IO.Stream,System.Boolean):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarWriter::.ctor(System.IO.Stream,System.Formats.Tar.TarEntryFormat,System.Boolean):void",
+          "metadataToken": 100663693,
+          "canonicalSignature": "(System.IO.Stream,System.Formats.Tar.TarEntryFormat,System.Boolean):void",
+          "normalizedSignature": "constructor|(System.IO.Stream,System.Formats.Tar.TarEntryFormat,System.Boolean):void|static=false",
+          "isStatic": false,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarWriter",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "dispose",
+          "isStatic": false,
+          "tsSignatureId": "Dispose|():System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663695
+          }
+        },
+        {
+          "tsName": "disposeAsync",
+          "isStatic": false,
+          "tsSignatureId": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663696
+          }
+        },
+        {
+          "tsName": "writeEntry",
+          "isStatic": false,
+          "tsSignatureId": "WriteEntry|(System.String,System.String):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663697
+          }
+        },
+        {
+          "tsName": "writeEntryAsync",
+          "isStatic": false,
+          "tsSignatureId": "WriteEntryAsync|(System.String,System.String,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663698
+          }
+        },
+        {
+          "tsName": "writeEntry",
+          "isStatic": false,
+          "tsSignatureId": "WriteEntry|(System.Formats.Tar.TarEntry):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663701
+          }
+        },
+        {
+          "tsName": "writeEntryAsync",
+          "isStatic": false,
+          "tsSignatureId": "WriteEntryAsync|(System.Formats.Tar.TarEntry,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663702
+          }
+        },
+        {
+          "tsName": "dispose$view",
+          "isStatic": false,
+          "tsSignatureId": "Dispose|():System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.IDisposable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668530
+          }
+        },
+        {
+          "tsName": "disposeAsync$view",
+          "isStatic": false,
+          "tsSignatureId": "DisposeAsync|():System.Threading.Tasks.ValueTask|static=false",
+          "target": {
+            "declaringClrType": "System.IAsyncDisposable",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100668504
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664829
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876046
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.IO.Stream):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663691
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.IO.Stream,System.Boolean):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663692
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.IO.Stream,System.Formats.Tar.TarEntryFormat,System.Boolean):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarWriter",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663693
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.UstarTarEntry",
+      "clrName": "System.Formats.Tar.UstarTarEntry",
+      "tsEmitName": "UstarTarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.UstarTarEntry::.ctor(System.Formats.Tar.TarEntryType,System.String):void",
+          "metadataToken": 100663606,
+          "canonicalSignature": "(System.Formats.Tar.TarEntryType,System.String):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.UstarTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.UstarTarEntry::.ctor(System.Formats.Tar.TarEntry):void",
+          "metadataToken": 100663607,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.UstarTarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "deviceMajor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMajor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876017
+          }
+        },
+        {
+          "tsName": "deviceMinor",
+          "isStatic": false,
+          "tsSignatureId": "DeviceMinor|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876018
+          }
+        },
+        {
+          "tsName": "groupName",
+          "isStatic": false,
+          "tsSignatureId": "GroupName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876019
+          }
+        },
+        {
+          "tsName": "userName",
+          "isStatic": false,
+          "tsSignatureId": "UserName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.PosixTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876020
+          }
+        },
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.UstarTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663606
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.UstarTarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663607
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.V7TarEntry",
+      "clrName": "System.Formats.Tar.V7TarEntry",
+      "tsEmitName": "V7TarEntry",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [],
+      "properties": [],
+      "fields": [],
+      "events": [],
+      "constructors": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.V7TarEntry::.ctor(System.Formats.Tar.TarEntryType,System.String):void",
+          "metadataToken": 100663402,
+          "canonicalSignature": "(System.Formats.Tar.TarEntryType,System.String):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "isStatic": false,
+          "parameterCount": 2,
+          "declaringClrType": "System.Formats.Tar.V7TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.V7TarEntry::.ctor(System.Formats.Tar.TarEntry):void",
+          "metadataToken": 100663403,
+          "canonicalSignature": "(System.Formats.Tar.TarEntry):void",
+          "normalizedSignature": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "isStatic": false,
+          "parameterCount": 1,
+          "declaringClrType": "System.Formats.Tar.V7TarEntry",
+          "declaringAssemblyName": "System.Formats.Tar"
+        }
+      ],
+      "exposedMethods": [
+        {
+          "tsName": "extractToFile",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFile|(System.String,System.Boolean):System.Void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663580
+          }
+        },
+        {
+          "tsName": "extractToFileAsync",
+          "isStatic": false,
+          "tsSignatureId": "ExtractToFileAsync|(System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663581
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663585
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ],
+      "exposedProperties": [
+        {
+          "tsName": "checksum",
+          "isStatic": false,
+          "tsSignatureId": "Checksum|:System.Int32|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876028
+          }
+        },
+        {
+          "tsName": "entryType",
+          "isStatic": false,
+          "tsSignatureId": "EntryType|:System.Formats.Tar.TarEntryType|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876029
+          }
+        },
+        {
+          "tsName": "format",
+          "isStatic": false,
+          "tsSignatureId": "Format|:System.Formats.Tar.TarEntryFormat|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876030
+          }
+        },
+        {
+          "tsName": "gid",
+          "isStatic": false,
+          "tsSignatureId": "Gid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876031
+          }
+        },
+        {
+          "tsName": "modificationTime",
+          "isStatic": false,
+          "tsSignatureId": "ModificationTime|:System.DateTimeOffset|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876032
+          }
+        },
+        {
+          "tsName": "length",
+          "isStatic": false,
+          "tsSignatureId": "Length|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876033
+          }
+        },
+        {
+          "tsName": "linkName",
+          "isStatic": false,
+          "tsSignatureId": "LinkName|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876034
+          }
+        },
+        {
+          "tsName": "mode",
+          "isStatic": false,
+          "tsSignatureId": "Mode|:System.IO.UnixFileMode|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876035
+          }
+        },
+        {
+          "tsName": "name",
+          "isStatic": false,
+          "tsSignatureId": "Name|:System.String|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876036
+          }
+        },
+        {
+          "tsName": "uid",
+          "isStatic": false,
+          "tsSignatureId": "Uid|:System.Int32|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876037
+          }
+        },
+        {
+          "tsName": "dataStream",
+          "isStatic": false,
+          "tsSignatureId": "DataStream|:System.IO.Stream|static=false|accessor=getset",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876038
+          }
+        },
+        {
+          "tsName": "dataOffset",
+          "isStatic": false,
+          "tsSignatureId": "DataOffset|:System.Int64|static=false|accessor=get",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 385876039
+          }
+        }
+      ],
+      "exposedConstructors": [
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntryType,System.String):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.V7TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663402
+          }
+        },
+        {
+          "isStatic": false,
+          "tsSignatureId": "constructor|(System.Formats.Tar.TarEntry):void|static=false",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.V7TarEntry",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663403
+          }
+        }
+      ]
+    },
+    {
+      "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile",
+      "clrName": "System.Formats.Tar.TarFile",
+      "tsEmitName": "TarFile",
+      "assemblyName": "System.Formats.Tar",
+      "metadataToken": 0,
+      "methods": [
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::CreateFromDirectory(System.String,System.IO.Stream,System.Boolean):System.Void",
+          "clrName": "CreateFromDirectory",
+          "tsEmitName": "createFromDirectory",
+          "metadataToken": 100663627,
+          "canonicalSignature": "(System.String,System.IO.Stream,System.Boolean):System.Void",
+          "normalizedSignature": "CreateFromDirectory|(System.String,System.IO.Stream,System.Boolean):System.Void|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::CreateFromDirectoryAsync(System.String,System.IO.Stream,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "CreateFromDirectoryAsync",
+          "tsEmitName": "createFromDirectoryAsync",
+          "metadataToken": 100663628,
+          "canonicalSignature": "(System.String,System.IO.Stream,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "CreateFromDirectoryAsync|(System.String,System.IO.Stream,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 4,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::CreateFromDirectory(System.String,System.String,System.Boolean):System.Void",
+          "clrName": "CreateFromDirectory",
+          "tsEmitName": "createFromDirectory",
+          "metadataToken": 100663629,
+          "canonicalSignature": "(System.String,System.String,System.Boolean):System.Void",
+          "normalizedSignature": "CreateFromDirectory|(System.String,System.String,System.Boolean):System.Void|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::CreateFromDirectoryAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "CreateFromDirectoryAsync",
+          "tsEmitName": "createFromDirectoryAsync",
+          "metadataToken": 100663630,
+          "canonicalSignature": "(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "CreateFromDirectoryAsync|(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 4,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::ExtractToDirectory(System.IO.Stream,System.String,System.Boolean):System.Void",
+          "clrName": "ExtractToDirectory",
+          "tsEmitName": "extractToDirectory",
+          "metadataToken": 100663631,
+          "canonicalSignature": "(System.IO.Stream,System.String,System.Boolean):System.Void",
+          "normalizedSignature": "ExtractToDirectory|(System.IO.Stream,System.String,System.Boolean):System.Void|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::ExtractToDirectoryAsync(System.IO.Stream,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "ExtractToDirectoryAsync",
+          "tsEmitName": "extractToDirectoryAsync",
+          "metadataToken": 100663632,
+          "canonicalSignature": "(System.IO.Stream,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "ExtractToDirectoryAsync|(System.IO.Stream,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 4,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::ExtractToDirectory(System.String,System.String,System.Boolean):System.Void",
+          "clrName": "ExtractToDirectory",
+          "tsEmitName": "extractToDirectory",
+          "metadataToken": 100663633,
+          "canonicalSignature": "(System.String,System.String,System.Boolean):System.Void",
+          "normalizedSignature": "ExtractToDirectory|(System.String,System.String,System.Boolean):System.Void|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 3,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "System.Formats.Tar:System.Formats.Tar.TarFile::ExtractToDirectoryAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "clrName": "ExtractToDirectoryAsync",
+          "tsEmitName": "extractToDirectoryAsync",
+          "metadataToken": 100663634,
+          "canonicalSignature": "(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task",
+          "normalizedSignature": "ExtractToDirectoryAsync|(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "emitScope": "ClassSurface",
+          "arity": 0,
+          "parameterCount": 4,
+          "declaringClrType": "System.Formats.Tar.TarFile",
+          "declaringAssemblyName": "System.Formats.Tar",
+          "isExtensionMethod": false
+        }
+      ],
+      "properties": [],
+      "fields": [],
+      "events": [],
+      "constructors": [],
+      "exposedMethods": [
+        {
+          "tsName": "createFromDirectory",
+          "isStatic": true,
+          "tsSignatureId": "CreateFromDirectory|(System.String,System.IO.Stream,System.Boolean):System.Void|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663627
+          }
+        },
+        {
+          "tsName": "createFromDirectoryAsync",
+          "isStatic": true,
+          "tsSignatureId": "CreateFromDirectoryAsync|(System.String,System.IO.Stream,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663628
+          }
+        },
+        {
+          "tsName": "createFromDirectory",
+          "isStatic": true,
+          "tsSignatureId": "CreateFromDirectory|(System.String,System.String,System.Boolean):System.Void|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663629
+          }
+        },
+        {
+          "tsName": "createFromDirectoryAsync",
+          "isStatic": true,
+          "tsSignatureId": "CreateFromDirectoryAsync|(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663630
+          }
+        },
+        {
+          "tsName": "extractToDirectory",
+          "isStatic": true,
+          "tsSignatureId": "ExtractToDirectory|(System.IO.Stream,System.String,System.Boolean):System.Void|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663631
+          }
+        },
+        {
+          "tsName": "extractToDirectoryAsync",
+          "isStatic": true,
+          "tsSignatureId": "ExtractToDirectoryAsync|(System.IO.Stream,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663632
+          }
+        },
+        {
+          "tsName": "extractToDirectory",
+          "isStatic": true,
+          "tsSignatureId": "ExtractToDirectory|(System.String,System.String,System.Boolean):System.Void|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663633
+          }
+        },
+        {
+          "tsName": "extractToDirectoryAsync",
+          "isStatic": true,
+          "tsSignatureId": "ExtractToDirectoryAsync|(System.String,System.String,System.Boolean,System.Threading.CancellationToken):System.Threading.Tasks.Task|static=true",
+          "target": {
+            "declaringClrType": "System.Formats.Tar.TarFile",
+            "declaringAssemblyName": "System.Formats.Tar",
+            "metadataToken": 100663634
+          }
+        },
+        {
+          "tsName": "getType",
+          "isStatic": false,
+          "tsSignatureId": "GetType|():System.Type|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664825
+          }
+        },
+        {
+          "tsName": "toString",
+          "isStatic": false,
+          "tsSignatureId": "ToString|():System.String|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664829
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": false,
+          "tsSignatureId": "Equals|(System.Object):System.Boolean|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664830
+          }
+        },
+        {
+          "tsName": "equals",
+          "isStatic": true,
+          "tsSignatureId": "Equals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664831
+          }
+        },
+        {
+          "tsName": "referenceEquals",
+          "isStatic": true,
+          "tsSignatureId": "ReferenceEquals|(System.Object,System.Object):System.Boolean|static=true",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664832
+          }
+        },
+        {
+          "tsName": "getHashCode",
+          "isStatic": false,
+          "tsSignatureId": "GetHashCode|():System.Int32|static=false",
+          "target": {
+            "declaringClrType": "System.Object",
+            "declaringAssemblyName": "System.Private.CoreLib",
+            "metadataToken": 100664833
+          }
+        }
+      ]
+    }
+  ]
+}
