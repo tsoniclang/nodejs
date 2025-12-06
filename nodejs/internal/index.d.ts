@@ -9,19 +9,18 @@ import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint12
 import type { ptr, ref } from "@tsonic/types";
 
 // Import types from other namespaces
-import * as System_Collections_Generic_Internal from "../../System.Collections.Generic/internal/index.js";
-import type { Dictionary_2, IAsyncEnumerable_1, ICollection_1, IDictionary_2, IEnumerable_1, IEnumerator_1, KeyValuePair_2 } from "../../System.Collections.Generic/internal/index.js";
-import * as System_Collections_Internal from "../../System.Collections/internal/index.js";
-import type { IDictionary, IEnumerable, IEnumerator } from "../../System.Collections/internal/index.js";
-import type { MethodBase, MethodInfo } from "../../System.Reflection/internal/index.js";
-import * as System_Runtime_Serialization_Internal from "../../System.Runtime.Serialization/internal/index.js";
-import type { ISerializable, SerializationInfo, StreamingContext } from "../../System.Runtime.Serialization/internal/index.js";
-import type { SslProtocols } from "../../System.Security.Authentication/internal/index.js";
-import type { X509Certificate2, X509Certificate2Collection } from "../../System.Security.Cryptography.X509Certificates/internal/index.js";
-import type { Regex } from "../../System.Text.RegularExpressions/internal/index.js";
-import type { Task, Task_1 } from "../../System.Threading.Tasks/internal/index.js";
-import * as System_Internal from "../../System/internal/index.js";
-import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, Type, UInt16, UInt32, UInt64, ValueTuple_2, Void } from "../../System/internal/index.js";
+import * as System_Collections_Generic_Internal from "@tsonic/dotnet/System.Collections.Generic.js";
+import type { Dictionary, IAsyncEnumerable, ICollection, IDictionary, IEnumerable as IEnumerable__System_Collections_Generic, IEnumerator, KeyValuePair } from "@tsonic/dotnet/System.Collections.Generic.js";
+import * as System_Collections_Internal from "@tsonic/dotnet/System.Collections.js";
+import type { IEnumerable } from "@tsonic/dotnet/System.Collections.js";
+import * as System_Internal from "@tsonic/dotnet/System.js";
+import type { Action, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple, Void } from "@tsonic/dotnet/System.js";
+import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Runtime.Serialization.js";
+import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization.js";
+import type { SslProtocols } from "@tsonic/dotnet/System.Security.Authentication.js";
+import type { X509Certificate2, X509Certificate2Collection } from "@tsonic/dotnet/System.Security.Cryptography.X509Certificates.js";
+import type { Regex } from "@tsonic/dotnet/System.Text.RegularExpressions.js";
+import type { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
 
 // CLROf<T> - Maps ergonomic primitives to their CLR types for generic constraints
 // This utility is used ONLY in generic type arguments to satisfy CLR interface constraints
@@ -230,7 +229,6 @@ export interface AssertionError$instance extends Exception {
     expected: unknown;
     generatedMessage: boolean;
     operator: string;
-    getObjectData(info: SerializationInfo, context: StreamingContext): void;
 }
 
 
@@ -239,18 +237,13 @@ export const AssertionError: {
 };
 
 
-export interface __AssertionError$views {
-    As_ISerializable(): System_Runtime_Serialization_Internal.ISerializable$instance;
-}
-
-export type AssertionError = AssertionError$instance & __AssertionError$views;
-
+export type AssertionError = AssertionError$instance;
 
 export interface BindOptions$instance {
     address: string;
     exclusive: boolean;
-    fd: Nullable_1<CLROf<int>>;
-    port: Nullable_1<CLROf<int>>;
+    fd: Nullable<CLROf<int>>;
+    port: Nullable<CLROf<int>>;
 }
 
 
@@ -278,9 +271,9 @@ export const BlockList: {
 export type BlockList = BlockList$instance;
 
 export interface BrotliOptions$instance {
-    chunkSize: Nullable_1<CLROf<int>>;
-    maxOutputLength: Nullable_1<CLROf<int>>;
-    quality: Nullable_1<CLROf<int>>;
+    chunkSize: Nullable<CLROf<int>>;
+    maxOutputLength: Nullable<CLROf<int>>;
+    quality: Nullable<CLROf<int>>;
 }
 
 
@@ -294,13 +287,13 @@ export type BrotliOptions = BrotliOptions$instance;
 export interface Buffer$instance {
     item: byte;
     readonly length: int;
-    compare(target: Buffer, targetStart?: Nullable_1<CLROf<int>>, targetEnd?: Nullable_1<CLROf<int>>, sourceStart?: Nullable_1<CLROf<int>>, sourceEnd?: Nullable_1<CLROf<int>>): int;
-    copy(target: Buffer, targetStart?: int, sourceStart?: Nullable_1<CLROf<int>>, sourceEnd?: Nullable_1<CLROf<int>>): int;
+    compare(target: Buffer, targetStart?: Nullable<CLROf<int>>, targetEnd?: Nullable<CLROf<int>>, sourceStart?: Nullable<CLROf<int>>, sourceEnd?: Nullable<CLROf<int>>): int;
+    copy(target: Buffer, targetStart?: int, sourceStart?: Nullable<CLROf<int>>, sourceEnd?: Nullable<CLROf<int>>): int;
     equals(otherBuffer: Buffer): boolean;
-    fill(value: unknown, offset?: int, end?: Nullable_1<CLROf<int>>, encoding?: string): Buffer;
+    fill(value: unknown, offset?: int, end?: Nullable<CLROf<int>>, encoding?: string): Buffer;
     includes(value: unknown, byteOffset?: int, encoding?: string): boolean;
     indexOf(value: unknown, byteOffset?: int, encoding?: string): int;
-    lastIndexOf(value: unknown, byteOffset?: Nullable_1<CLROf<int>>, encoding?: string): int;
+    lastIndexOf(value: unknown, byteOffset?: Nullable<CLROf<int>>, encoding?: string): int;
     readBigInt64BE(offset?: int): long;
     readBigInt64LE(offset?: int): long;
     readBigUint64BE(offset?: int): ulong;
@@ -333,14 +326,14 @@ export interface Buffer$instance {
     readUintLE(offset: int, byteLength: int): ulong;
     readUIntLE(offset: int, byteLength: int): ulong;
     reverse(): Buffer;
-    slice(start?: Nullable_1<CLROf<int>>, end?: Nullable_1<CLROf<int>>): Buffer;
-    subarray(start?: Nullable_1<CLROf<int>>, end?: Nullable_1<CLROf<int>>): Buffer;
+    slice(start?: Nullable<CLROf<int>>, end?: Nullable<CLROf<int>>): Buffer;
+    subarray(start?: Nullable<CLROf<int>>, end?: Nullable<CLROf<int>>): Buffer;
     swap16(): Buffer;
     swap32(): Buffer;
     swap64(): Buffer;
     toJSON(): unknown;
-    toString(encoding?: string, start?: int, end?: Nullable_1<CLROf<int>>): string;
-    write(str: string, offset?: int, length?: Nullable_1<CLROf<int>>, encoding?: string): int;
+    toString(encoding?: string, start?: int, end?: Nullable<CLROf<int>>): string;
+    write(str: string, offset?: int, length?: Nullable<CLROf<int>>, encoding?: string): int;
     writeBigInt64BE(value: long, offset?: int): int;
     writeBigInt64LE(value: long, offset?: int): int;
     writeBigUint64BE(value: ulong, offset?: int): int;
@@ -383,14 +376,14 @@ export const Buffer: {
     allocUnsafeSlow(size: int): Buffer;
     byteLength(str: string, encoding?: string): int;
     compare(buf1: Buffer, buf2: Buffer): int;
-    concat(list: Buffer[], totalLength?: Nullable_1<CLROf<int>>): Buffer;
+    concat(list: Buffer[], totalLength?: Nullable<CLROf<int>>): Buffer;
     from_(buffer: Buffer): Buffer;
     from_(array: byte[]): Buffer;
     from_(array: int[]): Buffer;
     from_(str: string, encoding?: string): Buffer;
     isBuffer(obj: unknown): boolean;
     isEncoding(encoding: string): boolean;
-    of_(items: int[]): Buffer;
+    of_(...items: int[]): Buffer;
 };
 
 
@@ -415,7 +408,7 @@ export type CaaRecord = CaaRecord$instance;
 
 export interface ChildProcess$instance extends EventEmitter {
     readonly connected: boolean;
-    readonly exitCode: Nullable_1<CLROf<int>>;
+    readonly exitCode: Nullable<CLROf<int>>;
     readonly killed: boolean;
     readonly pid: int;
     readonly referenced: boolean;
@@ -428,7 +421,7 @@ export interface ChildProcess$instance extends EventEmitter {
     disconnect(): void;
     kill(signal?: string): boolean;
     ref(): void;
-    send(message: unknown, sendHandle?: unknown, options?: unknown, callback?: Action_1<Exception>): boolean;
+    send(message: unknown, sendHandle?: unknown, options?: unknown, callback?: Action<Exception>): boolean;
     unref(): void;
 }
 
@@ -475,9 +468,9 @@ export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
     alpnProtocols: string[];
-    enableTrace: Nullable_1<CLROf<boolean>>;
-    rejectUnauthorized: Nullable_1<CLROf<boolean>>;
-    requestCert: Nullable_1<CLROf<boolean>>;
+    enableTrace: Nullable<CLROf<boolean>>;
+    rejectUnauthorized: Nullable<CLROf<boolean>>;
+    requestCert: Nullable<CLROf<boolean>>;
     secureContext: SecureContext;
 }
 
@@ -495,9 +488,9 @@ export interface ConnectionOptions$instance extends CommonConnectionOptions {
     host: string;
     key: unknown;
     passphrase: string;
-    port: Nullable_1<CLROf<int>>;
+    port: Nullable<CLROf<int>>;
     servername: string;
-    timeout: Nullable_1<CLROf<int>>;
+    timeout: Nullable<CLROf<int>>;
 }
 
 
@@ -601,15 +594,15 @@ export interface DgramSocket$instance extends EventEmitter {
     getSendQueueSize(): int;
     ref(): DgramSocket;
     remoteAddress(): AddressInfo;
-    send(msg: byte[], port?: Nullable_1<CLROf<int>>, address?: string, callback?: Action_2<Exception, CLROf<int>>): void;
-    send(msg: string, port?: Nullable_1<CLROf<int>>, address?: string, callback?: Action_2<Exception, CLROf<int>>): void;
-    send(msg: byte[], port: int, callback: Action_2<Exception, CLROf<int>>): void;
-    send(msg: string, port: int, callback: Action_2<Exception, CLROf<int>>): void;
-    send(msg: byte[], callback: Action_2<Exception, CLROf<int>>): void;
-    send(msg: string, callback: Action_2<Exception, CLROf<int>>): void;
-    send(msg: byte[], offset: int, length: int, port?: Nullable_1<CLROf<int>>, address?: string, callback?: Action_2<Exception, CLROf<int>>): void;
-    send(msg: byte[], offset: int, length: int, port: int, callback: Action_2<Exception, CLROf<int>>): void;
-    send(msg: byte[], offset: int, length: int, callback: Action_2<Exception, CLROf<int>>): void;
+    send(msg: byte[], port?: Nullable<CLROf<int>>, address?: string, callback?: Action<Exception, CLROf<int>>): void;
+    send(msg: string, port?: Nullable<CLROf<int>>, address?: string, callback?: Action<Exception, CLROf<int>>): void;
+    send(msg: byte[], port: int, callback: Action<Exception, CLROf<int>>): void;
+    send(msg: string, port: int, callback: Action<Exception, CLROf<int>>): void;
+    send(msg: byte[], callback: Action<Exception, CLROf<int>>): void;
+    send(msg: string, callback: Action<Exception, CLROf<int>>): void;
+    send(msg: byte[], offset: int, length: int, port?: Nullable<CLROf<int>>, address?: string, callback?: Action<Exception, CLROf<int>>): void;
+    send(msg: byte[], offset: int, length: int, port: int, callback: Action<Exception, CLROf<int>>): void;
+    send(msg: byte[], offset: int, length: int, callback: Action<Exception, CLROf<int>>): void;
     setBroadcast(flag: boolean): void;
     setMulticastInterface(multicastInterface: string): void;
     setMulticastLoopback(flag: boolean): boolean;
@@ -656,18 +649,11 @@ export const DiffieHellman: {
 };
 
 
-export interface __DiffieHellman$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
+export type DiffieHellman = DiffieHellman$instance;
 
-export interface DiffieHellman$instance extends System_Internal.IDisposable$instance {}
-
-export type DiffieHellman = DiffieHellman$instance & __DiffieHellman$views;
-
-
-export interface DSAPrivateKeyObject$instance extends KeyObject$instance {
+export interface DSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
@@ -679,16 +665,11 @@ export const DSAPrivateKeyObject: {
 };
 
 
-export interface __DSAPrivateKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
+export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
 
-export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance & __DSAPrivateKeyObject$views;
-
-
-export interface DSAPublicKeyObject$instance extends KeyObject$instance {
+export interface DSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
@@ -700,12 +681,7 @@ export const DSAPublicKeyObject: {
 };
 
 
-export interface __DSAPublicKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export type DSAPublicKeyObject = DSAPublicKeyObject$instance & __DSAPublicKeyObject$views;
-
+export type DSAPublicKeyObject = DSAPublicKeyObject$instance;
 
 export interface Duplex$instance extends Readable {
     readonly writable: boolean;
@@ -750,18 +726,11 @@ export const ECDH: {
 };
 
 
-export interface __ECDH$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
+export type ECDH = ECDH$instance;
 
-export interface ECDH$instance extends System_Internal.IDisposable$instance {}
-
-export type ECDH = ECDH$instance & __ECDH$views;
-
-
-export interface EdDSAPrivateKeyObject$instance extends KeyObject$instance {
+export interface EdDSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
@@ -773,16 +742,11 @@ export const EdDSAPrivateKeyObject: {
 };
 
 
-export interface __EdDSAPrivateKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
+export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
 
-export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance & __EdDSAPrivateKeyObject$views;
-
-
-export interface EdDSAPublicKeyObject$instance extends KeyObject$instance {
+export interface EdDSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
@@ -794,12 +758,7 @@ export const EdDSAPublicKeyObject: {
 };
 
 
-export interface __EdDSAPublicKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance & __EdDSAPublicKeyObject$views;
-
+export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance;
 
 export interface EphemeralKeyInfo$instance {
     name: string;
@@ -817,7 +776,7 @@ export type EphemeralKeyInfo = EphemeralKeyInfo$instance;
 
 export interface EventEmitter$instance {
     addListener(eventName: string, listener: Function): EventEmitter;
-    emit(eventName: string, args: unknown[]): boolean;
+    emit(eventName: string, ...args: unknown[]): boolean;
     eventNames(): string[];
     getMaxListeners(): int;
     listenerCount(eventName: string): int;
@@ -837,7 +796,7 @@ export interface EventEmitter$instance {
 export const EventEmitter: {
     new(): EventEmitter$instance;
     defaultMaxListeners: int;
-    once(emitter: EventEmitter, eventName: string): Task_1<unknown[]>;
+    once(emitter: EventEmitter, eventName: string): Task<unknown[]>;
 };
 
 
@@ -849,14 +808,14 @@ export interface ExecOptions$instance {
     detached: boolean;
     encoding: string;
     env: unknown;
-    gid: Nullable_1<CLROf<int>>;
+    gid: Nullable<CLROf<int>>;
     input: string;
     killSignal: string;
     maxBuffer: int;
     shell: string;
     stdio: string;
     timeout: int;
-    uid: Nullable_1<CLROf<int>>;
+    uid: Nullable<CLROf<int>>;
     windowsHide: boolean;
     windowsVerbatimArguments: boolean;
 }
@@ -916,14 +875,7 @@ export const Immediate: {
 };
 
 
-export interface __Immediate$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export interface Immediate$instance extends System_Internal.IDisposable$instance {}
-
-export type Immediate = Immediate$instance & __Immediate$views;
-
+export type Immediate = Immediate$instance;
 
 export interface Interface$instance extends EventEmitter {
     readonly cursor: int;
@@ -933,8 +885,8 @@ export interface Interface$instance extends EventEmitter {
     getPrompt(): string;
     pause(): Interface;
     prompt(preserveCursor?: boolean): void;
-    question(query: string, callback: Action_1<CLROf<string>>): void;
-    questionAsync(query: string): Task_1<CLROf<string>>;
+    question(query: string, callback: Action<CLROf<string>>): void;
+    questionAsync(query: string): Task<CLROf<string>>;
     resume(): Interface;
     setPrompt(prompt: string): void;
     write(data: unknown, key?: unknown): void;
@@ -949,15 +901,15 @@ export const Interface: {
 export type Interface = Interface$instance;
 
 export interface InterfaceOptions$instance {
-    escapeCodeTimeout: Nullable_1<CLROf<int>>;
+    escapeCodeTimeout: Nullable<CLROf<int>>;
     history: string[];
-    historySize: Nullable_1<CLROf<int>>;
+    historySize: Nullable<CLROf<int>>;
     input: Readable;
     output: Writable;
     prompt: string;
-    removeHistoryDuplicates: Nullable_1<CLROf<boolean>>;
-    tabSize: Nullable_1<CLROf<int>>;
-    terminal: Nullable_1<CLROf<boolean>>;
+    removeHistoryDuplicates: Nullable<CLROf<boolean>>;
+    tabSize: Nullable<CLROf<int>>;
+    terminal: Nullable<CLROf<boolean>>;
 }
 
 
@@ -982,7 +934,7 @@ export type IpcSocketConnectOpts = IpcSocketConnectOpts$instance;
 
 export interface KeyObject$instance {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
@@ -993,21 +945,14 @@ export const KeyObject: {
 };
 
 
-export interface __KeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export interface KeyObject$instance extends System_Internal.IDisposable$instance {}
-
-export type KeyObject = KeyObject$instance & __KeyObject$views;
-
+export type KeyObject = KeyObject$instance;
 
 export interface ListenOptions$instance {
-    backlog: Nullable_1<CLROf<int>>;
+    backlog: Nullable<CLROf<int>>;
     host: string;
-    ipv6Only: Nullable_1<CLROf<boolean>>;
+    ipv6Only: Nullable<CLROf<boolean>>;
     path: string;
-    port: Nullable_1<CLROf<int>>;
+    port: Nullable<CLROf<int>>;
 }
 
 
@@ -1032,11 +977,11 @@ export const LookupAddress: {
 export type LookupAddress = LookupAddress$instance;
 
 export interface LookupOptions$instance {
-    all: Nullable_1<CLROf<boolean>>;
+    all: Nullable<CLROf<boolean>>;
     family: unknown;
-    hints: Nullable_1<CLROf<int>>;
+    hints: Nullable<CLROf<int>>;
     order: string;
-    verbatim: Nullable_1<CLROf<boolean>>;
+    verbatim: Nullable<CLROf<boolean>>;
 }
 
 
@@ -1049,7 +994,7 @@ export type LookupOptions = LookupOptions$instance;
 
 export interface MarkOptions$instance {
     detail: unknown;
-    startTime: Nullable_1<CLROf<double>>;
+    startTime: Nullable<CLROf<double>>;
 }
 
 
@@ -1062,9 +1007,9 @@ export type MarkOptions = MarkOptions$instance;
 
 export interface MeasureOptions$instance {
     detail: unknown;
-    end: Nullable_1<CLROf<double>>;
+    end: Nullable<CLROf<double>>;
     endMark: string;
-    start: Nullable_1<CLROf<double>>;
+    start: Nullable<CLROf<double>>;
     startMark: string;
 }
 
@@ -1143,12 +1088,12 @@ export interface PathModule$instance {
     extname(path: string): string;
     format(pathObject: ParsedPath): string;
     isAbsolute(path: string): boolean;
-    join(paths: string[]): string;
+    join(...paths: string[]): string;
     matchesGlob(path: string, pattern: string): boolean;
     normalize(path: string): string;
     parse(path: string): ParsedPath;
     relative(from_: string, to: string): string;
-    resolve(paths: string[]): string;
+    resolve(...paths: string[]): string;
     toNamespacedPath(path: string): string;
 }
 
@@ -1231,7 +1176,7 @@ export interface PerformanceObserver$instance {
 
 
 export const PerformanceObserver: {
-    new(callback: Action_2<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver$instance;
+    new(callback: Action<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver$instance;
     supportedEntryTypes(): string[];
 };
 
@@ -1265,12 +1210,13 @@ export const PerformanceObserverOptions: {
 
 export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 
-export interface PrivateKeyObject$instance extends KeyObject$instance {
+export interface PrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
+    export_(format: string, type_?: string, cipher?: string, passphrase?: string): string;
 }
 
 
@@ -1279,28 +1225,23 @@ export const PrivateKeyObject: {
 };
 
 
-export interface __PrivateKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export type PrivateKeyObject = PrivateKeyObject$instance & __PrivateKeyObject$views;
-
+export type PrivateKeyObject = PrivateKeyObject$instance;
 
 export interface ProcessEnv$instance {
     readonly count: int;
     readonly isReadOnly: boolean;
     item: string;
-    readonly keys: ICollection_1<CLROf<string>>;
-    readonly values: ICollection_1<CLROf<string>>;
+    readonly keys: ICollection<CLROf<string>>;
+    readonly values: ICollection<CLROf<string>>;
     add(key: string, value: string): void;
-    add(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): void;
+    add(item: KeyValuePair<CLROf<string>, CLROf<string>>): void;
     clear(): void;
-    contains(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
+    contains(item: KeyValuePair<CLROf<string>, CLROf<string>>): boolean;
     containsKey(key: string): boolean;
-    copyTo(array: KeyValuePair_2<CLROf<string>, CLROf<string>>[], arrayIndex: int): void;
-    getEnumerator(): IEnumerator_1<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
+    copyTo(array: KeyValuePair<CLROf<string>, CLROf<string>>[], arrayIndex: int): void;
+    getEnumerator(): IEnumerator<KeyValuePair<CLROf<string>, CLROf<string>>>;
     remove(key: string): boolean;
-    remove(item: KeyValuePair_2<CLROf<string>, CLROf<string>>): boolean;
+    remove(item: KeyValuePair<CLROf<string>, CLROf<string>>): boolean;
     tryGetValue(key: string, value: { value: ref<string> }): boolean;
 }
 
@@ -1310,15 +1251,7 @@ export const ProcessEnv: {
 };
 
 
-export interface __ProcessEnv$views {
-    As_ICollection_1(): System_Collections_Generic_Internal.ICollection_1$instance<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
-    As_IDictionary_2(): System_Collections_Generic_Internal.IDictionary_2$instance<CLROf<string>, CLROf<string>>;
-    As_IEnumerable_1(): System_Collections_Generic_Internal.IEnumerable_1$instance<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
-    As_IEnumerable(): System_Collections_Internal.IEnumerable$instance;
-}
-
-export type ProcessEnv = ProcessEnv$instance & __ProcessEnv$views;
-
+export type ProcessEnv = ProcessEnv$instance;
 
 export interface ProcessVersions$instance {
     dotnet: string;
@@ -1335,12 +1268,13 @@ export const ProcessVersions: {
 
 export type ProcessVersions = ProcessVersions$instance;
 
-export interface PublicKeyObject$instance extends KeyObject$instance {
+export interface PublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
+    export_(format: string, type_?: string): string;
 }
 
 
@@ -1349,24 +1283,19 @@ export const PublicKeyObject: {
 };
 
 
-export interface __PublicKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export type PublicKeyObject = PublicKeyObject$instance & __PublicKeyObject$views;
-
+export type PublicKeyObject = PublicKeyObject$instance;
 
 export interface Readable$instance extends Stream {
     readonly destroyed: boolean;
     readonly readable: boolean;
     readonly readableEnded: boolean;
-    readonly readableFlowing: Nullable_1<CLROf<boolean>>;
+    readonly readableFlowing: Nullable<CLROf<boolean>>;
     readonly readableLength: int;
     destroy(error?: Exception): void;
     isPaused(): boolean;
     pause(): Readable;
     push(chunk: unknown, encoding?: string): boolean;
-    read(size?: Nullable_1<CLROf<int>>): unknown;
+    read(size?: Nullable<CLROf<int>>): unknown;
     resume(): Readable;
     setEncoding(encoding: string): Readable;
     unpipe(destination?: Stream): Readable;
@@ -1424,24 +1353,24 @@ export type ResolveOptions = ResolveOptions$instance;
 export interface Resolver$instance {
     cancel(): void;
     getServers(): string[];
-    resolve(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolve(hostname: string, rrtype: string, callback: Action_2<Exception, unknown>): void;
-    resolve4(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolve4(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
-    resolve6(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolve6(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
-    resolveAny(hostname: string, callback: Action_2<Exception, unknown[]>): void;
-    resolveCaa(hostname: string, callback: Action_2<Exception, CaaRecord[]>): void;
-    resolveCname(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolveMx(hostname: string, callback: Action_2<Exception, MxRecord[]>): void;
-    resolveNaptr(hostname: string, callback: Action_2<Exception, NaptrRecord[]>): void;
-    resolveNs(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolvePtr(hostname: string, callback: Action_2<Exception, string[]>): void;
-    resolveSoa(hostname: string, callback: Action_2<Exception, SoaRecord>): void;
-    resolveSrv(hostname: string, callback: Action_2<Exception, SrvRecord[]>): void;
-    resolveTlsa(hostname: string, callback: Action_2<Exception, TlsaRecord[]>): void;
-    resolveTxt(hostname: string, callback: Action_2<Exception, string[][]>): void;
-    reverse(ip: string, callback: Action_2<Exception, string[]>): void;
+    resolve(hostname: string, callback: Action<Exception, string[]>): void;
+    resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
+    resolve4(hostname: string, callback: Action<Exception, string[]>): void;
+    resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
+    resolve6(hostname: string, callback: Action<Exception, string[]>): void;
+    resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
+    resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
+    resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
+    resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
+    resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
+    resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
+    resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
+    resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
+    resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
+    resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
+    resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
+    resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
+    reverse(ip: string, callback: Action<Exception, string[]>): void;
     setLocalAddress(ipv4?: string, ipv6?: string): void;
     setServers(servers: string[]): void;
 }
@@ -1456,9 +1385,9 @@ export const Resolver: {
 export type Resolver = Resolver$instance;
 
 export interface ResolverOptions$instance {
-    maxTimeout: Nullable_1<CLROf<int>>;
-    timeout: Nullable_1<CLROf<int>>;
-    tries: Nullable_1<CLROf<int>>;
+    maxTimeout: Nullable<CLROf<int>>;
+    timeout: Nullable<CLROf<int>>;
+    tries: Nullable<CLROf<int>>;
 }
 
 
@@ -1469,12 +1398,13 @@ export const ResolverOptions: {
 
 export type ResolverOptions = ResolverOptions$instance;
 
-export interface SecretKeyObject$instance extends KeyObject$instance {
+export interface SecretKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string;
-    readonly symmetricKeySize: Nullable_1<CLROf<int>>;
+    readonly symmetricKeySize: Nullable<CLROf<int>>;
     readonly type_: string;
     dispose(): void;
     export_(options?: unknown): unknown;
+    export_(): byte[];
 }
 
 
@@ -1483,12 +1413,7 @@ export const SecretKeyObject: {
 };
 
 
-export interface __SecretKeyObject$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export type SecretKeyObject = SecretKeyObject$instance & __SecretKeyObject$views;
-
+export type SecretKeyObject = SecretKeyObject$instance;
 
 export interface SecureContext$instance {
     readonly caCertificates: X509Certificate2Collection;
@@ -1531,8 +1456,8 @@ export interface Server$instance extends EventEmitter {
     readonly listening: boolean;
     maxConnections: int;
     address(): unknown;
-    close(callback?: Action_1<Exception>): Server;
-    getConnections(callback: Action_2<Exception, CLROf<int>>): void;
+    close(callback?: Action<Exception>): Server;
+    getConnections(callback: Action<Exception, CLROf<int>>): void;
     listen(port: int, hostname: string, backlog: int, listeningListener?: Action): Server;
     listen(port: int, hostname: string, listeningListener?: Action): Server;
     listen(port: int, backlog: int, listeningListener?: Action): Server;
@@ -1545,16 +1470,16 @@ export interface Server$instance extends EventEmitter {
 
 export const Server: {
     new(): Server$instance;
-    new(connectionListener: Action_1<Socket>): Server$instance;
-    new(options: ServerOpts, connectionListener: Action_1<Socket>): Server$instance;
+    new(connectionListener: Action<Socket>): Server$instance;
+    new(options: ServerOpts, connectionListener: Action<Socket>): Server$instance;
 };
 
 
 export type Server = Server$instance;
 
 export interface ServerOpts$instance {
-    allowHalfOpen: Nullable_1<CLROf<boolean>>;
-    pauseOnConnect: Nullable_1<CLROf<boolean>>;
+    allowHalfOpen: Nullable<CLROf<boolean>>;
+    pauseOnConnect: Nullable<CLROf<boolean>>;
 }
 
 
@@ -1608,11 +1533,11 @@ export interface Socket$instance extends Stream {
     readonly destroyed: boolean;
     readonly localAddress: string;
     readonly localFamily: string;
-    readonly localPort: Nullable_1<CLROf<int>>;
+    readonly localPort: Nullable<CLROf<int>>;
     readonly readyState: string;
     readonly remoteAddress: string;
     readonly remoteFamily: string;
-    readonly remotePort: Nullable_1<CLROf<int>>;
+    readonly remotePort: Nullable<CLROf<int>>;
     address(): unknown;
     connect(port: int, host?: string, connectionListener?: Action): Socket;
     connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
@@ -1632,8 +1557,8 @@ export interface Socket$instance extends Stream {
     setNoDelay(noDelay?: boolean): Socket;
     setTimeout(timeout: int, callback?: Action): Socket;
     unref(): Socket;
-    write(data: byte[], callback?: Action_1<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
+    write(data: byte[], callback?: Action<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
 }
 
 
@@ -1648,7 +1573,7 @@ export type Socket = Socket$instance;
 export interface SocketAddress$instance {
     readonly address: string;
     readonly family: string;
-    readonly flowlabel: Nullable_1<CLROf<int>>;
+    readonly flowlabel: Nullable<CLROf<int>>;
     readonly port: int;
 }
 
@@ -1663,8 +1588,8 @@ export type SocketAddress = SocketAddress$instance;
 export interface SocketAddressInitOptions$instance {
     address: string;
     family: string;
-    flowlabel: Nullable_1<CLROf<int>>;
-    port: Nullable_1<CLROf<int>>;
+    flowlabel: Nullable<CLROf<int>>;
+    port: Nullable<CLROf<int>>;
 }
 
 
@@ -1676,10 +1601,10 @@ export const SocketAddressInitOptions: {
 export type SocketAddressInitOptions = SocketAddressInitOptions$instance;
 
 export interface SocketConstructorOpts$instance {
-    allowHalfOpen: Nullable_1<CLROf<boolean>>;
-    fd: Nullable_1<CLROf<int>>;
-    readable: Nullable_1<CLROf<boolean>>;
-    writable: Nullable_1<CLROf<boolean>>;
+    allowHalfOpen: Nullable<CLROf<boolean>>;
+    fd: Nullable<CLROf<int>>;
+    readable: Nullable<CLROf<boolean>>;
+    writable: Nullable<CLROf<boolean>>;
 }
 
 
@@ -1692,10 +1617,10 @@ export type SocketConstructorOpts = SocketConstructorOpts$instance;
 
 export interface SocketOptions$instance {
     ipv6Only: boolean;
-    recvBufferSize: Nullable_1<CLROf<int>>;
+    recvBufferSize: Nullable<CLROf<int>>;
     reuseAddr: boolean;
     reusePort: boolean;
-    sendBufferSize: Nullable_1<CLROf<int>>;
+    sendBufferSize: Nullable<CLROf<int>>;
     type_: string;
 }
 
@@ -1712,7 +1637,7 @@ export interface SpawnSyncReturns_1$instance<T> {
     output: T[];
     pid: int;
     signal: string;
-    status: Nullable_1<CLROf<int>>;
+    status: Nullable<CLROf<int>>;
     stderr: T;
     stdout: T;
 }
@@ -1793,14 +1718,14 @@ export const StringDecoder: {
 export type StringDecoder = StringDecoder$instance;
 
 export interface TcpSocketConnectOpts$instance {
-    family: Nullable_1<CLROf<int>>;
-    hints: Nullable_1<CLROf<int>>;
+    family: Nullable<CLROf<int>>;
+    hints: Nullable<CLROf<int>>;
     host: string;
-    keepAlive: Nullable_1<CLROf<boolean>>;
-    keepAliveInitialDelay: Nullable_1<CLROf<int>>;
+    keepAlive: Nullable<CLROf<boolean>>;
+    keepAliveInitialDelay: Nullable<CLROf<int>>;
     localAddress: string;
-    localPort: Nullable_1<CLROf<int>>;
-    noDelay: Nullable_1<CLROf<boolean>>;
+    localPort: Nullable<CLROf<int>>;
+    noDelay: Nullable<CLROf<boolean>>;
     port: int;
 }
 
@@ -1827,14 +1752,7 @@ export const Timeout: {
 };
 
 
-export interface __Timeout$views {
-    As_IDisposable(): System_Internal.IDisposable$instance;
-}
-
-export interface Timeout$instance extends System_Internal.IDisposable$instance {}
-
-export type Timeout = Timeout$instance & __Timeout$views;
-
+export type Timeout = Timeout$instance;
 
 export interface TlsaRecord$instance {
     certUsage: int;
@@ -1869,14 +1787,14 @@ export const TLSCertificateInfo: {
 export type TLSCertificateInfo = TLSCertificateInfo$instance;
 
 export interface TlsOptions$instance extends CommonConnectionOptions {
-    allowHalfOpen: Nullable_1<CLROf<boolean>>;
+    allowHalfOpen: Nullable<CLROf<boolean>>;
     ca: unknown;
     cert: unknown;
-    handshakeTimeout: Nullable_1<CLROf<int>>;
+    handshakeTimeout: Nullable<CLROf<int>>;
     key: unknown;
     passphrase: string;
-    pauseOnConnect: Nullable_1<CLROf<boolean>>;
-    sessionTimeout: Nullable_1<CLROf<int>>;
+    pauseOnConnect: Nullable<CLROf<boolean>>;
+    sessionTimeout: Nullable<CLROf<int>>;
 }
 
 
@@ -1897,8 +1815,8 @@ export interface TLSServer$instance extends Server {
 
 export const TLSServer: {
     new(): TLSServer$instance;
-    new(secureConnectionListener: Action_1<TLSSocket>): TLSServer$instance;
-    new(options: TlsOptions, secureConnectionListener: Action_1<TLSSocket>): TLSServer$instance;
+    new(secureConnectionListener: Action<TLSSocket>): TLSServer$instance;
+    new(options: TlsOptions, secureConnectionListener: Action<TLSSocket>): TLSServer$instance;
 };
 
 
@@ -1925,14 +1843,14 @@ export interface TLSSocket$instance extends Socket {
     getTLSTicket(): byte[];
     getX509Certificate(): unknown;
     isSessionReused(): boolean;
-    renegotiate(options: unknown, callback: Action_1<Exception>): boolean;
+    renegotiate(options: unknown, callback: Action<Exception>): boolean;
     setKeyCert(context: unknown): void;
     setMaxSendFragment(size: int): boolean;
     startReading(): void;
-    write(data: byte[], callback?: Action_1<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
-    write(data: byte[], callback?: Action_1<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
+    write(data: byte[], callback?: Action<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
+    write(data: byte[], callback?: Action<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
 }
 
 
@@ -1946,7 +1864,7 @@ export type TLSSocket = TLSSocket$instance;
 export interface TLSSocketOptions$instance extends CommonConnectionOptions {
     ca: unknown;
     cert: unknown;
-    isServer: Nullable_1<CLROf<boolean>>;
+    isServer: Nullable<CLROf<boolean>>;
     key: unknown;
     passphrase: string;
     server: Server;
@@ -2003,16 +1921,16 @@ export interface URLSearchParams$instance {
     readonly size: int;
     append(name: string, value: string): void;
     delete_(name: string, value?: string): void;
-    entries(): IEnumerable_1<KeyValuePair_2<CLROf<string>, CLROf<string>>>;
-    forEach(callback: Action_2<CLROf<string>, CLROf<string>>): void;
+    entries(): IEnumerable__System_Collections_Generic<KeyValuePair<CLROf<string>, CLROf<string>>>;
+    forEach(callback: Action<CLROf<string>, CLROf<string>>): void;
     get_(name: string): string;
     getAll(name: string): string[];
     has(name: string, value?: string): boolean;
-    keys(): IEnumerable_1<CLROf<string>>;
+    keys(): IEnumerable__System_Collections_Generic<CLROf<string>>;
     set_(name: string, value: string): void;
     sort(): void;
     toString(): string;
-    values(): IEnumerable_1<CLROf<string>>;
+    values(): IEnumerable__System_Collections_Generic<CLROf<string>>;
 }
 
 
@@ -2107,12 +2025,12 @@ export const X509CertificateInfo: {
 export type X509CertificateInfo = X509CertificateInfo$instance;
 
 export interface ZlibOptions$instance {
-    chunkSize: Nullable_1<CLROf<int>>;
-    level: Nullable_1<CLROf<int>>;
-    maxOutputLength: Nullable_1<CLROf<int>>;
-    memLevel: Nullable_1<CLROf<int>>;
-    strategy: Nullable_1<CLROf<int>>;
-    windowBits: Nullable_1<CLROf<int>>;
+    chunkSize: Nullable<CLROf<int>>;
+    level: Nullable<CLROf<int>>;
+    maxOutputLength: Nullable<CLROf<int>>;
+    memLevel: Nullable<CLROf<int>>;
+    strategy: Nullable<CLROf<int>>;
+    windowBits: Nullable<CLROf<int>>;
 }
 
 
@@ -2157,9 +2075,9 @@ export abstract class Certificate$instance {
 export type Certificate = Certificate$instance;
 
 export abstract class child_process$instance {
-    static exec(command: string, options: ExecOptions, callback: Action_3<Exception, CLROf<string>, CLROf<string>>): void;
-    static exec(command: string, callback: Action_3<Exception, CLROf<string>, CLROf<string>>): void;
-    static execFile(file: string, args: string[], options: ExecOptions, callback: Action_3<Exception, CLROf<string>, CLROf<string>>): void;
+    static exec(command: string, options: ExecOptions, callback: Action<Exception, CLROf<string>, CLROf<string>>): void;
+    static exec(command: string, callback: Action<Exception, CLROf<string>, CLROf<string>>): void;
+    static execFile(file: string, args: string[], options: ExecOptions, callback: Action<Exception, CLROf<string>, CLROf<string>>): void;
     static execFileSync(file: string, args?: string[], options?: ExecOptions): unknown;
     static execSync(command: string, options: ExecOptions): unknown;
     static execSync(command: string): byte[];
@@ -2173,28 +2091,28 @@ export abstract class child_process$instance {
 export type child_process = child_process$instance;
 
 export abstract class console$instance {
-    static assert(value: boolean, message?: string, optionalParams: unknown[]): void;
+    static assert(value: boolean, message?: string, ...optionalParams: unknown[]): void;
     static clear(): void;
     static count(label?: string): void;
     static countReset(label?: string): void;
-    static debug(message?: unknown, optionalParams: unknown[]): void;
-    static dir(obj: unknown, options: unknown[]): void;
-    static dirxml(data: unknown[]): void;
-    static error(message?: unknown, optionalParams: unknown[]): void;
-    static group(label: unknown[]): void;
-    static groupCollapsed(label: unknown[]): void;
+    static debug(message?: unknown, ...optionalParams: unknown[]): void;
+    static dir(obj: unknown, ...options: unknown[]): void;
+    static dirxml(...data: unknown[]): void;
+    static error(message?: unknown, ...optionalParams: unknown[]): void;
+    static group(...label: unknown[]): void;
+    static groupCollapsed(...label: unknown[]): void;
     static groupEnd(): void;
-    static info(message?: unknown, optionalParams: unknown[]): void;
-    static log(message?: unknown, optionalParams: unknown[]): void;
+    static info(message?: unknown, ...optionalParams: unknown[]): void;
+    static log(message?: unknown, ...optionalParams: unknown[]): void;
     static profile(label?: string): void;
     static profileEnd(label?: string): void;
     static table(tabularData: unknown, properties?: string[]): void;
     static time(label?: string): void;
     static timeEnd(label?: string): void;
-    static timeLog(label?: string, data: unknown[]): void;
+    static timeLog(label?: string, ...data: unknown[]): void;
     static timeStamp(label?: string): void;
-    static trace(message?: unknown, optionalParams: unknown[]): void;
-    static warn(message?: unknown, optionalParams: unknown[]): void;
+    static trace(message?: unknown, ...optionalParams: unknown[]): void;
+    static warn(message?: unknown, ...optionalParams: unknown[]): void;
 }
 
 
@@ -2223,10 +2141,10 @@ export abstract class crypto$instance {
     static createSecretKey(key: string, encoding?: string): KeyObject;
     static createSign(algorithm: string): Sign;
     static createVerify(algorithm: string): Verify;
-    static generateKey(type_: string, options: unknown, callback: Action_2<Exception, KeyObject>): void;
+    static generateKey(type_: string, options: unknown, callback: Action<Exception, KeyObject>): void;
     static generateKey(type_: string, options: unknown): KeyObject;
-    static generateKeyPair(type_: string, options: unknown, callback: Action_3<Exception, unknown, unknown>): void;
-    static generateKeyPairSync(type_: string, options?: unknown): ValueTuple_2<KeyObject, KeyObject>;
+    static generateKeyPair(type_: string, options: unknown, callback: Action<Exception, unknown, unknown>): void;
+    static generateKeyPairSync(type_: string, options?: unknown): ValueTuple<KeyObject, KeyObject>;
     static getCiphers(): string[];
     static getCurves(): string[];
     static getDefaultCipherList(): string;
@@ -2234,9 +2152,9 @@ export abstract class crypto$instance {
     static getFips(): boolean;
     static getHashes(): string[];
     static hash(algorithm: string, data: byte[], outputEncoding?: string): byte[];
-    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action_2<Exception, byte[]>): void;
+    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action<Exception, byte[]>): void;
     static hkdfSync(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int): byte[];
-    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action_2<Exception, byte[]>): void;
+    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action<Exception, byte[]>): void;
     static pbkdf2Sync(password: byte[], salt: byte[], iterations: int, keylen: int, digest: string): byte[];
     static pbkdf2Sync(password: string, salt: string, iterations: int, keylen: int, digest: string): byte[];
     static privateDecrypt(key: unknown, buffer: byte[]): byte[];
@@ -2247,14 +2165,14 @@ export abstract class crypto$instance {
     static publicDecrypt(key: string, buffer: byte[]): byte[];
     static publicEncrypt(key: unknown, buffer: byte[]): byte[];
     static publicEncrypt(key: string, buffer: byte[]): byte[];
-    static randomBytes(size: int, callback: Action_2<Exception, byte[]>): void;
+    static randomBytes(size: int, callback: Action<Exception, byte[]>): void;
     static randomBytes(size: int): byte[];
-    static randomFill(buffer: byte[], offset: int, size: int, callback: Action_2<Exception, byte[]>): void;
-    static randomFillSync(buffer: byte[], offset?: int, size?: Nullable_1<CLROf<int>>): byte[];
+    static randomFill(buffer: byte[], offset: int, size: int, callback: Action<Exception, byte[]>): void;
+    static randomFillSync(buffer: byte[], offset?: int, size?: Nullable<CLROf<int>>): byte[];
     static randomInt(min: int, max: int): int;
     static randomInt(max: int): int;
     static randomUUID(): string;
-    static scrypt(password: string, salt: string, keylen: int, options: unknown, callback: Action_2<Exception, byte[]>): void;
+    static scrypt(password: string, salt: string, keylen: int, options: unknown, callback: Action<Exception, byte[]>): void;
     static scryptSync(password: byte[], salt: byte[], keylen: int, options?: unknown): byte[];
     static scryptSync(password: string, salt: string, keylen: int, options?: unknown): byte[];
     static setDefaultEncoding(encoding: string): void;
@@ -2270,8 +2188,8 @@ export abstract class crypto$instance {
 export type crypto = crypto$instance;
 
 export abstract class dgram$instance {
-    static createSocket(options: SocketOptions, callback?: Action_2<byte[], RemoteInfo>): DgramSocket;
-    static createSocket(type_: string, callback?: Action_2<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(options: SocketOptions, callback?: Action<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(type_: string, callback?: Action<byte[], RemoteInfo>): DgramSocket;
 }
 
 
@@ -2307,29 +2225,29 @@ export abstract class dns$instance {
     static readonly CANCELLED: string;
     static getDefaultResultOrder(): string;
     static getServers(): string[];
-    static lookup(hostname: string, options: LookupOptions, callback: Action_2<Exception, LookupAddress[]>): void;
-    static lookup(hostname: string, options: LookupOptions, callback: Action_3<Exception, CLROf<string>, CLROf<int>>): void;
-    static lookup(hostname: string, callback: Action_3<Exception, CLROf<string>, CLROf<int>>): void;
-    static lookup(hostname: string, family: int, callback: Action_3<Exception, CLROf<string>, CLROf<int>>): void;
-    static lookupService(address: string, port: int, callback: Action_3<Exception, CLROf<string>, CLROf<string>>): void;
-    static resolve(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolve(hostname: string, rrtype: string, callback: Action_2<Exception, unknown>): void;
-    static resolve4(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
-    static resolve4(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolve6(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
-    static resolve6(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolveAny(hostname: string, callback: Action_2<Exception, unknown[]>): void;
-    static resolveCaa(hostname: string, callback: Action_2<Exception, CaaRecord[]>): void;
-    static resolveCname(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolveMx(hostname: string, callback: Action_2<Exception, MxRecord[]>): void;
-    static resolveNaptr(hostname: string, callback: Action_2<Exception, NaptrRecord[]>): void;
-    static resolveNs(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolvePtr(hostname: string, callback: Action_2<Exception, string[]>): void;
-    static resolveSoa(hostname: string, callback: Action_2<Exception, SoaRecord>): void;
-    static resolveSrv(hostname: string, callback: Action_2<Exception, SrvRecord[]>): void;
-    static resolveTlsa(hostname: string, callback: Action_2<Exception, TlsaRecord[]>): void;
-    static resolveTxt(hostname: string, callback: Action_2<Exception, string[][]>): void;
-    static reverse(ip: string, callback: Action_2<Exception, string[]>): void;
+    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, LookupAddress[]>): void;
+    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, CLROf<string>, CLROf<int>>): void;
+    static lookup(hostname: string, callback: Action<Exception, CLROf<string>, CLROf<int>>): void;
+    static lookup(hostname: string, family: int, callback: Action<Exception, CLROf<string>, CLROf<int>>): void;
+    static lookupService(address: string, port: int, callback: Action<Exception, CLROf<string>, CLROf<string>>): void;
+    static resolve(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
+    static resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
+    static resolve4(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
+    static resolve6(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
+    static resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
+    static resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
+    static resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
+    static resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
+    static resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
+    static resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
+    static resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
+    static resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
+    static reverse(ip: string, callback: Action<Exception, string[]>): void;
     static setDefaultResultOrder(order: string): void;
     static setServers(servers: string[]): void;
 }
@@ -2351,23 +2269,23 @@ export abstract class fs$instance {
     static cp(src: string, dest: string, recursive?: boolean): Task;
     static cpSync(src: string, dest: string, recursive?: boolean): void;
     static existsSync(path: string): boolean;
-    static fstat(fd: int): Task_1<Stats>;
+    static fstat(fd: int): Task<Stats>;
     static fstatSync(fd: int): Stats;
     static mkdir(path: string, recursive?: boolean): Task;
     static mkdirSync(path: string, recursive?: boolean): void;
-    static open(path: string, flags: string, mode?: Nullable_1<CLROf<int>>): Task_1<CLROf<int>>;
-    static openSync(path: string, flags: string, mode?: Nullable_1<CLROf<int>>): int;
-    static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<CLROf<int>>): Task_1<CLROf<int>>;
-    static readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
+    static open(path: string, flags: string, mode?: Nullable<CLROf<int>>): Task<CLROf<int>>;
+    static openSync(path: string, flags: string, mode?: Nullable<CLROf<int>>): int;
+    static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<CLROf<int>>): Task<CLROf<int>>;
+    static readdir(path: string, withFileTypes?: boolean): Task<string[]>;
     static readdirSync(path: string, withFileTypes?: boolean): string[];
-    static readFile(path: string, encoding?: string): Task_1<CLROf<string>>;
-    static readFileBytes(path: string): Task_1<byte[]>;
+    static readFile(path: string, encoding?: string): Task<CLROf<string>>;
+    static readFileBytes(path: string): Task<byte[]>;
     static readFileSync(path: string, encoding?: string): string;
     static readFileSyncBytes(path: string): byte[];
-    static readlink(path: string): Task_1<CLROf<string>>;
+    static readlink(path: string): Task<CLROf<string>>;
     static readlinkSync(path: string): string;
-    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<CLROf<int>>): int;
-    static realpath(path: string): Task_1<CLROf<string>>;
+    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<CLROf<int>>): int;
+    static realpath(path: string): Task<CLROf<string>>;
     static realpathSync(path: string): string;
     static rename(oldPath: string, newPath: string): Task;
     static renameSync(oldPath: string, newPath: string): void;
@@ -2375,7 +2293,7 @@ export abstract class fs$instance {
     static rmdir(path: string, recursive?: boolean): Task;
     static rmdirSync(path: string, recursive?: boolean): void;
     static rmSync(path: string, recursive?: boolean): void;
-    static stat(path: string): Task_1<Stats>;
+    static stat(path: string): Task<Stats>;
     static statSync(path: string): Stats;
     static symlink(target: string, path: string, type_?: string): Task;
     static symlinkSync(target: string, path: string, type_?: string): void;
@@ -2383,14 +2301,14 @@ export abstract class fs$instance {
     static truncateSync(path: string, len?: long): void;
     static unlink(path: string): Task;
     static unlinkSync(path: string): void;
-    static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<CLROf<int>>): Task_1<CLROf<int>>;
-    static write(fd: int, data: string, position?: Nullable_1<CLROf<int>>, encoding?: string): Task_1<CLROf<int>>;
+    static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<CLROf<int>>): Task<CLROf<int>>;
+    static write(fd: int, data: string, position?: Nullable<CLROf<int>>, encoding?: string): Task<CLROf<int>>;
     static writeFile(path: string, data: string, encoding?: string): Task;
     static writeFileBytes(path: string, data: byte[]): Task;
     static writeFileSync(path: string, data: string, encoding?: string): void;
     static writeFileSyncBytes(path: string, data: byte[]): void;
-    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<CLROf<int>>): int;
-    static writeSync(fd: int, data: string, position?: Nullable_1<CLROf<int>>, encoding?: string): int;
+    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<CLROf<int>>): int;
+    static writeSync(fd: int, data: string, position?: Nullable<CLROf<int>>, encoding?: string): int;
 }
 
 
@@ -2403,8 +2321,8 @@ export abstract class net$instance {
     static createConnection(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
     static createConnection(port: int, host?: string, connectionListener?: Action): Socket;
     static createConnection(path: string, connectionListener?: Action): Socket;
-    static createServer(options: ServerOpts, connectionListener?: Action_1<Socket>): Server;
-    static createServer(connectionListener?: Action_1<Socket>): Server;
+    static createServer(options: ServerOpts, connectionListener?: Action<Socket>): Server;
+    static createServer(connectionListener?: Action<Socket>): Server;
     static getDefaultAutoSelectFamily(): boolean;
     static getDefaultAutoSelectFamilyAttemptTimeout(): int;
     static isIP(input: string): int;
@@ -2450,12 +2368,12 @@ export abstract class path$instance {
     static extname(path: string): string;
     static format(pathObject: ParsedPath): string;
     static isAbsolute(path: string): boolean;
-    static join(paths: string[]): string;
+    static join(...paths: string[]): string;
     static matchesGlob(path: string, pattern: string): boolean;
     static normalize(path: string): string;
     static parse(path: string): ParsedPath;
     static relative(from_: string, to: string): string;
-    static resolve(paths: string[]): string;
+    static resolve(...paths: string[]): string;
     static toNamespacedPath(path: string): string;
 }
 
@@ -2482,7 +2400,7 @@ export abstract class process$instance {
     static argv0: string;
     static readonly env: ProcessEnv;
     static readonly execPath: string;
-    static exitCode: Nullable_1<CLROf<int>>;
+    static exitCode: Nullable<CLROf<int>>;
     static readonly pid: int;
     static readonly ppid: int;
     static readonly platform: string;
@@ -2490,7 +2408,7 @@ export abstract class process$instance {
     static readonly versions: ProcessVersions;
     static chdir(directory: string): void;
     static cwd(): string;
-    static exit(code?: Nullable_1<CLROf<int>>): void;
+    static exit(code?: Nullable<CLROf<int>>): void;
     static kill(pid: int, signal?: unknown): boolean;
 }
 
@@ -2498,11 +2416,11 @@ export abstract class process$instance {
 export type process = process$instance;
 
 export abstract class querystring$instance {
-    static decode(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary_2<CLROf<string>, unknown>;
-    static encode(obj: Dictionary_2<CLROf<string>, unknown>, sep?: string, eq?: string): string;
+    static decode(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<CLROf<string>, unknown>;
+    static encode(obj: Dictionary<CLROf<string>, unknown>, sep?: string, eq?: string): string;
     static escape(str: string): string;
-    static parse(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary_2<CLROf<string>, unknown>;
-    static stringify(obj: Dictionary_2<CLROf<string>, unknown>, sep?: string, eq?: string): string;
+    static parse(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<CLROf<string>, unknown>;
+    static stringify(obj: Dictionary<CLROf<string>, unknown>, sep?: string, eq?: string): string;
     static unescape(str: string): string;
 }
 
@@ -2512,10 +2430,10 @@ export type querystring = querystring$instance;
 export abstract class readline$instance {
     static clearLine(stream: Writable, dir: int, callback?: Action): boolean;
     static clearScreenDown(stream: Writable, callback?: Action): boolean;
-    static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable_1<CLROf<string>>;
+    static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable<CLROf<string>>;
     static createInterface(options: InterfaceOptions): Interface;
     static createInterface(input: Readable, output?: Writable): Interface;
-    static cursorTo(stream: Writable, x: int, y?: Nullable_1<CLROf<int>>, callback?: Action): boolean;
+    static cursorTo(stream: Writable, x: int, y?: Nullable<CLROf<int>>, callback?: Action): boolean;
     static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action): boolean;
 }
 
@@ -2523,9 +2441,9 @@ export abstract class readline$instance {
 export type readline = readline$instance;
 
 export abstract class stream$instance {
-    static finished(stream: Stream, callback: Action_1<Exception>): void;
+    static finished(stream: Stream, callback: Action<Exception>): void;
     static finished(stream: Stream): Task;
-    static pipeline(streams: unknown[]): void;
+    static pipeline(...streams: unknown[]): void;
 }
 
 
@@ -2557,8 +2475,8 @@ export abstract class tls$instance {
     static connect(port: int, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
     static connect(port: int, host?: string, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
     static createSecureContext(options?: SecureContextOptions): SecureContext;
-    static createServer(options: TlsOptions, secureConnectionListener?: Action_1<TLSSocket>): TLSServer;
-    static createServer(secureConnectionListener?: Action_1<TLSSocket>): TLSServer;
+    static createServer(options: TlsOptions, secureConnectionListener?: Action<TLSSocket>): TLSServer;
+    static createServer(secureConnectionListener?: Action<TLSSocket>): TLSServer;
     static getCACertificates(type_?: string): string[];
     static getCiphers(): string[];
     static setDefaultCACertificates(certs: string[]): void;
@@ -2569,9 +2487,9 @@ export type tls = tls$instance;
 
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
-    static deprecate<TResult>(fn: Func_1<TResult>, msg: string, code?: string): Func_1<TResult>;
+    static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string): Func<TResult>;
     static deprecate(action: Action, msg: string, code?: string): Action;
-    static format(format: unknown, args: unknown[]): string;
+    static format(format: unknown, ...args: unknown[]): string;
     static inherits(constructor_: unknown, superConstructor: unknown): void;
     static inspect(obj: unknown): string;
     static isArray(obj: unknown): boolean;

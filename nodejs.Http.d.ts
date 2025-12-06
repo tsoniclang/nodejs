@@ -7,12 +7,10 @@ import * as Internal from './nodejs.Http/internal/index.js';
 
 // Cross-namespace type imports for constraints
 import type { EventEmitter } from './nodejs/internal/index.js';
-import type { Dictionary_2 } from './System.Collections.Generic/internal/index.js';
-import type { IDictionary } from './System.Collections/internal/index.js';
-import type { MethodBase } from './System.Reflection/internal/index.js';
-import type { ISerializable, SerializationInfo, StreamingContext } from './System.Runtime.Serialization/internal/index.js';
-import type { Task, Task_1 } from './System.Threading.Tasks/internal/index.js';
-import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Type, Void } from './System/internal/index.js';
+import type { Dictionary } from '@tsonic/dotnet/System.Collections.Generic.js';
+import type { Action, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from '@tsonic/dotnet/System.js';
+import type { ISerializable } from '@tsonic/dotnet/System.Runtime.Serialization.js';
+import type { Task } from '@tsonic/dotnet/System.Threading.Tasks.js';
 
 // Public API exports (curated - no internal $instance/$views leakage)
 export { ClientRequest as ClientRequest } from './nodejs.Http/internal/index.js';
