@@ -6,15 +6,14 @@
 import * as Internal from './nodejs/internal/index.js';
 
 // Cross-namespace type imports for constraints
-import type { Dictionary_2, IAsyncEnumerable_1, ICollection_1, IDictionary_2, IEnumerable_1, IEnumerator_1, KeyValuePair_2 } from './System.Collections.Generic/internal/index.js';
-import type { IDictionary, IEnumerable, IEnumerator } from './System.Collections/internal/index.js';
-import type { MethodBase, MethodInfo } from './System.Reflection/internal/index.js';
-import type { ISerializable, SerializationInfo, StreamingContext } from './System.Runtime.Serialization/internal/index.js';
-import type { SslProtocols } from './System.Security.Authentication/internal/index.js';
-import type { X509Certificate2, X509Certificate2Collection } from './System.Security.Cryptography.X509Certificates/internal/index.js';
-import type { Regex } from './System.Text.RegularExpressions/internal/index.js';
-import type { Task, Task_1 } from './System.Threading.Tasks/internal/index.js';
-import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, Type, UInt16, UInt32, UInt64, ValueTuple_2, Void } from './System/internal/index.js';
+import type { Dictionary, IAsyncEnumerable, ICollection, IDictionary, IEnumerable as IEnumerable__System_Collections_Generic, IEnumerator, KeyValuePair } from '@tsonic/dotnet/System.Collections.Generic.js';
+import type { IEnumerable } from '@tsonic/dotnet/System.Collections.js';
+import type { Action, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple, Void } from '@tsonic/dotnet/System.js';
+import type { ISerializable } from '@tsonic/dotnet/System.Runtime.Serialization.js';
+import type { SslProtocols } from '@tsonic/dotnet/System.Security.Authentication.js';
+import type { X509Certificate2, X509Certificate2Collection } from '@tsonic/dotnet/System.Security.Cryptography.X509Certificates.js';
+import type { Regex } from '@tsonic/dotnet/System.Text.RegularExpressions.js';
+import type { Task } from '@tsonic/dotnet/System.Threading.Tasks.js';
 
 // Public API exports (curated - no internal $instance/$views leakage)
 export { assert$instance as assert } from './nodejs/internal/index.js';

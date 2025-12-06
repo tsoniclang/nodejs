@@ -18,6 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TSBINDGEN_DIR="$PROJECT_DIR/../tsbindgen"
 NODEJS_CLR_DIR="$PROJECT_DIR/../nodejs-clr"
+DOTNET_LIB="$PROJECT_DIR/../dotnet"
 
 # .NET runtime path (needed for BCL type resolution)
 DOTNET_VERSION="${DOTNET_VERSION:-10.0.0}"
@@ -34,6 +35,7 @@ echo ""
 echo "Configuration:"
 echo "  nodejs.dll:   $NODEJS_DLL"
 echo "  .NET Runtime: $DOTNET_RUNTIME_PATH"
+echo "  BCL Library:  $DOTNET_LIB (external reference)"
 echo "  tsbindgen:    $TSBINDGEN_DIR"
 echo "  Output:       $PROJECT_DIR"
 echo "  Naming:       JS (camelCase)"
@@ -55,6 +57,12 @@ fi
 if [ ! -d "$TSBINDGEN_DIR" ]; then
     echo "ERROR: tsbindgen not found at $TSBINDGEN_DIR"
     echo "Clone it: git clone https://github.com/tsoniclang/tsbindgen ../tsbindgen"
+    exit 1
+fi
+
+if [ ! -d "$DOTNET_LIB" ]; then
+    echo "ERROR: @tsonic/dotnet not found at $DOTNET_LIB"
+    echo "Clone it: git clone https://github.com/tsoniclang/dotnet ../dotnet"
     exit 1
 fi
 
@@ -83,9 +91,11 @@ dotnet build src/tsbindgen/tsbindgen.csproj -c Release --verbosity quiet
 echo "  Done"
 
 # Generate types with JavaScript-style naming
+# Uses --lib to reference BCL types from @tsonic/dotnet instead of regenerating them
 echo "[3/3] Generating TypeScript declarations..."
 dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     generate -a "$NODEJS_DLL" -d "$DOTNET_RUNTIME_PATH" -o "$PROJECT_DIR" \
+    --lib "$DOTNET_LIB" \
     --naming js
 
 echo ""

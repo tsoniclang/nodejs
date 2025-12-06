@@ -1,6 +1,6 @@
 {
   "name": "@tsonic/nodejs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript type definitions for Node.js CLR library",
   "type": "module",
   "files": [
@@ -25,6 +25,7 @@
     "url": "https://github.com/tsoniclang/nodejs.git"
   },
   "dependencies": {
+    "@tsonic/dotnet": "^0.7.4",
     "@tsonic/types": "^0.2.0"
   }
 }

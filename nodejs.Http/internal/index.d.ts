@@ -8,14 +8,12 @@ import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint12
 // Import types from other namespaces
 import * as nodejs_Internal from "../../nodejs/internal/index.js";
 import type { EventEmitter } from "../../nodejs/internal/index.js";
-import type { Dictionary_2 } from "../../System.Collections.Generic/internal/index.js";
-import type { IDictionary } from "../../System.Collections/internal/index.js";
-import type { MethodBase } from "../../System.Reflection/internal/index.js";
-import * as System_Runtime_Serialization_Internal from "../../System.Runtime.Serialization/internal/index.js";
-import type { ISerializable, SerializationInfo, StreamingContext } from "../../System.Runtime.Serialization/internal/index.js";
-import type { Task, Task_1 } from "../../System.Threading.Tasks/internal/index.js";
-import * as System_Internal from "../../System/internal/index.js";
-import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Type, Void } from "../../System/internal/index.js";
+import type { Dictionary } from "@tsonic/dotnet/System.Collections.Generic.js";
+import * as System_Internal from "@tsonic/dotnet/System.js";
+import type { Action, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from "@tsonic/dotnet/System.js";
+import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Runtime.Serialization.js";
+import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization.js";
+import type { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
 
 // CLROf<T> - Maps ergonomic primitives to their CLR types for generic constraints
 // This utility is used ONLY in generic type arguments to satisfy CLR interface constraints
@@ -82,17 +80,17 @@ export type ClientRequest = ClientRequest$instance;
 
 export interface IncomingMessage$instance extends EventEmitter {
     readonly complete: boolean;
-    readonly headers: Dictionary_2<CLROf<string>, CLROf<string>>;
+    readonly headers: Dictionary<CLROf<string>, CLROf<string>>;
     readonly httpVersion: string;
     readonly method: string;
-    readonly statusCode: Nullable_1<CLROf<int>>;
+    readonly statusCode: Nullable<CLROf<int>>;
     readonly statusMessage: string;
     readonly url: string;
     destroy(): void;
     onClose(callback: Action): void;
-    onData(callback: Action_1<CLROf<string>>): void;
+    onData(callback: Action<CLROf<string>>): void;
     onEnd(callback: Action): void;
-    readAll(): Task_1<CLROf<string>>;
+    readAll(): Task<CLROf<string>>;
     setTimeout(msecs: int, callback?: Action): IncomingMessage;
 }
 
@@ -107,14 +105,14 @@ export type IncomingMessage = IncomingMessage$instance;
 export interface RequestOptions$instance {
     agent: unknown;
     auth: string;
-    headers: Dictionary_2<CLROf<string>, CLROf<string>>;
+    headers: Dictionary<CLROf<string>, CLROf<string>>;
     host: string;
     hostname: string;
     method: string;
     path: string;
     port: int;
     protocol: string;
-    timeout: Nullable_1<CLROf<int>>;
+    timeout: Nullable<CLROf<int>>;
 }
 
 
@@ -134,14 +132,14 @@ export interface Server$instance extends EventEmitter {
     timeout: int;
     address(): AddressInfo;
     close(callback?: Action): Server;
-    listen(port: int, hostname?: string, backlog?: Nullable_1<CLROf<int>>, callback?: Action): Server;
+    listen(port: int, hostname?: string, backlog?: Nullable<CLROf<int>>, callback?: Action): Server;
     listen(port: int, callback?: Action): Server;
     setTimeout(msecs: int, callback?: Action): Server;
 }
 
 
 export const Server: {
-    new(requestListener: Action_2<IncomingMessage, ServerResponse>): Server$instance;
+    new(requestListener: Action<IncomingMessage, ServerResponse>): Server$instance;
 };
 
 
@@ -156,14 +154,14 @@ export interface ServerResponse$instance extends EventEmitter {
     flushHeaders(): Task;
     getHeader(name: string): string;
     getHeaderNames(): string[];
-    getHeaders(): Dictionary_2<CLROf<string>, CLROf<string>>;
+    getHeaders(): Dictionary<CLROf<string>, CLROf<string>>;
     hasHeader(name: string): boolean;
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
     setTimeout(msecs: int, callback?: Action): ServerResponse;
-    write(chunk: string, encoding?: string, callback?: Action): Task_1<CLROf<boolean>>;
-    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary_2<CLROf<string>, CLROf<string>>): ServerResponse;
-    writeHead(statusCode: int, headers: Dictionary_2<CLROf<string>, CLROf<string>>): ServerResponse;
+    write(chunk: string, encoding?: string, callback?: Action): Task<CLROf<boolean>>;
+    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<CLROf<string>, CLROf<string>>): ServerResponse;
+    writeHead(statusCode: int, headers: Dictionary<CLROf<string>, CLROf<string>>): ServerResponse;
 }
 
 
@@ -175,7 +173,6 @@ export const ServerResponse: {
 export type ServerResponse = ServerResponse$instance;
 
 export interface TypeError$instance extends Exception {
-    getObjectData(info: SerializationInfo, context: StreamingContext): void;
 }
 
 
@@ -184,23 +181,18 @@ export const TypeError: {
 };
 
 
-export interface __TypeError$views {
-    As_ISerializable(): System_Runtime_Serialization_Internal.ISerializable$instance;
-}
-
-export type TypeError = TypeError$instance & __TypeError$views;
-
+export type TypeError = TypeError$instance;
 
 export abstract class http$instance {
-    static globalAgent_maxSockets: Nullable_1<CLROf<int>>;
+    static globalAgent_maxSockets: Nullable<CLROf<int>>;
     static globalAgent_maxFreeSockets: int;
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
-    static createServer(requestListener?: Action_2<IncomingMessage, ServerResponse>): Server;
-    static get_(options: RequestOptions, callback?: Action_1<IncomingMessage>): ClientRequest;
-    static get_(url: string, callback?: Action_1<IncomingMessage>): ClientRequest;
-    static request(options: RequestOptions, callback?: Action_1<IncomingMessage>): ClientRequest;
-    static request(url: string, callback?: Action_1<IncomingMessage>): ClientRequest;
+    static createServer(requestListener?: Action<IncomingMessage, ServerResponse>): Server;
+    static get_(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
+    static get_(url: string, callback?: Action<IncomingMessage>): ClientRequest;
+    static request(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
+    static request(url: string, callback?: Action<IncomingMessage>): ClientRequest;
     static validateHeaderName(name: string): void;
     static validateHeaderValue(name: string, value: unknown): void;
 }
