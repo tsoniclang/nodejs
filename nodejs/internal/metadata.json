@@ -8616,7 +8616,13 @@
           "isSealed": true,
           "arity": 0,
           "parameterCount": 2,
-          "isExtensionMethod": false
+          "isExtensionMethod": false,
+          "parameterModifiers": [
+            {
+              "index": 1,
+              "modifier": "out"
+            }
+          ]
         },
         {
           "stableId": "nodejs:nodejs.ProcessEnv::Add(System.Collections.Generic.KeyValuePair_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void",

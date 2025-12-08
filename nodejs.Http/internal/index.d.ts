@@ -15,31 +15,6 @@ import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Ru
 import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization.js";
 import type { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
 
-// CLROf<T> - Maps ergonomic primitives to their CLR types for generic constraints
-// This utility is used ONLY in generic type arguments to satisfy CLR interface constraints
-// Value positions (parameters, return types) use lowercase primitives for ergonomics
-export type CLROf<T> =
-    T extends sbyte ? System_Internal.SByte :
-    T extends short ? System_Internal.Int16 :
-    T extends int ? System_Internal.Int32 :
-    T extends long ? System_Internal.Int64 :
-    T extends int128 ? System_Internal.Int128 :
-    T extends nint ? System_Internal.IntPtr :
-    T extends byte ? System_Internal.Byte :
-    T extends ushort ? System_Internal.UInt16 :
-    T extends uint ? System_Internal.UInt32 :
-    T extends ulong ? System_Internal.UInt64 :
-    T extends uint128 ? System_Internal.UInt128 :
-    T extends nuint ? System_Internal.UIntPtr :
-    T extends half ? System_Internal.Half :
-    T extends float ? System_Internal.Single :
-    T extends double ? System_Internal.Double :
-    T extends decimal ? System_Internal.Decimal :
-    T extends char ? System_Internal.Char :
-    T extends boolean ? System_Internal.Boolean :
-    T extends string ? System_Internal.String :
-    T; // Identity fallback for non-primitive types
-
 export interface AddressInfo$instance {
     address: string;
     family: string;
@@ -80,17 +55,17 @@ export type ClientRequest = ClientRequest$instance;
 
 export interface IncomingMessage$instance extends EventEmitter {
     readonly complete: boolean;
-    readonly headers: Dictionary<CLROf<string>, CLROf<string>>;
+    readonly headers: Dictionary<System_Internal.String, System_Internal.String>;
     readonly httpVersion: string;
     readonly method: string;
-    readonly statusCode: Nullable<CLROf<int>>;
+    readonly statusCode: Nullable<System_Internal.Int32>;
     readonly statusMessage: string;
     readonly url: string;
     destroy(): void;
     onClose(callback: Action): void;
-    onData(callback: Action<CLROf<string>>): void;
+    onData(callback: Action<System_Internal.String>): void;
     onEnd(callback: Action): void;
-    readAll(): Task<CLROf<string>>;
+    readAll(): Task<System_Internal.String>;
     setTimeout(msecs: int, callback?: Action): IncomingMessage;
 }
 
@@ -105,14 +80,14 @@ export type IncomingMessage = IncomingMessage$instance;
 export interface RequestOptions$instance {
     agent: unknown;
     auth: string;
-    headers: Dictionary<CLROf<string>, CLROf<string>>;
+    headers: Dictionary<System_Internal.String, System_Internal.String>;
     host: string;
     hostname: string;
     method: string;
     path: string;
     port: int;
     protocol: string;
-    timeout: Nullable<CLROf<int>>;
+    timeout: Nullable<System_Internal.Int32>;
 }
 
 
@@ -132,7 +107,7 @@ export interface Server$instance extends EventEmitter {
     timeout: int;
     address(): AddressInfo;
     close(callback?: Action): Server;
-    listen(port: int, hostname?: string, backlog?: Nullable<CLROf<int>>, callback?: Action): Server;
+    listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
     listen(port: int, callback?: Action): Server;
     setTimeout(msecs: int, callback?: Action): Server;
 }
@@ -154,14 +129,14 @@ export interface ServerResponse$instance extends EventEmitter {
     flushHeaders(): Task;
     getHeader(name: string): string;
     getHeaderNames(): string[];
-    getHeaders(): Dictionary<CLROf<string>, CLROf<string>>;
+    getHeaders(): Dictionary<System_Internal.String, System_Internal.String>;
     hasHeader(name: string): boolean;
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
     setTimeout(msecs: int, callback?: Action): ServerResponse;
-    write(chunk: string, encoding?: string, callback?: Action): Task<CLROf<boolean>>;
-    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<CLROf<string>, CLROf<string>>): ServerResponse;
-    writeHead(statusCode: int, headers: Dictionary<CLROf<string>, CLROf<string>>): ServerResponse;
+    write(chunk: string, encoding?: string, callback?: Action): Task<System_Internal.Boolean>;
+    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
+    writeHead(statusCode: int, headers: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
 }
 
 
@@ -184,7 +159,7 @@ export const TypeError: {
 export type TypeError = TypeError$instance;
 
 export abstract class http$instance {
-    static globalAgent_maxSockets: Nullable<CLROf<int>>;
+    static globalAgent_maxSockets: Nullable<System_Internal.Int32>;
     static globalAgent_maxFreeSockets: int;
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
