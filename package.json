@@ -1,6 +1,6 @@
 {
   "name": "@tsonic/nodejs",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "TypeScript type definitions for Node.js CLR library",
   "type": "module",
   "files": [
