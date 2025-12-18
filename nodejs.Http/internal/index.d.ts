@@ -23,7 +23,7 @@ export interface AddressInfo$instance {
 
 
 export const AddressInfo: {
-    new(): AddressInfo$instance;
+    new(): AddressInfo;
 };
 
 
@@ -47,7 +47,7 @@ export interface ClientRequest$instance extends EventEmitter {
 
 
 export const ClientRequest: {
-    new(): ClientRequest$instance;
+    new(): ClientRequest;
 };
 
 
@@ -71,7 +71,7 @@ export interface IncomingMessage$instance extends EventEmitter {
 
 
 export const IncomingMessage: {
-    new(): IncomingMessage$instance;
+    new(): IncomingMessage;
 };
 
 
@@ -92,7 +92,7 @@ export interface RequestOptions$instance {
 
 
 export const RequestOptions: {
-    new(): RequestOptions$instance;
+    new(): RequestOptions;
 };
 
 
@@ -114,7 +114,7 @@ export interface Server$instance extends EventEmitter {
 
 
 export const Server: {
-    new(requestListener: Action<IncomingMessage, ServerResponse>): Server$instance;
+    new(requestListener: Action<IncomingMessage, ServerResponse>): Server;
 };
 
 
@@ -141,7 +141,7 @@ export interface ServerResponse$instance extends EventEmitter {
 
 
 export const ServerResponse: {
-    new(): ServerResponse$instance;
+    new(): ServerResponse;
 };
 
 
@@ -152,7 +152,7 @@ export interface TypeError$instance extends Exception {
 
 
 export const TypeError: {
-    new(message: string): TypeError$instance;
+    new(message: string): TypeError;
 };
 
 

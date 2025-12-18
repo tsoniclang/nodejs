@@ -33,7 +33,7 @@ export interface AddressInfo$instance {
 
 
 export const AddressInfo: {
-    new(): AddressInfo$instance;
+    new(): AddressInfo;
 };
 
 
@@ -45,7 +45,7 @@ export interface AnyAaaaRecord$instance extends RecordWithTtl {
 
 
 export const AnyAaaaRecord: {
-    new(): AnyAaaaRecord$instance;
+    new(): AnyAaaaRecord;
 };
 
 
@@ -57,7 +57,7 @@ export interface AnyARecord$instance extends RecordWithTtl {
 
 
 export const AnyARecord: {
-    new(): AnyARecord$instance;
+    new(): AnyARecord;
 };
 
 
@@ -69,7 +69,7 @@ export interface AnyCaaRecord$instance extends CaaRecord {
 
 
 export const AnyCaaRecord: {
-    new(): AnyCaaRecord$instance;
+    new(): AnyCaaRecord;
 };
 
 
@@ -82,7 +82,7 @@ export interface AnyCnameRecord$instance {
 
 
 export const AnyCnameRecord: {
-    new(): AnyCnameRecord$instance;
+    new(): AnyCnameRecord;
 };
 
 
@@ -94,7 +94,7 @@ export interface AnyMxRecord$instance extends MxRecord {
 
 
 export const AnyMxRecord: {
-    new(): AnyMxRecord$instance;
+    new(): AnyMxRecord;
 };
 
 
@@ -106,7 +106,7 @@ export interface AnyNaptrRecord$instance extends NaptrRecord {
 
 
 export const AnyNaptrRecord: {
-    new(): AnyNaptrRecord$instance;
+    new(): AnyNaptrRecord;
 };
 
 
@@ -119,7 +119,7 @@ export interface AnyNsRecord$instance {
 
 
 export const AnyNsRecord: {
-    new(): AnyNsRecord$instance;
+    new(): AnyNsRecord;
 };
 
 
@@ -132,7 +132,7 @@ export interface AnyPtrRecord$instance {
 
 
 export const AnyPtrRecord: {
-    new(): AnyPtrRecord$instance;
+    new(): AnyPtrRecord;
 };
 
 
@@ -155,7 +155,7 @@ export interface AnySoaRecord$instance extends SoaRecord {
 
 
 export const AnySoaRecord: {
-    new(): AnySoaRecord$instance;
+    new(): AnySoaRecord;
 };
 
 
@@ -167,7 +167,7 @@ export interface AnySrvRecord$instance extends SrvRecord {
 
 
 export const AnySrvRecord: {
-    new(): AnySrvRecord$instance;
+    new(): AnySrvRecord;
 };
 
 
@@ -179,7 +179,7 @@ export interface AnyTlsaRecord$instance extends TlsaRecord {
 
 
 export const AnyTlsaRecord: {
-    new(): AnyTlsaRecord$instance;
+    new(): AnyTlsaRecord;
 };
 
 
@@ -192,7 +192,7 @@ export interface AnyTxtRecord$instance {
 
 
 export const AnyTxtRecord: {
-    new(): AnyTxtRecord$instance;
+    new(): AnyTxtRecord;
 };
 
 
@@ -208,7 +208,7 @@ export interface AssertionError$instance extends Exception {
 
 
 export const AssertionError: {
-    new(message: string, actual: unknown, expected: unknown, operator: string): AssertionError$instance;
+    new(message: string, actual: unknown, expected: unknown, operator: string): AssertionError;
 };
 
 
@@ -223,7 +223,7 @@ export interface BindOptions$instance {
 
 
 export const BindOptions: {
-    new(): BindOptions$instance;
+    new(): BindOptions;
 };
 
 
@@ -239,7 +239,7 @@ export interface BlockList$instance {
 
 
 export const BlockList: {
-    new(): BlockList$instance;
+    new(): BlockList;
 };
 
 
@@ -253,7 +253,7 @@ export interface BrotliOptions$instance {
 
 
 export const BrotliOptions: {
-    new(): BrotliOptions$instance;
+    new(): BrotliOptions;
 };
 
 
@@ -344,7 +344,7 @@ export interface Buffer$instance {
 
 
 export const Buffer: {
-    new(): Buffer$instance;
+    new(): Buffer;
     poolSize: int;
     alloc(size: int, fill?: unknown, encoding?: string): Buffer;
     allocUnsafe(size: int): Buffer;
@@ -375,7 +375,7 @@ export interface CaaRecord$instance {
 
 
 export const CaaRecord: {
-    new(): CaaRecord$instance;
+    new(): CaaRecord;
 };
 
 
@@ -402,7 +402,7 @@ export interface ChildProcess$instance extends EventEmitter {
 
 
 export const ChildProcess: {
-    new(): ChildProcess$instance;
+    new(): ChildProcess;
 };
 
 
@@ -421,7 +421,7 @@ export interface Cipher$instance extends Transform {
 
 
 export const Cipher: {
-    new(): Cipher$instance;
+    new(): Cipher;
 };
 
 
@@ -435,7 +435,7 @@ export interface CipherNameAndProtocol$instance {
 
 
 export const CipherNameAndProtocol: {
-    new(): CipherNameAndProtocol$instance;
+    new(): CipherNameAndProtocol;
 };
 
 
@@ -451,7 +451,7 @@ export interface CommonConnectionOptions$instance {
 
 
 export const CommonConnectionOptions: {
-    new(): CommonConnectionOptions$instance;
+    new(): CommonConnectionOptions;
 };
 
 
@@ -470,7 +470,7 @@ export interface ConnectionOptions$instance extends CommonConnectionOptions {
 
 
 export const ConnectionOptions: {
-    new(): ConnectionOptions$instance;
+    new(): ConnectionOptions;
 };
 
 
@@ -484,7 +484,7 @@ export interface CpuInfo$instance {
 
 
 export const CpuInfo: {
-    new(): CpuInfo$instance;
+    new(): CpuInfo;
 };
 
 
@@ -500,7 +500,7 @@ export interface CpuTimes$instance {
 
 
 export const CpuTimes: {
-    new(): CpuTimes$instance;
+    new(): CpuTimes;
 };
 
 
@@ -513,7 +513,7 @@ export interface CursorPosition$instance {
 
 
 export const CursorPosition: {
-    new(): CursorPosition$instance;
+    new(): CursorPosition;
 };
 
 
@@ -531,7 +531,7 @@ export interface Decipher$instance extends Transform {
 
 
 export const Decipher: {
-    new(): Decipher$instance;
+    new(): Decipher;
 };
 
 
@@ -543,7 +543,7 @@ export interface DetailedPeerCertificate$instance extends PeerCertificate {
 
 
 export const DetailedPeerCertificate: {
-    new(): DetailedPeerCertificate$instance;
+    new(): DetailedPeerCertificate;
 };
 
 
@@ -590,7 +590,7 @@ export interface DgramSocket$instance extends EventEmitter {
 
 
 export const DgramSocket: {
-    new(): DgramSocket$instance;
+    new(): DgramSocket;
 };
 
 
@@ -620,7 +620,7 @@ export interface DiffieHellman$instance {
 
 
 export const DiffieHellman: {
-    new(): DiffieHellman$instance;
+    new(): DiffieHellman;
 };
 
 
@@ -636,7 +636,7 @@ export interface DSAPrivateKeyObject$instance extends KeyObject {
 
 
 export const DSAPrivateKeyObject: {
-    new(): DSAPrivateKeyObject$instance;
+    new(): DSAPrivateKeyObject;
 };
 
 
@@ -652,7 +652,7 @@ export interface DSAPublicKeyObject$instance extends KeyObject {
 
 
 export const DSAPublicKeyObject: {
-    new(): DSAPublicKeyObject$instance;
+    new(): DSAPublicKeyObject;
 };
 
 
@@ -672,7 +672,7 @@ export interface Duplex$instance extends Readable {
 
 
 export const Duplex: {
-    new(): Duplex$instance;
+    new(): Duplex;
 };
 
 
@@ -697,7 +697,7 @@ export interface ECDH$instance {
 
 
 export const ECDH: {
-    new(): ECDH$instance;
+    new(): ECDH;
 };
 
 
@@ -713,7 +713,7 @@ export interface EdDSAPrivateKeyObject$instance extends KeyObject {
 
 
 export const EdDSAPrivateKeyObject: {
-    new(): EdDSAPrivateKeyObject$instance;
+    new(): EdDSAPrivateKeyObject;
 };
 
 
@@ -729,7 +729,7 @@ export interface EdDSAPublicKeyObject$instance extends KeyObject {
 
 
 export const EdDSAPublicKeyObject: {
-    new(): EdDSAPublicKeyObject$instance;
+    new(): EdDSAPublicKeyObject;
 };
 
 
@@ -743,7 +743,7 @@ export interface EphemeralKeyInfo$instance {
 
 
 export const EphemeralKeyInfo: {
-    new(): EphemeralKeyInfo$instance;
+    new(): EphemeralKeyInfo;
 };
 
 
@@ -769,7 +769,7 @@ export interface EventEmitter$instance {
 
 
 export const EventEmitter: {
-    new(): EventEmitter$instance;
+    new(): EventEmitter;
     defaultMaxListeners: int;
     once(emitter: EventEmitter, eventName: string): Task<unknown[]>;
 };
@@ -797,7 +797,7 @@ export interface ExecOptions$instance {
 
 
 export const ExecOptions: {
-    new(): ExecOptions$instance;
+    new(): ExecOptions;
 };
 
 
@@ -815,7 +815,7 @@ export interface Hash$instance extends Transform {
 
 
 export const Hash: {
-    new(): Hash$instance;
+    new(): Hash;
 };
 
 
@@ -831,7 +831,7 @@ export interface Hmac$instance extends Transform {
 
 
 export const Hmac: {
-    new(): Hmac$instance;
+    new(): Hmac;
 };
 
 
@@ -846,7 +846,7 @@ export interface Immediate$instance {
 
 
 export const Immediate: {
-    new(): Immediate$instance;
+    new(): Immediate;
 };
 
 
@@ -869,7 +869,7 @@ export interface Interface$instance extends EventEmitter {
 
 
 export const Interface: {
-    new(): Interface$instance;
+    new(): Interface;
 };
 
 
@@ -889,7 +889,7 @@ export interface InterfaceOptions$instance {
 
 
 export const InterfaceOptions: {
-    new(): InterfaceOptions$instance;
+    new(): InterfaceOptions;
 };
 
 
@@ -901,7 +901,7 @@ export interface IpcSocketConnectOpts$instance {
 
 
 export const IpcSocketConnectOpts: {
-    new(): IpcSocketConnectOpts$instance;
+    new(): IpcSocketConnectOpts;
 };
 
 
@@ -932,7 +932,7 @@ export interface ListenOptions$instance {
 
 
 export const ListenOptions: {
-    new(): ListenOptions$instance;
+    new(): ListenOptions;
 };
 
 
@@ -945,7 +945,7 @@ export interface LookupAddress$instance {
 
 
 export const LookupAddress: {
-    new(): LookupAddress$instance;
+    new(): LookupAddress;
 };
 
 
@@ -961,7 +961,7 @@ export interface LookupOptions$instance {
 
 
 export const LookupOptions: {
-    new(): LookupOptions$instance;
+    new(): LookupOptions;
 };
 
 
@@ -974,7 +974,7 @@ export interface MarkOptions$instance {
 
 
 export const MarkOptions: {
-    new(): MarkOptions$instance;
+    new(): MarkOptions;
 };
 
 
@@ -990,7 +990,7 @@ export interface MeasureOptions$instance {
 
 
 export const MeasureOptions: {
-    new(): MeasureOptions$instance;
+    new(): MeasureOptions;
 };
 
 
@@ -1003,7 +1003,7 @@ export interface MxRecord$instance {
 
 
 export const MxRecord: {
-    new(): MxRecord$instance;
+    new(): MxRecord;
 };
 
 
@@ -1020,7 +1020,7 @@ export interface NaptrRecord$instance {
 
 
 export const NaptrRecord: {
-    new(): NaptrRecord$instance;
+    new(): NaptrRecord;
 };
 
 
@@ -1036,7 +1036,7 @@ export interface ParsedPath$instance {
 
 
 export const ParsedPath: {
-    new(): ParsedPath$instance;
+    new(): ParsedPath;
 };
 
 
@@ -1047,7 +1047,7 @@ export interface PassThrough$instance extends Transform {
 
 
 export const PassThrough: {
-    new(): PassThrough$instance;
+    new(): PassThrough;
 };
 
 
@@ -1074,7 +1074,7 @@ export interface PathModule$instance {
 
 
 export const PathModule: {
-    new(): PathModule$instance;
+    new(): PathModule;
     readonly instance: PathModule;
 };
 
@@ -1098,7 +1098,7 @@ export interface PeerCertificate$instance {
 
 
 export const PeerCertificate: {
-    new(): PeerCertificate$instance;
+    new(): PeerCertificate;
 };
 
 
@@ -1113,7 +1113,7 @@ export interface PerformanceEntry$instance {
 
 
 export const PerformanceEntry: {
-    new(): PerformanceEntry$instance;
+    new(): PerformanceEntry;
 };
 
 
@@ -1125,7 +1125,7 @@ export interface PerformanceMark$instance extends PerformanceEntry {
 
 
 export const PerformanceMark: {
-    new(name: string, startTime: double, detail: unknown): PerformanceMark$instance;
+    new(name: string, startTime: double, detail: unknown): PerformanceMark;
 };
 
 
@@ -1137,7 +1137,7 @@ export interface PerformanceMeasure$instance extends PerformanceEntry {
 
 
 export const PerformanceMeasure: {
-    new(name: string, startTime: double, duration: double, detail: unknown): PerformanceMeasure$instance;
+    new(name: string, startTime: double, duration: double, detail: unknown): PerformanceMeasure;
 };
 
 
@@ -1151,7 +1151,7 @@ export interface PerformanceObserver$instance {
 
 
 export const PerformanceObserver: {
-    new(callback: Action<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver$instance;
+    new(callback: Action<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver;
     supportedEntryTypes(): string[];
 };
 
@@ -1166,7 +1166,7 @@ export interface PerformanceObserverEntryList$instance {
 
 
 export const PerformanceObserverEntryList: {
-    new(entries: PerformanceEntry[]): PerformanceObserverEntryList$instance;
+    new(entries: PerformanceEntry[]): PerformanceObserverEntryList;
 };
 
 
@@ -1179,7 +1179,7 @@ export interface PerformanceObserverOptions$instance {
 
 
 export const PerformanceObserverOptions: {
-    new(): PerformanceObserverOptions$instance;
+    new(): PerformanceObserverOptions;
 };
 
 
@@ -1196,7 +1196,7 @@ export interface PrivateKeyObject$instance extends KeyObject {
 
 
 export const PrivateKeyObject: {
-    new(): PrivateKeyObject$instance;
+    new(): PrivateKeyObject;
 };
 
 
@@ -1222,7 +1222,7 @@ export interface ProcessEnv$instance {
 
 
 export const ProcessEnv: {
-    new(): ProcessEnv$instance;
+    new(): ProcessEnv;
 };
 
 
@@ -1237,7 +1237,7 @@ export interface ProcessVersions$instance {
 
 
 export const ProcessVersions: {
-    new(): ProcessVersions$instance;
+    new(): ProcessVersions;
 };
 
 
@@ -1254,7 +1254,7 @@ export interface PublicKeyObject$instance extends KeyObject {
 
 
 export const PublicKeyObject: {
-    new(): PublicKeyObject$instance;
+    new(): PublicKeyObject;
 };
 
 
@@ -1279,7 +1279,7 @@ export interface Readable$instance extends Stream {
 
 
 export const Readable: {
-    new(): Readable$instance;
+    new(): Readable;
 };
 
 
@@ -1292,7 +1292,7 @@ export interface RecordWithTtl$instance {
 
 
 export const RecordWithTtl: {
-    new(): RecordWithTtl$instance;
+    new(): RecordWithTtl;
 };
 
 
@@ -1307,7 +1307,7 @@ export interface RemoteInfo$instance {
 
 
 export const RemoteInfo: {
-    new(): RemoteInfo$instance;
+    new(): RemoteInfo;
 };
 
 
@@ -1319,7 +1319,7 @@ export interface ResolveOptions$instance {
 
 
 export const ResolveOptions: {
-    new(): ResolveOptions$instance;
+    new(): ResolveOptions;
 };
 
 
@@ -1352,8 +1352,8 @@ export interface Resolver$instance {
 
 
 export const Resolver: {
-    new(): Resolver$instance;
-    new(options: ResolverOptions): Resolver$instance;
+    new(): Resolver;
+    new(options: ResolverOptions): Resolver;
 };
 
 
@@ -1367,7 +1367,7 @@ export interface ResolverOptions$instance {
 
 
 export const ResolverOptions: {
-    new(): ResolverOptions$instance;
+    new(): ResolverOptions;
 };
 
 
@@ -1384,7 +1384,7 @@ export interface SecretKeyObject$instance extends KeyObject {
 
 
 export const SecretKeyObject: {
-    new(): SecretKeyObject$instance;
+    new(): SecretKeyObject;
 };
 
 
@@ -1402,7 +1402,7 @@ export interface SecureContext$instance {
 
 
 export const SecureContext: {
-    new(): SecureContext$instance;
+    new(): SecureContext;
 };
 
 
@@ -1421,7 +1421,7 @@ export interface SecureContextOptions$instance {
 
 
 export const SecureContextOptions: {
-    new(): SecureContextOptions$instance;
+    new(): SecureContextOptions;
 };
 
 
@@ -1444,9 +1444,9 @@ export interface Server$instance extends EventEmitter {
 
 
 export const Server: {
-    new(): Server$instance;
-    new(connectionListener: Action<Socket>): Server$instance;
-    new(options: ServerOpts, connectionListener: Action<Socket>): Server$instance;
+    new(): Server;
+    new(connectionListener: Action<Socket>): Server;
+    new(options: ServerOpts, connectionListener: Action<Socket>): Server;
 };
 
 
@@ -1459,7 +1459,7 @@ export interface ServerOpts$instance {
 
 
 export const ServerOpts: {
-    new(): ServerOpts$instance;
+    new(): ServerOpts;
 };
 
 
@@ -1477,7 +1477,7 @@ export interface Sign$instance extends Transform {
 
 
 export const Sign: {
-    new(): Sign$instance;
+    new(): Sign;
 };
 
 
@@ -1495,7 +1495,7 @@ export interface SoaRecord$instance {
 
 
 export const SoaRecord: {
-    new(): SoaRecord$instance;
+    new(): SoaRecord;
 };
 
 
@@ -1538,8 +1538,8 @@ export interface Socket$instance extends Stream {
 
 
 export const Socket: {
-    new(): Socket$instance;
-    new(options: SocketConstructorOpts): Socket$instance;
+    new(): Socket;
+    new(options: SocketConstructorOpts): Socket;
 };
 
 
@@ -1554,7 +1554,7 @@ export interface SocketAddress$instance {
 
 
 export const SocketAddress: {
-    new(options: SocketAddressInitOptions): SocketAddress$instance;
+    new(options: SocketAddressInitOptions): SocketAddress;
 };
 
 
@@ -1569,7 +1569,7 @@ export interface SocketAddressInitOptions$instance {
 
 
 export const SocketAddressInitOptions: {
-    new(): SocketAddressInitOptions$instance;
+    new(): SocketAddressInitOptions;
 };
 
 
@@ -1584,7 +1584,7 @@ export interface SocketConstructorOpts$instance {
 
 
 export const SocketConstructorOpts: {
-    new(): SocketConstructorOpts$instance;
+    new(): SocketConstructorOpts;
 };
 
 
@@ -1601,7 +1601,7 @@ export interface SocketOptions$instance {
 
 
 export const SocketOptions: {
-    new(): SocketOptions$instance;
+    new(): SocketOptions;
 };
 
 
@@ -1619,7 +1619,7 @@ export interface SpawnSyncReturns_1$instance<T> {
 
 
 export const SpawnSyncReturns_1: {
-    new<T>(): SpawnSyncReturns_1$instance<T>;
+    new<T>(): SpawnSyncReturns_1<T>;
 };
 
 
@@ -1634,7 +1634,7 @@ export interface SrvRecord$instance {
 
 
 export const SrvRecord: {
-    new(): SrvRecord$instance;
+    new(): SrvRecord;
 };
 
 
@@ -1660,7 +1660,7 @@ export interface Stats$instance {
 
 
 export const Stats: {
-    new(): Stats$instance;
+    new(): Stats;
 };
 
 
@@ -1673,7 +1673,7 @@ export interface Stream$instance extends EventEmitter {
 
 
 export const Stream: {
-    new(): Stream$instance;
+    new(): Stream;
 };
 
 
@@ -1686,7 +1686,7 @@ export interface StringDecoder$instance {
 
 
 export const StringDecoder: {
-    new(encoding: string): StringDecoder$instance;
+    new(encoding: string): StringDecoder;
 };
 
 
@@ -1706,7 +1706,7 @@ export interface TcpSocketConnectOpts$instance {
 
 
 export const TcpSocketConnectOpts: {
-    new(): TcpSocketConnectOpts$instance;
+    new(): TcpSocketConnectOpts;
 };
 
 
@@ -1723,7 +1723,7 @@ export interface Timeout$instance {
 
 
 export const Timeout: {
-    new(): Timeout$instance;
+    new(): Timeout;
 };
 
 
@@ -1738,7 +1738,7 @@ export interface TlsaRecord$instance {
 
 
 export const TlsaRecord: {
-    new(): TlsaRecord$instance;
+    new(): TlsaRecord;
 };
 
 
@@ -1755,7 +1755,7 @@ export interface TLSCertificateInfo$instance {
 
 
 export const TLSCertificateInfo: {
-    new(): TLSCertificateInfo$instance;
+    new(): TLSCertificateInfo;
 };
 
 
@@ -1774,7 +1774,7 @@ export interface TlsOptions$instance extends CommonConnectionOptions {
 
 
 export const TlsOptions: {
-    new(): TlsOptions$instance;
+    new(): TlsOptions;
 };
 
 
@@ -1789,9 +1789,9 @@ export interface TLSServer$instance extends Server {
 
 
 export const TLSServer: {
-    new(): TLSServer$instance;
-    new(secureConnectionListener: Action<TLSSocket>): TLSServer$instance;
-    new(options: TlsOptions, secureConnectionListener: Action<TLSSocket>): TLSServer$instance;
+    new(): TLSServer;
+    new(secureConnectionListener: Action<TLSSocket>): TLSServer;
+    new(options: TlsOptions, secureConnectionListener: Action<TLSSocket>): TLSServer;
 };
 
 
@@ -1830,7 +1830,7 @@ export interface TLSSocket$instance extends Socket {
 
 
 export const TLSSocket: {
-    new(socket: Socket, options: TLSSocketOptions): TLSSocket$instance;
+    new(socket: Socket, options: TLSSocketOptions): TLSSocket;
 };
 
 
@@ -1848,7 +1848,7 @@ export interface TLSSocketOptions$instance extends CommonConnectionOptions {
 
 
 export const TLSSocketOptions: {
-    new(): TLSSocketOptions$instance;
+    new(): TLSSocketOptions;
 };
 
 
@@ -1859,7 +1859,7 @@ export interface Transform$instance extends Duplex {
 
 
 export const Transform: {
-    new(): Transform$instance;
+    new(): Transform;
 };
 
 
@@ -1884,7 +1884,7 @@ export interface URL$instance {
 
 
 export const URL: {
-    new(input: string, base: string): URL$instance;
+    new(input: string, base: string): URL;
     canParse(input: string, base?: string): boolean;
     parse(input: string, base?: string): URL;
 };
@@ -1910,7 +1910,7 @@ export interface URLSearchParams$instance {
 
 
 export const URLSearchParams: {
-    new(init: string): URLSearchParams$instance;
+    new(init: string): URLSearchParams;
 };
 
 
@@ -1926,7 +1926,7 @@ export interface UserInfo$instance {
 
 
 export const UserInfo: {
-    new(): UserInfo$instance;
+    new(): UserInfo;
 };
 
 
@@ -1944,7 +1944,7 @@ export interface Verify$instance extends Transform {
 
 
 export const Verify: {
-    new(): Verify$instance;
+    new(): Verify;
 };
 
 
@@ -1965,7 +1965,7 @@ export interface Writable$instance extends Stream {
 
 
 export const Writable: {
-    new(): Writable$instance;
+    new(): Writable;
 };
 
 
@@ -1993,7 +1993,7 @@ export interface X509CertificateInfo$instance {
 
 
 export const X509CertificateInfo: {
-    new(): X509CertificateInfo$instance;
+    new(): X509CertificateInfo;
 };
 
 
@@ -2010,7 +2010,7 @@ export interface ZlibOptions$instance {
 
 
 export const ZlibOptions: {
-    new(): ZlibOptions$instance;
+    new(): ZlibOptions;
 };
 
 
