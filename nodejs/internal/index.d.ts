@@ -199,16 +199,16 @@ export const AnyTxtRecord: {
 export type AnyTxtRecord = AnyTxtRecord$instance;
 
 export interface AssertionError$instance extends Exception {
-    actual: unknown;
+    actual: unknown | undefined;
     readonly code: string;
-    expected: unknown;
+    expected: unknown | undefined;
     generatedMessage: boolean;
     operator: string;
 }
 
 
 export const AssertionError: {
-    new(message: string, actual: unknown, expected: unknown, operator: string): AssertionError;
+    new(message: string | undefined, actual: unknown | undefined, expected: unknown | undefined, operator: string): AssertionError;
 };
 
 
@@ -365,12 +365,12 @@ export const Buffer: {
 export type Buffer = Buffer$instance;
 
 export interface CaaRecord$instance {
-    contactemail: string;
-    contactphone: string;
+    contactemail: string | undefined;
+    contactphone: string | undefined;
     critical: int;
-    iodef: string;
-    issue: string;
-    issuewild: string;
+    iodef: string | undefined;
+    issue: string | undefined;
+    issuewild: string | undefined;
 }
 
 
@@ -387,16 +387,16 @@ export interface ChildProcess$instance extends EventEmitter {
     readonly killed: boolean;
     readonly pid: int;
     readonly referenced: boolean;
-    readonly signalCode: string;
+    readonly signalCode: string | undefined;
     readonly spawnargs: string[];
     readonly spawnfile: string;
     readonly stderr: Readable;
-    readonly stdin: Writable;
+    readonly stdin: Writable | undefined;
     readonly stdout: Readable;
     disconnect(): void;
-    kill(signal?: string): boolean;
+    kill(signal?: string | undefined): boolean;
     ref(): void;
-    send(message: unknown, sendHandle?: unknown, options?: unknown, callback?: Action<Exception>): boolean;
+    send(message: unknown, sendHandle?: unknown | undefined, options?: unknown | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
     unref(): void;
 }
 
@@ -410,13 +410,13 @@ export type ChildProcess = ChildProcess$instance;
 
 export interface Cipher$instance extends Transform {
     dispose(): void;
-    final(outputEncoding?: string): string;
+    final(outputEncoding?: string | undefined): string;
     final(): byte[];
     getAuthTag(): byte[];
     setAAD(buffer: byte[]): void;
     setAuthTag(tagLength: int): void;
-    update(data: string, inputEncoding?: string, outputEncoding?: string): string;
-    update(data: byte[], outputEncoding?: string): string;
+    update(data: string, inputEncoding?: string | undefined, outputEncoding?: string | undefined): string;
+    update(data: byte[], outputEncoding?: string | undefined): string;
 }
 
 
@@ -442,11 +442,11 @@ export const CipherNameAndProtocol: {
 export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
-    alpnProtocols: string[];
+    alpnProtocols: string[] | undefined;
     enableTrace: Nullable<System_Internal.Boolean>;
     rejectUnauthorized: Nullable<System_Internal.Boolean>;
     requestCert: Nullable<System_Internal.Boolean>;
-    secureContext: SecureContext;
+    secureContext: SecureContext | undefined;
 }
 
 
@@ -458,13 +458,13 @@ export const CommonConnectionOptions: {
 export type CommonConnectionOptions = CommonConnectionOptions$instance;
 
 export interface ConnectionOptions$instance extends CommonConnectionOptions {
-    ca: unknown;
-    cert: unknown;
+    ca: unknown | undefined;
+    cert: unknown | undefined;
     host: string;
-    key: unknown;
-    passphrase: string;
+    key: unknown | undefined;
+    passphrase: string | undefined;
     port: Nullable<System_Internal.Int32>;
-    servername: string;
+    servername: string | undefined;
     timeout: Nullable<System_Internal.Int32>;
 }
 
@@ -521,12 +521,12 @@ export type CursorPosition = CursorPosition$instance;
 
 export interface Decipher$instance extends Transform {
     dispose(): void;
-    final(outputEncoding?: string): string;
+    final(outputEncoding?: string | undefined): string;
     final(): byte[];
     setAAD(buffer: byte[]): void;
     setAuthTag(buffer: byte[]): void;
-    update(data: string, inputEncoding?: string, outputEncoding?: string): string;
-    update(data: byte[], outputEncoding?: string): string;
+    update(data: string, inputEncoding?: string | undefined, outputEncoding?: string | undefined): string;
+    update(data: byte[], outputEncoding?: string | undefined): string;
 }
 
 
@@ -538,7 +538,7 @@ export const Decipher: {
 export type Decipher = Decipher$instance;
 
 export interface DetailedPeerCertificate$instance extends PeerCertificate {
-    issuerCertificate: DetailedPeerCertificate;
+    issuerCertificate: DetailedPeerCertificate | undefined;
 }
 
 
@@ -550,19 +550,19 @@ export const DetailedPeerCertificate: {
 export type DetailedPeerCertificate = DetailedPeerCertificate$instance;
 
 export interface DgramSocket$instance extends EventEmitter {
-    addMembership(multicastAddress: string, multicastInterface?: string): void;
+    addMembership(multicastAddress: string, multicastInterface?: string | undefined): void;
     address(): AddressInfo;
-    addSourceSpecificMembership(sourceAddress: string, groupAddress: string, multicastInterface?: string): void;
+    addSourceSpecificMembership(sourceAddress: string, groupAddress: string, multicastInterface?: string | undefined): void;
     bind(port?: int, address?: string, callback?: Action): DgramSocket;
-    bind(port: int, callback: Action): DgramSocket;
-    bind(callback: Action): DgramSocket;
-    bind(options: BindOptions, callback?: Action): DgramSocket;
-    close(callback?: Action): DgramSocket;
+    bind(port: int, callback: Action | undefined): DgramSocket;
+    bind(callback: Action | undefined): DgramSocket;
+    bind(options: BindOptions, callback?: Action | undefined): DgramSocket;
+    close(callback?: Action | undefined): DgramSocket;
     connect(port: int, address?: string, callback?: Action): void;
     connect(port: int, callback: Action): void;
     disconnect(): void;
     dropMembership(multicastAddress: string): void;
-    dropSourceSpecificMembership(sourceAddress: string, groupAddress: string, multicastInterface?: string): void;
+    dropSourceSpecificMembership(sourceAddress: string, groupAddress: string, multicastInterface?: string | undefined): void;
     getRecvBufferSize(): int;
     getSendBufferSize(): int;
     getSendQueueCount(): int;
@@ -571,13 +571,13 @@ export interface DgramSocket$instance extends EventEmitter {
     remoteAddress(): AddressInfo;
     send(msg: byte[], port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
     send(msg: string, port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: string, port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: string, callback: Action<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], port: int, callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
+    send(msg: string, port: int, callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
+    send(msg: byte[], callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
+    send(msg: string, callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
     send(msg: byte[], offset: int, length: int, port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, callback: Action<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], offset: int, length: int, port: int, callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
+    send(msg: byte[], offset: int, length: int, callback: Action<Exception | undefined, System_Internal.Int32> | undefined): void;
     setBroadcast(flag: boolean): void;
     setMulticastInterface(multicastInterface: string): void;
     setMulticastLoopback(flag: boolean): boolean;
@@ -597,24 +597,24 @@ export const DgramSocket: {
 export type DgramSocket = DgramSocket$instance;
 
 export interface DiffieHellman$instance {
-    computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
-    computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
+    computeSecret(otherPublicKey: string, inputEncoding?: string | undefined, outputEncoding?: string | undefined): string;
+    computeSecret(otherPublicKey: byte[], outputEncoding?: string | undefined): string;
     computeSecret(otherPublicKey: byte[]): byte[];
     dispose(): void;
-    generateKeys(encoding?: string): string;
+    generateKeys(encoding?: string | undefined): string;
     generateKeys(): byte[];
-    getGenerator(encoding?: string): string;
+    getGenerator(encoding?: string | undefined): string;
     getGenerator(): byte[];
-    getPrime(encoding?: string): string;
+    getPrime(encoding?: string | undefined): string;
     getPrime(): byte[];
-    getPrivateKey(encoding?: string): string;
+    getPrivateKey(encoding?: string | undefined): string;
     getPrivateKey(): byte[];
-    getPublicKey(encoding?: string): string;
+    getPublicKey(encoding?: string | undefined): string;
     getPublicKey(): byte[];
     getVerifyError(): int;
-    setPrivateKey(privateKey: string, encoding?: string): void;
+    setPrivateKey(privateKey: string, encoding?: string | undefined): void;
     setPrivateKey(privateKey: byte[]): void;
-    setPublicKey(publicKey: string, encoding?: string): void;
+    setPublicKey(publicKey: string, encoding?: string | undefined): void;
     setPublicKey(publicKey: byte[]): void;
 }
 
@@ -627,11 +627,11 @@ export const DiffieHellman: {
 export type DiffieHellman = DiffieHellman$instance;
 
 export interface DSAPrivateKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
 }
 
 
@@ -643,11 +643,11 @@ export const DSAPrivateKeyObject: {
 export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
 
 export interface DSAPublicKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
 }
 
 
@@ -664,10 +664,10 @@ export interface Duplex$instance extends Readable {
     readonly writableEnded: boolean;
     readonly writableLength: int;
     cork(): void;
-    destroy(error?: Exception): void;
-    end(chunk?: unknown, encoding?: string, callback?: Action): void;
+    destroy(error?: Exception | undefined): void;
+    end(chunk?: unknown | undefined, encoding?: string | undefined, callback?: Action | undefined): void;
     uncork(): void;
-    write(chunk: unknown, encoding?: string, callback?: Action): boolean;
+    write(chunk: unknown | undefined, encoding?: string | undefined, callback?: Action | undefined): boolean;
 }
 
 
@@ -679,19 +679,19 @@ export const Duplex: {
 export type Duplex = Duplex$instance;
 
 export interface ECDH$instance {
-    computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
-    computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
+    computeSecret(otherPublicKey: string, inputEncoding?: string | undefined, outputEncoding?: string | undefined): string;
+    computeSecret(otherPublicKey: byte[], outputEncoding?: string | undefined): string;
     computeSecret(otherPublicKey: byte[]): byte[];
     dispose(): void;
     generateKeys(encoding?: string, format?: string): string;
     generateKeys(): byte[];
-    getPrivateKey(encoding?: string): string;
+    getPrivateKey(encoding?: string | undefined): string;
     getPrivateKey(): byte[];
     getPublicKey(encoding?: string, format?: string): string;
     getPublicKey(): byte[];
-    setPrivateKey(privateKey: string, encoding?: string): void;
+    setPrivateKey(privateKey: string, encoding?: string | undefined): void;
     setPrivateKey(privateKey: byte[]): void;
-    setPublicKey(publicKey: string, encoding?: string): void;
+    setPublicKey(publicKey: string, encoding?: string | undefined): void;
     setPublicKey(publicKey: byte[]): void;
 }
 
@@ -704,11 +704,11 @@ export const ECDH: {
 export type ECDH = ECDH$instance;
 
 export interface EdDSAPrivateKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
 }
 
 
@@ -720,11 +720,11 @@ export const EdDSAPrivateKeyObject: {
 export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
 
 export interface EdDSAPublicKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
 }
 
 
@@ -762,7 +762,7 @@ export interface EventEmitter$instance {
     prependListener(eventName: string, listener: Function): EventEmitter;
     prependOnceListener(eventName: string, listener: Function): EventEmitter;
     rawListeners(eventName: string): Function[];
-    removeAllListeners(eventName?: string): EventEmitter;
+    removeAllListeners(eventName?: string | undefined): EventEmitter;
     removeListener(eventName: string, listener: Function): EventEmitter;
     setMaxListeners(n: int): EventEmitter;
 }
@@ -771,24 +771,24 @@ export interface EventEmitter$instance {
 export const EventEmitter: {
     new(): EventEmitter;
     defaultMaxListeners: int;
-    once(emitter: EventEmitter, eventName: string): Task<unknown[]>;
+    once(emitter: EventEmitter, eventName: string): Task<(unknown | undefined)[]>;
 };
 
 
 export type EventEmitter = EventEmitter$instance;
 
 export interface ExecOptions$instance {
-    argv0: string;
-    cwd: string;
+    argv0: string | undefined;
+    cwd: string | undefined;
     detached: boolean;
-    encoding: string;
-    env: unknown;
+    encoding: string | undefined;
+    env: unknown | undefined;
     gid: Nullable<System_Internal.Int32>;
-    input: string;
-    killSignal: string;
+    input: string | undefined;
+    killSignal: string | undefined;
     maxBuffer: int;
-    shell: string;
-    stdio: string;
+    shell: string | undefined;
+    stdio: string | undefined;
     timeout: int;
     uid: Nullable<System_Internal.Int32>;
     windowsHide: boolean;
@@ -805,11 +805,11 @@ export type ExecOptions = ExecOptions$instance;
 
 export interface Hash$instance extends Transform {
     copy(): Hash;
-    digest(encoding: string): string;
+    digest(encoding: string | undefined): string;
     digest(): byte[];
     digest(outputLength: int): byte[];
     dispose(): void;
-    update(data: string, inputEncoding?: string): Hash;
+    update(data: string, inputEncoding?: string | undefined): Hash;
     update(data: byte[]): Hash;
 }
 
@@ -822,10 +822,10 @@ export const Hash: {
 export type Hash = Hash$instance;
 
 export interface Hmac$instance extends Transform {
-    digest(encoding?: string): string;
+    digest(encoding?: string | undefined): string;
     digest(): byte[];
     dispose(): void;
-    update(data: string, inputEncoding?: string): Hmac;
+    update(data: string, inputEncoding?: string | undefined): Hmac;
     update(data: byte[]): Hmac;
 }
 
@@ -877,11 +877,11 @@ export type Interface = Interface$instance;
 
 export interface InterfaceOptions$instance {
     escapeCodeTimeout: Nullable<System_Internal.Int32>;
-    history: string[];
+    history: string[] | undefined;
     historySize: Nullable<System_Internal.Int32>;
-    input: Readable;
+    input: Readable | undefined;
     output: Writable;
-    prompt: string;
+    prompt: string | undefined;
     removeHistoryDuplicates: Nullable<System_Internal.Boolean>;
     tabSize: Nullable<System_Internal.Int32>;
     terminal: Nullable<System_Internal.Boolean>;
@@ -908,11 +908,11 @@ export const IpcSocketConnectOpts: {
 export type IpcSocketConnectOpts = IpcSocketConnectOpts$instance;
 
 export interface KeyObject$instance {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
 }
 
 
@@ -955,7 +955,7 @@ export interface LookupOptions$instance {
     all: Nullable<System_Internal.Boolean>;
     family: unknown;
     hints: Nullable<System_Internal.Int32>;
-    order: string;
+    order: string | undefined;
     verbatim: Nullable<System_Internal.Boolean>;
 }
 
@@ -968,7 +968,7 @@ export const LookupOptions: {
 export type LookupOptions = LookupOptions$instance;
 
 export interface MarkOptions$instance {
-    detail: unknown;
+    detail: unknown | undefined;
     startTime: Nullable<System_Internal.Double>;
 }
 
@@ -981,11 +981,11 @@ export const MarkOptions: {
 export type MarkOptions = MarkOptions$instance;
 
 export interface MeasureOptions$instance {
-    detail: unknown;
+    detail: unknown | undefined;
     end: Nullable<System_Internal.Double>;
-    endMark: string;
+    endMark: string | undefined;
     start: Nullable<System_Internal.Double>;
-    startMark: string;
+    startMark: string | undefined;
 }
 
 
@@ -1058,7 +1058,7 @@ export interface PathModule$instance {
     readonly posix: PathModule;
     readonly sep: string;
     readonly win32: PathModule;
-    basename(path: string, suffix?: string): string;
+    basename(path: string, suffix?: string | undefined): string;
     dirname(path: string): string;
     extname(path: string): string;
     format(pathObject: ParsedPath): string;
@@ -1083,7 +1083,7 @@ export type PathModule = PathModule$instance;
 
 export interface PeerCertificate$instance {
     ca: boolean;
-    ext_key_usage: string[];
+    ext_key_usage: string[] | undefined;
     fingerprint: string;
     fingerprint256: string;
     fingerprint512: string;
@@ -1091,7 +1091,7 @@ export interface PeerCertificate$instance {
     raw: byte[];
     serialNumber: string;
     subject: TLSCertificateInfo;
-    subjectaltname: string;
+    subjectaltname: string | undefined;
     valid_from: string;
     valid_to: string;
 }
@@ -1120,24 +1120,24 @@ export const PerformanceEntry: {
 export type PerformanceEntry = PerformanceEntry$instance;
 
 export interface PerformanceMark$instance extends PerformanceEntry {
-    readonly detail: unknown;
+    readonly detail: unknown | undefined;
 }
 
 
 export const PerformanceMark: {
-    new(name: string, startTime: double, detail: unknown): PerformanceMark;
+    new(name: string | undefined, startTime: double, detail: unknown | undefined): PerformanceMark;
 };
 
 
 export type PerformanceMark = PerformanceMark$instance;
 
 export interface PerformanceMeasure$instance extends PerformanceEntry {
-    readonly detail: unknown;
+    readonly detail: unknown | undefined;
 }
 
 
 export const PerformanceMeasure: {
-    new(name: string, startTime: double, duration: double, detail: unknown): PerformanceMeasure;
+    new(name: string | undefined, startTime: double, duration: double, detail: unknown | undefined): PerformanceMeasure;
 };
 
 
@@ -1160,7 +1160,7 @@ export type PerformanceObserver = PerformanceObserver$instance;
 
 export interface PerformanceObserverEntryList$instance {
     getEntries(): PerformanceEntry[];
-    getEntriesByName(name: string, type_?: string): PerformanceEntry[];
+    getEntriesByName(name: string, type_?: string | undefined): PerformanceEntry[];
     getEntriesByType(type_: string): PerformanceEntry[];
 }
 
@@ -1174,7 +1174,7 @@ export type PerformanceObserverEntryList = PerformanceObserverEntryList$instance
 
 export interface PerformanceObserverOptions$instance {
     buffered: boolean;
-    entryTypes: string[];
+    entryTypes: string[] | undefined;
 }
 
 
@@ -1186,11 +1186,11 @@ export const PerformanceObserverOptions: {
 export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 
 export interface PrivateKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
     export_(format: string, type_?: string, cipher?: string, passphrase?: string): string;
 }
 
@@ -1205,10 +1205,10 @@ export type PrivateKeyObject = PrivateKeyObject$instance;
 export interface ProcessEnv$instance {
     readonly count: int;
     readonly isReadOnly: boolean;
-    item: string;
+    item: string | undefined;
     readonly keys: ICollection<System_Internal.String>;
-    readonly values: ICollection<System_Internal.String>;
-    add(key: string, value: string): void;
+    readonly values: ICollection<string | undefined>;
+    add(key: string, value: string | undefined): void;
     add(item: KeyValuePair<System_Internal.String, System_Internal.String>): void;
     clear(): void;
     contains(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
@@ -1217,7 +1217,7 @@ export interface ProcessEnv$instance {
     getEnumerator(): IEnumerator<KeyValuePair<System_Internal.String, System_Internal.String>>;
     remove(key: string): boolean;
     remove(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
-    tryGetValue(key: string, value: string): boolean;
+    tryGetValue(key: string, value: string | undefined): boolean;
 }
 
 
@@ -1244,12 +1244,12 @@ export const ProcessVersions: {
 export type ProcessVersions = ProcessVersions$instance;
 
 export interface PublicKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
-    export_(format: string, type_?: string): string;
+    export_(options?: unknown | undefined): unknown;
+    export_(format: string, type_?: string | undefined): string;
 }
 
 
@@ -1266,15 +1266,15 @@ export interface Readable$instance extends Stream {
     readonly readableEnded: boolean;
     readonly readableFlowing: Nullable<System_Internal.Boolean>;
     readonly readableLength: int;
-    destroy(error?: Exception): void;
+    destroy(error?: Exception | undefined): void;
     isPaused(): boolean;
     pause(): Readable;
-    push(chunk: unknown, encoding?: string): boolean;
-    read(size?: Nullable<System_Internal.Int32>): unknown;
+    push(chunk: unknown | undefined, encoding?: string | undefined): boolean;
+    read(size?: Nullable<System_Internal.Int32>): unknown | undefined;
     resume(): Readable;
-    setEncoding(encoding: string): Readable;
-    unpipe(destination?: Stream): Readable;
-    unshift(chunk: unknown): void;
+    setEncoding(encoding: string | undefined): Readable | undefined;
+    unpipe(destination?: Stream | undefined): Readable | undefined;
+    unshift(chunk: unknown | undefined): void;
 }
 
 
@@ -1328,24 +1328,24 @@ export type ResolveOptions = ResolveOptions$instance;
 export interface Resolver$instance {
     cancel(): void;
     getServers(): string[];
-    resolve(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
-    resolve4(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    resolve6(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
-    resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
-    resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
-    resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
-    resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
-    resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
-    resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
-    resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
-    resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
-    resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
-    resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
-    reverse(ip: string, callback: Action<Exception, string[]>): void;
+    resolve(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolve(hostname: string, rrtype: string, callback: Action<Exception | undefined, unknown>): void;
+    resolve4(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception | undefined, unknown>): void;
+    resolve6(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception | undefined, unknown>): void;
+    resolveAny(hostname: string, callback: Action<Exception | undefined, unknown[]>): void;
+    resolveCaa(hostname: string, callback: Action<Exception | undefined, CaaRecord[]>): void;
+    resolveCname(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolveMx(hostname: string, callback: Action<Exception | undefined, MxRecord[]>): void;
+    resolveNaptr(hostname: string, callback: Action<Exception | undefined, NaptrRecord[]>): void;
+    resolveNs(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolvePtr(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    resolveSoa(hostname: string, callback: Action<Exception | undefined, SoaRecord>): void;
+    resolveSrv(hostname: string, callback: Action<Exception | undefined, SrvRecord[]>): void;
+    resolveTlsa(hostname: string, callback: Action<Exception | undefined, TlsaRecord[]>): void;
+    resolveTxt(hostname: string, callback: Action<Exception | undefined, string[][]>): void;
+    reverse(ip: string, callback: Action<Exception | undefined, string[]>): void;
     setLocalAddress(ipv4?: string, ipv6?: string): void;
     setServers(servers: string[]): void;
 }
@@ -1374,11 +1374,11 @@ export const ResolverOptions: {
 export type ResolverOptions = ResolverOptions$instance;
 
 export interface SecretKeyObject$instance extends KeyObject {
-    readonly asymmetricKeyType: string;
+    readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type_: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export_(options?: unknown | undefined): unknown;
     export_(): byte[];
 }
 
@@ -1391,13 +1391,13 @@ export const SecretKeyObject: {
 export type SecretKeyObject = SecretKeyObject$instance;
 
 export interface SecureContext$instance {
-    readonly caCertificates: X509Certificate2Collection;
-    readonly certificate: X509Certificate2;
-    context: unknown;
+    readonly caCertificates: X509Certificate2Collection | undefined;
+    readonly certificate: X509Certificate2 | undefined;
+    context: unknown | undefined;
     readonly protocols: SslProtocols;
-    loadCACertificates(ca: unknown): void;
-    loadCertificate(cert: unknown, key: unknown, passphrase: string): void;
-    setProtocols(minVersion: string, maxVersion: string): void;
+    loadCACertificates(ca: unknown | undefined): void;
+    loadCertificate(cert: unknown | undefined, key: unknown | undefined, passphrase: string | undefined): void;
+    setProtocols(minVersion: string | undefined, maxVersion: string | undefined): void;
 }
 
 
@@ -1409,14 +1409,14 @@ export const SecureContext: {
 export type SecureContext = SecureContext$instance;
 
 export interface SecureContextOptions$instance {
-    ca: unknown;
-    cert: unknown;
-    ciphers: string;
-    key: unknown;
-    maxVersion: string;
-    minVersion: string;
-    passphrase: string;
-    pfx: unknown;
+    ca: unknown | undefined;
+    cert: unknown | undefined;
+    ciphers: string | undefined;
+    key: unknown | undefined;
+    maxVersion: string | undefined;
+    minVersion: string | undefined;
+    passphrase: string | undefined;
+    pfx: unknown | undefined;
 }
 
 
@@ -1431,13 +1431,13 @@ export interface Server$instance extends EventEmitter {
     readonly listening: boolean;
     maxConnections: int;
     address(): unknown;
-    close(callback?: Action<Exception>): Server;
-    getConnections(callback: Action<Exception, System_Internal.Int32>): void;
-    listen(port: int, hostname: string, backlog: int, listeningListener?: Action): Server;
-    listen(port: int, hostname: string, listeningListener?: Action): Server;
-    listen(port: int, backlog: int, listeningListener?: Action): Server;
-    listen(port: int, listeningListener?: Action): Server;
-    listen(options: ListenOptions, listeningListener?: Action): Server;
+    close(callback?: Action<Exception | undefined> | undefined): Server;
+    getConnections(callback: Action<Exception | undefined, System_Internal.Int32>): void;
+    listen(port: int, hostname: string, backlog: int, listeningListener?: Action | undefined): Server;
+    listen(port: int, hostname: string, listeningListener?: Action | undefined): Server;
+    listen(port: int, backlog: int, listeningListener?: Action | undefined): Server;
+    listen(port: int, listeningListener?: Action | undefined): Server;
+    listen(options: ListenOptions, listeningListener?: Action | undefined): Server;
     ref(): Server;
     unref(): Server;
 }
@@ -1445,8 +1445,8 @@ export interface Server$instance extends EventEmitter {
 
 export const Server: {
     new(): Server;
-    new(connectionListener: Action<Socket>): Server;
-    new(options: ServerOpts, connectionListener: Action<Socket>): Server;
+    new(connectionListener: Action<Socket> | undefined): Server;
+    new(options: ServerOpts, connectionListener: Action<Socket> | undefined): Server;
 };
 
 
@@ -1467,11 +1467,11 @@ export type ServerOpts = ServerOpts$instance;
 
 export interface Sign$instance extends Transform {
     dispose(): void;
-    sign(privateKey: string, outputEncoding?: string): string;
+    sign(privateKey: string, outputEncoding?: string | undefined): string;
     sign(privateKey: string): byte[];
-    sign(privateKey: unknown, outputEncoding?: string): string;
+    sign(privateKey: unknown, outputEncoding?: string | undefined): string;
     sign(privateKey: unknown): byte[];
-    update(data: string, inputEncoding?: string): Sign;
+    update(data: string, inputEncoding?: string | undefined): Sign;
     update(data: byte[]): Sign;
 }
 
@@ -1506,40 +1506,40 @@ export interface Socket$instance extends Stream {
     readonly bytesWritten: long;
     readonly connecting: boolean;
     readonly destroyed: boolean;
-    readonly localAddress: string;
-    readonly localFamily: string;
+    readonly localAddress: string | undefined;
+    readonly localFamily: string | undefined;
     readonly localPort: Nullable<System_Internal.Int32>;
     readonly readyState: string;
-    readonly remoteAddress: string;
-    readonly remoteFamily: string;
+    readonly remoteAddress: string | undefined;
+    readonly remoteFamily: string | undefined;
     readonly remotePort: Nullable<System_Internal.Int32>;
     address(): unknown;
-    connect(port: int, host?: string, connectionListener?: Action): Socket;
-    connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
-    connect(path: string, connectionListener?: Action): Socket;
-    destroy(error?: Exception): Socket;
+    connect(port: int, host?: string | undefined, connectionListener?: Action | undefined): Socket;
+    connect(options: TcpSocketConnectOpts | undefined, connectionListener?: Action | undefined): Socket | undefined;
+    connect(path: string | undefined, connectionListener?: Action | undefined): Socket | undefined;
+    destroy(error?: Exception | undefined): Socket | undefined;
     destroy(error?: Exception): void;
     destroySoon(): void;
-    end(callback?: Action): Socket;
-    end(data: byte[], callback?: Action): Socket;
-    end(data: string, encoding?: string, callback?: Action): Socket;
+    end(callback?: Action | undefined): Socket | undefined;
+    end(data: byte[] | undefined, callback?: Action | undefined): Socket | undefined;
+    end(data: string | undefined, encoding?: string | undefined, callback?: Action | undefined): Socket;
     pause(): Socket;
     ref(): Socket;
-    resetAndDestroy(): Socket;
+    resetAndDestroy(): Socket | undefined;
     resume(): Socket;
-    setEncoding(encoding?: string): Socket;
-    setKeepAlive(enable?: boolean, initialDelay?: int): Socket;
-    setNoDelay(noDelay?: boolean): Socket;
-    setTimeout(timeout: int, callback?: Action): Socket;
+    setEncoding(encoding?: string | undefined): Socket | undefined;
+    setKeepAlive(enable?: boolean, initialDelay?: int): Socket | undefined;
+    setNoDelay(noDelay?: boolean): Socket | undefined;
+    setTimeout(timeout: int, callback?: Action | undefined): Socket;
     unref(): Socket;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
+    write(data: byte[] | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
+    write(data: string, encoding?: string | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
 }
 
 
 export const Socket: {
     new(): Socket;
-    new(options: SocketConstructorOpts): Socket;
+    new(options: SocketConstructorOpts | undefined): Socket;
 };
 
 
@@ -1608,10 +1608,10 @@ export const SocketOptions: {
 export type SocketOptions = SocketOptions$instance;
 
 export interface SpawnSyncReturns_1$instance<T> {
-    error: Exception;
-    output: T[];
+    error: Exception | undefined;
+    output: (T | undefined)[];
     pid: int;
-    signal: string;
+    signal: string | undefined;
     status: Nullable<System_Internal.Int32>;
     stderr: T;
     stdout: T;
@@ -1680,7 +1680,7 @@ export const Stream: {
 export type Stream = Stream$instance;
 
 export interface StringDecoder$instance {
-    end(buffer?: byte[]): string;
+    end(buffer?: byte[] | undefined): string;
     write(buffer: byte[]): string;
 }
 
@@ -1698,7 +1698,7 @@ export interface TcpSocketConnectOpts$instance {
     host: string;
     keepAlive: Nullable<System_Internal.Boolean>;
     keepAliveInitialDelay: Nullable<System_Internal.Int32>;
-    localAddress: string;
+    localAddress: string | undefined;
     localPort: Nullable<System_Internal.Int32>;
     noDelay: Nullable<System_Internal.Boolean>;
     port: int;
@@ -1763,11 +1763,11 @@ export type TLSCertificateInfo = TLSCertificateInfo$instance;
 
 export interface TlsOptions$instance extends CommonConnectionOptions {
     allowHalfOpen: Nullable<System_Internal.Boolean>;
-    ca: unknown;
-    cert: unknown;
+    ca: unknown | undefined;
+    cert: unknown | undefined;
     handshakeTimeout: Nullable<System_Internal.Int32>;
-    key: unknown;
-    passphrase: string;
+    key: unknown | undefined;
+    passphrase: string | undefined;
     pauseOnConnect: Nullable<System_Internal.Boolean>;
     sessionTimeout: Nullable<System_Internal.Int32>;
 }
@@ -1781,69 +1781,69 @@ export const TlsOptions: {
 export type TlsOptions = TlsOptions$instance;
 
 export interface TLSServer$instance extends Server {
-    addContext(hostname: string, context: unknown): void;
-    getTicketKeys(): byte[];
-    setSecureContext(options: SecureContextOptions): void;
-    setTicketKeys(keys: byte[]): void;
+    addContext(hostname: string | undefined, context: unknown | undefined): void;
+    getTicketKeys(): byte[] | undefined;
+    setSecureContext(options: SecureContextOptions | undefined): void;
+    setTicketKeys(keys: byte[] | undefined): void;
 }
 
 
 export const TLSServer: {
     new(): TLSServer;
-    new(secureConnectionListener: Action<TLSSocket>): TLSServer;
-    new(options: TlsOptions, secureConnectionListener: Action<TLSSocket>): TLSServer;
+    new(secureConnectionListener: Action<TLSSocket> | undefined): TLSServer;
+    new(options: TlsOptions | undefined, secureConnectionListener: Action<TLSSocket> | undefined): TLSServer;
 };
 
 
 export type TLSServer = TLSServer$instance;
 
 export interface TLSSocket$instance extends Socket {
-    readonly alpnProtocol: string;
-    readonly authorizationError: Exception;
+    readonly alpnProtocol: string | undefined;
+    readonly authorizationError: Exception | undefined;
     readonly authorized: boolean;
     readonly encrypted: boolean;
     disableRenegotiation(): void;
     enableTrace(): void;
-    exportKeyingMaterial(length: int, label: string, context: byte[]): byte[];
-    getCertificate(): PeerCertificate;
-    getCipher(): CipherNameAndProtocol;
-    getEphemeralKeyInfo(): EphemeralKeyInfo;
-    getFinished(): byte[];
-    getPeerCertificate(detailed?: boolean): PeerCertificate;
-    getPeerFinished(): byte[];
-    getPeerX509Certificate(): unknown;
-    getProtocol(): string;
-    getSession(): byte[];
-    getSharedSigalgs(): string[];
-    getTLSTicket(): byte[];
-    getX509Certificate(): unknown;
+    exportKeyingMaterial(length: int, label: string | undefined, context: byte[] | undefined): byte[] | undefined;
+    getCertificate(): PeerCertificate | undefined;
+    getCipher(): CipherNameAndProtocol | undefined;
+    getEphemeralKeyInfo(): EphemeralKeyInfo | undefined;
+    getFinished(): byte[] | undefined;
+    getPeerCertificate(detailed?: boolean): PeerCertificate | undefined;
+    getPeerFinished(): byte[] | undefined;
+    getPeerX509Certificate(): unknown | undefined;
+    getProtocol(): string | undefined;
+    getSession(): byte[] | undefined;
+    getSharedSigalgs(): (string | undefined)[] | undefined;
+    getTLSTicket(): byte[] | undefined;
+    getX509Certificate(): unknown | undefined;
     isSessionReused(): boolean;
-    renegotiate(options: unknown, callback: Action<Exception>): boolean;
-    setKeyCert(context: unknown): void;
+    renegotiate(options: unknown | undefined, callback: Action<Exception | undefined>): boolean;
+    setKeyCert(context: unknown | undefined): void;
     setMaxSendFragment(size: int): boolean;
     startReading(): void;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
+    write(data: byte[] | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
+    write(data: string, encoding?: string | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
+    write(data: byte[] | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
+    write(data: string, encoding?: string | undefined, callback?: Action<Exception | undefined> | undefined): boolean;
 }
 
 
 export const TLSSocket: {
-    new(socket: Socket, options: TLSSocketOptions): TLSSocket;
+    new(socket: Socket | undefined, options: TLSSocketOptions | undefined): TLSSocket;
 };
 
 
 export type TLSSocket = TLSSocket$instance;
 
 export interface TLSSocketOptions$instance extends CommonConnectionOptions {
-    ca: unknown;
-    cert: unknown;
+    ca: unknown | undefined;
+    cert: unknown | undefined;
     isServer: Nullable<System_Internal.Boolean>;
-    key: unknown;
-    passphrase: string;
-    server: Server;
-    servername: string;
+    key: unknown | undefined;
+    passphrase: string | undefined;
+    server: Server | undefined;
+    servername: string | undefined;
 }
 
 
@@ -1884,8 +1884,8 @@ export interface URL$instance {
 
 
 export const URL: {
-    new(input: string, base: string): URL;
-    canParse(input: string, base?: string): boolean;
+    new(input: string, base: string | undefined): URL;
+    canParse(input: string, base?: string | undefined): boolean;
     parse(input: string, base?: string): URL;
 };
 
@@ -1895,12 +1895,12 @@ export type URL = URL$instance;
 export interface URLSearchParams$instance {
     readonly size: int;
     append(name: string, value: string): void;
-    delete_(name: string, value?: string): void;
+    delete_(name: string, value?: string | undefined): void;
     entries(): IEnumerable__System_Collections_Generic<KeyValuePair<System_Internal.String, System_Internal.String>>;
     forEach(callback: Action<System_Internal.String, System_Internal.String>): void;
-    get_(name: string): string;
+    get_(name: string): string | undefined;
     getAll(name: string): string[];
-    has(name: string, value?: string): boolean;
+    has(name: string, value?: string | undefined): boolean;
     keys(): IEnumerable__System_Collections_Generic<System_Internal.String>;
     set_(name: string, value: string): void;
     sort(): void;
@@ -1919,7 +1919,7 @@ export type URLSearchParams = URLSearchParams$instance;
 export interface UserInfo$instance {
     gid: int;
     homedir: string;
-    shell: string;
+    shell: string | undefined;
     uid: int;
     username: string;
 }
@@ -1934,11 +1934,11 @@ export type UserInfo = UserInfo$instance;
 
 export interface Verify$instance extends Transform {
     dispose(): void;
-    update(data: string, inputEncoding?: string): Verify;
+    update(data: string, inputEncoding?: string | undefined): Verify;
     update(data: byte[]): Verify;
-    verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
+    verify(publicKey: string, signature: string, signatureEncoding?: string | undefined): boolean;
     verify(publicKey: string, signature: byte[]): boolean;
-    verify(publicKey: unknown, signature: string, signatureEncoding?: string): boolean;
+    verify(publicKey: unknown, signature: string, signatureEncoding?: string | undefined): boolean;
     verify(publicKey: unknown, signature: byte[]): boolean;
 }
 
@@ -1957,10 +1957,10 @@ export interface Writable$instance extends Stream {
     readonly writableEnded: boolean;
     readonly writableLength: int;
     cork(): void;
-    destroy(error?: Exception): void;
-    end(chunk?: unknown, encoding?: string, callback?: Action): void;
+    destroy(error?: Exception | undefined): void;
+    end(chunk?: unknown | undefined, encoding?: string | undefined, callback?: Action | undefined): void;
     uncork(): void;
-    write(chunk: unknown, encoding?: string, callback?: Action): boolean;
+    write(chunk: unknown | undefined, encoding?: string | undefined, callback?: Action | undefined): boolean;
 }
 
 
@@ -1982,10 +1982,10 @@ export interface X509CertificateInfo$instance {
     readonly subject: string;
     readonly validFrom: DateTime;
     readonly validTo: DateTime;
-    checkEmail(email: string): string;
-    checkHost(hostname: string): string;
-    checkIP(ip: string): string;
-    checkIssued(otherCert: X509CertificateInfo): string;
+    checkEmail(email: string): string | undefined;
+    checkHost(hostname: string): string | undefined;
+    checkIP(ip: string): string | undefined;
+    checkIssued(otherCert: X509CertificateInfo): string | undefined;
     toPEM(): string;
     toString(): string;
     verify(issuerCert: X509CertificateInfo): boolean;
@@ -2017,21 +2017,21 @@ export const ZlibOptions: {
 export type ZlibOptions = ZlibOptions$instance;
 
 export abstract class assert$instance {
-    static deepEqual(actual: unknown, expected: unknown, message?: string): void;
-    static deepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
-    static doesNotMatch(string_: string, regexp: Regex, message?: string): void;
-    static doesNotThrow(fn: Action, message?: string): void;
-    static equal(actual: unknown, expected: unknown, message?: string): void;
-    static fail(message?: string): void;
-    static ifError(value: unknown): void;
-    static match(string_: string, regexp: Regex, message?: string): void;
-    static notDeepEqual(actual: unknown, expected: unknown, message?: string): void;
-    static notDeepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
-    static notEqual(actual: unknown, expected: unknown, message?: string): void;
-    static notStrictEqual(actual: unknown, expected: unknown, message?: string): void;
-    static ok(value: boolean, message?: string): void;
-    static strictEqual(actual: unknown, expected: unknown, message?: string): void;
-    static throws(fn: Action, message?: string): void;
+    static deepEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static deepStrictEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static doesNotMatch(string_: string | undefined, regexp: Regex | undefined, message?: string | undefined): void;
+    static doesNotThrow(fn: Action | undefined, message?: string | undefined): void;
+    static equal(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static fail(message?: string | undefined): void;
+    static ifError(value: unknown | undefined): void;
+    static match(string_: string | undefined, regexp: Regex | undefined, message?: string | undefined): void;
+    static notDeepEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static notDeepStrictEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static notEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static notStrictEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static ok(value: boolean, message?: string | undefined): void;
+    static strictEqual(actual: unknown | undefined, expected: unknown | undefined, message?: string | undefined): void;
+    static throws(fn: Action | undefined, message?: string | undefined): void;
 }
 
 
@@ -2050,54 +2050,54 @@ export abstract class Certificate$instance {
 export type Certificate = Certificate$instance;
 
 export abstract class child_process$instance {
-    static exec(command: string, options: ExecOptions, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static exec(command: string, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static execFile(file: string, args: string[], options: ExecOptions, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static execFileSync(file: string, args?: string[], options?: ExecOptions): unknown;
-    static execSync(command: string, options: ExecOptions): unknown;
+    static exec(command: string, options: ExecOptions | undefined, callback: Action<Exception | undefined, System_Internal.String, System_Internal.String>): void;
+    static exec(command: string, callback: Action<Exception | undefined, System_Internal.String, System_Internal.String>): void;
+    static execFile(file: string, args: string[] | undefined, options: ExecOptions | undefined, callback: Action<Exception | undefined, System_Internal.String, System_Internal.String>): void;
+    static execFileSync(file: string, args?: string[] | undefined, options?: ExecOptions | undefined): unknown;
+    static execSync(command: string, options: ExecOptions | undefined): unknown;
     static execSync(command: string): byte[];
-    static fork(modulePath: string, args?: string[], options?: ExecOptions): ChildProcess;
-    static spawn(command: string, args?: string[], options?: ExecOptions): ChildProcess;
-    static spawnSync(command: string, args?: string[], options?: ExecOptions): SpawnSyncReturns_1<byte[]>;
-    static spawnSyncString(command: string, args?: string[], options?: ExecOptions): SpawnSyncReturns_1<System_Internal.String>;
+    static fork(modulePath: string, args?: string[] | undefined, options?: ExecOptions | undefined): ChildProcess;
+    static spawn(command: string, args?: string[] | undefined, options?: ExecOptions | undefined): ChildProcess;
+    static spawnSync(command: string, args?: string[] | undefined, options?: ExecOptions | undefined): SpawnSyncReturns_1<byte[]>;
+    static spawnSyncString(command: string, args?: string[] | undefined, options?: ExecOptions | undefined): SpawnSyncReturns_1<System_Internal.String>;
 }
 
 
 export type child_process = child_process$instance;
 
 export abstract class console$instance {
-    static assert(value: boolean, message?: string, ...optionalParams: unknown[]): void;
+    static assert(value: boolean, message?: string | undefined, ...optionalParams: unknown[]): void;
     static clear(): void;
     static count(label?: string): void;
     static countReset(label?: string): void;
-    static debug(message?: unknown, ...optionalParams: unknown[]): void;
-    static dir(obj: unknown, ...options: unknown[]): void;
+    static debug(message?: unknown | undefined, ...optionalParams: unknown[]): void;
+    static dir(obj: unknown | undefined, ...options: unknown[]): void;
     static dirxml(...data: unknown[]): void;
-    static error(message?: unknown, ...optionalParams: unknown[]): void;
+    static error(message?: unknown | undefined, ...optionalParams: unknown[]): void;
     static group(...label: unknown[]): void;
     static groupCollapsed(...label: unknown[]): void;
     static groupEnd(): void;
-    static info(message?: unknown, ...optionalParams: unknown[]): void;
-    static log(message?: unknown, ...optionalParams: unknown[]): void;
+    static info(message?: unknown | undefined, ...optionalParams: unknown[]): void;
+    static log(message?: unknown | undefined, ...optionalParams: unknown[]): void;
     static profile(label?: string): void;
     static profileEnd(label?: string): void;
-    static table(tabularData: unknown, properties?: string[]): void;
+    static table(tabularData: unknown, properties?: string[] | undefined): void;
     static time(label?: string): void;
     static timeEnd(label?: string): void;
-    static timeLog(label?: string, ...data: unknown[]): void;
+    static timeLog(label?: string | undefined, ...data: unknown[]): void;
     static timeStamp(label?: string): void;
-    static trace(message?: unknown, ...optionalParams: unknown[]): void;
-    static warn(message?: unknown, ...optionalParams: unknown[]): void;
+    static trace(message?: unknown | undefined, ...optionalParams: unknown[]): void;
+    static warn(message?: unknown | undefined, ...optionalParams: unknown[]): void;
 }
 
 
 export type console = console$instance;
 
 export abstract class crypto$instance {
-    static createCipheriv(algorithm: string, key: byte[], iv: byte[]): Cipher;
-    static createCipheriv(algorithm: string, key: string, iv: string): Cipher;
-    static createDecipheriv(algorithm: string, key: byte[], iv: byte[]): Decipher;
-    static createDecipheriv(algorithm: string, key: string, iv: string): Decipher;
+    static createCipheriv(algorithm: string, key: byte[], iv: byte[] | undefined): Cipher;
+    static createCipheriv(algorithm: string, key: string, iv: string | undefined): Cipher;
+    static createDecipheriv(algorithm: string, key: byte[], iv: byte[] | undefined): Decipher;
+    static createDecipheriv(algorithm: string, key: string, iv: string | undefined): Decipher;
     static createDiffieHellman(prime: byte[], generator: byte[]): DiffieHellman;
     static createDiffieHellman(prime: byte[], generator?: int): DiffieHellman;
     static createDiffieHellman(primeLength: int, generator?: int): DiffieHellman;
@@ -2113,23 +2113,23 @@ export abstract class crypto$instance {
     static createPublicKey(key: byte[]): KeyObject;
     static createPublicKey(key: string): KeyObject;
     static createSecretKey(key: byte[]): KeyObject;
-    static createSecretKey(key: string, encoding?: string): KeyObject;
+    static createSecretKey(key: string, encoding?: string | undefined): KeyObject;
     static createSign(algorithm: string): Sign;
     static createVerify(algorithm: string): Verify;
-    static generateKey(type_: string, options: unknown, callback: Action<Exception, KeyObject>): void;
+    static generateKey(type_: string, options: unknown, callback: Action<Exception | undefined, KeyObject | undefined>): void;
     static generateKey(type_: string, options: unknown): KeyObject;
-    static generateKeyPair(type_: string, options: unknown, callback: Action<Exception, unknown, unknown>): void;
-    static generateKeyPairSync(type_: string, options?: unknown): ValueTuple<KeyObject, KeyObject>;
+    static generateKeyPair(type_: string, options: unknown | undefined, callback: Action<Exception | undefined, unknown | undefined, unknown | undefined>): void;
+    static generateKeyPairSync(type_: string, options?: unknown | undefined): ValueTuple<KeyObject, KeyObject>;
     static getCiphers(): string[];
     static getCurves(): string[];
     static getDefaultCipherList(): string;
     static getDiffieHellman(groupName: string): DiffieHellman;
     static getFips(): boolean;
     static getHashes(): string[];
-    static hash(algorithm: string, data: byte[], outputEncoding?: string): byte[];
-    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action<Exception, byte[]>): void;
+    static hash(algorithm: string, data: byte[], outputEncoding?: string | undefined): byte[];
+    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action<Exception | undefined, byte[] | undefined>): void;
     static hkdfSync(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int): byte[];
-    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action<Exception, byte[]>): void;
+    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action<Exception | undefined, byte[] | undefined>): void;
     static pbkdf2Sync(password: byte[], salt: byte[], iterations: int, keylen: int, digest: string): byte[];
     static pbkdf2Sync(password: string, salt: string, iterations: int, keylen: int, digest: string): byte[];
     static privateDecrypt(key: unknown, buffer: byte[]): byte[];
@@ -2140,31 +2140,31 @@ export abstract class crypto$instance {
     static publicDecrypt(key: string, buffer: byte[]): byte[];
     static publicEncrypt(key: unknown, buffer: byte[]): byte[];
     static publicEncrypt(key: string, buffer: byte[]): byte[];
-    static randomBytes(size: int, callback: Action<Exception, byte[]>): void;
+    static randomBytes(size: int, callback: Action<Exception | undefined, byte[] | undefined>): void;
     static randomBytes(size: int): byte[];
-    static randomFill(buffer: byte[], offset: int, size: int, callback: Action<Exception, byte[]>): void;
+    static randomFill(buffer: byte[], offset: int, size: int, callback: Action<Exception | undefined, byte[] | undefined>): void;
     static randomFillSync(buffer: byte[], offset?: int, size?: Nullable<System_Internal.Int32>): byte[];
     static randomInt(min: int, max: int): int;
     static randomInt(max: int): int;
     static randomUUID(): string;
-    static scrypt(password: string, salt: string, keylen: int, options: unknown, callback: Action<Exception, byte[]>): void;
-    static scryptSync(password: byte[], salt: byte[], keylen: int, options?: unknown): byte[];
-    static scryptSync(password: string, salt: string, keylen: int, options?: unknown): byte[];
+    static scrypt(password: string, salt: string, keylen: int, options: unknown | undefined, callback: Action<Exception | undefined, byte[] | undefined>): void;
+    static scryptSync(password: byte[], salt: byte[], keylen: int, options?: unknown | undefined): byte[];
+    static scryptSync(password: string, salt: string, keylen: int, options?: unknown | undefined): byte[];
     static setDefaultEncoding(encoding: string): void;
     static setFips(enabled: boolean): void;
-    static sign(algorithm: string, data: byte[], privateKey: KeyObject): byte[];
-    static sign(algorithm: string, data: byte[], privateKey: string): byte[];
+    static sign(algorithm: string | undefined, data: byte[], privateKey: KeyObject): byte[];
+    static sign(algorithm: string | undefined, data: byte[], privateKey: string): byte[];
     static timingSafeEqual(a: byte[], b: byte[]): boolean;
-    static verify(algorithm: string, data: byte[], publicKey: KeyObject, signature: byte[]): boolean;
-    static verify(algorithm: string, data: byte[], publicKey: string, signature: byte[]): boolean;
+    static verify(algorithm: string | undefined, data: byte[], publicKey: KeyObject, signature: byte[]): boolean;
+    static verify(algorithm: string | undefined, data: byte[], publicKey: string, signature: byte[]): boolean;
 }
 
 
 export type crypto = crypto$instance;
 
 export abstract class dgram$instance {
-    static createSocket(options: SocketOptions, callback?: Action<byte[], RemoteInfo>): DgramSocket;
-    static createSocket(type_: string, callback?: Action<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(options: SocketOptions, callback?: Action<byte[], RemoteInfo> | undefined): DgramSocket;
+    static createSocket(type_: string, callback?: Action<byte[], RemoteInfo> | undefined): DgramSocket;
 }
 
 
@@ -2200,29 +2200,29 @@ export abstract class dns$instance {
     static readonly CANCELLED: string;
     static getDefaultResultOrder(): string;
     static getServers(): string[];
-    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, LookupAddress[]>): void;
-    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, family: int, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookupService(address: string, port: int, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static resolve(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
-    static resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    static resolve4(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    static resolve6(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
-    static resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
-    static resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
-    static resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
-    static resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
-    static resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
-    static resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
-    static resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
-    static reverse(ip: string, callback: Action<Exception, string[]>): void;
+    static lookup(hostname: string, options: LookupOptions | undefined, callback: Action<Exception | undefined, LookupAddress[]>): void;
+    static lookup(hostname: string, options: LookupOptions | undefined, callback: Action<Exception | undefined, System_Internal.String, System_Internal.Int32>): void;
+    static lookup(hostname: string, callback: Action<Exception | undefined, System_Internal.String, System_Internal.Int32>): void;
+    static lookup(hostname: string, family: int, callback: Action<Exception | undefined, System_Internal.String, System_Internal.Int32>): void;
+    static lookupService(address: string, port: int, callback: Action<Exception | undefined, System_Internal.String, System_Internal.String>): void;
+    static resolve(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolve(hostname: string, rrtype: string, callback: Action<Exception | undefined, unknown>): void;
+    static resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception | undefined, unknown>): void;
+    static resolve4(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception | undefined, unknown>): void;
+    static resolve6(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolveAny(hostname: string, callback: Action<Exception | undefined, unknown[]>): void;
+    static resolveCaa(hostname: string, callback: Action<Exception | undefined, CaaRecord[]>): void;
+    static resolveCname(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolveMx(hostname: string, callback: Action<Exception | undefined, MxRecord[]>): void;
+    static resolveNaptr(hostname: string, callback: Action<Exception | undefined, NaptrRecord[]>): void;
+    static resolveNs(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolvePtr(hostname: string, callback: Action<Exception | undefined, string[]>): void;
+    static resolveSoa(hostname: string, callback: Action<Exception | undefined, SoaRecord>): void;
+    static resolveSrv(hostname: string, callback: Action<Exception | undefined, SrvRecord[]>): void;
+    static resolveTlsa(hostname: string, callback: Action<Exception | undefined, TlsaRecord[]>): void;
+    static resolveTxt(hostname: string, callback: Action<Exception | undefined, string[][]>): void;
+    static reverse(ip: string, callback: Action<Exception | undefined, string[]>): void;
     static setDefaultResultOrder(order: string): void;
     static setServers(servers: string[]): void;
 }
@@ -2233,8 +2233,8 @@ export type dns = dns$instance;
 export abstract class fs$instance {
     static access(path: string, mode?: int): Task;
     static accessSync(path: string, mode?: int): void;
-    static appendFile(path: string, data: string, encoding?: string): Task;
-    static appendFileSync(path: string, data: string, encoding?: string): void;
+    static appendFile(path: string, data: string, encoding?: string | undefined): Task;
+    static appendFileSync(path: string, data: string, encoding?: string | undefined): void;
     static chmod(path: string, mode: int): Task;
     static chmodSync(path: string, mode: int): void;
     static close(fd: int): Task;
@@ -2253,9 +2253,9 @@ export abstract class fs$instance {
     static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
     static readdir(path: string, withFileTypes?: boolean): Task<string[]>;
     static readdirSync(path: string, withFileTypes?: boolean): string[];
-    static readFile(path: string, encoding?: string): Task<System_Internal.String>;
+    static readFile(path: string, encoding?: string | undefined): Task<System_Internal.String>;
     static readFileBytes(path: string): Task<byte[]>;
-    static readFileSync(path: string, encoding?: string): string;
+    static readFileSync(path: string, encoding?: string | undefined): string;
     static readFileSyncBytes(path: string): byte[];
     static readlink(path: string): Task<System_Internal.String>;
     static readlinkSync(path: string): string;
@@ -2270,34 +2270,34 @@ export abstract class fs$instance {
     static rmSync(path: string, recursive?: boolean): void;
     static stat(path: string): Task<Stats>;
     static statSync(path: string): Stats;
-    static symlink(target: string, path: string, type_?: string): Task;
-    static symlinkSync(target: string, path: string, type_?: string): void;
+    static symlink(target: string, path: string, type_?: string | undefined): Task;
+    static symlinkSync(target: string, path: string, type_?: string | undefined): void;
     static truncate(path: string, len?: long): Task;
     static truncateSync(path: string, len?: long): void;
     static unlink(path: string): Task;
     static unlinkSync(path: string): void;
     static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    static write(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): Task<System_Internal.Int32>;
-    static writeFile(path: string, data: string, encoding?: string): Task;
+    static write(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string | undefined): Task<System_Internal.Int32>;
+    static writeFile(path: string, data: string, encoding?: string | undefined): Task;
     static writeFileBytes(path: string, data: byte[]): Task;
-    static writeFileSync(path: string, data: string, encoding?: string): void;
+    static writeFileSync(path: string, data: string, encoding?: string | undefined): void;
     static writeFileSyncBytes(path: string, data: byte[]): void;
     static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): int;
-    static writeSync(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): int;
+    static writeSync(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string | undefined): int;
 }
 
 
 export type fs = fs$instance;
 
 export abstract class net$instance {
-    static connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
+    static connect(options: TcpSocketConnectOpts, connectionListener?: Action | undefined): Socket;
     static connect(port: int, host?: string, connectionListener?: Action): Socket;
-    static connect(path: string, connectionListener?: Action): Socket;
-    static createConnection(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
+    static connect(path: string, connectionListener?: Action | undefined): Socket;
+    static createConnection(options: TcpSocketConnectOpts, connectionListener?: Action | undefined): Socket;
     static createConnection(port: int, host?: string, connectionListener?: Action): Socket;
-    static createConnection(path: string, connectionListener?: Action): Socket;
-    static createServer(options: ServerOpts, connectionListener?: Action<Socket>): Server;
-    static createServer(connectionListener?: Action<Socket>): Server;
+    static createConnection(path: string, connectionListener?: Action | undefined): Socket;
+    static createServer(options: ServerOpts, connectionListener?: Action<Socket> | undefined): Server;
+    static createServer(connectionListener?: Action<Socket> | undefined): Server;
     static getDefaultAutoSelectFamily(): boolean;
     static getDefaultAutoSelectFamilyAttemptTimeout(): int;
     static isIP(input: string): int;
@@ -2338,7 +2338,7 @@ export abstract class path$instance {
     static readonly delimiter: string;
     static readonly posix: PathModule;
     static readonly win32: PathModule;
-    static basename(path: string, suffix?: string): string;
+    static basename(path: string, suffix?: string | undefined): string;
     static dirname(path: string): string;
     static extname(path: string): string;
     static format(pathObject: ParsedPath): string;
@@ -2359,10 +2359,10 @@ export abstract class performance$instance {
     static clearMarks(name?: string): void;
     static clearMeasures(name?: string): void;
     static getEntries(): PerformanceEntry[];
-    static getEntriesByName(name: string, type_?: string): PerformanceEntry[];
+    static getEntriesByName(name: string, type_?: string | undefined): PerformanceEntry[];
     static getEntriesByType(type_: string): PerformanceEntry[];
-    static mark(name: string, options?: MarkOptions): PerformanceMark;
-    static measure(name: string, startOrOptions?: unknown, endMark?: string): PerformanceMeasure;
+    static mark(name: string, options?: MarkOptions | undefined): PerformanceMark;
+    static measure(name: string, startOrOptions?: unknown | undefined, endMark?: string | undefined): PerformanceMeasure;
     static now(): double;
 }
 
@@ -2391,11 +2391,11 @@ export abstract class process$instance {
 export type process = process$instance;
 
 export abstract class querystring$instance {
-    static decode(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
-    static encode(obj: Dictionary<System_Internal.String, unknown>, sep?: string, eq?: string): string;
+    static decode(str: string, sep?: string | undefined, eq?: string | undefined, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
+    static encode(obj: Dictionary<System_Internal.String, unknown | undefined> | undefined, sep?: string, eq?: string): string;
     static escape(str: string): string;
-    static parse(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
-    static stringify(obj: Dictionary<System_Internal.String, unknown>, sep?: string, eq?: string): string;
+    static parse(str: string, sep?: string | undefined, eq?: string | undefined, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
+    static stringify(obj: Dictionary<System_Internal.String, unknown | undefined> | undefined, sep?: string, eq?: string): string;
     static unescape(str: string): string;
 }
 
@@ -2403,20 +2403,20 @@ export abstract class querystring$instance {
 export type querystring = querystring$instance;
 
 export abstract class readline$instance {
-    static clearLine(stream: Writable, dir: int, callback?: Action): boolean;
-    static clearScreenDown(stream: Writable, callback?: Action): boolean;
-    static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable<System_Internal.String>;
+    static clearLine(stream: Writable, dir: int, callback?: Action | undefined): boolean;
+    static clearScreenDown(stream: Writable, callback?: Action | undefined): boolean;
+    static createAsyncIterator(input: Readable, options?: InterfaceOptions | undefined): IAsyncEnumerable<System_Internal.String>;
     static createInterface(options: InterfaceOptions): Interface;
-    static createInterface(input: Readable, output?: Writable): Interface;
-    static cursorTo(stream: Writable, x: int, y?: Nullable<System_Internal.Int32>, callback?: Action): boolean;
-    static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action): boolean;
+    static createInterface(input: Readable, output?: Writable | undefined): Interface;
+    static cursorTo(stream: Writable, x: int, y?: Nullable<System_Internal.Int32>, callback?: Action | undefined): boolean;
+    static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action | undefined): boolean;
 }
 
 
 export type readline = readline$instance;
 
 export abstract class stream$instance {
-    static finished(stream: Stream, callback: Action<Exception>): void;
+    static finished(stream: Stream, callback: Action<Exception | undefined>): void;
     static finished(stream: Stream): Task;
     static pipeline(...streams: unknown[]): void;
 }
@@ -2445,13 +2445,13 @@ export abstract class tls$instance {
     static DEFAULT_MIN_VERSION: string;
     static DEFAULT_CIPHERS: string;
     static readonly rootCertificates: string[];
-    static checkServerIdentity(hostname: string, cert: PeerCertificate): Exception;
-    static connect(options: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
+    static checkServerIdentity(hostname: string, cert: PeerCertificate): Exception | undefined;
+    static connect(options: ConnectionOptions, secureConnectListener?: Action | undefined): TLSSocket;
     static connect(port: int, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
     static connect(port: int, host?: string, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
-    static createSecureContext(options?: SecureContextOptions): SecureContext;
-    static createServer(options: TlsOptions, secureConnectionListener?: Action<TLSSocket>): TLSServer;
-    static createServer(secureConnectionListener?: Action<TLSSocket>): TLSServer;
+    static createSecureContext(options?: SecureContextOptions | undefined): SecureContext;
+    static createServer(options: TlsOptions, secureConnectionListener?: Action<TLSSocket> | undefined): TLSServer;
+    static createServer(secureConnectionListener?: Action<TLSSocket> | undefined): TLSServer;
     static getCACertificates(type_?: string): string[];
     static getCiphers(): string[];
     static setDefaultCACertificates(certs: string[]): void;
@@ -2462,11 +2462,11 @@ export type tls = tls$instance;
 
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
-    static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string): Func<TResult>;
-    static deprecate(action: Action, msg: string, code?: string): Action;
-    static format(format: unknown, ...args: unknown[]): string;
+    static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string | undefined): Func<TResult>;
+    static deprecate(action: Action, msg: string, code?: string | undefined): Action;
+    static format(format: unknown | undefined, ...args: unknown[]): string;
     static inherits(constructor_: unknown, superConstructor: unknown): void;
-    static inspect(obj: unknown): string;
+    static inspect(obj: unknown | undefined): string;
     static isArray(obj: unknown): boolean;
     static isDeepStrictEqual(val1: unknown, val2: unknown): boolean;
 }
@@ -2483,17 +2483,17 @@ export abstract class X509CertificateExtensions$instance {
 export type X509CertificateExtensions = X509CertificateExtensions$instance;
 
 export abstract class zlib$instance {
-    static brotliCompressSync(buffer: byte[], options?: BrotliOptions): byte[];
-    static brotliDecompressSync(buffer: byte[], options?: BrotliOptions): byte[];
+    static brotliCompressSync(buffer: byte[], options?: BrotliOptions | undefined): byte[];
+    static brotliDecompressSync(buffer: byte[], options?: BrotliOptions | undefined): byte[];
     static crc32(data: byte[], value?: uint): uint;
     static crc32(data: string, value?: uint): uint;
-    static deflateRawSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static deflateSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static gunzipSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static gzipSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static inflateRawSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static inflateSync(buffer: byte[], options?: ZlibOptions): byte[];
-    static unzipSync(buffer: byte[], options?: ZlibOptions): byte[];
+    static deflateRawSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static deflateSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static gunzipSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static gzipSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static inflateRawSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static inflateSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
+    static unzipSync(buffer: byte[], options?: ZlibOptions | undefined): byte[];
 }
 
 

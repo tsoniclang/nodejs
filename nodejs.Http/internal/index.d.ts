@@ -37,11 +37,11 @@ export interface ClientRequest$instance extends EventEmitter {
     readonly protocol: string;
     abort(): void;
     end(chunk?: string, encoding?: string, callback?: Action): Task;
-    getHeader(name: string): string;
+    getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
     removeHeader(name: string): void;
     setHeader(name: string, value: string): void;
-    setTimeout(msecs: int, callback?: Action): ClientRequest;
+    setTimeout(msecs: int, callback?: Action | undefined): ClientRequest;
     write(chunk: string, encoding?: string, callback?: Action): boolean;
 }
 
@@ -60,13 +60,13 @@ export interface IncomingMessage$instance extends EventEmitter {
     readonly method: string;
     readonly statusCode: Nullable<System_Internal.Int32>;
     readonly statusMessage: string;
-    readonly url: string;
+    readonly url: string | undefined;
     destroy(): void;
     onClose(callback: Action): void;
     onData(callback: Action<System_Internal.String>): void;
     onEnd(callback: Action): void;
     readAll(): Task<System_Internal.String>;
-    setTimeout(msecs: int, callback?: Action): IncomingMessage;
+    setTimeout(msecs: int, callback?: Action | undefined): IncomingMessage;
 }
 
 
@@ -78,8 +78,8 @@ export const IncomingMessage: {
 export type IncomingMessage = IncomingMessage$instance;
 
 export interface RequestOptions$instance {
-    agent: unknown;
-    auth: string;
+    agent: unknown | undefined;
+    auth: string | undefined;
     headers: Dictionary<System_Internal.String, System_Internal.String>;
     host: string;
     hostname: string;
@@ -106,15 +106,15 @@ export interface Server$instance extends EventEmitter {
     requestTimeout: int;
     timeout: int;
     address(): AddressInfo;
-    close(callback?: Action): Server;
+    close(callback?: Action | undefined): Server;
     listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
-    listen(port: int, callback?: Action): Server;
-    setTimeout(msecs: int, callback?: Action): Server;
+    listen(port: int, callback?: Action | undefined): Server;
+    setTimeout(msecs: int, callback?: Action | undefined): Server;
 }
 
 
 export const Server: {
-    new(requestListener: Action<IncomingMessage, ServerResponse>): Server;
+    new(requestListener: Action<IncomingMessage, ServerResponse> | undefined): Server;
 };
 
 
@@ -127,15 +127,15 @@ export interface ServerResponse$instance extends EventEmitter {
     statusMessage: string;
     end(chunk?: string, encoding?: string, callback?: Action): Task;
     flushHeaders(): Task;
-    getHeader(name: string): string;
+    getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
     getHeaders(): Dictionary<System_Internal.String, System_Internal.String>;
     hasHeader(name: string): boolean;
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
-    setTimeout(msecs: int, callback?: Action): ServerResponse;
-    write(chunk: string, encoding?: string, callback?: Action): Task<System_Internal.Boolean>;
-    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
+    setTimeout(msecs: int, callback?: Action | undefined): ServerResponse;
+    write(chunk: string, encoding?: string | undefined, callback?: Action | undefined): Task<System_Internal.Boolean>;
+    writeHead(statusCode: int, statusMessage?: string | undefined, headers?: Dictionary<System_Internal.String, System_Internal.String> | undefined): ServerResponse;
     writeHead(statusCode: int, headers: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
 }
 
@@ -163,13 +163,13 @@ export abstract class http$instance {
     static globalAgent_maxFreeSockets: int;
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
-    static createServer(requestListener?: Action<IncomingMessage, ServerResponse>): Server;
-    static get_(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
-    static get_(url: string, callback?: Action<IncomingMessage>): ClientRequest;
-    static request(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
-    static request(url: string, callback?: Action<IncomingMessage>): ClientRequest;
+    static createServer(requestListener?: Action<IncomingMessage, ServerResponse> | undefined): Server;
+    static get_(options: RequestOptions, callback?: Action<IncomingMessage> | undefined): ClientRequest;
+    static get_(url: string, callback?: Action<IncomingMessage> | undefined): ClientRequest;
+    static request(options: RequestOptions, callback?: Action<IncomingMessage> | undefined): ClientRequest;
+    static request(url: string, callback?: Action<IncomingMessage> | undefined): ClientRequest;
     static validateHeaderName(name: string): void;
-    static validateHeaderValue(name: string, value: unknown): void;
+    static validateHeaderValue(name: string, value: unknown | undefined): void;
 }
 
 
