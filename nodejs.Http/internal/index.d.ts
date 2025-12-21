@@ -36,13 +36,13 @@ export interface ClientRequest$instance extends EventEmitter {
     readonly path: string;
     readonly protocol: string;
     abort(): void;
-    end(chunk?: string, encoding?: string, callback?: Action): Task;
+    end(chunk?: string | undefined, encoding?: string | undefined, callback?: Action | undefined): Task;
     getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
     removeHeader(name: string): void;
     setHeader(name: string, value: string): void;
     setTimeout(msecs: int, callback?: Action | undefined): ClientRequest;
-    write(chunk: string, encoding?: string, callback?: Action): boolean;
+    write(chunk: string, encoding?: string | undefined, callback?: Action | undefined): boolean;
 }
 
 
@@ -107,7 +107,7 @@ export interface Server$instance extends EventEmitter {
     timeout: int;
     address(): AddressInfo;
     close(callback?: Action | undefined): Server;
-    listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
+    listen(port: int, hostname?: string | undefined, backlog?: Nullable<System_Internal.Int32>, callback?: Action | undefined): Server;
     listen(port: int, callback?: Action | undefined): Server;
     setTimeout(msecs: int, callback?: Action | undefined): Server;
 }
@@ -125,7 +125,7 @@ export interface ServerResponse$instance extends EventEmitter {
     readonly headersSent: boolean;
     statusCode: int;
     statusMessage: string;
-    end(chunk?: string, encoding?: string, callback?: Action): Task;
+    end(chunk?: string | undefined, encoding?: string | undefined, callback?: Action | undefined): Task;
     flushHeaders(): Task;
     getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
