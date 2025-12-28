@@ -1019,10 +1019,10 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::write(System.String,System.String,System.Action):System.Threading.Tasks.Task_1[[System.Boolean,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::write(System.String,System.String,System.Action):System.Boolean",
           "clrName": "write",
           "tsEmitName": "write",
-          "normalizedSignature": "write|(System.String,System.String,System.Action):System.Threading.Tasks.Task_1[[System.Boolean,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false",
+          "normalizedSignature": "write|(System.String,System.String,System.Action):System.Boolean|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
           "isStatic": false,
@@ -1035,10 +1035,10 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::end(System.String,System.String,System.Action):System.Threading.Tasks.Task",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::end(System.String,System.String,System.Action):nodejs.Http.ServerResponse",
           "clrName": "end",
           "tsEmitName": "end",
-          "normalizedSignature": "end|(System.String,System.String,System.Action):System.Threading.Tasks.Task|static=false",
+          "normalizedSignature": "end|(System.String,System.String,System.Action):nodejs.Http.ServerResponse|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
           "isStatic": false,
@@ -1067,10 +1067,10 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::flushHeaders():System.Threading.Tasks.Task",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::flushHeaders():System.Void",
           "clrName": "flushHeaders",
           "tsEmitName": "flushHeaders",
-          "normalizedSignature": "flushHeaders|():System.Threading.Tasks.Task|static=false",
+          "normalizedSignature": "flushHeaders|():System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
           "isStatic": false,

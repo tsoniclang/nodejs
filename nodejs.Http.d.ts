@@ -6,7 +6,7 @@
 import * as Internal from './nodejs.Http/internal/index.js';
 
 // Cross-namespace type imports for constraints
-import type { EventEmitter } from './nodejs/internal/index.js';
+import type { EventEmitter } from './index/internal/index.js';
 import type { Dictionary } from '@tsonic/dotnet/System.Collections.Generic.js';
 import type { Action, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from '@tsonic/dotnet/System.js';
 import type { ISerializable } from '@tsonic/dotnet/System.Runtime.Serialization.js';

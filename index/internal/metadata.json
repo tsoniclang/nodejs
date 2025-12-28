@@ -13311,22 +13311,6 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.TLSSocket::StartReading():System.Void",
-          "clrName": "StartReading",
-          "tsEmitName": "startReading",
-          "normalizedSignature": "StartReading|():System.Void|static=false",
-          "provenance": "Original",
-          "emitScope": "ClassSurface",
-          "isStatic": false,
-          "isAbstract": false,
-          "isVirtual": false,
-          "isOverride": false,
-          "isSealed": false,
-          "arity": 0,
-          "parameterCount": 0,
-          "isExtensionMethod": false
-        },
-        {
           "stableId": "nodejs:nodejs.TLSSocket::write(System.Byte[],System.Action_1):System.Boolean",
           "clrName": "write",
           "tsEmitName": "write",
