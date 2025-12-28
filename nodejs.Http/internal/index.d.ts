@@ -6,8 +6,8 @@
 import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint128, half, float, double, decimal, nint, nuint, char } from '@tsonic/core/types.js';
 
 // Import types from other namespaces
-import * as nodejs_Internal from "../../nodejs/internal/index.js";
-import type { EventEmitter } from "../../nodejs/internal/index.js";
+import * as nodejs_Internal from "../../index/internal/index.js";
+import type { EventEmitter } from "../../index/internal/index.js";
 import type { Dictionary } from "@tsonic/dotnet/System.Collections.Generic.js";
 import * as System_Internal from "@tsonic/dotnet/System.js";
 import type { Action, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from "@tsonic/dotnet/System.js";
@@ -110,7 +110,7 @@ export interface Server$instance extends EventEmitter {
     address(): AddressInfo;
     close(callback?: Action): Server;
     listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
-    listen(port: int, callback?: Action): Server;
+    listen(port: int, callback: Action): Server;
     setTimeout(msecs: int, callback?: Action): Server;
 }
 
@@ -127,8 +127,8 @@ export interface ServerResponse$instance extends EventEmitter {
     readonly headersSent: boolean;
     statusCode: int;
     statusMessage: string;
-    end(chunk?: string, encoding?: string, callback?: Action): Task;
-    flushHeaders(): Task;
+    end(chunk?: string, encoding?: string, callback?: Action): ServerResponse;
+    flushHeaders(): void;
     getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
     getHeaders(): Dictionary<System_Internal.String, System_Internal.String>;
@@ -136,7 +136,7 @@ export interface ServerResponse$instance extends EventEmitter {
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
     setTimeout(msecs: int, callback?: Action): ServerResponse;
-    write(chunk: string, encoding?: string, callback?: Action): Task<System_Internal.Boolean>;
+    write(chunk: string, encoding?: string, callback?: Action): boolean;
     writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
     writeHead(statusCode: int, headers: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
 }

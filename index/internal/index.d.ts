@@ -1872,7 +1872,6 @@ export interface TLSSocket$instance extends Socket {
     renegotiate(options: unknown, callback: Action<Exception>): boolean;
     setKeyCert(context: unknown): void;
     setMaxSendFragment(size: int): boolean;
-    startReading(): void;
     write(data: byte[], callback?: Action<Exception>): boolean;
     write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
     write(data: byte[], callback?: Action<Exception>): boolean;

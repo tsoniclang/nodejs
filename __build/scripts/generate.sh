@@ -92,11 +92,13 @@ echo "  Done"
 
 # Generate types with JavaScript-style naming
 # Uses --lib to reference BCL types from @tsonic/dotnet instead of regenerating them
+# Uses --namespace-map to emit as index.d.ts/index.js for cleaner imports
 echo "[3/3] Generating TypeScript declarations..."
 dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     generate -a "$NODEJS_DLL" -d "$DOTNET_RUNTIME_PATH" -o "$PROJECT_DIR" \
     --lib "$DOTNET_LIB" \
-    --naming js
+    --naming js \
+    --namespace-map "nodejs=index"
 
 echo ""
 echo "================================================================"
