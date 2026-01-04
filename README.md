@@ -52,7 +52,7 @@ emitter.on("data", (chunk) => console.log(chunk));
 ### HTTP
 
 ```typescript
-import { http } from "@tsonic/nodejs/nodejs.Http";
+import { http } from "@tsonic/nodejs/nodejs.Http.js";
 ```
 
 ## Naming Conventions
