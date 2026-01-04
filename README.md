@@ -6,13 +6,13 @@ TypeScript type definitions for the Node.js CLR library.
 
 - **Node.js-like APIs for .NET** - fs, path, events, http, and more
 - **camelCase members** - TypeScript-friendly naming conventions
-- **Branded primitive types** - Typed numbers via `@tsonic/types`
+- **Primitive aliases** - `int`, `long`, `decimal`, etc. via `@tsonic/core`
 - **Full type safety** - Complete TypeScript declarations
 
 ## Installation
 
 ```bash
-npm install @tsonic/nodejs @tsonic/types
+npm install @tsonic/nodejs @tsonic/dotnet @tsonic/core
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ npm install @tsonic/nodejs @tsonic/types
 ### File System
 
 ```typescript
-import type { fs } from "@tsonic/nodejs/nodejs";
+import { fs } from "@tsonic/nodejs";
 
 // Read file
 const content = fs.readFileSync("./package.json", "utf-8");
@@ -32,7 +32,7 @@ fs.writeFileSync("./output.txt", "Hello from Tsonic!");
 ### Path Operations
 
 ```typescript
-import type { path } from "@tsonic/nodejs/nodejs";
+import { path } from "@tsonic/nodejs";
 
 const fullPath = path.join(__dirname, "config", "settings.json");
 const ext = path.extname(fullPath);  // ".json"
@@ -42,7 +42,7 @@ const dir = path.dirname(fullPath);
 ### Events
 
 ```typescript
-import type { EventEmitter } from "@tsonic/nodejs/nodejs";
+import { EventEmitter } from "@tsonic/nodejs";
 
 class MyEmitter extends EventEmitter {}
 const emitter = new MyEmitter();
@@ -52,7 +52,7 @@ emitter.on("data", (chunk) => console.log(chunk));
 ### HTTP
 
 ```typescript
-import type { HttpServer, HttpRequest, HttpResponse } from "@tsonic/nodejs/nodejs.Http";
+import { http } from "@tsonic/nodejs/nodejs.Http";
 ```
 
 ## Naming Conventions
@@ -60,7 +60,7 @@ import type { HttpServer, HttpRequest, HttpResponse } from "@tsonic/nodejs/nodej
 - **Types**: PascalCase (matches .NET)
 - **Members**: camelCase (TypeScript convention)
 
-For CLR/PascalCase naming, use `@tsonic/nodejs-pure` instead.
+To generate CLR/PascalCase member names, regenerate with `--naming clr` (or omit `--naming js`).
 
 ## Development
 
