@@ -20,7 +20,7 @@ npm install @tsonic/nodejs @tsonic/dotnet @tsonic/core
 ### File System
 
 ```typescript
-import { fs } from "@tsonic/nodejs";
+import { fs } from "@tsonic/nodejs/index.js";
 
 // Read file
 const content = fs.readFileSync("./package.json", "utf-8");
@@ -32,9 +32,9 @@ fs.writeFileSync("./output.txt", "Hello from Tsonic!");
 ### Path Operations
 
 ```typescript
-import { path } from "@tsonic/nodejs";
+import { path } from "@tsonic/nodejs/index.js";
 
-const fullPath = path.join(__dirname, "config", "settings.json");
+const fullPath = path.join("config", "settings.json");
 const ext = path.extname(fullPath);  // ".json"
 const dir = path.dirname(fullPath);
 ```
@@ -42,7 +42,7 @@ const dir = path.dirname(fullPath);
 ### Events
 
 ```typescript
-import { EventEmitter } from "@tsonic/nodejs";
+import { EventEmitter } from "@tsonic/nodejs/index.js";
 
 class MyEmitter extends EventEmitter {}
 const emitter = new MyEmitter();
