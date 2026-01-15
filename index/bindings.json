@@ -230,7 +230,7 @@
         {
           "stableId": "nodejs:nodejs.AnyAaaaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876076,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -258,7 +258,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -311,7 +311,7 @@
         {
           "stableId": "nodejs:nodejs.AnyARecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876075,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -339,7 +339,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -392,7 +392,7 @@
         {
           "stableId": "nodejs:nodejs.AnyCaaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876083,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -420,7 +420,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -513,7 +513,7 @@
         {
           "stableId": "nodejs:nodejs.AnyCnameRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876118,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -555,7 +555,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -598,7 +598,7 @@
         {
           "stableId": "nodejs:nodejs.AnyMxRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876086,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -626,7 +626,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -679,7 +679,7 @@
         {
           "stableId": "nodejs:nodejs.AnyNaptrRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876093,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -707,7 +707,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -800,7 +800,7 @@
         {
           "stableId": "nodejs:nodejs.AnyNsRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876114,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -842,7 +842,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -885,7 +885,7 @@
         {
           "stableId": "nodejs:nodejs.AnyPtrRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876116,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -927,7 +927,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -970,7 +970,7 @@
         {
           "stableId": "nodejs:nodejs.AnyRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876074,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -987,7 +987,7 @@
       "constructors": [],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -1009,7 +1009,7 @@
         {
           "stableId": "nodejs:nodejs.AnySoaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876101,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -1037,7 +1037,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -1140,7 +1140,7 @@
         {
           "stableId": "nodejs:nodejs.AnySrvRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876106,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -1168,7 +1168,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -1241,7 +1241,7 @@
         {
           "stableId": "nodejs:nodejs.AnyTlsaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876111,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -1269,7 +1269,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -1342,7 +1342,7 @@
         {
           "stableId": "nodejs:nodejs.AnyTxtRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876112,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -1384,7 +1384,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -2108,7 +2108,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.String,System.String):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "metadataToken": 100663359,
           "canonicalSignature": "(System.String,System.String):nodejs.Buffer",
           "normalizedSignature": "from|(System.String,System.String):nodejs.Buffer|static=true",
@@ -2122,7 +2122,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.Int32[]):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "metadataToken": 100663360,
           "canonicalSignature": "(System.Int32[]):nodejs.Buffer",
           "normalizedSignature": "from|(System.Int32[]):nodejs.Buffer|static=true",
@@ -2136,7 +2136,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.Byte[]):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "metadataToken": 100663361,
           "canonicalSignature": "(System.Byte[]):nodejs.Buffer",
           "normalizedSignature": "from|(System.Byte[]):nodejs.Buffer|static=true",
@@ -2150,7 +2150,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(nodejs.Buffer):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "metadataToken": 100663362,
           "canonicalSignature": "(nodejs.Buffer):nodejs.Buffer",
           "normalizedSignature": "from|(nodejs.Buffer):nodejs.Buffer|static=true",
@@ -2164,7 +2164,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::of(System.Int32[]):nodejs.Buffer",
           "clrName": "of",
-          "tsEmitName": "of_",
+          "tsEmitName": "of",
           "metadataToken": 100663363,
           "canonicalSignature": "(System.Int32[]):nodejs.Buffer",
           "normalizedSignature": "of|(System.Int32[]):nodejs.Buffer|static=true",
@@ -3393,7 +3393,7 @@
           }
         },
         {
-          "tsName": "from_",
+          "tsName": "from",
           "isStatic": true,
           "tsSignatureId": "from|(System.String,System.String):nodejs.Buffer|static=true",
           "target": {
@@ -3403,7 +3403,7 @@
           }
         },
         {
-          "tsName": "from_",
+          "tsName": "from",
           "isStatic": true,
           "tsSignatureId": "from|(System.Int32[]):nodejs.Buffer|static=true",
           "target": {
@@ -3413,7 +3413,7 @@
           }
         },
         {
-          "tsName": "from_",
+          "tsName": "from",
           "isStatic": true,
           "tsSignatureId": "from|(System.Byte[]):nodejs.Buffer|static=true",
           "target": {
@@ -3423,7 +3423,7 @@
           }
         },
         {
-          "tsName": "from_",
+          "tsName": "from",
           "isStatic": true,
           "tsSignatureId": "from|(nodejs.Buffer):nodejs.Buffer|static=true",
           "target": {
@@ -3433,7 +3433,7 @@
           }
         },
         {
-          "tsName": "of_",
+          "tsName": "of",
           "isStatic": true,
           "tsSignatureId": "of|(System.Int32[]):nodejs.Buffer|static=true",
           "target": {
@@ -8762,7 +8762,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663712,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -8792,7 +8792,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876026,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -8837,7 +8837,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -8859,7 +8859,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -8900,7 +8900,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663705,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -8930,7 +8930,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876023,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -8975,7 +8975,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -8997,7 +8997,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -9945,7 +9945,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663744,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -9975,7 +9975,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876032,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -10020,7 +10020,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -10042,7 +10042,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -10083,7 +10083,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663737,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -10113,7 +10113,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876029,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -10158,7 +10158,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -10180,7 +10180,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -10222,7 +10222,7 @@
         {
           "stableId": "nodejs:nodejs.EphemeralKeyInfo::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876283,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=getset",
@@ -10278,7 +10278,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=getset",
           "target": {
@@ -13168,7 +13168,7 @@
         {
           "stableId": "nodejs:nodejs.KeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663782,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -13198,7 +13198,7 @@
         {
           "stableId": "nodejs:nodejs.KeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876035,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -13243,7 +13243,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -13265,7 +13265,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -16189,7 +16189,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663805,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -16203,7 +16203,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::export(System.String,System.String,System.String,System.String):System.String",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663806,
           "canonicalSignature": "(System.String,System.String,System.String,System.String):System.String",
           "normalizedSignature": "export|(System.String,System.String,System.String,System.String):System.String|static=false",
@@ -16233,7 +16233,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876044,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -16278,7 +16278,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -16288,7 +16288,7 @@
           }
         },
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.String,System.String,System.String,System.String):System.String|static=false",
           "target": {
@@ -16310,7 +16310,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -16890,7 +16890,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663797,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -16904,7 +16904,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::export(System.String,System.String):System.String",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663798,
           "canonicalSignature": "(System.String,System.String):System.String",
           "normalizedSignature": "export|(System.String,System.String):System.String|static=false",
@@ -16934,7 +16934,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876041,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -16979,7 +16979,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -16989,7 +16989,7 @@
           }
         },
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.String,System.String):System.String|static=false",
           "target": {
@@ -17011,7 +17011,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -18570,7 +18570,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663789,
           "canonicalSignature": "(System.Object):System.Object",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
@@ -18584,7 +18584,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::export():System.Byte[]",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "metadataToken": 100663790,
           "canonicalSignature": "():System.Byte[]",
           "normalizedSignature": "export|():System.Byte[]|static=false",
@@ -18614,7 +18614,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876038,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
@@ -18659,7 +18659,7 @@
       "constructors": [],
       "exposedMethods": [
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|(System.Object):System.Object|static=false",
           "target": {
@@ -18669,7 +18669,7 @@
           }
         },
         {
-          "tsName": "export_",
+          "tsName": "export",
           "isStatic": false,
           "tsSignatureId": "export|():System.Byte[]|static=false",
           "target": {
@@ -18691,7 +18691,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=get",
           "target": {
@@ -21957,7 +21957,7 @@
         {
           "stableId": "nodejs:nodejs.SocketOptions::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 385876051,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "type|:System.String|static=false|accessor=getset",
@@ -22055,7 +22055,7 @@
       ],
       "exposedProperties": [
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": false,
           "tsSignatureId": "type|:System.String|static=false|accessor=getset",
           "target": {
@@ -26914,7 +26914,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::set(System.String,System.String):System.Void",
           "clrName": "set",
-          "tsEmitName": "set_",
+          "tsEmitName": "set",
           "metadataToken": 100664927,
           "canonicalSignature": "(System.String,System.String):System.Void",
           "normalizedSignature": "set|(System.String,System.String):System.Void|static=false",
@@ -26928,7 +26928,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::get(System.String):System.String",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "metadataToken": 100664928,
           "canonicalSignature": "(System.String):System.String",
           "normalizedSignature": "get|(System.String):System.String|static=false",
@@ -26970,7 +26970,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::delete(System.String,System.String):System.Void",
           "clrName": "delete",
-          "tsEmitName": "delete_",
+          "tsEmitName": "delete",
           "metadataToken": 100664931,
           "canonicalSignature": "(System.String,System.String):System.Void",
           "normalizedSignature": "delete|(System.String,System.String):System.Void|static=false",
@@ -27108,7 +27108,7 @@
           }
         },
         {
-          "tsName": "set_",
+          "tsName": "set",
           "isStatic": false,
           "tsSignatureId": "set|(System.String,System.String):System.Void|static=false",
           "target": {
@@ -27118,7 +27118,7 @@
           }
         },
         {
-          "tsName": "get_",
+          "tsName": "get",
           "isStatic": false,
           "tsSignatureId": "get|(System.String):System.String|static=false",
           "target": {
@@ -27148,7 +27148,7 @@
           }
         },
         {
-          "tsName": "delete_",
+          "tsName": "delete",
           "isStatic": false,
           "tsSignatureId": "delete|(System.String,System.String):System.Void|static=false",
           "target": {
@@ -35026,7 +35026,7 @@
         {
           "stableId": "nodejs:nodejs.os::type():System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "metadataToken": 100664378,
           "canonicalSignature": "():System.String",
           "normalizedSignature": "type|():System.String|static=true",
@@ -35215,7 +35215,7 @@
           }
         },
         {
-          "tsName": "type_",
+          "tsName": "type",
           "isStatic": true,
           "tsSignatureId": "type|():System.String|static=true",
           "target": {

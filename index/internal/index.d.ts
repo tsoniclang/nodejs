@@ -40,7 +40,7 @@ export const AddressInfo: {
 export type AddressInfo = AddressInfo$instance;
 
 export interface AnyAaaaRecord$instance extends RecordWithTtl {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -52,7 +52,7 @@ export const AnyAaaaRecord: {
 export type AnyAaaaRecord = AnyAaaaRecord$instance;
 
 export interface AnyARecord$instance extends RecordWithTtl {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -64,7 +64,7 @@ export const AnyARecord: {
 export type AnyARecord = AnyARecord$instance;
 
 export interface AnyCaaRecord$instance extends CaaRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -76,7 +76,7 @@ export const AnyCaaRecord: {
 export type AnyCaaRecord = AnyCaaRecord$instance;
 
 export interface AnyCnameRecord$instance {
-    readonly type_: string;
+    readonly type: string;
     value: string;
 }
 
@@ -89,7 +89,7 @@ export const AnyCnameRecord: {
 export type AnyCnameRecord = AnyCnameRecord$instance;
 
 export interface AnyMxRecord$instance extends MxRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -101,7 +101,7 @@ export const AnyMxRecord: {
 export type AnyMxRecord = AnyMxRecord$instance;
 
 export interface AnyNaptrRecord$instance extends NaptrRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -113,7 +113,7 @@ export const AnyNaptrRecord: {
 export type AnyNaptrRecord = AnyNaptrRecord$instance;
 
 export interface AnyNsRecord$instance {
-    readonly type_: string;
+    readonly type: string;
     value: string;
 }
 
@@ -126,7 +126,7 @@ export const AnyNsRecord: {
 export type AnyNsRecord = AnyNsRecord$instance;
 
 export interface AnyPtrRecord$instance {
-    readonly type_: string;
+    readonly type: string;
     value: string;
 }
 
@@ -139,7 +139,7 @@ export const AnyPtrRecord: {
 export type AnyPtrRecord = AnyPtrRecord$instance;
 
 export interface AnyRecord$instance {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -150,7 +150,7 @@ export const AnyRecord: {
 export type AnyRecord = AnyRecord$instance;
 
 export interface AnySoaRecord$instance extends SoaRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -162,7 +162,7 @@ export const AnySoaRecord: {
 export type AnySoaRecord = AnySoaRecord$instance;
 
 export interface AnySrvRecord$instance extends SrvRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -174,7 +174,7 @@ export const AnySrvRecord: {
 export type AnySrvRecord = AnySrvRecord$instance;
 
 export interface AnyTlsaRecord$instance extends TlsaRecord {
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -187,7 +187,7 @@ export type AnyTlsaRecord = AnyTlsaRecord$instance;
 
 export interface AnyTxtRecord$instance {
     entries: string[];
-    readonly type_: string;
+    readonly type: string;
 }
 
 
@@ -232,10 +232,10 @@ export const BindOptions: {
 export type BindOptions = BindOptions$instance;
 
 export interface BlockList$instance {
-    addAddress(address: string, type_?: string): void;
-    addRange(start: string, end: string, type_?: string): void;
-    addSubnet(network: string, prefix: int, type_?: string): void;
-    check(address: string, type_?: string): boolean;
+    addAddress(address: string, type?: string): void;
+    addRange(start: string, end: string, type?: string): void;
+    addSubnet(network: string, prefix: int, type?: string): void;
+    check(address: string, type?: string): boolean;
     getRules(): string[];
 }
 
@@ -354,13 +354,13 @@ export const Buffer: {
     byteLength(str: string, encoding?: string): int;
     compare(buf1: Buffer, buf2: Buffer): int;
     concat(list: Buffer[], totalLength?: Nullable<System_Internal.Int32>): Buffer;
-    from_(buffer: Buffer): Buffer;
-    from_(array: byte[]): Buffer;
-    from_(array: int[]): Buffer;
-    from_(str: string, encoding?: string): Buffer;
+    from(buffer: Buffer): Buffer;
+    from(array: byte[]): Buffer;
+    from(array: int[]): Buffer;
+    from(str: string, encoding?: string): Buffer;
     isBuffer(obj: unknown): boolean;
     isEncoding(encoding: string): boolean;
-    of_(...items: int[]): Buffer;
+    of(...items: int[]): Buffer;
 };
 
 
@@ -644,9 +644,9 @@ export type DiffieHellman = DiffieHellman$instance;
 export interface DSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export(options?: unknown): unknown;
 }
 
 
@@ -660,9 +660,9 @@ export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
 export interface DSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export(options?: unknown): unknown;
 }
 
 
@@ -721,9 +721,9 @@ export type ECDH = ECDH$instance;
 export interface EdDSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export(options?: unknown): unknown;
 }
 
 
@@ -737,9 +737,9 @@ export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
 export interface EdDSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export(options?: unknown): unknown;
 }
 
 
@@ -753,7 +753,7 @@ export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance;
 export interface EphemeralKeyInfo$instance {
     name: string;
     size: int;
-    type_: string;
+    type: string;
 }
 
 
@@ -936,9 +936,9 @@ export type IpcSocketConnectOpts = IpcSocketConnectOpts$instance;
 export interface KeyObject$instance {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
+    export(options?: unknown): unknown;
 }
 
 
@@ -1098,7 +1098,7 @@ export interface PathModule$instance {
     matchesGlob(path: string, pattern: string): boolean;
     normalize(path: string): string;
     parse(path: string): ParsedPath;
-    relative(from_: string, to: string): string;
+    relative(from: string, to: string): string;
     resolve(...paths: string[]): string;
     toNamespacedPath(path: string): string;
 }
@@ -1193,8 +1193,8 @@ export type PerformanceObserver = PerformanceObserver$instance;
 
 export interface PerformanceObserverEntryList$instance {
     getEntries(): PerformanceEntry[];
-    getEntriesByName(name: string, type_?: string): PerformanceEntry[];
-    getEntriesByType(type_: string): PerformanceEntry[];
+    getEntriesByName(name: string, type?: string): PerformanceEntry[];
+    getEntriesByType(type: string): PerformanceEntry[];
 }
 
 
@@ -1222,10 +1222,10 @@ export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 export interface PrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
-    export_(format: string, type_?: string, cipher?: string, passphrase?: string): string;
+    export(options?: unknown): unknown;
+    export(format: string, type?: string, cipher?: string, passphrase?: string): string;
 }
 
 
@@ -1281,10 +1281,10 @@ export type ProcessVersions = ProcessVersions$instance;
 export interface PublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
-    export_(format: string, type_?: string): string;
+    export(options?: unknown): unknown;
+    export(format: string, type?: string): string;
 }
 
 
@@ -1411,10 +1411,10 @@ export type ResolverOptions = ResolverOptions$instance;
 export interface SecretKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
-    readonly type_: string;
+    readonly type: string;
     dispose(): void;
-    export_(options?: unknown): unknown;
-    export_(): byte[];
+    export(options?: unknown): unknown;
+    export(): byte[];
 }
 
 
@@ -1640,7 +1640,7 @@ export interface SocketOptions$instance {
     reuseAddr: boolean;
     reusePort: boolean;
     sendBufferSize: Nullable<System_Internal.Int32>;
-    type_: string;
+    type: string;
 }
 
 
@@ -1951,14 +1951,14 @@ export type URL = URL$instance;
 export interface URLSearchParams$instance {
     readonly size: int;
     append(name: string, value: string): void;
-    delete_(name: string, value?: string): void;
+    delete(name: string, value?: string): void;
     entries(): IEnumerable__System_Collections_Generic<KeyValuePair<System_Internal.String, System_Internal.String>>;
     forEach(callback: Action<System_Internal.String, System_Internal.String>): void;
-    get_(name: string): string | undefined;
+    get(name: string): string | undefined;
     getAll(name: string): string[];
     has(name: string, value?: string): boolean;
     keys(): IEnumerable__System_Collections_Generic<System_Internal.String>;
-    set_(name: string, value: string): void;
+    set(name: string, value: string): void;
     sort(): void;
     toString(): string;
     values(): IEnumerable__System_Collections_Generic<System_Internal.String>;
@@ -2076,12 +2076,12 @@ export type ZlibOptions = ZlibOptions$instance;
 export abstract class assert$instance {
     static deepEqual(actual: unknown, expected: unknown, message?: string): void;
     static deepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
-    static doesNotMatch(string_: string, regexp: Regex, message?: string): void;
+    static doesNotMatch(string: string, regexp: Regex, message?: string): void;
     static doesNotThrow(fn: Action, message?: string): void;
     static equal(actual: unknown, expected: unknown, message?: string): void;
     static fail(message?: string): void;
     static ifError(value: unknown): void;
-    static match(string_: string, regexp: Regex, message?: string): void;
+    static match(string: string, regexp: Regex, message?: string): void;
     static notDeepEqual(actual: unknown, expected: unknown, message?: string): void;
     static notDeepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
     static notEqual(actual: unknown, expected: unknown, message?: string): void;
@@ -2173,10 +2173,10 @@ export abstract class crypto$instance {
     static createSecretKey(key: string, encoding?: string): KeyObject;
     static createSign(algorithm: string): Sign;
     static createVerify(algorithm: string): Verify;
-    static generateKey(type_: string, options: unknown, callback: Action<Exception, KeyObject>): void;
-    static generateKey(type_: string, options: unknown): KeyObject;
-    static generateKeyPair(type_: string, options: unknown, callback: Action<Exception, unknown, unknown>): void;
-    static generateKeyPairSync(type_: string, options?: unknown): ValueTuple<KeyObject, KeyObject>;
+    static generateKey(type: string, options: unknown, callback: Action<Exception, KeyObject>): void;
+    static generateKey(type: string, options: unknown): KeyObject;
+    static generateKeyPair(type: string, options: unknown, callback: Action<Exception, unknown, unknown>): void;
+    static generateKeyPairSync(type: string, options?: unknown): ValueTuple<KeyObject, KeyObject>;
     static getCiphers(): string[];
     static getCurves(): string[];
     static getDefaultCipherList(): string;
@@ -2221,7 +2221,7 @@ export type crypto = crypto$instance;
 
 export abstract class dgram$instance {
     static createSocket(options: SocketOptions, callback?: Action<byte[], RemoteInfo>): DgramSocket;
-    static createSocket(type_: string, callback?: Action<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(type: string, callback?: Action<byte[], RemoteInfo>): DgramSocket;
 }
 
 
@@ -2327,8 +2327,8 @@ export abstract class fs$instance {
     static rmSync(path: string, recursive?: boolean): void;
     static stat(path: string): Task<Stats>;
     static statSync(path: string): Stats;
-    static symlink(target: string, path: string, type_?: string): Task;
-    static symlinkSync(target: string, path: string, type_?: string): void;
+    static symlink(target: string, path: string, type?: string): Task;
+    static symlinkSync(target: string, path: string, type?: string): void;
     static truncate(path: string, len?: long): Task;
     static truncateSync(path: string, len?: long): void;
     static unlink(path: string): Task;
@@ -2382,7 +2382,7 @@ export abstract class os$instance {
     static release(): string;
     static tmpdir(): string;
     static totalmem(): long;
-    static type_(): string;
+    static type(): string;
     static uptime(): long;
     static userInfo(): UserInfo;
 }
@@ -2404,7 +2404,7 @@ export abstract class path$instance {
     static matchesGlob(path: string, pattern: string): boolean;
     static normalize(path: string): string;
     static parse(path: string): ParsedPath;
-    static relative(from_: string, to: string): string;
+    static relative(from: string, to: string): string;
     static resolve(...paths: string[]): string;
     static toNamespacedPath(path: string): string;
 }
@@ -2416,8 +2416,8 @@ export abstract class performance$instance {
     static clearMarks(name?: string): void;
     static clearMeasures(name?: string): void;
     static getEntries(): PerformanceEntry[];
-    static getEntriesByName(name: string, type_?: string): PerformanceEntry[];
-    static getEntriesByType(type_: string): PerformanceEntry[];
+    static getEntriesByName(name: string, type?: string): PerformanceEntry[];
+    static getEntriesByType(type: string): PerformanceEntry[];
     static mark(name: string, options?: MarkOptions): PerformanceMark;
     static measure(name: string, startOrOptions?: unknown, endMark?: string): PerformanceMeasure;
     static now(): double;
@@ -2509,7 +2509,7 @@ export abstract class tls$instance {
     static createSecureContext(options?: SecureContextOptions): SecureContext;
     static createServer(options: TlsOptions, secureConnectionListener?: Action<TLSSocket>): TLSServer;
     static createServer(secureConnectionListener?: Action<TLSSocket>): TLSServer;
-    static getCACertificates(type_?: string): string[];
+    static getCACertificates(type?: string): string[];
     static getCiphers(): string[];
     static setDefaultCACertificates(certs: string[]): void;
 }
@@ -2522,7 +2522,7 @@ export abstract class util$instance {
     static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string): Func<TResult>;
     static deprecate(action: Action, msg: string, code?: string): Action;
     static format(format: unknown, ...args: unknown[]): string;
-    static inherits(constructor_: unknown, superConstructor: unknown): void;
+    static inherits(constructor: unknown, superConstructor: unknown): void;
     static inspect(obj: unknown): string;
     static isArray(obj: unknown): boolean;
     static isDeepStrictEqual(val1: unknown, val2: unknown): boolean;

@@ -166,8 +166,8 @@ export abstract class http$instance {
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
     static createServer(requestListener?: Action<IncomingMessage, ServerResponse>): Server;
-    static get_(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
-    static get_(url: string, callback?: Action<IncomingMessage>): ClientRequest;
+    static get(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
+    static get(url: string, callback?: Action<IncomingMessage>): ClientRequest;
     static request(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
     static request(url: string, callback?: Action<IncomingMessage>): ClientRequest;
     static validateHeaderName(name: string): void;
