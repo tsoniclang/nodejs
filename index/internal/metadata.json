@@ -158,7 +158,7 @@
         {
           "stableId": "nodejs:nodejs.AnyAaaaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -196,7 +196,7 @@
         {
           "stableId": "nodejs:nodejs.AnyARecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -234,7 +234,7 @@
         {
           "stableId": "nodejs:nodejs.AnyCaaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -272,7 +272,7 @@
         {
           "stableId": "nodejs:nodejs.AnyCnameRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -325,7 +325,7 @@
         {
           "stableId": "nodejs:nodejs.AnyMxRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -363,7 +363,7 @@
         {
           "stableId": "nodejs:nodejs.AnyNaptrRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -401,7 +401,7 @@
         {
           "stableId": "nodejs:nodejs.AnyNsRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -454,7 +454,7 @@
         {
           "stableId": "nodejs:nodejs.AnyPtrRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -507,7 +507,7 @@
         {
           "stableId": "nodejs:nodejs.AnyRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -539,7 +539,7 @@
         {
           "stableId": "nodejs:nodejs.AnySoaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -577,7 +577,7 @@
         {
           "stableId": "nodejs:nodejs.AnySrvRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -615,7 +615,7 @@
         {
           "stableId": "nodejs:nodejs.AnyTlsaRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -653,7 +653,7 @@
         {
           "stableId": "nodejs:nodejs.AnyTxtRecord::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1201,7 +1201,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.String,System.String):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "normalizedSignature": "from|(System.String,System.String):nodejs.Buffer|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1217,7 +1217,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.Int32[]):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "normalizedSignature": "from|(System.Int32[]):nodejs.Buffer|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1233,7 +1233,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(System.Byte[]):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "normalizedSignature": "from|(System.Byte[]):nodejs.Buffer|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1249,7 +1249,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::from(nodejs.Buffer):nodejs.Buffer",
           "clrName": "from",
-          "tsEmitName": "from_",
+          "tsEmitName": "from",
           "normalizedSignature": "from|(nodejs.Buffer):nodejs.Buffer|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1265,7 +1265,7 @@
         {
           "stableId": "nodejs:nodejs.Buffer::of(System.Int32[]):nodejs.Buffer",
           "clrName": "of",
-          "tsEmitName": "of_",
+          "tsEmitName": "of",
           "normalizedSignature": "of|(System.Int32[]):nodejs.Buffer|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4706,7 +4706,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4740,7 +4740,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4801,7 +4801,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -4835,7 +4835,7 @@
         {
           "stableId": "nodejs:nodejs.DSAPublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5301,7 +5301,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5335,7 +5335,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5396,7 +5396,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5430,7 +5430,7 @@
         {
           "stableId": "nodejs:nodejs.EdDSAPublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -5492,7 +5492,7 @@
         {
           "stableId": "nodejs:nodejs.EphemeralKeyInfo::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6813,7 +6813,7 @@
         {
           "stableId": "nodejs:nodejs.KeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -6847,7 +6847,7 @@
         {
           "stableId": "nodejs:nodejs.KeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8446,7 +8446,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8462,7 +8462,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::export(System.String,System.String,System.String,System.String):System.String",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.String,System.String,System.String,System.String):System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8496,7 +8496,7 @@
         {
           "stableId": "nodejs:nodejs.PrivateKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8905,7 +8905,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8921,7 +8921,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::export(System.String,System.String):System.String",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.String,System.String):System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -8955,7 +8955,7 @@
         {
           "stableId": "nodejs:nodejs.PublicKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -9881,7 +9881,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::export(System.Object):System.Object",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|(System.Object):System.Object|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -9897,7 +9897,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::export():System.Byte[]",
           "clrName": "export",
-          "tsEmitName": "export_",
+          "tsEmitName": "export",
           "normalizedSignature": "export|():System.Byte[]|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -9931,7 +9931,7 @@
         {
           "stableId": "nodejs:nodejs.SecretKeyObject::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=get",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -11581,7 +11581,7 @@
         {
           "stableId": "nodejs:nodejs.SocketOptions::type:System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|:System.String|static=false|accessor=getset",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -13863,7 +13863,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::set(System.String,System.String):System.Void",
           "clrName": "set",
-          "tsEmitName": "set_",
+          "tsEmitName": "set",
           "normalizedSignature": "set|(System.String,System.String):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -13879,7 +13879,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::get(System.String):System.String",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "normalizedSignature": "get|(System.String):System.String|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -13927,7 +13927,7 @@
         {
           "stableId": "nodejs:nodejs.URLSearchParams::delete(System.String,System.String):System.Void",
           "clrName": "delete",
-          "tsEmitName": "delete_",
+          "tsEmitName": "delete",
           "normalizedSignature": "delete|(System.String,System.String):System.Void|static=false",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -18874,7 +18874,7 @@
         {
           "stableId": "nodejs:nodejs.os::type():System.String",
           "clrName": "type",
-          "tsEmitName": "type_",
+          "tsEmitName": "type",
           "normalizedSignature": "type|():System.String|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",

@@ -1233,7 +1233,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "normalizedSignature": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",
@@ -1249,7 +1249,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "normalizedSignature": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "provenance": "Original",
           "emitScope": "ClassSurface",

@@ -2479,7 +2479,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "metadataToken": 100665011,
           "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
@@ -2493,7 +2493,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "tsEmitName": "get_",
+          "tsEmitName": "get",
           "metadataToken": 100665012,
           "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
@@ -2626,7 +2626,7 @@
           }
         },
         {
-          "tsName": "get_",
+          "tsName": "get",
           "isStatic": true,
           "tsSignatureId": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "target": {
@@ -2636,7 +2636,7 @@
           }
         },
         {
-          "tsName": "get_",
+          "tsName": "get",
           "isStatic": true,
           "tsSignatureId": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "target": {
