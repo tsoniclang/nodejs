@@ -2,6 +2,14 @@
 
 TypeScript type definitions for the Node.js CLR library.
 
+## Versioning
+
+This repo is versioned by **.NET major**:
+
+- **.NET 10** → `versions/10/` → npm: `@tsonic/nodejs@10.x`
+
+When publishing, run: `npm publish versions/10 --access public`
+
 ## Features
 
 - **Node.js-like APIs for .NET** - fs, path, events, http, and more
