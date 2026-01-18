@@ -262,7 +262,7 @@ export const BrotliOptions: {
 export type BrotliOptions = BrotliOptions$instance;
 
 export interface Buffer$instance {
-    item: byte;
+    Item: byte;
     readonly length: int;
     compare(target: Buffer, targetStart?: Nullable<System_Internal.Int32>, targetEnd?: Nullable<System_Internal.Int32>, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
     copy(target: Buffer, targetStart?: int, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
@@ -416,7 +416,7 @@ export const ChildProcess: {
 export type ChildProcess = ChildProcess$instance;
 
 export interface Cipher$instance extends Transform {
-    dispose(): void;
+    Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
     getAuthTag(): byte[];
@@ -449,8 +449,8 @@ export const CipherNameAndProtocol: {
 export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
-    get alpnProtocols(): string[] | undefined;
-    set alpnProtocols(value: string[]);
+    get ALPNProtocols(): string[] | undefined;
+    set ALPNProtocols(value: string[]);
     enableTrace: Nullable<System_Internal.Boolean>;
     rejectUnauthorized: Nullable<System_Internal.Boolean>;
     requestCert: Nullable<System_Internal.Boolean>;
@@ -534,7 +534,7 @@ export const CursorPosition: {
 export type CursorPosition = CursorPosition$instance;
 
 export interface Decipher$instance extends Transform {
-    dispose(): void;
+    Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
     setAAD(buffer: byte[]): void;
@@ -615,7 +615,7 @@ export interface DiffieHellman$instance {
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
-    dispose(): void;
+    Dispose(): void;
     generateKeys(encoding?: string): string;
     generateKeys(): byte[];
     getGenerator(encoding?: string): string;
@@ -645,7 +645,7 @@ export interface DSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
 }
 
@@ -661,7 +661,7 @@ export interface DSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
 }
 
@@ -697,7 +697,7 @@ export interface ECDH$instance {
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
-    dispose(): void;
+    Dispose(): void;
     generateKeys(encoding?: string, format?: string): string;
     generateKeys(): byte[];
     getPrivateKey(encoding?: string): string;
@@ -722,7 +722,7 @@ export interface EdDSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
 }
 
@@ -738,7 +738,7 @@ export interface EdDSAPublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
 }
 
@@ -831,7 +831,7 @@ export interface Hash$instance extends Transform {
     digest(encoding: string): string;
     digest(): byte[];
     digest(outputLength: int): byte[];
-    dispose(): void;
+    Dispose(): void;
     update(data: string, inputEncoding?: string): Hash;
     update(data: byte[]): Hash;
 }
@@ -847,7 +847,7 @@ export type Hash = Hash$instance;
 export interface Hmac$instance extends Transform {
     digest(encoding?: string): string;
     digest(): byte[];
-    dispose(): void;
+    Dispose(): void;
     update(data: string, inputEncoding?: string): Hmac;
     update(data: byte[]): Hmac;
 }
@@ -861,7 +861,7 @@ export const Hmac: {
 export type Hmac = Hmac$instance;
 
 export interface Immediate$instance {
-    dispose(): void;
+    Dispose(): void;
     hasRef(): boolean;
     ref(): Immediate;
     unref(): Immediate;
@@ -937,7 +937,7 @@ export interface KeyObject$instance {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
 }
 
@@ -1106,7 +1106,7 @@ export interface PathModule$instance {
 
 export const PathModule: {
     new(): PathModule;
-    readonly instance: PathModule;
+    readonly Instance: PathModule;
 };
 
 
@@ -1223,7 +1223,7 @@ export interface PrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
     export(format: string, type?: string, cipher?: string, passphrase?: string): string;
 }
@@ -1237,22 +1237,22 @@ export const PrivateKeyObject: {
 export type PrivateKeyObject = PrivateKeyObject$instance;
 
 export interface ProcessEnv$instance {
-    readonly count: int;
-    readonly isReadOnly: boolean;
-    get item(): string | undefined;
-    set item(value: string);
-    readonly keys: ICollection<System_Internal.String>;
-    readonly values: ICollection<string | undefined>;
-    add(key: string, value: string): void;
-    add(item: KeyValuePair<System_Internal.String, System_Internal.String>): void;
-    clear(): void;
-    contains(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
-    containsKey(key: string): boolean;
-    copyTo(array: KeyValuePair<System_Internal.String, System_Internal.String>[], arrayIndex: int): void;
-    getEnumerator(): IEnumerator<KeyValuePair<System_Internal.String, System_Internal.String>>;
-    remove(key: string): boolean;
-    remove(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
-    tryGetValue(key: string, value: string): boolean;
+    readonly Count: int;
+    readonly IsReadOnly: boolean;
+    get Item(): string | undefined;
+    set Item(value: string);
+    readonly Keys: ICollection<System_Internal.String>;
+    readonly Values: ICollection<string | undefined>;
+    Add(key: string, value: string): void;
+    Add(item: KeyValuePair<System_Internal.String, System_Internal.String>): void;
+    Clear(): void;
+    Contains(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
+    ContainsKey(key: string): boolean;
+    CopyTo(array: KeyValuePair<System_Internal.String, System_Internal.String>[], arrayIndex: int): void;
+    GetEnumerator(): IEnumerator<KeyValuePair<System_Internal.String, System_Internal.String>>;
+    Remove(key: string): boolean;
+    Remove(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
+    TryGetValue(key: string, value: string): boolean;
 }
 
 
@@ -1282,7 +1282,7 @@ export interface PublicKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
     export(format: string, type?: string): string;
 }
@@ -1412,7 +1412,7 @@ export interface SecretKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
-    dispose(): void;
+    Dispose(): void;
     export(options?: unknown): unknown;
     export(): byte[];
 }
@@ -1426,14 +1426,14 @@ export const SecretKeyObject: {
 export type SecretKeyObject = SecretKeyObject$instance;
 
 export interface SecureContext$instance {
-    readonly caCertificates: X509Certificate2Collection | undefined;
-    readonly certificate: X509Certificate2 | undefined;
+    readonly CACertificates: X509Certificate2Collection | undefined;
+    readonly Certificate: X509Certificate2 | undefined;
     get context(): unknown | undefined;
     set context(value: unknown);
-    readonly protocols: SslProtocols;
-    loadCACertificates(ca: unknown): void;
-    loadCertificate(cert: unknown, key: unknown, passphrase: string): void;
-    setProtocols(minVersion: string, maxVersion: string): void;
+    readonly Protocols: SslProtocols;
+    LoadCACertificates(ca: unknown): void;
+    LoadCertificate(cert: unknown, key: unknown, passphrase: string): void;
+    SetProtocols(minVersion: string, maxVersion: string): void;
 }
 
 
@@ -1510,7 +1510,7 @@ export const ServerOpts: {
 export type ServerOpts = ServerOpts$instance;
 
 export interface Sign$instance extends Transform {
-    dispose(): void;
+    Dispose(): void;
     sign(privateKey: string, outputEncoding?: string): string;
     sign(privateKey: string): byte[];
     sign(privateKey: unknown, outputEncoding?: string): string;
@@ -1690,18 +1690,18 @@ export interface Stats$instance {
     atime: DateTime;
     birthtime: DateTime;
     ctime: DateTime;
-    isDirectory2: boolean;
-    isFile2: boolean;
+    isDirectory: boolean;
+    isFile: boolean;
     mode: int;
     mtime: DateTime;
     size: long;
-    isBlockDevice(): boolean;
-    isCharacterDevice(): boolean;
-    isDirectory(): boolean;
-    isFIFO(): boolean;
-    isFile(): boolean;
-    isSocket(): boolean;
-    isSymbolicLink(): boolean;
+    IsBlockDevice(): boolean;
+    IsCharacterDevice(): boolean;
+    IsDirectory(): boolean;
+    IsFIFO(): boolean;
+    IsFile(): boolean;
+    IsSocket(): boolean;
+    IsSymbolicLink(): boolean;
 }
 
 
@@ -1761,7 +1761,7 @@ export type TcpSocketConnectOpts = TcpSocketConnectOpts$instance;
 
 export interface Timeout$instance {
     close(): void;
-    dispose(): void;
+    Dispose(): void;
     hasRef(): boolean;
     ref(): Timeout;
     refresh(): Timeout;
@@ -1935,7 +1935,7 @@ export interface URL$instance {
     readonly searchParams: URLSearchParams;
     username: string;
     toJSON(): string;
-    toString(): string;
+    ToString(): string;
 }
 
 
@@ -1960,7 +1960,7 @@ export interface URLSearchParams$instance {
     keys(): IEnumerable__System_Collections_Generic<System_Internal.String>;
     set(name: string, value: string): void;
     sort(): void;
-    toString(): string;
+    ToString(): string;
     values(): IEnumerable__System_Collections_Generic<System_Internal.String>;
 }
 
@@ -1990,7 +1990,7 @@ export const UserInfo: {
 export type UserInfo = UserInfo$instance;
 
 export interface Verify$instance extends Transform {
-    dispose(): void;
+    Dispose(): void;
     update(data: string, inputEncoding?: string): Verify;
     update(data: byte[]): Verify;
     verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
@@ -2044,7 +2044,7 @@ export interface X509CertificateInfo$instance {
     checkIP(ip: string): string | undefined;
     checkIssued(otherCert: X509CertificateInfo): string | undefined;
     toPEM(): string;
-    toString(): string;
+    ToString(): string;
     verify(issuerCert: X509CertificateInfo): boolean;
 }
 
@@ -2532,8 +2532,8 @@ export abstract class util$instance {
 export type util = util$instance;
 
 export abstract class X509CertificateExtensions$instance {
-    static parseCertificate(certificate: byte[]): X509CertificateInfo;
-    static parseCertificate(certificate: string): X509CertificateInfo;
+    static ParseCertificate(certificate: byte[]): X509CertificateInfo;
+    static ParseCertificate(certificate: string): X509CertificateInfo;
 }
 
 

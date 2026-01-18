@@ -1,24 +1,10 @@
 {
-  "name": "@tsonic/nodejs",
-  "version": "0.4.6",
-  "description": "TypeScript type definitions for Node.js CLR library",
+  "name": "@tsonic/nodejs-repo",
+  "private": true,
+  "description": "Repo for @tsonic/nodejs (versioned by .NET major in versions/<major>/)",
   "type": "module",
-  "keywords": [
-    "nodejs",
-    "typescript",
-    "types",
-    "tsonic",
-    "dotnet",
-    "clr"
-  ],
-  "author": "Tsonic Team",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tsoniclang/nodejs.git"
-  },
-  "peerDependencies": {
-    "@tsonic/dotnet": "^0.8.3",
-    "@tsonic/core": "^0.6.0"
+  "scripts": {
+    "generate:10": "./__build/scripts/generate.sh 10",
+    "publish:10": "npm publish ./versions/10 --access public"
   }
 }
