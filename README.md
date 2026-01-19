@@ -63,6 +63,11 @@ emitter.on("data", (chunk) => console.log(chunk));
 import { http } from "@tsonic/nodejs/nodejs.Http.js";
 ```
 
+## Documentation
+
+- `docs/README.md`
+- https://tsonic.org/nodejs/
+
 ## Naming Conventions
 
 - **Types**: PascalCase (matches .NET)
