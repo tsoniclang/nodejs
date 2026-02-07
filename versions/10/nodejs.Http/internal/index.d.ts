@@ -47,19 +47,18 @@ export interface ClientRequest$instance extends EventEmitter {
 
 
 export const ClientRequest: {
-    new(): ClientRequest;
 };
 
 
 export type ClientRequest = ClientRequest$instance;
 
 export interface IncomingMessage$instance extends EventEmitter {
-    readonly complete: boolean;
+    complete: boolean;
     readonly headers: Dictionary<System_Internal.String, System_Internal.String>;
     readonly httpVersion: string;
-    readonly method: string;
+    readonly method: string | undefined;
     readonly statusCode: Nullable<System_Internal.Int32>;
-    readonly statusMessage: string;
+    readonly statusMessage: string | undefined;
     readonly url: string | undefined;
     destroy(): void;
     onClose(callback: Action): void;
@@ -71,7 +70,6 @@ export interface IncomingMessage$instance extends EventEmitter {
 
 
 export const IncomingMessage: {
-    new(): IncomingMessage;
 };
 
 
@@ -79,14 +77,18 @@ export type IncomingMessage = IncomingMessage$instance;
 
 export interface RequestOptions$instance {
     get agent(): unknown | undefined;
-    set agent(value: unknown);
+    set agent(value: unknown | undefined);
     get auth(): string | undefined;
-    set auth(value: string);
-    headers: Dictionary<System_Internal.String, System_Internal.String>;
-    host: string;
-    hostname: string;
+    set auth(value: string | undefined);
+    get headers(): Dictionary<System_Internal.String, System_Internal.String> | undefined;
+    set headers(value: Dictionary<System_Internal.String, System_Internal.String> | undefined);
+    get host(): string | undefined;
+    set host(value: string | undefined);
+    get hostname(): string | undefined;
+    set hostname(value: string | undefined);
     method: string;
-    path: string;
+    get path(): string | undefined;
+    set path(value: string | undefined);
     port: int;
     protocol: string;
     timeout: Nullable<System_Internal.Int32>;
@@ -107,7 +109,7 @@ export interface Server$instance extends EventEmitter {
     maxHeadersCount: int;
     requestTimeout: int;
     timeout: int;
-    address(): AddressInfo;
+    address(): AddressInfo | undefined;
     close(callback?: Action): Server;
     listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
     listen(port: int, callback: Action): Server;
@@ -143,7 +145,6 @@ export interface ServerResponse$instance extends EventEmitter {
 
 
 export const ServerResponse: {
-    new(): ServerResponse;
 };
 
 

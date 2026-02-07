@@ -139,11 +139,11 @@ export const AnyPtrRecord: {
 export type AnyPtrRecord = AnyPtrRecord$instance;
 
 export interface AnyRecord$instance {
-    readonly type: string;
+    type: string;
 }
 
 
-export const AnyRecord: {
+export const AnyRecord: (abstract new() => AnyRecord) & {
 };
 
 
@@ -200,10 +200,10 @@ export type AnyTxtRecord = AnyTxtRecord$instance;
 
 export interface AssertionError$instance extends Exception {
     get actual(): unknown | undefined;
-    set actual(value: unknown);
+    set actual(value: unknown | undefined);
     readonly code: string;
     get expected(): unknown | undefined;
-    set expected(value: unknown);
+    set expected(value: unknown | undefined);
     generatedMessage: boolean;
     operator: string;
 }
@@ -217,7 +217,8 @@ export const AssertionError: {
 export type AssertionError = AssertionError$instance;
 
 export interface BindOptions$instance {
-    address: string;
+    get address(): string | undefined;
+    set address(value: string | undefined);
     exclusive: boolean;
     fd: Nullable<System_Internal.Int32>;
     port: Nullable<System_Internal.Int32>;
@@ -262,7 +263,7 @@ export const BrotliOptions: {
 export type BrotliOptions = BrotliOptions$instance;
 
 export interface Buffer$instance {
-    Item: byte;
+    [index: number]: byte;
     readonly length: int;
     compare(target: Buffer, targetStart?: Nullable<System_Internal.Int32>, targetEnd?: Nullable<System_Internal.Int32>, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
     copy(target: Buffer, targetStart?: int, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
@@ -346,7 +347,6 @@ export interface Buffer$instance {
 
 
 export const Buffer: {
-    new(): Buffer;
     poolSize: int;
     alloc(size: int, fill?: unknown, encoding?: string): Buffer;
     allocUnsafe(size: int): Buffer;
@@ -366,18 +366,31 @@ export const Buffer: {
 
 export type Buffer = Buffer$instance;
 
+export interface BufferConstants$instance {
+    readonly MAX_LENGTH: int;
+    readonly MAX_STRING_LENGTH: int;
+}
+
+
+export const BufferConstants: {
+    new(): BufferConstants;
+};
+
+
+export type BufferConstants = BufferConstants$instance;
+
 export interface CaaRecord$instance {
     get contactemail(): string | undefined;
-    set contactemail(value: string);
+    set contactemail(value: string | undefined);
     get contactphone(): string | undefined;
-    set contactphone(value: string);
+    set contactphone(value: string | undefined);
     critical: int;
     get iodef(): string | undefined;
-    set iodef(value: string);
+    set iodef(value: string | undefined);
     get issue(): string | undefined;
-    set issue(value: string);
+    set issue(value: string | undefined);
     get issuewild(): string | undefined;
-    set issuewild(value: string);
+    set issuewild(value: string | undefined);
 }
 
 
@@ -389,17 +402,21 @@ export const CaaRecord: {
 export type CaaRecord = CaaRecord$instance;
 
 export interface ChildProcess$instance extends EventEmitter {
-    readonly connected: boolean;
-    readonly exitCode: Nullable<System_Internal.Int32>;
+    connected: boolean;
+    exitCode: Nullable<System_Internal.Int32>;
     readonly killed: boolean;
     readonly pid: int;
-    readonly referenced: boolean;
-    readonly signalCode: string | undefined;
-    readonly spawnargs: string[];
-    readonly spawnfile: string;
-    readonly stderr: Readable;
-    readonly stdin: Writable | undefined;
-    readonly stdout: Readable;
+    referenced: boolean;
+    get signalCode(): string | undefined;
+    set signalCode(value: string | undefined);
+    spawnargs: string[];
+    spawnfile: string;
+    get stderr(): Readable | undefined;
+    set stderr(value: Readable | undefined);
+    get stdin(): Writable | undefined;
+    set stdin(value: Writable | undefined);
+    get stdout(): Readable | undefined;
+    set stdout(value: Readable | undefined);
     disconnect(): void;
     kill(signal?: string): boolean;
     ref(): void;
@@ -409,7 +426,6 @@ export interface ChildProcess$instance extends EventEmitter {
 
 
 export const ChildProcess: {
-    new(): ChildProcess;
 };
 
 
@@ -419,6 +435,7 @@ export interface Cipher$instance extends Transform {
     Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
+    Finalize(): void;
     getAuthTag(): byte[];
     setAAD(buffer: byte[]): void;
     setAuthTag(tagLength: int): void;
@@ -428,7 +445,6 @@ export interface Cipher$instance extends Transform {
 
 
 export const Cipher: {
-    new(): Cipher;
 };
 
 
@@ -450,12 +466,12 @@ export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
     get ALPNProtocols(): string[] | undefined;
-    set ALPNProtocols(value: string[]);
+    set ALPNProtocols(value: string[] | undefined);
     enableTrace: Nullable<System_Internal.Boolean>;
     rejectUnauthorized: Nullable<System_Internal.Boolean>;
     requestCert: Nullable<System_Internal.Boolean>;
     get secureContext(): SecureContext | undefined;
-    set secureContext(value: SecureContext);
+    set secureContext(value: SecureContext | undefined);
 }
 
 
@@ -468,17 +484,18 @@ export type CommonConnectionOptions = CommonConnectionOptions$instance;
 
 export interface ConnectionOptions$instance extends CommonConnectionOptions {
     get ca(): unknown | undefined;
-    set ca(value: unknown);
+    set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
-    set cert(value: unknown);
-    host: string;
+    set cert(value: unknown | undefined);
+    get host(): string | undefined;
+    set host(value: string | undefined);
     get key(): unknown | undefined;
-    set key(value: unknown);
+    set key(value: unknown | undefined);
     get passphrase(): string | undefined;
-    set passphrase(value: string);
+    set passphrase(value: string | undefined);
     port: Nullable<System_Internal.Int32>;
     get servername(): string | undefined;
-    set servername(value: string);
+    set servername(value: string | undefined);
     timeout: Nullable<System_Internal.Int32>;
 }
 
@@ -489,6 +506,39 @@ export const ConnectionOptions: {
 
 
 export type ConnectionOptions = ConnectionOptions$instance;
+
+export interface ConsoleConstructor$instance {
+    assert(value: boolean, message?: string, ...optionalParams: unknown[]): void;
+    clear(): void;
+    count(label?: string): void;
+    countReset(label?: string): void;
+    debug(message?: unknown, ...optionalParams: unknown[]): void;
+    dir(obj: unknown, ...options: unknown[]): void;
+    dirxml(...data: unknown[]): void;
+    error(message?: unknown, ...optionalParams: unknown[]): void;
+    group(...label: unknown[]): void;
+    groupCollapsed(...label: unknown[]): void;
+    groupEnd(): void;
+    info(message?: unknown, ...optionalParams: unknown[]): void;
+    log(message?: unknown, ...optionalParams: unknown[]): void;
+    profile(label?: string): void;
+    profileEnd(label?: string): void;
+    table(tabularData: unknown, properties?: string[]): void;
+    time(label?: string): void;
+    timeEnd(label?: string): void;
+    timeLog(label?: string, ...data: unknown[]): void;
+    timeStamp(label?: string): void;
+    trace(message?: unknown, ...optionalParams: unknown[]): void;
+    warn(message?: unknown, ...optionalParams: unknown[]): void;
+}
+
+
+export const ConsoleConstructor: {
+    new(stdout: unknown, stderr: unknown, ignoreErrors: boolean, colorMode: unknown, inspectOptions: Nullable<System_Internal.Int32>, groupIndentation: boolean): ConsoleConstructor;
+};
+
+
+export type ConsoleConstructor = ConsoleConstructor$instance;
 
 export interface CpuInfo$instance {
     model: string;
@@ -537,6 +587,7 @@ export interface Decipher$instance extends Transform {
     Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
+    Finalize(): void;
     setAAD(buffer: byte[]): void;
     setAuthTag(buffer: byte[]): void;
     update(data: string, inputEncoding?: string, outputEncoding?: string): string;
@@ -545,7 +596,6 @@ export interface Decipher$instance extends Transform {
 
 
 export const Decipher: {
-    new(): Decipher;
 };
 
 
@@ -553,7 +603,7 @@ export type Decipher = Decipher$instance;
 
 export interface DetailedPeerCertificate$instance extends PeerCertificate {
     get issuerCertificate(): DetailedPeerCertificate | undefined;
-    set issuerCertificate(value: DetailedPeerCertificate);
+    set issuerCertificate(value: DetailedPeerCertificate | undefined);
 }
 
 
@@ -605,7 +655,6 @@ export interface DgramSocket$instance extends EventEmitter {
 
 
 export const DgramSocket: {
-    new(): DgramSocket;
 };
 
 
@@ -616,6 +665,7 @@ export interface DiffieHellman$instance {
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
     Dispose(): void;
+    Dispose(disposing: boolean): void;
     generateKeys(encoding?: string): string;
     generateKeys(): byte[];
     getGenerator(encoding?: string): string;
@@ -635,11 +685,46 @@ export interface DiffieHellman$instance {
 
 
 export const DiffieHellman: {
-    new(): DiffieHellman;
 };
 
 
 export type DiffieHellman = DiffieHellman$instance;
+
+export interface DnsPromises$instance {
+    getDefaultResultOrder(): string;
+    getServers(): string[];
+    lookup(hostname: string, options?: LookupOptions): Task<LookupAddress>;
+    lookupAll(hostname: string, options?: LookupOptions): Task<LookupAddress[]>;
+    lookupService(address: string, port: int): Task<LookupServiceResult>;
+    resolve(hostname: string): Task<string[]>;
+    resolve(hostname: string, rrtype: string): Task<unknown>;
+    resolve4(hostname: string): Task<string[]>;
+    resolve4(hostname: string, options: ResolveOptions): Task<unknown>;
+    resolve6(hostname: string): Task<string[]>;
+    resolve6(hostname: string, options: ResolveOptions): Task<unknown>;
+    resolveAny(hostname: string): Task<unknown[]>;
+    resolveCaa(hostname: string): Task<CaaRecord[]>;
+    resolveCname(hostname: string): Task<string[]>;
+    resolveMx(hostname: string): Task<MxRecord[]>;
+    resolveNaptr(hostname: string): Task<NaptrRecord[]>;
+    resolveNs(hostname: string): Task<string[]>;
+    resolvePtr(hostname: string): Task<string[]>;
+    resolveSoa(hostname: string): Task<SoaRecord>;
+    resolveSrv(hostname: string): Task<SrvRecord[]>;
+    resolveTlsa(hostname: string): Task<TlsaRecord[]>;
+    resolveTxt(hostname: string): Task<string[][]>;
+    reverse(ip: string): Task<string[]>;
+    setDefaultResultOrder(order: string): void;
+    setServers(servers: string[]): void;
+}
+
+
+export const DnsPromises: {
+    new(): DnsPromises;
+};
+
+
+export type DnsPromises = DnsPromises$instance;
 
 export interface DSAPrivateKeyObject$instance extends KeyObject {
     readonly asymmetricKeyType: string | undefined;
@@ -651,7 +736,6 @@ export interface DSAPrivateKeyObject$instance extends KeyObject {
 
 
 export const DSAPrivateKeyObject: {
-    new(): DSAPrivateKeyObject;
 };
 
 
@@ -667,7 +751,6 @@ export interface DSAPublicKeyObject$instance extends KeyObject {
 
 
 export const DSAPublicKeyObject: {
-    new(): DSAPublicKeyObject;
 };
 
 
@@ -678,6 +761,7 @@ export interface Duplex$instance extends Readable {
     readonly writableCorked: boolean;
     readonly writableEnded: boolean;
     readonly writableLength: int;
+    _write(chunk: unknown, encoding: string, callback: Action): void;
     cork(): void;
     destroy(error?: Exception): void;
     end(chunk?: unknown, encoding?: string, callback?: Action): void;
@@ -698,6 +782,7 @@ export interface ECDH$instance {
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
     Dispose(): void;
+    Dispose(disposing: boolean): void;
     generateKeys(encoding?: string, format?: string): string;
     generateKeys(): byte[];
     getPrivateKey(encoding?: string): string;
@@ -712,7 +797,6 @@ export interface ECDH$instance {
 
 
 export const ECDH: {
-    new(): ECDH;
 };
 
 
@@ -728,7 +812,6 @@ export interface EdDSAPrivateKeyObject$instance extends KeyObject {
 
 
 export const EdDSAPrivateKeyObject: {
-    new(): EdDSAPrivateKeyObject;
 };
 
 
@@ -744,14 +827,14 @@ export interface EdDSAPublicKeyObject$instance extends KeyObject {
 
 
 export const EdDSAPublicKeyObject: {
-    new(): EdDSAPublicKeyObject;
 };
 
 
 export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance;
 
 export interface EphemeralKeyInfo$instance {
-    name: string;
+    get name(): string | undefined;
+    set name(value: string | undefined);
     size: int;
     type: string;
 }
@@ -794,24 +877,24 @@ export type EventEmitter = EventEmitter$instance;
 
 export interface ExecOptions$instance {
     get argv0(): string | undefined;
-    set argv0(value: string);
+    set argv0(value: string | undefined);
     get cwd(): string | undefined;
-    set cwd(value: string);
+    set cwd(value: string | undefined);
     detached: boolean;
     get encoding(): string | undefined;
-    set encoding(value: string);
+    set encoding(value: string | undefined);
     get env(): unknown | undefined;
-    set env(value: unknown);
+    set env(value: unknown | undefined);
     gid: Nullable<System_Internal.Int32>;
     get input(): string | undefined;
-    set input(value: string);
+    set input(value: string | undefined);
     get killSignal(): string | undefined;
-    set killSignal(value: string);
+    set killSignal(value: string | undefined);
     maxBuffer: int;
     get shell(): string | undefined;
-    set shell(value: string);
+    set shell(value: string | undefined);
     get stdio(): string | undefined;
-    set stdio(value: string);
+    set stdio(value: string | undefined);
     timeout: int;
     uid: Nullable<System_Internal.Int32>;
     windowsHide: boolean;
@@ -826,19 +909,56 @@ export const ExecOptions: {
 
 export type ExecOptions = ExecOptions$instance;
 
+export interface FsPromises$instance {
+    access(path: string, mode?: int): Task;
+    appendFile(path: string, data: string, encoding?: string): Task;
+    chmod(path: string, mode: int): Task;
+    close(fd: int): Task;
+    copyFile(src: string, dest: string, mode?: int): Task;
+    cp(src: string, dest: string, recursive?: boolean): Task;
+    fstat(fd: int): Task<Stats>;
+    mkdir(path: string, recursive?: boolean): Task;
+    open(path: string, flags: string, mode?: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
+    read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
+    readdir(path: string, withFileTypes?: boolean): Task<string[]>;
+    readFile(path: string, encoding?: string): Task<System_Internal.String>;
+    readFileBytes(path: string): Task<byte[]>;
+    readlink(path: string): Task<System_Internal.String>;
+    realpath(path: string): Task<System_Internal.String>;
+    rename(oldPath: string, newPath: string): Task;
+    rm(path: string, recursive?: boolean): Task;
+    rmdir(path: string, recursive?: boolean): Task;
+    stat(path: string): Task<Stats>;
+    symlink(target: string, path: string, type?: string): Task;
+    truncate(path: string, len?: long): Task;
+    unlink(path: string): Task;
+    write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
+    write(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): Task<System_Internal.Int32>;
+    writeFile(path: string, data: string, encoding?: string): Task;
+    writeFileBytes(path: string, data: byte[]): Task;
+}
+
+
+export const FsPromises: {
+    new(): FsPromises;
+};
+
+
+export type FsPromises = FsPromises$instance;
+
 export interface Hash$instance extends Transform {
     copy(): Hash;
     digest(encoding: string): string;
     digest(): byte[];
     digest(outputLength: int): byte[];
     Dispose(): void;
+    Finalize(): void;
     update(data: string, inputEncoding?: string): Hash;
     update(data: byte[]): Hash;
 }
 
 
 export const Hash: {
-    new(): Hash;
 };
 
 
@@ -848,13 +968,13 @@ export interface Hmac$instance extends Transform {
     digest(encoding?: string): string;
     digest(): byte[];
     Dispose(): void;
+    Finalize(): void;
     update(data: string, inputEncoding?: string): Hmac;
     update(data: byte[]): Hmac;
 }
 
 
 export const Hmac: {
-    new(): Hmac;
 };
 
 
@@ -869,7 +989,6 @@ export interface Immediate$instance {
 
 
 export const Immediate: {
-    new(): Immediate;
 };
 
 
@@ -892,7 +1011,6 @@ export interface Interface$instance extends EventEmitter {
 
 
 export const Interface: {
-    new(): Interface;
 };
 
 
@@ -901,13 +1019,14 @@ export type Interface = Interface$instance;
 export interface InterfaceOptions$instance {
     escapeCodeTimeout: Nullable<System_Internal.Int32>;
     get history(): string[] | undefined;
-    set history(value: string[]);
+    set history(value: string[] | undefined);
     historySize: Nullable<System_Internal.Int32>;
     get input(): Readable | undefined;
-    set input(value: Readable);
-    output: Writable;
+    set input(value: Readable | undefined);
+    get output(): Writable | undefined;
+    set output(value: Writable | undefined);
     get prompt(): string | undefined;
-    set prompt(value: string);
+    set prompt(value: string | undefined);
     removeHistoryDuplicates: Nullable<System_Internal.Boolean>;
     tabSize: Nullable<System_Internal.Int32>;
     terminal: Nullable<System_Internal.Boolean>;
@@ -942,7 +1061,7 @@ export interface KeyObject$instance {
 }
 
 
-export const KeyObject: {
+export const KeyObject: (abstract new() => KeyObject) & {
 };
 
 
@@ -950,9 +1069,11 @@ export type KeyObject = KeyObject$instance;
 
 export interface ListenOptions$instance {
     backlog: Nullable<System_Internal.Int32>;
-    host: string;
+    get host(): string | undefined;
+    set host(value: string | undefined);
     ipv6Only: Nullable<System_Internal.Boolean>;
-    path: string;
+    get path(): string | undefined;
+    set path(value: string | undefined);
     port: Nullable<System_Internal.Int32>;
 }
 
@@ -979,10 +1100,11 @@ export type LookupAddress = LookupAddress$instance;
 
 export interface LookupOptions$instance {
     all: Nullable<System_Internal.Boolean>;
-    family: unknown;
+    get family(): unknown | undefined;
+    set family(value: unknown | undefined);
     hints: Nullable<System_Internal.Int32>;
     get order(): string | undefined;
-    set order(value: string);
+    set order(value: string | undefined);
     verbatim: Nullable<System_Internal.Boolean>;
 }
 
@@ -994,9 +1116,22 @@ export const LookupOptions: {
 
 export type LookupOptions = LookupOptions$instance;
 
+export interface LookupServiceResult$instance {
+    hostname: string;
+    service: string;
+}
+
+
+export const LookupServiceResult: {
+    new(): LookupServiceResult;
+};
+
+
+export type LookupServiceResult = LookupServiceResult$instance;
+
 export interface MarkOptions$instance {
     get detail(): unknown | undefined;
-    set detail(value: unknown);
+    set detail(value: unknown | undefined);
     startTime: Nullable<System_Internal.Double>;
 }
 
@@ -1010,13 +1145,13 @@ export type MarkOptions = MarkOptions$instance;
 
 export interface MeasureOptions$instance {
     get detail(): unknown | undefined;
-    set detail(value: unknown);
+    set detail(value: unknown | undefined);
     end: Nullable<System_Internal.Double>;
     get endMark(): string | undefined;
-    set endMark(value: string);
+    set endMark(value: string | undefined);
     start: Nullable<System_Internal.Double>;
     get startMark(): string | undefined;
-    set startMark(value: string);
+    set startMark(value: string | undefined);
 }
 
 
@@ -1074,6 +1209,8 @@ export const ParsedPath: {
 export type ParsedPath = ParsedPath$instance;
 
 export interface PassThrough$instance extends Transform {
+    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
+    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
 }
 
 
@@ -1105,7 +1242,6 @@ export interface PathModule$instance {
 
 
 export const PathModule: {
-    new(): PathModule;
     readonly Instance: PathModule;
 };
 
@@ -1115,16 +1251,17 @@ export type PathModule = PathModule$instance;
 export interface PeerCertificate$instance {
     ca: boolean;
     get ext_key_usage(): string[] | undefined;
-    set ext_key_usage(value: string[]);
+    set ext_key_usage(value: string[] | undefined);
     fingerprint: string;
     fingerprint256: string;
     fingerprint512: string;
     issuer: TLSCertificateInfo;
-    raw: byte[];
+    get raw(): byte[] | undefined;
+    set raw(value: byte[] | undefined);
     serialNumber: string;
     subject: TLSCertificateInfo;
     get subjectaltname(): string | undefined;
-    set subjectaltname(value: string);
+    set subjectaltname(value: string | undefined);
     valid_from: string;
     valid_to: string;
 }
@@ -1146,7 +1283,6 @@ export interface PerformanceEntry$instance {
 
 
 export const PerformanceEntry: {
-    new(): PerformanceEntry;
 };
 
 
@@ -1208,7 +1344,7 @@ export type PerformanceObserverEntryList = PerformanceObserverEntryList$instance
 export interface PerformanceObserverOptions$instance {
     buffered: boolean;
     get entryTypes(): string[] | undefined;
-    set entryTypes(value: string[]);
+    set entryTypes(value: string[] | undefined);
 }
 
 
@@ -1230,7 +1366,6 @@ export interface PrivateKeyObject$instance extends KeyObject {
 
 
 export const PrivateKeyObject: {
-    new(): PrivateKeyObject;
 };
 
 
@@ -1239,8 +1374,7 @@ export type PrivateKeyObject = PrivateKeyObject$instance;
 export interface ProcessEnv$instance {
     readonly Count: int;
     readonly IsReadOnly: boolean;
-    get Item(): string | undefined;
-    set Item(value: string);
+    [key: string]: string | undefined;
     readonly Keys: ICollection<System_Internal.String>;
     readonly Values: ICollection<string | undefined>;
     Add(key: string, value: string): void;
@@ -1289,18 +1423,18 @@ export interface PublicKeyObject$instance extends KeyObject {
 
 
 export const PublicKeyObject: {
-    new(): PublicKeyObject;
 };
 
 
 export type PublicKeyObject = PublicKeyObject$instance;
 
 export interface Readable$instance extends Stream {
-    readonly destroyed: boolean;
+    destroyed: boolean;
     readonly readable: boolean;
     readonly readableEnded: boolean;
     readonly readableFlowing: Nullable<System_Internal.Boolean>;
     readonly readableLength: int;
+    _read(size: int): void;
     destroy(error?: Exception): void;
     isPaused(): boolean;
     pause(): Readable;
@@ -1319,6 +1453,20 @@ export const Readable: {
 
 
 export type Readable = Readable$instance;
+
+export interface ReadlinePromises$instance {
+    createInterface(options: InterfaceOptions): Interface;
+    createInterface(input: Readable, output?: Writable): Interface;
+    question(rl: Interface, query: string): Task<System_Internal.String>;
+}
+
+
+export const ReadlinePromises: {
+    new(): ReadlinePromises;
+};
+
+
+export type ReadlinePromises = ReadlinePromises$instance;
 
 export interface RecordWithTtl$instance {
     address: string;
@@ -1419,7 +1567,6 @@ export interface SecretKeyObject$instance extends KeyObject {
 
 
 export const SecretKeyObject: {
-    new(): SecretKeyObject;
 };
 
 
@@ -1429,7 +1576,7 @@ export interface SecureContext$instance {
     readonly CACertificates: X509Certificate2Collection | undefined;
     readonly Certificate: X509Certificate2 | undefined;
     get context(): unknown | undefined;
-    set context(value: unknown);
+    set context(value: unknown | undefined);
     readonly Protocols: SslProtocols;
     LoadCACertificates(ca: unknown): void;
     LoadCertificate(cert: unknown, key: unknown, passphrase: string): void;
@@ -1446,21 +1593,21 @@ export type SecureContext = SecureContext$instance;
 
 export interface SecureContextOptions$instance {
     get ca(): unknown | undefined;
-    set ca(value: unknown);
+    set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
-    set cert(value: unknown);
+    set cert(value: unknown | undefined);
     get ciphers(): string | undefined;
-    set ciphers(value: string);
+    set ciphers(value: string | undefined);
     get key(): unknown | undefined;
-    set key(value: unknown);
+    set key(value: unknown | undefined);
     get maxVersion(): string | undefined;
-    set maxVersion(value: string);
+    set maxVersion(value: string | undefined);
     get minVersion(): string | undefined;
-    set minVersion(value: string);
+    set minVersion(value: string | undefined);
     get passphrase(): string | undefined;
-    set passphrase(value: string);
+    set passphrase(value: string | undefined);
     get pfx(): unknown | undefined;
-    set pfx(value: unknown);
+    set pfx(value: unknown | undefined);
 }
 
 
@@ -1474,7 +1621,7 @@ export type SecureContextOptions = SecureContextOptions$instance;
 export interface Server$instance extends EventEmitter {
     readonly listening: boolean;
     maxConnections: int;
-    address(): unknown;
+    address(): unknown | undefined;
     close(callback?: Action<Exception>): Server;
     getConnections(callback: Action<Exception, System_Internal.Int32>): void;
     listen(port: int, hostname: string, backlog: int, listeningListener?: Action): Server;
@@ -1511,6 +1658,7 @@ export type ServerOpts = ServerOpts$instance;
 
 export interface Sign$instance extends Transform {
     Dispose(): void;
+    Finalize(): void;
     sign(privateKey: string, outputEncoding?: string): string;
     sign(privateKey: string): byte[];
     sign(privateKey: unknown, outputEncoding?: string): string;
@@ -1521,7 +1669,6 @@ export interface Sign$instance extends Transform {
 
 
 export const Sign: {
-    new(): Sign;
 };
 
 
@@ -1546,17 +1693,21 @@ export const SoaRecord: {
 export type SoaRecord = SoaRecord$instance;
 
 export interface Socket$instance extends Stream {
-    readonly bytesRead: long;
-    readonly bytesWritten: long;
+    bytesRead: long;
+    bytesWritten: long;
     readonly connecting: boolean;
     readonly destroyed: boolean;
-    readonly localAddress: string | undefined;
-    readonly localFamily: string | undefined;
-    readonly localPort: Nullable<System_Internal.Int32>;
+    get localAddress(): string | undefined;
+    set localAddress(value: string | undefined);
+    get localFamily(): string | undefined;
+    set localFamily(value: string | undefined);
+    localPort: Nullable<System_Internal.Int32>;
     readonly readyState: string;
-    readonly remoteAddress: string | undefined;
-    readonly remoteFamily: string | undefined;
-    readonly remotePort: Nullable<System_Internal.Int32>;
+    get remoteAddress(): string | undefined;
+    set remoteAddress(value: string | undefined);
+    get remoteFamily(): string | undefined;
+    set remoteFamily(value: string | undefined);
+    remotePort: Nullable<System_Internal.Int32>;
     address(): unknown;
     connect(port: int, host?: string, connectionListener?: Action): Socket;
     connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
@@ -1590,10 +1741,10 @@ export const Socket: {
 export type Socket = Socket$instance;
 
 export interface SocketAddress$instance {
-    readonly address: string;
-    readonly family: string;
-    readonly flowlabel: Nullable<System_Internal.Int32>;
-    readonly port: int;
+    address: string;
+    family: string;
+    flowlabel: Nullable<System_Internal.Int32>;
+    port: int;
 }
 
 
@@ -1605,8 +1756,10 @@ export const SocketAddress: {
 export type SocketAddress = SocketAddress$instance;
 
 export interface SocketAddressInitOptions$instance {
-    address: string;
-    family: string;
+    get address(): string | undefined;
+    set address(value: string | undefined);
+    get family(): string | undefined;
+    set family(value: string | undefined);
     flowlabel: Nullable<System_Internal.Int32>;
     port: Nullable<System_Internal.Int32>;
 }
@@ -1653,11 +1806,11 @@ export type SocketOptions = SocketOptions$instance;
 
 export interface SpawnSyncReturns_1$instance<T> {
     get error(): Exception | undefined;
-    set error(value: Exception);
+    set error(value: Exception | undefined);
     output: (T | undefined)[];
     pid: int;
     get signal(): string | undefined;
-    set signal(value: string);
+    set signal(value: string | undefined);
     status: Nullable<System_Internal.Int32>;
     stderr: T;
     stdout: T;
@@ -1725,6 +1878,19 @@ export const Stream: {
 
 export type Stream = Stream$instance;
 
+export interface StreamPromises$instance {
+    finished(streamValue: Stream): Task;
+    pipeline(...streams: Stream[]): Task;
+}
+
+
+export const StreamPromises: {
+    new(): StreamPromises;
+};
+
+
+export type StreamPromises = StreamPromises$instance;
+
 export interface StringDecoder$instance {
     end(buffer?: byte[]): string;
     write(buffer: byte[]): string;
@@ -1741,11 +1907,12 @@ export type StringDecoder = StringDecoder$instance;
 export interface TcpSocketConnectOpts$instance {
     family: Nullable<System_Internal.Int32>;
     hints: Nullable<System_Internal.Int32>;
-    host: string;
+    get host(): string | undefined;
+    set host(value: string | undefined);
     keepAlive: Nullable<System_Internal.Boolean>;
     keepAliveInitialDelay: Nullable<System_Internal.Int32>;
     get localAddress(): string | undefined;
-    set localAddress(value: string);
+    set localAddress(value: string | undefined);
     localPort: Nullable<System_Internal.Int32>;
     noDelay: Nullable<System_Internal.Boolean>;
     port: int;
@@ -1770,11 +1937,38 @@ export interface Timeout$instance {
 
 
 export const Timeout: {
-    new(): Timeout;
 };
 
 
 export type Timeout = Timeout$instance;
+
+export interface TimersPromises$instance {
+    readonly scheduler: TimersScheduler;
+    setImmediate(value?: unknown): Task<unknown | undefined>;
+    setInterval(delay?: int, value?: unknown): IAsyncEnumerable<unknown | undefined>;
+    setTimeout(delay?: int, value?: unknown): Task<unknown | undefined>;
+}
+
+
+export const TimersPromises: {
+    new(): TimersPromises;
+};
+
+
+export type TimersPromises = TimersPromises$instance;
+
+export interface TimersScheduler$instance {
+    wait(delay?: int): Task;
+    yield(): Task;
+}
+
+
+export const TimersScheduler: {
+    new(): TimersScheduler;
+};
+
+
+export type TimersScheduler = TimersScheduler$instance;
 
 export interface TlsaRecord$instance {
     certUsage: int;
@@ -1811,14 +2005,14 @@ export type TLSCertificateInfo = TLSCertificateInfo$instance;
 export interface TlsOptions$instance extends CommonConnectionOptions {
     allowHalfOpen: Nullable<System_Internal.Boolean>;
     get ca(): unknown | undefined;
-    set ca(value: unknown);
+    set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
-    set cert(value: unknown);
+    set cert(value: unknown | undefined);
     handshakeTimeout: Nullable<System_Internal.Int32>;
     get key(): unknown | undefined;
-    set key(value: unknown);
+    set key(value: unknown | undefined);
     get passphrase(): string | undefined;
-    set passphrase(value: string);
+    set passphrase(value: string | undefined);
     pauseOnConnect: Nullable<System_Internal.Boolean>;
     sessionTimeout: Nullable<System_Internal.Int32>;
 }
@@ -1888,18 +2082,18 @@ export type TLSSocket = TLSSocket$instance;
 
 export interface TLSSocketOptions$instance extends CommonConnectionOptions {
     get ca(): unknown | undefined;
-    set ca(value: unknown);
+    set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
-    set cert(value: unknown);
+    set cert(value: unknown | undefined);
     isServer: Nullable<System_Internal.Boolean>;
     get key(): unknown | undefined;
-    set key(value: unknown);
+    set key(value: unknown | undefined);
     get passphrase(): string | undefined;
-    set passphrase(value: string);
+    set passphrase(value: string | undefined);
     get server(): Server | undefined;
-    set server(value: Server);
+    set server(value: Server | undefined);
     get servername(): string | undefined;
-    set servername(value: string);
+    set servername(value: string | undefined);
 }
 
 
@@ -1911,6 +2105,9 @@ export const TLSSocketOptions: {
 export type TLSSocketOptions = TLSSocketOptions$instance;
 
 export interface Transform$instance extends Duplex {
+    _flush(callback: Action<Exception>): void;
+    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
+    _write(chunk: unknown, encoding: string, callback: Action): void;
 }
 
 
@@ -1948,6 +2145,19 @@ export const URL: {
 
 export type URL = URL$instance;
 
+export interface URLPattern$instance {
+    exec(input: string): Dictionary<System_Internal.String, System_Internal.String> | undefined;
+    test(input: string): boolean;
+}
+
+
+export const URLPattern: {
+    new(pattern: string): URLPattern;
+};
+
+
+export type URLPattern = URLPattern$instance;
+
 export interface URLSearchParams$instance {
     readonly size: int;
     append(name: string, value: string): void;
@@ -1976,7 +2186,7 @@ export interface UserInfo$instance {
     gid: int;
     homedir: string;
     get shell(): string | undefined;
-    set shell(value: string);
+    set shell(value: string | undefined);
     uid: int;
     username: string;
 }
@@ -1991,6 +2201,7 @@ export type UserInfo = UserInfo$instance;
 
 export interface Verify$instance extends Transform {
     Dispose(): void;
+    Finalize(): void;
     update(data: string, inputEncoding?: string): Verify;
     update(data: byte[]): Verify;
     verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
@@ -2001,18 +2212,19 @@ export interface Verify$instance extends Transform {
 
 
 export const Verify: {
-    new(): Verify;
 };
 
 
 export type Verify = Verify$instance;
 
 export interface Writable$instance extends Stream {
-    readonly destroyed: boolean;
+    destroyed: boolean;
     readonly writable: boolean;
     readonly writableCorked: boolean;
     readonly writableEnded: boolean;
     readonly writableLength: int;
+    _final(callback: Action): void;
+    _write(chunk: unknown, encoding: string, callback: Action): void;
     cork(): void;
     destroy(error?: Exception): void;
     end(chunk?: unknown, encoding?: string, callback?: Action): void;
@@ -2050,7 +2262,6 @@ export interface X509CertificateInfo$instance {
 
 
 export const X509CertificateInfo: {
-    new(): X509CertificateInfo;
 };
 
 
@@ -2077,6 +2288,7 @@ export abstract class assert$instance {
     static deepEqual(actual: unknown, expected: unknown, message?: string): void;
     static deepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
     static doesNotMatch(string: string, regexp: Regex, message?: string): void;
+    static doesNotReject(fn: Func<Task>, message?: string): Task;
     static doesNotThrow(fn: Action, message?: string): void;
     static equal(actual: unknown, expected: unknown, message?: string): void;
     static fail(message?: string): void;
@@ -2087,12 +2299,33 @@ export abstract class assert$instance {
     static notEqual(actual: unknown, expected: unknown, message?: string): void;
     static notStrictEqual(actual: unknown, expected: unknown, message?: string): void;
     static ok(value: boolean, message?: string): void;
+    static rejects(fn: Func<Task>, message?: string): Task;
+    static strict(actual: unknown, expected: unknown, message?: string): void;
     static strictEqual(actual: unknown, expected: unknown, message?: string): void;
     static throws(fn: Action, message?: string): void;
 }
 
 
 export type assert = assert$instance;
+
+export abstract class buffer$instance {
+    static INSPECT_MAX_BYTES: int;
+    static readonly constants: BufferConstants;
+    static readonly kMaxLength: int;
+    static readonly kStringMaxLength: int;
+    static atob(data: string): string;
+    static btoa(data: string): string;
+    static isAscii(value: Buffer): boolean;
+    static isAscii(value: byte[]): boolean;
+    static isUtf8(value: Buffer): boolean;
+    static isUtf8(value: byte[]): boolean;
+    static resolveObjectURL(id: string): unknown | undefined;
+    static SlowBuffer(size: int): Buffer;
+    static transcode(source: Buffer, fromEncoding: string, toEncoding: string): Buffer;
+}
+
+
+export type buffer = buffer$instance;
 
 export abstract class Certificate$instance {
     static exportChallenge(spkac: byte[]): byte[];
@@ -2123,6 +2356,7 @@ export abstract class child_process$instance {
 export type child_process = child_process$instance;
 
 export abstract class console$instance {
+    static readonly Console: ConsoleConstructor;
     static assert(value: boolean, message?: string, ...optionalParams: unknown[]): void;
     static clear(): void;
     static count(label?: string): void;
@@ -2255,6 +2489,7 @@ export abstract class dns$instance {
     static readonly LOADIPHLPAPI: string;
     static readonly ADDRGETNETWORKPARAMS: string;
     static readonly CANCELLED: string;
+    static readonly promises: DnsPromises;
     static getDefaultResultOrder(): string;
     static getServers(): string[];
     static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, LookupAddress[]>): void;
@@ -2287,7 +2522,25 @@ export abstract class dns$instance {
 
 export type dns = dns$instance;
 
+export abstract class events$instance {
+    static readonly captureRejectionSymbol: string;
+    static captureRejections: boolean;
+    static defaultMaxListeners: int;
+    static readonly errorMonitor: string;
+    static addAbortListener(signal: unknown, listener: Action): Action;
+    static getEventListeners(emitter: EventEmitter, eventName: string): Function[];
+    static getMaxListeners(emitter: EventEmitter): int;
+    static listenerCount(emitter: EventEmitter, eventName: string): int;
+    static on(emitter: EventEmitter, eventName: string): IAsyncEnumerable<(unknown | undefined)[]>;
+    static once(emitter: EventEmitter, eventName: string): Task<(unknown | undefined)[]>;
+    static setMaxListeners(n: int, ...emitters: EventEmitter[]): void;
+}
+
+
+export type events = events$instance;
+
 export abstract class fs$instance {
+    static readonly promises: FsPromises;
     static access(path: string, mode?: int): Task;
     static accessSync(path: string, mode?: int): void;
     static appendFile(path: string, data: string, encoding?: string): Task;
@@ -2378,6 +2631,7 @@ export abstract class os$instance {
     static homedir(): string;
     static hostname(): string;
     static loadavg(): double[];
+    static machine(): string;
     static platform(): string;
     static release(): string;
     static tmpdir(): string;
@@ -2385,6 +2639,7 @@ export abstract class os$instance {
     static type(): string;
     static uptime(): long;
     static userInfo(): UserInfo;
+    static version(): string;
 }
 
 
@@ -2460,12 +2715,14 @@ export abstract class querystring$instance {
 export type querystring = querystring$instance;
 
 export abstract class readline$instance {
+    static readonly promises: ReadlinePromises;
     static clearLine(stream: Writable, dir: int, callback?: Action): boolean;
     static clearScreenDown(stream: Writable, callback?: Action): boolean;
     static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable<System_Internal.String>;
     static createInterface(options: InterfaceOptions): Interface;
     static createInterface(input: Readable, output?: Writable): Interface;
     static cursorTo(stream: Writable, x: int, y?: Nullable<System_Internal.Int32>, callback?: Action): boolean;
+    static emitKeypressEvents(stream: Readable, rl?: Interface): void;
     static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action): boolean;
 }
 
@@ -2473,6 +2730,7 @@ export abstract class readline$instance {
 export type readline = readline$instance;
 
 export abstract class stream$instance {
+    static readonly promises: StreamPromises;
     static finished(stream: Stream, callback: Action<Exception>): void;
     static finished(stream: Stream): Task;
     static pipeline(...streams: unknown[]): void;
@@ -2482,6 +2740,7 @@ export abstract class stream$instance {
 export type stream = stream$instance;
 
 export abstract class timers$instance {
+    static readonly promises: TimersPromises;
     static clearImmediate(immediate: Immediate): void;
     static clearInterval(timeout: Timeout): void;
     static clearTimeout(timeout: Timeout): void;
@@ -2517,15 +2776,35 @@ export abstract class tls$instance {
 
 export type tls = tls$instance;
 
+export abstract class url$instance {
+    static domainToASCII(domain: string): string;
+    static domainToUnicode(domain: string): string;
+    static fileURLToPath(fileUrl: URL): string;
+    static fileURLToPath(fileUrl: string): string;
+    static fileURLToPathBuffer(fileUrl: URL): Buffer;
+    static fileURLToPathBuffer(fileUrl: string): Buffer;
+    static format(input: unknown): string;
+    static parse(input: string): URL | undefined;
+    static pathToFileURL(filePath: string): URL;
+    static resolve(from: string, to: string): string;
+    static urlToHttpOptions(input: URL): Dictionary<System_Internal.String, unknown | undefined>;
+}
+
+
+export type url = url$instance;
+
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
     static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string): Func<TResult>;
     static deprecate(action: Action, msg: string, code?: string): Action;
     static format(format: unknown, ...args: unknown[]): string;
+    static formatWithOptions(inspectOptions: unknown, formatValue: unknown, ...args: unknown[]): string;
     static inherits(constructor: unknown, superConstructor: unknown): void;
     static inspect(obj: unknown): string;
     static isArray(obj: unknown): boolean;
     static isDeepStrictEqual(val1: unknown, val2: unknown): boolean;
+    static stripVTControlCharacters(input: string): string;
+    static toUSVString(input: string): string;
 }
 
 
