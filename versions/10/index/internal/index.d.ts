@@ -199,6 +199,8 @@ export const AnyTxtRecord: {
 export type AnyTxtRecord = AnyTxtRecord$instance;
 
 export interface AssertionError$instance extends Exception {
+    readonly __tsonic_iface_System_Runtime_Serialization_ISerializable: never;
+
     get actual(): unknown | undefined;
     set actual(value: unknown | undefined);
     readonly code: string;
@@ -661,6 +663,8 @@ export const DgramSocket: {
 export type DgramSocket = DgramSocket$instance;
 
 export interface DiffieHellman$instance {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
@@ -727,6 +731,8 @@ export const DnsPromises: {
 export type DnsPromises = DnsPromises$instance;
 
 export interface DSAPrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -742,6 +748,8 @@ export const DSAPrivateKeyObject: {
 export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
 
 export interface DSAPublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -778,6 +786,8 @@ export const Duplex: {
 export type Duplex = Duplex$instance;
 
 export interface ECDH$instance {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[], outputEncoding?: string): string;
     computeSecret(otherPublicKey: byte[]): byte[];
@@ -803,6 +813,8 @@ export const ECDH: {
 export type ECDH = ECDH$instance;
 
 export interface EdDSAPrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -818,6 +830,8 @@ export const EdDSAPrivateKeyObject: {
 export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
 
 export interface EdDSAPublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -981,6 +995,8 @@ export const Hmac: {
 export type Hmac = Hmac$instance;
 
 export interface Immediate$instance {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     Dispose(): void;
     hasRef(): boolean;
     ref(): Immediate;
@@ -1053,6 +1069,8 @@ export const IpcSocketConnectOpts: {
 export type IpcSocketConnectOpts = IpcSocketConnectOpts$instance;
 
 export interface KeyObject$instance {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -1356,6 +1374,8 @@ export const PerformanceObserverOptions: {
 export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 
 export interface PrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -1372,6 +1392,11 @@ export const PrivateKeyObject: {
 export type PrivateKeyObject = PrivateKeyObject$instance;
 
 export interface ProcessEnv$instance {
+    readonly __tsonic_iface_System_Collections_Generic_ICollection_1: never;
+    readonly __tsonic_iface_System_Collections_Generic_IDictionary_2: never;
+    readonly __tsonic_iface_System_Collections_Generic_IEnumerable_1: never;
+    readonly __tsonic_iface_System_Collections_IEnumerable: never;
+
     readonly Count: int;
     readonly IsReadOnly: boolean;
     [key: string]: string | undefined;
@@ -1413,6 +1438,8 @@ export const ProcessVersions: {
 export type ProcessVersions = ProcessVersions$instance;
 
 export interface PublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -1557,6 +1584,8 @@ export const ResolverOptions: {
 export type ResolverOptions = ResolverOptions$instance;
 
 export interface SecretKeyObject$instance extends KeyObject {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     readonly asymmetricKeyType: string | undefined;
     readonly symmetricKeySize: Nullable<System_Internal.Int32>;
     readonly type: string;
@@ -1927,6 +1956,8 @@ export const TcpSocketConnectOpts: {
 export type TcpSocketConnectOpts = TcpSocketConnectOpts$instance;
 
 export interface Timeout$instance {
+    readonly __tsonic_iface_System_IDisposable: never;
+
     close(): void;
     Dispose(): void;
     hasRef(): boolean;

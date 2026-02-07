@@ -151,6 +151,8 @@ export const ServerResponse: {
 export type ServerResponse = ServerResponse$instance;
 
 export interface TypeError$instance extends Exception {
+    readonly __tsonic_iface_System_Runtime_Serialization_ISerializable: never;
+
 }
 
 
