@@ -9,18 +9,18 @@ import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint12
 import type { ptr } from "@tsonic/core/types.js";
 
 // Import types from other namespaces
-import * as System_Collections_Generic_Internal from "@tsonic/dotnet/System.Collections.Generic.js";
-import type { Dictionary, IAsyncEnumerable, ICollection, IDictionary, IEnumerable as IEnumerable__System_Collections_Generic, IEnumerator, KeyValuePair } from "@tsonic/dotnet/System.Collections.Generic.js";
-import * as System_Collections_Internal from "@tsonic/dotnet/System.Collections.js";
-import type { IEnumerable } from "@tsonic/dotnet/System.Collections.js";
-import * as System_Internal from "@tsonic/dotnet/System.js";
-import type { Action, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple, Void } from "@tsonic/dotnet/System.js";
-import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Runtime.Serialization.js";
-import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization.js";
-import type { SslProtocols } from "@tsonic/dotnet/System.Security.Authentication.js";
-import type { X509Certificate2, X509Certificate2Collection } from "@tsonic/dotnet/System.Security.Cryptography.X509Certificates.js";
-import type { Regex } from "@tsonic/dotnet/System.Text.RegularExpressions.js";
-import type { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
+import * as System_Collections_Generic_Internal from "@tsonic/dotnet/System.Collections.Generic/internal/index.js";
+import type { Dictionary_2, IAsyncEnumerable_1, ICollection_1, IDictionary_2, IEnumerable_1, IEnumerator_1, KeyValuePair_2 } from "@tsonic/dotnet/System.Collections.Generic/internal/index.js";
+import * as System_Collections_Internal from "@tsonic/dotnet/System.Collections/internal/index.js";
+import type { IEnumerable } from "@tsonic/dotnet/System.Collections/internal/index.js";
+import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Runtime.Serialization/internal/index.js";
+import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization/internal/index.js";
+import type { SslProtocols } from "@tsonic/dotnet/System.Security.Authentication/internal/index.js";
+import type { X509Certificate2, X509Certificate2Collection } from "@tsonic/dotnet/System.Security.Cryptography.X509Certificates/internal/index.js";
+import type { Regex } from "@tsonic/dotnet/System.Text.RegularExpressions/internal/index.js";
+import type { Task, Task_1 } from "@tsonic/dotnet/System.Threading.Tasks/internal/index.js";
+import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
+import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple_2, Void } from "@tsonic/dotnet/System/internal/index.js";
 
 export type DebugLogFunction = (message: string, args: unknown[]) => void;
 
@@ -2193,16 +2193,16 @@ export interface URLSearchParams$instance {
     readonly size: int;
     append(name: string, value: string): void;
     delete(name: string, value?: string): void;
-    entries(): IEnumerable__System_Collections_Generic<KeyValuePair<System_Internal.String, System_Internal.String>>;
+    entries(): IEnumerable<KeyValuePair<System_Internal.String, System_Internal.String>>;
     forEach(callback: Action<System_Internal.String, System_Internal.String>): void;
     get(name: string): string | undefined;
     getAll(name: string): string[];
     has(name: string, value?: string): boolean;
-    keys(): IEnumerable__System_Collections_Generic<System_Internal.String>;
+    keys(): IEnumerable<System_Internal.String>;
     set(name: string, value: string): void;
     sort(): void;
     ToString(): string;
-    values(): IEnumerable__System_Collections_Generic<System_Internal.String>;
+    values(): IEnumerable<System_Internal.String>;
 }
 
 
