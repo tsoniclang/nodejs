@@ -26,6 +26,8 @@ export type DebugLogFunction = (message: string, args: unknown[]) => void;
 
 
 export interface AddressInfo$instance {
+    readonly __tsonic_type_nodejs_AddressInfo: never;
+
     address: string;
     family: string;
     port: int;
@@ -40,6 +42,8 @@ export const AddressInfo: {
 export type AddressInfo = AddressInfo$instance;
 
 export interface AnyAaaaRecord$instance extends RecordWithTtl {
+    readonly __tsonic_type_nodejs_AnyAaaaRecord: never;
+
     readonly type: string;
 }
 
@@ -52,6 +56,8 @@ export const AnyAaaaRecord: {
 export type AnyAaaaRecord = AnyAaaaRecord$instance;
 
 export interface AnyARecord$instance extends RecordWithTtl {
+    readonly __tsonic_type_nodejs_AnyARecord: never;
+
     readonly type: string;
 }
 
@@ -64,6 +70,8 @@ export const AnyARecord: {
 export type AnyARecord = AnyARecord$instance;
 
 export interface AnyCaaRecord$instance extends CaaRecord {
+    readonly __tsonic_type_nodejs_AnyCaaRecord: never;
+
     readonly type: string;
 }
 
@@ -76,6 +84,8 @@ export const AnyCaaRecord: {
 export type AnyCaaRecord = AnyCaaRecord$instance;
 
 export interface AnyCnameRecord$instance {
+    readonly __tsonic_type_nodejs_AnyCnameRecord: never;
+
     readonly type: string;
     value: string;
 }
@@ -89,6 +99,8 @@ export const AnyCnameRecord: {
 export type AnyCnameRecord = AnyCnameRecord$instance;
 
 export interface AnyMxRecord$instance extends MxRecord {
+    readonly __tsonic_type_nodejs_AnyMxRecord: never;
+
     readonly type: string;
 }
 
@@ -101,6 +113,8 @@ export const AnyMxRecord: {
 export type AnyMxRecord = AnyMxRecord$instance;
 
 export interface AnyNaptrRecord$instance extends NaptrRecord {
+    readonly __tsonic_type_nodejs_AnyNaptrRecord: never;
+
     readonly type: string;
 }
 
@@ -113,6 +127,8 @@ export const AnyNaptrRecord: {
 export type AnyNaptrRecord = AnyNaptrRecord$instance;
 
 export interface AnyNsRecord$instance {
+    readonly __tsonic_type_nodejs_AnyNsRecord: never;
+
     readonly type: string;
     value: string;
 }
@@ -126,6 +142,8 @@ export const AnyNsRecord: {
 export type AnyNsRecord = AnyNsRecord$instance;
 
 export interface AnyPtrRecord$instance {
+    readonly __tsonic_type_nodejs_AnyPtrRecord: never;
+
     readonly type: string;
     value: string;
 }
@@ -139,6 +157,8 @@ export const AnyPtrRecord: {
 export type AnyPtrRecord = AnyPtrRecord$instance;
 
 export interface AnyRecord$instance {
+    readonly __tsonic_type_nodejs_AnyRecord: never;
+
     type: string;
 }
 
@@ -150,6 +170,8 @@ export const AnyRecord: (abstract new() => AnyRecord) & {
 export type AnyRecord = AnyRecord$instance;
 
 export interface AnySoaRecord$instance extends SoaRecord {
+    readonly __tsonic_type_nodejs_AnySoaRecord: never;
+
     readonly type: string;
 }
 
@@ -162,6 +184,8 @@ export const AnySoaRecord: {
 export type AnySoaRecord = AnySoaRecord$instance;
 
 export interface AnySrvRecord$instance extends SrvRecord {
+    readonly __tsonic_type_nodejs_AnySrvRecord: never;
+
     readonly type: string;
 }
 
@@ -174,6 +198,8 @@ export const AnySrvRecord: {
 export type AnySrvRecord = AnySrvRecord$instance;
 
 export interface AnyTlsaRecord$instance extends TlsaRecord {
+    readonly __tsonic_type_nodejs_AnyTlsaRecord: never;
+
     readonly type: string;
 }
 
@@ -186,6 +212,8 @@ export const AnyTlsaRecord: {
 export type AnyTlsaRecord = AnyTlsaRecord$instance;
 
 export interface AnyTxtRecord$instance {
+    readonly __tsonic_type_nodejs_AnyTxtRecord: never;
+
     entries: string[];
     readonly type: string;
 }
@@ -199,6 +227,8 @@ export const AnyTxtRecord: {
 export type AnyTxtRecord = AnyTxtRecord$instance;
 
 export interface AssertionError$instance extends Exception {
+    readonly __tsonic_type_nodejs_AssertionError: never;
+
     readonly __tsonic_iface_System_Runtime_Serialization_ISerializable: never;
 
     get actual(): unknown | undefined;
@@ -219,11 +249,13 @@ export const AssertionError: {
 export type AssertionError = AssertionError$instance;
 
 export interface BindOptions$instance {
+    readonly __tsonic_type_nodejs_BindOptions: never;
+
     get address(): string | undefined;
     set address(value: string | undefined);
     exclusive: boolean;
-    fd: Nullable<System_Internal.Int32>;
-    port: Nullable<System_Internal.Int32>;
+    fd: Nullable_1<System_Internal.Int32>;
+    port: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -235,6 +267,8 @@ export const BindOptions: {
 export type BindOptions = BindOptions$instance;
 
 export interface BlockList$instance {
+    readonly __tsonic_type_nodejs_BlockList: never;
+
     addAddress(address: string, type?: string): void;
     addRange(start: string, end: string, type?: string): void;
     addSubnet(network: string, prefix: int, type?: string): void;
@@ -251,9 +285,11 @@ export const BlockList: {
 export type BlockList = BlockList$instance;
 
 export interface BrotliOptions$instance {
-    chunkSize: Nullable<System_Internal.Int32>;
-    maxOutputLength: Nullable<System_Internal.Int32>;
-    quality: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_BrotliOptions: never;
+
+    chunkSize: Nullable_1<System_Internal.Int32>;
+    maxOutputLength: Nullable_1<System_Internal.Int32>;
+    quality: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -265,15 +301,17 @@ export const BrotliOptions: {
 export type BrotliOptions = BrotliOptions$instance;
 
 export interface Buffer$instance {
+    readonly __tsonic_type_nodejs_Buffer: never;
+
     [index: number]: byte;
     readonly length: int;
-    compare(target: Buffer, targetStart?: Nullable<System_Internal.Int32>, targetEnd?: Nullable<System_Internal.Int32>, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
-    copy(target: Buffer, targetStart?: int, sourceStart?: Nullable<System_Internal.Int32>, sourceEnd?: Nullable<System_Internal.Int32>): int;
+    compare(target: Buffer, targetStart?: Nullable_1<System_Internal.Int32>, targetEnd?: Nullable_1<System_Internal.Int32>, sourceStart?: Nullable_1<System_Internal.Int32>, sourceEnd?: Nullable_1<System_Internal.Int32>): int;
+    copy(target: Buffer, targetStart?: int, sourceStart?: Nullable_1<System_Internal.Int32>, sourceEnd?: Nullable_1<System_Internal.Int32>): int;
     equals(otherBuffer: Buffer): boolean;
-    fill(value: unknown, offset?: int, end?: Nullable<System_Internal.Int32>, encoding?: string): Buffer;
+    fill(value: unknown, offset?: int, end?: Nullable_1<System_Internal.Int32>, encoding?: string): Buffer;
     includes(value: unknown, byteOffset?: int, encoding?: string): boolean;
     indexOf(value: unknown, byteOffset?: int, encoding?: string): int;
-    lastIndexOf(value: unknown, byteOffset?: Nullable<System_Internal.Int32>, encoding?: string): int;
+    lastIndexOf(value: unknown, byteOffset?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
     readBigInt64BE(offset?: int): long;
     readBigInt64LE(offset?: int): long;
     readBigUint64BE(offset?: int): ulong;
@@ -306,14 +344,14 @@ export interface Buffer$instance {
     readUintLE(offset: int, byteLength: int): ulong;
     readUIntLE(offset: int, byteLength: int): ulong;
     reverse(): Buffer;
-    slice(start?: Nullable<System_Internal.Int32>, end?: Nullable<System_Internal.Int32>): Buffer;
-    subarray(start?: Nullable<System_Internal.Int32>, end?: Nullable<System_Internal.Int32>): Buffer;
+    slice(start?: Nullable_1<System_Internal.Int32>, end?: Nullable_1<System_Internal.Int32>): Buffer;
+    subarray(start?: Nullable_1<System_Internal.Int32>, end?: Nullable_1<System_Internal.Int32>): Buffer;
     swap16(): Buffer;
     swap32(): Buffer;
     swap64(): Buffer;
     toJSON(): unknown;
-    toString(encoding?: string, start?: int, end?: Nullable<System_Internal.Int32>): string;
-    write(str: string, offset?: int, length?: Nullable<System_Internal.Int32>, encoding?: string): int;
+    toString(encoding?: string, start?: int, end?: Nullable_1<System_Internal.Int32>): string;
+    write(str: string, offset?: int, length?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
     writeBigInt64BE(value: long, offset?: int): int;
     writeBigInt64LE(value: long, offset?: int): int;
     writeBigUint64BE(value: ulong, offset?: int): int;
@@ -355,7 +393,7 @@ export const Buffer: {
     allocUnsafeSlow(size: int): Buffer;
     byteLength(str: string, encoding?: string): int;
     compare(buf1: Buffer, buf2: Buffer): int;
-    concat(list: Buffer[], totalLength?: Nullable<System_Internal.Int32>): Buffer;
+    concat(list: Buffer[], totalLength?: Nullable_1<System_Internal.Int32>): Buffer;
     from(buffer: Buffer): Buffer;
     from(array: byte[]): Buffer;
     from(array: int[]): Buffer;
@@ -369,6 +407,8 @@ export const Buffer: {
 export type Buffer = Buffer$instance;
 
 export interface BufferConstants$instance {
+    readonly __tsonic_type_nodejs_BufferConstants: never;
+
     readonly MAX_LENGTH: int;
     readonly MAX_STRING_LENGTH: int;
 }
@@ -382,6 +422,8 @@ export const BufferConstants: {
 export type BufferConstants = BufferConstants$instance;
 
 export interface CaaRecord$instance {
+    readonly __tsonic_type_nodejs_CaaRecord: never;
+
     get contactemail(): string | undefined;
     set contactemail(value: string | undefined);
     get contactphone(): string | undefined;
@@ -404,8 +446,10 @@ export const CaaRecord: {
 export type CaaRecord = CaaRecord$instance;
 
 export interface ChildProcess$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_ChildProcess: never;
+
     connected: boolean;
-    exitCode: Nullable<System_Internal.Int32>;
+    exitCode: Nullable_1<System_Internal.Int32>;
     readonly killed: boolean;
     readonly pid: int;
     referenced: boolean;
@@ -422,7 +466,7 @@ export interface ChildProcess$instance extends EventEmitter {
     disconnect(): void;
     kill(signal?: string): boolean;
     ref(): void;
-    send(message: unknown, sendHandle?: unknown, options?: unknown, callback?: Action<Exception>): boolean;
+    send(message: unknown, sendHandle?: unknown, options?: unknown, callback?: Action_1<Exception>): boolean;
     unref(): void;
 }
 
@@ -434,6 +478,8 @@ export const ChildProcess: {
 export type ChildProcess = ChildProcess$instance;
 
 export interface Cipher$instance extends Transform {
+    readonly __tsonic_type_nodejs_Cipher: never;
+
     Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
@@ -453,6 +499,8 @@ export const Cipher: {
 export type Cipher = Cipher$instance;
 
 export interface CipherNameAndProtocol$instance {
+    readonly __tsonic_type_nodejs_CipherNameAndProtocol: never;
+
     name: string;
     standardName: string;
     version: string;
@@ -467,11 +515,13 @@ export const CipherNameAndProtocol: {
 export type CipherNameAndProtocol = CipherNameAndProtocol$instance;
 
 export interface CommonConnectionOptions$instance {
+    readonly __tsonic_type_nodejs_CommonConnectionOptions: never;
+
     get ALPNProtocols(): string[] | undefined;
     set ALPNProtocols(value: string[] | undefined);
-    enableTrace: Nullable<System_Internal.Boolean>;
-    rejectUnauthorized: Nullable<System_Internal.Boolean>;
-    requestCert: Nullable<System_Internal.Boolean>;
+    enableTrace: Nullable_1<System_Internal.Boolean>;
+    rejectUnauthorized: Nullable_1<System_Internal.Boolean>;
+    requestCert: Nullable_1<System_Internal.Boolean>;
     get secureContext(): SecureContext | undefined;
     set secureContext(value: SecureContext | undefined);
 }
@@ -485,6 +535,8 @@ export const CommonConnectionOptions: {
 export type CommonConnectionOptions = CommonConnectionOptions$instance;
 
 export interface ConnectionOptions$instance extends CommonConnectionOptions {
+    readonly __tsonic_type_nodejs_ConnectionOptions: never;
+
     get ca(): unknown | undefined;
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
@@ -495,10 +547,10 @@ export interface ConnectionOptions$instance extends CommonConnectionOptions {
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
-    port: Nullable<System_Internal.Int32>;
+    port: Nullable_1<System_Internal.Int32>;
     get servername(): string | undefined;
     set servername(value: string | undefined);
-    timeout: Nullable<System_Internal.Int32>;
+    timeout: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -510,6 +562,8 @@ export const ConnectionOptions: {
 export type ConnectionOptions = ConnectionOptions$instance;
 
 export interface ConsoleConstructor$instance {
+    readonly __tsonic_type_nodejs_ConsoleConstructor: never;
+
     assert(value: boolean, message?: string, ...optionalParams: unknown[]): void;
     clear(): void;
     count(label?: string): void;
@@ -536,13 +590,15 @@ export interface ConsoleConstructor$instance {
 
 
 export const ConsoleConstructor: {
-    new(stdout: unknown, stderr: unknown, ignoreErrors: boolean, colorMode: unknown, inspectOptions: Nullable<System_Internal.Int32>, groupIndentation: boolean): ConsoleConstructor;
+    new(stdout: unknown, stderr: unknown, ignoreErrors: boolean, colorMode: unknown, inspectOptions: Nullable_1<System_Internal.Int32>, groupIndentation: boolean): ConsoleConstructor;
 };
 
 
 export type ConsoleConstructor = ConsoleConstructor$instance;
 
 export interface CpuInfo$instance {
+    readonly __tsonic_type_nodejs_CpuInfo: never;
+
     model: string;
     speed: int;
     times: CpuTimes;
@@ -557,6 +613,8 @@ export const CpuInfo: {
 export type CpuInfo = CpuInfo$instance;
 
 export interface CpuTimes$instance {
+    readonly __tsonic_type_nodejs_CpuTimes: never;
+
     idle: long;
     irq: long;
     nice: long;
@@ -573,6 +631,8 @@ export const CpuTimes: {
 export type CpuTimes = CpuTimes$instance;
 
 export interface CursorPosition$instance {
+    readonly __tsonic_type_nodejs_CursorPosition: never;
+
     cols: int;
     rows: int;
 }
@@ -586,6 +646,8 @@ export const CursorPosition: {
 export type CursorPosition = CursorPosition$instance;
 
 export interface Decipher$instance extends Transform {
+    readonly __tsonic_type_nodejs_Decipher: never;
+
     Dispose(): void;
     final(outputEncoding?: string): string;
     final(): byte[];
@@ -604,6 +666,8 @@ export const Decipher: {
 export type Decipher = Decipher$instance;
 
 export interface DetailedPeerCertificate$instance extends PeerCertificate {
+    readonly __tsonic_type_nodejs_DetailedPeerCertificate: never;
+
     get issuerCertificate(): DetailedPeerCertificate | undefined;
     set issuerCertificate(value: DetailedPeerCertificate | undefined);
 }
@@ -617,6 +681,8 @@ export const DetailedPeerCertificate: {
 export type DetailedPeerCertificate = DetailedPeerCertificate$instance;
 
 export interface DgramSocket$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_DgramSocket: never;
+
     addMembership(multicastAddress: string, multicastInterface?: string): void;
     address(): AddressInfo;
     addSourceSpecificMembership(sourceAddress: string, groupAddress: string, multicastInterface?: string): void;
@@ -636,15 +702,15 @@ export interface DgramSocket$instance extends EventEmitter {
     getSendQueueSize(): int;
     ref(): DgramSocket;
     remoteAddress(): AddressInfo;
-    send(msg: byte[], port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
-    send(msg: string, port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: string, port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: string, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, port?: Nullable<System_Internal.Int32>, address?: string, callback?: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, port: int, callback: Action<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, callback: Action<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: string, port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: string, port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: string, callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], offset: int, length: int, port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], offset: int, length: int, port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], offset: int, length: int, callback: Action_2<Exception, System_Internal.Int32>): void;
     setBroadcast(flag: boolean): void;
     setMulticastInterface(multicastInterface: string): void;
     setMulticastLoopback(flag: boolean): boolean;
@@ -663,6 +729,8 @@ export const DgramSocket: {
 export type DgramSocket = DgramSocket$instance;
 
 export interface DiffieHellman$instance {
+    readonly __tsonic_type_nodejs_DiffieHellman: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
@@ -695,29 +763,31 @@ export const DiffieHellman: {
 export type DiffieHellman = DiffieHellman$instance;
 
 export interface DnsPromises$instance {
+    readonly __tsonic_type_nodejs_DnsPromises: never;
+
     getDefaultResultOrder(): string;
     getServers(): string[];
-    lookup(hostname: string, options?: LookupOptions): Task<LookupAddress>;
-    lookupAll(hostname: string, options?: LookupOptions): Task<LookupAddress[]>;
-    lookupService(address: string, port: int): Task<LookupServiceResult>;
-    resolve(hostname: string): Task<string[]>;
-    resolve(hostname: string, rrtype: string): Task<unknown>;
-    resolve4(hostname: string): Task<string[]>;
-    resolve4(hostname: string, options: ResolveOptions): Task<unknown>;
-    resolve6(hostname: string): Task<string[]>;
-    resolve6(hostname: string, options: ResolveOptions): Task<unknown>;
-    resolveAny(hostname: string): Task<unknown[]>;
-    resolveCaa(hostname: string): Task<CaaRecord[]>;
-    resolveCname(hostname: string): Task<string[]>;
-    resolveMx(hostname: string): Task<MxRecord[]>;
-    resolveNaptr(hostname: string): Task<NaptrRecord[]>;
-    resolveNs(hostname: string): Task<string[]>;
-    resolvePtr(hostname: string): Task<string[]>;
-    resolveSoa(hostname: string): Task<SoaRecord>;
-    resolveSrv(hostname: string): Task<SrvRecord[]>;
-    resolveTlsa(hostname: string): Task<TlsaRecord[]>;
-    resolveTxt(hostname: string): Task<string[][]>;
-    reverse(ip: string): Task<string[]>;
+    lookup(hostname: string, options?: LookupOptions): Task_1<LookupAddress>;
+    lookupAll(hostname: string, options?: LookupOptions): Task_1<LookupAddress[]>;
+    lookupService(address: string, port: int): Task_1<LookupServiceResult>;
+    resolve(hostname: string): Task_1<string[]>;
+    resolve(hostname: string, rrtype: string): Task_1<unknown>;
+    resolve4(hostname: string): Task_1<string[]>;
+    resolve4(hostname: string, options: ResolveOptions): Task_1<unknown>;
+    resolve6(hostname: string): Task_1<string[]>;
+    resolve6(hostname: string, options: ResolveOptions): Task_1<unknown>;
+    resolveAny(hostname: string): Task_1<unknown[]>;
+    resolveCaa(hostname: string): Task_1<CaaRecord[]>;
+    resolveCname(hostname: string): Task_1<string[]>;
+    resolveMx(hostname: string): Task_1<MxRecord[]>;
+    resolveNaptr(hostname: string): Task_1<NaptrRecord[]>;
+    resolveNs(hostname: string): Task_1<string[]>;
+    resolvePtr(hostname: string): Task_1<string[]>;
+    resolveSoa(hostname: string): Task_1<SoaRecord>;
+    resolveSrv(hostname: string): Task_1<SrvRecord[]>;
+    resolveTlsa(hostname: string): Task_1<TlsaRecord[]>;
+    resolveTxt(hostname: string): Task_1<string[][]>;
+    reverse(ip: string): Task_1<string[]>;
     setDefaultResultOrder(order: string): void;
     setServers(servers: string[]): void;
 }
@@ -731,10 +801,12 @@ export const DnsPromises: {
 export type DnsPromises = DnsPromises$instance;
 
 export interface DSAPrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_DSAPrivateKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -748,10 +820,12 @@ export const DSAPrivateKeyObject: {
 export type DSAPrivateKeyObject = DSAPrivateKeyObject$instance;
 
 export interface DSAPublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_DSAPublicKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -765,6 +839,8 @@ export const DSAPublicKeyObject: {
 export type DSAPublicKeyObject = DSAPublicKeyObject$instance;
 
 export interface Duplex$instance extends Readable {
+    readonly __tsonic_type_nodejs_Duplex: never;
+
     readonly writable: boolean;
     readonly writableCorked: boolean;
     readonly writableEnded: boolean;
@@ -786,6 +862,8 @@ export const Duplex: {
 export type Duplex = Duplex$instance;
 
 export interface ECDH$instance {
+    readonly __tsonic_type_nodejs_ECDH: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     computeSecret(otherPublicKey: string, inputEncoding?: string, outputEncoding?: string): string;
@@ -813,10 +891,12 @@ export const ECDH: {
 export type ECDH = ECDH$instance;
 
 export interface EdDSAPrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_EdDSAPrivateKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -830,10 +910,12 @@ export const EdDSAPrivateKeyObject: {
 export type EdDSAPrivateKeyObject = EdDSAPrivateKeyObject$instance;
 
 export interface EdDSAPublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_EdDSAPublicKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -847,6 +929,8 @@ export const EdDSAPublicKeyObject: {
 export type EdDSAPublicKeyObject = EdDSAPublicKeyObject$instance;
 
 export interface EphemeralKeyInfo$instance {
+    readonly __tsonic_type_nodejs_EphemeralKeyInfo: never;
+
     get name(): string | undefined;
     set name(value: string | undefined);
     size: int;
@@ -862,6 +946,8 @@ export const EphemeralKeyInfo: {
 export type EphemeralKeyInfo = EphemeralKeyInfo$instance;
 
 export interface EventEmitter$instance {
+    readonly __tsonic_type_nodejs_EventEmitter: never;
+
     addListener(eventName: string, listener: Function): EventEmitter;
     emit(eventName: string, ...args: unknown[]): boolean;
     eventNames(): string[];
@@ -883,13 +969,15 @@ export interface EventEmitter$instance {
 export const EventEmitter: {
     new(): EventEmitter;
     defaultMaxListeners: int;
-    once(emitter: EventEmitter, eventName: string): Task<(unknown | undefined)[]>;
+    once(emitter: EventEmitter, eventName: string): Task_1<(unknown | undefined)[]>;
 };
 
 
 export type EventEmitter = EventEmitter$instance;
 
 export interface ExecOptions$instance {
+    readonly __tsonic_type_nodejs_ExecOptions: never;
+
     get argv0(): string | undefined;
     set argv0(value: string | undefined);
     get cwd(): string | undefined;
@@ -899,7 +987,7 @@ export interface ExecOptions$instance {
     set encoding(value: string | undefined);
     get env(): unknown | undefined;
     set env(value: unknown | undefined);
-    gid: Nullable<System_Internal.Int32>;
+    gid: Nullable_1<System_Internal.Int32>;
     get input(): string | undefined;
     set input(value: string | undefined);
     get killSignal(): string | undefined;
@@ -910,7 +998,7 @@ export interface ExecOptions$instance {
     get stdio(): string | undefined;
     set stdio(value: string | undefined);
     timeout: int;
-    uid: Nullable<System_Internal.Int32>;
+    uid: Nullable_1<System_Internal.Int32>;
     windowsHide: boolean;
     windowsVerbatimArguments: boolean;
 }
@@ -924,30 +1012,32 @@ export const ExecOptions: {
 export type ExecOptions = ExecOptions$instance;
 
 export interface FsPromises$instance {
+    readonly __tsonic_type_nodejs_FsPromises: never;
+
     access(path: string, mode?: int): Task;
     appendFile(path: string, data: string, encoding?: string): Task;
     chmod(path: string, mode: int): Task;
     close(fd: int): Task;
     copyFile(src: string, dest: string, mode?: int): Task;
     cp(src: string, dest: string, recursive?: boolean): Task;
-    fstat(fd: int): Task<Stats>;
+    fstat(fd: int): Task_1<Stats>;
     mkdir(path: string, recursive?: boolean): Task;
-    open(path: string, flags: string, mode?: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    readdir(path: string, withFileTypes?: boolean): Task<string[]>;
-    readFile(path: string, encoding?: string): Task<System_Internal.String>;
-    readFileBytes(path: string): Task<byte[]>;
-    readlink(path: string): Task<System_Internal.String>;
-    realpath(path: string): Task<System_Internal.String>;
+    open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
+    readFile(path: string, encoding?: string): Task_1<System_Internal.String>;
+    readFileBytes(path: string): Task_1<byte[]>;
+    readlink(path: string): Task_1<System_Internal.String>;
+    realpath(path: string): Task_1<System_Internal.String>;
     rename(oldPath: string, newPath: string): Task;
     rm(path: string, recursive?: boolean): Task;
     rmdir(path: string, recursive?: boolean): Task;
-    stat(path: string): Task<Stats>;
+    stat(path: string): Task_1<Stats>;
     symlink(target: string, path: string, type?: string): Task;
     truncate(path: string, len?: long): Task;
     unlink(path: string): Task;
-    write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    write(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): Task<System_Internal.Int32>;
+    write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    write(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): Task_1<System_Internal.Int32>;
     writeFile(path: string, data: string, encoding?: string): Task;
     writeFileBytes(path: string, data: byte[]): Task;
 }
@@ -961,6 +1051,8 @@ export const FsPromises: {
 export type FsPromises = FsPromises$instance;
 
 export interface Hash$instance extends Transform {
+    readonly __tsonic_type_nodejs_Hash: never;
+
     copy(): Hash;
     digest(encoding: string): string;
     digest(): byte[];
@@ -979,6 +1071,8 @@ export const Hash: {
 export type Hash = Hash$instance;
 
 export interface Hmac$instance extends Transform {
+    readonly __tsonic_type_nodejs_Hmac: never;
+
     digest(encoding?: string): string;
     digest(): byte[];
     Dispose(): void;
@@ -995,6 +1089,8 @@ export const Hmac: {
 export type Hmac = Hmac$instance;
 
 export interface Immediate$instance {
+    readonly __tsonic_type_nodejs_Immediate: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     Dispose(): void;
@@ -1011,6 +1107,8 @@ export const Immediate: {
 export type Immediate = Immediate$instance;
 
 export interface Interface$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Interface: never;
+
     readonly cursor: int;
     readonly line: string;
     close(): void;
@@ -1018,8 +1116,8 @@ export interface Interface$instance extends EventEmitter {
     getPrompt(): string;
     pause(): Interface;
     prompt(preserveCursor?: boolean): void;
-    question(query: string, callback: Action<System_Internal.String>): void;
-    questionAsync(query: string): Task<System_Internal.String>;
+    question(query: string, callback: Action_1<System_Internal.String>): void;
+    questionAsync(query: string): Task_1<System_Internal.String>;
     resume(): Interface;
     setPrompt(prompt: string): void;
     write(data: unknown, key?: unknown): void;
@@ -1033,19 +1131,21 @@ export const Interface: {
 export type Interface = Interface$instance;
 
 export interface InterfaceOptions$instance {
-    escapeCodeTimeout: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_InterfaceOptions: never;
+
+    escapeCodeTimeout: Nullable_1<System_Internal.Int32>;
     get history(): string[] | undefined;
     set history(value: string[] | undefined);
-    historySize: Nullable<System_Internal.Int32>;
+    historySize: Nullable_1<System_Internal.Int32>;
     get input(): Readable | undefined;
     set input(value: Readable | undefined);
     get output(): Writable | undefined;
     set output(value: Writable | undefined);
     get prompt(): string | undefined;
     set prompt(value: string | undefined);
-    removeHistoryDuplicates: Nullable<System_Internal.Boolean>;
-    tabSize: Nullable<System_Internal.Int32>;
-    terminal: Nullable<System_Internal.Boolean>;
+    removeHistoryDuplicates: Nullable_1<System_Internal.Boolean>;
+    tabSize: Nullable_1<System_Internal.Int32>;
+    terminal: Nullable_1<System_Internal.Boolean>;
 }
 
 
@@ -1057,6 +1157,8 @@ export const InterfaceOptions: {
 export type InterfaceOptions = InterfaceOptions$instance;
 
 export interface IpcSocketConnectOpts$instance {
+    readonly __tsonic_type_nodejs_IpcSocketConnectOpts: never;
+
     path: string;
 }
 
@@ -1069,10 +1171,12 @@ export const IpcSocketConnectOpts: {
 export type IpcSocketConnectOpts = IpcSocketConnectOpts$instance;
 
 export interface KeyObject$instance {
+    readonly __tsonic_type_nodejs_KeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1086,13 +1190,15 @@ export const KeyObject: (abstract new() => KeyObject) & {
 export type KeyObject = KeyObject$instance;
 
 export interface ListenOptions$instance {
-    backlog: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_ListenOptions: never;
+
+    backlog: Nullable_1<System_Internal.Int32>;
     get host(): string | undefined;
     set host(value: string | undefined);
-    ipv6Only: Nullable<System_Internal.Boolean>;
+    ipv6Only: Nullable_1<System_Internal.Boolean>;
     get path(): string | undefined;
     set path(value: string | undefined);
-    port: Nullable<System_Internal.Int32>;
+    port: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -1104,6 +1210,8 @@ export const ListenOptions: {
 export type ListenOptions = ListenOptions$instance;
 
 export interface LookupAddress$instance {
+    readonly __tsonic_type_nodejs_LookupAddress: never;
+
     address: string;
     family: int;
 }
@@ -1117,13 +1225,15 @@ export const LookupAddress: {
 export type LookupAddress = LookupAddress$instance;
 
 export interface LookupOptions$instance {
-    all: Nullable<System_Internal.Boolean>;
+    readonly __tsonic_type_nodejs_LookupOptions: never;
+
+    all: Nullable_1<System_Internal.Boolean>;
     get family(): unknown | undefined;
     set family(value: unknown | undefined);
-    hints: Nullable<System_Internal.Int32>;
+    hints: Nullable_1<System_Internal.Int32>;
     get order(): string | undefined;
     set order(value: string | undefined);
-    verbatim: Nullable<System_Internal.Boolean>;
+    verbatim: Nullable_1<System_Internal.Boolean>;
 }
 
 
@@ -1135,6 +1245,8 @@ export const LookupOptions: {
 export type LookupOptions = LookupOptions$instance;
 
 export interface LookupServiceResult$instance {
+    readonly __tsonic_type_nodejs_LookupServiceResult: never;
+
     hostname: string;
     service: string;
 }
@@ -1148,9 +1260,11 @@ export const LookupServiceResult: {
 export type LookupServiceResult = LookupServiceResult$instance;
 
 export interface MarkOptions$instance {
+    readonly __tsonic_type_nodejs_MarkOptions: never;
+
     get detail(): unknown | undefined;
     set detail(value: unknown | undefined);
-    startTime: Nullable<System_Internal.Double>;
+    startTime: Nullable_1<System_Internal.Double>;
 }
 
 
@@ -1162,12 +1276,14 @@ export const MarkOptions: {
 export type MarkOptions = MarkOptions$instance;
 
 export interface MeasureOptions$instance {
+    readonly __tsonic_type_nodejs_MeasureOptions: never;
+
     get detail(): unknown | undefined;
     set detail(value: unknown | undefined);
-    end: Nullable<System_Internal.Double>;
+    end: Nullable_1<System_Internal.Double>;
     get endMark(): string | undefined;
     set endMark(value: string | undefined);
-    start: Nullable<System_Internal.Double>;
+    start: Nullable_1<System_Internal.Double>;
     get startMark(): string | undefined;
     set startMark(value: string | undefined);
 }
@@ -1181,6 +1297,8 @@ export const MeasureOptions: {
 export type MeasureOptions = MeasureOptions$instance;
 
 export interface MxRecord$instance {
+    readonly __tsonic_type_nodejs_MxRecord: never;
+
     exchange: string;
     priority: int;
 }
@@ -1194,6 +1312,8 @@ export const MxRecord: {
 export type MxRecord = MxRecord$instance;
 
 export interface NaptrRecord$instance {
+    readonly __tsonic_type_nodejs_NaptrRecord: never;
+
     flags: string;
     order: int;
     preference: int;
@@ -1211,6 +1331,8 @@ export const NaptrRecord: {
 export type NaptrRecord = NaptrRecord$instance;
 
 export interface ParsedPath$instance {
+    readonly __tsonic_type_nodejs_ParsedPath: never;
+
     base: string;
     dir: string;
     ext: string;
@@ -1227,8 +1349,10 @@ export const ParsedPath: {
 export type ParsedPath = ParsedPath$instance;
 
 export interface PassThrough$instance extends Transform {
-    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
-    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
+    readonly __tsonic_type_nodejs_PassThrough: never;
+
+    _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
+    _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
 }
 
 
@@ -1240,6 +1364,8 @@ export const PassThrough: {
 export type PassThrough = PassThrough$instance;
 
 export interface PathModule$instance {
+    readonly __tsonic_type_nodejs_PathModule: never;
+
     readonly delimiter: string;
     readonly posix: PathModule;
     readonly sep: string;
@@ -1267,6 +1393,8 @@ export const PathModule: {
 export type PathModule = PathModule$instance;
 
 export interface PeerCertificate$instance {
+    readonly __tsonic_type_nodejs_PeerCertificate: never;
+
     ca: boolean;
     get ext_key_usage(): string[] | undefined;
     set ext_key_usage(value: string[] | undefined);
@@ -1293,6 +1421,8 @@ export const PeerCertificate: {
 export type PeerCertificate = PeerCertificate$instance;
 
 export interface PerformanceEntry$instance {
+    readonly __tsonic_type_nodejs_PerformanceEntry: never;
+
     readonly duration: double;
     readonly entryType: string;
     readonly name: string;
@@ -1307,6 +1437,8 @@ export const PerformanceEntry: {
 export type PerformanceEntry = PerformanceEntry$instance;
 
 export interface PerformanceMark$instance extends PerformanceEntry {
+    readonly __tsonic_type_nodejs_PerformanceMark: never;
+
     readonly detail: unknown | undefined;
 }
 
@@ -1319,6 +1451,8 @@ export const PerformanceMark: {
 export type PerformanceMark = PerformanceMark$instance;
 
 export interface PerformanceMeasure$instance extends PerformanceEntry {
+    readonly __tsonic_type_nodejs_PerformanceMeasure: never;
+
     readonly detail: unknown | undefined;
 }
 
@@ -1331,6 +1465,8 @@ export const PerformanceMeasure: {
 export type PerformanceMeasure = PerformanceMeasure$instance;
 
 export interface PerformanceObserver$instance {
+    readonly __tsonic_type_nodejs_PerformanceObserver: never;
+
     disconnect(): void;
     observe(options: PerformanceObserverOptions): void;
     takeRecords(): PerformanceObserverEntryList;
@@ -1338,7 +1474,7 @@ export interface PerformanceObserver$instance {
 
 
 export const PerformanceObserver: {
-    new(callback: Action<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver;
+    new(callback: Action_2<PerformanceObserverEntryList, PerformanceObserver>): PerformanceObserver;
     supportedEntryTypes(): string[];
 };
 
@@ -1346,6 +1482,8 @@ export const PerformanceObserver: {
 export type PerformanceObserver = PerformanceObserver$instance;
 
 export interface PerformanceObserverEntryList$instance {
+    readonly __tsonic_type_nodejs_PerformanceObserverEntryList: never;
+
     getEntries(): PerformanceEntry[];
     getEntriesByName(name: string, type?: string): PerformanceEntry[];
     getEntriesByType(type: string): PerformanceEntry[];
@@ -1360,6 +1498,8 @@ export const PerformanceObserverEntryList: {
 export type PerformanceObserverEntryList = PerformanceObserverEntryList$instance;
 
 export interface PerformanceObserverOptions$instance {
+    readonly __tsonic_type_nodejs_PerformanceObserverOptions: never;
+
     buffered: boolean;
     get entryTypes(): string[] | undefined;
     set entryTypes(value: string[] | undefined);
@@ -1374,10 +1514,12 @@ export const PerformanceObserverOptions: {
 export type PerformanceObserverOptions = PerformanceObserverOptions$instance;
 
 export interface PrivateKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_PrivateKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1392,6 +1534,8 @@ export const PrivateKeyObject: {
 export type PrivateKeyObject = PrivateKeyObject$instance;
 
 export interface ProcessEnv$instance {
+    readonly __tsonic_type_nodejs_ProcessEnv: never;
+
     readonly __tsonic_iface_System_Collections_Generic_ICollection_1: never;
     readonly __tsonic_iface_System_Collections_Generic_IDictionary_2: never;
     readonly __tsonic_iface_System_Collections_Generic_IEnumerable_1: never;
@@ -1400,17 +1544,17 @@ export interface ProcessEnv$instance {
     readonly Count: int;
     readonly IsReadOnly: boolean;
     [key: string]: string | undefined;
-    readonly Keys: ICollection<System_Internal.String>;
-    readonly Values: ICollection<string | undefined>;
+    readonly Keys: ICollection_1<System_Internal.String>;
+    readonly Values: ICollection_1<string | undefined>;
     Add(key: string, value: string): void;
-    Add(item: KeyValuePair<System_Internal.String, System_Internal.String>): void;
+    Add(item: KeyValuePair_2<System_Internal.String, System_Internal.String>): void;
     Clear(): void;
-    Contains(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
+    Contains(item: KeyValuePair_2<System_Internal.String, System_Internal.String>): boolean;
     ContainsKey(key: string): boolean;
-    CopyTo(array: KeyValuePair<System_Internal.String, System_Internal.String>[], arrayIndex: int): void;
-    GetEnumerator(): IEnumerator<KeyValuePair<System_Internal.String, System_Internal.String>>;
+    CopyTo(array: KeyValuePair_2<System_Internal.String, System_Internal.String>[], arrayIndex: int): void;
+    GetEnumerator(): IEnumerator_1<KeyValuePair_2<System_Internal.String, System_Internal.String>>;
     Remove(key: string): boolean;
-    Remove(item: KeyValuePair<System_Internal.String, System_Internal.String>): boolean;
+    Remove(item: KeyValuePair_2<System_Internal.String, System_Internal.String>): boolean;
     TryGetValue(key: string, value: string): boolean;
 }
 
@@ -1423,6 +1567,8 @@ export const ProcessEnv: {
 export type ProcessEnv = ProcessEnv$instance;
 
 export interface ProcessVersions$instance {
+    readonly __tsonic_type_nodejs_ProcessVersions: never;
+
     dotnet: string;
     node: string;
     tsonic: string;
@@ -1438,10 +1584,12 @@ export const ProcessVersions: {
 export type ProcessVersions = ProcessVersions$instance;
 
 export interface PublicKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_PublicKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1456,17 +1604,19 @@ export const PublicKeyObject: {
 export type PublicKeyObject = PublicKeyObject$instance;
 
 export interface Readable$instance extends Stream {
+    readonly __tsonic_type_nodejs_Readable: never;
+
     destroyed: boolean;
     readonly readable: boolean;
     readonly readableEnded: boolean;
-    readonly readableFlowing: Nullable<System_Internal.Boolean>;
+    readonly readableFlowing: Nullable_1<System_Internal.Boolean>;
     readonly readableLength: int;
     _read(size: int): void;
     destroy(error?: Exception): void;
     isPaused(): boolean;
     pause(): Readable;
     push(chunk: unknown, encoding?: string): boolean;
-    read(size?: Nullable<System_Internal.Int32>): unknown | undefined;
+    read(size?: Nullable_1<System_Internal.Int32>): unknown | undefined;
     resume(): Readable;
     setEncoding(encoding: string): Readable;
     unpipe(destination?: Stream): Readable;
@@ -1482,9 +1632,11 @@ export const Readable: {
 export type Readable = Readable$instance;
 
 export interface ReadlinePromises$instance {
+    readonly __tsonic_type_nodejs_ReadlinePromises: never;
+
     createInterface(options: InterfaceOptions): Interface;
     createInterface(input: Readable, output?: Writable): Interface;
-    question(rl: Interface, query: string): Task<System_Internal.String>;
+    question(rl: Interface, query: string): Task_1<System_Internal.String>;
 }
 
 
@@ -1496,6 +1648,8 @@ export const ReadlinePromises: {
 export type ReadlinePromises = ReadlinePromises$instance;
 
 export interface RecordWithTtl$instance {
+    readonly __tsonic_type_nodejs_RecordWithTtl: never;
+
     address: string;
     ttl: int;
 }
@@ -1509,6 +1663,8 @@ export const RecordWithTtl: {
 export type RecordWithTtl = RecordWithTtl$instance;
 
 export interface RemoteInfo$instance {
+    readonly __tsonic_type_nodejs_RemoteInfo: never;
+
     address: string;
     family: string;
     port: int;
@@ -1524,6 +1680,8 @@ export const RemoteInfo: {
 export type RemoteInfo = RemoteInfo$instance;
 
 export interface ResolveOptions$instance {
+    readonly __tsonic_type_nodejs_ResolveOptions: never;
+
     ttl: boolean;
 }
 
@@ -1536,26 +1694,28 @@ export const ResolveOptions: {
 export type ResolveOptions = ResolveOptions$instance;
 
 export interface Resolver$instance {
+    readonly __tsonic_type_nodejs_Resolver: never;
+
     cancel(): void;
     getServers(): string[];
-    resolve(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
-    resolve4(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    resolve6(hostname: string, callback: Action<Exception, string[]>): void;
-    resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
-    resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
-    resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
-    resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
-    resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
-    resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
-    resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
-    resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
-    resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
-    resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
-    resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
-    reverse(ip: string, callback: Action<Exception, string[]>): void;
+    resolve(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolve(hostname: string, rrtype: string, callback: Action_2<Exception, unknown>): void;
+    resolve4(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolve4(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
+    resolve6(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolve6(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
+    resolveAny(hostname: string, callback: Action_2<Exception, unknown[]>): void;
+    resolveCaa(hostname: string, callback: Action_2<Exception, CaaRecord[]>): void;
+    resolveCname(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolveMx(hostname: string, callback: Action_2<Exception, MxRecord[]>): void;
+    resolveNaptr(hostname: string, callback: Action_2<Exception, NaptrRecord[]>): void;
+    resolveNs(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolvePtr(hostname: string, callback: Action_2<Exception, string[]>): void;
+    resolveSoa(hostname: string, callback: Action_2<Exception, SoaRecord>): void;
+    resolveSrv(hostname: string, callback: Action_2<Exception, SrvRecord[]>): void;
+    resolveTlsa(hostname: string, callback: Action_2<Exception, TlsaRecord[]>): void;
+    resolveTxt(hostname: string, callback: Action_2<Exception, string[][]>): void;
+    reverse(ip: string, callback: Action_2<Exception, string[]>): void;
     setLocalAddress(ipv4?: string, ipv6?: string): void;
     setServers(servers: string[]): void;
 }
@@ -1570,9 +1730,11 @@ export const Resolver: {
 export type Resolver = Resolver$instance;
 
 export interface ResolverOptions$instance {
-    maxTimeout: Nullable<System_Internal.Int32>;
-    timeout: Nullable<System_Internal.Int32>;
-    tries: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_ResolverOptions: never;
+
+    maxTimeout: Nullable_1<System_Internal.Int32>;
+    timeout: Nullable_1<System_Internal.Int32>;
+    tries: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -1584,10 +1746,12 @@ export const ResolverOptions: {
 export type ResolverOptions = ResolverOptions$instance;
 
 export interface SecretKeyObject$instance extends KeyObject {
+    readonly __tsonic_type_nodejs_SecretKeyObject: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable<System_Internal.Int32>;
+    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1602,6 +1766,8 @@ export const SecretKeyObject: {
 export type SecretKeyObject = SecretKeyObject$instance;
 
 export interface SecureContext$instance {
+    readonly __tsonic_type_nodejs_SecureContext: never;
+
     readonly CACertificates: X509Certificate2Collection | undefined;
     readonly Certificate: X509Certificate2 | undefined;
     get context(): unknown | undefined;
@@ -1621,6 +1787,8 @@ export const SecureContext: {
 export type SecureContext = SecureContext$instance;
 
 export interface SecureContextOptions$instance {
+    readonly __tsonic_type_nodejs_SecureContextOptions: never;
+
     get ca(): unknown | undefined;
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
@@ -1648,11 +1816,13 @@ export const SecureContextOptions: {
 export type SecureContextOptions = SecureContextOptions$instance;
 
 export interface Server$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Server: never;
+
     readonly listening: boolean;
     maxConnections: int;
     address(): unknown | undefined;
-    close(callback?: Action<Exception>): Server;
-    getConnections(callback: Action<Exception, System_Internal.Int32>): void;
+    close(callback?: Action_1<Exception>): Server;
+    getConnections(callback: Action_2<Exception, System_Internal.Int32>): void;
     listen(port: int, hostname: string, backlog: int, listeningListener?: Action): Server;
     listen(port: int, hostname: string, listeningListener?: Action): Server;
     listen(port: int, backlog: int, listeningListener?: Action): Server;
@@ -1665,16 +1835,18 @@ export interface Server$instance extends EventEmitter {
 
 export const Server: {
     new(): Server;
-    new(connectionListener: Action<Socket>): Server;
-    new(options: ServerOpts, connectionListener: Action<Socket>): Server;
+    new(connectionListener: Action_1<Socket>): Server;
+    new(options: ServerOpts, connectionListener: Action_1<Socket>): Server;
 };
 
 
 export type Server = Server$instance;
 
 export interface ServerOpts$instance {
-    allowHalfOpen: Nullable<System_Internal.Boolean>;
-    pauseOnConnect: Nullable<System_Internal.Boolean>;
+    readonly __tsonic_type_nodejs_ServerOpts: never;
+
+    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
+    pauseOnConnect: Nullable_1<System_Internal.Boolean>;
 }
 
 
@@ -1686,6 +1858,8 @@ export const ServerOpts: {
 export type ServerOpts = ServerOpts$instance;
 
 export interface Sign$instance extends Transform {
+    readonly __tsonic_type_nodejs_Sign: never;
+
     Dispose(): void;
     Finalize(): void;
     sign(privateKey: string, outputEncoding?: string): string;
@@ -1704,6 +1878,8 @@ export const Sign: {
 export type Sign = Sign$instance;
 
 export interface SoaRecord$instance {
+    readonly __tsonic_type_nodejs_SoaRecord: never;
+
     expire: int;
     hostmaster: string;
     minttl: int;
@@ -1722,6 +1898,8 @@ export const SoaRecord: {
 export type SoaRecord = SoaRecord$instance;
 
 export interface Socket$instance extends Stream {
+    readonly __tsonic_type_nodejs_Socket: never;
+
     bytesRead: long;
     bytesWritten: long;
     readonly connecting: boolean;
@@ -1730,13 +1908,13 @@ export interface Socket$instance extends Stream {
     set localAddress(value: string | undefined);
     get localFamily(): string | undefined;
     set localFamily(value: string | undefined);
-    localPort: Nullable<System_Internal.Int32>;
+    localPort: Nullable_1<System_Internal.Int32>;
     readonly readyState: string;
     get remoteAddress(): string | undefined;
     set remoteAddress(value: string | undefined);
     get remoteFamily(): string | undefined;
     set remoteFamily(value: string | undefined);
-    remotePort: Nullable<System_Internal.Int32>;
+    remotePort: Nullable_1<System_Internal.Int32>;
     address(): unknown;
     connect(port: int, host?: string, connectionListener?: Action): Socket;
     connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
@@ -1756,8 +1934,8 @@ export interface Socket$instance extends Stream {
     setNoDelay(noDelay?: boolean): Socket;
     setTimeout(timeout: int, callback?: Action): Socket;
     unref(): Socket;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
+    write(data: byte[], callback?: Action_1<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
 }
 
 
@@ -1770,9 +1948,11 @@ export const Socket: {
 export type Socket = Socket$instance;
 
 export interface SocketAddress$instance {
+    readonly __tsonic_type_nodejs_SocketAddress: never;
+
     address: string;
     family: string;
-    flowlabel: Nullable<System_Internal.Int32>;
+    flowlabel: Nullable_1<System_Internal.Int32>;
     port: int;
 }
 
@@ -1785,12 +1965,14 @@ export const SocketAddress: {
 export type SocketAddress = SocketAddress$instance;
 
 export interface SocketAddressInitOptions$instance {
+    readonly __tsonic_type_nodejs_SocketAddressInitOptions: never;
+
     get address(): string | undefined;
     set address(value: string | undefined);
     get family(): string | undefined;
     set family(value: string | undefined);
-    flowlabel: Nullable<System_Internal.Int32>;
-    port: Nullable<System_Internal.Int32>;
+    flowlabel: Nullable_1<System_Internal.Int32>;
+    port: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -1802,10 +1984,12 @@ export const SocketAddressInitOptions: {
 export type SocketAddressInitOptions = SocketAddressInitOptions$instance;
 
 export interface SocketConstructorOpts$instance {
-    allowHalfOpen: Nullable<System_Internal.Boolean>;
-    fd: Nullable<System_Internal.Int32>;
-    readable: Nullable<System_Internal.Boolean>;
-    writable: Nullable<System_Internal.Boolean>;
+    readonly __tsonic_type_nodejs_SocketConstructorOpts: never;
+
+    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
+    fd: Nullable_1<System_Internal.Int32>;
+    readable: Nullable_1<System_Internal.Boolean>;
+    writable: Nullable_1<System_Internal.Boolean>;
 }
 
 
@@ -1817,11 +2001,13 @@ export const SocketConstructorOpts: {
 export type SocketConstructorOpts = SocketConstructorOpts$instance;
 
 export interface SocketOptions$instance {
+    readonly __tsonic_type_nodejs_SocketOptions: never;
+
     ipv6Only: boolean;
-    recvBufferSize: Nullable<System_Internal.Int32>;
+    recvBufferSize: Nullable_1<System_Internal.Int32>;
     reuseAddr: boolean;
     reusePort: boolean;
-    sendBufferSize: Nullable<System_Internal.Int32>;
+    sendBufferSize: Nullable_1<System_Internal.Int32>;
     type: string;
 }
 
@@ -1834,13 +2020,15 @@ export const SocketOptions: {
 export type SocketOptions = SocketOptions$instance;
 
 export interface SpawnSyncReturns_1$instance<T> {
+    readonly __tsonic_type_nodejs_SpawnSyncReturns_1: never;
+
     get error(): Exception | undefined;
     set error(value: Exception | undefined);
     output: (T | undefined)[];
     pid: int;
     get signal(): string | undefined;
     set signal(value: string | undefined);
-    status: Nullable<System_Internal.Int32>;
+    status: Nullable_1<System_Internal.Int32>;
     stderr: T;
     stdout: T;
 }
@@ -1854,6 +2042,8 @@ export const SpawnSyncReturns_1: {
 export type SpawnSyncReturns_1<T> = SpawnSyncReturns_1$instance<T>;
 
 export interface SrvRecord$instance {
+    readonly __tsonic_type_nodejs_SrvRecord: never;
+
     name: string;
     port: int;
     priority: int;
@@ -1869,6 +2059,8 @@ export const SrvRecord: {
 export type SrvRecord = SrvRecord$instance;
 
 export interface Stats$instance {
+    readonly __tsonic_type_nodejs_Stats: never;
+
     atime: DateTime;
     birthtime: DateTime;
     ctime: DateTime;
@@ -1895,6 +2087,8 @@ export const Stats: {
 export type Stats = Stats$instance;
 
 export interface Stream$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Stream: never;
+
     destroy(error?: Exception): void;
     pipe(destination: Stream, end?: boolean): Stream;
 }
@@ -1908,6 +2102,8 @@ export const Stream: {
 export type Stream = Stream$instance;
 
 export interface StreamPromises$instance {
+    readonly __tsonic_type_nodejs_StreamPromises: never;
+
     finished(streamValue: Stream): Task;
     pipeline(...streams: Stream[]): Task;
 }
@@ -1921,6 +2117,8 @@ export const StreamPromises: {
 export type StreamPromises = StreamPromises$instance;
 
 export interface StringDecoder$instance {
+    readonly __tsonic_type_nodejs_StringDecoder: never;
+
     end(buffer?: byte[]): string;
     write(buffer: byte[]): string;
 }
@@ -1934,16 +2132,18 @@ export const StringDecoder: {
 export type StringDecoder = StringDecoder$instance;
 
 export interface TcpSocketConnectOpts$instance {
-    family: Nullable<System_Internal.Int32>;
-    hints: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_TcpSocketConnectOpts: never;
+
+    family: Nullable_1<System_Internal.Int32>;
+    hints: Nullable_1<System_Internal.Int32>;
     get host(): string | undefined;
     set host(value: string | undefined);
-    keepAlive: Nullable<System_Internal.Boolean>;
-    keepAliveInitialDelay: Nullable<System_Internal.Int32>;
+    keepAlive: Nullable_1<System_Internal.Boolean>;
+    keepAliveInitialDelay: Nullable_1<System_Internal.Int32>;
     get localAddress(): string | undefined;
     set localAddress(value: string | undefined);
-    localPort: Nullable<System_Internal.Int32>;
-    noDelay: Nullable<System_Internal.Boolean>;
+    localPort: Nullable_1<System_Internal.Int32>;
+    noDelay: Nullable_1<System_Internal.Boolean>;
     port: int;
 }
 
@@ -1956,6 +2156,8 @@ export const TcpSocketConnectOpts: {
 export type TcpSocketConnectOpts = TcpSocketConnectOpts$instance;
 
 export interface Timeout$instance {
+    readonly __tsonic_type_nodejs_Timeout: never;
+
     readonly __tsonic_iface_System_IDisposable: never;
 
     close(): void;
@@ -1974,10 +2176,12 @@ export const Timeout: {
 export type Timeout = Timeout$instance;
 
 export interface TimersPromises$instance {
+    readonly __tsonic_type_nodejs_TimersPromises: never;
+
     readonly scheduler: TimersScheduler;
-    setImmediate(value?: unknown): Task<unknown | undefined>;
-    setInterval(delay?: int, value?: unknown): IAsyncEnumerable<unknown | undefined>;
-    setTimeout(delay?: int, value?: unknown): Task<unknown | undefined>;
+    setImmediate(value?: unknown): Task_1<unknown | undefined>;
+    setInterval(delay?: int, value?: unknown): IAsyncEnumerable_1<unknown | undefined>;
+    setTimeout(delay?: int, value?: unknown): Task_1<unknown | undefined>;
 }
 
 
@@ -1989,6 +2193,8 @@ export const TimersPromises: {
 export type TimersPromises = TimersPromises$instance;
 
 export interface TimersScheduler$instance {
+    readonly __tsonic_type_nodejs_TimersScheduler: never;
+
     wait(delay?: int): Task;
     yield(): Task;
 }
@@ -2002,6 +2208,8 @@ export const TimersScheduler: {
 export type TimersScheduler = TimersScheduler$instance;
 
 export interface TlsaRecord$instance {
+    readonly __tsonic_type_nodejs_TlsaRecord: never;
+
     certUsage: int;
     data: byte[];
     match: int;
@@ -2017,6 +2225,8 @@ export const TlsaRecord: {
 export type TlsaRecord = TlsaRecord$instance;
 
 export interface TLSCertificateInfo$instance {
+    readonly __tsonic_type_nodejs_TLSCertificateInfo: never;
+
     C: string;
     CN: string;
     L: string;
@@ -2034,18 +2244,20 @@ export const TLSCertificateInfo: {
 export type TLSCertificateInfo = TLSCertificateInfo$instance;
 
 export interface TlsOptions$instance extends CommonConnectionOptions {
-    allowHalfOpen: Nullable<System_Internal.Boolean>;
+    readonly __tsonic_type_nodejs_TlsOptions: never;
+
+    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
     get ca(): unknown | undefined;
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
     set cert(value: unknown | undefined);
-    handshakeTimeout: Nullable<System_Internal.Int32>;
+    handshakeTimeout: Nullable_1<System_Internal.Int32>;
     get key(): unknown | undefined;
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
-    pauseOnConnect: Nullable<System_Internal.Boolean>;
-    sessionTimeout: Nullable<System_Internal.Int32>;
+    pauseOnConnect: Nullable_1<System_Internal.Boolean>;
+    sessionTimeout: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -2057,6 +2269,8 @@ export const TlsOptions: {
 export type TlsOptions = TlsOptions$instance;
 
 export interface TLSServer$instance extends Server {
+    readonly __tsonic_type_nodejs_TLSServer: never;
+
     addContext(hostname: string, context: unknown): void;
     getTicketKeys(): byte[];
     setSecureContext(options: SecureContextOptions): void;
@@ -2066,14 +2280,16 @@ export interface TLSServer$instance extends Server {
 
 export const TLSServer: {
     new(): TLSServer;
-    new(secureConnectionListener: Action<TLSSocket>): TLSServer;
-    new(options: TlsOptions, secureConnectionListener: Action<TLSSocket>): TLSServer;
+    new(secureConnectionListener: Action_1<TLSSocket>): TLSServer;
+    new(options: TlsOptions, secureConnectionListener: Action_1<TLSSocket>): TLSServer;
 };
 
 
 export type TLSServer = TLSServer$instance;
 
 export interface TLSSocket$instance extends Socket {
+    readonly __tsonic_type_nodejs_TLSSocket: never;
+
     readonly alpnProtocol: string | undefined;
     readonly authorizationError: Exception | undefined;
     readonly authorized: boolean;
@@ -2094,13 +2310,13 @@ export interface TLSSocket$instance extends Socket {
     getTLSTicket(): byte[] | undefined;
     getX509Certificate(): unknown | undefined;
     isSessionReused(): boolean;
-    renegotiate(options: unknown, callback: Action<Exception>): boolean;
+    renegotiate(options: unknown, callback: Action_1<Exception>): boolean;
     setKeyCert(context: unknown): void;
     setMaxSendFragment(size: int): boolean;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
-    write(data: byte[], callback?: Action<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action<Exception>): boolean;
+    write(data: byte[], callback?: Action_1<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
+    write(data: byte[], callback?: Action_1<Exception>): boolean;
+    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
 }
 
 
@@ -2112,11 +2328,13 @@ export const TLSSocket: {
 export type TLSSocket = TLSSocket$instance;
 
 export interface TLSSocketOptions$instance extends CommonConnectionOptions {
+    readonly __tsonic_type_nodejs_TLSSocketOptions: never;
+
     get ca(): unknown | undefined;
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
     set cert(value: unknown | undefined);
-    isServer: Nullable<System_Internal.Boolean>;
+    isServer: Nullable_1<System_Internal.Boolean>;
     get key(): unknown | undefined;
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
@@ -2136,8 +2354,10 @@ export const TLSSocketOptions: {
 export type TLSSocketOptions = TLSSocketOptions$instance;
 
 export interface Transform$instance extends Duplex {
-    _flush(callback: Action<Exception>): void;
-    _transform(chunk: unknown, encoding: string, callback: Action<Exception, unknown>): void;
+    readonly __tsonic_type_nodejs_Transform: never;
+
+    _flush(callback: Action_1<Exception>): void;
+    _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
     _write(chunk: unknown, encoding: string, callback: Action): void;
 }
 
@@ -2150,6 +2370,8 @@ export const Transform: {
 export type Transform = Transform$instance;
 
 export interface URL$instance {
+    readonly __tsonic_type_nodejs_URL: never;
+
     hash: string;
     host: string;
     hostname: string;
@@ -2177,7 +2399,9 @@ export const URL: {
 export type URL = URL$instance;
 
 export interface URLPattern$instance {
-    exec(input: string): Dictionary<System_Internal.String, System_Internal.String> | undefined;
+    readonly __tsonic_type_nodejs_URLPattern: never;
+
+    exec(input: string): Dictionary_2<System_Internal.String, System_Internal.String> | undefined;
     test(input: string): boolean;
 }
 
@@ -2190,19 +2414,21 @@ export const URLPattern: {
 export type URLPattern = URLPattern$instance;
 
 export interface URLSearchParams$instance {
+    readonly __tsonic_type_nodejs_URLSearchParams: never;
+
     readonly size: int;
     append(name: string, value: string): void;
     delete(name: string, value?: string): void;
-    entries(): IEnumerable<KeyValuePair<System_Internal.String, System_Internal.String>>;
-    forEach(callback: Action<System_Internal.String, System_Internal.String>): void;
+    entries(): IEnumerable_1<KeyValuePair_2<System_Internal.String, System_Internal.String>>;
+    forEach(callback: Action_2<System_Internal.String, System_Internal.String>): void;
     get(name: string): string | undefined;
     getAll(name: string): string[];
     has(name: string, value?: string): boolean;
-    keys(): IEnumerable<System_Internal.String>;
+    keys(): IEnumerable_1<System_Internal.String>;
     set(name: string, value: string): void;
     sort(): void;
     ToString(): string;
-    values(): IEnumerable<System_Internal.String>;
+    values(): IEnumerable_1<System_Internal.String>;
 }
 
 
@@ -2214,6 +2440,8 @@ export const URLSearchParams: {
 export type URLSearchParams = URLSearchParams$instance;
 
 export interface UserInfo$instance {
+    readonly __tsonic_type_nodejs_UserInfo: never;
+
     gid: int;
     homedir: string;
     get shell(): string | undefined;
@@ -2231,6 +2459,8 @@ export const UserInfo: {
 export type UserInfo = UserInfo$instance;
 
 export interface Verify$instance extends Transform {
+    readonly __tsonic_type_nodejs_Verify: never;
+
     Dispose(): void;
     Finalize(): void;
     update(data: string, inputEncoding?: string): Verify;
@@ -2249,6 +2479,8 @@ export const Verify: {
 export type Verify = Verify$instance;
 
 export interface Writable$instance extends Stream {
+    readonly __tsonic_type_nodejs_Writable: never;
+
     destroyed: boolean;
     readonly writable: boolean;
     readonly writableCorked: boolean;
@@ -2272,6 +2504,8 @@ export const Writable: {
 export type Writable = Writable$instance;
 
 export interface X509CertificateInfo$instance {
+    readonly __tsonic_type_nodejs_X509CertificateInfo: never;
+
     readonly fingerprint: string;
     readonly fingerprint256: string;
     readonly fingerprint512: string;
@@ -2299,12 +2533,14 @@ export const X509CertificateInfo: {
 export type X509CertificateInfo = X509CertificateInfo$instance;
 
 export interface ZlibOptions$instance {
-    chunkSize: Nullable<System_Internal.Int32>;
-    level: Nullable<System_Internal.Int32>;
-    maxOutputLength: Nullable<System_Internal.Int32>;
-    memLevel: Nullable<System_Internal.Int32>;
-    strategy: Nullable<System_Internal.Int32>;
-    windowBits: Nullable<System_Internal.Int32>;
+    readonly __tsonic_type_nodejs_ZlibOptions: never;
+
+    chunkSize: Nullable_1<System_Internal.Int32>;
+    level: Nullable_1<System_Internal.Int32>;
+    maxOutputLength: Nullable_1<System_Internal.Int32>;
+    memLevel: Nullable_1<System_Internal.Int32>;
+    strategy: Nullable_1<System_Internal.Int32>;
+    windowBits: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -2319,7 +2555,7 @@ export abstract class assert$instance {
     static deepEqual(actual: unknown, expected: unknown, message?: string): void;
     static deepStrictEqual(actual: unknown, expected: unknown, message?: string): void;
     static doesNotMatch(string: string, regexp: Regex, message?: string): void;
-    static doesNotReject(fn: Func<Task>, message?: string): Task;
+    static doesNotReject(fn: Func_1<Task>, message?: string): Task;
     static doesNotThrow(fn: Action, message?: string): void;
     static equal(actual: unknown, expected: unknown, message?: string): void;
     static fail(message?: string): void;
@@ -2330,7 +2566,7 @@ export abstract class assert$instance {
     static notEqual(actual: unknown, expected: unknown, message?: string): void;
     static notStrictEqual(actual: unknown, expected: unknown, message?: string): void;
     static ok(value: boolean, message?: string): void;
-    static rejects(fn: Func<Task>, message?: string): Task;
+    static rejects(fn: Func_1<Task>, message?: string): Task;
     static strict(actual: unknown, expected: unknown, message?: string): void;
     static strictEqual(actual: unknown, expected: unknown, message?: string): void;
     static throws(fn: Action, message?: string): void;
@@ -2371,9 +2607,9 @@ export abstract class Certificate$instance {
 export type Certificate = Certificate$instance;
 
 export abstract class child_process$instance {
-    static exec(command: string, options: ExecOptions, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static exec(command: string, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static execFile(file: string, args: string[], options: ExecOptions, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
+    static exec(command: string, options: ExecOptions, callback: Action_3<Exception, System_Internal.String, System_Internal.String>): void;
+    static exec(command: string, callback: Action_3<Exception, System_Internal.String, System_Internal.String>): void;
+    static execFile(file: string, args: string[], options: ExecOptions, callback: Action_3<Exception, System_Internal.String, System_Internal.String>): void;
     static execFileSync(file: string, args?: string[], options?: ExecOptions): unknown;
     static execSync(command: string, options: ExecOptions): unknown;
     static execSync(command: string): byte[];
@@ -2438,10 +2674,10 @@ export abstract class crypto$instance {
     static createSecretKey(key: string, encoding?: string): KeyObject;
     static createSign(algorithm: string): Sign;
     static createVerify(algorithm: string): Verify;
-    static generateKey(type: string, options: unknown, callback: Action<Exception, KeyObject>): void;
+    static generateKey(type: string, options: unknown, callback: Action_2<Exception, KeyObject>): void;
     static generateKey(type: string, options: unknown): KeyObject;
-    static generateKeyPair(type: string, options: unknown, callback: Action<Exception, unknown, unknown>): void;
-    static generateKeyPairSync(type: string, options?: unknown): ValueTuple<KeyObject, KeyObject>;
+    static generateKeyPair(type: string, options: unknown, callback: Action_3<Exception, unknown, unknown>): void;
+    static generateKeyPairSync(type: string, options?: unknown): ValueTuple_2<KeyObject, KeyObject>;
     static getCiphers(): string[];
     static getCurves(): string[];
     static getDefaultCipherList(): string;
@@ -2449,9 +2685,9 @@ export abstract class crypto$instance {
     static getFips(): boolean;
     static getHashes(): string[];
     static hash(algorithm: string, data: byte[], outputEncoding?: string): byte[];
-    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action<Exception, byte[]>): void;
+    static hkdf(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int, callback: Action_2<Exception, byte[]>): void;
     static hkdfSync(digest: string, ikm: byte[], salt: byte[], info: byte[], keylen: int): byte[];
-    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action<Exception, byte[]>): void;
+    static pbkdf2(password: string, salt: string, iterations: int, keylen: int, digest: string, callback: Action_2<Exception, byte[]>): void;
     static pbkdf2Sync(password: byte[], salt: byte[], iterations: int, keylen: int, digest: string): byte[];
     static pbkdf2Sync(password: string, salt: string, iterations: int, keylen: int, digest: string): byte[];
     static privateDecrypt(key: unknown, buffer: byte[]): byte[];
@@ -2462,14 +2698,14 @@ export abstract class crypto$instance {
     static publicDecrypt(key: string, buffer: byte[]): byte[];
     static publicEncrypt(key: unknown, buffer: byte[]): byte[];
     static publicEncrypt(key: string, buffer: byte[]): byte[];
-    static randomBytes(size: int, callback: Action<Exception, byte[]>): void;
+    static randomBytes(size: int, callback: Action_2<Exception, byte[]>): void;
     static randomBytes(size: int): byte[];
-    static randomFill(buffer: byte[], offset: int, size: int, callback: Action<Exception, byte[]>): void;
-    static randomFillSync(buffer: byte[], offset?: int, size?: Nullable<System_Internal.Int32>): byte[];
+    static randomFill(buffer: byte[], offset: int, size: int, callback: Action_2<Exception, byte[]>): void;
+    static randomFillSync(buffer: byte[], offset?: int, size?: Nullable_1<System_Internal.Int32>): byte[];
     static randomInt(min: int, max: int): int;
     static randomInt(max: int): int;
     static randomUUID(): string;
-    static scrypt(password: string, salt: string, keylen: int, options: unknown, callback: Action<Exception, byte[]>): void;
+    static scrypt(password: string, salt: string, keylen: int, options: unknown, callback: Action_2<Exception, byte[]>): void;
     static scryptSync(password: byte[], salt: byte[], keylen: int, options?: unknown): byte[];
     static scryptSync(password: string, salt: string, keylen: int, options?: unknown): byte[];
     static setDefaultEncoding(encoding: string): void;
@@ -2485,8 +2721,8 @@ export abstract class crypto$instance {
 export type crypto = crypto$instance;
 
 export abstract class dgram$instance {
-    static createSocket(options: SocketOptions, callback?: Action<byte[], RemoteInfo>): DgramSocket;
-    static createSocket(type: string, callback?: Action<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(options: SocketOptions, callback?: Action_2<byte[], RemoteInfo>): DgramSocket;
+    static createSocket(type: string, callback?: Action_2<byte[], RemoteInfo>): DgramSocket;
 }
 
 
@@ -2523,29 +2759,29 @@ export abstract class dns$instance {
     static readonly promises: DnsPromises;
     static getDefaultResultOrder(): string;
     static getServers(): string[];
-    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, LookupAddress[]>): void;
-    static lookup(hostname: string, options: LookupOptions, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, family: int, callback: Action<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookupService(address: string, port: int, callback: Action<Exception, System_Internal.String, System_Internal.String>): void;
-    static resolve(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolve(hostname: string, rrtype: string, callback: Action<Exception, unknown>): void;
-    static resolve4(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    static resolve4(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolve6(hostname: string, options: ResolveOptions, callback: Action<Exception, unknown>): void;
-    static resolve6(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveAny(hostname: string, callback: Action<Exception, unknown[]>): void;
-    static resolveCaa(hostname: string, callback: Action<Exception, CaaRecord[]>): void;
-    static resolveCname(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveMx(hostname: string, callback: Action<Exception, MxRecord[]>): void;
-    static resolveNaptr(hostname: string, callback: Action<Exception, NaptrRecord[]>): void;
-    static resolveNs(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolvePtr(hostname: string, callback: Action<Exception, string[]>): void;
-    static resolveSoa(hostname: string, callback: Action<Exception, SoaRecord>): void;
-    static resolveSrv(hostname: string, callback: Action<Exception, SrvRecord[]>): void;
-    static resolveTlsa(hostname: string, callback: Action<Exception, TlsaRecord[]>): void;
-    static resolveTxt(hostname: string, callback: Action<Exception, string[][]>): void;
-    static reverse(ip: string, callback: Action<Exception, string[]>): void;
+    static lookup(hostname: string, options: LookupOptions, callback: Action_2<Exception, LookupAddress[]>): void;
+    static lookup(hostname: string, options: LookupOptions, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
+    static lookup(hostname: string, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
+    static lookup(hostname: string, family: int, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
+    static lookupService(address: string, port: int, callback: Action_3<Exception, System_Internal.String, System_Internal.String>): void;
+    static resolve(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolve(hostname: string, rrtype: string, callback: Action_2<Exception, unknown>): void;
+    static resolve4(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
+    static resolve4(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolve6(hostname: string, options: ResolveOptions, callback: Action_2<Exception, unknown>): void;
+    static resolve6(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolveAny(hostname: string, callback: Action_2<Exception, unknown[]>): void;
+    static resolveCaa(hostname: string, callback: Action_2<Exception, CaaRecord[]>): void;
+    static resolveCname(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolveMx(hostname: string, callback: Action_2<Exception, MxRecord[]>): void;
+    static resolveNaptr(hostname: string, callback: Action_2<Exception, NaptrRecord[]>): void;
+    static resolveNs(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolvePtr(hostname: string, callback: Action_2<Exception, string[]>): void;
+    static resolveSoa(hostname: string, callback: Action_2<Exception, SoaRecord>): void;
+    static resolveSrv(hostname: string, callback: Action_2<Exception, SrvRecord[]>): void;
+    static resolveTlsa(hostname: string, callback: Action_2<Exception, TlsaRecord[]>): void;
+    static resolveTxt(hostname: string, callback: Action_2<Exception, string[][]>): void;
+    static reverse(ip: string, callback: Action_2<Exception, string[]>): void;
     static setDefaultResultOrder(order: string): void;
     static setServers(servers: string[]): void;
 }
@@ -2562,8 +2798,8 @@ export abstract class events$instance {
     static getEventListeners(emitter: EventEmitter, eventName: string): Function[];
     static getMaxListeners(emitter: EventEmitter): int;
     static listenerCount(emitter: EventEmitter, eventName: string): int;
-    static on(emitter: EventEmitter, eventName: string): IAsyncEnumerable<(unknown | undefined)[]>;
-    static once(emitter: EventEmitter, eventName: string): Task<(unknown | undefined)[]>;
+    static on(emitter: EventEmitter, eventName: string): IAsyncEnumerable_1<(unknown | undefined)[]>;
+    static once(emitter: EventEmitter, eventName: string): Task_1<(unknown | undefined)[]>;
     static setMaxListeners(n: int, ...emitters: EventEmitter[]): void;
 }
 
@@ -2585,23 +2821,23 @@ export abstract class fs$instance {
     static cp(src: string, dest: string, recursive?: boolean): Task;
     static cpSync(src: string, dest: string, recursive?: boolean): void;
     static existsSync(path: string): boolean;
-    static fstat(fd: int): Task<Stats>;
+    static fstat(fd: int): Task_1<Stats>;
     static fstatSync(fd: int): Stats;
     static mkdir(path: string, recursive?: boolean): Task;
     static mkdirSync(path: string, recursive?: boolean): void;
-    static open(path: string, flags: string, mode?: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    static openSync(path: string, flags: string, mode?: Nullable<System_Internal.Int32>): int;
-    static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    static readdir(path: string, withFileTypes?: boolean): Task<string[]>;
+    static open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    static openSync(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): int;
+    static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    static readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
     static readdirSync(path: string, withFileTypes?: boolean): string[];
-    static readFile(path: string, encoding?: string): Task<System_Internal.String>;
-    static readFileBytes(path: string): Task<byte[]>;
+    static readFile(path: string, encoding?: string): Task_1<System_Internal.String>;
+    static readFileBytes(path: string): Task_1<byte[]>;
     static readFileSync(path: string, encoding?: string): string;
     static readFileSyncBytes(path: string): byte[];
-    static readlink(path: string): Task<System_Internal.String>;
+    static readlink(path: string): Task_1<System_Internal.String>;
     static readlinkSync(path: string): string;
-    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): int;
-    static realpath(path: string): Task<System_Internal.String>;
+    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): int;
+    static realpath(path: string): Task_1<System_Internal.String>;
     static realpathSync(path: string): string;
     static rename(oldPath: string, newPath: string): Task;
     static renameSync(oldPath: string, newPath: string): void;
@@ -2609,7 +2845,7 @@ export abstract class fs$instance {
     static rmdir(path: string, recursive?: boolean): Task;
     static rmdirSync(path: string, recursive?: boolean): void;
     static rmSync(path: string, recursive?: boolean): void;
-    static stat(path: string): Task<Stats>;
+    static stat(path: string): Task_1<Stats>;
     static statSync(path: string): Stats;
     static symlink(target: string, path: string, type?: string): Task;
     static symlinkSync(target: string, path: string, type?: string): void;
@@ -2617,14 +2853,14 @@ export abstract class fs$instance {
     static truncateSync(path: string, len?: long): void;
     static unlink(path: string): Task;
     static unlinkSync(path: string): void;
-    static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): Task<System_Internal.Int32>;
-    static write(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): Task<System_Internal.Int32>;
+    static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    static write(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): Task_1<System_Internal.Int32>;
     static writeFile(path: string, data: string, encoding?: string): Task;
     static writeFileBytes(path: string, data: byte[]): Task;
     static writeFileSync(path: string, data: string, encoding?: string): void;
     static writeFileSyncBytes(path: string, data: byte[]): void;
-    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable<System_Internal.Int32>): int;
-    static writeSync(fd: int, data: string, position?: Nullable<System_Internal.Int32>, encoding?: string): int;
+    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): int;
+    static writeSync(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
 }
 
 
@@ -2637,8 +2873,8 @@ export abstract class net$instance {
     static createConnection(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
     static createConnection(port: int, host?: string, connectionListener?: Action): Socket;
     static createConnection(path: string, connectionListener?: Action): Socket;
-    static createServer(options: ServerOpts, connectionListener?: Action<Socket>): Server;
-    static createServer(connectionListener?: Action<Socket>): Server;
+    static createServer(options: ServerOpts, connectionListener?: Action_1<Socket>): Server;
+    static createServer(connectionListener?: Action_1<Socket>): Server;
     static getDefaultAutoSelectFamily(): boolean;
     static getDefaultAutoSelectFamilyAttemptTimeout(): int;
     static isIP(input: string): int;
@@ -2718,7 +2954,7 @@ export abstract class process$instance {
     static argv0: string;
     static readonly env: ProcessEnv;
     static readonly execPath: string;
-    static exitCode: Nullable<System_Internal.Int32>;
+    static exitCode: Nullable_1<System_Internal.Int32>;
     static readonly pid: int;
     static readonly ppid: int;
     static readonly platform: string;
@@ -2726,7 +2962,7 @@ export abstract class process$instance {
     static readonly versions: ProcessVersions;
     static chdir(directory: string): void;
     static cwd(): string;
-    static exit(code?: Nullable<System_Internal.Int32>): void;
+    static exit(code?: Nullable_1<System_Internal.Int32>): void;
     static kill(pid: int, signal?: unknown): boolean;
 }
 
@@ -2734,11 +2970,11 @@ export abstract class process$instance {
 export type process = process$instance;
 
 export abstract class querystring$instance {
-    static decode(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
-    static encode(obj: Dictionary<System_Internal.String, unknown>, sep?: string, eq?: string): string;
+    static decode(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary_2<System_Internal.String, unknown>;
+    static encode(obj: Dictionary_2<System_Internal.String, unknown>, sep?: string, eq?: string): string;
     static escape(str: string): string;
-    static parse(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary<System_Internal.String, unknown>;
-    static stringify(obj: Dictionary<System_Internal.String, unknown>, sep?: string, eq?: string): string;
+    static parse(str: string, sep?: string, eq?: string, maxKeys?: int): Dictionary_2<System_Internal.String, unknown>;
+    static stringify(obj: Dictionary_2<System_Internal.String, unknown>, sep?: string, eq?: string): string;
     static unescape(str: string): string;
 }
 
@@ -2749,10 +2985,10 @@ export abstract class readline$instance {
     static readonly promises: ReadlinePromises;
     static clearLine(stream: Writable, dir: int, callback?: Action): boolean;
     static clearScreenDown(stream: Writable, callback?: Action): boolean;
-    static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable<System_Internal.String>;
+    static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable_1<System_Internal.String>;
     static createInterface(options: InterfaceOptions): Interface;
     static createInterface(input: Readable, output?: Writable): Interface;
-    static cursorTo(stream: Writable, x: int, y?: Nullable<System_Internal.Int32>, callback?: Action): boolean;
+    static cursorTo(stream: Writable, x: int, y?: Nullable_1<System_Internal.Int32>, callback?: Action): boolean;
     static emitKeypressEvents(stream: Readable, rl?: Interface): void;
     static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action): boolean;
 }
@@ -2762,7 +2998,7 @@ export type readline = readline$instance;
 
 export abstract class stream$instance {
     static readonly promises: StreamPromises;
-    static finished(stream: Stream, callback: Action<Exception>): void;
+    static finished(stream: Stream, callback: Action_1<Exception>): void;
     static finished(stream: Stream): Task;
     static pipeline(...streams: unknown[]): void;
 }
@@ -2797,8 +3033,8 @@ export abstract class tls$instance {
     static connect(port: int, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
     static connect(port: int, host?: string, options?: ConnectionOptions, secureConnectListener?: Action): TLSSocket;
     static createSecureContext(options?: SecureContextOptions): SecureContext;
-    static createServer(options: TlsOptions, secureConnectionListener?: Action<TLSSocket>): TLSServer;
-    static createServer(secureConnectionListener?: Action<TLSSocket>): TLSServer;
+    static createServer(options: TlsOptions, secureConnectionListener?: Action_1<TLSSocket>): TLSServer;
+    static createServer(secureConnectionListener?: Action_1<TLSSocket>): TLSServer;
     static getCACertificates(type?: string): string[];
     static getCiphers(): string[];
     static setDefaultCACertificates(certs: string[]): void;
@@ -2818,7 +3054,7 @@ export abstract class url$instance {
     static parse(input: string): URL | undefined;
     static pathToFileURL(filePath: string): URL;
     static resolve(from: string, to: string): string;
-    static urlToHttpOptions(input: URL): Dictionary<System_Internal.String, unknown | undefined>;
+    static urlToHttpOptions(input: URL): Dictionary_2<System_Internal.String, unknown | undefined>;
 }
 
 
@@ -2826,7 +3062,7 @@ export type url = url$instance;
 
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
-    static deprecate<TResult>(fn: Func<TResult>, msg: string, code?: string): Func<TResult>;
+    static deprecate<TResult>(fn: Func_1<TResult>, msg: string, code?: string): Func_1<TResult>;
     static deprecate(action: Action, msg: string, code?: string): Action;
     static format(format: unknown, ...args: unknown[]): string;
     static formatWithOptions(inspectOptions: unknown, formatValue: unknown, ...args: unknown[]): string;

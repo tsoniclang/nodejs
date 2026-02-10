@@ -16,6 +16,8 @@ import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
 import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Void } from "@tsonic/dotnet/System/internal/index.js";
 
 export interface AddressInfo$instance {
+    readonly __tsonic_type_nodejs_Http_AddressInfo: never;
+
     address: string;
     family: string;
     port: int;
@@ -30,6 +32,8 @@ export const AddressInfo: {
 export type AddressInfo = AddressInfo$instance;
 
 export interface ClientRequest$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Http_ClientRequest: never;
+
     readonly aborted: boolean;
     readonly host: string;
     readonly method: string;
@@ -53,18 +57,20 @@ export const ClientRequest: {
 export type ClientRequest = ClientRequest$instance;
 
 export interface IncomingMessage$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Http_IncomingMessage: never;
+
     complete: boolean;
-    readonly headers: Dictionary<System_Internal.String, System_Internal.String>;
+    readonly headers: Dictionary_2<System_Internal.String, System_Internal.String>;
     readonly httpVersion: string;
     readonly method: string | undefined;
-    readonly statusCode: Nullable<System_Internal.Int32>;
+    readonly statusCode: Nullable_1<System_Internal.Int32>;
     readonly statusMessage: string | undefined;
     readonly url: string | undefined;
     destroy(): void;
     onClose(callback: Action): void;
-    onData(callback: Action<System_Internal.String>): void;
+    onData(callback: Action_1<System_Internal.String>): void;
     onEnd(callback: Action): void;
-    readAll(): Task<System_Internal.String>;
+    readAll(): Task_1<System_Internal.String>;
     setTimeout(msecs: int, callback?: Action): IncomingMessage;
 }
 
@@ -76,12 +82,14 @@ export const IncomingMessage: {
 export type IncomingMessage = IncomingMessage$instance;
 
 export interface RequestOptions$instance {
+    readonly __tsonic_type_nodejs_Http_RequestOptions: never;
+
     get agent(): unknown | undefined;
     set agent(value: unknown | undefined);
     get auth(): string | undefined;
     set auth(value: string | undefined);
-    get headers(): Dictionary<System_Internal.String, System_Internal.String> | undefined;
-    set headers(value: Dictionary<System_Internal.String, System_Internal.String> | undefined);
+    get headers(): Dictionary_2<System_Internal.String, System_Internal.String> | undefined;
+    set headers(value: Dictionary_2<System_Internal.String, System_Internal.String> | undefined);
     get host(): string | undefined;
     set host(value: string | undefined);
     get hostname(): string | undefined;
@@ -91,7 +99,7 @@ export interface RequestOptions$instance {
     set path(value: string | undefined);
     port: int;
     protocol: string;
-    timeout: Nullable<System_Internal.Int32>;
+    timeout: Nullable_1<System_Internal.Int32>;
 }
 
 
@@ -103,6 +111,8 @@ export const RequestOptions: {
 export type RequestOptions = RequestOptions$instance;
 
 export interface Server$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Http_Server: never;
+
     headersTimeout: int;
     keepAliveTimeout: int;
     readonly listening: boolean;
@@ -111,20 +121,22 @@ export interface Server$instance extends EventEmitter {
     timeout: int;
     address(): AddressInfo | undefined;
     close(callback?: Action): Server;
-    listen(port: int, hostname?: string, backlog?: Nullable<System_Internal.Int32>, callback?: Action): Server;
+    listen(port: int, hostname?: string, backlog?: Nullable_1<System_Internal.Int32>, callback?: Action): Server;
     listen(port: int, callback: Action): Server;
     setTimeout(msecs: int, callback?: Action): Server;
 }
 
 
 export const Server: {
-    new(requestListener: Action<IncomingMessage, ServerResponse>): Server;
+    new(requestListener: Action_2<IncomingMessage, ServerResponse>): Server;
 };
 
 
 export type Server = Server$instance;
 
 export interface ServerResponse$instance extends EventEmitter {
+    readonly __tsonic_type_nodejs_Http_ServerResponse: never;
+
     readonly finished: boolean;
     readonly headersSent: boolean;
     statusCode: int;
@@ -133,14 +145,14 @@ export interface ServerResponse$instance extends EventEmitter {
     flushHeaders(): void;
     getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
-    getHeaders(): Dictionary<System_Internal.String, System_Internal.String>;
+    getHeaders(): Dictionary_2<System_Internal.String, System_Internal.String>;
     hasHeader(name: string): boolean;
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
     setTimeout(msecs: int, callback?: Action): ServerResponse;
     write(chunk: string, encoding?: string, callback?: Action): boolean;
-    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
-    writeHead(statusCode: int, headers: Dictionary<System_Internal.String, System_Internal.String>): ServerResponse;
+    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
+    writeHead(statusCode: int, headers: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
 }
 
 
@@ -151,6 +163,8 @@ export const ServerResponse: {
 export type ServerResponse = ServerResponse$instance;
 
 export interface TypeError$instance extends Exception {
+    readonly __tsonic_type_nodejs_Http_TypeError: never;
+
     readonly __tsonic_iface_System_Runtime_Serialization_ISerializable: never;
 
 }
@@ -164,15 +178,15 @@ export const TypeError: {
 export type TypeError = TypeError$instance;
 
 export abstract class http$instance {
-    static globalAgent_maxSockets: Nullable<System_Internal.Int32>;
+    static globalAgent_maxSockets: Nullable_1<System_Internal.Int32>;
     static globalAgent_maxFreeSockets: int;
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
-    static createServer(requestListener?: Action<IncomingMessage, ServerResponse>): Server;
-    static get(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
-    static get(url: string, callback?: Action<IncomingMessage>): ClientRequest;
-    static request(options: RequestOptions, callback?: Action<IncomingMessage>): ClientRequest;
-    static request(url: string, callback?: Action<IncomingMessage>): ClientRequest;
+    static createServer(requestListener?: Action_2<IncomingMessage, ServerResponse>): Server;
+    static get(options: RequestOptions, callback?: Action_1<IncomingMessage>): ClientRequest;
+    static get(url: string, callback?: Action_1<IncomingMessage>): ClientRequest;
+    static request(options: RequestOptions, callback?: Action_1<IncomingMessage>): ClientRequest;
+    static request(url: string, callback?: Action_1<IncomingMessage>): ClientRequest;
     static validateHeaderName(name: string): void;
     static validateHeaderValue(name: string, value: unknown): void;
 }
