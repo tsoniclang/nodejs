@@ -1,6 +1,14 @@
 # @tsonic/nodejs
 
-TypeScript type definitions for the Node.js CLR library.
+TypeScript type definitions for the **Node.js CLR library** (`nodejs.dll`) for use with the **Tsonic** compiler (TypeScript → .NET).
+
+`@tsonic/nodejs` provides Node-style APIs (like `fs`, `path`, `crypto`, `process`, and `http`) implemented on .NET.
+
+## What this package is (and isn’t)
+
+- ✅ TypeScript bindings (`.d.ts`) for the `nodejs` .NET library.
+- ❌ Not Node.js. The `.js` files are **module stubs** and must not be executed.
+- ✅ The real implementation is a **.NET DLL** that Tsonic references during compilation.
 
 ## Versioning
 
@@ -22,6 +30,20 @@ When publishing, run: `npm publish versions/10 --access public`
 ```bash
 npm install @tsonic/nodejs @tsonic/dotnet @tsonic/core
 ```
+
+## Quick start (Tsonic)
+
+To enable Node.js interop in a Tsonic workspace:
+
+```bash
+tsonic add nodejs
+```
+
+This will:
+
+- install `@tsonic/nodejs` (types) as a dev dependency
+- copy `nodejs.dll` and `Tsonic.JSRuntime.dll` into `./libs/` for deterministic builds
+- add those DLLs to your workspace config (`dotnet.libraries`)
 
 ## Usage
 
@@ -63,6 +85,15 @@ emitter.on("data", (chunk) => console.log(chunk));
 import { http } from "@tsonic/nodejs/nodejs.Http.js";
 ```
 
+## Imports (important)
+
+This is an ESM package. Import from the explicit entrypoints:
+
+- `@tsonic/nodejs/index.js` for most Node-style APIs (`fs`, `path`, `crypto`, `process`, …)
+- submodules like `@tsonic/nodejs/nodejs.Http.js` for separately emitted namespaces
+
+Node’s built-in specifiers like `node:fs` are **not** supported here.
+
 ## Documentation
 
 - `docs/README.md`
@@ -71,9 +102,7 @@ import { http } from "@tsonic/nodejs/nodejs.Http.js";
 ## Naming Conventions
 
 - **Types**: PascalCase (matches .NET)
-- **Members**: camelCase (TypeScript convention)
-
-To generate CLR/PascalCase member names, regenerate with `--naming clr` (or omit `--naming js`).
+- **Members**: This package reflects the underlying .NET API surface. The `nodejs` runtime intentionally uses Node/JS-style naming.
 
 ## Development
 
