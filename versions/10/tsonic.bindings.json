@@ -1,0 +1,11 @@
+{
+  "dotnet": {
+    "frameworkReferences": [
+      { "id": "Microsoft.AspNetCore.App", "types": "@tsonic/aspnetcore" }
+    ],
+    "packageReferences": [
+      { "id": "nodejs", "version": "1.0.0", "types": "@tsonic/nodejs" }
+    ]
+  }
+}
+
