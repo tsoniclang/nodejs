@@ -4,8 +4,7 @@
       { "id": "Microsoft.AspNetCore.App", "types": "@tsonic/aspnetcore" }
     ],
     "packageReferences": [
-      { "id": "nodejs", "version": "1.0.0", "types": "@tsonic/nodejs" }
+      { "id": "Tsonic.Nodejs", "version": "1.0.0", "types": "@tsonic/nodejs" }
     ]
   }
 }
-
