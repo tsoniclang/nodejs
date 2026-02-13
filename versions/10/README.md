@@ -1,6 +1,24 @@
 # @tsonic/nodejs
 
-TypeScript type definitions for the Node.js CLR library.
+Node-style APIs for **Tsonic** (TypeScript → .NET).
+
+Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
+
+## Quick Start
+
+### New project
+
+```bash
+mkdir my-app && cd my-app
+tsonic init --nodejs
+npm run dev
+```
+
+### Existing project
+
+```bash
+tsonic add nodejs
+```
 
 ## Versioning
 
@@ -10,18 +28,10 @@ This repo is versioned by **.NET major**:
 
 When publishing, run: `npm publish versions/10 --access public`
 
-## Features
+## Core Modules (what you get)
 
-- **Node.js-like APIs for .NET** - fs, path, events, http, and more
-- **camelCase members** - TypeScript-friendly naming conventions
-- **Primitive aliases** - `int`, `long`, `decimal`, etc. via `@tsonic/core`
-- **Full type safety** - Complete TypeScript declarations
-
-## Installation
-
-```bash
-npm install @tsonic/nodejs @tsonic/dotnet @tsonic/core
-```
+- `fs`, `path`, `events`, `crypto`, `process`
+- `http` (separate module entrypoint)
 
 ## Usage
 
@@ -50,11 +60,29 @@ const dir = path.dirname(fullPath);
 ### Events
 
 ```typescript
-import { EventEmitter } from "@tsonic/nodejs/index.js";
+import { EventEmitter, console } from "@tsonic/nodejs/index.js";
 
 class MyEmitter extends EventEmitter {}
 const emitter = new MyEmitter();
 emitter.on("data", (chunk) => console.log(chunk));
+```
+
+### Crypto
+
+```ts
+import { crypto } from "@tsonic/nodejs/index.js";
+
+const hash = crypto.createHash("sha256").update("hello").digest("hex");
+void hash;
+```
+
+### Process
+
+```ts
+import { process } from "@tsonic/nodejs/index.js";
+
+const cwd = process.cwd();
+void cwd;
 ```
 
 ### HTTP
@@ -63,17 +91,28 @@ emitter.on("data", (chunk) => console.log(chunk));
 import { http } from "@tsonic/nodejs/nodejs.Http.js";
 ```
 
+## Imports (important)
+
+This is an ESM package. Import from the explicit entrypoints:
+
+- `@tsonic/nodejs/index.js` for most Node-style APIs (`fs`, `path`, `crypto`, `process`, …)
+- submodules like `@tsonic/nodejs/nodejs.Http.js` for separately emitted namespaces
+
+Node’s built-in specifiers like `node:fs` are **not** supported here.
+
+## Relationship to `@tsonic/js`
+
+- `@tsonic/js` provides JavaScript runtime APIs (JS-style `console`, `JSON`, timers, etc.)
+- `@tsonic/nodejs` provides Node-style modules (`fs`, `path`, `crypto`, `http`, etc.)
+
 ## Documentation
 
-- `docs/README.md`
+- https://github.com/tsoniclang/nodejs/blob/main/docs/README.md
 - https://tsonic.org/nodejs/
 
 ## Naming Conventions
 
-- **Types**: PascalCase (matches .NET)
-- **Members**: camelCase (TypeScript convention)
-
-To generate CLR/PascalCase member names, regenerate with `--naming clr` (or omit `--naming js`).
+- `@tsonic/nodejs` intentionally uses **Node/JS-style naming** (camelCase members).
 
 ## Development
 
