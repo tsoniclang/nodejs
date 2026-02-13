@@ -10,14 +10,15 @@ Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `c
 
 ```bash
 mkdir my-app && cd my-app
-tsonic init --nodejs
+tsonic init
+tsonic add npm @tsonic/nodejs
 npm run dev
 ```
 
 ### Existing project
 
 ```bash
-tsonic add nodejs
+tsonic add npm @tsonic/nodejs
 ```
 
 ## Versioning
