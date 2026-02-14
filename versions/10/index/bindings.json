@@ -17312,11 +17312,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::output:!0[]",
+          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::output:T[]",
           "clrName": "output",
           "metadataToken": 385876013,
-          "canonicalSignature": ":!0[]",
-          "normalizedSignature": "output|:!0[]|static=false|accessor=getset",
+          "canonicalSignature": ":T[]",
+          "normalizedSignature": "output|:T[]|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -17331,11 +17331,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::stdout:!0",
+          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::stdout:T",
           "clrName": "stdout",
           "metadataToken": 385876014,
-          "canonicalSignature": ":!0",
-          "normalizedSignature": "stdout|:!0|static=false|accessor=getset",
+          "canonicalSignature": ":T",
+          "normalizedSignature": "stdout|:T|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -17350,11 +17350,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::stderr:!0",
+          "stableId": "nodejs:nodejs.SpawnSyncReturns\u00601::stderr:T",
           "clrName": "stderr",
           "metadataToken": 385876015,
-          "canonicalSignature": ":!0",
-          "normalizedSignature": "stderr|:!0|static=false|accessor=getset",
+          "canonicalSignature": ":T",
+          "normalizedSignature": "stderr|:T|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -29669,11 +29669,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.util::deprecate(System.Func_1[[!!0]],System.String,System.String):System.Func_1[[!!0]]",
+          "stableId": "nodejs:nodejs.util::deprecate(Func_1,System.String,System.String):Func_1",
           "clrName": "deprecate",
           "metadataToken": 100665103,
-          "canonicalSignature": "(System.Func_1[[!!0]],System.String,System.String):System.Func_1[[!!0]]",
-          "normalizedSignature": "deprecate|(System.Func_1[[!!0]],System.String,System.String):System.Func_1[[!!0]]|static=true",
+          "canonicalSignature": "(Func_1,System.String,System.String):Func_1",
+          "normalizedSignature": "deprecate|(Func_1,System.String,System.String):Func_1|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 1,

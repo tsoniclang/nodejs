@@ -3057,8 +3057,8 @@ export type url = url$instance;
 
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
-    static deprecate(action: Action, msg: string, code?: string): Action;
     static deprecate<TResult>(fn: Func_1<TResult>, msg: string, code?: string): Func_1<TResult>;
+    static deprecate(action: Action, msg: string, code?: string): Action;
     static format(format: unknown, ...args: unknown[]): string;
     static formatWithOptions(inspectOptions: unknown, formatValue: unknown, ...args: unknown[]): string;
     static inherits(constructor: unknown, superConstructor: unknown): void;
