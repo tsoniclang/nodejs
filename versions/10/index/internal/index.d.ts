@@ -1351,7 +1351,6 @@ export interface PassThrough$instance extends Transform {
     readonly __tsonic_type_nodejs_PassThrough: never;
 
     _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
-    _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
 }
 
 
@@ -2313,8 +2312,6 @@ export interface TLSSocket$instance extends Socket {
     setMaxSendFragment(size: int): boolean;
     write(data: byte[], callback?: Action_1<Exception>): boolean;
     write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
-    write(data: byte[], callback?: Action_1<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
 }
 
 
@@ -3060,8 +3057,8 @@ export type url = url$instance;
 
 export abstract class util$instance {
     static debuglog(section: string): DebugLogFunction;
-    static deprecate<TResult>(fn: Func_1<TResult>, msg: string, code?: string): Func_1<TResult>;
     static deprecate(action: Action, msg: string, code?: string): Action;
+    static deprecate<TResult>(fn: Func_1<TResult>, msg: string, code?: string): Func_1<TResult>;
     static format(format: unknown, ...args: unknown[]): string;
     static formatWithOptions(inspectOptions: unknown, formatValue: unknown, ...args: unknown[]): string;
     static inherits(constructor: unknown, superConstructor: unknown): void;

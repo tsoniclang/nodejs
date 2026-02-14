@@ -108,7 +108,7 @@ Node’s built-in specifiers like `node:fs` are **not** supported here.
 
 ## Documentation
 
-- https://github.com/tsoniclang/nodejs/blob/main/docs/README.md
+- `docs/README.md`
 - https://tsonic.org/nodejs/
 
 ## Naming Conventions
