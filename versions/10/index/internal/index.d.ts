@@ -1351,7 +1351,6 @@ export interface PassThrough$instance extends Transform {
     readonly __tsonic_type_nodejs_PassThrough: never;
 
     _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
-    _transform(chunk: unknown, encoding: string, callback: Action_2<Exception, unknown>): void;
 }
 
 
@@ -2311,8 +2310,6 @@ export interface TLSSocket$instance extends Socket {
     renegotiate(options: unknown, callback: Action_1<Exception>): boolean;
     setKeyCert(context: unknown): void;
     setMaxSendFragment(size: int): boolean;
-    write(data: byte[], callback?: Action_1<Exception>): boolean;
-    write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
     write(data: byte[], callback?: Action_1<Exception>): boolean;
     write(data: string, encoding?: string, callback?: Action_1<Exception>): boolean;
 }
