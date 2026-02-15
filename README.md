@@ -6,21 +6,34 @@ This package is part of Tsonic: https://tsonic.org.
 
 Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
 
-## Quick Start
+## Prerequisites
 
-### New project
+- Install the .NET 10 SDK (required by Tsonic): https://dotnet.microsoft.com/download
+- Verify: `dotnet --version`
+
+## Quick Start
 
 ```bash
 mkdir my-app && cd my-app
-tsonic init
-tsonic add npm @tsonic/nodejs
+npx --yes tsonic@latest init
+npx --yes tsonic@latest add npm @tsonic/nodejs
+
+# Replace the default App.ts with a Node.js-style example
+cat > packages/my-app/src/App.ts <<'EOF'
+import { console, path } from "@tsonic/nodejs/index.js";
+
+export function main(): void {
+  console.log(path.posix.join("a", "b", "c"));
+}
+EOF
+
 npm run dev
 ```
 
-### Existing project
+## Existing project
 
 ```bash
-tsonic add npm @tsonic/nodejs
+npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
 ## Versioning
@@ -110,7 +123,9 @@ Node’s built-in specifiers like `node:fs` are **not** supported here.
 
 ## Documentation
 
-- `docs/README.md`
+- [docs/getting-started.md](docs/getting-started.md)
+- [docs/imports.md](docs/imports.md)
+- Module docs: [fs](docs/modules/fs.md), [path](docs/modules/path.md), [crypto](docs/modules/crypto.md), [http](docs/modules/http.md), [events](docs/modules/events.md), [process](docs/modules/process.md)
 - https://tsonic.org/nodejs/
 
 ## Naming Conventions
