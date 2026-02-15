@@ -1,6 +1,8 @@
 # @tsonic/nodejs
 
-Node-style APIs for **Tsonic** (TypeScript → .NET).
+Node-style APIs for **Tsonic**.
+
+This package is part of Tsonic: https://tsonic.org.
 
 Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
 
@@ -23,9 +25,9 @@ tsonic add npm @tsonic/nodejs
 
 ## Versioning
 
-This repo is versioned by **.NET major**:
+This repo is versioned by runtime major:
 
-- **.NET 10** → `versions/10/` → npm: `@tsonic/nodejs@10.x`
+- `10` → `versions/10/` → npm: `@tsonic/nodejs@10.x`
 
 When publishing, run: `npm publish versions/10 --access public`
 
@@ -117,22 +119,7 @@ Node’s built-in specifiers like `node:fs` are **not** supported here.
 
 ## Development
 
-### Regenerating Types
-
-To regenerate TypeScript declarations:
-
-```bash
-./__build/scripts/generate.sh
-```
-
-**Prerequisites:**
-- .NET 10 SDK installed
-- `tsbindgen` repository at `../tsbindgen`
-- `nodejs-clr` repository at `../nodejs-clr` (built with `dotnet build -c Release`)
-
-**Environment variables:**
-- `DOTNET_VERSION` - .NET runtime version (default: `10.0.0`)
-- `DOTNET_HOME` - .NET installation directory (default: `$HOME/.dotnet`)
+See `__build/` for regeneration scripts.
 
 ## License
 
