@@ -1110,10 +1110,10 @@
       "events": [],
       "constructors": [
         {
-          "stableId": "nodejs:nodejs.Http.Server::.ctor(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.Http.Server::.ctor(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100665217,
-          "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 1,
           "visibility": "Public",
@@ -1517,11 +1517,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.Http.http::createServer(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
+          "stableId": "nodejs:nodejs.Http.http::createServer(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
           "clrName": "createServer",
           "metadataToken": 100665170,
-          "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
-          "normalizedSignature": "createServer|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server|static=true",
+          "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
+          "normalizedSignature": "createServer|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1537,11 +1537,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.http::request(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "stableId": "nodejs:nodejs.Http.http::request(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "request",
           "metadataToken": 100665171,
-          "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
-          "normalizedSignature": "request|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
+          "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "normalizedSignature": "request|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1557,11 +1557,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.http::request(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "stableId": "nodejs:nodejs.Http.http::request(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "request",
           "metadataToken": 100665172,
-          "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
-          "normalizedSignature": "request|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
+          "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "normalizedSignature": "request|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1577,11 +1577,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.http::get(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "stableId": "nodejs:nodejs.Http.http::get(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
           "metadataToken": 100665173,
-          "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
-          "normalizedSignature": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
+          "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "normalizedSignature": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1597,11 +1597,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.http::get(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "stableId": "nodejs:nodejs.Http.http::get(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
           "metadataToken": 100665174,
-          "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
-          "normalizedSignature": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
+          "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
+          "normalizedSignature": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
