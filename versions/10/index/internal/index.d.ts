@@ -22,7 +22,7 @@ import type { Task, Task_1 } from "@tsonic/dotnet/System.Threading.Tasks/interna
 import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
 import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple_2, Void } from "@tsonic/dotnet/System/internal/index.js";
 
-export type DebugLogFunction = (message: string, args: unknown[]) => void;
+export type DebugLogFunction = (message: string, ...args: unknown[]) => void;
 
 
 export interface AddressInfo$instance {

@@ -6722,11 +6722,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.DnsPromises::lookup(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::lookup(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "lookup",
           "metadataToken": 100664017,
-          "canonicalSignature": "(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "lookup|(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "lookup|(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -6742,11 +6742,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::lookupAll(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::lookupAll(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "lookupAll",
           "metadataToken": 100664018,
-          "canonicalSignature": "(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "lookupAll|(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "lookupAll|(System.String,nodejs.LookupOptions):System.Threading.Tasks.Task_1[[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -6762,11 +6762,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::lookupService(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::lookupService(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "lookupService",
           "metadataToken": 100664019,
-          "canonicalSignature": "(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "lookupService|(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "lookupService|(System.String,System.Int32):System.Threading.Tasks.Task_1[[nodejs.LookupServiceResult,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -6922,11 +6922,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveCaa(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveCaa(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveCaa",
           "metadataToken": 100664027,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveCaa|(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveCaa|(System.String):System.Threading.Tasks.Task_1[[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -6942,11 +6942,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveMx(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveMx(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveMx",
           "metadataToken": 100664028,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveMx|(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveMx|(System.String):System.Threading.Tasks.Task_1[[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -6962,11 +6962,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveNaptr(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveNaptr(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveNaptr",
           "metadataToken": 100664029,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveNaptr|(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveNaptr|(System.String):System.Threading.Tasks.Task_1[[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -7022,11 +7022,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveSoa(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveSoa(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveSoa",
           "metadataToken": 100664032,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveSoa|(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveSoa|(System.String):System.Threading.Tasks.Task_1[[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -7042,11 +7042,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveSrv(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveSrv(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveSrv",
           "metadataToken": 100664033,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveSrv|(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveSrv|(System.String):System.Threading.Tasks.Task_1[[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -7062,11 +7062,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.DnsPromises::resolveTlsa(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.DnsPromises::resolveTlsa(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "resolveTlsa",
           "metadataToken": 100664034,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "resolveTlsa|(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "resolveTlsa|(System.String):System.Threading.Tasks.Task_1[[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -9223,11 +9223,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.FsPromises::fstat(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.FsPromises::fstat(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "fstat",
           "metadataToken": 100664279,
-          "canonicalSignature": "(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "fstat|(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "fstat|(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -9463,11 +9463,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.FsPromises::stat(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.FsPromises::stat(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "stat",
           "metadataToken": 100664291,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "stat|(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=false",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "stat|(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -12701,10 +12701,10 @@
       "events": [],
       "constructors": [
         {
-          "stableId": "nodejs:nodejs.PerformanceObserver::.ctor(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.PerformanceObserver::.ctor(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100664613,
-          "canonicalSignature": "(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(System.Action_2[[nodejs.PerformanceObserverEntryList,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.PerformanceObserver,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 1,
           "visibility": "Public",
@@ -14541,11 +14541,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveCaa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveCaa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveCaa",
           "metadataToken": 100664165,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveCaa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveCaa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -14581,11 +14581,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveMx(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveMx(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveMx",
           "metadataToken": 100664167,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveMx|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveMx|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -14601,11 +14601,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveNaptr(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveNaptr(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveNaptr",
           "metadataToken": 100664168,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveNaptr|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveNaptr|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -14661,11 +14661,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveSoa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveSoa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveSoa",
           "metadataToken": 100664171,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveSoa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveSoa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -14681,11 +14681,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveSrv(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveSrv(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveSrv",
           "metadataToken": 100664172,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveSrv|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveSrv|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -14701,11 +14701,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Resolver::resolveTlsa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.Resolver::resolveTlsa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveTlsa",
           "metadataToken": 100664173,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveTlsa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveTlsa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -15655,10 +15655,10 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Server::.ctor(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.Server::.ctor(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100664424,
-          "canonicalSignature": "(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 1,
           "visibility": "Public",
@@ -15666,10 +15666,10 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Server::.ctor(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.Server::.ctor(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100664425,
-          "canonicalSignature": "(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 2,
           "visibility": "Public",
@@ -19199,10 +19199,10 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.TLSServer::.ctor(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.TLSServer::.ctor(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100664979,
-          "canonicalSignature": "(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 1,
           "visibility": "Public",
@@ -19210,10 +19210,10 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.TLSServer::.ctor(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "stableId": "nodejs:nodejs.TLSServer::.ctor(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
           "metadataToken": 100664980,
-          "canonicalSignature": "(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "normalizedSignature": "constructor|(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
+          "canonicalSignature": "(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void",
+          "normalizedSignature": "constructor|(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
           "parameterCount": 2,
           "visibility": "Public",
@@ -23931,11 +23931,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.crypto::generateKeyPairSync(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.crypto::generateKeyPairSync(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "generateKeyPairSync",
           "metadataToken": 100663672,
-          "canonicalSignature": "(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "generateKeyPairSync|(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=true",
+          "canonicalSignature": "(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "generateKeyPairSync|(System.String,System.Object):System.ValueTuple_2[[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24271,11 +24271,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.crypto::generateKey(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.crypto::generateKey(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "generateKey",
           "metadataToken": 100663692,
-          "canonicalSignature": "(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "generateKey|(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "generateKey|(System.String,System.Object,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.KeyObject,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24633,11 +24633,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.dgram::createSocket(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
+          "stableId": "nodejs:nodejs.dgram::createSocket(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
           "clrName": "createSocket",
           "metadataToken": 100663886,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
-          "normalizedSignature": "createSocket|(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
+          "normalizedSignature": "createSocket|(System.String,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24653,11 +24653,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dgram::createSocket(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
+          "stableId": "nodejs:nodejs.dgram::createSocket(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
           "clrName": "createSocket",
           "metadataToken": 100663887,
-          "canonicalSignature": "(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
-          "normalizedSignature": "createSocket|(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket|static=true",
+          "canonicalSignature": "(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket",
+          "normalizedSignature": "createSocket|(nodejs.SocketOptions,System.Action_2[[System.Byte[],System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.RemoteInfo,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.DgramSocket|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24755,11 +24755,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::lookup(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::lookup(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "lookup",
           "metadataToken": 100663963,
-          "canonicalSignature": "(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "lookup|(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "lookup|(System.String,nodejs.LookupOptions,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.LookupAddress[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24935,11 +24935,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveCaa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveCaa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveCaa",
           "metadataToken": 100663973,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveCaa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveCaa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.CaaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24955,11 +24955,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveMx(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveMx(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveMx",
           "metadataToken": 100663974,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveMx|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveMx|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.MxRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -24975,11 +24975,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveNaptr(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveNaptr(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveNaptr",
           "metadataToken": 100663975,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveNaptr|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveNaptr|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.NaptrRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -25035,11 +25035,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveSoa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveSoa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveSoa",
           "metadataToken": 100663978,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveSoa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveSoa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SoaRecord,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -25055,11 +25055,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveSrv(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveSrv(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveSrv",
           "metadataToken": 100663979,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveSrv|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveSrv|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.SrvRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -25075,11 +25075,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.dns::resolveTlsa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "stableId": "nodejs:nodejs.dns::resolveTlsa(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
           "clrName": "resolveTlsa",
           "metadataToken": 100663980,
-          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
-          "normalizedSignature": "resolveTlsa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
+          "canonicalSignature": "(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void",
+          "normalizedSignature": "resolveTlsa|(System.String,System.Action_2[[System.Exception,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[nodejs.TlsaRecord[],nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):System.Void|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -26101,11 +26101,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.fs::fstat(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.fs::fstat(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "fstat",
           "metadataToken": 100664223,
-          "canonicalSignature": "(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "fstat|(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=true",
+          "canonicalSignature": "(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "fstat|(System.Int32):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -26581,11 +26581,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.fs::stat(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
+          "stableId": "nodejs:nodejs.fs::stat(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
           "clrName": "stat",
           "metadataToken": 100664251,
-          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]",
-          "normalizedSignature": "stat|(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]|static=true",
+          "canonicalSignature": "(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]",
+          "normalizedSignature": "stat|(System.String):System.Threading.Tasks.Task_1[[nodejs.Stats,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -26943,11 +26943,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.net::createServer(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
+          "stableId": "nodejs:nodejs.net::createServer(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
           "clrName": "createServer",
           "metadataToken": 100664350,
-          "canonicalSignature": "(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
-          "normalizedSignature": "createServer|(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server|static=true",
+          "canonicalSignature": "(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
+          "normalizedSignature": "createServer|(System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -26963,11 +26963,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.net::createServer(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
+          "stableId": "nodejs:nodejs.net::createServer(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
           "clrName": "createServer",
           "metadataToken": 100664351,
-          "canonicalSignature": "(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
-          "normalizedSignature": "createServer|(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server|static=true",
+          "canonicalSignature": "(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server",
+          "normalizedSignature": "createServer|(nodejs.ServerOpts,System.Action_1[[nodejs.Socket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Server|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -29100,11 +29100,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.tls::createServer(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
+          "stableId": "nodejs:nodejs.tls::createServer(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
           "clrName": "createServer",
           "metadataToken": 100664990,
-          "canonicalSignature": "(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
-          "normalizedSignature": "createServer|(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer|static=true",
+          "canonicalSignature": "(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
+          "normalizedSignature": "createServer|(System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -29120,11 +29120,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.tls::createServer(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
+          "stableId": "nodejs:nodejs.tls::createServer(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
           "clrName": "createServer",
           "metadataToken": 100664991,
-          "canonicalSignature": "(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
-          "normalizedSignature": "createServer|(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer|static=true",
+          "canonicalSignature": "(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer",
+          "normalizedSignature": "createServer|(nodejs.TlsOptions,System.Action_1[[nodejs.TLSSocket,nodejs,Version=1.0.1.0,Culture=neutral,PublicKeyToken=null]]):nodejs.TLSServer|static=true",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,

@@ -1,31 +1,46 @@
 # @tsonic/nodejs
 
-Node-style APIs for **Tsonic** (TypeScript → .NET).
+Node-style APIs for **Tsonic**.
+
+This package is part of Tsonic: https://tsonic.org.
 
 Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
 
-## Quick Start
+## Prerequisites
 
-### New project
+- Install the .NET 10 SDK (required by Tsonic): https://dotnet.microsoft.com/download
+- Verify: `dotnet --version`
+
+## Quick Start
 
 ```bash
 mkdir my-app && cd my-app
-tsonic init
-tsonic add npm @tsonic/nodejs
+npx --yes tsonic@latest init
+npx --yes tsonic@latest add npm @tsonic/nodejs
+
+# Replace the default App.ts with a Node.js-style example
+cat > packages/my-app/src/App.ts <<'EOF'
+import { console, path } from "@tsonic/nodejs/index.js";
+
+export function main(): void {
+  console.log(path.posix.join("a", "b", "c"));
+}
+EOF
+
 npm run dev
 ```
 
-### Existing project
+## Existing project
 
 ```bash
-tsonic add npm @tsonic/nodejs
+npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
 ## Versioning
 
-This repo is versioned by **.NET major**:
+This repo is versioned by runtime major:
 
-- **.NET 10** → `versions/10/` → npm: `@tsonic/nodejs@10.x`
+- `10` → `versions/10/` → npm: `@tsonic/nodejs@10.x`
 
 When publishing, run: `npm publish versions/10 --access public`
 
@@ -108,7 +123,9 @@ Node’s built-in specifiers like `node:fs` are **not** supported here.
 
 ## Documentation
 
-- `docs/README.md`
+- [docs/getting-started.md](docs/getting-started.md)
+- [docs/imports.md](docs/imports.md)
+- Module docs: [fs](docs/modules/fs.md), [path](docs/modules/path.md), [crypto](docs/modules/crypto.md), [http](docs/modules/http.md), [events](docs/modules/events.md), [process](docs/modules/process.md)
 - https://tsonic.org/nodejs/
 
 ## Naming Conventions
@@ -117,22 +134,7 @@ Node’s built-in specifiers like `node:fs` are **not** supported here.
 
 ## Development
 
-### Regenerating Types
-
-To regenerate TypeScript declarations:
-
-```bash
-./__build/scripts/generate.sh
-```
-
-**Prerequisites:**
-- .NET 10 SDK installed
-- `tsbindgen` repository at `../tsbindgen`
-- `nodejs-clr` repository at `../nodejs-clr` (built with `dotnet build -c Release`)
-
-**Environment variables:**
-- `DOTNET_VERSION` - .NET runtime version (default: `10.0.0`)
-- `DOTNET_HOME` - .NET installation directory (default: `$HOME/.dotnet`)
+See `__build/` for regeneration scripts.
 
 ## License
 
