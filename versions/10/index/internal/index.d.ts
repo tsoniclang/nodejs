@@ -254,8 +254,10 @@ export interface BindOptions$instance {
     get address(): string | undefined;
     set address(value: string | undefined);
     exclusive: boolean;
-    fd: Nullable_1<System_Internal.Int32>;
-    port: Nullable_1<System_Internal.Int32>;
+    get fd(): Nullable_1<System_Internal.Int32>;
+    set fd(value: Nullable_1<System_Internal.Int32> | int);
+    get port(): Nullable_1<System_Internal.Int32>;
+    set port(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -287,9 +289,12 @@ export type BlockList = BlockList$instance;
 export interface BrotliOptions$instance {
     readonly __tsonic_type_nodejs_BrotliOptions: never;
 
-    chunkSize: Nullable_1<System_Internal.Int32>;
-    maxOutputLength: Nullable_1<System_Internal.Int32>;
-    quality: Nullable_1<System_Internal.Int32>;
+    get chunkSize(): Nullable_1<System_Internal.Int32>;
+    set chunkSize(value: Nullable_1<System_Internal.Int32> | int);
+    get maxOutputLength(): Nullable_1<System_Internal.Int32>;
+    set maxOutputLength(value: Nullable_1<System_Internal.Int32> | int);
+    get quality(): Nullable_1<System_Internal.Int32>;
+    set quality(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -448,7 +453,8 @@ export interface ChildProcess$instance extends EventEmitter {
     readonly __tsonic_type_nodejs_ChildProcess: never;
 
     connected: boolean;
-    exitCode: Nullable_1<System_Internal.Int32>;
+    get exitCode(): Nullable_1<System_Internal.Int32>;
+    set exitCode(value: Nullable_1<System_Internal.Int32> | int);
     readonly killed: boolean;
     readonly pid: int;
     referenced: boolean;
@@ -518,9 +524,12 @@ export interface CommonConnectionOptions$instance {
 
     get ALPNProtocols(): string[] | undefined;
     set ALPNProtocols(value: string[] | undefined);
-    enableTrace: Nullable_1<System_Internal.Boolean>;
-    rejectUnauthorized: Nullable_1<System_Internal.Boolean>;
-    requestCert: Nullable_1<System_Internal.Boolean>;
+    get enableTrace(): Nullable_1<System_Internal.Boolean>;
+    set enableTrace(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get rejectUnauthorized(): Nullable_1<System_Internal.Boolean>;
+    set rejectUnauthorized(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get requestCert(): Nullable_1<System_Internal.Boolean>;
+    set requestCert(value: Nullable_1<System_Internal.Boolean> | boolean);
     get secureContext(): SecureContext | undefined;
     set secureContext(value: SecureContext | undefined);
 }
@@ -546,10 +555,12 @@ export interface ConnectionOptions$instance extends CommonConnectionOptions {
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
-    port: Nullable_1<System_Internal.Int32>;
+    get port(): Nullable_1<System_Internal.Int32>;
+    set port(value: Nullable_1<System_Internal.Int32> | int);
     get servername(): string | undefined;
     set servername(value: string | undefined);
-    timeout: Nullable_1<System_Internal.Int32>;
+    get timeout(): Nullable_1<System_Internal.Int32>;
+    set timeout(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -986,7 +997,8 @@ export interface ExecOptions$instance {
     set encoding(value: string | undefined);
     get env(): unknown | undefined;
     set env(value: unknown | undefined);
-    gid: Nullable_1<System_Internal.Int32>;
+    get gid(): Nullable_1<System_Internal.Int32>;
+    set gid(value: Nullable_1<System_Internal.Int32> | int);
     get input(): string | undefined;
     set input(value: string | undefined);
     get killSignal(): string | undefined;
@@ -997,7 +1009,8 @@ export interface ExecOptions$instance {
     get stdio(): string | undefined;
     set stdio(value: string | undefined);
     timeout: int;
-    uid: Nullable_1<System_Internal.Int32>;
+    get uid(): Nullable_1<System_Internal.Int32>;
+    set uid(value: Nullable_1<System_Internal.Int32> | int);
     windowsHide: boolean;
     windowsVerbatimArguments: boolean;
 }
@@ -1132,19 +1145,24 @@ export type Interface = Interface$instance;
 export interface InterfaceOptions$instance {
     readonly __tsonic_type_nodejs_InterfaceOptions: never;
 
-    escapeCodeTimeout: Nullable_1<System_Internal.Int32>;
+    get escapeCodeTimeout(): Nullable_1<System_Internal.Int32>;
+    set escapeCodeTimeout(value: Nullable_1<System_Internal.Int32> | int);
     get history(): string[] | undefined;
     set history(value: string[] | undefined);
-    historySize: Nullable_1<System_Internal.Int32>;
+    get historySize(): Nullable_1<System_Internal.Int32>;
+    set historySize(value: Nullable_1<System_Internal.Int32> | int);
     get input(): Readable | undefined;
     set input(value: Readable | undefined);
     get output(): Writable | undefined;
     set output(value: Writable | undefined);
     get prompt(): string | undefined;
     set prompt(value: string | undefined);
-    removeHistoryDuplicates: Nullable_1<System_Internal.Boolean>;
-    tabSize: Nullable_1<System_Internal.Int32>;
-    terminal: Nullable_1<System_Internal.Boolean>;
+    get removeHistoryDuplicates(): Nullable_1<System_Internal.Boolean>;
+    set removeHistoryDuplicates(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get tabSize(): Nullable_1<System_Internal.Int32>;
+    set tabSize(value: Nullable_1<System_Internal.Int32> | int);
+    get terminal(): Nullable_1<System_Internal.Boolean>;
+    set terminal(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
 
 
@@ -1191,13 +1209,16 @@ export type KeyObject = KeyObject$instance;
 export interface ListenOptions$instance {
     readonly __tsonic_type_nodejs_ListenOptions: never;
 
-    backlog: Nullable_1<System_Internal.Int32>;
+    get backlog(): Nullable_1<System_Internal.Int32>;
+    set backlog(value: Nullable_1<System_Internal.Int32> | int);
     get host(): string | undefined;
     set host(value: string | undefined);
-    ipv6Only: Nullable_1<System_Internal.Boolean>;
+    get ipv6Only(): Nullable_1<System_Internal.Boolean>;
+    set ipv6Only(value: Nullable_1<System_Internal.Boolean> | boolean);
     get path(): string | undefined;
     set path(value: string | undefined);
-    port: Nullable_1<System_Internal.Int32>;
+    get port(): Nullable_1<System_Internal.Int32>;
+    set port(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -1226,13 +1247,16 @@ export type LookupAddress = LookupAddress$instance;
 export interface LookupOptions$instance {
     readonly __tsonic_type_nodejs_LookupOptions: never;
 
-    all: Nullable_1<System_Internal.Boolean>;
+    get all(): Nullable_1<System_Internal.Boolean>;
+    set all(value: Nullable_1<System_Internal.Boolean> | boolean);
     get family(): unknown | undefined;
     set family(value: unknown | undefined);
-    hints: Nullable_1<System_Internal.Int32>;
+    get hints(): Nullable_1<System_Internal.Int32>;
+    set hints(value: Nullable_1<System_Internal.Int32> | int);
     get order(): string | undefined;
     set order(value: string | undefined);
-    verbatim: Nullable_1<System_Internal.Boolean>;
+    get verbatim(): Nullable_1<System_Internal.Boolean>;
+    set verbatim(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
 
 
@@ -1263,7 +1287,8 @@ export interface MarkOptions$instance {
 
     get detail(): unknown | undefined;
     set detail(value: unknown | undefined);
-    startTime: Nullable_1<System_Internal.Double>;
+    get startTime(): Nullable_1<System_Internal.Double>;
+    set startTime(value: Nullable_1<System_Internal.Double> | double);
 }
 
 
@@ -1279,10 +1304,12 @@ export interface MeasureOptions$instance {
 
     get detail(): unknown | undefined;
     set detail(value: unknown | undefined);
-    end: Nullable_1<System_Internal.Double>;
+    get end(): Nullable_1<System_Internal.Double>;
+    set end(value: Nullable_1<System_Internal.Double> | double);
     get endMark(): string | undefined;
     set endMark(value: string | undefined);
-    start: Nullable_1<System_Internal.Double>;
+    get start(): Nullable_1<System_Internal.Double>;
+    set start(value: Nullable_1<System_Internal.Double> | double);
     get startMark(): string | undefined;
     set startMark(value: string | undefined);
 }
@@ -1729,9 +1756,12 @@ export type Resolver = Resolver$instance;
 export interface ResolverOptions$instance {
     readonly __tsonic_type_nodejs_ResolverOptions: never;
 
-    maxTimeout: Nullable_1<System_Internal.Int32>;
-    timeout: Nullable_1<System_Internal.Int32>;
-    tries: Nullable_1<System_Internal.Int32>;
+    get maxTimeout(): Nullable_1<System_Internal.Int32>;
+    set maxTimeout(value: Nullable_1<System_Internal.Int32> | int);
+    get timeout(): Nullable_1<System_Internal.Int32>;
+    set timeout(value: Nullable_1<System_Internal.Int32> | int);
+    get tries(): Nullable_1<System_Internal.Int32>;
+    set tries(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -1842,8 +1872,10 @@ export type Server = Server$instance;
 export interface ServerOpts$instance {
     readonly __tsonic_type_nodejs_ServerOpts: never;
 
-    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
-    pauseOnConnect: Nullable_1<System_Internal.Boolean>;
+    get allowHalfOpen(): Nullable_1<System_Internal.Boolean>;
+    set allowHalfOpen(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get pauseOnConnect(): Nullable_1<System_Internal.Boolean>;
+    set pauseOnConnect(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
 
 
@@ -1905,13 +1937,15 @@ export interface Socket$instance extends Stream {
     set localAddress(value: string | undefined);
     get localFamily(): string | undefined;
     set localFamily(value: string | undefined);
-    localPort: Nullable_1<System_Internal.Int32>;
+    get localPort(): Nullable_1<System_Internal.Int32>;
+    set localPort(value: Nullable_1<System_Internal.Int32> | int);
     readonly readyState: string;
     get remoteAddress(): string | undefined;
     set remoteAddress(value: string | undefined);
     get remoteFamily(): string | undefined;
     set remoteFamily(value: string | undefined);
-    remotePort: Nullable_1<System_Internal.Int32>;
+    get remotePort(): Nullable_1<System_Internal.Int32>;
+    set remotePort(value: Nullable_1<System_Internal.Int32> | int);
     address(): unknown;
     connect(port: int, host?: string, connectionListener?: Action): Socket;
     connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
@@ -1949,7 +1983,8 @@ export interface SocketAddress$instance {
 
     address: string;
     family: string;
-    flowlabel: Nullable_1<System_Internal.Int32>;
+    get flowlabel(): Nullable_1<System_Internal.Int32>;
+    set flowlabel(value: Nullable_1<System_Internal.Int32> | int);
     port: int;
 }
 
@@ -1968,8 +2003,10 @@ export interface SocketAddressInitOptions$instance {
     set address(value: string | undefined);
     get family(): string | undefined;
     set family(value: string | undefined);
-    flowlabel: Nullable_1<System_Internal.Int32>;
-    port: Nullable_1<System_Internal.Int32>;
+    get flowlabel(): Nullable_1<System_Internal.Int32>;
+    set flowlabel(value: Nullable_1<System_Internal.Int32> | int);
+    get port(): Nullable_1<System_Internal.Int32>;
+    set port(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -1983,10 +2020,14 @@ export type SocketAddressInitOptions = SocketAddressInitOptions$instance;
 export interface SocketConstructorOpts$instance {
     readonly __tsonic_type_nodejs_SocketConstructorOpts: never;
 
-    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
-    fd: Nullable_1<System_Internal.Int32>;
-    readable: Nullable_1<System_Internal.Boolean>;
-    writable: Nullable_1<System_Internal.Boolean>;
+    get allowHalfOpen(): Nullable_1<System_Internal.Boolean>;
+    set allowHalfOpen(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get fd(): Nullable_1<System_Internal.Int32>;
+    set fd(value: Nullable_1<System_Internal.Int32> | int);
+    get readable(): Nullable_1<System_Internal.Boolean>;
+    set readable(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get writable(): Nullable_1<System_Internal.Boolean>;
+    set writable(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
 
 
@@ -2001,10 +2042,12 @@ export interface SocketOptions$instance {
     readonly __tsonic_type_nodejs_SocketOptions: never;
 
     ipv6Only: boolean;
-    recvBufferSize: Nullable_1<System_Internal.Int32>;
+    get recvBufferSize(): Nullable_1<System_Internal.Int32>;
+    set recvBufferSize(value: Nullable_1<System_Internal.Int32> | int);
     reuseAddr: boolean;
     reusePort: boolean;
-    sendBufferSize: Nullable_1<System_Internal.Int32>;
+    get sendBufferSize(): Nullable_1<System_Internal.Int32>;
+    set sendBufferSize(value: Nullable_1<System_Internal.Int32> | int);
     type: string;
 }
 
@@ -2025,7 +2068,8 @@ export interface SpawnSyncReturns_1$instance<T> {
     pid: int;
     get signal(): string | undefined;
     set signal(value: string | undefined);
-    status: Nullable_1<System_Internal.Int32>;
+    get status(): Nullable_1<System_Internal.Int32>;
+    set status(value: Nullable_1<System_Internal.Int32> | int);
     stderr: T;
     stdout: T;
 }
@@ -2131,16 +2175,22 @@ export type StringDecoder = StringDecoder$instance;
 export interface TcpSocketConnectOpts$instance {
     readonly __tsonic_type_nodejs_TcpSocketConnectOpts: never;
 
-    family: Nullable_1<System_Internal.Int32>;
-    hints: Nullable_1<System_Internal.Int32>;
+    get family(): Nullable_1<System_Internal.Int32>;
+    set family(value: Nullable_1<System_Internal.Int32> | int);
+    get hints(): Nullable_1<System_Internal.Int32>;
+    set hints(value: Nullable_1<System_Internal.Int32> | int);
     get host(): string | undefined;
     set host(value: string | undefined);
-    keepAlive: Nullable_1<System_Internal.Boolean>;
-    keepAliveInitialDelay: Nullable_1<System_Internal.Int32>;
+    get keepAlive(): Nullable_1<System_Internal.Boolean>;
+    set keepAlive(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get keepAliveInitialDelay(): Nullable_1<System_Internal.Int32>;
+    set keepAliveInitialDelay(value: Nullable_1<System_Internal.Int32> | int);
     get localAddress(): string | undefined;
     set localAddress(value: string | undefined);
-    localPort: Nullable_1<System_Internal.Int32>;
-    noDelay: Nullable_1<System_Internal.Boolean>;
+    get localPort(): Nullable_1<System_Internal.Int32>;
+    set localPort(value: Nullable_1<System_Internal.Int32> | int);
+    get noDelay(): Nullable_1<System_Internal.Boolean>;
+    set noDelay(value: Nullable_1<System_Internal.Boolean> | boolean);
     port: int;
 }
 
@@ -2243,18 +2293,22 @@ export type TLSCertificateInfo = TLSCertificateInfo$instance;
 export interface TlsOptions$instance extends CommonConnectionOptions {
     readonly __tsonic_type_nodejs_TlsOptions: never;
 
-    allowHalfOpen: Nullable_1<System_Internal.Boolean>;
+    get allowHalfOpen(): Nullable_1<System_Internal.Boolean>;
+    set allowHalfOpen(value: Nullable_1<System_Internal.Boolean> | boolean);
     get ca(): unknown | undefined;
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
     set cert(value: unknown | undefined);
-    handshakeTimeout: Nullable_1<System_Internal.Int32>;
+    get handshakeTimeout(): Nullable_1<System_Internal.Int32>;
+    set handshakeTimeout(value: Nullable_1<System_Internal.Int32> | int);
     get key(): unknown | undefined;
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
-    pauseOnConnect: Nullable_1<System_Internal.Boolean>;
-    sessionTimeout: Nullable_1<System_Internal.Int32>;
+    get pauseOnConnect(): Nullable_1<System_Internal.Boolean>;
+    set pauseOnConnect(value: Nullable_1<System_Internal.Boolean> | boolean);
+    get sessionTimeout(): Nullable_1<System_Internal.Int32>;
+    set sessionTimeout(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -2329,7 +2383,8 @@ export interface TLSSocketOptions$instance extends CommonConnectionOptions {
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
     set cert(value: unknown | undefined);
-    isServer: Nullable_1<System_Internal.Boolean>;
+    get isServer(): Nullable_1<System_Internal.Boolean>;
+    set isServer(value: Nullable_1<System_Internal.Boolean> | boolean);
     get key(): unknown | undefined;
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
@@ -2530,12 +2585,18 @@ export type X509CertificateInfo = X509CertificateInfo$instance;
 export interface ZlibOptions$instance {
     readonly __tsonic_type_nodejs_ZlibOptions: never;
 
-    chunkSize: Nullable_1<System_Internal.Int32>;
-    level: Nullable_1<System_Internal.Int32>;
-    maxOutputLength: Nullable_1<System_Internal.Int32>;
-    memLevel: Nullable_1<System_Internal.Int32>;
-    strategy: Nullable_1<System_Internal.Int32>;
-    windowBits: Nullable_1<System_Internal.Int32>;
+    get chunkSize(): Nullable_1<System_Internal.Int32>;
+    set chunkSize(value: Nullable_1<System_Internal.Int32> | int);
+    get level(): Nullable_1<System_Internal.Int32>;
+    set level(value: Nullable_1<System_Internal.Int32> | int);
+    get maxOutputLength(): Nullable_1<System_Internal.Int32>;
+    set maxOutputLength(value: Nullable_1<System_Internal.Int32> | int);
+    get memLevel(): Nullable_1<System_Internal.Int32>;
+    set memLevel(value: Nullable_1<System_Internal.Int32> | int);
+    get strategy(): Nullable_1<System_Internal.Int32>;
+    set strategy(value: Nullable_1<System_Internal.Int32> | int);
+    get windowBits(): Nullable_1<System_Internal.Int32>;
+    set windowBits(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -2949,7 +3010,8 @@ export abstract class process$instance {
     static argv0: string;
     static readonly env: ProcessEnv;
     static readonly execPath: string;
-    static exitCode: Nullable_1<System_Internal.Int32>;
+    static get exitCode(): Nullable_1<System_Internal.Int32>;
+    static set exitCode(value: Nullable_1<System_Internal.Int32> | int);
     static readonly pid: int;
     static readonly ppid: int;
     static readonly platform: string;
