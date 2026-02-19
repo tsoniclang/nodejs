@@ -99,7 +99,8 @@ export interface RequestOptions$instance {
     set path(value: string | undefined);
     port: int;
     protocol: string;
-    timeout: Nullable_1<System_Internal.Int32>;
+    get timeout(): Nullable_1<System_Internal.Int32>;
+    set timeout(value: Nullable_1<System_Internal.Int32> | int);
 }
 
 
@@ -178,7 +179,8 @@ export const TypeError: {
 export type TypeError = TypeError$instance;
 
 export abstract class http$instance {
-    static globalAgent_maxSockets: Nullable_1<System_Internal.Int32>;
+    static get globalAgent_maxSockets(): Nullable_1<System_Internal.Int32>;
+    static set globalAgent_maxSockets(value: Nullable_1<System_Internal.Int32> | int);
     static globalAgent_maxFreeSockets: int;
     static globalAgent_timeout: int;
     static maxHeaderSize: int;
