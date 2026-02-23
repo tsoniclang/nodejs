@@ -1034,6 +1034,8 @@ export interface FsPromises$instance {
     cp(src: string, dest: string, recursive?: boolean): Task;
     fstat(fd: int): Task_1<Stats>;
     mkdir(path: string, recursive?: boolean): Task;
+    mkdir(path: string, options: MkdirOptions): Task;
+    mkdir(path: string, options: unknown): Task;
     open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
     read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
     readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
@@ -1321,6 +1323,23 @@ export const MeasureOptions: {
 
 
 export type MeasureOptions = MeasureOptions$instance;
+
+export interface MkdirOptions$instance {
+    readonly __tsonic_type_nodejs_MkdirOptions: never;
+
+    get mode(): Nullable_1<System_Internal.Int32>;
+    set mode(value: Nullable_1<System_Internal.Int32> | int);
+    get recursive(): Nullable_1<System_Internal.Boolean>;
+    set recursive(value: Nullable_1<System_Internal.Boolean> | boolean);
+}
+
+
+export const MkdirOptions: {
+    new(): MkdirOptions;
+};
+
+
+export type MkdirOptions = MkdirOptions$instance;
 
 export interface MxRecord$instance {
     readonly __tsonic_type_nodejs_MxRecord: never;
@@ -2879,8 +2898,12 @@ export abstract class fs$instance {
     static existsSync(path: string): boolean;
     static fstat(fd: int): Task_1<Stats>;
     static fstatSync(fd: int): Stats;
+    static mkdir(path: string, options: MkdirOptions): Task;
     static mkdir(path: string, recursive?: boolean): Task;
+    static mkdir(path: string, options: unknown): Task;
+    static mkdirSync(path: string, options: MkdirOptions): void;
     static mkdirSync(path: string, recursive?: boolean): void;
+    static mkdirSync(path: string, options: unknown): void;
     static open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
     static openSync(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): int;
     static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;

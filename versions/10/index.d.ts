@@ -83,6 +83,7 @@ export { Resolver as Resolver } from './index/internal/index.js';
 export { EventEmitter as EventEmitter } from './index/internal/index.js';
 export { events$instance as events } from './index/internal/index.js';
 export { fs$instance as fs } from './index/internal/index.js';
+export { MkdirOptions as MkdirOptions } from './index/internal/index.js';
 export { FsPromises as FsPromises } from './index/internal/index.js';
 export { Stats as Stats } from './index/internal/index.js';
 export { BlockList as BlockList } from './index/internal/index.js';
