@@ -1,6 +1,6 @@
 # Node.js Compatibility (`@tsonic/nodejs`)
 
-Tsonic targets the .NET BCL by default. If you want **Node-style APIs** (like `fs`, `path`, `crypto`, `process`, and `http`), use `@tsonic/nodejs`.
+Tsonic targets the .NET BCL by default. If you want **Node-style APIs** (`fs`, `path`, `crypto`, `process`, `http`, ...), use `@tsonic/nodejs` and set `--surface nodejs`.
 
 This is **not** Node.js itself, and it is **not a byte-for-byte clone** of the Node standard library. It is a curated, Node-inspired API surface implemented on .NET for Tsonic projects.
 
@@ -22,19 +22,23 @@ This is **not** Node.js itself, and it is **not a byte-for-byte clone** of the N
 
 ## Overview
 
-In Tsonic projects you import Node-style APIs from `@tsonic/nodejs/index.js`:
+In Node surface projects you can write natural Node imports:
 
 ```ts
-import { console, fs, path } from "@tsonic/nodejs/index.js";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 export function main(): void {
-  console.log(path.join("a", "b", "c"));
-  const text = fs.readFileSync("./README.md", "utf-8");
+  const path = join("a", "b", "c");
+  console.log(path);
+  const text = readFileSync("./README.md", "utf-8");
   console.log(text);
 }
 ```
 
-Some namespaces are emitted as separate ESM entry points (for example `nodejs.Http`), and you import those via a subpath:
+Direct package imports from `@tsonic/nodejs/index.js` remain supported.
+
+Some namespaces are emitted as separate ESM entry points (for example `nodejs.Http`), imported via a subpath:
 
 ```ts
 import { http } from "@tsonic/nodejs/nodejs.Http.js";
@@ -46,4 +50,3 @@ import { http } from "@tsonic/nodejs/nodejs.Http.js";
 - `@tsonic/nodejs` provides Node-style APIs (e.g. `fs`, `path`, `crypto`, `http`).
 
 You can enable either or both in a project.
-

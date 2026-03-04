@@ -1,4 +1,10 @@
 {
+  "bindingVersion": 1,
+  "packageName": "@tsonic/nodejs",
+  "surfaceMode": "nodejs",
+  "runtimePackages": [
+    "@tsonic/nodejs"
+  ],
   "dotnet": {
     "frameworkReferences": [
       { "id": "Microsoft.AspNetCore.App", "types": "@tsonic/aspnetcore" }
