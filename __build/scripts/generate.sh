@@ -103,6 +103,11 @@ dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
 cp -f "$PROJECT_DIR/README.md" "$OUT_DIR/README.md"
 cp -f "$PROJECT_DIR/LICENSE" "$OUT_DIR/LICENSE"
 
+TEMPLATE_DIR="$PROJECT_DIR/__build/templates/$DOTNET_MAJOR"
+if [ -d "$TEMPLATE_DIR" ]; then
+    cp -f "$TEMPLATE_DIR"/* "$OUT_DIR"/
+fi
+
 echo ""
 echo "================================================================"
 echo "Generation Complete"
