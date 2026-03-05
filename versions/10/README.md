@@ -15,18 +15,22 @@ Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `c
 
 ```bash
 mkdir my-app && cd my-app
-npx --yes tsonic@latest init
+npx --yes tsonic@latest init --surface nodejs
 npx --yes tsonic@latest add npm @tsonic/nodejs
+```
 
-# Replace the default App.ts with a Node.js-style example
-cat > packages/my-app/src/App.ts <<'EOF'
-import { console, path } from "@tsonic/nodejs/index.js";
+```ts
+import { join } from "node:path";
+import { readFileSync } from "node:fs";
 
 export function main(): void {
-  console.log(path.posix.join("a", "b", "c"));
+  const fullPath = join("src", "App.ts");
+  console.log(fullPath);
+  console.log(readFileSync(fullPath, "utf-8"));
 }
-EOF
+```
 
+```bash
 npm run dev
 ```
 
@@ -34,6 +38,12 @@ npm run dev
 
 ```bash
 npx --yes tsonic@latest add npm @tsonic/nodejs
+```
+
+If the workspace is not already Node surface, set:
+
+```bash
+npx --yes tsonic@latest init --surface nodejs
 ```
 
 ## Versioning
@@ -51,32 +61,29 @@ When publishing, run: `npm publish versions/10 --access public`
 
 ## Usage
 
-### File System
+### File System (`node:fs`)
 
 ```typescript
-import { fs } from "@tsonic/nodejs/index.js";
+import { readFileSync, writeFileSync } from "node:fs";
 
-// Read file
-const content = fs.readFileSync("./package.json", "utf-8");
-
-// Write file
-fs.writeFileSync("./output.txt", "Hello from Tsonic!");
+const content = readFileSync("./package.json", "utf-8");
+writeFileSync("./output.txt", "Hello from Tsonic!");
 ```
 
-### Path Operations
+### Path Operations (`node:path`)
 
 ```typescript
-import { path } from "@tsonic/nodejs/index.js";
+import { join, extname, dirname } from "node:path";
 
-const fullPath = path.join("config", "settings.json");
-const ext = path.extname(fullPath);  // ".json"
-const dir = path.dirname(fullPath);
+const fullPath = join("config", "settings.json");
+const ext = extname(fullPath);  // ".json"
+const dir = dirname(fullPath);
 ```
 
 ### Events
 
 ```typescript
-import { EventEmitter, console } from "@tsonic/nodejs/index.js";
+import { EventEmitter } from "@tsonic/nodejs/index.js";
 
 class MyEmitter extends EventEmitter {}
 const emitter = new MyEmitter();
@@ -86,16 +93,16 @@ emitter.on("data", (chunk) => console.log(chunk));
 ### Crypto
 
 ```ts
-import { crypto } from "@tsonic/nodejs/index.js";
+import { randomUUID } from "node:crypto";
 
-const hash = crypto.createHash("sha256").update("hello").digest("hex");
-void hash;
+const id = randomUUID();
+void id;
 ```
 
 ### Process
 
 ```ts
-import { process } from "@tsonic/nodejs/index.js";
+import * as process from "node:process";
 
 const cwd = process.cwd();
 void cwd;
@@ -109,12 +116,16 @@ import { http } from "@tsonic/nodejs/nodejs.Http.js";
 
 ## Imports (important)
 
-This is an ESM package. Import from the explicit entrypoints:
+For `--surface nodejs` projects, prefer Node-style imports:
 
-- `@tsonic/nodejs/index.js` for most Node-style APIs (`fs`, `path`, `crypto`, `process`, …)
-- submodules like `@tsonic/nodejs/nodejs.Http.js` for separately emitted namespaces
+- `node:fs`, `node:path`, `node:crypto`, `node:process`, ...
+- bare aliases (`fs`, `path`, `crypto`, ...) are also supported
 
-Node’s built-in specifiers like `node:fs` are **not** supported here.
+Direct ESM imports from `@tsonic/nodejs/index.js` are still supported.
+
+`node:http` is currently not mapped by the surface alias set; use:
+
+- `@tsonic/nodejs/nodejs.Http.js`
 
 ## Relationship to `@tsonic/js`
 
