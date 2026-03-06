@@ -2,6 +2,21 @@
   "name": "@tsonic/nodejs",
   "version": "10.0.39",
   "description": "TypeScript type definitions for Node.js CLR library",
+  "main": "index.d.ts",
+  "types": "index.d.ts",
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "node-aliases.d.ts",
+    "nodejs.Http.d.ts",
+    "nodejs.Http.js",
+    "bindings.json",
+    "families.json",
+    "tsonic.bindings.json",
+    "tsonic.surface.json",
+    "README.md",
+    "LICENSE"
+  ],
   "type": "module",
   "keywords": [
     "nodejs",
@@ -18,7 +33,8 @@
     "type": "git",
     "url": "https://github.com/tsoniclang/nodejs.git"
   },
-  "peerDependencies": {
+  "dependencies": {
+    "@tsonic/js": "10.0.39",
     "@tsonic/dotnet": "10.0.35",
     "@tsonic/core": "10.0.35"
   }

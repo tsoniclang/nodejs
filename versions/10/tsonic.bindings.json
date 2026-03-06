@@ -1,16 +1,23 @@
 {
   "bindingVersion": 1,
   "packageName": "@tsonic/nodejs",
-  "surfaceMode": "nodejs",
+  "surfaceMode": "@tsonic/nodejs",
   "runtimePackages": [
     "@tsonic/nodejs"
   ],
   "dotnet": {
     "frameworkReferences": [
-      { "id": "Microsoft.AspNetCore.App", "types": "@tsonic/aspnetcore" }
+      {
+        "id": "Microsoft.AspNetCore.App",
+        "types": "@tsonic/aspnetcore"
+      }
     ],
     "packageReferences": [
-      { "id": "Tsonic.Nodejs", "version": "1.0.1", "types": "@tsonic/nodejs" }
+      {
+        "id": "Tsonic.Nodejs",
+        "version": "1.0.1",
+        "types": "@tsonic/nodejs"
+      }
     ]
   }
 }
