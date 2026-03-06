@@ -70,6 +70,16 @@
       "assembly": "nodejs",
       "type": "nodejs.events"
     },
+    "node:http": {
+      "kind": "module",
+      "assembly": "nodejs",
+      "type": "nodejs.Http.http"
+    },
+    "http": {
+      "kind": "module",
+      "assembly": "nodejs",
+      "type": "nodejs.Http.http"
+    },
     "node:fs": {
       "kind": "module",
       "assembly": "nodejs",

@@ -73,15 +73,19 @@ fi
 # Ensure output directory exists
 mkdir -p "$OUT_DIR"
 
-# Clean output directory (keep config files)
+# Clean output directory (keep package metadata files)
 echo "[1/3] Cleaning output directory..."
 cd "$OUT_DIR"
 
 # Remove all generated namespace directories
 find . -maxdepth 1 -type d ! -name '.' -exec rm -rf {} \; 2>/dev/null || true
 
-# Remove generated files at root
-rm -f *.d.ts *.js 2>/dev/null || true
+# Remove generated files at root (keep package metadata copied from repo root)
+find . -maxdepth 1 -type f \
+  ! -name 'package.json' \
+  ! -name 'README.md' \
+  ! -name 'LICENSE' \
+  -exec rm -f {} \; 2>/dev/null || true
 
 echo "  Done"
 
@@ -98,15 +102,11 @@ echo "[3/3] Generating TypeScript declarations..."
 dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     generate -a "$NODEJS_DLL" -d "$DOTNET_RUNTIME_PATH" -o "$OUT_DIR" \
     --lib "$DOTNET_LIB" \
-    --namespace-map "nodejs=index"
+    --namespace-map "nodejs=index" \
+    --surface-package "$PROJECT_DIR/__build/templates/$DOTNET_MAJOR/tsbindgen.surface-package.json"
 
 cp -f "$PROJECT_DIR/README.md" "$OUT_DIR/README.md"
 cp -f "$PROJECT_DIR/LICENSE" "$OUT_DIR/LICENSE"
-
-TEMPLATE_DIR="$PROJECT_DIR/__build/templates/$DOTNET_MAJOR"
-if [ -d "$TEMPLATE_DIR" ]; then
-    cp -f "$TEMPLATE_DIR"/* "$OUT_DIR"/
-fi
 
 echo ""
 echo "================================================================"
