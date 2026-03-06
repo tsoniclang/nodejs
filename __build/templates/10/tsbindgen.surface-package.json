@@ -2,10 +2,6 @@
   "schemaVersion": 1,
   "prependReferences": [
     {
-      "kind": "types",
-      "target": "@tsonic/js"
-    },
-    {
       "kind": "path",
       "target": "./node-aliases.d.ts"
     }
@@ -1029,21 +1025,12 @@
       "type": "nodejs.zlib"
     }
   },
-  "surfaceManifest": {
-    "schemaVersion": 1,
-    "id": "@tsonic/nodejs",
-    "extends": [
-      "@tsonic/js"
-    ],
-    "requiredTypeRoots": [
-      "."
-    ],
-    "useStandardLib": false
-  },
   "bindingsManifest": {
     "bindingVersion": 1,
     "packageName": "@tsonic/nodejs",
-    "surfaceMode": "@tsonic/nodejs",
+    "requiredTypeRoots": [
+      "."
+    ],
     "runtimePackages": [
       "@tsonic/nodejs"
     ],
