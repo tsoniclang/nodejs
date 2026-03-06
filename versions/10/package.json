@@ -13,7 +13,6 @@
     "bindings.json",
     "families.json",
     "tsonic.bindings.json",
-    "tsonic.surface.json",
     "README.md",
     "LICENSE"
   ],
@@ -34,7 +33,6 @@
     "url": "https://github.com/tsoniclang/nodejs.git"
   },
   "dependencies": {
-    "@tsonic/js": "10.0.40",
     "@tsonic/dotnet": "10.0.37",
     "@tsonic/core": "10.0.37"
   }

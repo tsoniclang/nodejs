@@ -1,7 +1,9 @@
 {
   "bindingVersion": 1,
   "packageName": "@tsonic/nodejs",
-  "surfaceMode": "@tsonic/nodejs",
+  "requiredTypeRoots": [
+    "."
+  ],
   "runtimePackages": [
     "@tsonic/nodejs"
   ],

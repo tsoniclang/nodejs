@@ -15,7 +15,7 @@ Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `c
 
 ```bash
 mkdir my-app && cd my-app
-npx --yes tsonic@latest init --surface nodejs
+npx --yes tsonic@latest init --surface @tsonic/js
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
@@ -37,14 +37,11 @@ npm run dev
 ## Existing project
 
 ```bash
+npx --yes tsonic@latest init --surface @tsonic/js
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
-If the workspace is not already Node surface, set:
-
-```bash
-npx --yes tsonic@latest init --surface nodejs
-```
+`@tsonic/nodejs` is a regular package, not a surface. Use `@tsonic/js` for the ambient JavaScript world, and add `@tsonic/nodejs` when you want `node:*` module imports.
 
 ## Versioning
 
@@ -116,7 +113,7 @@ import { http } from "@tsonic/nodejs/nodejs.Http.js";
 
 ## Imports (important)
 
-For `--surface nodejs` projects, prefer Node-style imports:
+For JS-surface projects with `@tsonic/nodejs` installed, prefer Node-style imports:
 
 - `node:fs`, `node:path`, `node:crypto`, `node:process`, ...
 - bare aliases (`fs`, `path`, `crypto`, ...) are also supported
