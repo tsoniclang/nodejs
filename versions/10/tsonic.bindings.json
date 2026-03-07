@@ -1,6 +1,7 @@
 {
   "bindingVersion": 1,
   "packageName": "@tsonic/nodejs",
+  "assemblyName": "nodejs",
   "requiredTypeRoots": [
     "."
   ],

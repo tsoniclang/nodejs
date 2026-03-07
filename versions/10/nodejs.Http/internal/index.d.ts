@@ -7,13 +7,13 @@ import type { sbyte, byte, short, ushort, int, uint, long, ulong, int128, uint12
 
 // Import types from other namespaces
 import * as nodejs_Internal from "../../index/internal/index.js";
-import type { EventEmitter } from "../../index/internal/index.js";
+import type { Buffer, EventEmitter } from "../../index/internal/index.js";
 import type { Dictionary_2 } from "@tsonic/dotnet/System.Collections.Generic/internal/index.js";
 import * as System_Runtime_Serialization_Internal from "@tsonic/dotnet/System.Runtime.Serialization/internal/index.js";
 import type { ISerializable } from "@tsonic/dotnet/System.Runtime.Serialization/internal/index.js";
 import type { Task, Task_1 } from "@tsonic/dotnet/System.Threading.Tasks/internal/index.js";
 import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
-import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Delegate, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Void } from "@tsonic/dotnet/System/internal/index.js";
+import type { Action, Action_1, Action_2, Boolean as ClrBoolean, Byte, Delegate, Double, Exception, Int32, Nullable_1, Object as ClrObject, String as ClrString, Void } from "@tsonic/dotnet/System/internal/index.js";
 
 export interface AddressInfo$instance {
     readonly __tsonic_type_nodejs_Http_AddressInfo: never;
@@ -63,7 +63,7 @@ export interface IncomingMessage$instance extends EventEmitter {
     readonly headers: Dictionary_2<System_Internal.String, System_Internal.String>;
     readonly httpVersion: string;
     readonly method: string | undefined;
-    readonly statusCode: Nullable_1<System_Internal.Int32>;
+    readonly statusCode: Nullable_1<System_Internal.Double>;
     readonly statusMessage: string | undefined;
     readonly url: string | undefined;
     destroy(): void;
@@ -71,7 +71,7 @@ export interface IncomingMessage$instance extends EventEmitter {
     onData(callback: Action_1<System_Internal.String>): void;
     onEnd(callback: Action): void;
     readAll(): Task_1<System_Internal.String>;
-    setTimeout(msecs: int, callback?: Action): IncomingMessage;
+    setTimeout(msecs: double, callback?: Action): IncomingMessage;
 }
 
 
@@ -114,17 +114,18 @@ export type RequestOptions = RequestOptions$instance;
 export interface Server$instance extends EventEmitter {
     readonly __tsonic_type_nodejs_Http_Server: never;
 
-    headersTimeout: int;
-    keepAliveTimeout: int;
+    headersTimeout: double;
+    keepAliveTimeout: double;
     readonly listening: boolean;
     maxHeadersCount: int;
-    requestTimeout: int;
-    timeout: int;
+    requestTimeout: double;
+    timeout: double;
     address(): AddressInfo | undefined;
     close(callback?: Action): Server;
-    listen(port: int, hostname?: string, backlog?: Nullable_1<System_Internal.Int32>, callback?: Action): Server;
-    listen(port: int, callback: Action): Server;
-    setTimeout(msecs: int, callback?: Action): Server;
+    listen(port: double, hostname?: string, backlog?: Nullable_1<System_Internal.Double>, callback?: Action): Server;
+    listen(port: double, callback: Action): Server;
+    listen(port: double, hostname: string, callback: Action): Server;
+    setTimeout(msecs: double, callback?: Action): Server;
 }
 
 
@@ -140,9 +141,13 @@ export interface ServerResponse$instance extends EventEmitter {
 
     readonly finished: boolean;
     readonly headersSent: boolean;
-    statusCode: int;
+    statusCode: double;
     statusMessage: string;
-    end(chunk?: string, encoding?: string, callback?: Action): ServerResponse;
+    end(): ServerResponse;
+    end(callback: Action): ServerResponse;
+    end(chunk: string, encoding?: string, callback?: Action): ServerResponse;
+    end(chunk: Buffer, callback?: Action): ServerResponse;
+    end(chunk: byte[], callback?: Action): ServerResponse;
     flushHeaders(): void;
     getHeader(name: string): string | undefined;
     getHeaderNames(): string[];
@@ -150,10 +155,12 @@ export interface ServerResponse$instance extends EventEmitter {
     hasHeader(name: string): boolean;
     removeHeader(name: string): void;
     setHeader(name: string, value: string): ServerResponse;
-    setTimeout(msecs: int, callback?: Action): ServerResponse;
+    setTimeout(msecs: double, callback?: Action): ServerResponse;
     write(chunk: string, encoding?: string, callback?: Action): boolean;
-    writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
-    writeHead(statusCode: int, headers: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
+    write(chunk: Buffer, callback?: Action): boolean;
+    write(chunk: byte[], callback?: Action): boolean;
+    writeHead(statusCode: double, statusMessage?: string, headers?: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
+    writeHead(statusCode: double, headers: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;
 }
 
 
