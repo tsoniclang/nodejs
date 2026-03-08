@@ -122,10 +122,28 @@ dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     --namespace-map "nodejs=index" \
     --surface-package "$SURFACE_PACKAGE"
 
+echo "[4/5] Curating generated facade..."
+node - "$OUT_DIR" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const outDir = path.resolve(process.argv[2]);
+const indexDtsPath = path.join(outDir, "index.d.ts");
+const original = fs.readFileSync(indexDtsPath, "utf8");
+const filtered = original
+  .split("\n")
+  .filter((line) => line !== "export { console$instance as console } from './index/internal/index.js';")
+  .filter((line) => line !== "export { ConsoleConstructor as ConsoleConstructor } from './index/internal/index.js';")
+  .join("\n");
+
+fs.writeFileSync(indexDtsPath, filtered);
+NODE
+echo "  Done"
+
 cp -f "$PROJECT_DIR/README.md" "$OUT_DIR/README.md"
 cp -f "$PROJECT_DIR/LICENSE" "$OUT_DIR/LICENSE"
 
-echo "[4/4] Verifying npm package contents..."
+echo "[5/5] Verifying generated surface and npm package contents..."
 PACK_JSON="$(cd "$PROJECT_DIR" && npm pack --dry-run --json "./versions/$DOTNET_MAJOR")"
 node - "$OUT_DIR" "$PACK_JSON" <<'NODE'
 const fs = require("node:fs");
@@ -161,6 +179,46 @@ if (missing.length > 0) {
     console.error(`  - ${file}`);
   }
   process.exit(1);
+}
+
+const nodeAliases = fs.readFileSync(path.join(outDir, "node-aliases.d.ts"), "utf8");
+const indexDts = fs.readFileSync(path.join(outDir, "index.d.ts"), "utf8");
+
+const requiredSnippets = [
+  'declare module "node:fs" {',
+  'declare module "fs" {',
+  'export const readFileSync: typeof import("@tsonic/nodejs/index.js").fs.readFileSync;',
+  'declare module "node:path" {',
+  'declare module "path" {',
+  'export const join: typeof import("@tsonic/nodejs/index.js").path.join;',
+  'declare module "node:crypto" {',
+  'declare module "crypto" {',
+  'export const createHash: typeof import("@tsonic/nodejs/index.js").crypto.createHash;',
+  'declare module "node:http" {',
+  'declare module "http" {',
+  'export const createServer: typeof import("@tsonic/nodejs/nodejs.Http.js").http.createServer;',
+  'declare module "node:timers" {',
+  'declare module "timers" {',
+  'export const setInterval: typeof import("@tsonic/nodejs/index.js").timers.setInterval;'
+];
+
+for (const snippet of requiredSnippets) {
+  if (!nodeAliases.includes(snippet)) {
+    console.error(`ERROR: generated node-aliases.d.ts is missing required snippet: ${snippet}`);
+    process.exit(1);
+  }
+}
+
+const forbiddenRootExports = [
+  "export { console$instance as console } from './index/internal/index.js';",
+  "export { ConsoleConstructor as ConsoleConstructor } from './index/internal/index.js';"
+];
+
+for (const snippet of forbiddenRootExports) {
+  if (indexDts.includes(snippet)) {
+    console.error(`ERROR: generated index.d.ts still exports JS ambient symbol through @tsonic/nodejs root: ${snippet}`);
+    process.exit(1);
+  }
 }
 NODE
 echo "  Done"

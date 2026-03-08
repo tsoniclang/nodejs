@@ -5,7 +5,7 @@
 ### New project
 
 ```bash
-npx --yes tsonic@latest init --surface nodejs
+npx --yes tsonic@latest init --surface @tsonic/js
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
@@ -14,6 +14,8 @@ npx --yes tsonic@latest add npm @tsonic/nodejs
 ```bash
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
+
+If your workspace is still on CLR, switch `surface` to `@tsonic/js` first.
 
 That will:
 
@@ -39,6 +41,7 @@ export function main(): void {
 
 ## Notes
 
-- In `--surface nodejs`, prefer `node:*` (or bare) imports for mapped Node modules.
-- Subpaths like `@tsonic/nodejs/nodejs.Http.js` remain valid for namespaces not mapped via node aliases.
+- With `surface: "@tsonic/js"` and `@tsonic/nodejs` installed, prefer `node:*` imports.
+- Bare aliases like `"fs"` and `"path"` are also supported.
+- Direct imports from `@tsonic/nodejs/index.js` remain valid for package-root access.
 - This library is Node-inspired, but many APIs intentionally follow .NET behavior where it improves ergonomics.

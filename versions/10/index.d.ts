@@ -28,8 +28,6 @@ export { ChildProcess as ChildProcess } from './index/internal/index.js';
 export { ExecOptions as ExecOptions } from './index/internal/index.js';
 export { child_process$instance as child_process } from './index/internal/index.js';
 export { SpawnSyncReturns_1 as SpawnSyncReturns } from './index/internal/index.js';
-export { console$instance as console } from './index/internal/index.js';
-export { ConsoleConstructor as ConsoleConstructor } from './index/internal/index.js';
 export { Certificate$instance as Certificate } from './index/internal/index.js';
 export { X509CertificateExtensions$instance as X509CertificateExtensions } from './index/internal/index.js';
 export { X509CertificateInfo as X509CertificateInfo } from './index/internal/index.js';
