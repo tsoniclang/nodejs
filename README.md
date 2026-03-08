@@ -48,7 +48,13 @@ This repo is versioned by runtime major:
 
 - `10` → `versions/10/` → npm: `@tsonic/nodejs@10.x`
 
-When publishing, run: `npm publish versions/10 --access public`
+Before publishing, run `npm run selftest`.
+
+Publish with:
+
+```bash
+npm run publish:10
+```
 
 ## Core Modules (what you get)
 
@@ -145,6 +151,12 @@ Direct ESM imports from `@tsonic/nodejs/index.js` are still supported.
 ## Development
 
 See `__build/` for regeneration scripts.
+
+Run the publish-gated validation suite with:
+
+```bash
+npm run selftest
+```
 
 ## License
 
