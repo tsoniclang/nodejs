@@ -27,6 +27,24 @@ run_and_capture() {
   "$@" | tee "$TEST_LOG_DIR/$log_name-$(timestamp).log"
 }
 
+run_npm_install_clean() {
+  local workspace_dir="$1"
+  shift
+  local install_log
+
+  install_log="$WORK_DIR/npm-install-$(timestamp).log"
+  (
+    cd "$workspace_dir"
+    npm install "$@" 2>&1 | tee "$install_log" >/dev/null
+  )
+
+  if rg -n "npm warn ERESOLVE|overriding peer dependency|Could not resolve dependency:|Conflicting peer dependency:" "$install_log" >/dev/null; then
+    echo "npm install produced peer-dependency warnings:" >&2
+    cat "$install_log" >&2
+    return 1
+  fi
+}
+
 copy_fixture() {
   local fixture_dir="$1"
   local project_dir="$2"
@@ -37,16 +55,117 @@ copy_fixture() {
   fi
 }
 
+resolve_local_sibling_package_dir() {
+  local package_name="$1"
+
+  node - "$PROJECT_DIR" "$DOTNET_MAJOR" "$package_name" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const projectDir = path.resolve(process.argv[2]);
+const dotnetMajor = process.argv[3];
+const packageName = process.argv[4];
+
+if (!packageName.startsWith("@tsonic/")) {
+  process.exit(0);
+}
+
+const repoName = packageName.slice("@tsonic/".length);
+const candidates = [
+  path.join(projectDir, "..", repoName, "versions", dotnetMajor),
+  path.join(projectDir, "..", repoName),
+];
+
+for (const candidate of candidates) {
+  const packageJsonPath = path.join(candidate, "package.json");
+  if (!fs.existsSync(packageJsonPath)) continue;
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+  if (packageJson.name === packageName) {
+    process.stdout.write(candidate);
+    process.exit(0);
+  }
+}
+NODE
+}
+
+install_local_sibling_dependencies() {
+  local workspace_dir="$1"
+  local package_dir="$2"
+  local sibling_specs_json
+
+  sibling_specs_json="$(
+    node - "$PROJECT_DIR" "$DOTNET_MAJOR" "$package_dir" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const projectDir = path.resolve(process.argv[2]);
+const dotnetMajor = process.argv[3];
+const packageDir = path.resolve(process.argv[4]);
+const packageJson = JSON.parse(fs.readFileSync(path.join(packageDir, "package.json"), "utf8"));
+const dependencies = packageJson.dependencies ?? {};
+const results = [];
+
+for (const packageName of Object.keys(dependencies)) {
+  if (!packageName.startsWith("@tsonic/")) continue;
+  const repoName = packageName.slice("@tsonic/".length);
+  const candidates = [
+    path.join(projectDir, "..", repoName, "versions", dotnetMajor),
+    path.join(projectDir, "..", repoName),
+  ];
+
+  for (const siblingDir of candidates) {
+    const packageJsonPath = path.join(siblingDir, "package.json");
+    if (!fs.existsSync(packageJsonPath)) continue;
+    const siblingPackage = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    if (siblingPackage.name !== packageName) continue;
+    results.push(siblingDir);
+    break;
+  }
+}
+
+process.stdout.write(JSON.stringify(results));
+NODE
+  )"
+
+  mapfile -t sibling_specs < <(node -e 'for (const item of JSON.parse(process.argv[1])) console.log(item);' "$sibling_specs_json")
+  if [ "${#sibling_specs[@]}" -eq 0 ]; then
+    return
+  fi
+
+  run_npm_install_clean "$workspace_dir" "${sibling_specs[@]}"
+}
+
+install_packages_preferring_local_siblings() {
+  local workspace_dir="$1"
+  shift
+  local packages=("$@")
+  local resolved_specs=()
+  local package_name
+  local sibling_dir
+
+  for package_name in "${packages[@]}"; do
+    if [[ "$package_name" == @tsonic/* ]]; then
+      sibling_dir="$(resolve_local_sibling_package_dir "$package_name")"
+      if [ -n "$sibling_dir" ]; then
+        resolved_specs+=("$sibling_dir")
+        continue
+      fi
+    fi
+    resolved_specs+=("$package_name")
+  done
+
+  run_npm_install_clean "$workspace_dir" "${resolved_specs[@]}"
+}
+
 install_local_bindings_package() {
   local workspace_dir="$1"
   local package_dir="$2"
   local package_name="$3"
   local extra_types_json
 
-  (
-    cd "$workspace_dir"
-    npm install "$package_dir" >/dev/null
-  )
+  install_local_sibling_dependencies "$workspace_dir" "$package_dir"
+
+  run_npm_install_clean "$workspace_dir" "$package_dir"
 
   extra_types_json="$(
     node - "$workspace_dir" "$package_name" <<'NODE'
@@ -111,10 +230,7 @@ NODE
 
   mapfile -t extra_types < <(node -e 'for (const item of JSON.parse(process.argv[1])) console.log(item);' "$extra_types_json")
   if [ "${#extra_types[@]}" -gt 0 ]; then
-    (
-      cd "$workspace_dir"
-      npm install "${extra_types[@]}" >/dev/null
-    )
+    install_packages_preferring_local_siblings "$workspace_dir" "${extra_types[@]}"
   fi
 }
 
