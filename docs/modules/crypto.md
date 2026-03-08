@@ -3,17 +3,16 @@
 Import:
 
 ```ts
-import { crypto } from "@tsonic/nodejs/index.js";
+import { createHash } from "node:crypto";
 ```
 
 Example:
 
 ```ts
-import { console, crypto } from "@tsonic/nodejs/index.js";
+import { createHash } from "node:crypto";
 
 export function main(): void {
-  const hash = crypto.createHash("sha256").update("hello").digest("hex");
+  const hash = createHash("sha256").update("hello").digest("hex");
   console.log(hash);
 }
 ```
-

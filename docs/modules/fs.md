@@ -3,26 +3,25 @@
 Import:
 
 ```ts
-import { fs } from "@tsonic/nodejs/index.js";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 ```
 
 Example:
 
 ```ts
-import { console, fs } from "@tsonic/nodejs/index.js";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 export function main(): void {
   const file = "./README.md";
 
-  if (!fs.existsSync(file)) {
+  if (!existsSync(file)) {
     console.log("Missing README.md");
     return;
   }
 
-  const text = fs.readFileSync(file, "utf-8");
+  const text = readFileSync(file, "utf-8");
   console.log(text);
 
-  fs.writeFileSync("./out.txt", "Hello from Tsonic!");
+  writeFileSync("./out.txt", "Hello from Tsonic!");
 }
 ```
-

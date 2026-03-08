@@ -9,7 +9,7 @@ import { process } from "@tsonic/nodejs/index.js";
 Example:
 
 ```ts
-import { console, process } from "@tsonic/nodejs/index.js";
+import * as process from "node:process";
 
 export function main(): void {
   console.log(`pid: ${process.pid}`);
@@ -17,4 +17,3 @@ export function main(): void {
   console.log(`cwd: ${process.cwd()}`);
 }
 ```
-

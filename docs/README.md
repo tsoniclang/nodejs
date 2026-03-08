@@ -1,6 +1,6 @@
 # Node.js Compatibility (`@tsonic/nodejs`)
 
-Tsonic targets the .NET BCL by default. If you want **Node-style APIs** (`fs`, `path`, `crypto`, `process`, `http`, ...), use `@tsonic/nodejs` and set `--surface nodejs`.
+Tsonic targets the .NET BCL by default. If you want **Node-style APIs** (`fs`, `path`, `crypto`, `process`, `http`, ...), use `surface: "@tsonic/js"` and add `@tsonic/nodejs`.
 
 This is **not** Node.js itself, and it is **not a byte-for-byte clone** of the Node standard library. It is a curated, Node-inspired API surface implemented on .NET for Tsonic projects.
 
@@ -22,7 +22,7 @@ This is **not** Node.js itself, and it is **not a byte-for-byte clone** of the N
 
 ## Overview
 
-In Node surface projects you can write natural Node imports:
+In JS-surface projects with `@tsonic/nodejs` installed you can write natural Node imports:
 
 ```ts
 import { readFileSync } from "node:fs";
@@ -36,17 +36,11 @@ export function main(): void {
 }
 ```
 
-Direct package imports from `@tsonic/nodejs/index.js` remain supported.
-
-Some namespaces are emitted as separate ESM entry points (for example `nodejs.Http`), imported via a subpath:
-
-```ts
-import { http } from "@tsonic/nodejs/nodejs.Http.js";
-```
+Direct package imports from `@tsonic/nodejs/index.js` remain supported when you want explicit package-root access instead of Node module specifiers.
 
 ## Relationship to `@tsonic/js`
 
 - `@tsonic/js` provides JavaScript runtime APIs (e.g. `JSON`, JS-style `console`, timers).
 - `@tsonic/nodejs` provides Node-style APIs (e.g. `fs`, `path`, `crypto`, `http`).
 
-You can enable either or both in a project.
+Use `@tsonic/js` for the ambient JavaScript world. Add `@tsonic/nodejs` when you want Node module imports.

@@ -9,7 +9,7 @@ import { EventEmitter } from "@tsonic/nodejs/index.js";
 Example:
 
 ```ts
-import { console, EventEmitter } from "@tsonic/nodejs/index.js";
+import { EventEmitter } from "@tsonic/nodejs/index.js";
 
 class MyEmitter extends EventEmitter {}
 
@@ -19,4 +19,3 @@ export function main(): void {
   emitter.emit("data", "hello");
 }
 ```
-

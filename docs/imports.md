@@ -1,8 +1,8 @@
 # Importing Modules
 
-## Preferred in `--surface nodejs`: Node-style specifiers
+## Preferred with `@tsonic/js` + `@tsonic/nodejs`: Node-style specifiers
 
-With Node surface enabled, import using Node module names:
+With `surface: "@tsonic/js"` and `@tsonic/nodejs` installed, import using Node module names:
 
 ```ts
 import { readFileSync } from "node:fs";
@@ -31,12 +31,18 @@ Types exported from the package root are also available there:
 import { EventEmitter } from "@tsonic/nodejs/index.js";
 ```
 
-## Submodules (separate namespaces)
+Use direct package imports for class/value exports that are not surfaced as module-static members.
 
-Some namespaces are emitted as separate entry points. Example:
+## Explicit package entry points
+
+Direct package entry points remain available when you want them explicitly:
 
 ```ts
 import { http, IncomingMessage, ServerResponse } from "@tsonic/nodejs/nodejs.Http.js";
 ```
 
-`node:http` is currently not mapped by the surface alias set.
+For normal Node-style authoring, prefer:
+
+```ts
+import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+```

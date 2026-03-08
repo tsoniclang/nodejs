@@ -37,11 +37,10 @@ npm run dev
 ## Existing project
 
 ```bash
-npx --yes tsonic@latest init --surface @tsonic/js
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
-`@tsonic/nodejs` is a regular package, not a surface. Use `@tsonic/js` for the ambient JavaScript world, and add `@tsonic/nodejs` when you want `node:*` module imports.
+`@tsonic/nodejs` is a regular package, not a surface. Use `@tsonic/js` for the ambient JavaScript world, and add `@tsonic/nodejs` when you want `node:*` module imports. If your workspace is still on CLR, switch its `surface` to `@tsonic/js` first.
 
 ## Versioning
 
@@ -90,10 +89,10 @@ emitter.on("data", (chunk) => console.log(chunk));
 ### Crypto
 
 ```ts
-import { randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 
-const id = randomUUID();
-void id;
+const hash = createHash("sha256").update("hello").digest("hex");
+void hash;
 ```
 
 ### Process
@@ -108,7 +107,14 @@ void cwd;
 ### HTTP
 
 ```typescript
-import { http } from "@tsonic/nodejs/nodejs.Http.js";
+import { createServer } from "node:http";
+
+const server = createServer((_req, res) => {
+  res.writeHead(200, "OK");
+  res.end("Hello from Tsonic!");
+});
+
+void server;
 ```
 
 ## Imports (important)
@@ -119,10 +125,6 @@ For JS-surface projects with `@tsonic/nodejs` installed, prefer Node-style impor
 - bare aliases (`fs`, `path`, `crypto`, ...) are also supported
 
 Direct ESM imports from `@tsonic/nodejs/index.js` are still supported.
-
-`node:http` is currently not mapped by the surface alias set; use:
-
-- `@tsonic/nodejs/nodejs.Http.js`
 
 ## Relationship to `@tsonic/js`
 
