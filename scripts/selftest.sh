@@ -165,18 +165,25 @@ echo "  tsonic CLI:       $TSONIC_CLI"
 echo "  temp workdir:     $WORK_DIR"
 echo ""
 
-echo "[1/4] Regenerating package..."
+echo "[1/5] Regenerating package..."
 run_and_capture "generate" npm run generate:"$DOTNET_MAJOR" >/dev/null
 echo "  Done"
 
-echo "[2/4] Running nodejs-clr runtime tests..."
+echo "[2/5] Running unified Node API verification..."
+(
+  cd "$NODEJS_CLR_DIR"
+  run_and_capture "nodejs-clr-verify-api" npm run verify:api >/dev/null
+)
+echo "  Done"
+
+echo "[3/5] Running nodejs-clr runtime tests..."
 (
   cd "$NODEJS_CLR_DIR"
   run_and_capture "nodejs-clr-dotnet-test" dotnet test >/dev/null
 )
 echo "  Done"
 
-echo "[3/4] Running published-consumer E2E fixtures..."
+echo "[4/5] Running published-consumer E2E fixtures..."
 run_fixture "node-specifiers"
 run_fixture "bare-aliases"
 run_fixture "node-module-matrix"
@@ -185,6 +192,6 @@ run_fixture "root-exports"
 run_fixture "entrypoint-http"
 echo "  Done"
 
-echo "[4/4] Selftest complete"
+echo "[5/5] Selftest complete"
 echo ""
 echo "All nodejs publish-gated checks passed."
