@@ -16,6 +16,7 @@ import type { SslProtocols } from '@tsonic/dotnet/System.Security.Authentication
 import type { X509Certificate2, X509Certificate2Collection } from '@tsonic/dotnet/System.Security.Cryptography.X509Certificates.js';
 import type { Regex } from '@tsonic/dotnet/System.Text.RegularExpressions.js';
 import type { Task } from '@tsonic/dotnet/System.Threading.Tasks.js';
+import type { Date } from '@tsonic/js/Tsonic.JSRuntime.js';
 
 // Public API exports (curated - no internal $instance/$views leakage)
 export { assert$instance as assert } from './index/internal/index.js';

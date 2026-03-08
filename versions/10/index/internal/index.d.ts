@@ -21,6 +21,7 @@ import type { Regex } from "@tsonic/dotnet/System.Text.RegularExpressions/intern
 import type { Task, Task_1 } from "@tsonic/dotnet/System.Threading.Tasks/internal/index.js";
 import * as System_Internal from "@tsonic/dotnet/System/internal/index.js";
 import type { Action, Action_1, Action_2, Action_3, AsyncCallback, Boolean as ClrBoolean, Byte, DateTime, Delegate, Double, Exception, Func_1, IAsyncResult, ICloneable, IDisposable, Int16, Int32, Int64, IntPtr, MulticastDelegate, Nullable_1, Object as ClrObject, SByte, Single, String as ClrString, UInt16, UInt32, UInt64, ValueTuple_2, Void } from "@tsonic/dotnet/System/internal/index.js";
+import type { Date } from "@tsonic/js/Tsonic.JSRuntime/internal/index.js";
 
 export type DebugLogFunction = (message: string, ...args: unknown[]) => void;
 
@@ -2121,13 +2122,17 @@ export type SrvRecord = SrvRecord$instance;
 export interface Stats$instance {
     readonly __tsonic_type_nodejs_Stats: never;
 
-    atime: DateTime;
-    birthtime: DateTime;
-    ctime: DateTime;
+    atime: Date;
+    atimeMs: double;
+    birthtime: Date;
+    birthtimeMs: double;
+    ctime: Date;
+    ctimeMs: double;
     isDirectory: boolean;
     isFile: boolean;
     mode: int;
-    mtime: DateTime;
+    mtime: Date;
+    mtimeMs: double;
     size: long;
     IsBlockDevice(): boolean;
     IsCharacterDevice(): boolean;
@@ -2909,9 +2914,11 @@ export abstract class fs$instance {
     static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
     static readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
     static readdirSync(path: string, withFileTypes?: boolean): string[];
-    static readFile(path: string, encoding?: string): Task_1<System_Internal.String>;
+    static readFile(path: string, encoding: string): Task_1<System_Internal.String>;
+    static readFile(path: string): Task_1<Buffer>;
     static readFileBytes(path: string): Task_1<byte[]>;
-    static readFileSync(path: string, encoding?: string): string;
+    static readFileSync(path: string, encoding: string): string;
+    static readFileSync(path: string): Buffer;
     static readFileSyncBytes(path: string): byte[];
     static readlink(path: string): Task_1<System_Internal.String>;
     static readlinkSync(path: string): string;

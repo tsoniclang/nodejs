@@ -24,6 +24,7 @@ DOTNET_MAJOR="${1:-10}"
 OUT_DIR="$PROJECT_DIR/versions/$DOTNET_MAJOR"
 
 DOTNET_LIB="$PROJECT_DIR/../dotnet/versions/$DOTNET_MAJOR"
+JS_LIB="$PROJECT_DIR/../js/versions/$DOTNET_MAJOR"
 
 # .NET runtime path (needed for BCL type resolution)
 DOTNET_VERSION="${DOTNET_VERSION:-10.0.1}"
@@ -32,6 +33,7 @@ DOTNET_RUNTIME_PATH="$DOTNET_HOME/shared/Microsoft.NETCore.App/$DOTNET_VERSION"
 
 # nodejs.dll path
 NODEJS_DLL="$NODEJS_CLR_DIR/artifacts/bin/nodejs/Release/net${DOTNET_MAJOR}.0/nodejs.dll"
+SURFACE_PACKAGE="$NODEJS_CLR_DIR/surface/$DOTNET_MAJOR/tsbindgen.surface-package.json"
 
 echo "================================================================"
 echo "Generating Node.js CLR TypeScript Declarations"
@@ -41,8 +43,10 @@ echo "Configuration:"
 echo "  nodejs.dll:   $NODEJS_DLL"
 echo "  .NET Runtime: $DOTNET_RUNTIME_PATH"
 echo "  BCL Library:  $DOTNET_LIB (external reference)"
+echo "  JS Library:   $JS_LIB (external reference)"
 echo "  tsbindgen:    $TSBINDGEN_DIR"
 echo "  Output:       $OUT_DIR"
+echo "  Surface:      $SURFACE_PACKAGE"
 echo ""
 
 # Verify prerequisites
@@ -67,6 +71,18 @@ fi
 if [ ! -d "$DOTNET_LIB" ]; then
     echo "ERROR: @tsonic/dotnet not found at $DOTNET_LIB"
     echo "Clone it: git clone https://github.com/tsoniclang/dotnet ../dotnet"
+    exit 1
+fi
+
+if [ ! -d "$JS_LIB" ]; then
+    echo "ERROR: @tsonic/js not found at $JS_LIB"
+    echo "Clone it: git clone https://github.com/tsoniclang/js ../js"
+    exit 1
+fi
+
+if [ ! -f "$SURFACE_PACKAGE" ]; then
+    echo "ERROR: Node.js surface package not found at $SURFACE_PACKAGE"
+    echo "Expected runtime-owned surface config in ../nodejs-clr/surface/$DOTNET_MAJOR"
     exit 1
 fi
 
@@ -102,11 +118,52 @@ echo "[3/3] Generating TypeScript declarations..."
 dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     generate -a "$NODEJS_DLL" -d "$DOTNET_RUNTIME_PATH" -o "$OUT_DIR" \
     --lib "$DOTNET_LIB" \
+    --lib "$JS_LIB" \
     --namespace-map "nodejs=index" \
-    --surface-package "$PROJECT_DIR/__build/templates/$DOTNET_MAJOR/tsbindgen.surface-package.json"
+    --surface-package "$SURFACE_PACKAGE"
 
 cp -f "$PROJECT_DIR/README.md" "$OUT_DIR/README.md"
 cp -f "$PROJECT_DIR/LICENSE" "$OUT_DIR/LICENSE"
+
+echo "[4/4] Verifying npm package contents..."
+PACK_JSON="$(cd "$PROJECT_DIR" && npm pack --dry-run --json "./versions/$DOTNET_MAJOR")"
+node - "$OUT_DIR" "$PACK_JSON" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const outDir = path.resolve(process.argv[2]);
+const packJson = JSON.parse(process.argv[3]);
+const packEntry = Array.isArray(packJson) ? packJson[0] : packJson;
+const packedFiles = new Set(
+  (packEntry.files ?? []).map((entry) => String(entry.path).replace(/\\/g, "/"))
+);
+
+const expectedFiles = [];
+const walk = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walk(fullPath);
+      continue;
+    }
+    expectedFiles.push(path.relative(outDir, fullPath).replace(/\\/g, "/"));
+  }
+};
+walk(outDir);
+
+const missing = expectedFiles
+  .filter((file) => !packedFiles.has(file))
+  .sort();
+
+if (missing.length > 0) {
+  console.error("ERROR: npm pack is missing generated files:");
+  for (const file of missing) {
+    console.error(`  - ${file}`);
+  }
+  process.exit(1);
+}
+NODE
+echo "  Done"
 
 echo ""
 echo "================================================================"

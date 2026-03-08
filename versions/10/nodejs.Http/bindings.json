@@ -24,7 +24,7 @@
         {
           "stableId": "nodejs:nodejs.Http.AddressInfo::port:System.Int32",
           "clrName": "port",
-          "metadataToken": 385876405,
+          "metadataToken": 385876409,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "port|:System.Int32|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -43,7 +43,7 @@
         {
           "stableId": "nodejs:nodejs.Http.AddressInfo::family:System.String",
           "clrName": "family",
-          "metadataToken": 385876406,
+          "metadataToken": 385876410,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "family|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -62,7 +62,7 @@
         {
           "stableId": "nodejs:nodejs.Http.AddressInfo::address:System.String",
           "clrName": "address",
-          "metadataToken": 385876407,
+          "metadataToken": 385876411,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "address|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -84,7 +84,7 @@
       "constructors": [
         {
           "stableId": "nodejs:nodejs.Http.AddressInfo::.ctor():void",
-          "metadataToken": 100665253,
+          "metadataToken": 100665272,
           "canonicalSignature": "():void",
           "normalizedSignature": "constructor|():void|static=false",
           "isStatic": false,
@@ -114,7 +114,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::setHeader(System.String,System.String):System.Void",
           "clrName": "setHeader",
-          "metadataToken": 100665165,
+          "metadataToken": 100665182,
           "canonicalSignature": "(System.String,System.String):System.Void",
           "normalizedSignature": "setHeader|(System.String,System.String):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -134,7 +134,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::getHeader(System.String):System.String",
           "clrName": "getHeader",
-          "metadataToken": 100665166,
+          "metadataToken": 100665183,
           "canonicalSignature": "(System.String):System.String",
           "normalizedSignature": "getHeader|(System.String):System.String|static=false",
           "emitScope": "ClassSurface",
@@ -154,7 +154,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::getHeaderNames():System.String[]",
           "clrName": "getHeaderNames",
-          "metadataToken": 100665167,
+          "metadataToken": 100665184,
           "canonicalSignature": "():System.String[]",
           "normalizedSignature": "getHeaderNames|():System.String[]|static=false",
           "emitScope": "ClassSurface",
@@ -174,7 +174,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::removeHeader(System.String):System.Void",
           "clrName": "removeHeader",
-          "metadataToken": 100665168,
+          "metadataToken": 100665185,
           "canonicalSignature": "(System.String):System.Void",
           "normalizedSignature": "removeHeader|(System.String):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -194,7 +194,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::write(System.String,System.String,System.Action):System.Boolean",
           "clrName": "write",
-          "metadataToken": 100665169,
+          "metadataToken": 100665186,
           "canonicalSignature": "(System.String,System.String,System.Action):System.Boolean",
           "normalizedSignature": "write|(System.String,System.String,System.Action):System.Boolean|static=false",
           "emitScope": "ClassSurface",
@@ -214,7 +214,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::end(System.String,System.String,System.Action):System.Threading.Tasks.Task",
           "clrName": "end",
-          "metadataToken": 100665170,
+          "metadataToken": 100665187,
           "canonicalSignature": "(System.String,System.String,System.Action):System.Threading.Tasks.Task",
           "normalizedSignature": "end|(System.String,System.String,System.Action):System.Threading.Tasks.Task|static=false",
           "emitScope": "ClassSurface",
@@ -234,7 +234,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::abort():System.Void",
           "clrName": "abort",
-          "metadataToken": 100665172,
+          "metadataToken": 100665189,
           "canonicalSignature": "():System.Void",
           "normalizedSignature": "abort|():System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -254,7 +254,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::setTimeout(System.Int32,System.Action):nodejs.Http.ClientRequest",
           "clrName": "setTimeout",
-          "metadataToken": 100665173,
+          "metadataToken": 100665190,
           "canonicalSignature": "(System.Int32,System.Action):nodejs.Http.ClientRequest",
           "normalizedSignature": "setTimeout|(System.Int32,System.Action):nodejs.Http.ClientRequest|static=false",
           "emitScope": "ClassSurface",
@@ -276,7 +276,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::path:System.String",
           "clrName": "path",
-          "metadataToken": 385876373,
+          "metadataToken": 385876377,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "path|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -295,7 +295,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::method:System.String",
           "clrName": "method",
-          "metadataToken": 385876374,
+          "metadataToken": 385876378,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "method|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -314,7 +314,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::host:System.String",
           "clrName": "host",
-          "metadataToken": 385876375,
+          "metadataToken": 385876379,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "host|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -333,7 +333,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::protocol:System.String",
           "clrName": "protocol",
-          "metadataToken": 385876376,
+          "metadataToken": 385876380,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "protocol|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -352,7 +352,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ClientRequest::aborted:System.Boolean",
           "clrName": "aborted",
-          "metadataToken": 385876377,
+          "metadataToken": 385876381,
           "canonicalSignature": ":System.Boolean",
           "normalizedSignature": "aborted|:System.Boolean|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -392,7 +392,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::destroy():System.Void",
           "clrName": "destroy",
-          "metadataToken": 100665202,
+          "metadataToken": 100665219,
           "canonicalSignature": "():System.Void",
           "normalizedSignature": "destroy|():System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -410,11 +410,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.IncomingMessage::setTimeout(System.Int32,System.Action):nodejs.Http.IncomingMessage",
+          "stableId": "nodejs:nodejs.Http.IncomingMessage::setTimeout(System.Double,System.Action):nodejs.Http.IncomingMessage",
           "clrName": "setTimeout",
-          "metadataToken": 100665203,
-          "canonicalSignature": "(System.Int32,System.Action):nodejs.Http.IncomingMessage",
-          "normalizedSignature": "setTimeout|(System.Int32,System.Action):nodejs.Http.IncomingMessage|static=false",
+          "metadataToken": 100665220,
+          "canonicalSignature": "(System.Double,System.Action):nodejs.Http.IncomingMessage",
+          "normalizedSignature": "setTimeout|(System.Double,System.Action):nodejs.Http.IncomingMessage|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -432,7 +432,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::readAll():System.Threading.Tasks.Task_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "readAll",
-          "metadataToken": 100665204,
+          "metadataToken": 100665221,
           "canonicalSignature": "():System.Threading.Tasks.Task_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "readAll|():System.Threading.Tasks.Task_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false",
           "emitScope": "ClassSurface",
@@ -452,7 +452,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::onData(System.Action_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void",
           "clrName": "onData",
-          "metadataToken": 100665205,
+          "metadataToken": 100665222,
           "canonicalSignature": "(System.Action_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void",
           "normalizedSignature": "onData|(System.Action_1[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -472,7 +472,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::onEnd(System.Action):System.Void",
           "clrName": "onEnd",
-          "metadataToken": 100665206,
+          "metadataToken": 100665223,
           "canonicalSignature": "(System.Action):System.Void",
           "normalizedSignature": "onEnd|(System.Action):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -492,7 +492,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::onClose(System.Action):System.Void",
           "clrName": "onClose",
-          "metadataToken": 100665207,
+          "metadataToken": 100665224,
           "canonicalSignature": "(System.Action):System.Void",
           "normalizedSignature": "onClose|(System.Action):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -514,7 +514,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::method:System.String",
           "clrName": "method",
-          "metadataToken": 385876382,
+          "metadataToken": 385876386,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "method|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -533,7 +533,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::url:System.String",
           "clrName": "url",
-          "metadataToken": 385876383,
+          "metadataToken": 385876387,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "url|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -552,7 +552,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::httpVersion:System.String",
           "clrName": "httpVersion",
-          "metadataToken": 385876384,
+          "metadataToken": 385876388,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "httpVersion|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -569,11 +569,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Http.IncomingMessage::statusCode:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "stableId": "nodejs:nodejs.Http.IncomingMessage::statusCode:System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "statusCode",
-          "metadataToken": 385876385,
-          "canonicalSignature": ":System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
-          "normalizedSignature": "statusCode|:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
+          "metadataToken": 385876389,
+          "canonicalSignature": ":System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
+          "normalizedSignature": "statusCode|:System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -590,7 +590,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::statusMessage:System.String",
           "clrName": "statusMessage",
-          "metadataToken": 385876386,
+          "metadataToken": 385876390,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "statusMessage|:System.String|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -609,7 +609,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::headers:System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "headers",
-          "metadataToken": 385876387,
+          "metadataToken": 385876391,
           "canonicalSignature": ":System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "headers|:System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -628,7 +628,7 @@
         {
           "stableId": "nodejs:nodejs.Http.IncomingMessage::complete:System.Boolean",
           "clrName": "complete",
-          "metadataToken": 385876388,
+          "metadataToken": 385876392,
           "canonicalSignature": ":System.Boolean",
           "normalizedSignature": "complete|:System.Boolean|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -669,7 +669,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::hostname:System.String",
           "clrName": "hostname",
-          "metadataToken": 385876389,
+          "metadataToken": 385876393,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "hostname|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -688,7 +688,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::host:System.String",
           "clrName": "host",
-          "metadataToken": 385876390,
+          "metadataToken": 385876394,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "host|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -707,7 +707,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::port:System.Int32",
           "clrName": "port",
-          "metadataToken": 385876391,
+          "metadataToken": 385876395,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "port|:System.Int32|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -726,7 +726,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::path:System.String",
           "clrName": "path",
-          "metadataToken": 385876392,
+          "metadataToken": 385876396,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "path|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -745,7 +745,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::method:System.String",
           "clrName": "method",
-          "metadataToken": 385876393,
+          "metadataToken": 385876397,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "method|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -764,7 +764,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::headers:System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "headers",
-          "metadataToken": 385876394,
+          "metadataToken": 385876398,
           "canonicalSignature": ":System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "headers|:System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -783,7 +783,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::protocol:System.String",
           "clrName": "protocol",
-          "metadataToken": 385876395,
+          "metadataToken": 385876399,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "protocol|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -802,7 +802,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::timeout:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "timeout",
-          "metadataToken": 385876396,
+          "metadataToken": 385876400,
           "canonicalSignature": ":System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "timeout|:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -821,7 +821,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::agent:System.Object",
           "clrName": "agent",
-          "metadataToken": 385876397,
+          "metadataToken": 385876401,
           "canonicalSignature": ":System.Object",
           "normalizedSignature": "agent|:System.Object|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -840,7 +840,7 @@
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::auth:System.String",
           "clrName": "auth",
-          "metadataToken": 385876398,
+          "metadataToken": 385876402,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "auth|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -862,7 +862,7 @@
       "constructors": [
         {
           "stableId": "nodejs:nodejs.Http.RequestOptions::.ctor():void",
-          "metadataToken": 100665228,
+          "metadataToken": 100665245,
           "canonicalSignature": "():void",
           "normalizedSignature": "constructor|():void|static=false",
           "isStatic": false,
@@ -890,11 +890,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.Http.Server::listen(System.Int32,System.String,System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server",
+          "stableId": "nodejs:nodejs.Http.Server::listen(System.Double,System.String,System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server",
           "clrName": "listen",
-          "metadataToken": 100665241,
-          "canonicalSignature": "(System.Int32,System.String,System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server",
-          "normalizedSignature": "listen|(System.Int32,System.String,System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server|static=false",
+          "metadataToken": 100665259,
+          "canonicalSignature": "(System.Double,System.String,System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server",
+          "normalizedSignature": "listen|(System.Double,System.String,System.Nullable_1[[System.Double,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]],System.Action):nodejs.Http.Server|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -910,11 +910,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::listen(System.Int32,System.Action):nodejs.Http.Server",
+          "stableId": "nodejs:nodejs.Http.Server::listen(System.Double,System.Action):nodejs.Http.Server",
           "clrName": "listen",
-          "metadataToken": 100665242,
-          "canonicalSignature": "(System.Int32,System.Action):nodejs.Http.Server",
-          "normalizedSignature": "listen|(System.Int32,System.Action):nodejs.Http.Server|static=false",
+          "metadataToken": 100665260,
+          "canonicalSignature": "(System.Double,System.Action):nodejs.Http.Server",
+          "normalizedSignature": "listen|(System.Double,System.Action):nodejs.Http.Server|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -930,9 +930,29 @@
           "isExtensionMethod": false
         },
         {
+          "stableId": "nodejs:nodejs.Http.Server::listen(System.Double,System.String,System.Action):nodejs.Http.Server",
+          "clrName": "listen",
+          "metadataToken": 100665261,
+          "canonicalSignature": "(System.Double,System.String,System.Action):nodejs.Http.Server",
+          "normalizedSignature": "listen|(System.Double,System.String,System.Action):nodejs.Http.Server|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 3,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.Server",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
           "stableId": "nodejs:nodejs.Http.Server::close(System.Action):nodejs.Http.Server",
           "clrName": "close",
-          "metadataToken": 100665243,
+          "metadataToken": 100665262,
           "canonicalSignature": "(System.Action):nodejs.Http.Server",
           "normalizedSignature": "close|(System.Action):nodejs.Http.Server|static=false",
           "emitScope": "ClassSurface",
@@ -950,11 +970,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::setTimeout(System.Int32,System.Action):nodejs.Http.Server",
+          "stableId": "nodejs:nodejs.Http.Server::setTimeout(System.Double,System.Action):nodejs.Http.Server",
           "clrName": "setTimeout",
-          "metadataToken": 100665245,
-          "canonicalSignature": "(System.Int32,System.Action):nodejs.Http.Server",
-          "normalizedSignature": "setTimeout|(System.Int32,System.Action):nodejs.Http.Server|static=false",
+          "metadataToken": 100665264,
+          "canonicalSignature": "(System.Double,System.Action):nodejs.Http.Server",
+          "normalizedSignature": "setTimeout|(System.Double,System.Action):nodejs.Http.Server|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -972,7 +992,7 @@
         {
           "stableId": "nodejs:nodejs.Http.Server::address():nodejs.Http.AddressInfo",
           "clrName": "address",
-          "metadataToken": 100665246,
+          "metadataToken": 100665265,
           "canonicalSignature": "():nodejs.Http.AddressInfo",
           "normalizedSignature": "address|():nodejs.Http.AddressInfo|static=false",
           "emitScope": "ClassSurface",
@@ -994,7 +1014,7 @@
         {
           "stableId": "nodejs:nodejs.Http.Server::maxHeadersCount:System.Int32",
           "clrName": "maxHeadersCount",
-          "metadataToken": 385876399,
+          "metadataToken": 385876403,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "maxHeadersCount|:System.Int32|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -1011,11 +1031,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::timeout:System.Int32",
+          "stableId": "nodejs:nodejs.Http.Server::timeout:System.Double",
           "clrName": "timeout",
-          "metadataToken": 385876400,
-          "canonicalSignature": ":System.Int32",
-          "normalizedSignature": "timeout|:System.Int32|static=false|accessor=getset",
+          "metadataToken": 385876404,
+          "canonicalSignature": ":System.Double",
+          "normalizedSignature": "timeout|:System.Double|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -1030,11 +1050,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::headersTimeout:System.Int32",
+          "stableId": "nodejs:nodejs.Http.Server::headersTimeout:System.Double",
           "clrName": "headersTimeout",
-          "metadataToken": 385876401,
-          "canonicalSignature": ":System.Int32",
-          "normalizedSignature": "headersTimeout|:System.Int32|static=false|accessor=getset",
+          "metadataToken": 385876405,
+          "canonicalSignature": ":System.Double",
+          "normalizedSignature": "headersTimeout|:System.Double|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -1049,11 +1069,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::requestTimeout:System.Int32",
+          "stableId": "nodejs:nodejs.Http.Server::requestTimeout:System.Double",
           "clrName": "requestTimeout",
-          "metadataToken": 385876402,
-          "canonicalSignature": ":System.Int32",
-          "normalizedSignature": "requestTimeout|:System.Int32|static=false|accessor=getset",
+          "metadataToken": 385876406,
+          "canonicalSignature": ":System.Double",
+          "normalizedSignature": "requestTimeout|:System.Double|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -1068,11 +1088,11 @@
           "declaringAssemblyName": "nodejs"
         },
         {
-          "stableId": "nodejs:nodejs.Http.Server::keepAliveTimeout:System.Int32",
+          "stableId": "nodejs:nodejs.Http.Server::keepAliveTimeout:System.Double",
           "clrName": "keepAliveTimeout",
-          "metadataToken": 385876403,
-          "canonicalSignature": ":System.Int32",
-          "normalizedSignature": "keepAliveTimeout|:System.Int32|static=false|accessor=getset",
+          "metadataToken": 385876407,
+          "canonicalSignature": ":System.Double",
+          "normalizedSignature": "keepAliveTimeout|:System.Double|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -1089,7 +1109,7 @@
         {
           "stableId": "nodejs:nodejs.Http.Server::listening:System.Boolean",
           "clrName": "listening",
-          "metadataToken": 385876404,
+          "metadataToken": 385876408,
           "canonicalSignature": ":System.Boolean",
           "normalizedSignature": "listening|:System.Boolean|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -1111,7 +1131,7 @@
       "constructors": [
         {
           "stableId": "nodejs:nodejs.Http.Server::.ctor(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):void",
-          "metadataToken": 100665229,
+          "metadataToken": 100665247,
           "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):void",
           "normalizedSignature": "constructor|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):void|static=false",
           "isStatic": false,
@@ -1139,11 +1159,11 @@
       },
       "methods": [
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::writeHead(System.Int32,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::writeHead(System.Double,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
           "clrName": "writeHead",
-          "metadataToken": 100665261,
-          "canonicalSignature": "(System.Int32,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
-          "normalizedSignature": "writeHead|(System.Int32,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse|static=false",
+          "metadataToken": 100665280,
+          "canonicalSignature": "(System.Double,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
+          "normalizedSignature": "writeHead|(System.Double,System.String,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1159,11 +1179,11 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::writeHead(System.Int32,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::writeHead(System.Double,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
           "clrName": "writeHead",
-          "metadataToken": 100665262,
-          "canonicalSignature": "(System.Int32,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
-          "normalizedSignature": "writeHead|(System.Int32,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse|static=false",
+          "metadataToken": 100665281,
+          "canonicalSignature": "(System.Double,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse",
+          "normalizedSignature": "writeHead|(System.Double,System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]):nodejs.Http.ServerResponse|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1181,7 +1201,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::setHeader(System.String,System.String):nodejs.Http.ServerResponse",
           "clrName": "setHeader",
-          "metadataToken": 100665263,
+          "metadataToken": 100665282,
           "canonicalSignature": "(System.String,System.String):nodejs.Http.ServerResponse",
           "normalizedSignature": "setHeader|(System.String,System.String):nodejs.Http.ServerResponse|static=false",
           "emitScope": "ClassSurface",
@@ -1201,7 +1221,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::getHeader(System.String):System.String",
           "clrName": "getHeader",
-          "metadataToken": 100665264,
+          "metadataToken": 100665283,
           "canonicalSignature": "(System.String):System.String",
           "normalizedSignature": "getHeader|(System.String):System.String|static=false",
           "emitScope": "ClassSurface",
@@ -1221,7 +1241,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::getHeaderNames():System.String[]",
           "clrName": "getHeaderNames",
-          "metadataToken": 100665265,
+          "metadataToken": 100665284,
           "canonicalSignature": "():System.String[]",
           "normalizedSignature": "getHeaderNames|():System.String[]|static=false",
           "emitScope": "ClassSurface",
@@ -1241,7 +1261,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::getHeaders():System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "getHeaders",
-          "metadataToken": 100665266,
+          "metadataToken": 100665285,
           "canonicalSignature": "():System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "getHeaders|():System.Collections.Generic.Dictionary_2[[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[System.String,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=false",
           "emitScope": "ClassSurface",
@@ -1261,7 +1281,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::hasHeader(System.String):System.Boolean",
           "clrName": "hasHeader",
-          "metadataToken": 100665267,
+          "metadataToken": 100665286,
           "canonicalSignature": "(System.String):System.Boolean",
           "normalizedSignature": "hasHeader|(System.String):System.Boolean|static=false",
           "emitScope": "ClassSurface",
@@ -1281,7 +1301,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::removeHeader(System.String):System.Void",
           "clrName": "removeHeader",
-          "metadataToken": 100665268,
+          "metadataToken": 100665287,
           "canonicalSignature": "(System.String):System.Void",
           "normalizedSignature": "removeHeader|(System.String):System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -1301,7 +1321,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::write(System.String,System.String,System.Action):System.Boolean",
           "clrName": "write",
-          "metadataToken": 100665269,
+          "metadataToken": 100665288,
           "canonicalSignature": "(System.String,System.String,System.Action):System.Boolean",
           "normalizedSignature": "write|(System.String,System.String,System.Action):System.Boolean|static=false",
           "emitScope": "ClassSurface",
@@ -1319,9 +1339,89 @@
           "isExtensionMethod": false
         },
         {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::write(nodejs.Buffer,System.Action):System.Boolean",
+          "clrName": "write",
+          "metadataToken": 100665289,
+          "canonicalSignature": "(nodejs.Buffer,System.Action):System.Boolean",
+          "normalizedSignature": "write|(nodejs.Buffer,System.Action):System.Boolean|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 2,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::write(System.Byte[],System.Action):System.Boolean",
+          "clrName": "write",
+          "metadataToken": 100665290,
+          "canonicalSignature": "(System.Byte[],System.Action):System.Boolean",
+          "normalizedSignature": "write|(System.Byte[],System.Action):System.Boolean|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 2,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::end():nodejs.Http.ServerResponse",
+          "clrName": "end",
+          "metadataToken": 100665291,
+          "canonicalSignature": "():nodejs.Http.ServerResponse",
+          "normalizedSignature": "end|():nodejs.Http.ServerResponse|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 0,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::end(System.Action):nodejs.Http.ServerResponse",
+          "clrName": "end",
+          "metadataToken": 100665292,
+          "canonicalSignature": "(System.Action):nodejs.Http.ServerResponse",
+          "normalizedSignature": "end|(System.Action):nodejs.Http.ServerResponse|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 1,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
           "stableId": "nodejs:nodejs.Http.ServerResponse::end(System.String,System.String,System.Action):nodejs.Http.ServerResponse",
           "clrName": "end",
-          "metadataToken": 100665270,
+          "metadataToken": 100665293,
           "canonicalSignature": "(System.String,System.String,System.Action):nodejs.Http.ServerResponse",
           "normalizedSignature": "end|(System.String,System.String,System.Action):nodejs.Http.ServerResponse|static=false",
           "emitScope": "ClassSurface",
@@ -1339,11 +1439,51 @@
           "isExtensionMethod": false
         },
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::setTimeout(System.Int32,System.Action):nodejs.Http.ServerResponse",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::end(nodejs.Buffer,System.Action):nodejs.Http.ServerResponse",
+          "clrName": "end",
+          "metadataToken": 100665294,
+          "canonicalSignature": "(nodejs.Buffer,System.Action):nodejs.Http.ServerResponse",
+          "normalizedSignature": "end|(nodejs.Buffer,System.Action):nodejs.Http.ServerResponse|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 2,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::end(System.Byte[],System.Action):nodejs.Http.ServerResponse",
+          "clrName": "end",
+          "metadataToken": 100665295,
+          "canonicalSignature": "(System.Byte[],System.Action):nodejs.Http.ServerResponse",
+          "normalizedSignature": "end|(System.Byte[],System.Action):nodejs.Http.ServerResponse|static=false",
+          "emitScope": "ClassSurface",
+          "provenance": "Original",
+          "arity": 0,
+          "parameterCount": 2,
+          "isStatic": false,
+          "isAbstract": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isSealed": false,
+          "visibility": "Public",
+          "declaringClrType": "nodejs.Http.ServerResponse",
+          "declaringAssemblyName": "nodejs",
+          "isExtensionMethod": false
+        },
+        {
+          "stableId": "nodejs:nodejs.Http.ServerResponse::setTimeout(System.Double,System.Action):nodejs.Http.ServerResponse",
           "clrName": "setTimeout",
-          "metadataToken": 100665271,
-          "canonicalSignature": "(System.Int32,System.Action):nodejs.Http.ServerResponse",
-          "normalizedSignature": "setTimeout|(System.Int32,System.Action):nodejs.Http.ServerResponse|static=false",
+          "metadataToken": 100665296,
+          "canonicalSignature": "(System.Double,System.Action):nodejs.Http.ServerResponse",
+          "normalizedSignature": "setTimeout|(System.Double,System.Action):nodejs.Http.ServerResponse|static=false",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "arity": 0,
@@ -1361,7 +1501,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::flushHeaders():System.Void",
           "clrName": "flushHeaders",
-          "metadataToken": 100665272,
+          "metadataToken": 100665297,
           "canonicalSignature": "():System.Void",
           "normalizedSignature": "flushHeaders|():System.Void|static=false",
           "emitScope": "ClassSurface",
@@ -1381,11 +1521,11 @@
       ],
       "properties": [
         {
-          "stableId": "nodejs:nodejs.Http.ServerResponse::statusCode:System.Int32",
+          "stableId": "nodejs:nodejs.Http.ServerResponse::statusCode:System.Double",
           "clrName": "statusCode",
-          "metadataToken": 385876408,
-          "canonicalSignature": ":System.Int32",
-          "normalizedSignature": "statusCode|:System.Int32|static=false|accessor=getset",
+          "metadataToken": 385876412,
+          "canonicalSignature": ":System.Double",
+          "normalizedSignature": "statusCode|:System.Double|static=false|accessor=getset",
           "emitScope": "ClassSurface",
           "provenance": "Original",
           "isIndexer": false,
@@ -1402,7 +1542,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::statusMessage:System.String",
           "clrName": "statusMessage",
-          "metadataToken": 385876409,
+          "metadataToken": 385876413,
           "canonicalSignature": ":System.String",
           "normalizedSignature": "statusMessage|:System.String|static=false|accessor=getset",
           "emitScope": "ClassSurface",
@@ -1421,7 +1561,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::headersSent:System.Boolean",
           "clrName": "headersSent",
-          "metadataToken": 385876410,
+          "metadataToken": 385876414,
           "canonicalSignature": ":System.Boolean",
           "normalizedSignature": "headersSent|:System.Boolean|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -1440,7 +1580,7 @@
         {
           "stableId": "nodejs:nodejs.Http.ServerResponse::finished:System.Boolean",
           "clrName": "finished",
-          "metadataToken": 385876411,
+          "metadataToken": 385876415,
           "canonicalSignature": ":System.Boolean",
           "normalizedSignature": "finished|:System.Boolean|static=false|accessor=get",
           "emitScope": "ClassSurface",
@@ -1489,7 +1629,7 @@
       "constructors": [
         {
           "stableId": "nodejs:nodejs.Http.TypeError::.ctor(System.String):void",
-          "metadataToken": 100665191,
+          "metadataToken": 100665208,
           "canonicalSignature": "(System.String):void",
           "normalizedSignature": "constructor|(System.String):void|static=false",
           "isStatic": false,
@@ -1519,7 +1659,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::createServer(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
           "clrName": "createServer",
-          "metadataToken": 100665182,
+          "metadataToken": 100665199,
           "canonicalSignature": "(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server",
           "normalizedSignature": "createServer|(System.Action_2[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null],[nodejs.Http.ServerResponse,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.Server|static=true",
           "emitScope": "ClassSurface",
@@ -1539,7 +1679,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::request(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "request",
-          "metadataToken": 100665183,
+          "metadataToken": 100665200,
           "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "request|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
@@ -1559,7 +1699,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::request(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "request",
-          "metadataToken": 100665184,
+          "metadataToken": 100665201,
           "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "request|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
@@ -1579,7 +1719,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "metadataToken": 100665185,
+          "metadataToken": 100665202,
           "canonicalSignature": "(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "get|(System.String,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
@@ -1599,7 +1739,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::get(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "clrName": "get",
-          "metadataToken": 100665186,
+          "metadataToken": 100665203,
           "canonicalSignature": "(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest",
           "normalizedSignature": "get|(nodejs.Http.RequestOptions,System.Action_1[[nodejs.Http.IncomingMessage,nodejs,Version=1.0.2.0,Culture=neutral,PublicKeyToken=null]]):nodejs.Http.ClientRequest|static=true",
           "emitScope": "ClassSurface",
@@ -1619,7 +1759,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::validateHeaderName(System.String):System.Void",
           "clrName": "validateHeaderName",
-          "metadataToken": 100665187,
+          "metadataToken": 100665204,
           "canonicalSignature": "(System.String):System.Void",
           "normalizedSignature": "validateHeaderName|(System.String):System.Void|static=true",
           "emitScope": "ClassSurface",
@@ -1639,7 +1779,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::validateHeaderValue(System.String,System.Object):System.Void",
           "clrName": "validateHeaderValue",
-          "metadataToken": 100665188,
+          "metadataToken": 100665205,
           "canonicalSignature": "(System.String,System.Object):System.Void",
           "normalizedSignature": "validateHeaderValue|(System.String,System.Object):System.Void|static=true",
           "emitScope": "ClassSurface",
@@ -1661,7 +1801,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::globalAgent_maxSockets:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "clrName": "globalAgent_maxSockets",
-          "metadataToken": 385876378,
+          "metadataToken": 385876382,
           "canonicalSignature": ":System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]",
           "normalizedSignature": "globalAgent_maxSockets|:System.Nullable_1[[System.Int32,System.Private.CoreLib,Version=10.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e]]|static=true|accessor=getset",
           "emitScope": "ClassSurface",
@@ -1680,7 +1820,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::globalAgent_maxFreeSockets:System.Int32",
           "clrName": "globalAgent_maxFreeSockets",
-          "metadataToken": 385876379,
+          "metadataToken": 385876383,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "globalAgent_maxFreeSockets|:System.Int32|static=true|accessor=getset",
           "emitScope": "ClassSurface",
@@ -1699,7 +1839,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::globalAgent_timeout:System.Int32",
           "clrName": "globalAgent_timeout",
-          "metadataToken": 385876380,
+          "metadataToken": 385876384,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "globalAgent_timeout|:System.Int32|static=true|accessor=getset",
           "emitScope": "ClassSurface",
@@ -1718,7 +1858,7 @@
         {
           "stableId": "nodejs:nodejs.Http.http::maxHeaderSize:System.Int32",
           "clrName": "maxHeaderSize",
-          "metadataToken": 385876381,
+          "metadataToken": 385876385,
           "canonicalSignature": ":System.Int32",
           "normalizedSignature": "maxHeaderSize|:System.Int32|static=true|accessor=getset",
           "emitScope": "ClassSurface",

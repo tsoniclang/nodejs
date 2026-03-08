@@ -5,12 +5,9 @@
   "main": "index.d.ts",
   "types": "index.d.ts",
   "files": [
-    "index.d.ts",
-    "index.js",
-    "node-aliases.d.ts",
-    "nodejs.Http.d.ts",
-    "nodejs.Http.js",
-    "bindings.json",
+    "**/*.d.ts",
+    "**/*.js",
+    "**/bindings.json",
     "families.json",
     "tsonic.bindings.json",
     "README.md",
@@ -34,6 +31,7 @@
   },
   "dependencies": {
     "@tsonic/dotnet": "10.0.37",
-    "@tsonic/core": "10.0.37"
+    "@tsonic/core": "10.0.37",
+    "@tsonic/js": "10.0.40"
   }
 }
