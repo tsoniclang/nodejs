@@ -9,6 +9,7 @@ DOTNET_MAJOR="${1:-10}"
 TSONIC_CLI="${TSONIC_CLI:-tsonic@latest}"
 TEST_LOG_DIR="$PROJECT_DIR/.tests"
 WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/nodejs-selftest.XXXXXX")"
+LOCAL_NUGET_FEED="$WORK_DIR/local-nuget"
 
 cleanup() {
   rm -rf "$WORK_DIR"
@@ -25,6 +26,28 @@ run_and_capture() {
   local log_name="$1"
   shift
   "$@" | tee "$TEST_LOG_DIR/$log_name-$(timestamp).log"
+}
+
+write_local_nuget_config() {
+  local workspace_dir="$1"
+  cat >"$workspace_dir/nuget.config" <<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <clear />
+    <add key="local" value="$LOCAL_NUGET_FEED" />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+</configuration>
+EOF
+}
+
+pack_local_runtime_packages() {
+  mkdir -p "$LOCAL_NUGET_FEED"
+
+  run_and_capture "runtime-dotnet-pack" dotnet pack "$PROJECT_DIR/../runtime/src/Tsonic.Runtime/Tsonic.Runtime.csproj" -c Release -o "$LOCAL_NUGET_FEED" >/dev/null
+  run_and_capture "js-runtime-dotnet-pack" dotnet pack "$PROJECT_DIR/../js-runtime/src/Tsonic.JSRuntime/Tsonic.JSRuntime.csproj" -c Release -o "$LOCAL_NUGET_FEED" >/dev/null
+  run_and_capture "nodejs-clr-dotnet-pack" dotnet pack "$NODEJS_CLR_DIR/src/nodejs/nodejs.csproj" -c Release -o "$LOCAL_NUGET_FEED" >/dev/null
 }
 
 run_npm_install_clean() {
@@ -157,18 +180,11 @@ install_packages_preferring_local_siblings() {
   run_npm_install_clean "$workspace_dir" "${resolved_specs[@]}"
 }
 
-install_local_bindings_package() {
+apply_installed_bindings_package() {
   local workspace_dir="$1"
-  local package_dir="$2"
-  local package_name="$3"
-  local extra_types_json
+  local package_name="$2"
 
-  install_local_sibling_dependencies "$workspace_dir" "$package_dir"
-
-  run_npm_install_clean "$workspace_dir" "$package_dir"
-
-  extra_types_json="$(
-    node - "$workspace_dir" "$package_name" <<'NODE'
+  node - "$workspace_dir" "$package_name" <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
 
@@ -177,6 +193,11 @@ const packageName = process.argv[3];
 const packageRoot = path.join(workspaceDir, "node_modules", ...packageName.split("/"));
 const bindingsPath = path.join(packageRoot, "tsonic.bindings.json");
 const workspacePath = path.join(workspaceDir, "tsonic.workspace.json");
+
+if (!fs.existsSync(bindingsPath)) {
+  process.stdout.write("[]");
+  process.exit(0);
+}
 
 const bindings = JSON.parse(fs.readFileSync(bindingsPath, "utf8"));
 const workspace = JSON.parse(fs.readFileSync(workspacePath, "utf8"));
@@ -226,12 +247,67 @@ for (const reference of bindings.dotnet?.packageReferences ?? []) {
 
 process.stdout.write(JSON.stringify([...extraTypes]));
 NODE
-  )"
+}
 
-  mapfile -t extra_types < <(node -e 'for (const item of JSON.parse(process.argv[1])) console.log(item);' "$extra_types_json")
-  if [ "${#extra_types[@]}" -gt 0 ]; then
-    install_packages_preferring_local_siblings "$workspace_dir" "${extra_types[@]}"
-  fi
+read_installed_tsonic_dependencies() {
+  local workspace_dir="$1"
+  local package_name="$2"
+
+  node - "$workspace_dir" "$package_name" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const workspaceDir = path.resolve(process.argv[2]);
+const packageName = process.argv[3];
+const packageRoot = path.join(workspaceDir, "node_modules", ...packageName.split("/"));
+const packageJsonPath = path.join(packageRoot, "package.json");
+
+if (!fs.existsSync(packageJsonPath)) {
+  process.stdout.write("[]");
+  process.exit(0);
+}
+
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+const dependencies = Object.keys(packageJson.dependencies ?? {}).filter((name) => name.startsWith("@tsonic/"));
+process.stdout.write(JSON.stringify(dependencies));
+NODE
+}
+
+install_local_bindings_package() {
+  local workspace_dir="$1"
+  local package_dir="$2"
+  local package_name="$3"
+  local pending_json
+  local current_package
+  local extra_types_json
+  local dependency_types_json
+  local discovered_json
+
+  install_local_sibling_dependencies "$workspace_dir" "$package_dir"
+  run_npm_install_clean "$workspace_dir" "$package_dir"
+
+  dependency_types_json="$(read_installed_tsonic_dependencies "$workspace_dir" "$package_name")"
+  pending_json="$(node -e 'const pending = [process.argv[1], ...JSON.parse(process.argv[2])]; process.stdout.write(JSON.stringify([...new Set(pending)]));' "$package_name" "$dependency_types_json")"
+
+  while :; do
+    mapfile -t pending < <(node -e 'for (const item of JSON.parse(process.argv[1])) console.log(item);' "$pending_json")
+    if [ "${#pending[@]}" -eq 0 ]; then
+      break
+    fi
+
+    current_package="${pending[0]}"
+    pending_json="$(node -e 'const items = JSON.parse(process.argv[1]); items.shift(); process.stdout.write(JSON.stringify(items));' "$pending_json")"
+
+    extra_types_json="$(apply_installed_bindings_package "$workspace_dir" "$current_package")"
+    dependency_types_json="$(read_installed_tsonic_dependencies "$workspace_dir" "$current_package")"
+    discovered_json="$(node -e 'const merged = [...JSON.parse(process.argv[1]), ...JSON.parse(process.argv[2])]; process.stdout.write(JSON.stringify([...new Set(merged)]));' "$extra_types_json" "$dependency_types_json")"
+    mapfile -t extra_types < <(node -e 'for (const item of JSON.parse(process.argv[1])) console.log(item);' "$discovered_json")
+
+    if [ "${#extra_types[@]}" -gt 0 ]; then
+      install_packages_preferring_local_siblings "$workspace_dir" "${extra_types[@]}"
+      pending_json="$(node -e 'const pending = JSON.parse(process.argv[1]); const extra = JSON.parse(process.argv[2]); const seen = new Set(pending); for (const item of extra) { if (!seen.has(item)) { pending.push(item); seen.add(item); } } process.stdout.write(JSON.stringify(pending));' "$pending_json" "$discovered_json")"
+    fi
+  done
 }
 
 verify_output() {
@@ -261,6 +337,7 @@ run_fixture() {
   (
     cd "$fixture_project"
     npx --yes "$TSONIC_CLI" init --surface @tsonic/js >/dev/null
+    write_local_nuget_config "$fixture_project"
     install_local_bindings_package "$fixture_project" "$PROJECT_DIR/versions/$DOTNET_MAJOR" "@tsonic/nodejs"
     copy_fixture "$fixture_dir" "$package_dir"
     npm run build >/dev/null
@@ -299,7 +376,11 @@ echo "[3/5] Running nodejs-clr runtime tests..."
 )
 echo "  Done"
 
-echo "[4/5] Running published-consumer E2E fixtures..."
+echo "[4/6] Packing local runtime NuGet packages..."
+pack_local_runtime_packages
+echo "  Done"
+
+echo "[5/6] Running published-consumer E2E fixtures..."
 run_fixture "node-specifiers"
 run_fixture "bare-aliases"
 run_fixture "node-module-matrix"
@@ -308,6 +389,6 @@ run_fixture "root-exports"
 run_fixture "entrypoint-http"
 echo "  Done"
 
-echo "[5/5] Selftest complete"
+echo "[6/6] Selftest complete"
 echo ""
 echo "All nodejs publish-gated checks passed."
