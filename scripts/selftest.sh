@@ -10,6 +10,7 @@ TSONIC_CLI="${TSONIC_CLI:-tsonic@latest}"
 TEST_LOG_DIR="$PROJECT_DIR/.tests"
 WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/nodejs-selftest.XXXXXX")"
 LOCAL_NUGET_FEED="$WORK_DIR/local-nuget"
+export NUGET_PACKAGES="$WORK_DIR/nuget-packages"
 
 assert_local_dependency_alignment() {
   local dependency_name="$1"
@@ -379,37 +380,58 @@ echo "  tsonic CLI:       $TSONIC_CLI"
 echo "  temp workdir:     $WORK_DIR"
 echo ""
 
-echo "[1/5] Regenerating package..."
+echo "[1/7] Building nodejs-clr release artifacts..."
+(
+  cd "$NODEJS_CLR_DIR"
+  run_and_capture "nodejs-clr-dotnet-build-release" dotnet build -c Release >/dev/null
+)
+echo "  Done"
+
+echo "[2/7] Regenerating package..."
 run_and_capture "generate" npm run generate:"$DOTNET_MAJOR" >/dev/null
 echo "  Done"
 
-echo "[2/5] Running unified Node API verification..."
+echo "[3/7] Checking exact numeric JS-surface contracts..."
+HTTP_INTERNAL="$PROJECT_DIR/versions/$DOTNET_MAJOR/nodejs.Http/internal/index.d.ts"
+grep -Fq "timeout: int;" "$HTTP_INTERNAL"
+grep -Fq "headersTimeout: int;" "$HTTP_INTERNAL"
+grep -Fq "requestTimeout: int;" "$HTTP_INTERNAL"
+grep -Fq "keepAliveTimeout: int;" "$HTTP_INTERNAL"
+grep -Fq "readonly statusCode: int | undefined;" "$HTTP_INTERNAL"
+grep -Fq "setTimeout(msecs: int, callback?: Action): IncomingMessage;" "$HTTP_INTERNAL"
+grep -Fq "statusCode: int;" "$HTTP_INTERNAL"
+grep -Fq "listen(port: int, hostname?: string, backlog?: int | undefined, callback?: Action): Server;" "$HTTP_INTERNAL"
+grep -Fq "writeHead(statusCode: int, statusMessage?: string, headers?: Dictionary_2<System_Internal.String, System_Internal.String>): ServerResponse;" "$HTTP_INTERNAL"
+echo "  Done"
+
+echo "[4/7] Running unified Node API verification..."
 (
   cd "$NODEJS_CLR_DIR"
   run_and_capture "nodejs-clr-verify-api" npm run verify:api >/dev/null
 )
 echo "  Done"
 
-echo "[3/5] Running nodejs-clr runtime tests..."
+echo "[5/7] Running nodejs-clr runtime tests..."
 (
   cd "$NODEJS_CLR_DIR"
-  run_and_capture "nodejs-clr-dotnet-test" dotnet test >/dev/null
+  run_and_capture "nodejs-clr-dotnet-test" dotnet test -c Release --no-build >/dev/null
 )
 echo "  Done"
 
-echo "[4/6] Packing local runtime NuGet packages..."
+echo "[6/7] Packing local runtime NuGet packages..."
 pack_local_runtime_packages
 echo "  Done"
 
-echo "[5/6] Running published-consumer E2E fixtures..."
+echo "[7/7] Running published-consumer E2E fixtures..."
 run_fixture "node-specifiers"
 run_fixture "bare-aliases"
 run_fixture "node-module-matrix"
 run_fixture "bare-module-matrix"
 run_fixture "root-exports"
 run_fixture "entrypoint-http"
+run_fixture "http-exact-numerics"
 echo "  Done"
 
-echo "[6/6] Selftest complete"
+echo "[7/7] Selftest complete"
 echo ""
 echo "All nodejs publish-gated checks passed."

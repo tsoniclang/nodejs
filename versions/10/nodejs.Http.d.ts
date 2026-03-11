@@ -8,7 +8,7 @@ import * as Internal from './nodejs.Http/internal/index.js';
 // Cross-namespace type imports for constraints
 import type { Buffer, EventEmitter } from './index/internal/index.js';
 import type { Dictionary } from '@tsonic/dotnet/System.Collections.Generic.js';
-import type { Action, Boolean as ClrBoolean, Byte, Delegate, Double, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from '@tsonic/dotnet/System.js';
+import type { Action, Boolean as ClrBoolean, Byte, Delegate, Exception, Int32, Nullable, Object as ClrObject, String as ClrString, Void } from '@tsonic/dotnet/System.js';
 import type { ISerializable } from '@tsonic/dotnet/System.Runtime.Serialization.js';
 import type { Task } from '@tsonic/dotnet/System.Threading.Tasks.js';
 

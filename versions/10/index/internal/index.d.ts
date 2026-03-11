@@ -255,10 +255,10 @@ export interface BindOptions$instance {
     get address(): string | undefined;
     set address(value: string | undefined);
     exclusive: boolean;
-    get fd(): Nullable_1<System_Internal.Int32>;
-    set fd(value: Nullable_1<System_Internal.Int32> | int);
-    get port(): Nullable_1<System_Internal.Int32>;
-    set port(value: Nullable_1<System_Internal.Int32> | int);
+    get fd(): int | undefined;
+    set fd(value: int | undefined | int);
+    get port(): int | undefined;
+    set port(value: int | undefined | int);
 }
 
 
@@ -290,12 +290,12 @@ export type BlockList = BlockList$instance;
 export interface BrotliOptions$instance {
     readonly __tsonic_type_nodejs_BrotliOptions: never;
 
-    get chunkSize(): Nullable_1<System_Internal.Int32>;
-    set chunkSize(value: Nullable_1<System_Internal.Int32> | int);
-    get maxOutputLength(): Nullable_1<System_Internal.Int32>;
-    set maxOutputLength(value: Nullable_1<System_Internal.Int32> | int);
-    get quality(): Nullable_1<System_Internal.Int32>;
-    set quality(value: Nullable_1<System_Internal.Int32> | int);
+    get chunkSize(): int | undefined;
+    set chunkSize(value: int | undefined | int);
+    get maxOutputLength(): int | undefined;
+    set maxOutputLength(value: int | undefined | int);
+    get quality(): int | undefined;
+    set quality(value: int | undefined | int);
 }
 
 
@@ -310,13 +310,13 @@ export interface Buffer$instance {
     readonly __tsonic_type_nodejs_Buffer: never;
 
     readonly length: int;
-    compare(target: Buffer, targetStart?: Nullable_1<System_Internal.Int32>, targetEnd?: Nullable_1<System_Internal.Int32>, sourceStart?: Nullable_1<System_Internal.Int32>, sourceEnd?: Nullable_1<System_Internal.Int32>): int;
-    copy(target: Buffer, targetStart?: int, sourceStart?: Nullable_1<System_Internal.Int32>, sourceEnd?: Nullable_1<System_Internal.Int32>): int;
+    compare(target: Buffer, targetStart?: int | undefined, targetEnd?: int | undefined, sourceStart?: int | undefined, sourceEnd?: int | undefined): int;
+    copy(target: Buffer, targetStart?: int, sourceStart?: int | undefined, sourceEnd?: int | undefined): int;
     equals(otherBuffer: Buffer): boolean;
-    fill(value: unknown, offset?: int, end?: Nullable_1<System_Internal.Int32>, encoding?: string): Buffer;
+    fill(value: unknown, offset?: int, end?: int | undefined, encoding?: string): Buffer;
     includes(value: unknown, byteOffset?: int, encoding?: string): boolean;
     indexOf(value: unknown, byteOffset?: int, encoding?: string): int;
-    lastIndexOf(value: unknown, byteOffset?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
+    lastIndexOf(value: unknown, byteOffset?: int | undefined, encoding?: string): int;
     readBigInt64BE(offset?: int): long;
     readBigInt64LE(offset?: int): long;
     readBigUint64BE(offset?: int): ulong;
@@ -349,14 +349,14 @@ export interface Buffer$instance {
     readUintLE(offset: int, byteLength: int): ulong;
     readUIntLE(offset: int, byteLength: int): ulong;
     reverse(): Buffer;
-    slice(start?: Nullable_1<System_Internal.Int32>, end?: Nullable_1<System_Internal.Int32>): Buffer;
-    subarray(start?: Nullable_1<System_Internal.Int32>, end?: Nullable_1<System_Internal.Int32>): Buffer;
+    slice(start?: int | undefined, end?: int | undefined): Buffer;
+    subarray(start?: int | undefined, end?: int | undefined): Buffer;
     swap16(): Buffer;
     swap32(): Buffer;
     swap64(): Buffer;
     toJSON(): unknown;
-    toString(encoding?: string, start?: int, end?: Nullable_1<System_Internal.Int32>): string;
-    write(str: string, offset?: int, length?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
+    toString(encoding?: string, start?: int, end?: int | undefined): string;
+    write(str: string, offset?: int, length?: int | undefined, encoding?: string): int;
     writeBigInt64BE(value: long, offset?: int): int;
     writeBigInt64LE(value: long, offset?: int): int;
     writeBigUint64BE(value: ulong, offset?: int): int;
@@ -398,7 +398,7 @@ export const Buffer: {
     allocUnsafeSlow(size: int): Buffer;
     byteLength(str: string, encoding?: string): int;
     compare(buf1: Buffer, buf2: Buffer): int;
-    concat(list: Buffer[], totalLength?: Nullable_1<System_Internal.Int32>): Buffer;
+    concat(list: Buffer[], totalLength?: int | undefined): Buffer;
     from(buffer: Buffer): Buffer;
     from(array: byte[]): Buffer;
     from(array: int[]): Buffer;
@@ -454,8 +454,8 @@ export interface ChildProcess$instance extends EventEmitter {
     readonly __tsonic_type_nodejs_ChildProcess: never;
 
     connected: boolean;
-    get exitCode(): Nullable_1<System_Internal.Int32>;
-    set exitCode(value: Nullable_1<System_Internal.Int32> | int);
+    get exitCode(): int | undefined;
+    set exitCode(value: int | undefined | int);
     readonly killed: boolean;
     readonly pid: int;
     referenced: boolean;
@@ -556,12 +556,12 @@ export interface ConnectionOptions$instance extends CommonConnectionOptions {
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
-    get port(): Nullable_1<System_Internal.Int32>;
-    set port(value: Nullable_1<System_Internal.Int32> | int);
+    get port(): int | undefined;
+    set port(value: int | undefined | int);
     get servername(): string | undefined;
     set servername(value: string | undefined);
-    get timeout(): Nullable_1<System_Internal.Int32>;
-    set timeout(value: Nullable_1<System_Internal.Int32> | int);
+    get timeout(): int | undefined;
+    set timeout(value: int | undefined | int);
 }
 
 
@@ -601,7 +601,7 @@ export interface ConsoleConstructor$instance {
 
 
 export const ConsoleConstructor: {
-    new(stdout: unknown, stderr: unknown, ignoreErrors: boolean, colorMode: unknown, inspectOptions: Nullable_1<System_Internal.Int32>, groupIndentation: boolean): ConsoleConstructor;
+    new(stdout: unknown, stderr: unknown, ignoreErrors: boolean, colorMode: unknown, inspectOptions: int | undefined, groupIndentation: boolean): ConsoleConstructor;
 };
 
 
@@ -713,15 +713,15 @@ export interface DgramSocket$instance extends EventEmitter {
     getSendQueueSize(): int;
     ref(): DgramSocket;
     remoteAddress(): AddressInfo;
-    send(msg: byte[], port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: string, port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: string, port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], callback: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: string, callback: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, port?: Nullable_1<System_Internal.Int32>, address?: string, callback?: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, port: int, callback: Action_2<Exception, System_Internal.Int32>): void;
-    send(msg: byte[], offset: int, length: int, callback: Action_2<Exception, System_Internal.Int32>): void;
+    send(msg: byte[], port?: int | undefined, address?: string, callback?: Action_2<Exception, int>): void;
+    send(msg: string, port?: int | undefined, address?: string, callback?: Action_2<Exception, int>): void;
+    send(msg: byte[], port: int, callback: Action_2<Exception, int>): void;
+    send(msg: string, port: int, callback: Action_2<Exception, int>): void;
+    send(msg: byte[], callback: Action_2<Exception, int>): void;
+    send(msg: string, callback: Action_2<Exception, int>): void;
+    send(msg: byte[], offset: int, length: int, port?: int | undefined, address?: string, callback?: Action_2<Exception, int>): void;
+    send(msg: byte[], offset: int, length: int, port: int, callback: Action_2<Exception, int>): void;
+    send(msg: byte[], offset: int, length: int, callback: Action_2<Exception, int>): void;
     setBroadcast(flag: boolean): void;
     setMulticastInterface(multicastInterface: string): void;
     setMulticastLoopback(flag: boolean): boolean;
@@ -817,7 +817,7 @@ export interface DSAPrivateKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -836,7 +836,7 @@ export interface DSAPublicKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -907,7 +907,7 @@ export interface EdDSAPrivateKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -926,7 +926,7 @@ export interface EdDSAPublicKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -998,8 +998,8 @@ export interface ExecOptions$instance {
     set encoding(value: string | undefined);
     get env(): unknown | undefined;
     set env(value: unknown | undefined);
-    get gid(): Nullable_1<System_Internal.Int32>;
-    set gid(value: Nullable_1<System_Internal.Int32> | int);
+    get gid(): int | undefined;
+    set gid(value: int | undefined | int);
     get input(): string | undefined;
     set input(value: string | undefined);
     get killSignal(): string | undefined;
@@ -1010,8 +1010,8 @@ export interface ExecOptions$instance {
     get stdio(): string | undefined;
     set stdio(value: string | undefined);
     timeout: int;
-    get uid(): Nullable_1<System_Internal.Int32>;
-    set uid(value: Nullable_1<System_Internal.Int32> | int);
+    get uid(): int | undefined;
+    set uid(value: int | undefined | int);
     windowsHide: boolean;
     windowsVerbatimArguments: boolean;
 }
@@ -1037,8 +1037,8 @@ export interface FsPromises$instance {
     mkdir(path: string, recursive?: boolean): Task;
     mkdir(path: string, options: MkdirOptions): Task;
     mkdir(path: string, options: unknown): Task;
-    open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
-    read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    open(path: string, flags: string, mode?: int | undefined): Task_1<int>;
+    read(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): Task_1<int>;
     readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
     readFile(path: string, encoding?: string): Task_1<System_Internal.String>;
     readFileBytes(path: string): Task_1<byte[]>;
@@ -1051,8 +1051,8 @@ export interface FsPromises$instance {
     symlink(target: string, path: string, type?: string): Task;
     truncate(path: string, len?: long): Task;
     unlink(path: string): Task;
-    write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
-    write(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): Task_1<System_Internal.Int32>;
+    write(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): Task_1<int>;
+    write(fd: int, data: string, position?: int | undefined, encoding?: string): Task_1<int>;
     writeFile(path: string, data: string, encoding?: string): Task;
     writeFileBytes(path: string, data: byte[]): Task;
 }
@@ -1148,12 +1148,12 @@ export type Interface = Interface$instance;
 export interface InterfaceOptions$instance {
     readonly __tsonic_type_nodejs_InterfaceOptions: never;
 
-    get escapeCodeTimeout(): Nullable_1<System_Internal.Int32>;
-    set escapeCodeTimeout(value: Nullable_1<System_Internal.Int32> | int);
+    get escapeCodeTimeout(): int | undefined;
+    set escapeCodeTimeout(value: int | undefined | int);
     get history(): string[] | undefined;
     set history(value: string[] | undefined);
-    get historySize(): Nullable_1<System_Internal.Int32>;
-    set historySize(value: Nullable_1<System_Internal.Int32> | int);
+    get historySize(): int | undefined;
+    set historySize(value: int | undefined | int);
     get input(): Readable | undefined;
     set input(value: Readable | undefined);
     get output(): Writable | undefined;
@@ -1162,8 +1162,8 @@ export interface InterfaceOptions$instance {
     set prompt(value: string | undefined);
     get removeHistoryDuplicates(): Nullable_1<System_Internal.Boolean>;
     set removeHistoryDuplicates(value: Nullable_1<System_Internal.Boolean> | boolean);
-    get tabSize(): Nullable_1<System_Internal.Int32>;
-    set tabSize(value: Nullable_1<System_Internal.Int32> | int);
+    get tabSize(): int | undefined;
+    set tabSize(value: int | undefined | int);
     get terminal(): Nullable_1<System_Internal.Boolean>;
     set terminal(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
@@ -1196,7 +1196,7 @@ export interface KeyObject$instance {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1212,16 +1212,16 @@ export type KeyObject = KeyObject$instance;
 export interface ListenOptions$instance {
     readonly __tsonic_type_nodejs_ListenOptions: never;
 
-    get backlog(): Nullable_1<System_Internal.Int32>;
-    set backlog(value: Nullable_1<System_Internal.Int32> | int);
+    get backlog(): int | undefined;
+    set backlog(value: int | undefined | int);
     get host(): string | undefined;
     set host(value: string | undefined);
     get ipv6Only(): Nullable_1<System_Internal.Boolean>;
     set ipv6Only(value: Nullable_1<System_Internal.Boolean> | boolean);
     get path(): string | undefined;
     set path(value: string | undefined);
-    get port(): Nullable_1<System_Internal.Int32>;
-    set port(value: Nullable_1<System_Internal.Int32> | int);
+    get port(): int | undefined;
+    set port(value: int | undefined | int);
 }
 
 
@@ -1254,8 +1254,8 @@ export interface LookupOptions$instance {
     set all(value: Nullable_1<System_Internal.Boolean> | boolean);
     get family(): unknown | undefined;
     set family(value: unknown | undefined);
-    get hints(): Nullable_1<System_Internal.Int32>;
-    set hints(value: Nullable_1<System_Internal.Int32> | int);
+    get hints(): int | undefined;
+    set hints(value: int | undefined | int);
     get order(): string | undefined;
     set order(value: string | undefined);
     get verbatim(): Nullable_1<System_Internal.Boolean>;
@@ -1328,8 +1328,8 @@ export type MeasureOptions = MeasureOptions$instance;
 export interface MkdirOptions$instance {
     readonly __tsonic_type_nodejs_MkdirOptions: never;
 
-    get mode(): Nullable_1<System_Internal.Int32>;
-    set mode(value: Nullable_1<System_Internal.Int32> | int);
+    get mode(): int | undefined;
+    set mode(value: int | undefined | int);
     get recursive(): Nullable_1<System_Internal.Boolean>;
     set recursive(value: Nullable_1<System_Internal.Boolean> | boolean);
 }
@@ -1564,7 +1564,7 @@ export interface PrivateKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1633,7 +1633,7 @@ export interface PublicKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1660,7 +1660,7 @@ export interface Readable$instance extends Stream {
     isPaused(): boolean;
     pause(): Readable;
     push(chunk: unknown, encoding?: string): boolean;
-    read(size?: Nullable_1<System_Internal.Int32>): unknown | undefined;
+    read(size?: int | undefined): unknown | undefined;
     resume(): Readable;
     setEncoding(encoding: string): Readable;
     unpipe(destination?: Stream): Readable;
@@ -1776,12 +1776,12 @@ export type Resolver = Resolver$instance;
 export interface ResolverOptions$instance {
     readonly __tsonic_type_nodejs_ResolverOptions: never;
 
-    get maxTimeout(): Nullable_1<System_Internal.Int32>;
-    set maxTimeout(value: Nullable_1<System_Internal.Int32> | int);
-    get timeout(): Nullable_1<System_Internal.Int32>;
-    set timeout(value: Nullable_1<System_Internal.Int32> | int);
-    get tries(): Nullable_1<System_Internal.Int32>;
-    set tries(value: Nullable_1<System_Internal.Int32> | int);
+    get maxTimeout(): int | undefined;
+    set maxTimeout(value: int | undefined | int);
+    get timeout(): int | undefined;
+    set timeout(value: int | undefined | int);
+    get tries(): int | undefined;
+    set tries(value: int | undefined | int);
 }
 
 
@@ -1798,7 +1798,7 @@ export interface SecretKeyObject$instance extends KeyObject {
     readonly __tsonic_iface_System_IDisposable: never;
 
     readonly asymmetricKeyType: string | undefined;
-    readonly symmetricKeySize: Nullable_1<System_Internal.Int32>;
+    readonly symmetricKeySize: int | undefined;
     readonly type: string;
     Dispose(): void;
     export(options?: unknown): unknown;
@@ -1869,7 +1869,7 @@ export interface Server$instance extends EventEmitter {
     maxConnections: int;
     address(): unknown | undefined;
     close(callback?: Action_1<Exception>): Server;
-    getConnections(callback: Action_2<Exception, System_Internal.Int32>): void;
+    getConnections(callback: Action_2<Exception, int>): void;
     listen(port: int, hostname: string, backlog: int, listeningListener?: Action): Server;
     listen(port: int, hostname: string, listeningListener?: Action): Server;
     listen(port: int, backlog: int, listeningListener?: Action): Server;
@@ -1957,15 +1957,15 @@ export interface Socket$instance extends Stream {
     set localAddress(value: string | undefined);
     get localFamily(): string | undefined;
     set localFamily(value: string | undefined);
-    get localPort(): Nullable_1<System_Internal.Int32>;
-    set localPort(value: Nullable_1<System_Internal.Int32> | int);
+    get localPort(): int | undefined;
+    set localPort(value: int | undefined | int);
     readonly readyState: string;
     get remoteAddress(): string | undefined;
     set remoteAddress(value: string | undefined);
     get remoteFamily(): string | undefined;
     set remoteFamily(value: string | undefined);
-    get remotePort(): Nullable_1<System_Internal.Int32>;
-    set remotePort(value: Nullable_1<System_Internal.Int32> | int);
+    get remotePort(): int | undefined;
+    set remotePort(value: int | undefined | int);
     address(): unknown;
     connect(port: int, host?: string, connectionListener?: Action): Socket;
     connect(options: TcpSocketConnectOpts, connectionListener?: Action): Socket;
@@ -2003,8 +2003,8 @@ export interface SocketAddress$instance {
 
     address: string;
     family: string;
-    get flowlabel(): Nullable_1<System_Internal.Int32>;
-    set flowlabel(value: Nullable_1<System_Internal.Int32> | int);
+    get flowlabel(): int | undefined;
+    set flowlabel(value: int | undefined | int);
     port: int;
 }
 
@@ -2023,10 +2023,10 @@ export interface SocketAddressInitOptions$instance {
     set address(value: string | undefined);
     get family(): string | undefined;
     set family(value: string | undefined);
-    get flowlabel(): Nullable_1<System_Internal.Int32>;
-    set flowlabel(value: Nullable_1<System_Internal.Int32> | int);
-    get port(): Nullable_1<System_Internal.Int32>;
-    set port(value: Nullable_1<System_Internal.Int32> | int);
+    get flowlabel(): int | undefined;
+    set flowlabel(value: int | undefined | int);
+    get port(): int | undefined;
+    set port(value: int | undefined | int);
 }
 
 
@@ -2042,8 +2042,8 @@ export interface SocketConstructorOpts$instance {
 
     get allowHalfOpen(): Nullable_1<System_Internal.Boolean>;
     set allowHalfOpen(value: Nullable_1<System_Internal.Boolean> | boolean);
-    get fd(): Nullable_1<System_Internal.Int32>;
-    set fd(value: Nullable_1<System_Internal.Int32> | int);
+    get fd(): int | undefined;
+    set fd(value: int | undefined | int);
     get readable(): Nullable_1<System_Internal.Boolean>;
     set readable(value: Nullable_1<System_Internal.Boolean> | boolean);
     get writable(): Nullable_1<System_Internal.Boolean>;
@@ -2062,12 +2062,12 @@ export interface SocketOptions$instance {
     readonly __tsonic_type_nodejs_SocketOptions: never;
 
     ipv6Only: boolean;
-    get recvBufferSize(): Nullable_1<System_Internal.Int32>;
-    set recvBufferSize(value: Nullable_1<System_Internal.Int32> | int);
+    get recvBufferSize(): int | undefined;
+    set recvBufferSize(value: int | undefined | int);
     reuseAddr: boolean;
     reusePort: boolean;
-    get sendBufferSize(): Nullable_1<System_Internal.Int32>;
-    set sendBufferSize(value: Nullable_1<System_Internal.Int32> | int);
+    get sendBufferSize(): int | undefined;
+    set sendBufferSize(value: int | undefined | int);
     type: string;
 }
 
@@ -2088,8 +2088,8 @@ export interface SpawnSyncReturns_1$instance<T> {
     pid: int;
     get signal(): string | undefined;
     set signal(value: string | undefined);
-    get status(): Nullable_1<System_Internal.Int32>;
-    set status(value: Nullable_1<System_Internal.Int32> | int);
+    get status(): int | undefined;
+    set status(value: int | undefined | int);
     stderr: T;
     stdout: T;
 }
@@ -2199,20 +2199,20 @@ export type StringDecoder = StringDecoder$instance;
 export interface TcpSocketConnectOpts$instance {
     readonly __tsonic_type_nodejs_TcpSocketConnectOpts: never;
 
-    get family(): Nullable_1<System_Internal.Int32>;
-    set family(value: Nullable_1<System_Internal.Int32> | int);
-    get hints(): Nullable_1<System_Internal.Int32>;
-    set hints(value: Nullable_1<System_Internal.Int32> | int);
+    get family(): int | undefined;
+    set family(value: int | undefined | int);
+    get hints(): int | undefined;
+    set hints(value: int | undefined | int);
     get host(): string | undefined;
     set host(value: string | undefined);
     get keepAlive(): Nullable_1<System_Internal.Boolean>;
     set keepAlive(value: Nullable_1<System_Internal.Boolean> | boolean);
-    get keepAliveInitialDelay(): Nullable_1<System_Internal.Int32>;
-    set keepAliveInitialDelay(value: Nullable_1<System_Internal.Int32> | int);
+    get keepAliveInitialDelay(): int | undefined;
+    set keepAliveInitialDelay(value: int | undefined | int);
     get localAddress(): string | undefined;
     set localAddress(value: string | undefined);
-    get localPort(): Nullable_1<System_Internal.Int32>;
-    set localPort(value: Nullable_1<System_Internal.Int32> | int);
+    get localPort(): int | undefined;
+    set localPort(value: int | undefined | int);
     get noDelay(): Nullable_1<System_Internal.Boolean>;
     set noDelay(value: Nullable_1<System_Internal.Boolean> | boolean);
     port: int;
@@ -2323,16 +2323,16 @@ export interface TlsOptions$instance extends CommonConnectionOptions {
     set ca(value: unknown | undefined);
     get cert(): unknown | undefined;
     set cert(value: unknown | undefined);
-    get handshakeTimeout(): Nullable_1<System_Internal.Int32>;
-    set handshakeTimeout(value: Nullable_1<System_Internal.Int32> | int);
+    get handshakeTimeout(): int | undefined;
+    set handshakeTimeout(value: int | undefined | int);
     get key(): unknown | undefined;
     set key(value: unknown | undefined);
     get passphrase(): string | undefined;
     set passphrase(value: string | undefined);
     get pauseOnConnect(): Nullable_1<System_Internal.Boolean>;
     set pauseOnConnect(value: Nullable_1<System_Internal.Boolean> | boolean);
-    get sessionTimeout(): Nullable_1<System_Internal.Int32>;
-    set sessionTimeout(value: Nullable_1<System_Internal.Int32> | int);
+    get sessionTimeout(): int | undefined;
+    set sessionTimeout(value: int | undefined | int);
 }
 
 
@@ -2609,18 +2609,18 @@ export type X509CertificateInfo = X509CertificateInfo$instance;
 export interface ZlibOptions$instance {
     readonly __tsonic_type_nodejs_ZlibOptions: never;
 
-    get chunkSize(): Nullable_1<System_Internal.Int32>;
-    set chunkSize(value: Nullable_1<System_Internal.Int32> | int);
-    get level(): Nullable_1<System_Internal.Int32>;
-    set level(value: Nullable_1<System_Internal.Int32> | int);
-    get maxOutputLength(): Nullable_1<System_Internal.Int32>;
-    set maxOutputLength(value: Nullable_1<System_Internal.Int32> | int);
-    get memLevel(): Nullable_1<System_Internal.Int32>;
-    set memLevel(value: Nullable_1<System_Internal.Int32> | int);
-    get strategy(): Nullable_1<System_Internal.Int32>;
-    set strategy(value: Nullable_1<System_Internal.Int32> | int);
-    get windowBits(): Nullable_1<System_Internal.Int32>;
-    set windowBits(value: Nullable_1<System_Internal.Int32> | int);
+    get chunkSize(): int | undefined;
+    set chunkSize(value: int | undefined | int);
+    get level(): int | undefined;
+    set level(value: int | undefined | int);
+    get maxOutputLength(): int | undefined;
+    set maxOutputLength(value: int | undefined | int);
+    get memLevel(): int | undefined;
+    set memLevel(value: int | undefined | int);
+    get strategy(): int | undefined;
+    set strategy(value: int | undefined | int);
+    get windowBits(): int | undefined;
+    set windowBits(value: int | undefined | int);
 }
 
 
@@ -2781,7 +2781,7 @@ export abstract class crypto$instance {
     static randomBytes(size: int, callback: Action_2<Exception, byte[]>): void;
     static randomBytes(size: int): byte[];
     static randomFill(buffer: byte[], offset: int, size: int, callback: Action_2<Exception, byte[]>): void;
-    static randomFillSync(buffer: byte[], offset?: int, size?: Nullable_1<System_Internal.Int32>): byte[];
+    static randomFillSync(buffer: byte[], offset?: int, size?: int | undefined): byte[];
     static randomInt(min: int, max: int): int;
     static randomInt(max: int): int;
     static randomUUID(): string;
@@ -2840,9 +2840,9 @@ export abstract class dns$instance {
     static getDefaultResultOrder(): string;
     static getServers(): string[];
     static lookup(hostname: string, options: LookupOptions, callback: Action_2<Exception, LookupAddress[]>): void;
-    static lookup(hostname: string, options: LookupOptions, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
-    static lookup(hostname: string, family: int, callback: Action_3<Exception, System_Internal.String, System_Internal.Int32>): void;
+    static lookup(hostname: string, options: LookupOptions, callback: Action_3<Exception, System_Internal.String, int>): void;
+    static lookup(hostname: string, callback: Action_3<Exception, System_Internal.String, int>): void;
+    static lookup(hostname: string, family: int, callback: Action_3<Exception, System_Internal.String, int>): void;
     static lookupService(address: string, port: int, callback: Action_3<Exception, System_Internal.String, System_Internal.String>): void;
     static resolve(hostname: string, callback: Action_2<Exception, string[]>): void;
     static resolve(hostname: string, rrtype: string, callback: Action_2<Exception, unknown>): void;
@@ -2909,9 +2909,9 @@ export abstract class fs$instance {
     static mkdirSync(path: string, options: MkdirOptions): void;
     static mkdirSync(path: string, recursive?: boolean): void;
     static mkdirSync(path: string, options: unknown): void;
-    static open(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
-    static openSync(path: string, flags: string, mode?: Nullable_1<System_Internal.Int32>): int;
-    static read(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
+    static open(path: string, flags: string, mode?: int | undefined): Task_1<int>;
+    static openSync(path: string, flags: string, mode?: int | undefined): int;
+    static read(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): Task_1<int>;
     static readdir(path: string, withFileTypes?: boolean): Task_1<string[]>;
     static readdirSync(path: string, withFileTypes?: boolean): string[];
     static readFile(path: string, encoding: string): Task_1<System_Internal.String>;
@@ -2922,7 +2922,7 @@ export abstract class fs$instance {
     static readFileSyncBytes(path: string): byte[];
     static readlink(path: string): Task_1<System_Internal.String>;
     static readlinkSync(path: string): string;
-    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): int;
+    static readSync(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): int;
     static realpath(path: string): Task_1<System_Internal.String>;
     static realpathSync(path: string): string;
     static rename(oldPath: string, newPath: string): Task;
@@ -2939,14 +2939,14 @@ export abstract class fs$instance {
     static truncateSync(path: string, len?: long): void;
     static unlink(path: string): Task;
     static unlinkSync(path: string): void;
-    static write(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): Task_1<System_Internal.Int32>;
-    static write(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): Task_1<System_Internal.Int32>;
+    static write(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): Task_1<int>;
+    static write(fd: int, data: string, position?: int | undefined, encoding?: string): Task_1<int>;
     static writeFile(path: string, data: string, encoding?: string): Task;
     static writeFileBytes(path: string, data: byte[]): Task;
     static writeFileSync(path: string, data: string, encoding?: string): void;
     static writeFileSyncBytes(path: string, data: byte[]): void;
-    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: Nullable_1<System_Internal.Int32>): int;
-    static writeSync(fd: int, data: string, position?: Nullable_1<System_Internal.Int32>, encoding?: string): int;
+    static writeSync(fd: int, buffer: byte[], offset: int, length: int, position: int | undefined): int;
+    static writeSync(fd: int, data: string, position?: int | undefined, encoding?: string): int;
 }
 
 
@@ -3040,8 +3040,8 @@ export abstract class process$instance {
     static argv0: string;
     static readonly env: ProcessEnv;
     static readonly execPath: string;
-    static get exitCode(): Nullable_1<System_Internal.Int32>;
-    static set exitCode(value: Nullable_1<System_Internal.Int32> | int);
+    static get exitCode(): int | undefined;
+    static set exitCode(value: int | undefined | int);
     static readonly pid: int;
     static readonly ppid: int;
     static readonly platform: string;
@@ -3049,7 +3049,7 @@ export abstract class process$instance {
     static readonly versions: ProcessVersions;
     static chdir(directory: string): void;
     static cwd(): string;
-    static exit(code?: Nullable_1<System_Internal.Int32>): void;
+    static exit(code?: int | undefined): void;
     static kill(pid: int, signal?: unknown): boolean;
 }
 
@@ -3075,7 +3075,7 @@ export abstract class readline$instance {
     static createAsyncIterator(input: Readable, options?: InterfaceOptions): IAsyncEnumerable_1<System_Internal.String>;
     static createInterface(options: InterfaceOptions): Interface;
     static createInterface(input: Readable, output?: Writable): Interface;
-    static cursorTo(stream: Writable, x: int, y?: Nullable_1<System_Internal.Int32>, callback?: Action): boolean;
+    static cursorTo(stream: Writable, x: int, y?: int | undefined, callback?: Action): boolean;
     static emitKeypressEvents(stream: Readable, rl?: Interface): void;
     static moveCursor(stream: Writable, dx: int, dy: int, callback?: Action): boolean;
 }

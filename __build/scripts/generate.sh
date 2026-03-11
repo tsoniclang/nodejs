@@ -122,7 +122,7 @@ dotnet run --project src/tsbindgen/tsbindgen.csproj --no-build -c Release -- \
     --namespace-map "nodejs=index" \
     --surface-package "$SURFACE_PACKAGE"
 
-echo "[4/5] Curating generated facade..."
+echo "[4/6] Curating generated facade..."
 node - "$OUT_DIR" <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
@@ -140,10 +140,14 @@ fs.writeFileSync(indexDtsPath, filtered);
 NODE
 echo "  Done"
 
+echo "[5/6] Post-processing generated numeric contracts..."
+node "$PROJECT_DIR/__build/scripts/postprocess-generated.mjs" "$OUT_DIR"
+echo "  Done"
+
 cp -f "$PROJECT_DIR/README.md" "$OUT_DIR/README.md"
 cp -f "$PROJECT_DIR/LICENSE" "$OUT_DIR/LICENSE"
 
-echo "[5/5] Verifying generated surface and npm package contents..."
+echo "[6/6] Verifying generated surface and npm package contents..."
 PACK_JSON="$(cd "$PROJECT_DIR" && npm pack --dry-run --json "./versions/$DOTNET_MAJOR")"
 node - "$OUT_DIR" "$PACK_JSON" <<'NODE'
 const fs = require("node:fs");
