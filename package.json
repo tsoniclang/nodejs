@@ -4,8 +4,9 @@
   "description": "Repo for @tsonic/nodejs (versioned by .NET major in versions/<major>/)",
   "type": "module",
   "scripts": {
-    "generate:10": "./__build/scripts/generate.sh 10",
+    "generate:10": "echo '@tsonic/nodejs is source-of-truth TypeScript; no generation step'",
     "selftest": "bash scripts/selftest.sh",
-    "publish:10": "npm run selftest && npm publish ./versions/10 --access public"
+    "publish:10": "npm run selftest && npm publish ./versions/10 --access public",
+    "report:gaps": "node scripts/report-gaps.mjs"
   }
 }

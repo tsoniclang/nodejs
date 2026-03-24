@@ -1,0 +1,231 @@
+/**
+ * Node.js http.ClientRequest — wraps an outgoing HTTP request.
+ *
+ * Baseline: nodejs-clr/src/nodejs/http/ClientRequest.cs
+ *
+ * This class requires OS network substrate for the actual HTTP client.
+ * Class shape and method signatures are ported; network I/O internals are
+ * stubbed with TODO markers.
+ */
+
+import type { int } from "@tsonic/core/types.js";
+import type { IncomingMessage as IncomingMessageType } from "./incoming-message.ts";
+import type { RequestOptions as RequestOptionsType } from "./request-options.ts";
+import {
+  EventEmitter,
+  toEventListener,
+  toUnaryEventListener,
+} from "../events-module.ts";
+
+/**
+ * Implements Node.js http.ClientRequest.
+ * Provides Node.js-compatible API for making HTTP requests.
+ * Extends EventEmitter to support events like 'response', 'error', 'timeout'.
+ */
+export class ClientRequest extends EventEmitter {
+  private readonly _options: RequestOptionsType;
+  private readonly _requestHeaders: Map<string, string> =
+    new Map<string, string>();
+  private _requestBody: string = "";
+  private _aborted: boolean = false;
+  private _ended: boolean = false;
+
+  constructor(
+    options: RequestOptionsType,
+    callback?: ((res: IncomingMessageType) => void) | null
+  ) {
+    super();
+    this._options = options;
+
+    // Copy headers from options
+    if (options.headers !== null) {
+      (options.headers as unknown as {
+        forEach(callback: (value: string, key: string) => void): void;
+      }).forEach((value, key) => {
+        this._requestHeaders.set(key, value);
+      });
+    }
+
+    // Add basic auth if provided
+    if (options.auth !== null) {
+      // TODO: Base64 encode auth and set Authorization header (requires btoa or Buffer substrate)
+      this._requestHeaders.set("Authorization", `Basic ${options.auth}`);
+    }
+
+    // Register response callback if provided
+    if (callback !== undefined && callback !== null) {
+      this.on("response", toUnaryEventListener<IncomingMessageType>(callback)!);
+    }
+  }
+
+  /**
+   * Gets the request path.
+   */
+  public get path(): string {
+    return this._options.path ?? "/";
+  }
+
+  /**
+   * Gets the request method.
+   */
+  public get method(): string {
+    return this._options.method;
+  }
+
+  /**
+   * Gets the request host.
+   */
+  public get host(): string {
+    return this._options.hostname ?? "localhost";
+  }
+
+  /**
+   * Gets the request protocol.
+   */
+  public get protocol(): string {
+    return this._options.protocol;
+  }
+
+  /**
+   * Boolean indicating if the request has been aborted.
+   */
+  public get aborted(): boolean {
+    return this._aborted;
+  }
+
+  /**
+   * Sets a single header value for the request.
+   * @param name - Header name.
+   * @param value - Header value.
+   */
+  public setHeader(name: string, value: string): void {
+    if (this._ended) {
+      throw new Error("Cannot set headers after request has been sent");
+    }
+
+    this._requestHeaders.set(name, value);
+  }
+
+  /**
+   * Gets the value of a header.
+   * @param name - Header name.
+   * @returns Header value or null if not set.
+   */
+  public getHeader(name: string): string | null {
+    const value = this._requestHeaders.get(name);
+    return value !== undefined ? value : null;
+  }
+
+  /**
+   * Returns an array containing the unique names of the current outgoing headers.
+   * @returns Array of header names.
+   */
+  public getHeaderNames(): string[] {
+    const names: string[] = [];
+    (this._requestHeaders as unknown as {
+      forEach(callback: (value: string, key: string) => void): void;
+    }).forEach((_value, key) => {
+      names.push(key);
+    });
+    return names;
+  }
+
+  /**
+   * Removes a header that's already been added to the request.
+   * @param name - Header name.
+   */
+  public removeHeader(name: string): void {
+    if (this._ended) {
+      throw new Error("Cannot remove headers after request has been sent");
+    }
+
+    this._requestHeaders.delete(name);
+  }
+
+  /**
+   * Writes a chunk of data to the request body.
+   * @param chunk - The data to write.
+   * @param encoding - Optional encoding (ignored, always UTF-8).
+   * @param callback - Optional callback when chunk is flushed.
+   * @returns True if entire data was flushed successfully.
+   */
+  public write(
+    chunk: string,
+    encoding?: string | null,
+    callback?: (() => void) | null
+  ): boolean {
+    if (this._ended) {
+      throw new Error("Cannot write after request has been sent");
+    }
+
+    this._requestBody = this._requestBody + chunk;
+    if (callback !== undefined && callback !== null) {
+      callback();
+    }
+    return true;
+  }
+
+  /**
+   * Finishes sending the request.
+   * If any part of the body is unsent, it will flush them to the stream.
+   * @param chunk - Optional final chunk to send.
+   * @param encoding - Optional encoding (ignored, always UTF-8).
+   * @param callback - Optional callback when request is sent.
+   */
+  public end(
+    chunk?: string | null,
+    encoding?: string | null,
+    callback?: (() => void) | null
+  ): Promise<void> {
+    if (this._ended) {
+      return Promise.resolve();
+    }
+
+    if (chunk !== undefined && chunk !== null) {
+      this.write(chunk, encoding);
+    }
+
+    this._ended = true;
+
+    // TODO: Send the actual HTTP request using OS network substrate
+    // The CLR version uses HttpClient.SendAsync here.
+    // For now, emit error to indicate network substrate is not yet wired.
+
+    if (callback !== undefined && callback !== null) {
+      callback();
+    }
+
+    return Promise.resolve();
+  }
+
+  /**
+   * Aborts the ongoing request.
+   */
+  public abort(): void {
+    if (this._aborted) {
+      return;
+    }
+
+    this._aborted = true;
+    this.emit("abort");
+  }
+
+  /**
+   * Sets the timeout value in milliseconds for the request.
+   * @param msecs - Timeout in milliseconds.
+   * @param callback - Optional callback for timeout event.
+   * @returns The ClientRequest instance.
+   */
+  public setTimeout(
+    msecs: int,
+    callback?: (() => void) | null
+  ): ClientRequest {
+    this._options.timeout = msecs;
+
+    if (callback !== undefined && callback !== null) {
+      this.once("timeout", toEventListener(callback)!);
+    }
+
+    return this;
+  }
+}

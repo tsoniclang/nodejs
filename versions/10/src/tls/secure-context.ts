@@ -1,0 +1,100 @@
+/**
+ * SecureContext — holds TLS configuration (certificates, protocol versions).
+ *
+ * Baseline: nodejs-clr/src/nodejs/tls/SecureContext.cs
+ *
+ * The CLR implementation wraps System.Security.Cryptography.X509Certificates
+ * and SslProtocols. In the native port these are substrate-dependent, so all
+ * crypto/certificate operations are stubbed with TODO markers.
+ */
+
+export class SecureContext {
+  /**
+   * Internal context reference (for compatibility).
+   */
+  public context: unknown = null;
+
+  // -- internal state (substrate-dependent) --
+
+  private _certificateLoaded: boolean = false;
+  private _caLoaded: boolean = false;
+  private _minVersion: string | null = null;
+  private _maxVersion: string | null = null;
+
+  constructor() {
+    this.context = this;
+  }
+
+  /**
+   * Whether a certificate has been loaded into this context.
+   */
+  get hasCertificate(): boolean {
+    return this._certificateLoaded;
+  }
+
+  /**
+   * Whether CA certificates have been loaded.
+   */
+  get hasCACertificates(): boolean {
+    return this._caLoaded;
+  }
+
+  /**
+   * The configured minimum TLS version, or null for default.
+   */
+  get minVersion(): string | null {
+    return this._minVersion;
+  }
+
+  /**
+   * The configured maximum TLS version, or null for default.
+   */
+  get maxVersion(): string | null {
+    return this._maxVersion;
+  }
+
+  /**
+   * Loads a certificate from PEM, PFX, or raw data.
+   *
+   * TODO: Implement certificate loading — requires substrate crypto primitives.
+   */
+  loadCertificate(
+    cert: unknown,
+    _key: unknown,
+    _passphrase: string | null
+  ): void {
+    if (cert === null || cert === undefined) {
+      return;
+    }
+
+    // TODO: parse PEM / PFX / raw bytes and store the certificate
+    this._certificateLoaded = true;
+  }
+
+  /**
+   * Loads CA certificates.
+   *
+   * TODO: Implement CA certificate loading — requires substrate crypto primitives.
+   */
+  loadCACertificates(ca: unknown): void {
+    if (ca === null || ca === undefined) {
+      return;
+    }
+
+    // TODO: parse PEM CA certs and add to trust store
+    this._caLoaded = true;
+  }
+
+  /**
+   * Configures the allowed SSL/TLS protocol version range.
+   *
+   * TODO: Map version strings to substrate protocol flags.
+   */
+  setProtocols(
+    minVersion: string | null,
+    maxVersion: string | null
+  ): void {
+    this._minVersion = minVersion;
+    this._maxVersion = maxVersion;
+  }
+}
