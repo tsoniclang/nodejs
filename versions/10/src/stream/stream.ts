@@ -1,0 +1,81 @@
+/**
+ * Base class for all streams. A stream is an abstract interface for working
+ * with streaming data.
+ *
+ * Baseline: nodejs-clr/src/nodejs/stream/Stream.cs
+ */
+import { EventEmitter } from "../events-module.ts";
+
+type PipeReadable = {
+  on(eventName: string, listener: (...args: unknown[]) => void): unknown;
+  resume(): unknown;
+};
+
+type PipeWritable = {
+  write(chunk: unknown): unknown;
+  end(): unknown;
+  emit(eventName: string, ...args: unknown[]): boolean;
+};
+
+export class Stream extends EventEmitter {
+  public write(_chunk: unknown): unknown {
+    return undefined;
+  }
+
+  public end(): unknown {
+    return undefined;
+  }
+
+  /**
+   * Pipes the output of this readable stream into a writable stream
+   * destination.
+   *
+   * @param destination - The destination writable stream.
+   * @param options - Pipe options.
+   * @param options.end - Whether to end the destination when this stream ends.
+   *   Default is true.
+   * @returns The destination stream.
+   */
+  public pipe(
+    destination: Stream,
+    options?: { readonly end?: boolean },
+  ): Stream {
+    const writableDestination = destination as unknown as PipeWritable;
+    const end = options?.end !== false;
+
+    this.on("data", (...args: unknown[]) => {
+      writableDestination.write(args[0]);
+    });
+
+    if (end) {
+      this.on("end", (..._args: unknown[]) => {
+        writableDestination.end();
+      });
+    }
+
+    this.on("error", (...args: unknown[]) => {
+      writableDestination.emit("error", args[0]);
+    });
+
+    this.resume();
+
+    return destination;
+  }
+
+  public resume(): Stream {
+    return this;
+  }
+
+  /**
+   * Destroys the stream and optionally emits an error event.
+   *
+   * @param error - Optional error to emit.
+   */
+  public destroy(error?: Error): void {
+    if (error !== undefined) {
+      this.emit("error", error);
+    }
+
+    this.emit("close");
+  }
+}

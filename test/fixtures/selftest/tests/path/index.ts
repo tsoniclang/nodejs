@@ -1,0 +1,13 @@
+import "./basename.test.ts";
+import "./dirname.test.ts";
+import "./extname.test.ts";
+import "./format.test.ts";
+import "./is-absolute.test.ts";
+import "./join.test.ts";
+import "./matches-glob.test.ts";
+import "./normalize.test.ts";
+import "./parse.test.ts";
+import "./path-module.test.ts";
+import "./relative.test.ts";
+import "./resolve.test.ts";
+import "./to-namespaced-path.test.ts";

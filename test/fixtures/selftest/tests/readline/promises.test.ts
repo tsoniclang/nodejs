@@ -1,0 +1,31 @@
+import { Assert } from "xunit-types/Xunit.js";
+
+import { promises } from "@tsonic/nodejs/readline.js";
+import { Readable } from "@tsonic/nodejs/stream.js";
+import { Writable } from "@tsonic/nodejs/stream.js";
+
+/**
+ * Baseline: nodejs-clr/tests/nodejs.Tests/readline/promises.tests.cs
+ */
+export class PromisesTests {
+  public createInterface_ShouldCreateInterface(): void {
+    const input = new Readable();
+    const output = new Writable();
+
+    const rl = promises.createInterfaceFromStreams(input, output);
+    Assert.NotNull(rl);
+  }
+
+  public async question_ShouldResolveAnswer(): Promise<void> {
+    const input = new Readable();
+    const output = new Writable();
+    const rl = promises.createInterfaceFromStreams(input, output);
+
+    const answerTask = promises.question(rl, "question?");
+    input.resume();
+    input.push("value\n");
+
+    const answer = await answerTask;
+    Assert.Equal("value", answer);
+  }
+}
