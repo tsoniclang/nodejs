@@ -2,7 +2,6 @@
 import type {} from "./type-bootstrap.js";
 
 import type { int } from "@tsonic/core/types.js";
-import { console as JSConsole } from "@tsonic/js";
 
 export type EventListener = (...args: unknown[]) => void;
 
@@ -270,7 +269,7 @@ export class EventEmitter {
     }
 
     if (this._maxListeners > 0 && next.length > this._maxListeners) {
-      JSConsole.error(
+      console.error(
         `Warning: Possible EventEmitter memory leak detected. ${String(next.length)} ${eventName} listeners added.`
       );
     }

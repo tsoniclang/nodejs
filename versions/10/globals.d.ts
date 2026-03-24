@@ -4,7 +4,7 @@ import type { Byte, Comparison, Int32, Nullable } from "@tsonic/dotnet/System.js
 import type {
   Date as NativeDate,
   Uint8Array as NativeUint8Array,
-} from "@tsonic/js";
+} from "@tsonic/js/index.js";
 
 declare global {
   class RangeError extends Error {

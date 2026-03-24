@@ -6,11 +6,6 @@
 
 import type {} from "./type-bootstrap.js";
 
-import {
-  decodeURIComponent as jsDecodeURIComponent,
-  encodeURIComponent as jsEncodeURIComponent,
-} from "@tsonic/js";
-
 /**
  * Performs URL percent-encoding on the given string.
  */
@@ -18,7 +13,7 @@ export const escape = (str: string): string => {
   if (str === null || str === undefined || str.length === 0) {
     return str;
   }
-  return jsEncodeURIComponent(str);
+  return encodeURIComponent(str);
 };
 
 /**
@@ -29,7 +24,7 @@ export const unescape = (str: string): string => {
     return str;
   }
   try {
-    return jsDecodeURIComponent(str);
+    return decodeURIComponent(str);
   } catch {
     return str;
   }

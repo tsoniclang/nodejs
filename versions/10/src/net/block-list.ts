@@ -4,7 +4,6 @@
  * Baseline: nodejs-clr/src/nodejs/net/BlockList.cs
  */
 
-import { Math as JSMath } from "@tsonic/js";
 import type { int } from "@tsonic/core/types.js";
 
 /**
