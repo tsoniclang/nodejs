@@ -46,7 +46,7 @@
     "node-aliases.js",
     "node-aliases.d.ts",
     "src/**/*.ts",
-    "tsonic/package-manifest.json",
+    "tsonic.package.json",
     "README.md",
     "LICENSE"
   ],
