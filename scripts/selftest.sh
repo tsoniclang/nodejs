@@ -56,6 +56,7 @@ EOF
 pack_local_runtime_packages() {
   mkdir -p "$LOCAL_NUGET_FEED"
   dotnet pack "$PROJECT_ROOT/../runtime/src/Tsonic.Runtime/Tsonic.Runtime.csproj" -c Release -o "$LOCAL_NUGET_FEED" >/dev/null
+  dotnet pack "$PROJECT_ROOT/../js-runtime/src/Tsonic.JSRuntime/Tsonic.JSRuntime.csproj" -c Release -o "$LOCAL_NUGET_FEED" >/dev/null
 }
 
 patch_workspace_for_tests() {
