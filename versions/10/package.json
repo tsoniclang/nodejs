@@ -3,7 +3,6 @@
   "version": "10.0.49",
   "description": "Native Tsonic implementation of Node.js APIs",
   "type": "module",
-  "types": "index.d.ts",
   "exports": {
     "./assert.js": "./src/assert-module.ts",
     "./buffer.js": "./src/buffer/index.ts",
@@ -12,17 +11,11 @@
     "./crypto.js": "./src/crypto/index.ts",
     "./dgram.js": "./src/dgram/index.ts",
     "./dns.js": "./src/dns/index.ts",
-    ".": {
-      "types": "./index.d.ts",
-      "default": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
     "./events.js": "./src/events-module.ts",
     "./fs.js": "./src/fs-module.ts",
     "./http.js": "./src/http/index.ts",
-    "./index.js": {
-      "types": "./index.d.ts",
-      "default": "./src/index.ts"
-    },
+    "./index.js": "./src/index.ts",
     "./os.js": "./src/os/index.ts",
     "./path.js": "./src/path-module.ts",
     "./perf_hooks.js": "./src/perf_hooks/index.ts",
@@ -39,12 +32,7 @@
     "./zlib.js": "./src/zlib/index.ts"
   },
   "files": [
-    "bindings.json",
-    "globals.d.ts",
-    "globals.js",
-    "index.d.ts",
-    "node-aliases.js",
-    "node-aliases.d.ts",
+    "globals.ts",
     "src/**/*.ts",
     "tsonic.package.json",
     "README.md",

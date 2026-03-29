@@ -4,11 +4,13 @@
  * Baseline: nodejs-clr/src/nodejs/os/arch.cs
  */
 import {
-  RuntimeInformation,
-} from "@tsonic/dotnet/System.Runtime.InteropServices.js";
+  Convert,
+} from "@tsonic/dotnet/System.js";
+import { RuntimeInformation } from "@tsonic/dotnet/System.Runtime.InteropServices.js";
 
 export const arch = (): string => {
-  const raw = RuntimeInformation.ProcessArchitecture.toString().toLowerCase();
+  const raw = (Convert.ToString(RuntimeInformation.ProcessArchitecture) ?? "")
+    .toLowerCase();
   if (raw === "x64") {
     return "x64";
   }

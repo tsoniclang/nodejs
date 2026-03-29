@@ -97,9 +97,7 @@ export class ServerResponse extends EventEmitter {
     }
 
     if (headers !== undefined && headers !== null) {
-      (headers as unknown as {
-        forEach(callback: (value: string, key: string) => void): void;
-      }).forEach((value, key) => {
+      headers.forEach((value, key, _map) => {
         this._headers.set(this._normalizeHeaderName(key), value);
       });
     }
@@ -152,9 +150,7 @@ export class ServerResponse extends EventEmitter {
    */
   public getHeaderNames(): string[] {
     const names: string[] = [];
-    (this._headers as unknown as {
-      forEach(callback: (value: string, key: string) => void): void;
-    }).forEach((_value, key) => {
+    this._headers.forEach((_value, key, _map) => {
       names.push(key);
     });
     return names;
@@ -166,9 +162,7 @@ export class ServerResponse extends EventEmitter {
    */
   public getHeaders(): Map<string, string> {
     const copy = new Map<string, string>();
-    (this._headers as unknown as {
-      forEach(callback: (value: string, key: string) => void): void;
-    }).forEach((value, key) => {
+    this._headers.forEach((value, key, _map) => {
       copy.set(key, value);
     });
     return copy as unknown as Map<string, string>;
@@ -370,9 +364,7 @@ export class ServerResponse extends EventEmitter {
       nativeResponse.StatusDescription = this._statusMessage;
     }
 
-    (this._headers as unknown as {
-      forEach(callback: (value: string, key: string) => void): void;
-    }).forEach((value, key) => {
+    this._headers.forEach((value, key, _map) => {
       if (key === "content-type") {
         nativeResponse.ContentType = value;
         return;

@@ -2,7 +2,7 @@
 import type {} from "./type-bootstrap.js";
 
 import type { int } from "@tsonic/core/types.js";
-import { Environment } from "@tsonic/dotnet/System.js";
+import { Convert, Environment } from "@tsonic/dotnet/System.js";
 import { Process } from "@tsonic/dotnet/System.Diagnostics.js";
 import { Directory, File, Path } from "@tsonic/dotnet/System.IO.js";
 import {
@@ -74,7 +74,7 @@ export const execPath =
   Environment.ProcessPath ??
   (currentArgv.length > 0 ? Path.GetFullPath(currentArgv[0]) : "");
 export const arch = archToNodeName(
-  RuntimeInformation.ProcessArchitecture.toString()
+  Convert.ToString(RuntimeInformation.ProcessArchitecture) ?? ""
 );
 export const platform = platformToNodeName();
 export const version = "v24.0.0-tsonic";

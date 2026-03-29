@@ -11,6 +11,9 @@ import {
 } from "@tsonic/dotnet/System.Security.Cryptography.js";
 import {
   coercePublicKeyObject,
+  isDsaKey,
+  isEcDsaKey,
+  isRsaKey,
   KeyObject,
   PublicKeyObject,
 } from "./key-object.ts";
@@ -83,8 +86,9 @@ const verifyBytes = (
   data: Uint8Array,
   signature: Uint8Array,
 ): boolean => {
-  if (publicKey.nativeKeyData instanceof RSA) {
-    return publicKey.nativeKeyData.VerifyData(
+  const nativeKeyData = publicKey.nativeKeyData;
+  if (isRsaKey(nativeKeyData)) {
+    return nativeKeyData.VerifyData(
       toByteArray(data),
       toByteArray(signature),
       toHashAlgorithmName(algorithm),
@@ -92,16 +96,16 @@ const verifyBytes = (
     );
   }
 
-  if (publicKey.nativeKeyData instanceof DSA) {
+  if (isDsaKey(nativeKeyData)) {
     const hash = computeHashBytes(algorithm, data);
-    return publicKey.nativeKeyData.VerifySignature(
+    return nativeKeyData.VerifySignature(
       toByteArray(hash),
       toByteArray(signature),
     );
   }
 
-  if (publicKey.nativeKeyData instanceof ECDsa) {
-    return publicKey.nativeKeyData.VerifyData(
+  if (isEcDsaKey(nativeKeyData)) {
+    return nativeKeyData.VerifyData(
       toByteArray(data),
       toByteArray(signature),
       toHashAlgorithmName(algorithm),

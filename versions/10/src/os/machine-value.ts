@@ -4,11 +4,13 @@
  * Baseline: nodejs-clr/src/nodejs/os/machine.cs
  */
 import {
-  RuntimeInformation,
-} from "@tsonic/dotnet/System.Runtime.InteropServices.js";
+  Convert,
+} from "@tsonic/dotnet/System.js";
+import { RuntimeInformation } from "@tsonic/dotnet/System.Runtime.InteropServices.js";
 
 export const machine = (): string => {
-  const raw = RuntimeInformation.OSArchitecture.toString().toLowerCase();
+  const raw = (Convert.ToString(RuntimeInformation.OSArchitecture) ?? "")
+    .toLowerCase();
   if (raw === "x64") {
     return "x86_64";
   }

@@ -18,7 +18,7 @@ export class TimersPromisesTests {
   public async setInterval_should_yield_values(): Promise<void> {
     const iterator = timers.promises.setInterval(1 as int, "tick");
     const first = await iterator.next();
-    Assert.False(first.done);
+    Assert.False(first.done === true);
     Assert.Equal("tick", first.value);
   }
 

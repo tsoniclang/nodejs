@@ -46,6 +46,15 @@ const parseEncoding = (value?: string): Encoding => {
   }
 };
 
+const resolveWriteLength = (
+  buffer: WritableFsBuffer,
+  offset: int,
+  lengthOrEncoding?: int | string
+): int =>
+  lengthOrEncoding === undefined || typeof lengthOrEncoding === "string"
+    ? ((getBufferLength(buffer) - offset) as int)
+    : lengthOrEncoding;
+
 const toUnixMilliseconds = (value: DateTime): number =>
   Number(new DateTimeOffset(value).ToUnixTimeMilliseconds());
 
@@ -704,10 +713,7 @@ export function writeSync(
   }
 
   const offset = offsetOrPosition ?? (0 as int);
-  const length =
-    typeof lengthOrEncoding === "number"
-      ? (lengthOrEncoding as int)
-      : ((getBufferLength(bufferOrData) - offset) as int);
+  const length = resolveWriteLength(bufferOrData, offset, lengthOrEncoding);
   validateBufferRange(getBufferLength(bufferOrData), offset, length);
 
   if (descriptor.appendMode && descriptor.stream.CanSeek) {
@@ -754,9 +760,11 @@ export async function write(
     fd,
     bufferOrData,
     offsetOrPosition ?? (0 as int),
-    (typeof lengthOrEncoding === "number"
-      ? lengthOrEncoding
-      : getBufferLength(bufferOrData) - (offsetOrPosition ?? (0 as int))) as int,
+    resolveWriteLength(
+      bufferOrData,
+      offsetOrPosition ?? (0 as int),
+      lengthOrEncoding
+    ),
     position ?? null
   );
 }
@@ -1072,7 +1080,17 @@ export class FsPromises {
       );
     }
 
-    return write(fd, bufferOrData, offsetOrPosition ?? (0 as int), (lengthOrEncoding as int) ?? getBufferLength(bufferOrData), position ?? null);
+    return write(
+      fd,
+      bufferOrData,
+      offsetOrPosition ?? (0 as int),
+      resolveWriteLength(
+        bufferOrData,
+        offsetOrPosition ?? (0 as int),
+        lengthOrEncoding
+      ),
+      position ?? null
+    );
   }
 
   public writeFileBytes(path: string, data: byte[]): Promise<void> {
@@ -1381,7 +1399,17 @@ export class FsModuleNamespace {
       );
     }
 
-    return write(fd, bufferOrData, offsetOrPosition ?? (0 as int), (lengthOrEncoding as int) ?? getBufferLength(bufferOrData), position ?? null);
+    return write(
+      fd,
+      bufferOrData,
+      offsetOrPosition ?? (0 as int),
+      resolveWriteLength(
+        bufferOrData,
+        offsetOrPosition ?? (0 as int),
+        lengthOrEncoding
+      ),
+      position ?? null
+    );
   }
 
   public writeSync(
@@ -1413,7 +1441,17 @@ export class FsModuleNamespace {
       );
     }
 
-    return writeSync(fd, bufferOrData, offsetOrPosition ?? (0 as int), (lengthOrEncoding as int) ?? getBufferLength(bufferOrData), position ?? null);
+    return writeSync(
+      fd,
+      bufferOrData,
+      offsetOrPosition ?? (0 as int),
+      resolveWriteLength(
+        bufferOrData,
+        offsetOrPosition ?? (0 as int),
+        lengthOrEncoding
+      ),
+      position ?? null
+    );
   }
 
   public writeFileBytes(path: string, data: byte[]): Promise<void> {
