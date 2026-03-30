@@ -160,6 +160,28 @@ export class Buffer {
     return this._data[index];
   }
 
+  *entries(): Generator<[int, byte], undefined, undefined> {
+    for (let index = 0 as int; index < this.length; index = (index + 1) as int) {
+      yield [index, this._data[index]!];
+    }
+  }
+
+  *keys(): Generator<int, undefined, undefined> {
+    for (let index = 0 as int; index < this.length; index = (index + 1) as int) {
+      yield index;
+    }
+  }
+
+  *values(): Generator<byte, undefined, undefined> {
+    for (let index = 0 as int; index < this.length; index = (index + 1) as int) {
+      yield this._data[index]!;
+    }
+  }
+
+  [Symbol.iterator](): Generator<byte, undefined, undefined> {
+    return this.values();
+  }
+
   /**
    * Sets the byte at `index` (value is truncated to 0-255).
    */

@@ -17,6 +17,17 @@ import {
 } from "./crypto-helpers.ts";
 import { base64ToBytes } from "../buffer/buffer-encoding.ts";
 
+export type NativeAsymmetricKey = RSA | DSA | ECDsa | null;
+
+export const isRsaKey = (value: NativeAsymmetricKey): value is RSA =>
+  value instanceof RSA;
+
+export const isDsaKey = (value: NativeAsymmetricKey): value is DSA =>
+  value instanceof DSA;
+
+export const isEcDsaKey = (value: NativeAsymmetricKey): value is ECDsa =>
+  value instanceof ECDsa;
+
 /**
  * Represents a cryptographic key.
  */
@@ -82,8 +93,11 @@ export class SecretKeyObject extends KeyObject {
     return this._keyData.length;
   }
 
+  public ["export"](_options?: unknown): Uint8Array {
+    return this._keyData;
+  }
+
   protected exportCore(_options?: unknown): Uint8Array {
-    // TODO: actual export logic
     return this._keyData;
   }
 }
@@ -93,10 +107,14 @@ export class SecretKeyObject extends KeyObject {
  */
 export class PublicKeyObject extends KeyObject {
   private readonly _keyType: string;
-  private readonly _keyData: unknown;
+  private readonly _keyData: NativeAsymmetricKey;
   private readonly _pem: string | null;
 
-  public constructor(keyData: unknown, keyType: string, pem: string | null = null) {
+  public constructor(
+    keyData: NativeAsymmetricKey,
+    keyType: string,
+    pem: string | null = null
+  ) {
     super();
     this._keyData = keyData;
     this._keyType = keyType;
@@ -115,7 +133,7 @@ export class PublicKeyObject extends KeyObject {
     return null;
   }
 
-  public get nativeKeyData(): unknown {
+  public get nativeKeyData(): NativeAsymmetricKey {
     return this._keyData;
   }
 
@@ -145,16 +163,16 @@ export class PublicKeyObject extends KeyObject {
  */
 export class PrivateKeyObject extends KeyObject {
   private readonly _keyType: string;
-  private readonly _keyData: unknown;
+  private readonly _keyData: NativeAsymmetricKey;
   private readonly _pem: string | null;
-  private readonly _publicKeyData: unknown;
+  private readonly _publicKeyData: NativeAsymmetricKey;
   private readonly _publicPem: string | null;
 
   public constructor(
-    keyData: unknown,
+    keyData: NativeAsymmetricKey,
     keyType: string,
     pem: string | null = null,
-    publicKeyData: unknown = null,
+    publicKeyData: NativeAsymmetricKey = null,
     publicPem: string | null = null,
   ) {
     super();
@@ -177,7 +195,7 @@ export class PrivateKeyObject extends KeyObject {
     return null;
   }
 
-  public get nativeKeyData(): unknown {
+  public get nativeKeyData(): NativeAsymmetricKey {
     return this._keyData;
   }
 
@@ -185,7 +203,7 @@ export class PrivateKeyObject extends KeyObject {
     return this._pem;
   }
 
-  public get publicKeyData(): unknown {
+  public get publicKeyData(): NativeAsymmetricKey {
     return this._publicKeyData;
   }
 
@@ -399,26 +417,28 @@ export const importPrivateKey = (
 export const extractPublicKey = (
   key: PrivateKeyObject,
 ): PublicKeyObject => {
-  if (key.publicKeyData !== null && key.publicKeyData !== undefined) {
-    return new PublicKeyObject(key.publicKeyData, key.asymmetricKeyType, key.publicPem);
+  const publicKeyData = key.publicKeyData;
+  if (publicKeyData !== null && publicKeyData !== undefined) {
+    return new PublicKeyObject(publicKeyData, key.asymmetricKeyType, key.publicPem);
   }
 
-  if (key.nativeKeyData instanceof RSA) {
+  const nativeKeyData = key.nativeKeyData;
+  if (isRsaKey(nativeKeyData)) {
     const publicRsa = createRsaAlgorithm();
-    publicRsa.ImportParameters(key.nativeKeyData.ExportParameters(false));
+    publicRsa.ImportParameters(nativeKeyData.ExportParameters(false));
     return new PublicKeyObject(publicRsa, "rsa", key.publicPem);
   }
 
-  if (key.nativeKeyData instanceof DSA) {
+  if (isDsaKey(nativeKeyData)) {
     const publicDsa = createDsaAlgorithm();
-    publicDsa.ImportParameters(key.nativeKeyData.ExportParameters(false));
+    publicDsa.ImportParameters(nativeKeyData.ExportParameters(false));
     return new PublicKeyObject(publicDsa, "dsa", key.publicPem);
   }
 
-  if (key.nativeKeyData instanceof ECDsa) {
+  if (isEcDsaKey(nativeKeyData)) {
     const publicEc = ECDsa.Create(curveFromName("secp256r1"));
     publicEc.ImportSubjectPublicKeyInfo(
-      toReadOnlyByteSpan(key.nativeKeyData.ExportSubjectPublicKeyInfo()),
+      toReadOnlyByteSpan(nativeKeyData.ExportSubjectPublicKeyInfo()),
       0 as out<int>,
     );
     return new PublicKeyObject(publicEc, "ec", key.publicPem);

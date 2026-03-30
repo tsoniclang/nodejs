@@ -34,6 +34,7 @@ import {
   extractPublicKey,
   importPrivateKey,
   importPublicKey,
+  isRsaKey,
 } from "./key-object.ts";
 import { DSAPublicKeyObject, DSAPrivateKeyObject } from "./dsakey-object.ts";
 import { EdDSAPublicKeyObject, EdDSAPrivateKeyObject } from "./ed-dsakey-object.ts";
@@ -510,7 +511,7 @@ export const createECDH = (curveName: string): ECDH => {
 export const createSecretKey = (
   key: Uint8Array | string,
   encoding?: string
-): KeyObject => {
+): SecretKeyObject => {
   if (typeof key === "string") {
     return new SecretKeyObject(decodeInputBytes(key, encoding ?? "utf8"));
   }
@@ -699,12 +700,13 @@ export const publicEncrypt = (
   buffer: Uint8Array
 ): Uint8Array => {
   const publicKey = coercePublicKeyObject(key);
-  if (!(publicKey.nativeKeyData instanceof RSA)) {
+  const nativeKeyData = publicKey.nativeKeyData;
+  if (!isRsaKey(nativeKeyData)) {
     throw new Error("publicEncrypt requires an RSA public key");
   }
 
   return fromByteArray(
-    publicKey.nativeKeyData.Encrypt(
+    nativeKeyData.Encrypt(
       toByteArray(buffer),
       RSAEncryptionPadding.OaepSHA1,
     ),
@@ -719,12 +721,13 @@ export const privateDecrypt = (
   buffer: Uint8Array
 ): Uint8Array => {
   const privateKey = coercePrivateKeyObject(key);
-  if (!(privateKey.nativeKeyData instanceof RSA)) {
+  const nativeKeyData = privateKey.nativeKeyData;
+  if (!isRsaKey(nativeKeyData)) {
     throw new Error("privateDecrypt requires an RSA private key");
   }
 
   return fromByteArray(
-    privateKey.nativeKeyData.Decrypt(
+    nativeKeyData.Decrypt(
       toByteArray(buffer),
       RSAEncryptionPadding.OaepSHA1,
     ),
@@ -739,11 +742,12 @@ export const publicDecrypt = (
   buffer: Uint8Array
 ): Uint8Array => {
   const publicKey = coercePublicKeyObject(key);
-  if (!(publicKey.nativeKeyData instanceof RSA)) {
+  const nativeKeyData = publicKey.nativeKeyData;
+  if (!isRsaKey(nativeKeyData)) {
     throw new Error("publicDecrypt requires an RSA public key");
   }
 
-  const parameters = publicKey.nativeKeyData.ExportParameters(false);
+  const parameters = nativeKeyData.ExportParameters(false);
   if (parameters.Modulus === undefined || parameters.Exponent === undefined) {
     throw new Error("RSA public key parameters are unavailable");
   }
@@ -763,11 +767,12 @@ export const privateEncrypt = (
   buffer: Uint8Array
 ): Uint8Array => {
   const privateKey = coercePrivateKeyObject(key);
-  if (!(privateKey.nativeKeyData instanceof RSA)) {
+  const nativeKeyData = privateKey.nativeKeyData;
+  if (!isRsaKey(nativeKeyData)) {
     throw new Error("privateEncrypt requires an RSA private key");
   }
 
-  const parameters = privateKey.nativeKeyData.ExportParameters(true);
+  const parameters = nativeKeyData.ExportParameters(true);
   if (parameters.Modulus === undefined || parameters.D === undefined) {
     throw new Error("RSA private key parameters are unavailable");
   }

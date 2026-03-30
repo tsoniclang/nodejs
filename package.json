@@ -7,6 +7,15 @@
     "generate:10": "echo '@tsonic/nodejs is source-of-truth TypeScript; no generation step'",
     "selftest": "bash scripts/selftest.sh",
     "publish:10": "npm run selftest && npm publish ./versions/10 --access public",
-    "report:gaps": "node scripts/report-gaps.mjs"
+    "report:gaps": "node scripts/report-gaps.mjs",
+    "build": "tsonic build",
+    "dev": "tsonic run"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@tsonic/js": "^10.0.48",
+    "tsonic": "^0.0.74"
   }
 }

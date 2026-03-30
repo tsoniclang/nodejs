@@ -39,9 +39,7 @@ export class ClientRequest extends EventEmitter {
 
     // Copy headers from options
     if (options.headers !== null) {
-      (options.headers as unknown as {
-        forEach(callback: (value: string, key: string) => void): void;
-      }).forEach((value, key) => {
+      options.headers.forEach((value, key, _map) => {
         this._requestHeaders.set(key, value);
       });
     }
@@ -122,9 +120,7 @@ export class ClientRequest extends EventEmitter {
    */
   public getHeaderNames(): string[] {
     const names: string[] = [];
-    (this._requestHeaders as unknown as {
-      forEach(callback: (value: string, key: string) => void): void;
-    }).forEach((_value, key) => {
+    this._requestHeaders.forEach((_value, key, _map) => {
       names.push(key);
     });
     return names;

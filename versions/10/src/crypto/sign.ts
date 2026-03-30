@@ -11,6 +11,9 @@ import {
 } from "@tsonic/dotnet/System.Security.Cryptography.js";
 import {
   coercePrivateKeyObject,
+  isDsaKey,
+  isEcDsaKey,
+  isRsaKey,
   KeyObject,
   PrivateKeyObject,
 } from "./key-object.ts";
@@ -88,9 +91,10 @@ const signBytes = (
   privateKey: PrivateKeyObject,
   data: Uint8Array,
 ): Uint8Array => {
-  if (privateKey.nativeKeyData instanceof RSA) {
+  const nativeKeyData = privateKey.nativeKeyData;
+  if (isRsaKey(nativeKeyData)) {
     return fromByteArray(
-      privateKey.nativeKeyData.SignData(
+      nativeKeyData.SignData(
         toByteArray(data),
         toHashAlgorithmName(algorithm),
         RSASignaturePadding.Pkcs1,
@@ -98,18 +102,18 @@ const signBytes = (
     );
   }
 
-  if (privateKey.nativeKeyData instanceof DSA) {
+  if (isDsaKey(nativeKeyData)) {
     const hash = computeHashBytes(algorithm, data);
     return fromByteArray(
-      privateKey.nativeKeyData.CreateSignature(
+      nativeKeyData.CreateSignature(
         toByteArray(hash),
       ),
     );
   }
 
-  if (privateKey.nativeKeyData instanceof ECDsa) {
+  if (isEcDsaKey(nativeKeyData)) {
     return fromByteArray(
-      privateKey.nativeKeyData.SignData(
+      nativeKeyData.SignData(
         toByteArray(data),
         toHashAlgorithmName(algorithm),
       ),
