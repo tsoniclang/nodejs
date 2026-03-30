@@ -107,6 +107,32 @@ export class AssertTests {
     assert.deepEqual(first, second);
   }
 
+  public deepEqual_with_equal_arrays_should_not_throw(): void {
+    const first = [1, 2, 3];
+    const second = [1, 2, 3];
+    assert.deepEqual(first, second);
+  }
+
+  public deepEqual_with_different_arrays_should_throw(): void {
+    const first = [1, 2, 3];
+    const second = [1, 2, 4];
+    const error = assertThrows(() => assert.deepEqual(first, second));
+    Assert.True(error instanceof AssertionError);
+  }
+
+  public deepEqual_with_equal_uint8arrays_should_not_throw(): void {
+    const first = new Uint8Array([1, 2, 3, 4]);
+    const second = new Uint8Array([1, 2, 3, 4]);
+    assert.deepEqual(first, second);
+  }
+
+  public deepEqual_with_different_uint8arrays_should_throw(): void {
+    const first = new Uint8Array([1, 2, 3, 4]);
+    const second = new Uint8Array([1, 2, 3, 5]);
+    const error = assertThrows(() => assert.deepEqual(first, second));
+    Assert.True(error instanceof AssertionError);
+  }
+
   public notDeepEqual_with_different_objects_should_not_throw(): void {
     assert.notDeepEqual({ name: "Alice" }, { name: "Bob" });
   }
@@ -284,6 +310,18 @@ A.on(AssertTests)
   .add(FactAttribute);
 A.on(AssertTests)
   .method((t) => t.deepEqual_with_nested_objects_should_work)
+  .add(FactAttribute);
+A.on(AssertTests)
+  .method((t) => t.deepEqual_with_equal_arrays_should_not_throw)
+  .add(FactAttribute);
+A.on(AssertTests)
+  .method((t) => t.deepEqual_with_different_arrays_should_throw)
+  .add(FactAttribute);
+A.on(AssertTests)
+  .method((t) => t.deepEqual_with_equal_uint8arrays_should_not_throw)
+  .add(FactAttribute);
+A.on(AssertTests)
+  .method((t) => t.deepEqual_with_different_uint8arrays_should_throw)
   .add(FactAttribute);
 A.on(AssertTests)
   .method((t) => t.notDeepEqual_with_different_objects_should_not_throw)

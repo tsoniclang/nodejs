@@ -93,8 +93,11 @@ export class SecretKeyObject extends KeyObject {
     return this._keyData.length;
   }
 
+  public ["export"](_options?: unknown): Uint8Array {
+    return this._keyData;
+  }
+
   protected exportCore(_options?: unknown): Uint8Array {
-    // TODO: actual export logic
     return this._keyData;
   }
 }

@@ -511,7 +511,7 @@ export const createECDH = (curveName: string): ECDH => {
 export const createSecretKey = (
   key: Uint8Array | string,
   encoding?: string
-): KeyObject => {
+): SecretKeyObject => {
   if (typeof key === "string") {
     return new SecretKeyObject(decodeInputBytes(key, encoding ?? "utf8"));
   }
