@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { crc32, crc32String } from "@tsonic/nodejs/zlib.js";
@@ -46,32 +46,32 @@ export class Zlib_crc32Tests {
   }
 
   public crc32_WithNullByteArray_ShouldThrow(): void {
-    assertThrows(() => crc32(null as unknown as Uint8Array));
+    assertThrows(() => crc32(asinterface<Uint8Array>(null)));
   }
 
   public crc32_WithNullString_ShouldThrow(): void {
-    assertThrows(() => crc32String(null as unknown as string));
+    assertThrows(() => crc32String(asinterface<string>(null)));
   }
 }
 
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_WithByteArray_ShouldReturnChecksum)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_WithString_ShouldReturnChecksum)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_SameData_ShouldReturnSameChecksum)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_DifferentData_ShouldReturnDifferentChecksum)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_EmptyData_ShouldReturnZero)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_WithNullByteArray_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_crc32Tests)
+A<Zlib_crc32Tests>()
   .method((t) => t.crc32_WithNullString_ShouldThrow)
   .add(FactAttribute);

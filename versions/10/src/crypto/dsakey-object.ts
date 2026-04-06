@@ -4,15 +4,15 @@
  * Baseline: nodejs-clr/src/nodejs/crypto/DSAKeyObject.cs
  */
 import { KeyObject } from "./key-object.ts";
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 
 /**
  * Represents a DSA public key.
  */
 export class DSAPublicKeyObject extends KeyObject {
-  private readonly _publicKeyData: unknown;
+  private readonly _publicKeyData: JsValue;
 
-  public constructor(publicKeyData: unknown) {
+  public constructor(publicKeyData: JsValue) {
     super();
     this._publicKeyData = publicKeyData;
   }
@@ -29,7 +29,7 @@ export class DSAPublicKeyObject extends KeyObject {
     return null;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     // TODO: actual DSA public key export in PEM/DER format
     return this._publicKeyData;
   }
@@ -39,9 +39,9 @@ export class DSAPublicKeyObject extends KeyObject {
  * Represents a DSA private key.
  */
 export class DSAPrivateKeyObject extends KeyObject {
-  private readonly _privateKeyData: unknown;
+  private readonly _privateKeyData: JsValue;
 
-  public constructor(privateKeyData: unknown) {
+  public constructor(privateKeyData: JsValue) {
     super();
     this._privateKeyData = privateKeyData;
   }
@@ -58,7 +58,7 @@ export class DSAPrivateKeyObject extends KeyObject {
     return null;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     // TODO: actual DSA private key export in PEM/DER format
     return this._privateKeyData;
   }

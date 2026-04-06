@@ -9,6 +9,6 @@ export class ProcessExitTests {
   }
 }
 
-A.on(ProcessExitTests)
+A<ProcessExitTests>()
   .method((t) => t.exit_method_exists)
   .add(FactAttribute);

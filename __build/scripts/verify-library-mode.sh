@@ -27,19 +27,17 @@ else
     echo "  PASS: No relative BCL imports found"
 fi
 
-# Test 2: No 'unknown' type leakage for BCL types
-# If type resolution fails, BCL types become 'unknown'
+# Test 2: No unresolved type leakage for BCL types
+# If type resolution fails, unresolved types surface as 'unknown' or '__OpaqueClrType<...>'
 echo ""
-echo "[Test 2] No 'unknown' type leakage..."
-# Check for patterns like ": unknown" or "(arg: unknown)" that indicate unresolved types
-# Exclude legitimate uses (generic constraints, intentional unknown)
-UNKNOWN_COUNT=$(grep -rE ': unknown[^a-zA-Z]|: unknown$|\(.*: unknown' "$NODEJS_DIR"/nodejs/internal/index.d.ts "$NODEJS_DIR"/nodejs.Http/internal/index.d.ts 2>/dev/null | wc -l)
-if [ "$UNKNOWN_COUNT" -gt 0 ]; then
-    echo "  FAIL: Found $UNKNOWN_COUNT instances of 'unknown' type (potential unresolved BCL types)"
-    grep -rE ': unknown[^a-zA-Z]|: unknown$|\(.*: unknown' "$NODEJS_DIR"/nodejs/internal/index.d.ts "$NODEJS_DIR"/nodejs.Http/internal/index.d.ts 2>/dev/null | head -5
+echo "[Test 2] No unresolved type leakage..."
+UNRESOLVED_COUNT=$(grep -rE ': unknown[^a-zA-Z]|: unknown$|\(.*: unknown|__OpaqueClrType<' "$NODEJS_DIR"/nodejs/internal/index.d.ts "$NODEJS_DIR"/nodejs.Http/internal/index.d.ts 2>/dev/null | wc -l)
+if [ "$UNRESOLVED_COUNT" -gt 0 ]; then
+    echo "  FAIL: Found $UNRESOLVED_COUNT unresolved type leakage instances"
+    grep -rE ': unknown[^a-zA-Z]|: unknown$|\(.*: unknown|__OpaqueClrType<' "$NODEJS_DIR"/nodejs/internal/index.d.ts "$NODEJS_DIR"/nodejs.Http/internal/index.d.ts 2>/dev/null | head -5
     FAILED=1
 else
-    echo "  PASS: No 'unknown' type leakage found"
+    echo "  PASS: No unresolved type leakage found"
 fi
 
 # Test 3: No BCL namespace directories in output

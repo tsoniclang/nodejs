@@ -14,6 +14,6 @@ export class RecordWithTtlTests {
   }
 }
 
-A.on(RecordWithTtlTests)
+A<RecordWithTtlTests>()
   .method((t) => t.RecordWithTtl_AllProperties_CanBeSet)
   .add(FactAttribute);

@@ -30,12 +30,12 @@ export class LookupServiceTests {
   }
 }
 
-A.on(LookupServiceTests)
+A<LookupServiceTests>()
   .method((t) => t.lookupService_ValidIPAndPort_CallsCallback)
   .add(FactAttribute);
-A.on(LookupServiceTests)
+A<LookupServiceTests>()
   .method((t) => t.lookupService_InvalidIP_CallsCallback)
   .add(FactAttribute);
-A.on(LookupServiceTests)
+A<LookupServiceTests>()
   .method((t) => t.lookupService_InvalidPort_CallsCallback)
   .add(FactAttribute);

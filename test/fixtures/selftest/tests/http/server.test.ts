@@ -376,72 +376,72 @@ export class HttpServerTests {
   }
 }
 
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.createServer_returns_server_instance)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_listen_sets_listening_property)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_address_returns_bound_address_info)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_close_stops_listening)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_listen_callback_is_invoked)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_listen_with_out_of_range_port_throws)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_timeout_properties_have_correct_defaults)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_timeout_properties_are_settable)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_response_status_code_default_is_200)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_response_writeHead_sets_status_and_headers)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_response_setHeader_and_getHeader)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_response_end_sets_finished)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.server_response_end_emits_finish_event)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.validate_header_name_rejects_empty_string)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.validate_header_name_accepts_valid_names)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.validate_header_value_rejects_control_characters)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.max_header_size_is_16kb)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.client_request_properties_reflect_options)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.client_request_set_and_get_headers)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.client_request_abort_sets_aborted_flag)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.client_request_abort_emits_event)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.incoming_message_defaults)
   .add(FactAttribute);
-A.on(HttpServerTests)
+A<HttpServerTests>()
   .method((t) => t.incoming_message_destroy_marks_complete)
   .add(FactAttribute);

@@ -15,6 +15,6 @@ export class SetMulticastInterfaceTests {
   }
 }
 
-A.on(SetMulticastInterfaceTests)
+A<SetMulticastInterfaceTests>()
   .method((t) => t.setMulticastInterface_SetsInterface)
   .add(FactAttribute);

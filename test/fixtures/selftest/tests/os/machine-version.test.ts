@@ -17,9 +17,9 @@ export class OsMachineVersionTests {
   }
 }
 
-A.on(OsMachineVersionTests)
+A<OsMachineVersionTests>()
   .method((t) => t.machine_should_return_non_empty_value)
   .add(FactAttribute);
-A.on(OsMachineVersionTests)
+A<OsMachineVersionTests>()
   .method((t) => t.version_should_return_non_empty_value)
   .add(FactAttribute);

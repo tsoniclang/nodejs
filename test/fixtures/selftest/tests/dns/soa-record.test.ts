@@ -24,6 +24,6 @@ export class SoaRecordTests {
   }
 }
 
-A.on(SoaRecordTests)
+A<SoaRecordTests>()
   .method((t) => t.SoaRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

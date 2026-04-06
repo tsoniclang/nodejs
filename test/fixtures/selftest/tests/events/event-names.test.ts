@@ -24,9 +24,9 @@ export class EventNamesTests {
   }
 }
 
-A.on(EventNamesTests)
+A<EventNamesTests>()
   .method((t) => t.eventNames_returns_registered_events)
   .add(FactAttribute);
-A.on(EventNamesTests)
+A<EventNamesTests>()
   .method((t) => t.eventNames_returns_empty_for_an_idle_emitter)
   .add(FactAttribute);

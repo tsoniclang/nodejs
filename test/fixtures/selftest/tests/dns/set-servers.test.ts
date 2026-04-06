@@ -11,6 +11,6 @@ export class SetServersTests {
   }
 }
 
-A.on(SetServersTests)
+A<SetServersTests>()
   .method((t) => t.setServers_ValidServers_DoesNotThrow)
   .add(FactAttribute);

@@ -10,7 +10,7 @@ export class GetDefaultAutoSelectFamilyAttemptTimeoutTests {
   }
 }
 
-A.on(GetDefaultAutoSelectFamilyAttemptTimeoutTests)
+A<GetDefaultAutoSelectFamilyAttemptTimeoutTests>()
   .method(
     (t) =>
       t.get_default_auto_select_family_attempt_timeout_returns_int

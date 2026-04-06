@@ -4,9 +4,9 @@
  * Baseline: nodejs-clr/src/nodejs/crypto/crypto.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
-import type { int, out } from "@tsonic/core/types.js";
+import type { int, out, JsValue } from "@tsonic/core/types.js";
 import {
   DSA,
   ECDsa,
@@ -64,6 +64,9 @@ const createDiffieHellmanFromLength = (
 ): DiffieHellman => {
   return new DiffieHellman(primeLength, generatorNumber);
 };
+
+const toError = (error: JsValue): Error =>
+  error instanceof Error ? error : new Error(String(error));
 
 const createDiffieHellmanFromBytes = (
   primeBytes: Uint8Array,
@@ -166,7 +169,7 @@ export const randomBytesAsync = (
     const bytes = randomBytes(size);
     callback(null, bytes);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -205,7 +208,7 @@ export const randomFill = (
     randomFillSync(buffer, offset, size);
     callback(null, buffer);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -252,7 +255,7 @@ export const pbkdf2 = (
     const result = pbkdf2Sync(password, salt, iterations, keylen, digest);
     callback(null, result);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -263,7 +266,7 @@ export const scryptSync = (
   password: string | Uint8Array,
   salt: string | Uint8Array,
   keylen: int,
-  _options?: unknown
+  _options?: JsValue
 ): Uint8Array => {
   return pbkdf2Sync(password, salt, 16384 as int, keylen, "sha256");
 };
@@ -275,14 +278,14 @@ export const scrypt = (
   password: string,
   salt: string,
   keylen: int,
-  options: unknown,
+  options: JsValue,
   callback: (err: Error | null, derivedKey: Uint8Array | null) => void
 ): void => {
   try {
     const result = scryptSync(password, salt, keylen, options);
     callback(null, result);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -314,7 +317,7 @@ export const hkdf = (
     const key = hkdfSync(digest, ikm, salt, info, keylen);
     callback(null, key);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -560,7 +563,7 @@ export const createPrivateKey = (key: string | Uint8Array): KeyObject => {
  */
 export const generateKeyPairSync = (
   type: string,
-  _options?: unknown
+  _options?: JsValue
 ): { publicKey: KeyObject; privateKey: KeyObject } => {
   const keyType = type.toLowerCase();
 
@@ -630,7 +633,7 @@ export const generateKeyPairSync = (
  */
 export const generateKeyPair = (
   type: string,
-  options: unknown,
+  options: JsValue,
   callback: (
     err: Error | null,
     publicKey: KeyObject | null,
@@ -641,7 +644,7 @@ export const generateKeyPair = (
     const { publicKey, privateKey } = generateKeyPairSync(type, options);
     callback(null, publicKey, privateKey);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null, null);
+    callback(toError(e as JsValue), null, null);
   }
 };
 
@@ -686,7 +689,7 @@ export const generateKeyAsync = (
     const key = generateKey(type, options);
     callback(null, key);
   } catch (e) {
-    callback(e instanceof Error ? e : new Error(String(e)), null);
+    callback(toError(e as JsValue), null);
   }
 };
 
@@ -748,7 +751,12 @@ export const publicDecrypt = (
   }
 
   const parameters = nativeKeyData.ExportParameters(false);
-  if (parameters.Modulus === undefined || parameters.Exponent === undefined) {
+  if (
+    parameters.Modulus === null ||
+    parameters.Modulus === undefined ||
+    parameters.Exponent === null ||
+    parameters.Exponent === undefined
+  ) {
     throw new Error("RSA public key parameters are unavailable");
   }
 
@@ -773,7 +781,12 @@ export const privateEncrypt = (
   }
 
   const parameters = nativeKeyData.ExportParameters(true);
-  if (parameters.Modulus === undefined || parameters.D === undefined) {
+  if (
+    parameters.Modulus === null ||
+    parameters.Modulus === undefined ||
+    parameters.D === null ||
+    parameters.D === undefined
+  ) {
     throw new Error("RSA private key parameters are unavailable");
   }
 

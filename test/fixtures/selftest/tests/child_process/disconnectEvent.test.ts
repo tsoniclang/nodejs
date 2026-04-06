@@ -20,6 +20,6 @@ export class ChildProcessDisconnectEventTests {
   }
 }
 
-A.on(ChildProcessDisconnectEventTests)
+A<ChildProcessDisconnectEventTests>()
   .method((t) => t.disconnectEvent_CanBeEmitted)
   .add(FactAttribute);

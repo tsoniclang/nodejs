@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/http/RequestOptions.cs
  */
 
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 
 /**
  * Options for making HTTP requests.
@@ -63,7 +63,7 @@ export class RequestOptions {
    * - Agent instance: explicitly use passed Agent
    * - false: disable connection pooling
    */
-  public agent: unknown = null;
+  public agent: JsValue = null;
 
   /**
    * Authentication in the form 'user:password' for basic auth.

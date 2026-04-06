@@ -21,6 +21,6 @@ export class TlsOptionsTests {
   }
 }
 
-A.on(TlsOptionsTests)
+A<TlsOptionsTests>()
   .method((t) => t.TlsOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

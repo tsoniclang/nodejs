@@ -22,6 +22,6 @@ export class NaptrRecordTests {
   }
 }
 
-A.on(NaptrRecordTests)
+A<NaptrRecordTests>()
   .method((t) => t.NaptrRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

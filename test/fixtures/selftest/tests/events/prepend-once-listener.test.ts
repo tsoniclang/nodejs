@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
@@ -50,7 +51,7 @@ export class PrependOnceListenerTests {
     const emitter = new EventEmitter();
     let received = 0;
 
-    emitter.prependOnceListener("test", (value: unknown) => {
+    emitter.prependOnceListener("test", (value: JsValue) => {
       if (typeof value === "number") {
         received = value;
       }
@@ -61,18 +62,18 @@ export class PrependOnceListenerTests {
   }
 }
 
-A.on(PrependOnceListenerTests)
+A<PrependOnceListenerTests>()
   .method((t) => t.prependOnceListener_executes_only_once)
   .add(FactAttribute);
-A.on(PrependOnceListenerTests)
+A<PrependOnceListenerTests>()
   .method((t) => t.prependOnceListener_adds_to_the_beginning)
   .add(FactAttribute);
-A.on(PrependOnceListenerTests)
+A<PrependOnceListenerTests>()
   .method((t) => t.prependOnceListener_returns_the_emitter)
   .add(FactAttribute);
-A.on(PrependOnceListenerTests)
+A<PrependOnceListenerTests>()
   .method((t) => t.prependOnceListener_removes_itself_after_execution)
   .add(FactAttribute);
-A.on(PrependOnceListenerTests)
+A<PrependOnceListenerTests>()
   .method((t) => t.prependOnceListener_passes_through_arguments)
   .add(FactAttribute);

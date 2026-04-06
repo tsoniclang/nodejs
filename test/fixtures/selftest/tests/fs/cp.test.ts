@@ -84,12 +84,12 @@ export class cpTests {
   }
 }
 
-A.on(cpTests).method((t) => t.cp_File_ShouldCopyFile).add(FactAttribute);
-A.on(cpTests).method((t) => t.cp_ShouldOverwriteDestination).add(FactAttribute);
-A.on(cpTests)
+A<cpTests>().method((t) => t.cp_File_ShouldCopyFile).add(FactAttribute);
+A<cpTests>().method((t) => t.cp_ShouldOverwriteDestination).add(FactAttribute);
+A<cpTests>()
   .method((t) => t.cp_Directory_NonRecursive_ShouldThrow)
   .add(FactAttribute);
-A.on(cpTests)
+A<cpTests>()
   .method((t) => t.cp_Directory_Recursive_ShouldCopyAll)
   .add(FactAttribute);
-A.on(cpTests).method((t) => t.cp_NonExistentSource_ShouldThrow).add(FactAttribute);
+A<cpTests>().method((t) => t.cp_NonExistentSource_ShouldThrow).add(FactAttribute);

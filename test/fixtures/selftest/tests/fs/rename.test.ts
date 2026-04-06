@@ -61,6 +61,6 @@ export class renameTests {
   }
 }
 
-A.on(renameTests).method((t) => t.rename_File_ShouldRenameFile).add(FactAttribute);
-A.on(renameTests).method((t) => t.rename_Directory_ShouldRenameDirectory).add(FactAttribute);
-A.on(renameTests).method((t) => t.rename_NonExistent_ShouldThrow).add(FactAttribute);
+A<renameTests>().method((t) => t.rename_File_ShouldRenameFile).add(FactAttribute);
+A<renameTests>().method((t) => t.rename_Directory_ShouldRenameDirectory).add(FactAttribute);
+A<renameTests>().method((t) => t.rename_NonExistent_ShouldThrow).add(FactAttribute);

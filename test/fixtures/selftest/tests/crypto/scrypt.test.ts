@@ -18,4 +18,4 @@ export class ScryptTests {
   }
 }
 
-A.on(ScryptTests).method((t) => t.scrypt_callback_generates_key).add(FactAttribute);
+A<ScryptTests>().method((t) => t.scrypt_callback_generates_key).add(FactAttribute);

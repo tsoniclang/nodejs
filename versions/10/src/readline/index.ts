@@ -5,7 +5,8 @@
  * Baseline: nodejs-clr/src/nodejs/readline/readline.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
+import type { JsValue } from "@tsonic/core/types.js";
 
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";
@@ -247,7 +248,7 @@ export const emitKeypressEvents = (
   // TODO: Interactive I/O — listening for 'data' events on stdin and
   // translating them into 'keypress' events requires runtime stream
   // integration.
-  stream.on("data", (chunk: unknown) => {
+  stream.on("data", (chunk: JsValue) => {
     if (rl === undefined) {
       return;
     }

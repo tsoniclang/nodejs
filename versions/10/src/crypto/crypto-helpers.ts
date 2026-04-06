@@ -272,7 +272,7 @@ export const randomBytesExact = (size: number): Uint8Array => {
 
 export const createAesAlgorithm = (): SymmetricAlgorithm => {
   const aes = SymmetricAlgorithm.Create("Aes");
-  if (aes === undefined) {
+  if (aes === null || aes === undefined) {
     throw new Error("AES is unavailable");
   }
   return aes;
@@ -280,7 +280,7 @@ export const createAesAlgorithm = (): SymmetricAlgorithm => {
 
 export const createRsaAlgorithm = (): RSA => {
   const rsa = RSA.Create("RSA");
-  if (rsa === undefined) {
+  if (rsa === null || rsa === undefined) {
     throw new Error("RSA is unavailable");
   }
   return rsa;
@@ -290,7 +290,7 @@ export const createDsaAlgorithm = (): DSA => {
   const providers = ["DSAOpenSsl", "DSACng", "DSA"];
   for (let index = 0; index < providers.length; index += 1) {
     const dsa = DSA.Create(providers[index]!);
-    if (dsa !== undefined) {
+    if (dsa !== null && dsa !== undefined) {
       return dsa;
     }
   }

@@ -1,5 +1,5 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
 import { Directory, Path } from "@tsonic/dotnet/System.IO.js";
 import {
@@ -30,7 +30,7 @@ const globToRegex = (value: string): string => {
   let result = "^";
 
   for (let i = 0; i < value.length; i += 1) {
-    const ch = value[i];
+    const ch = value[i]!;
     if (ch === "*") {
       if (value[i + 1] === "*") {
         result += ".*";
@@ -74,7 +74,7 @@ export const dirname = (value: string): string => {
   }
 
   const result = Path.GetDirectoryName(value);
-  return result === undefined || result.length === 0 ? "." : result;
+  return result == null || result.length === 0 ? "." : result;
 };
 
 export const extname = (value: string): string => {

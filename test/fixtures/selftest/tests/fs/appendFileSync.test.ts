@@ -33,7 +33,7 @@ export class appendFileSyncTests {
   }
 }
 
-A.on(appendFileSyncTests).method((t) => t.appendFileSync_ShouldAppendToFile).add(FactAttribute);
-A.on(appendFileSyncTests)
+A<appendFileSyncTests>().method((t) => t.appendFileSync_ShouldAppendToFile).add(FactAttribute);
+A<appendFileSyncTests>()
   .method((t) => t.appendFileSync_NonExistentFile_ShouldCreateFile)
   .add(FactAttribute);

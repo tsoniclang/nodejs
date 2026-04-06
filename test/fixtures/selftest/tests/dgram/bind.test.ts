@@ -79,18 +79,18 @@ export class BindTests {
   }
 }
 
-A.on(BindTests)
+A<BindTests>()
   .method((t) => t.bind_WithPort_BindsSuccessfully)
   .add(FactAttribute);
-A.on(BindTests)
+A<BindTests>()
   .method((t) => t.bind_WithCallback_CallsCallback)
   .add(FactAttribute);
-A.on(BindTests)
+A<BindTests>()
   .method((t) => t.bind_WithBindOptions_BindsSuccessfully)
   .add(FactAttribute);
-A.on(BindTests)
+A<BindTests>()
   .method((t) => t.bind_WithBindOptionsAndCallback_CallsCallback)
   .add(FactAttribute);
-A.on(BindTests)
+A<BindTests>()
   .method((t) => t.bind_WithFileDescriptor_Throws)
   .add(FactAttribute);

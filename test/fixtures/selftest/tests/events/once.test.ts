@@ -19,6 +19,6 @@ export class OnceTests {
   }
 }
 
-A.on(OnceTests)
+A<OnceTests>()
   .method((t) => t.once_invokes_the_listener_only_once)
   .add(FactAttribute);

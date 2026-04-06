@@ -20,6 +20,6 @@ export class ToNamespacedPathTests {
   }
 }
 
-A.on(ToNamespacedPathTests)
+A<ToNamespacedPathTests>()
   .method((t) => t.toNamespacedPath_handles_empty_path)
   .add(FactAttribute);

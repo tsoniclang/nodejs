@@ -11,6 +11,6 @@ export class ResolveOptionsTests {
   }
 }
 
-A.on(ResolveOptionsTests)
+A<ResolveOptionsTests>()
   .method((t) => t.ResolveOptions_TtlProperty_CanBeSet)
   .add(FactAttribute);

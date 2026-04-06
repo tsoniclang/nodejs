@@ -24,6 +24,6 @@ export class DisconnectTests {
   }
 }
 
-A.on(DisconnectTests)
+A<DisconnectTests>()
   .method((t) => t.disconnect_ConnectedSocket_Disconnects)
   .add(FactAttribute);

@@ -23,6 +23,6 @@ export class ChildProcessSpawnSyncReturnsTests {
   }
 }
 
-A.on(ChildProcessSpawnSyncReturnsTests)
+A<ChildProcessSpawnSyncReturnsTests>()
   .method((t) => t.spawnSyncReturns_AllPropertiesAccessible)
   .add(FactAttribute);

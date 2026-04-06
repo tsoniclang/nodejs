@@ -26,9 +26,9 @@ export class SetTTLTests {
   }
 }
 
-A.on(SetTTLTests)
+A<SetTTLTests>()
   .method((t) => t.setTTL_SetsTTL)
   .add(FactAttribute);
-A.on(SetTTLTests)
+A<SetTTLTests>()
   .method((t) => t.setTTL_InvalidValue_ThrowsException)
   .add(FactAttribute);

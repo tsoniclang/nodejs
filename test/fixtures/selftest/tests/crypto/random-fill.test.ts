@@ -31,5 +31,5 @@ export class RandomFillTests {
   }
 }
 
-A.on(RandomFillTests).method((t) => t.randomFill_async_works).add(FactAttribute);
-A.on(RandomFillTests).method((t) => t.randomFill_works).add(FactAttribute);
+A<RandomFillTests>().method((t) => t.randomFill_async_works).add(FactAttribute);
+A<RandomFillTests>().method((t) => t.randomFill_works).add(FactAttribute);

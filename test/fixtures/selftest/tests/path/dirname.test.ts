@@ -15,9 +15,9 @@ export class DirnameTests {
   }
 }
 
-A.on(DirnameTests)
+A<DirnameTests>()
   .method((t) => t.dirname_returns_directory_portion)
   .add(FactAttribute);
-A.on(DirnameTests)
+A<DirnameTests>()
   .method((t) => t.dirname_empty_path_returns_dot)
   .add(FactAttribute);

@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/perf_hooks/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 export {
   PerformanceEntry,

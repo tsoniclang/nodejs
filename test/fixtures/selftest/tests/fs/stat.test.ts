@@ -56,6 +56,6 @@ export class statTests {
   }
 }
 
-A.on(statTests).method((t) => t.stat_File_ShouldReturnFileStats).add(FactAttribute);
-A.on(statTests).method((t) => t.stat_Directory_ShouldReturnDirectoryStats).add(FactAttribute);
-A.on(statTests).method((t) => t.stat_NonExistent_ShouldThrow).add(FactAttribute);
+A<statTests>().method((t) => t.stat_File_ShouldReturnFileStats).add(FactAttribute);
+A<statTests>().method((t) => t.stat_Directory_ShouldReturnDirectoryStats).add(FactAttribute);
+A<statTests>().method((t) => t.stat_NonExistent_ShouldThrow).add(FactAttribute);

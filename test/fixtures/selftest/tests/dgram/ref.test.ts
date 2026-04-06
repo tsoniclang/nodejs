@@ -15,6 +15,6 @@ export class RefTests {
   }
 }
 
-A.on(RefTests)
+A<RefTests>()
   .method((t) => t.ref_ReturnsSocket)
   .add(FactAttribute);

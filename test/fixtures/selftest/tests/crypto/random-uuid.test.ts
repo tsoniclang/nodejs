@@ -15,4 +15,4 @@ export class RandomUUIDTests {
   }
 }
 
-A.on(RandomUUIDTests).method((t) => t.randomUUID_generates_valid_uuid).add(FactAttribute);
+A<RandomUUIDTests>().method((t) => t.randomUUID_generates_valid_uuid).add(FactAttribute);

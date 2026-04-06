@@ -4,7 +4,7 @@
  * Validates that integer-backed members and method signatures compile
  * against exact numeric contracts.
  */
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import type { int } from "@tsonic/core/types.js";
@@ -53,11 +53,12 @@ export class HttpSurfaceContractTests {
     Assert.True(listenResult.listening);
     listenResult.close();
 
-    const listenPath =
-      server.listen as unknown as (
+    const listenPath = asinterface<
+      (
         path: string,
         callback?: (() => void) | null
-      ) => Server;
+      ) => Server
+    >(server.listen);
     Assert.NotNull(listenPath);
 
     const serverTimeoutResult: Server = server.setTimeout(
@@ -87,12 +88,12 @@ export class HttpSurfaceContractTests {
   }
 }
 
-A.on(HttpSurfaceContractTests)
+A<HttpSurfaceContractTests>()
   .method(
     (t) => t.integer_backed_members_compile_against_exact_numeric_contracts
   )
   .add(FactAttribute);
-A.on(HttpSurfaceContractTests)
+A<HttpSurfaceContractTests>()
   .method(
     (t) => t.integer_backed_methods_compile_against_exact_numeric_contracts
   )

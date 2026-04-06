@@ -19,6 +19,6 @@ export class ChildProcessStderrTests {
   }
 }
 
-A.on(ChildProcessStderrTests)
+A<ChildProcessStderrTests>()
   .method((t) => t.stderr_StderrProperty_IsAccessible)
   .add(FactAttribute);

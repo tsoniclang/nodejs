@@ -163,42 +163,42 @@ export class openSyncTests {
   }
 }
 
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithReadFlag_ShouldOpenExistingFile)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithReadFlag_NonExistentFile_ShouldThrow)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithWriteFlag_ShouldCreateFile)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithWriteFlag_ShouldTruncateExistingFile)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithAppendFlag_ShouldCreateFile)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithReadPlusFlag_ShouldOpenForReadWrite)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithWritePlusFlag_ShouldCreateForReadWrite)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithAppendPlusFlag_ShouldOpenForReadWriteAppend)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithExclusiveWriteFlag_ShouldCreateNewFile)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithExclusiveWriteFlag_ExistingFile_ShouldThrow)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithEmptyPath_ShouldThrow)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_WithInvalidFlags_ShouldThrow)
   .add(FactAttribute);
-A.on(openSyncTests)
+A<openSyncTests>()
   .method((t) => t.openSync_MultipleFiles_ShouldReturnDifferentDescriptors)
   .add(FactAttribute);

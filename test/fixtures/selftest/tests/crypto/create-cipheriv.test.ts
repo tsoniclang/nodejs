@@ -129,13 +129,13 @@ export class CreateCipherivTests {
   }
 }
 
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_decipher_aes256_round_trip).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_final_only_once).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_aes128cbc_works).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_aes192cbc_works).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_aes256ecb_works).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_aes256cfb_works).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_string_key_and_iv).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_update_after_final_throws).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_get_auth_tag_throws_not_implemented).add(FactAttribute);
-A.on(CreateCipherivTests).method((t) => t.createCipheriv_set_aad_throws_not_implemented).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_decipher_aes256_round_trip).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_final_only_once).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_aes128cbc_works).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_aes192cbc_works).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_aes256ecb_works).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_aes256cfb_works).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_string_key_and_iv).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_update_after_final_throws).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_get_auth_tag_throws_not_implemented).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_set_aad_throws_not_implemented).add(FactAttribute);

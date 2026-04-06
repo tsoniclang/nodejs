@@ -13,6 +13,6 @@ export class ResolveNaptrTests {
   }
 }
 
-A.on(ResolveNaptrTests)
+A<ResolveNaptrTests>()
   .method((t) => t.resolveNaptr_ValidDomain_CallsCallback)
   .add(FactAttribute);

@@ -1,3 +1,4 @@
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   computeHmacBytes,
   concatBytes,
@@ -30,12 +31,17 @@ export class Hmac {
    */
   public update(data: string, inputEncoding?: string): Hmac;
   public update(data: Uint8Array): Hmac;
-  public update(data: string | Uint8Array, inputEncoding?: string): Hmac {
-    if (this._finalized) {
-      throw new Error("Digest already called");
-    }
+  public update(_data: any, _inputEncoding?: any): any {
+    throw new Error("stub");
+  }
 
-    this._chunks.push(decodeInputBytes(data, inputEncoding ?? "utf8"));
+  public update_string(data: string, inputEncoding?: string): Hmac {
+    this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
+    return this;
+  }
+
+  public update_bytes(data: Uint8Array): Hmac {
+    this.pushChunk(data);
     return this;
   }
 
@@ -44,22 +50,41 @@ export class Hmac {
    */
   public digest(encoding: string): string;
   public digest(): Uint8Array;
-  public digest(encoding?: string): string | Uint8Array {
+  public digest(_encoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public digest_encoding(encoding: string): string {
+    return encodeOutputBytes(this.finalizeDigest(), encoding) as string;
+  }
+
+  public digest_bytes(): Uint8Array {
+    return this.finalizeDigest();
+  }
+
+  private pushChunk(chunk: Uint8Array): void {
+    if (this._finalized) {
+      throw new Error("Digest already called");
+    }
+
+    this._chunks.push(chunk);
+  }
+
+  private finalizeDigest(): Uint8Array {
     if (this._finalized) {
       throw new Error("Digest already called");
     }
 
     this._finalized = true;
-    const bytes = computeHmacBytes(
+    return computeHmacBytes(
       this._algorithm,
       this._key,
       concatBytes(...this._chunks),
     );
-
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(bytes, encoding) as string;
-    }
-
-    return bytes;
   }
 }
+
+O<Hmac>().method(x => x.update_string).family(x => x.update);
+O<Hmac>().method(x => x.update_bytes).family(x => x.update);
+O<Hmac>().method(x => x.digest_encoding).family(x => x.digest);
+O<Hmac>().method(x => x.digest_bytes).family(x => x.digest);

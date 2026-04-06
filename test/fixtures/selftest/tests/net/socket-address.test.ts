@@ -38,12 +38,12 @@ export class SocketAddressTests {
   }
 }
 
-A.on(SocketAddressTests)
+A<SocketAddressTests>()
   .method((t) => t.constructor_creates_instance)
   .add(FactAttribute);
-A.on(SocketAddressTests)
+A<SocketAddressTests>()
   .method((t) => t.constructor_default_values)
   .add(FactAttribute);
-A.on(SocketAddressTests)
+A<SocketAddressTests>()
   .method((t) => t.flowlabel_can_be_set)
   .add(FactAttribute);

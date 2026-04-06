@@ -17,6 +17,6 @@ export class ChildProcessForkConnectedTests {
   }
 }
 
-A.on(ChildProcessForkConnectedTests)
+A<ChildProcessForkConnectedTests>()
   .method((t) => t.forkConnected_InitiallyTrue)
   .add(FactAttribute);

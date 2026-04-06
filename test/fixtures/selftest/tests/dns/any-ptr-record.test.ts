@@ -13,6 +13,6 @@ export class AnyPtrRecordTests {
   }
 }
 
-A.on(AnyPtrRecordTests)
+A<AnyPtrRecordTests>()
   .method((t) => t.AnyPtrRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

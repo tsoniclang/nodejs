@@ -71,12 +71,12 @@ export class CreateHmacTests {
   }
 }
 
-A.on(CreateHmacTests).method((t) => t.createHmac_sha256_produces_correct_digest).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_md5_works).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_sha1_works).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_sha384_works).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_sha512_works).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_with_byte_array_key).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_binary_output).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_update_with_bytes_works).add(FactAttribute);
-A.on(CreateHmacTests).method((t) => t.createHmac_digest_as_bytes_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_sha256_produces_correct_digest).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_md5_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_sha1_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_sha384_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_sha512_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_with_byte_array_key).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_binary_output).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_update_with_bytes_works).add(FactAttribute);
+A<CreateHmacTests>().method((t) => t.createHmac_digest_as_bytes_works).add(FactAttribute);

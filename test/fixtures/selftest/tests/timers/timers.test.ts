@@ -288,81 +288,81 @@ export class TimersTests {
   }
 }
 
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setTimeout_should_execute_callback)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setTimeout_should_return_timeout)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setTimeout_with_zero_delay_should_execute)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearTimeout_should_cancel_timeout)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearTimeout_with_undefined_should_not_throw)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setInterval_should_execute_repeatedly_async)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearInterval_should_not_throw)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setImmediate_should_execute_callback)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setImmediate_should_execute_callback_reliably)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.setImmediate_should_return_immediate)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearImmediate_should_cancel_immediate)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearImmediate_should_cancel_immediate_reliably)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearImmediate_should_cancel_immediate_at_scale)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearImmediate_should_cancel_all_pending_immediates)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.clearImmediate_with_undefined_should_not_throw)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.queueMicrotask_should_execute_callback)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_ref_should_return_this)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_unref_should_return_this)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_hasRef_should_return_true)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_hasRef_after_unref_should_return_false)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_refresh_should_return_this)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Timeout_close_should_cancel_timeout)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Immediate_ref_should_return_this)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Immediate_unref_should_return_this)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Immediate_hasRef_should_return_true)
   .add(FactAttribute);
-A.on(TimersTests)
+A<TimersTests>()
   .method((t) => t.Immediate_hasRef_after_unref_should_return_false)
   .add(FactAttribute);

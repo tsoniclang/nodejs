@@ -11,6 +11,6 @@ export class NetConnectTests {
   }
 }
 
-A.on(NetConnectTests)
+A<NetConnectTests>()
   .method((t) => t.connect_creates_socket)
   .add(FactAttribute);

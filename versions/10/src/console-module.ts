@@ -1,6 +1,7 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
+import type { JsValue } from "@tsonic/core/types.js";
 import { Console as DotnetConsole } from "@tsonic/dotnet/System.js";
 import { Stopwatch } from "@tsonic/dotnet/System.Diagnostics.js";
 
@@ -28,8 +29,8 @@ const writeError = (message: string): void => {
 };
 
 const formatConsoleMessage = (
-  message?: unknown,
-  optionalParams: readonly unknown[] = []
+  message?: JsValue,
+  optionalParams: readonly JsValue[] = []
 ): string => {
   if (typeof message === "string") {
     return util.format(message, ...optionalParams);
@@ -56,15 +57,15 @@ const formatElapsed = (stopwatch: Stopwatch): string => {
 
 export class ConsoleConstructor {
   public constructor(
-    _stdout?: unknown,
-    _stderr?: unknown,
+    _stdout?: JsValue,
+    _stderr?: JsValue,
     _ignoreErrors: boolean = true,
-    _colorMode?: unknown,
-    _inspectOptions?: unknown,
+    _colorMode?: JsValue,
+    _inspectOptions?: JsValue,
     _groupIndentation: boolean = true
   ) {}
 
-  public assert(value: boolean, message?: string, ...optionalParams: unknown[]): void {
+  public assert(value: boolean, message?: string, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.assert(value, message, ...optionalParams);
   }
   public clear(): void {
@@ -76,31 +77,31 @@ export class ConsoleConstructor {
   public countReset(label?: string): void {
     consoleModuleInstance.countReset(label);
   }
-  public debug(message?: unknown, ...optionalParams: unknown[]): void {
+  public debug(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.debug(message, ...optionalParams);
   }
-  public dir(value?: unknown, ...options: unknown[]): void {
+  public dir(value?: JsValue, ...options: JsValue[]): void {
     consoleModuleInstance.dir(value, ...options);
   }
-  public dirxml(...data: unknown[]): void {
+  public dirxml(...data: JsValue[]): void {
     consoleModuleInstance.dirxml(...data);
   }
-  public error(message?: unknown, ...optionalParams: unknown[]): void {
+  public error(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.error(message, ...optionalParams);
   }
-  public group(...label: unknown[]): void {
+  public group(...label: JsValue[]): void {
     consoleModuleInstance.group(...label);
   }
-  public groupCollapsed(...label: unknown[]): void {
+  public groupCollapsed(...label: JsValue[]): void {
     consoleModuleInstance.groupCollapsed(...label);
   }
   public groupEnd(): void {
     consoleModuleInstance.groupEnd();
   }
-  public info(message?: unknown, ...optionalParams: unknown[]): void {
+  public info(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.info(message, ...optionalParams);
   }
-  public log(message?: unknown, ...optionalParams: unknown[]): void {
+  public log(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.log(message, ...optionalParams);
   }
   public profile(label?: string): void {
@@ -109,7 +110,7 @@ export class ConsoleConstructor {
   public profileEnd(label?: string): void {
     consoleModuleInstance.profileEnd(label);
   }
-  public table(tabularData?: unknown, properties?: string[]): void {
+  public table(tabularData?: JsValue, properties?: string[]): void {
     consoleModuleInstance.table(tabularData, properties);
   }
   public time(label?: string): void {
@@ -118,16 +119,16 @@ export class ConsoleConstructor {
   public timeEnd(label?: string): void {
     consoleModuleInstance.timeEnd(label);
   }
-  public timeLog(label?: string, ...data: unknown[]): void {
+  public timeLog(label?: string, ...data: JsValue[]): void {
     consoleModuleInstance.timeLog(label, ...data);
   }
   public timeStamp(label?: string): void {
     consoleModuleInstance.timeStamp(label);
   }
-  public trace(message?: unknown, ...optionalParams: unknown[]): void {
+  public trace(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.trace(message, ...optionalParams);
   }
-  public warn(message?: unknown, ...optionalParams: unknown[]): void {
+  public warn(message?: JsValue, ...optionalParams: JsValue[]): void {
     consoleModuleInstance.warn(message, ...optionalParams);
   }
 }
@@ -138,7 +139,7 @@ class ConsoleModule {
   public assert(
     value: boolean,
     message?: string,
-    ...optionalParams: unknown[]
+    ...optionalParams: JsValue[]
   ): void {
     if (value) {
       return;
@@ -169,30 +170,30 @@ class ConsoleModule {
     counters.set(label, 0);
   }
 
-  public debug(message?: unknown, ...optionalParams: unknown[]): void {
+  public debug(message?: JsValue, ...optionalParams: JsValue[]): void {
     this.log(message, ...optionalParams);
   }
 
-  public dir(value?: unknown, ..._options: unknown[]): void {
+  public dir(value?: JsValue, ..._options: JsValue[]): void {
     writeLine(util.inspect(value));
   }
 
-  public dirxml(...data: unknown[]): void {
+  public dirxml(...data: JsValue[]): void {
     this.log(undefined, ...data);
   }
 
-  public error(message?: unknown, ...optionalParams: unknown[]): void {
+  public error(message?: JsValue, ...optionalParams: JsValue[]): void {
     writeError(formatConsoleMessage(message, optionalParams));
   }
 
-  public group(...label: unknown[]): void {
+  public group(...label: JsValue[]): void {
     if (label.length > 0) {
       writeLine(formatConsoleMessage(label[0], label.slice(1)));
     }
     groupIndentation += 1;
   }
 
-  public groupCollapsed(...label: unknown[]): void {
+  public groupCollapsed(...label: JsValue[]): void {
     this.group(...label);
   }
 
@@ -202,15 +203,15 @@ class ConsoleModule {
     }
   }
 
-  public info(message?: unknown, ...optionalParams: unknown[]): void {
+  public info(message?: JsValue, ...optionalParams: JsValue[]): void {
     this.log(message, ...optionalParams);
   }
 
-  public log(message?: unknown, ...optionalParams: unknown[]): void {
+  public log(message?: JsValue, ...optionalParams: JsValue[]): void {
     writeLine(formatConsoleMessage(message, optionalParams));
   }
 
-  public table(tabularData?: unknown, _properties?: string[]): void {
+  public table(tabularData?: JsValue, _properties?: string[]): void {
     writeLine(util.inspect(tabularData));
   }
 
@@ -235,7 +236,7 @@ class ConsoleModule {
     timers.delete(label);
   }
 
-  public timeLog(label: string = "default", ...data: unknown[]): void {
+  public timeLog(label: string = "default", ...data: JsValue[]): void {
     const stopwatch = timers.get(label);
     if (stopwatch === undefined) {
       return;
@@ -246,12 +247,12 @@ class ConsoleModule {
     writeLine(`${label}: ${formatElapsed(stopwatch)}${extras}`);
   }
 
-  public trace(message?: unknown, ...optionalParams: unknown[]): void {
+  public trace(message?: JsValue, ...optionalParams: JsValue[]): void {
     const rendered = formatConsoleMessage(message, optionalParams);
     writeError(`Trace: ${rendered}`);
   }
 
-  public warn(message?: unknown, ...optionalParams: unknown[]): void {
+  public warn(message?: JsValue, ...optionalParams: JsValue[]): void {
     this.error(message, ...optionalParams);
   }
 

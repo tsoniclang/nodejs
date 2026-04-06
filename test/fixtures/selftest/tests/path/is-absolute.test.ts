@@ -24,9 +24,9 @@ export class IsAbsoluteTests {
   }
 }
 
-A.on(IsAbsoluteTests)
+A<IsAbsoluteTests>()
   .method((t) => t.isAbsolute_detects_platform_paths)
   .add(FactAttribute);
-A.on(IsAbsoluteTests)
+A<IsAbsoluteTests>()
   .method((t) => t.isAbsolute_empty_path_returns_false)
   .add(FactAttribute);

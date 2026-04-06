@@ -42,9 +42,9 @@ export class ProcessPlatformTests {
   }
 }
 
-A.on(ProcessPlatformTests)
+A<ProcessPlatformTests>()
   .method((t) => t.platform_returns_a_known_platform_string)
   .add(FactAttribute);
-A.on(ProcessPlatformTests)
+A<ProcessPlatformTests>()
   .method((t) => t.platform_matches_runtime_platform)
   .add(FactAttribute);

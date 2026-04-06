@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
@@ -36,9 +37,9 @@ export class OnTests {
 
   public on_passes_through_arguments(): void {
     const emitter = new EventEmitter();
-    let received: unknown = undefined;
+    let received: JsValue | undefined = undefined;
 
-    emitter.on("test", (arg: unknown) => {
+    emitter.on("test", (arg: JsValue) => {
       received = arg;
     });
     emitter.emit("test", 42);
@@ -72,14 +73,14 @@ export class OnTests {
   }
 }
 
-A.on(OnTests).method((t) => t.on_registers_a_listener).add(FactAttribute);
-A.on(OnTests)
+A<OnTests>().method((t) => t.on_registers_a_listener).add(FactAttribute);
+A<OnTests>()
   .method((t) => t.on_calls_all_registered_listeners)
   .add(FactAttribute);
-A.on(OnTests)
+A<OnTests>()
   .method((t) => t.on_passes_through_arguments)
   .add(FactAttribute);
-A.on(OnTests).method((t) => t.on_returns_the_emitter).add(FactAttribute);
-A.on(OnTests)
+A<OnTests>().method((t) => t.on_returns_the_emitter).add(FactAttribute);
+A<OnTests>()
   .method((t) => t.on_supports_method_chaining)
   .add(FactAttribute);

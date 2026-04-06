@@ -65,9 +65,9 @@ export class CertificateTests {
   }
 }
 
-A.on(CertificateTests).method((t) => t.exportChallenge_string_throws_not_implemented).add(FactAttribute);
-A.on(CertificateTests).method((t) => t.exportChallenge_bytes_throws_not_implemented).add(FactAttribute);
-A.on(CertificateTests).method((t) => t.exportPublicKey_string_throws_not_implemented).add(FactAttribute);
-A.on(CertificateTests).method((t) => t.exportPublicKey_bytes_throws_not_implemented).add(FactAttribute);
-A.on(CertificateTests).method((t) => t.verifySpkac_string_throws_not_implemented).add(FactAttribute);
-A.on(CertificateTests).method((t) => t.verifySpkac_bytes_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.exportChallenge_string_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.exportChallenge_bytes_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.exportPublicKey_string_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.exportPublicKey_bytes_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.verifySpkac_string_throws_not_implemented).add(FactAttribute);
+A<CertificateTests>().method((t) => t.verifySpkac_bytes_throws_not_implemented).add(FactAttribute);

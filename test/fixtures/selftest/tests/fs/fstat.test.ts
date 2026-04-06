@@ -55,11 +55,11 @@ export class fstatTests {
   }
 }
 
-A.on(fstatTests).method((t) => t.fstat_ShouldReturnStats).add(FactAttribute);
-A.on(fstatTests).method((t) => t.fstat_ShouldReturnCorrectSize).add(FactAttribute);
-A.on(fstatTests)
+A<fstatTests>().method((t) => t.fstat_ShouldReturnStats).add(FactAttribute);
+A<fstatTests>().method((t) => t.fstat_ShouldReturnCorrectSize).add(FactAttribute);
+A<fstatTests>()
   .method((t) => t.fstat_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(fstatTests)
+A<fstatTests>()
   .method((t) => t.fstat_EmptyFile_ShouldHaveZeroSize)
   .add(FactAttribute);

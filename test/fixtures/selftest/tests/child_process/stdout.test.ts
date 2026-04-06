@@ -19,6 +19,6 @@ export class ChildProcessStdoutTests {
   }
 }
 
-A.on(ChildProcessStdoutTests)
+A<ChildProcessStdoutTests>()
   .method((t) => t.stdout_StdoutProperty_IsAccessible)
   .add(FactAttribute);

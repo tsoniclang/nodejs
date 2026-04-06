@@ -1,3 +1,4 @@
+import { asinterface } from "@tsonic/core/lang.js";
 import { Assert } from "xunit-types/Xunit.js";
 
 import {
@@ -148,7 +149,7 @@ export class InterfaceTests {
 
     let threw = false;
     try {
-      rl.question("Test? ", null as unknown as (answer: string) => void);
+      rl.question("Test? ", asinterface<(answer: string) => void>(null));
     } catch {
       threw = true;
     }

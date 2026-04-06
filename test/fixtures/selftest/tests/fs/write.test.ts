@@ -69,12 +69,12 @@ export class writeTests {
   }
 }
 
-A.on(writeTests).method((t) => t.write_WithBytes_ShouldWriteToFile).add(FactAttribute);
-A.on(writeTests).method((t) => t.write_WithString_ShouldWriteToFile).add(FactAttribute);
-A.on(writeTests)
+A<writeTests>().method((t) => t.write_WithBytes_ShouldWriteToFile).add(FactAttribute);
+A<writeTests>().method((t) => t.write_WithString_ShouldWriteToFile).add(FactAttribute);
+A<writeTests>()
   .method((t) => t.write_WithPosition_ShouldWriteAtSpecificPosition)
   .add(FactAttribute);
-A.on(writeTests)
+A<writeTests>()
   .method((t) => t.write_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(writeTests).method((t) => t.write_EmptyString_ShouldCreateEmptyFile).add(FactAttribute);
+A<writeTests>().method((t) => t.write_EmptyString_ShouldCreateEmptyFile).add(FactAttribute);

@@ -17,5 +17,5 @@ export class HashTests {
   }
 }
 
-A.on(HashTests).method((t) => t.hash_static_works).add(FactAttribute);
-A.on(HashTests).method((t) => t.hash_static_hash_works).add(FactAttribute);
+A<HashTests>().method((t) => t.hash_static_works).add(FactAttribute);
+A<HashTests>().method((t) => t.hash_static_hash_works).add(FactAttribute);

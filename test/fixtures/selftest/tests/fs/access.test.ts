@@ -61,7 +61,7 @@ export class accessTests {
   }
 }
 
-A.on(accessTests).method((t) => t.access_ExistingFile_ShouldNotThrow).add(FactAttribute);
-A.on(accessTests).method((t) => t.access_ExistingDirectory_ShouldNotThrow).add(FactAttribute);
-A.on(accessTests).method((t) => t.access_NonExistent_ShouldThrow).add(FactAttribute);
-A.on(accessTests).method((t) => t.access_ReadableFile_ShouldNotThrow).add(FactAttribute);
+A<accessTests>().method((t) => t.access_ExistingFile_ShouldNotThrow).add(FactAttribute);
+A<accessTests>().method((t) => t.access_ExistingDirectory_ShouldNotThrow).add(FactAttribute);
+A<accessTests>().method((t) => t.access_NonExistent_ShouldThrow).add(FactAttribute);
+A<accessTests>().method((t) => t.access_ReadableFile_ShouldNotThrow).add(FactAttribute);

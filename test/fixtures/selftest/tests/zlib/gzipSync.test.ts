@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { gzipSync } from "@tsonic/nodejs/zlib.js";
@@ -41,7 +41,7 @@ export class Zlib_gzipSyncTests {
   }
 
   public gzipSync_WithNullBuffer_ShouldThrow(): void {
-    assertThrows(() => gzipSync(null as unknown as Uint8Array));
+    assertThrows(() => gzipSync(asinterface<Uint8Array>(null)));
   }
 
   public gzipSync_EmptyBuffer_ShouldCompress(): void {
@@ -65,21 +65,21 @@ export class Zlib_gzipSyncTests {
   }
 }
 
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_ShouldCompressData)
   .add(FactAttribute);
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_ShouldHaveGzipMagicBytes)
   .add(FactAttribute);
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_WithCompressionLevel_ShouldWork)
   .add(FactAttribute);
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_EmptyBuffer_ShouldCompress)
   .add(FactAttribute);
-A.on(Zlib_gzipSyncTests)
+A<Zlib_gzipSyncTests>()
   .method((t) => t.gzipSync_LargeData_ShouldCompress)
   .add(FactAttribute);

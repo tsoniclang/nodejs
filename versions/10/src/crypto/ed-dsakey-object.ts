@@ -4,16 +4,16 @@
  * Baseline: nodejs-clr/src/nodejs/crypto/EdDSAKeyObject.cs
  */
 import { KeyObject } from "./key-object.ts";
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 
 /**
  * Represents an EdDSA public key.
  */
 export class EdDSAPublicKeyObject extends KeyObject {
-  private readonly _publicKeyData: unknown;
+  private readonly _publicKeyData: JsValue;
   private readonly _keyType: string;
 
-  public constructor(publicKeyData: unknown, keyType: string) {
+  public constructor(publicKeyData: JsValue, keyType: string) {
     super();
     this._publicKeyData = publicKeyData;
     this._keyType = keyType;
@@ -31,7 +31,7 @@ export class EdDSAPublicKeyObject extends KeyObject {
     return null;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     // TODO: actual EdDSA public key export in PEM/DER format
     return this._publicKeyData;
   }
@@ -41,10 +41,10 @@ export class EdDSAPublicKeyObject extends KeyObject {
  * Represents an EdDSA private key.
  */
 export class EdDSAPrivateKeyObject extends KeyObject {
-  private readonly _privateKeyData: unknown;
+  private readonly _privateKeyData: JsValue;
   private readonly _keyType: string;
 
-  public constructor(privateKeyData: unknown, keyType: string) {
+  public constructor(privateKeyData: JsValue, keyType: string) {
     super();
     this._privateKeyData = privateKeyData;
     this._keyType = keyType;
@@ -62,7 +62,7 @@ export class EdDSAPrivateKeyObject extends KeyObject {
     return null;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     // TODO: actual EdDSA private key export in PEM/DER format
     return this._privateKeyData;
   }

@@ -10,6 +10,6 @@ export class AnySrvRecordTests {
   }
 }
 
-A.on(AnySrvRecordTests)
+A<AnySrvRecordTests>()
   .method((t) => t.AnySrvRecord_HasCorrectType)
   .add(FactAttribute);

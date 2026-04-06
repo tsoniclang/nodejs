@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
@@ -50,7 +51,7 @@ export class ChildProcessSpawnTests {
     let exitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("close", (code: unknown, signal: unknown) => {
+    child.on("close", (code: JsValue, _signal: JsValue) => {
       closeEmitted = true;
       exitCode = code as number | null;
     });
@@ -68,18 +69,18 @@ export class ChildProcessSpawnTests {
   }
 }
 
-A.on(ChildProcessSpawnTests)
+A<ChildProcessSpawnTests>()
   .method((t) => t.spawn_SimpleCommand_ReturnsChildProcess)
   .add(FactAttribute);
-A.on(ChildProcessSpawnTests)
+A<ChildProcessSpawnTests>()
   .method((t) => t.spawn_HasSpawnProperties)
   .add(FactAttribute);
-A.on(ChildProcessSpawnTests)
+A<ChildProcessSpawnTests>()
   .method((t) => t.spawn_EmitsSpawnEvent)
   .add(FactAttribute);
-A.on(ChildProcessSpawnTests)
+A<ChildProcessSpawnTests>()
   .method((t) => t.spawn_EmitsCloseEvent)
   .add(FactAttribute);
-A.on(ChildProcessSpawnTests)
+A<ChildProcessSpawnTests>()
   .method((t) => t.spawn_InvalidCommand_ThrowsWithoutHandler)
   .add(FactAttribute);

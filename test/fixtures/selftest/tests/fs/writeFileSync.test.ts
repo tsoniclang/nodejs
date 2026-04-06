@@ -32,7 +32,7 @@ export class writeFileSyncTests {
   }
 }
 
-A.on(writeFileSyncTests).method((t) => t.writeFileSync_ShouldCreateAndWriteFile).add(FactAttribute);
-A.on(writeFileSyncTests)
+A<writeFileSyncTests>().method((t) => t.writeFileSync_ShouldCreateAndWriteFile).add(FactAttribute);
+A<writeFileSyncTests>()
   .method((t) => t.writeFileSync_ShouldOverwriteExistingFile)
   .add(FactAttribute);

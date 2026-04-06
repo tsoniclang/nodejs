@@ -19,6 +19,6 @@ export class CloseTests {
   }
 }
 
-A.on(CloseTests)
+A<CloseTests>()
   .method((t) => t.close_BoundSocket_ClosesSuccessfully)
   .add(FactAttribute);

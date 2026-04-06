@@ -6,8 +6,6 @@
  */
 
 import type { byte, int } from "@tsonic/core/types.js";
-import { Convert, Math as DotnetMath } from "@tsonic/dotnet/System.js";
-import { UTF8Encoding } from "@tsonic/dotnet/System.Text.js";
 
 export type BufferEncoding =
   | "utf8"
@@ -23,8 +21,6 @@ export type BufferEncoding =
   | "base64url"
   | "hex";
 
-const utf8 = new UTF8Encoding();
-
 const HEX_DIGITS = "0123456789abcdef";
 
 const toInt = (value: number): int => {
@@ -33,22 +29,6 @@ const toInt = (value: number): int => {
   }
 
   throw new RangeError("Expected Int32-compatible numeric value");
-};
-
-const toUint8Array = (bytes: byte[]): Uint8Array => {
-  const result = new Uint8Array(bytes.length);
-  for (let index = 0; index < bytes.length; index += 1) {
-    result[index] = bytes[index]!;
-  }
-  return result;
-};
-
-const toByteArray = (bytes: Uint8Array): byte[] => {
-  const result: byte[] = [];
-  for (let index = 0; index < bytes.length; index += 1) {
-    result.push(bytes[index]! as byte);
-  }
-  return result;
 };
 
 const copyRange = (
@@ -76,6 +56,49 @@ const stripCharacters = (value: string, shouldStrip: (char: string) => boolean):
   return result;
 };
 
+const toUint8Array = (values: readonly number[]): Uint8Array => {
+  const bytes = new Uint8Array(values.length);
+  for (let index = 0; index < values.length; index += 1) {
+    bytes[index] = values[index]! & 0xff;
+  }
+  return bytes;
+};
+
+const fromCharCode = (code: int): string =>
+  JSON.parse(
+    `"\\u${HEX_DIGITS.charAt((code >> 12) & 0x0f)}${HEX_DIGITS.charAt(
+      (code >> 8) & 0x0f
+    )}${HEX_DIGITS.charAt((code >> 4) & 0x0f)}${HEX_DIGITS.charAt(code & 0x0f)}"`
+  ) as string;
+
+const utf8StringToBytes = (value: string): Uint8Array => {
+  const encoded = encodeURIComponent(value);
+  const bytes: number[] = [];
+
+  for (let index = 0; index < encoded.length; index += 1) {
+    const char = encoded.charAt(index);
+    if (char === "%") {
+      const hex = encoded.substring(index + 1, index + 3);
+      bytes.push(parseInt(hex, 16));
+      index += 2;
+      continue;
+    }
+
+    bytes.push(encoded.charCodeAt(index));
+  }
+
+  return toUint8Array(bytes);
+};
+
+const utf8BytesToString = (bytes: Uint8Array): string => {
+  let encoded = "";
+  for (let index = 0; index < bytes.length; index += 1) {
+    const value = bytes[index]!;
+    encoded += `%${HEX_DIGITS.charAt((value >> 4) & 0x0f)}${HEX_DIGITS.charAt(value & 0x0f)}`;
+  }
+  return decodeURIComponent(encoded);
+};
+
 /**
  * Normalizes encoding name to a canonical lowercase form with no hyphens/underscores.
  */
@@ -97,7 +120,7 @@ export const stringToBytes = (
 
   switch (norm) {
     case "utf8":
-      return toUint8Array(utf8.GetBytes(str));
+      return utf8StringToBytes(str);
 
     case "ascii": {
       const out = new Uint8Array(str.length);
@@ -138,7 +161,7 @@ export const stringToBytes = (
 
     default:
       // Fall back to utf-8
-      return toUint8Array(utf8.GetBytes(str));
+      return utf8StringToBytes(str);
   }
 };
 
@@ -156,7 +179,7 @@ export const bytesToString = (
 
   switch (norm) {
     case "utf8":
-      return utf8.GetString(toByteArray(slice));
+      return utf8BytesToString(slice);
 
     case "ascii": {
       let result = "";
@@ -194,7 +217,7 @@ export const bytesToString = (
       return base64ToBase64Url(bytesToBase64(slice));
 
     default:
-      return utf8.GetString(toByteArray(slice));
+      return utf8BytesToString(slice);
   }
 };
 
@@ -209,7 +232,7 @@ export const byteLengthOfString = (
 
   switch (norm) {
     case "utf8":
-      return utf8.GetBytes(str).length;
+      return utf8StringToBytes(str).length;
 
     case "ascii":
     case "latin1":
@@ -221,7 +244,7 @@ export const byteLengthOfString = (
       return str.length * 2;
 
     case "hex":
-      return toInt(DotnetMath.Floor(str.length / 2.0));
+      return toInt(Math.floor(str.length / 2));
 
     case "base64":
     case "base64url": {
@@ -231,11 +254,11 @@ export const byteLengthOfString = (
         stripped = base64UrlToBase64(stripped);
       }
       const pad = stripped.endsWith("==") ? 2 : stripped.endsWith("=") ? 1 : 0;
-      return toInt(DotnetMath.Floor((stripped.length * 3.0) / 4.0) - pad);
+      return toInt(Math.floor((stripped.length * 3) / 4) - pad);
     }
 
     default:
-      return utf8.GetBytes(str).length;
+      return utf8StringToBytes(str).length;
   }
 };
 
@@ -358,4 +381,3 @@ export const base64ToBase64Url = (base64: string): string => {
   }
   return result;
 };
-const fromCharCode = (code: int): string => Convert.ToChar(code).toString();

@@ -13,6 +13,6 @@ export class ResolveAnyTests {
   }
 }
 
-A.on(ResolveAnyTests)
+A<ResolveAnyTests>()
   .method((t) => t.resolveAny_ValidDomain_CallsCallback)
   .add(FactAttribute);

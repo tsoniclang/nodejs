@@ -20,9 +20,9 @@ export class RelativeTests {
   }
 }
 
-A.on(RelativeTests)
+A<RelativeTests>()
   .method((t) => t.relative_calculates_non_absolute_path)
   .add(FactAttribute);
-A.on(RelativeTests)
+A<RelativeTests>()
   .method((t) => t.relative_same_path_returns_empty_string)
   .add(FactAttribute);

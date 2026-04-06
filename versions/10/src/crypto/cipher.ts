@@ -1,3 +1,4 @@
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   concatBytes,
   decodeInputBytes,
@@ -36,20 +37,21 @@ export class Cipher {
    */
   public update(data: string, inputEncoding?: string, outputEncoding?: string): string;
   public update(data: Uint8Array, outputEncoding?: string): string;
-  public update(
-    data: string | Uint8Array,
-    inputOrOutputEncoding?: string,
+  public update(_data: any, _inputOrOutputEncoding?: any, _outputEncoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public update_string(
+    data: string,
+    inputEncoding?: string,
     _outputEncoding?: string,
   ): string {
-    if (this._finalized) {
-      throw new Error("Cipher already finalized");
-    }
+    this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
+    return "";
+  }
 
-    if (typeof data === "string") {
-      this._chunks.push(decodeInputBytes(data, inputOrOutputEncoding ?? "utf8"));
-    } else {
-      this._chunks.push(data);
-    }
+  public update_bytes(data: Uint8Array, _outputEncoding?: string): string {
+    this.pushChunk(data);
     return "";
   }
 
@@ -58,25 +60,16 @@ export class Cipher {
    */
   public final(outputEncoding: string): string;
   public final(): Uint8Array;
-  public final(outputEncoding?: string): string | Uint8Array {
-    if (this._finalized) {
-      throw new Error("Cipher already finalized");
-    }
+  public final(_outputEncoding?: any): any {
+    throw new Error("stub");
+  }
 
-    this._finalized = true;
-    const bytes = transformAes(
-      this._algorithm,
-      this._key,
-      this._iv,
-      concatBytes(...this._chunks),
-      true,
-    );
+  public final_string(outputEncoding: string): string {
+    return encodeOutputBytes(this.finalizeBytes(), outputEncoding) as string;
+  }
 
-    if (typeof outputEncoding === "string") {
-      return encodeOutputBytes(bytes, outputEncoding) as string;
-    }
-
-    return bytes;
+  public final_bytes(): Uint8Array {
+    return this.finalizeBytes();
   }
 
   /**
@@ -124,4 +117,32 @@ export class Cipher {
     this._gcmAad = buffer;
     void this._gcmAad;
   }
+
+  private pushChunk(chunk: Uint8Array): void {
+    if (this._finalized) {
+      throw new Error("Cipher already finalized");
+    }
+
+    this._chunks.push(chunk);
+  }
+
+  private finalizeBytes(): Uint8Array {
+    if (this._finalized) {
+      throw new Error("Cipher already finalized");
+    }
+
+    this._finalized = true;
+    return transformAes(
+      this._algorithm,
+      this._key,
+      this._iv,
+      concatBytes(...this._chunks),
+      true,
+    );
+  }
 }
+
+O<Cipher>().method(x => x.update_string).family(x => x.update);
+O<Cipher>().method(x => x.update_bytes).family(x => x.update);
+O<Cipher>().method(x => x.final_string).family(x => x.final);
+O<Cipher>().method(x => x.final_bytes).family(x => x.final);

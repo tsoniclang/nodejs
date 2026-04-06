@@ -8,6 +8,7 @@
  * are substrate-dependent, so they are stubbed with TODO markers.
  */
 
+import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 import { SecureContext } from "./secure-context.ts";
 import { SecureContextOptions, TlsOptions } from "./options.ts";
@@ -30,12 +31,6 @@ export class TLSServer extends EventEmitter {
   private _options: TlsOptions | null = null;
   private _ticketKeys: Uint8Array | null = null;
 
-  constructor();
-  constructor(secureConnectionListener: (socket: TLSSocket) => void);
-  constructor(
-    options: TlsOptions,
-    secureConnectionListener?: ((socket: TLSSocket) => void) | null
-  );
   constructor(
     optionsOrListener?: TlsOptions | ((socket: TLSSocket) => void) | null,
     secureConnectionListener?: ((socket: TLSSocket) => void) | null
@@ -67,7 +62,7 @@ export class TLSServer extends EventEmitter {
     }
 
     if (listener !== null) {
-      this.on("secureConnection", (...args: unknown[]) => {
+      this.on("secureConnection", (...args: JsValue[]) => {
         listener(args[0] as TLSSocket);
       });
     }
@@ -81,7 +76,7 @@ export class TLSServer extends EventEmitter {
    *
    * TODO: Implement SNI context switching.
    */
-  addContext(_hostname: string, _context: unknown): void {
+  addContext(_hostname: string, _context: JsValue): void {
     // TODO: map hostname to SecureContext for SNI
   }
 

@@ -21,9 +21,9 @@ export class ConsoleConstructorTests {
   }
 }
 
-A.on(ConsoleConstructorTests)
+A<ConsoleConstructorTests>()
   .method((t) => t.console_property_should_be_available)
   .add(FactAttribute);
-A.on(ConsoleConstructorTests)
+A<ConsoleConstructorTests>()
   .method((t) => t.ConsoleConstructor_instance_should_forward_methods)
   .add(FactAttribute);

@@ -14,6 +14,6 @@ export class MxRecordTests {
   }
 }
 
-A.on(MxRecordTests)
+A<MxRecordTests>()
   .method((t) => t.MxRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

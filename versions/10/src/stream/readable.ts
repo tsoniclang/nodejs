@@ -3,12 +3,12 @@
  *
  * Baseline: nodejs-clr/src/nodejs/stream/Readable.cs
  */
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 
 import { Stream } from "./stream.ts";
 
 export class Readable extends Stream {
-  private _buffer: unknown[] = [];
+  private _buffer: JsValue[] = [];
   private _ended = false;
   private _flowing = false;
   private _encoding: string | undefined;
@@ -54,7 +54,7 @@ export class Readable extends Stream {
    * @param _size - Optional argument to specify how much data to read.
    * @returns The data read, or null if no data is available.
    */
-  public read(_size?: int): unknown {
+  public read(_size?: int): JsValue | null {
     if (this._buffer.length === 0) {
       if (this._ended) {
         this.emit("end");
@@ -68,7 +68,7 @@ export class Readable extends Stream {
       this.emit("end");
     }
 
-    return chunk;
+    return chunk === undefined ? null : chunk;
   }
 
   /**
@@ -107,7 +107,9 @@ export class Readable extends Stream {
     // Emit buffered data
     while (this._buffer.length > 0) {
       const chunk = this._buffer.shift();
-      this.emit("data", chunk);
+      if (chunk !== undefined) {
+        this.emit("data", chunk);
+      }
     }
 
     if (this._ended) {
@@ -142,7 +144,7 @@ export class Readable extends Stream {
    *
    * @param chunk - Chunk of data to unshift onto the read queue.
    */
-  public unshift(chunk: unknown): void {
+  public unshift(chunk: JsValue): void {
     if (chunk !== null && chunk !== undefined) {
       this._buffer.unshift(chunk);
     }
@@ -156,7 +158,7 @@ export class Readable extends Stream {
    * @param _encoding - Optional encoding for string chunks.
    * @returns True if the internal buffer has not exceeded highWaterMark.
    */
-  public push(chunk: unknown, _encoding?: string): boolean {
+  public push(chunk: JsValue | null, _encoding?: string): boolean {
     if (chunk === null) {
       // Pushing null signals end of stream
       this._ended = true;
@@ -172,7 +174,9 @@ export class Readable extends Stream {
       // In flowing mode, emit data immediately
       while (this._buffer.length > 0) {
         const data = this._buffer.shift();
-        this.emit("data", data);
+        if (data !== undefined) {
+          this.emit("data", data);
+        }
       }
 
       if (this._ended) {

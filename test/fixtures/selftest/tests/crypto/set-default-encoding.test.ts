@@ -16,4 +16,4 @@ export class SetDefaultEncodingTests {
   }
 }
 
-A.on(SetDefaultEncodingTests).method((t) => t.setDefaultEncoding_does_not_throw).add(FactAttribute);
+A<SetDefaultEncodingTests>().method((t) => t.setDefaultEncoding_does_not_throw).add(FactAttribute);

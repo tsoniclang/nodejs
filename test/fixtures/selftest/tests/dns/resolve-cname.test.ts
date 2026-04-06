@@ -13,6 +13,6 @@ export class ResolveCnameTests {
   }
 }
 
-A.on(ResolveCnameTests)
+A<ResolveCnameTests>()
   .method((t) => t.resolveCname_ValidDomain_CallsCallback)
   .add(FactAttribute);

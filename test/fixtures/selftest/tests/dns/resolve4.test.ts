@@ -34,12 +34,12 @@ export class Resolve4Tests {
   }
 }
 
-A.on(Resolve4Tests)
+A<Resolve4Tests>()
   .method((t) => t.resolve4_ValidDomain_CallsCallback)
   .add(FactAttribute);
-A.on(Resolve4Tests)
+A<Resolve4Tests>()
   .method((t) => t.resolve4_WithTtlOption_CallsCallback)
   .add(FactAttribute);
-A.on(Resolve4Tests)
+A<Resolve4Tests>()
   .method((t) => t.resolve4_WithoutTtlOption_CallsCallback)
   .add(FactAttribute);

@@ -10,6 +10,6 @@ export class AnySoaRecordTests {
   }
 }
 
-A.on(AnySoaRecordTests)
+A<AnySoaRecordTests>()
   .method((t) => t.AnySoaRecord_HasCorrectType)
   .add(FactAttribute);

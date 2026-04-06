@@ -24,6 +24,6 @@ export class ChildProcessExecFileTests {
   }
 }
 
-A.on(ChildProcessExecFileTests)
+A<ChildProcessExecFileTests>()
   .method((t) => t.execFile_CallsCallback)
   .add(FactAttribute);

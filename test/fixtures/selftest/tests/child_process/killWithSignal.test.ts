@@ -32,9 +32,9 @@ export class ChildProcessKillWithSignalTests {
   }
 }
 
-A.on(ChildProcessKillWithSignalTests)
+A<ChildProcessKillWithSignalTests>()
   .method((t) => t.killWithSignal_SetsSignalCode)
   .add(FactAttribute);
-A.on(ChildProcessKillWithSignalTests)
+A<ChildProcessKillWithSignalTests>()
   .method((t) => t.killWithSignal_WithDifferentSignals_Works)
   .add(FactAttribute);

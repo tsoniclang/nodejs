@@ -20,6 +20,6 @@ export class ListenOptionsTests {
   }
 }
 
-A.on(ListenOptionsTests)
+A<ListenOptionsTests>()
   .method((t) => t.all_properties_can_be_set)
   .add(FactAttribute);

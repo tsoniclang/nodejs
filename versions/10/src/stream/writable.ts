@@ -4,10 +4,11 @@
  *
  * Baseline: nodejs-clr/src/nodejs/stream/Writable.cs
  */
+import type { JsValue } from "@tsonic/core/types.js";
 import { Stream } from "./stream.ts";
 
 type WriteRequest = {
-  readonly chunk: unknown;
+  readonly chunk: JsValue;
   readonly encoding: string | undefined;
   readonly callback: (() => void) | undefined;
 };
@@ -54,7 +55,7 @@ export class Writable extends Stream {
    *   'drain' event to be emitted before continuing to write.
    */
   public write(
-    chunk: unknown,
+    chunk: JsValue,
     encoding?: string,
     callback?: () => void,
   ): boolean {
@@ -87,16 +88,16 @@ export class Writable extends Stream {
    * @param callback - Optional callback for when the stream has finished.
    */
   public end(
-    chunk?: unknown,
+    chunk?: JsValue,
     encoding?: string,
     callback?: () => void,
-  ): void {
+  ): Writable {
     if (chunk !== undefined && chunk !== null) {
       this.write(chunk, encoding);
     }
 
     if (callback !== undefined) {
-      this.once("finish", (..._args: unknown[]) => {
+      this.once("finish", (..._args: JsValue[]) => {
         callback();
       });
     }
@@ -110,6 +111,8 @@ export class Writable extends Stream {
     if (this._buffer.length === 0) {
       this.emit("finish");
     }
+
+    return this;
   }
 
   /**
@@ -177,7 +180,7 @@ export class Writable extends Stream {
    * @param callback - Callback for when write is complete.
    */
   protected _write(
-    _chunk: unknown,
+    _chunk: JsValue,
     _encoding: string | undefined,
     callback: () => void,
   ): void {

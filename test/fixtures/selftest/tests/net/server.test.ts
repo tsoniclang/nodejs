@@ -63,27 +63,27 @@ export class ServerTests {
   }
 }
 
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.constructor_creates_instance)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.constructor_with_listener_creates_instance)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.constructor_with_options_creates_instance)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.listening_initially_false)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.max_connections_can_be_set)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.unref_returns_server)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.ref_returns_server)
   .add(FactAttribute);
-A.on(ServerTests)
+A<ServerTests>()
   .method((t) => t.get_connections_returns_count)
   .add(FactAttribute);

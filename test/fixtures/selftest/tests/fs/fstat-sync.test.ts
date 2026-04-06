@@ -94,19 +94,19 @@ export class fstatSyncTests {
   }
 }
 
-A.on(fstatSyncTests).method((t) => t.fstatSync_ShouldReturnStats).add(FactAttribute);
-A.on(fstatSyncTests)
+A<fstatSyncTests>().method((t) => t.fstatSync_ShouldReturnStats).add(FactAttribute);
+A<fstatSyncTests>()
   .method((t) => t.fstatSync_ShouldReturnCorrectSize)
   .add(FactAttribute);
-A.on(fstatSyncTests)
+A<fstatSyncTests>()
   .method((t) => t.fstatSync_ShouldHaveValidTimestamps)
   .add(FactAttribute);
-A.on(fstatSyncTests)
+A<fstatSyncTests>()
   .method((t) => t.fstatSync_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(fstatSyncTests)
+A<fstatSyncTests>()
   .method((t) => t.fstatSync_AfterWrite_ShouldReflectNewSize)
   .add(FactAttribute);
-A.on(fstatSyncTests)
+A<fstatSyncTests>()
   .method((t) => t.fstatSync_EmptyFile_ShouldHaveZeroSize)
   .add(FactAttribute);

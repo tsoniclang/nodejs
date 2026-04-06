@@ -53,15 +53,15 @@ export class truncateSyncTests {
   }
 }
 
-A.on(truncateSyncTests)
+A<truncateSyncTests>()
   .method((t) => t.truncateSync_ShouldTruncateFileToLength)
   .add(FactAttribute);
-A.on(truncateSyncTests)
+A<truncateSyncTests>()
   .method((t) => t.truncateSync_ZeroLength_ShouldEmptyFile)
   .add(FactAttribute);
-A.on(truncateSyncTests)
+A<truncateSyncTests>()
   .method((t) => t.truncateSync_LongerLength_ShouldPadWithZeros)
   .add(FactAttribute);
-A.on(truncateSyncTests)
+A<truncateSyncTests>()
   .method((t) => t.truncateSync_NonExistentFile_ShouldThrow)
   .add(FactAttribute);

@@ -181,36 +181,36 @@ export class writeSyncTests {
   }
 }
 
-A.on(writeSyncTests).method((t) => t.writeSync_WithBytes_ShouldWriteToFile).add(FactAttribute);
-A.on(writeSyncTests).method((t) => t.writeSync_WithString_ShouldWriteToFile).add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>().method((t) => t.writeSync_WithBytes_ShouldWriteToFile).add(FactAttribute);
+A<writeSyncTests>().method((t) => t.writeSync_WithString_ShouldWriteToFile).add(FactAttribute);
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithOffset_ShouldWritePartialBuffer)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithPosition_ShouldWriteAtSpecificPosition)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_MultipleCalls_ShouldAdvanceFilePosition)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithAppendFlag_ShouldAppendToFile)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithDifferentEncodings_ShouldWork)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithInvalidOffset_ShouldThrow)
   .add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>()
   .method((t) => t.writeSync_WithInvalidLength_ShouldThrow)
   .add(FactAttribute);
-A.on(writeSyncTests).method((t) => t.writeSync_EmptyString_ShouldCreateEmptyFile).add(FactAttribute);
-A.on(writeSyncTests)
+A<writeSyncTests>().method((t) => t.writeSync_EmptyString_ShouldCreateEmptyFile).add(FactAttribute);
+A<writeSyncTests>()
   .method((t) => t.writeSync_LargeData_ShouldWriteCompletely)
   .add(FactAttribute);

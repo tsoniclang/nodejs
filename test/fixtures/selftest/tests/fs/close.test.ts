@@ -39,8 +39,8 @@ export class closeTests {
   }
 }
 
-A.on(closeTests).method((t) => t.close_ShouldCloseValidDescriptor).add(FactAttribute);
-A.on(closeTests)
+A<closeTests>().method((t) => t.close_ShouldCloseValidDescriptor).add(FactAttribute);
+A<closeTests>()
   .method((t) => t.close_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(closeTests).method((t) => t.close_AfterWrite_ShouldFlushAndClose).add(FactAttribute);
+A<closeTests>().method((t) => t.close_AfterWrite_ShouldFlushAndClose).add(FactAttribute);

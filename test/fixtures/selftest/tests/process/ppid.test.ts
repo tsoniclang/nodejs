@@ -15,7 +15,7 @@ export class ProcessPpidTests {
   }
 }
 
-A.on(ProcessPpidTests).method((t) => t.ppid_is_non_negative).add(FactAttribute);
-A.on(ProcessPpidTests)
+A<ProcessPpidTests>().method((t) => t.ppid_is_non_negative).add(FactAttribute);
+A<ProcessPpidTests>()
   .method((t) => t.ppid_differs_from_pid_when_available)
   .add(FactAttribute);

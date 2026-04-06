@@ -14,6 +14,6 @@ export class getCACertificatesTests {
   }
 }
 
-A.on(getCACertificatesTests)
+A<getCACertificatesTests>()
   .method((t) => t.getCACertificates_ReturnsArray)
   .add(FactAttribute);

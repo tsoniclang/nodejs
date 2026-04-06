@@ -20,6 +20,6 @@ export class ConnectionOptionsTests {
   }
 }
 
-A.on(ConnectionOptionsTests)
+A<ConnectionOptionsTests>()
   .method((t) => t.ConnectionOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

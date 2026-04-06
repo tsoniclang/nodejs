@@ -60,24 +60,24 @@ export class BlockListTests {
   }
 }
 
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.constructor_creates_instance)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.add_address_adds_to_list)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.add_address_with_type_adds_to_list)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.check_not_blocked_returns_false)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.add_range_blocks_range)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.add_subnet_blocks_subnet)
   .add(FactAttribute);
-A.on(BlockListTests)
+A<BlockListTests>()
   .method((t) => t.get_rules_returns_all_rules)
   .add(FactAttribute);

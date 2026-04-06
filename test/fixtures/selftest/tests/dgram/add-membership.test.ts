@@ -16,6 +16,6 @@ export class AddMembershipTests {
   }
 }
 
-A.on(AddMembershipTests)
+A<AddMembershipTests>()
   .method((t) => t.addMembership_JoinsMulticastGroup)
   .add(FactAttribute);

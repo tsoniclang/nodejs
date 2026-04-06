@@ -10,6 +10,6 @@ export class GetDefaultAutoSelectFamilyTests {
   }
 }
 
-A.on(GetDefaultAutoSelectFamilyTests)
+A<GetDefaultAutoSelectFamilyTests>()
   .method((t) => t.get_default_auto_select_family_returns_boolean)
   .add(FactAttribute);

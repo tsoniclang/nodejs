@@ -64,21 +64,21 @@ export class ProcessChdirTests {
   }
 }
 
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_changes_current_directory)
   .add(FactAttribute);
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_updates_dotnet_current_directory)
   .add(FactAttribute);
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_supports_relative_paths)
   .add(FactAttribute);
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_rejects_missing_directory)
   .add(FactAttribute);
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_rejects_empty_directory)
   .add(FactAttribute);
-A.on(ProcessChdirTests)
+A<ProcessChdirTests>()
   .method((t) => t.chdir_rejects_non_existent_directory)
   .add(FactAttribute);

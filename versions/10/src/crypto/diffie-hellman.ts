@@ -1,3 +1,4 @@
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   decodeInputBytes,
   encodeOutputBytes,
@@ -8,13 +9,6 @@ import {
   randomUnsignedLessThan,
 } from "./crypto-helpers.ts";
 
-function toDiffieHellmanPublicKeyBytes(
-  otherPublicKey: string,
-  inputEncoding?: string,
-): Uint8Array;
-function toDiffieHellmanPublicKeyBytes(
-  otherPublicKey: Uint8Array,
-): Uint8Array;
 function toDiffieHellmanPublicKeyBytes(
   otherPublicKey: string | Uint8Array,
   inputEncoding?: string,
@@ -66,9 +60,6 @@ export class DiffieHellman {
   private _privateKey: Uint8Array | null = null;
   private _publicKey: Uint8Array | null = null;
 
-  public constructor(prime: Uint8Array, generator: Uint8Array);
-  public constructor(primeLength: number);
-  public constructor(primeLength: number, generator: number);
   public constructor(
     primeOrLength: Uint8Array | number,
     generatorOrValue?: Uint8Array | number
@@ -90,20 +81,16 @@ export class DiffieHellman {
    */
   public generateKeys(encoding?: undefined): Uint8Array;
   public generateKeys(encoding: string): string;
-  public generateKeys(encoding?: string): string | Uint8Array {
-    this._privateKey = randomUnsignedLessThan(this._prime);
-    this._publicKey = modPowBytes(
-      this._generator,
-      this._privateKey,
-      this._prime,
-      this._prime.length,
-    );
+  public generateKeys(_encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(this._publicKey, encoding) as string;
-    }
+  public generateKeys_bytes(_encoding?: undefined): Uint8Array {
+    return this.generateKeysBytes();
+  }
 
-    return this._publicKey;
+  public generateKeys_string(encoding: string): string {
+    return encodeOutputBytes(this.generateKeysBytes(), encoding) as string;
   }
 
   /**
@@ -120,36 +107,38 @@ export class DiffieHellman {
     otherPublicKey: string | Uint8Array,
     inputOrOutputEncoding?: string,
     outputEncoding?: string
-  ): string | Uint8Array {
-    if (this._privateKey === null) {
-      throw new Error("Must call generateKeys() first");
-    }
+  ): any {
+    throw new Error("stub");
+  }
 
-    let publicKeyBytes: Uint8Array;
-    if (typeof otherPublicKey === "string") {
-      publicKeyBytes = toDiffieHellmanPublicKeyBytes(
-        otherPublicKey,
-        inputOrOutputEncoding,
-      );
-    } else {
-      publicKeyBytes = toDiffieHellmanPublicKeyBytes(otherPublicKey);
-    }
-    const secret = modPowBytes(
-      publicKeyBytes,
-      this._privateKey,
-      this._prime,
-      this._prime.length,
+  public computeSecret_string(
+    otherPublicKey: string,
+    inputEncoding?: string,
+    outputEncoding?: string
+  ): string {
+    return encodeDiffieHellmanSecret(
+      this.computeSecretBytes(
+        toDiffieHellmanPublicKeyBytes(otherPublicKey, inputEncoding),
+      ),
+      outputEncoding,
     );
+  }
 
-    if (typeof otherPublicKey === "string") {
-      return encodeDiffieHellmanSecret(secret, outputEncoding);
-    }
+  public computeSecret_bytes(
+    otherPublicKey: Uint8Array,
+    _outputEncoding?: undefined
+  ): Uint8Array {
+    return this.computeSecretBytes(otherPublicKey);
+  }
 
-    if (typeof inputOrOutputEncoding === "string") {
-      return encodeOutputString(secret, inputOrOutputEncoding);
-    }
-
-    return secret;
+  public computeSecret_bytes_string(
+    otherPublicKey: Uint8Array,
+    outputEncoding: string
+  ): string {
+    return encodeOutputString(
+      this.computeSecretBytes(otherPublicKey),
+      outputEncoding,
+    );
   }
 
   /**
@@ -157,12 +146,16 @@ export class DiffieHellman {
    */
   public getPrime(encoding?: undefined): Uint8Array;
   public getPrime(encoding: string): string;
-  public getPrime(encoding?: string): string | Uint8Array {
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(this._prime, encoding) as string;
-    }
+  public getPrime(_encoding?: any): any {
+    throw new Error("stub");
+  }
 
+  public getPrime_bytes(_encoding?: undefined): Uint8Array {
     return this._prime;
+  }
+
+  public getPrime_string(encoding: string): string {
+    return encodeOutputBytes(this._prime, encoding) as string;
   }
 
   /**
@@ -170,12 +163,16 @@ export class DiffieHellman {
    */
   public getGenerator(encoding?: undefined): Uint8Array;
   public getGenerator(encoding: string): string;
-  public getGenerator(encoding?: string): string | Uint8Array {
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(this._generator, encoding) as string;
-    }
+  public getGenerator(_encoding?: any): any {
+    throw new Error("stub");
+  }
 
+  public getGenerator_bytes(_encoding?: undefined): Uint8Array {
     return this._generator;
+  }
+
+  public getGenerator_string(encoding: string): string {
+    return encodeOutputBytes(this._generator, encoding) as string;
   }
 
   /**
@@ -183,16 +180,16 @@ export class DiffieHellman {
    */
   public getPublicKey(encoding?: undefined): Uint8Array;
   public getPublicKey(encoding: string): string;
-  public getPublicKey(encoding?: string): string | Uint8Array {
-    if (this._publicKey === null) {
-      throw new Error("Must call generateKeys() first");
-    }
+  public getPublicKey(_encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(this._publicKey, encoding) as string;
-    }
+  public getPublicKey_bytes(_encoding?: undefined): Uint8Array {
+    return this.requirePublicKey();
+  }
 
-    return this._publicKey;
+  public getPublicKey_string(encoding: string): string {
+    return encodeOutputBytes(this.requirePublicKey(), encoding) as string;
   }
 
   /**
@@ -200,16 +197,16 @@ export class DiffieHellman {
    */
   public getPrivateKey(encoding?: undefined): Uint8Array;
   public getPrivateKey(encoding: string): string;
-  public getPrivateKey(encoding?: string): string | Uint8Array {
-    if (this._privateKey === null) {
-      throw new Error("Must call generateKeys() first");
-    }
+  public getPrivateKey(_encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    if (typeof encoding === "string") {
-      return encodeOutputBytes(this._privateKey, encoding) as string;
-    }
+  public getPrivateKey_bytes(_encoding?: undefined): Uint8Array {
+    return this.requirePrivateKey();
+  }
 
-    return this._privateKey;
+  public getPrivateKey_string(encoding: string): string {
+    return encodeOutputBytes(this.requirePrivateKey(), encoding) as string;
   }
 
   /**
@@ -217,11 +214,16 @@ export class DiffieHellman {
    */
   public setPublicKey(publicKey: string, encoding?: string): void;
   public setPublicKey(publicKey: Uint8Array): void;
-  public setPublicKey(publicKey: string | Uint8Array, encoding?: string): void {
-    this._publicKey =
-      typeof publicKey === "string"
-        ? decodeInputBytes(publicKey, encoding ?? "base64")
-        : publicKey;
+  public setPublicKey(_publicKey: any, _encoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public setPublicKey_string(publicKey: string, encoding?: string): void {
+    this._publicKey = decodeInputBytes(publicKey, encoding ?? "base64");
+  }
+
+  public setPublicKey_bytes(publicKey: Uint8Array): void {
+    this._publicKey = publicKey;
   }
 
   /**
@@ -229,11 +231,60 @@ export class DiffieHellman {
    */
   public setPrivateKey(privateKey: string, encoding?: string): void;
   public setPrivateKey(privateKey: Uint8Array): void;
-  public setPrivateKey(privateKey: string | Uint8Array, encoding?: string): void {
-    this._privateKey =
-      typeof privateKey === "string"
-        ? decodeInputBytes(privateKey, encoding ?? "base64")
-        : privateKey;
+  public setPrivateKey(_privateKey: any, _encoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public setPrivateKey_string(privateKey: string, encoding?: string): void {
+    this.setPrivateKeyBytes(decodeInputBytes(privateKey, encoding ?? "base64"));
+  }
+
+  public setPrivateKey_bytes(privateKey: Uint8Array): void {
+    this.setPrivateKeyBytes(privateKey);
+  }
+
+  private generateKeysBytes(): Uint8Array {
+    this._privateKey = randomUnsignedLessThan(this._prime);
+    this._publicKey = modPowBytes(
+      this._generator,
+      this._privateKey,
+      this._prime,
+      this._prime.length,
+    );
+    return this._publicKey;
+  }
+
+  private computeSecretBytes(otherPublicKey: Uint8Array): Uint8Array {
+    if (this._privateKey === null) {
+      throw new Error("Must call generateKeys() first");
+    }
+
+    return modPowBytes(
+      otherPublicKey,
+      this._privateKey,
+      this._prime,
+      this._prime.length,
+    );
+  }
+
+  private requirePublicKey(): Uint8Array {
+    if (this._publicKey === null) {
+      throw new Error("Must call generateKeys() first");
+    }
+
+    return this._publicKey;
+  }
+
+  private requirePrivateKey(): Uint8Array {
+    if (this._privateKey === null) {
+      throw new Error("Must call generateKeys() first");
+    }
+
+    return this._privateKey;
+  }
+
+  private setPrivateKeyBytes(privateKey: Uint8Array): void {
+    this._privateKey = privateKey;
     this._publicKey = modPowBytes(
       this._generator,
       this._privateKey,
@@ -249,3 +300,21 @@ export class DiffieHellman {
     return 0;
   }
 }
+
+O<DiffieHellman>().method(x => x.generateKeys_bytes).family(x => x.generateKeys);
+O<DiffieHellman>().method(x => x.generateKeys_string).family(x => x.generateKeys);
+O<DiffieHellman>().method(x => x.computeSecret_string).family(x => x.computeSecret);
+O<DiffieHellman>().method(x => x.computeSecret_bytes).family(x => x.computeSecret);
+O<DiffieHellman>().method(x => x.computeSecret_bytes_string).family(x => x.computeSecret);
+O<DiffieHellman>().method(x => x.getPrime_bytes).family(x => x.getPrime);
+O<DiffieHellman>().method(x => x.getPrime_string).family(x => x.getPrime);
+O<DiffieHellman>().method(x => x.getGenerator_bytes).family(x => x.getGenerator);
+O<DiffieHellman>().method(x => x.getGenerator_string).family(x => x.getGenerator);
+O<DiffieHellman>().method(x => x.getPublicKey_bytes).family(x => x.getPublicKey);
+O<DiffieHellman>().method(x => x.getPublicKey_string).family(x => x.getPublicKey);
+O<DiffieHellman>().method(x => x.getPrivateKey_bytes).family(x => x.getPrivateKey);
+O<DiffieHellman>().method(x => x.getPrivateKey_string).family(x => x.getPrivateKey);
+O<DiffieHellman>().method(x => x.setPublicKey_string).family(x => x.setPublicKey);
+O<DiffieHellman>().method(x => x.setPublicKey_bytes).family(x => x.setPublicKey);
+O<DiffieHellman>().method(x => x.setPrivateKey_string).family(x => x.setPrivateKey);
+O<DiffieHellman>().method(x => x.setPrivateKey_bytes).family(x => x.setPrivateKey);

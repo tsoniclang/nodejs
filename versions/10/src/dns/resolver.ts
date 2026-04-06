@@ -3,6 +3,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/dns/Resolver.cs
  */
+import type { JsValue } from "@tsonic/core/types.js";
 import type { ResolverOptions, ResolveOptions } from "./options.ts";
 import {
   SoaRecord,
@@ -87,7 +88,7 @@ export class Resolver {
   }
 
   /** Uses the DNS protocol to resolve IPv6 addresses with options. */
-  public resolve6WithOptions(hostname: string, options: ResolveOptions, callback: (err: Error | null, result: object) => void): void {
+  public resolve6WithOptions(hostname: string, options: ResolveOptions, callback: (err: Error | null, result: JsValue) => void): void {
     if (this._cancelled) {
       callback(new Error("ECANCELLED"), []);
       return;
@@ -97,7 +98,7 @@ export class Resolver {
   }
 
   /** Uses the DNS protocol to resolve all records (ANY query). */
-  public resolveAny(hostname: string, callback: (err: Error | null, records: Array<object>) => void): void {
+  public resolveAny(hostname: string, callback: (err: Error | null, records: Array<JsValue>) => void): void {
     if (this._cancelled) {
       callback(new Error("ECANCELLED"), []);
       return;

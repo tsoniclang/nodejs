@@ -19,5 +19,5 @@ export class GetCiphersTests {
   }
 }
 
-A.on(GetCiphersTests).method((t) => t.getCiphers_returns_non_empty_list).add(FactAttribute);
-A.on(GetCiphersTests).method((t) => t.getCiphers_contains_expected_algorithms).add(FactAttribute);
+A<GetCiphersTests>().method((t) => t.getCiphers_returns_non_empty_list).add(FactAttribute);
+A<GetCiphersTests>().method((t) => t.getCiphers_contains_expected_algorithms).add(FactAttribute);

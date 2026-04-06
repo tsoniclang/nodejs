@@ -4,9 +4,9 @@
  * Baseline: nodejs-clr/src/nodejs/dns/dns.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 import { LookupAddress, LookupOptions } from "./options.ts";
 import { SoaRecord } from "./records.ts";
 import type { CaaRecord, MxRecord, NaptrRecord, SrvRecord, TlsaRecord } from "./records.ts";
@@ -158,7 +158,7 @@ export const resolve = (
 export const resolveWithRrtype = (
   hostname: string,
   rrtype: string,
-  callback: (err: Error | null, records: object) => void,
+  callback: (err: Error | null, records: JsValue) => void,
 ): void => {
   // TODO: dispatch by rrtype to specific resolve functions
   callback(null, []);
@@ -179,7 +179,7 @@ export const resolve4 = (
 export const resolve4WithOptions = (
   hostname: string,
   options: ResolveOptions,
-  callback: (err: Error | null, result: object) => void,
+  callback: (err: Error | null, result: JsValue) => void,
 ): void => {
   // TODO: if options.ttl, return RecordWithTtl[]; otherwise string[]
   callback(null, []);
@@ -200,7 +200,7 @@ export const resolve6 = (
 export const resolve6WithOptions = (
   hostname: string,
   options: ResolveOptions,
-  callback: (err: Error | null, result: object) => void,
+  callback: (err: Error | null, result: JsValue) => void,
 ): void => {
   // TODO: if options.ttl, return RecordWithTtl[]; otherwise string[]
   callback(null, []);

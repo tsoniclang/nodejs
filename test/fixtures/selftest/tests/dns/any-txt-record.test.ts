@@ -14,6 +14,6 @@ export class AnyTxtRecordTests {
   }
 }
 
-A.on(AnyTxtRecordTests)
+A<AnyTxtRecordTests>()
   .method((t) => t.AnyTxtRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

@@ -42,10 +42,10 @@ export class chmodSyncTests {
   }
 }
 
-A.on(chmodSyncTests)
+A<chmodSyncTests>()
   .method((t) => t.chmodSync_ShouldChangeFilePermissions)
   .add(FactAttribute);
-A.on(chmodSyncTests)
+A<chmodSyncTests>()
   .method((t) => t.chmodSync_NonExistentFile_ShouldThrow)
   .add(FactAttribute);
-A.on(chmodSyncTests).method((t) => t.chmodSync_Directory_ShouldWork).add(FactAttribute);
+A<chmodSyncTests>().method((t) => t.chmodSync_Directory_ShouldWork).add(FactAttribute);

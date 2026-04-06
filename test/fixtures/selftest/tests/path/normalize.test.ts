@@ -16,9 +16,9 @@ export class NormalizeTests {
   }
 }
 
-A.on(NormalizeTests)
+A<NormalizeTests>()
   .method((t) => t.normalize_resolves_dot_segments)
   .add(FactAttribute);
-A.on(NormalizeTests)
+A<NormalizeTests>()
   .method((t) => t.normalize_empty_path_returns_dot)
   .add(FactAttribute);

@@ -27,15 +27,15 @@ export class TimersPromisesTests {
   }
 }
 
-A.on(TimersPromisesTests)
+A<TimersPromisesTests>()
   .method((t) => t.setTimeout_should_resolve_value)
   .add(FactAttribute);
-A.on(TimersPromisesTests)
+A<TimersPromisesTests>()
   .method((t) => t.setImmediate_should_resolve_value)
   .add(FactAttribute);
-A.on(TimersPromisesTests)
+A<TimersPromisesTests>()
   .method((t) => t.setInterval_should_yield_values)
   .add(FactAttribute);
-A.on(TimersPromisesTests)
+A<TimersPromisesTests>()
   .method((t) => t.scheduler_wait_should_complete)
   .add(FactAttribute);

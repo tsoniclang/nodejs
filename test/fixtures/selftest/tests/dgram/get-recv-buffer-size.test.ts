@@ -15,6 +15,6 @@ export class GetRecvBufferSizeTests {
   }
 }
 
-A.on(GetRecvBufferSizeTests)
+A<GetRecvBufferSizeTests>()
   .method((t) => t.getRecvBufferSize_ReturnsBufferSize)
   .add(FactAttribute);

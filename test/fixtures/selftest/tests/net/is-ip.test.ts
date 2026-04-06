@@ -24,12 +24,12 @@ export class IsIPTests {
   }
 }
 
-A.on(IsIPTests)
+A<IsIPTests>()
   .method((t) => t.is_ip_valid_ipv4_returns_4)
   .add(FactAttribute);
-A.on(IsIPTests)
+A<IsIPTests>()
   .method((t) => t.is_ip_valid_ipv6_returns_6)
   .add(FactAttribute);
-A.on(IsIPTests)
+A<IsIPTests>()
   .method((t) => t.is_ip_invalid_returns_0)
   .add(FactAttribute);

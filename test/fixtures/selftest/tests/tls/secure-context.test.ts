@@ -26,12 +26,12 @@ export class SecureContextTests {
   }
 }
 
-A.on(SecureContextTests)
+A<SecureContextTests>()
   .method((t) => t.SecureContext_Constructor_CreatesInstance)
   .add(FactAttribute);
-A.on(SecureContextTests)
+A<SecureContextTests>()
   .method((t) => t.SecureContext_LoadCertificate_StoresCertificate)
   .add(FactAttribute);
-A.on(SecureContextTests)
+A<SecureContextTests>()
   .method((t) => t.SecureContext_SetProtocols_ConfiguresProtocols)
   .add(FactAttribute);

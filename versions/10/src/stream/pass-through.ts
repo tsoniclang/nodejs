@@ -4,6 +4,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/stream/PassThrough.cs
  */
+import type { JsValue } from "@tsonic/core/types.js";
 import { Transform } from "./transform.ts";
 
 export class PassThrough extends Transform {
@@ -15,9 +16,9 @@ export class PassThrough extends Transform {
    * @param callback - Callback for when transform is complete.
    */
   protected override _transform(
-    chunk: unknown,
+    chunk: JsValue,
     _encoding: string | undefined,
-    callback: (error: Error | null, data: unknown) => void,
+    callback: (error: Error | null, data: JsValue | null | undefined) => void,
   ): void {
     // Just pass the data through unchanged
     callback(null, chunk);

@@ -13,6 +13,6 @@ export class ResolvePtrTests {
   }
 }
 
-A.on(ResolvePtrTests)
+A<ResolvePtrTests>()
   .method((t) => t.resolvePtr_ValidDomain_CallsCallback)
   .add(FactAttribute);

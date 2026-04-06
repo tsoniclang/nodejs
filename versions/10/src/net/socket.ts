@@ -7,11 +7,10 @@
  * Method signatures are correct; implementations that require OS interop use
  * TODO placeholders.
  */
+import { overloads as O } from "@tsonic/core/lang.js";
 import { EventEmitter, toEventListener } from "../events-module.ts";
-import type {
-  SocketConstructorOpts,
-  TcpSocketConnectOpts,
-} from "./options.ts";
+import { AddressInfo } from "./options.ts";
+import type { SocketConstructorOpts, TcpSocketConnectOpts } from "./options.ts";
 
 /**
  * This class is an abstraction of a TCP socket or a streaming IPC endpoint.
@@ -133,35 +132,33 @@ export class Socket extends EventEmitter {
   ): Socket;
   public connect(path: string, connectionListener?: () => void): Socket;
   public connect(
-    portOrOptionsOrPath: number | TcpSocketConnectOpts | string,
-    hostOrListener?: string | (() => void),
+    _portOrOptionsOrPath: any,
+    _hostOrListener?: any,
+    _connectionListener?: any
+  ): any {
+    throw new Error("stub");
+  }
+
+  public connect_port(
+    port: number,
+    host?: string,
     connectionListener?: () => void
   ): Socket {
-    if (typeof portOrOptionsOrPath === "string") {
-      // IPC path connect
-      const listener =
-        typeof hostOrListener === "function" ? hostOrListener : undefined;
-      return this.connectPath(portOrOptionsOrPath, listener);
-    }
+    return this.connectPort(port, host, connectionListener);
+  }
 
-    if (typeof portOrOptionsOrPath === "number") {
-      const host =
-        typeof hostOrListener === "string" ? hostOrListener : undefined;
-      const listener =
-        typeof hostOrListener === "function"
-          ? hostOrListener
-          : connectionListener;
-      return this.connectPort(portOrOptionsOrPath, host, listener);
-    }
+  public connect_options(
+    options: TcpSocketConnectOpts,
+    connectionListener?: () => void
+  ): Socket {
+    return this.connectPort(options.port, options.host, connectionListener);
+  }
 
-    // TcpSocketConnectOpts
-    const listener =
-      typeof hostOrListener === "function" ? hostOrListener : undefined;
-    return this.connectPort(
-      portOrOptionsOrPath.port,
-      portOrOptionsOrPath.host,
-      listener
-    );
+  public connect_path(
+    path: string,
+    connectionListener?: () => void
+  ): Socket {
+    return this.connectPath(path, connectionListener);
   }
 
   private connectPort(
@@ -215,17 +212,39 @@ export class Socket extends EventEmitter {
     callback?: (err?: Error) => void
   ): boolean;
   public write(
-    data: Uint8Array | string,
-    encodingOrCallback?: string | ((err?: Error) => void),
+    _data: any,
+    _encodingOrCallback?: any,
+    _callback?: any
+  ): any {
+    throw new Error("stub");
+  }
+
+  public write_bytes(
+    _data: Uint8Array,
     callback?: (err?: Error) => void
   ): boolean {
     if (this._destroyed) {
-      const cb =
-        typeof encodingOrCallback === "function"
-          ? encodingOrCallback
-          : callback;
-      if (cb !== undefined) {
-        cb(new Error("Socket not connected"));
+      if (callback !== undefined) {
+        callback(new Error("Socket not connected"));
+      }
+      return false;
+    }
+
+    // TODO: Queue write data and flush via OS interop (NetworkStream.WriteAsync)
+    // In the CLR version this uses a BlockingCollection write queue with FIFO ordering.
+    // On write success: update this._bytesWritten, invoke callback, emit("drain")
+
+    return true;
+  }
+
+  public write_string(
+    _data: string,
+    _encoding?: string,
+    callback?: (err?: Error) => void
+  ): boolean {
+    if (this._destroyed) {
+      if (callback !== undefined) {
+        callback(new Error("Socket not connected"));
       }
       return false;
     }
@@ -366,19 +385,19 @@ export class Socket extends EventEmitter {
   /**
    * Returns the bound address, the address family name and port of the socket.
    */
-  public address(): object {
+  public address(): AddressInfo | null {
     if (
       this._localAddress !== undefined &&
       this._localPort !== undefined &&
       this._localFamily !== undefined
     ) {
-      return {
-        address: this._localAddress,
-        family: this._localFamily,
-        port: this._localPort,
-      };
+      const info = new AddressInfo();
+      info.address = this._localAddress;
+      info.family = this._localFamily;
+      info.port = this._localPort;
+      return info;
     }
-    return {};
+    return null;
   }
 
   /**
@@ -397,3 +416,9 @@ export class Socket extends EventEmitter {
     return this;
   }
 }
+
+O<Socket>().method(x => x.connect_port).family(x => x.connect);
+O<Socket>().method(x => x.connect_options).family(x => x.connect);
+O<Socket>().method(x => x.connect_path).family(x => x.connect);
+O<Socket>().method(x => x.write_bytes).family(x => x.write);
+O<Socket>().method(x => x.write_string).family(x => x.write);

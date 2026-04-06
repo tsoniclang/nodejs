@@ -21,6 +21,6 @@ export class TLSSocketOptionsTests {
   }
 }
 
-A.on(TLSSocketOptionsTests)
+A<TLSSocketOptionsTests>()
   .method((t) => t.TLSSocketOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

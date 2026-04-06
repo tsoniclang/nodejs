@@ -35,15 +35,15 @@ export class RawListenersTests {
   }
 }
 
-A.on(RawListenersTests)
+A<RawListenersTests>()
   .method((t) => t.rawListeners_returns_a_copy_of_the_listener_array)
   .add(FactAttribute);
-A.on(RawListenersTests)
+A<RawListenersTests>()
   .method((t) => t.rawListeners_returns_empty_for_missing_events)
   .add(FactAttribute);
-A.on(RawListenersTests)
+A<RawListenersTests>()
   .method((t) => t.rawListeners_returns_a_fresh_array_each_time)
   .add(FactAttribute);
-A.on(RawListenersTests)
+A<RawListenersTests>()
   .method((t) => t.rawListeners_includes_once_wrappers)
   .add(FactAttribute);

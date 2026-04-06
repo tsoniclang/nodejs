@@ -12,6 +12,6 @@ export class AddressTests {
   }
 }
 
-A.on(AddressTests)
+A<AddressTests>()
   .method((t) => t.address_UnboundSocket_ThrowsException)
   .add(FactAttribute);

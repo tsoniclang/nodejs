@@ -29,5 +29,5 @@ export class unlinkTests {
   }
 }
 
-A.on(unlinkTests).method((t) => t.unlink_ShouldDeleteFile).add(FactAttribute);
-A.on(unlinkTests).method((t) => t.unlink_NonExistentFile_ShouldNotThrow).add(FactAttribute);
+A<unlinkTests>().method((t) => t.unlink_ShouldDeleteFile).add(FactAttribute);
+A<unlinkTests>().method((t) => t.unlink_NonExistentFile_ShouldNotThrow).add(FactAttribute);

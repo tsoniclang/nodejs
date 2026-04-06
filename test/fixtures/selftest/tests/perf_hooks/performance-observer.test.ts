@@ -302,62 +302,62 @@ export class PerformanceObserverTests {
   }
 }
 
-A.on(PerformanceObserverTests).type.add(CollectionAttribute, "perf_hooks");
+A<PerformanceObserverTests>().add(CollectionAttribute, "perf_hooks");
 
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.constructor_with_null_callback_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observe_with_null_options_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observe_with_empty_entry_types_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observe_with_null_entry_types_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observer_should_receive_mark_entries)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observer_should_receive_measure_entries)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observer_should_receive_multiple_entry_types)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observer_should_not_receive_after_disconnect)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.observer_should_filter_by_entry_type)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.take_records_should_return_empty_list)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.callback_should_receive_self)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.supported_entry_types_should_return_types)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_should_return_all)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_by_name_should_filter)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_by_name_with_type_should_filter)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_by_name_with_null_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_by_type_should_filter)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.entry_list_get_entries_by_type_with_null_type_should_throw)
   .add(FactAttribute);
-A.on(PerformanceObserverTests)
+A<PerformanceObserverTests>()
   .method((t) => t.multiple_observers_should_all_receive_notifications)
   .add(FactAttribute);

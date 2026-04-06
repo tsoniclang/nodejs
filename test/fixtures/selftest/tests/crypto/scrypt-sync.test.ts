@@ -12,4 +12,4 @@ export class ScryptSyncTests {
   }
 }
 
-A.on(ScryptSyncTests).method((t) => t.scryptSync_generates_key).add(FactAttribute);
+A<ScryptSyncTests>().method((t) => t.scryptSync_generates_key).add(FactAttribute);

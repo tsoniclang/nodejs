@@ -42,15 +42,15 @@ export class ChildProcessSpawnSyncTests {
   }
 }
 
-A.on(ChildProcessSpawnSyncTests)
+A<ChildProcessSpawnSyncTests>()
   .method((t) => t.spawnSync_SimpleCommand_ReturnsResult)
   .add(FactAttribute);
-A.on(ChildProcessSpawnSyncTests)
+A<ChildProcessSpawnSyncTests>()
   .method((t) => t.spawnSync_HasPid)
   .add(FactAttribute);
-A.on(ChildProcessSpawnSyncTests)
+A<ChildProcessSpawnSyncTests>()
   .method((t) => t.spawnSync_WithInvalidCommand_SetsError)
   .add(FactAttribute);
-A.on(ChildProcessSpawnSyncTests)
+A<ChildProcessSpawnSyncTests>()
   .method((t) => t.spawnSync_OutputArray_ContainsStdoutStderr)
   .add(FactAttribute);

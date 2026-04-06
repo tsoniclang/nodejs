@@ -1,5 +1,5 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
 import type { int } from "@tsonic/core/types.js";
 import { Convert, Environment } from "@tsonic/dotnet/System.js";
@@ -61,18 +61,18 @@ const stringsEqual = (left: string, right: string): boolean =>
     : left === right;
 
 const unsetEnvironmentVariable = (key: string): void => {
-  Environment.SetEnvironmentVariable(key, null as unknown as string);
+  Environment.SetEnvironmentVariable(key, null);
 };
 
 let currentExitCode: int | undefined = undefined;
 
 let currentArgv = Environment.GetCommandLineArgs();
-let currentArgv0 = currentArgv.length > 0 ? currentArgv[0] : "";
+let currentArgv0: string = currentArgv[0] ?? "";
 
 export const pid = Environment.ProcessId;
 export const execPath =
   Environment.ProcessPath ??
-  (currentArgv.length > 0 ? Path.GetFullPath(currentArgv[0]) : "");
+  (currentArgv.length > 0 ? Path.GetFullPath(currentArgv[0]!) : "");
 export const arch = archToNodeName(
   Convert.ToString(RuntimeInformation.ProcessArchitecture) ?? ""
 );
@@ -247,7 +247,7 @@ export const kill = (targetPid: int, signal?: int | string): boolean => {
       throw new Error(`kill failed: ${error.message}`);
     }
 
-    throw new Error(`kill failed: ${String(error)}`);
+    throw new Error("kill failed");
   }
 };
 

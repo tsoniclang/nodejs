@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/dgram/dgram.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 export { RemoteInfo } from "./remote-info.ts";
 export { SocketOptions, BindOptions } from "./socket-options.ts";

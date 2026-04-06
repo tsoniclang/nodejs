@@ -20,12 +20,12 @@ export class ProcessExecPathTests {
   }
 }
 
-A.on(ProcessExecPathTests)
+A<ProcessExecPathTests>()
   .method((t) => t.execPath_is_non_empty)
   .add(FactAttribute);
-A.on(ProcessExecPathTests)
+A<ProcessExecPathTests>()
   .method((t) => t.execPath_is_absolute)
   .add(FactAttribute);
-A.on(ProcessExecPathTests)
+A<ProcessExecPathTests>()
   .method((t) => t.execPath_points_to_an_existing_file)
   .add(FactAttribute);

@@ -4,7 +4,8 @@
  * Baseline: nodejs-clr/src/nodejs/querystring/querystring.cs
  */
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
+import type { JsValue } from "@tsonic/core/types.js";
 
 /**
  * Performs URL percent-encoding on the given string.
@@ -30,7 +31,7 @@ export const unescape = (str: string): string => {
   }
 };
 
-const convertToString = (value: unknown): string => {
+const convertToString = (value: JsValue): string => {
   if (value === null || value === undefined) {
     return "";
   }
@@ -46,7 +47,7 @@ const convertToString = (value: unknown): string => {
  * @returns A URL query string.
  */
 export const stringify = (
-  obj: Record<string, unknown> | null | undefined,
+  obj: Record<string, JsValue> | null | undefined,
   sep?: string | null,
   eq?: string | null
 ): string => {
@@ -70,7 +71,7 @@ export const stringify = (
     const value = obj[rawKey];
 
     if (Array.isArray(value)) {
-      const values = value as unknown[];
+      const values = value as JsValue[];
       for (let j = 0; j < values.length; j += 1) {
         parts.push(key + actualEq + escape(convertToString(values[j])));
       }
@@ -157,7 +158,7 @@ export const parse = (
  * Alias for stringify().
  */
 export const encode = (
-  obj: Record<string, unknown> | null | undefined,
+  obj: Record<string, JsValue> | null | undefined,
   sep?: string | null,
   eq?: string | null
 ): string => stringify(obj, sep, eq);

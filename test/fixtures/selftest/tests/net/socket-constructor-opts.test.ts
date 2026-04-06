@@ -18,6 +18,6 @@ export class SocketConstructorOptsTests {
   }
 }
 
-A.on(SocketConstructorOptsTests)
+A<SocketConstructorOptsTests>()
   .method((t) => t.all_properties_can_be_set)
   .add(FactAttribute);

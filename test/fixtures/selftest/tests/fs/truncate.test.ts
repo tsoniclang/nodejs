@@ -53,13 +53,13 @@ export class truncateTests {
   }
 }
 
-A.on(truncateTests).method((t) => t.truncate_ShouldTruncateFileToLength).add(FactAttribute);
-A.on(truncateTests)
+A<truncateTests>().method((t) => t.truncate_ShouldTruncateFileToLength).add(FactAttribute);
+A<truncateTests>()
   .method((t) => t.truncate_ZeroLength_ShouldEmptyFile)
   .add(FactAttribute);
-A.on(truncateTests)
+A<truncateTests>()
   .method((t) => t.truncate_LongerLength_ShouldPadWithZeros)
   .add(FactAttribute);
-A.on(truncateTests)
+A<truncateTests>()
   .method((t) => t.truncate_NonExistentFile_ShouldThrow)
   .add(FactAttribute);

@@ -55,18 +55,18 @@ export class ChildProcessExecSyncTests {
   }
 }
 
-A.on(ChildProcessExecSyncTests)
+A<ChildProcessExecSyncTests>()
   .method((t) => t.execSync_SimpleCommand_ReturnsOutput)
   .add(FactAttribute);
-A.on(ChildProcessExecSyncTests)
+A<ChildProcessExecSyncTests>()
   .method((t) => t.execSync_WithOptions_ReturnsString)
   .add(FactAttribute);
-A.on(ChildProcessExecSyncTests)
+A<ChildProcessExecSyncTests>()
   .method((t) => t.execSync_WithBufferEncoding_ReturnsByteArray)
   .add(FactAttribute);
-A.on(ChildProcessExecSyncTests)
+A<ChildProcessExecSyncTests>()
   .method((t) => t.execSync_WithCwd_ExecutesInDirectory)
   .add(FactAttribute);
-A.on(ChildProcessExecSyncTests)
+A<ChildProcessExecSyncTests>()
   .method((t) => t.execSync_NonZeroExit_ThrowsException)
   .add(FactAttribute);

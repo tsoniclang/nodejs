@@ -3,6 +3,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/crypto/Sign.cs
  */
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   DSA,
   ECDsa,
@@ -44,12 +45,17 @@ export class Sign {
    */
   public update(data: string, inputEncoding?: string): Sign;
   public update(data: Uint8Array): Sign;
-  public update(data: string | Uint8Array, inputEncoding?: string): Sign {
-    if (this._finalized) {
-      throw new Error("Sign already finalized");
-    }
+  public update(_data: any, _inputEncoding?: any): any {
+    throw new Error("stub");
+  }
 
-    this._chunks.push(decodeInputBytes(data, inputEncoding ?? "utf8"));
+  public update_string(data: string, inputEncoding?: string): Sign {
+    this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
+    return this;
+  }
+
+  public update_bytes(data: Uint8Array): Sign {
+    this.pushChunk(data);
     return this;
   }
 
@@ -63,28 +69,54 @@ export class Sign {
    */
   public sign(privateKey: KeyObject, outputEncoding: string): string;
   public sign(privateKey: KeyObject): Uint8Array;
-  public sign(
-    privateKey: string | KeyObject,
-    outputEncoding?: string
-  ): string | Uint8Array {
+  public sign(_privateKey: any, _outputEncoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public sign_string_string(privateKey: string, outputEncoding: string): string {
+    return encodeOutputString(this.finalizeSignature(privateKey), outputEncoding);
+  }
+
+  public sign_string_bytes(privateKey: string): Uint8Array {
+    return this.finalizeSignature(privateKey);
+  }
+
+  public sign_key_string(privateKey: KeyObject, outputEncoding: string): string {
+    return encodeOutputString(this.finalizeSignature(privateKey), outputEncoding);
+  }
+
+  public sign_key_bytes(privateKey: KeyObject): Uint8Array {
+    return this.finalizeSignature(privateKey);
+  }
+
+  private pushChunk(chunk: Uint8Array): void {
+    if (this._finalized) {
+      throw new Error("Sign already finalized");
+    }
+
+    this._chunks.push(chunk);
+  }
+
+  private finalizeSignature(privateKey: string | KeyObject): Uint8Array {
     if (this._finalized) {
       throw new Error("Sign already finalized");
     }
 
     this._finalized = true;
-    const signature = signBytes(
+    return signBytes(
       this._algorithm,
       coercePrivateKeyObject(privateKey),
       concatBytes(...this._chunks),
     );
-
-    if (typeof outputEncoding === "string") {
-      return encodeOutputString(signature, outputEncoding);
-    }
-
-    return signature;
   }
 }
+
+O<Sign>().method(x => x.update_string).family(x => x.update);
+O<Sign>().method(x => x.update_bytes).family(x => x.update);
+O<Sign>().method(x => x.sign_string_string).family(x => x.sign);
+O<Sign>().method(x => x.sign_string_bytes).family(x => x.sign);
+O<Sign>().method(x => x.sign_key_string).family(x => x.sign);
+O<Sign>().method(x => x.sign_key_bytes).family(x => x.sign);
 
 const signBytes = (
   algorithm: string,

@@ -9,4 +9,4 @@ export class GetFipsTests {
   }
 }
 
-A.on(GetFipsTests).method((t) => t.getFips_returns_false).add(FactAttribute);
+A<GetFipsTests>().method((t) => t.getFips_returns_false).add(FactAttribute);

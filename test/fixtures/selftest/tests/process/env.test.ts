@@ -130,24 +130,24 @@ export class ProcessEnvTests {
   }
 }
 
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_returns_a_valid_object)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_contains_system_environment_variables)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_allows_setting_values)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_allows_removing_values)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_windows_lookup_is_case_insensitive)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_unix_lookup_is_case_sensitive)
   .add(FactAttribute);
-A.on(ProcessEnvTests)
+A<ProcessEnvTests>()
   .method((t) => t.env_setting_undefined_removes_the_key)
   .add(FactAttribute);

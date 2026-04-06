@@ -6,11 +6,10 @@
  * Baseline: nodejs-clr/src/nodejs/child_process/ChildProcess.cs
  */
 import { Process } from "@tsonic/dotnet/System.Diagnostics.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
-
-// TODO: import Readable / Writable once stream module is ported
-type Readable = unknown;
-type Writable = unknown;
+import type { Readable } from "../stream/readable.ts";
+import type { Writable } from "../stream/writable.ts";
 
 /**
  * Options for exec, spawn, and related methods.
@@ -213,9 +212,9 @@ export class ChildProcess extends EventEmitter {
    * @returns True if message was queued successfully.
    */
   public send(
-    message: unknown,
-    sendHandle?: unknown,
-    options?: unknown,
+    message: JsValue,
+    sendHandle?: JsValue,
+    options?: JsValue,
     callback?: ((error: Error | null) => void) | null,
   ): boolean {
     void sendHandle;

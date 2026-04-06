@@ -19,12 +19,12 @@ export class ProcessPidTests {
   }
 }
 
-A.on(ProcessPidTests)
+A<ProcessPidTests>()
   .method((t) => t.pid_returns_a_valid_process_id)
   .add(FactAttribute);
-A.on(ProcessPidTests)
+A<ProcessPidTests>()
   .method((t) => t.pid_matches_environment_process_id)
   .add(FactAttribute);
-A.on(ProcessPidTests)
+A<ProcessPidTests>()
   .method((t) => t.pid_matches_current_process_id)
   .add(FactAttribute);

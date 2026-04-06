@@ -4,26 +4,16 @@
  *
  * Baseline: nodejs-clr/src/nodejs/stream/Stream.cs
  */
+import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 
-type PipeReadable = {
-  on(eventName: string, listener: (...args: unknown[]) => void): unknown;
-  resume(): unknown;
-};
-
-type PipeWritable = {
-  write(chunk: unknown): unknown;
-  end(): unknown;
-  emit(eventName: string, ...args: unknown[]): boolean;
-};
-
 export class Stream extends EventEmitter {
-  public write(_chunk: unknown): unknown {
+  public write(_chunk: JsValue): JsValue | undefined {
     return undefined;
   }
 
-  public end(): unknown {
-    return undefined;
+  public end(): Stream {
+    return this;
   }
 
   /**
@@ -40,21 +30,20 @@ export class Stream extends EventEmitter {
     destination: Stream,
     options?: { readonly end?: boolean },
   ): Stream {
-    const writableDestination = destination as unknown as PipeWritable;
     const end = options?.end !== false;
 
-    this.on("data", (...args: unknown[]) => {
-      writableDestination.write(args[0]);
+    this.on("data", (...args: JsValue[]) => {
+      destination.write(args[0]!);
     });
 
     if (end) {
-      this.on("end", (..._args: unknown[]) => {
-        writableDestination.end();
+      this.on("end", (..._args: JsValue[]) => {
+        destination.end();
       });
     }
 
-    this.on("error", (...args: unknown[]) => {
-      writableDestination.emit("error", args[0]);
+    this.on("error", (...args: JsValue[]) => {
+      destination.emit("error", args[0]!);
     });
 
     this.resume();

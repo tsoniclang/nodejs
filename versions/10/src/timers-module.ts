@@ -1,15 +1,17 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
-import type { int, long, out } from "@tsonic/core/types.js";
+import type { int, long, out, JsValue } from "@tsonic/core/types.js";
 import { Environment } from "@tsonic/dotnet/System.js";
 import { ConcurrentQueue } from "@tsonic/dotnet/System.Collections.Concurrent.js";
+import { Queue } from "@tsonic/dotnet/System.Collections.Generic.js";
 import {
   CancellationTokenSource,
   ManualResetEventSlim,
   Thread,
 } from "@tsonic/dotnet/System.Threading.js";
 import { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
+import { Error } from "@tsonic/js/Error.js";
 
 const normalizeDelay = (value?: int): int => {
   if (value === undefined || value < (0 as int)) {
@@ -23,7 +25,7 @@ const immediateDispatchDelay = 50 as int;
 export class Timeout {
   private readonly callback: () => void;
   private readonly delay: int;
-  private readonly period?: int;
+  private readonly period: int | undefined;
   private readonly cancellation: CancellationTokenSource =
     new CancellationTokenSource();
   private generation = 0;
@@ -105,7 +107,7 @@ export class Immediate {
 
   private static startDispatchThread(): Thread {
     const thread = new Thread(() => {
-      let handle: Immediate = undefined as unknown as Immediate;
+      let handle!: Immediate;
       while (true) {
         let hadWork = false;
 
@@ -189,31 +191,111 @@ export class TimersScheduler {
   }
 }
 
+export class IntervalIterationResult<T> {
+  public constructor(
+    public readonly done: boolean,
+    public readonly value: T | undefined
+  ) {}
+}
+
+export class IntervalAsyncIterator<T> {
+  private readonly queue: Queue<T | undefined> = new Queue<T | undefined>();
+  private readonly waiters: Queue<
+    (result: IntervalIterationResult<T>) => void
+  > = new Queue<(result: IntervalIterationResult<T>) => void>();
+  private readonly handle: Timeout;
+  private closed = false;
+
+  public constructor(delay: int, value?: T) {
+    const actualDelay = normalizeDelay(delay);
+    this.handle = new Timeout(() => {
+      this.enqueue(value);
+    }, actualDelay, actualDelay);
+  }
+
+  private enqueue(value?: T): void {
+    if (this.closed) {
+      return;
+    }
+
+    if (this.waiters.Count > 0) {
+      const waiter = this.waiters.Dequeue();
+      waiter(new IntervalIterationResult(false, value));
+      return;
+    }
+
+    this.queue.Enqueue(value);
+  }
+
+  private close(): void {
+    if (this.closed) {
+      return;
+    }
+
+    this.closed = true;
+    this.handle.dispose();
+
+    while (this.waiters.Count > 0) {
+      const waiter = this.waiters.Dequeue();
+      waiter(new IntervalIterationResult(true, undefined));
+    }
+  }
+
+  public next(): Promise<IntervalIterationResult<T>> {
+    if (this.queue.Count > 0) {
+      const value = this.queue.Dequeue();
+      return Promise.resolve(new IntervalIterationResult(false, value));
+    }
+
+    if (this.closed) {
+      return Promise.resolve(new IntervalIterationResult(true, undefined));
+    }
+
+    return new Promise<IntervalIterationResult<T>>((resolve) => {
+      this.waiters.Enqueue(resolve);
+    });
+  }
+
+  public return(
+    value: T | undefined = undefined
+  ): Promise<IntervalIterationResult<T>> {
+    this.close();
+    return Promise.resolve(new IntervalIterationResult(true, value));
+  }
+
+  public async throw(
+    error?: JsValue
+  ): Promise<IntervalIterationResult<T>> {
+    this.close();
+    throw error instanceof Error ? error : new Error("Promise rejected");
+  }
+
+  public [Symbol.asyncIterator](): IntervalAsyncIterator<T> {
+    return this;
+  }
+}
+
 export class TimersPromises {
   public readonly scheduler: TimersScheduler = new TimersScheduler();
 
   public async setTimeout(
     delay: int = 1 as int,
-    value?: unknown
-  ): Promise<unknown> {
+    value?: JsValue
+  ): Promise<JsValue | undefined> {
     await Task.Delay(normalizeDelay(delay));
     return value;
   }
 
-  public async setImmediate(value?: unknown): Promise<unknown> {
+  public async setImmediate(value?: JsValue): Promise<JsValue | undefined> {
     await Task.Delay(immediateDispatchDelay);
     return value;
   }
 
-  public async *setInterval(
+  public setInterval(
     delay: int = 1 as int,
-    value?: unknown
-  ): AsyncGenerator<unknown, void, unknown> {
-    const actualDelay = normalizeDelay(delay);
-    while (true) {
-      await Task.Delay(actualDelay);
-      yield value;
-    }
+    value?: JsValue
+  ): IntervalAsyncIterator<JsValue> {
+    return new IntervalAsyncIterator(delay, value);
   }
 }
 

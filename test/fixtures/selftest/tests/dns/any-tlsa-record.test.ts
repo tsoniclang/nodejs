@@ -10,6 +10,6 @@ export class AnyTlsaRecordTests {
   }
 }
 
-A.on(AnyTlsaRecordTests)
+A<AnyTlsaRecordTests>()
   .method((t) => t.AnyTlsaRecord_HasCorrectType)
   .add(FactAttribute);

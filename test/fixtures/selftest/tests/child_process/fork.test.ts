@@ -33,9 +33,9 @@ export class ChildProcessForkTests {
   }
 }
 
-A.on(ChildProcessForkTests)
+A<ChildProcessForkTests>()
   .method((t) => t.fork_CreatesChildProcess)
   .add(FactAttribute);
-A.on(ChildProcessForkTests)
+A<ChildProcessForkTests>()
   .method((t) => t.fork_WithArgs_PassesArguments)
   .add(FactAttribute);

@@ -15,6 +15,6 @@ export class ChildProcessDisconnectTests {
   }
 }
 
-A.on(ChildProcessDisconnectTests)
+A<ChildProcessDisconnectTests>()
   .method((t) => t.disconnect_SetsConnectedFalse)
   .add(FactAttribute);

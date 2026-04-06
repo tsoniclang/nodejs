@@ -50,18 +50,18 @@ export class EventEmitterOnceStaticTests {
   }
 }
 
-A.on(EventEmitterOnceStaticTests)
+A<EventEmitterOnceStaticTests>()
   .method((t) => t.once_static_resolves_when_the_event_is_emitted)
   .add(FactAttribute);
-A.on(EventEmitterOnceStaticTests)
+A<EventEmitterOnceStaticTests>()
   .method((t) => t.once_static_works_with_no_arguments)
   .add(FactAttribute);
-A.on(EventEmitterOnceStaticTests)
+A<EventEmitterOnceStaticTests>()
   .method((t) => t.once_static_only_observes_the_first_emission)
   .add(FactAttribute);
-A.on(EventEmitterOnceStaticTests)
+A<EventEmitterOnceStaticTests>()
   .method((t) => t.once_static_rejects_missing_emitter)
   .add(FactAttribute);
-A.on(EventEmitterOnceStaticTests)
+A<EventEmitterOnceStaticTests>()
   .method((t) => t.once_static_rejects_missing_event_name)
   .add(FactAttribute);

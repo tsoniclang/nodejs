@@ -11,4 +11,4 @@ export class GetDefaultCipherListTests {
   }
 }
 
-A.on(GetDefaultCipherListTests).method((t) => t.getDefaultCipherList_returns_string).add(FactAttribute);
+A<GetDefaultCipherListTests>().method((t) => t.getDefaultCipherList_returns_string).add(FactAttribute);

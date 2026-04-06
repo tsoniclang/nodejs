@@ -20,6 +20,6 @@ export class ChildProcessMaxBufferTests {
   }
 }
 
-A.on(ChildProcessMaxBufferTests)
+A<ChildProcessMaxBufferTests>()
   .method((t) => t.maxBuffer_RespectedInOptions)
   .add(FactAttribute);

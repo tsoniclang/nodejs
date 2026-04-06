@@ -13,6 +13,6 @@ export class ResolveTlsaTests {
   }
 }
 
-A.on(ResolveTlsaTests)
+A<ResolveTlsaTests>()
   .method((t) => t.resolveTlsa_ValidDomain_CallsCallback)
   .add(FactAttribute);

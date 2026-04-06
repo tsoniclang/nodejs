@@ -24,7 +24,7 @@ export class ParseTests {
   }
 }
 
-A.on(ParseTests).method((t) => t.parse_returns_components).add(FactAttribute);
-A.on(ParseTests)
+A<ParseTests>().method((t) => t.parse_returns_components).add(FactAttribute);
+A<ParseTests>()
   .method((t) => t.parse_empty_path_returns_empty_components)
   .add(FactAttribute);

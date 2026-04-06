@@ -43,6 +43,6 @@ export class CreateVerifyTests {
   }
 }
 
-A.on(CreateVerifyTests).method((t) => t.createVerify_rsa_sha256).add(FactAttribute);
-A.on(CreateVerifyTests).method((t) => t.createVerify_rsa_invalid_signature).add(FactAttribute);
-A.on(CreateVerifyTests).method((t) => t.createVerify_dsa_fails_with_wrong_data).add(FactAttribute);
+A<CreateVerifyTests>().method((t) => t.createVerify_rsa_sha256).add(FactAttribute);
+A<CreateVerifyTests>().method((t) => t.createVerify_rsa_invalid_signature).add(FactAttribute);
+A<CreateVerifyTests>().method((t) => t.createVerify_dsa_fails_with_wrong_data).add(FactAttribute);

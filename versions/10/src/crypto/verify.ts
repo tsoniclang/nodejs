@@ -3,6 +3,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/crypto/Verify.cs
  */
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   DSA,
   ECDsa,
@@ -42,12 +43,17 @@ export class Verify {
    */
   public update(data: string, inputEncoding?: string): Verify;
   public update(data: Uint8Array): Verify;
-  public update(data: string | Uint8Array, inputEncoding?: string): Verify {
-    if (this._finalized) {
-      throw new Error("Verify already finalized");
-    }
+  public update(_data: any, _inputEncoding?: any): any {
+    throw new Error("stub");
+  }
 
-    this._chunks.push(decodeInputBytes(data, inputEncoding ?? "utf8"));
+  public update_string(data: string, inputEncoding?: string): Verify {
+    this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
+    return this;
+  }
+
+  public update_bytes(data: Uint8Array): Verify {
+    this.pushChunk(data);
     return this;
   }
 
@@ -61,7 +67,49 @@ export class Verify {
    */
   public verify(publicKey: KeyObject, signature: string, signatureEncoding?: string): boolean;
   public verify(publicKey: KeyObject, signature: Uint8Array): boolean;
-  public verify(
+  public verify(_publicKey: any, _signature: any, _signatureEncoding?: any): any {
+    throw new Error("stub");
+  }
+
+  public verify_string_string(
+    publicKey: string,
+    signature: string,
+    signatureEncoding?: string
+  ): boolean {
+    return this.finalizeVerification(publicKey, signature, signatureEncoding);
+  }
+
+  public verify_string_bytes(
+    publicKey: string,
+    signature: Uint8Array
+  ): boolean {
+    return this.finalizeVerification(publicKey, signature);
+  }
+
+  public verify_key_string(
+    publicKey: KeyObject,
+    signature: string,
+    signatureEncoding?: string
+  ): boolean {
+    return this.finalizeVerification(publicKey, signature, signatureEncoding);
+  }
+
+  public verify_key_bytes(
+    publicKey: KeyObject,
+    signature: Uint8Array
+  ): boolean {
+    return this.finalizeVerification(publicKey, signature);
+  }
+
+  private pushChunk(chunk: Uint8Array): void {
+    if (this._finalized) {
+      throw new Error("Verify already finalized");
+    }
+
+    this._chunks.push(chunk);
+  }
+
+  private finalizeVerification(
     publicKey: string | KeyObject,
     signature: string | Uint8Array,
     signatureEncoding?: string
@@ -79,6 +127,13 @@ export class Verify {
     );
   }
 }
+
+O<Verify>().method(x => x.update_string).family(x => x.update);
+O<Verify>().method(x => x.update_bytes).family(x => x.update);
+O<Verify>().method(x => x.verify_string_string).family(x => x.verify);
+O<Verify>().method(x => x.verify_string_bytes).family(x => x.verify);
+O<Verify>().method(x => x.verify_key_string).family(x => x.verify);
+O<Verify>().method(x => x.verify_key_bytes).family(x => x.verify);
 
 const verifyBytes = (
   algorithm: string,

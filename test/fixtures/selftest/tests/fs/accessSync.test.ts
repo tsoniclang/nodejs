@@ -51,15 +51,15 @@ export class accessSyncTests {
   }
 }
 
-A.on(accessSyncTests)
+A<accessSyncTests>()
   .method((t) => t.accessSync_ExistingFile_ShouldNotThrow)
   .add(FactAttribute);
-A.on(accessSyncTests)
+A<accessSyncTests>()
   .method((t) => t.accessSync_ExistingDirectory_ShouldNotThrow)
   .add(FactAttribute);
-A.on(accessSyncTests)
+A<accessSyncTests>()
   .method((t) => t.accessSync_NonExistent_ShouldThrow)
   .add(FactAttribute);
-A.on(accessSyncTests)
+A<accessSyncTests>()
   .method((t) => t.accessSync_ReadableFile_ShouldNotThrow)
   .add(FactAttribute);

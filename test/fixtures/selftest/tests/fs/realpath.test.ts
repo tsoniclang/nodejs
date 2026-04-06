@@ -61,9 +61,9 @@ export class realpathTests {
   }
 }
 
-A.on(realpathTests).method((t) => t.realpath_ShouldResolveAbsolutePath).add(FactAttribute);
-A.on(realpathTests)
+A<realpathTests>().method((t) => t.realpath_ShouldResolveAbsolutePath).add(FactAttribute);
+A<realpathTests>()
   .method((t) => t.realpath_RelativePath_ShouldResolveToAbsolute)
   .add(FactAttribute);
-A.on(realpathTests).method((t) => t.realpath_NonExistent_ShouldResolveAnyway).add(FactAttribute);
-A.on(realpathTests).method((t) => t.realpath_Directory_ShouldResolve).add(FactAttribute);
+A<realpathTests>().method((t) => t.realpath_NonExistent_ShouldResolveAnyway).add(FactAttribute);
+A<realpathTests>().method((t) => t.realpath_Directory_ShouldResolve).add(FactAttribute);

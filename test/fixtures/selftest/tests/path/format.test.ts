@@ -20,12 +20,12 @@ export class FormatTests {
   }
 }
 
-A.on(FormatTests)
+A<FormatTests>()
   .method((t) => t.format_builds_path_from_dir_and_base)
   .add(FactAttribute);
-A.on(FormatTests)
+A<FormatTests>()
   .method((t) => t.format_with_only_base_returns_base)
   .add(FactAttribute);
-A.on(FormatTests)
+A<FormatTests>()
   .method((t) => t.format_preserves_root_only_directory_joining)
   .add(FactAttribute);

@@ -31,7 +31,7 @@ export class CreatePublicKeyTests {
   }
 }
 
-A.on(CreatePublicKeyTests).method((t) => t.createPublicKey_from_key_object).add(FactAttribute);
-A.on(CreatePublicKeyTests).method((t) => t.createPublicKey_from_bytes_works).add(FactAttribute);
-A.on(CreatePublicKeyTests).method((t) => t.createPublicKey_from_private_key_works).add(FactAttribute);
-A.on(CreatePublicKeyTests).method((t) => t.createPublicKey_from_public_key_returns_same).add(FactAttribute);
+A<CreatePublicKeyTests>().method((t) => t.createPublicKey_from_key_object).add(FactAttribute);
+A<CreatePublicKeyTests>().method((t) => t.createPublicKey_from_bytes_works).add(FactAttribute);
+A<CreatePublicKeyTests>().method((t) => t.createPublicKey_from_private_key_works).add(FactAttribute);
+A<CreatePublicKeyTests>().method((t) => t.createPublicKey_from_public_key_returns_same).add(FactAttribute);

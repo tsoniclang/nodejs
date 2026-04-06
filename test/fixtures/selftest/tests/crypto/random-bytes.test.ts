@@ -41,7 +41,7 @@ export class RandomBytesTests {
   }
 }
 
-A.on(RandomBytesTests).method((t) => t.randomBytes_generates_correct_length).add(FactAttribute);
-A.on(RandomBytesTests).method((t) => t.randomBytes_generates_different_values).add(FactAttribute);
-A.on(RandomBytesTests).method((t) => t.randomBytes_async_works).add(FactAttribute);
-A.on(RandomBytesTests).method((t) => t.randomBytes_callback_works).add(FactAttribute);
+A<RandomBytesTests>().method((t) => t.randomBytes_generates_correct_length).add(FactAttribute);
+A<RandomBytesTests>().method((t) => t.randomBytes_generates_different_values).add(FactAttribute);
+A<RandomBytesTests>().method((t) => t.randomBytes_async_works).add(FactAttribute);
+A<RandomBytesTests>().method((t) => t.randomBytes_callback_works).add(FactAttribute);

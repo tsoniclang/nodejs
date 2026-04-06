@@ -25,4 +25,4 @@ export class writeFileBytesTests {
   }
 }
 
-A.on(writeFileBytesTests).method((t) => t.writeFileBytes_ShouldWriteBinaryData).add(FactAttribute);
+A<writeFileBytesTests>().method((t) => t.writeFileBytes_ShouldWriteBinaryData).add(FactAttribute);

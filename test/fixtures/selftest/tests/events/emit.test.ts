@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
@@ -32,7 +33,7 @@ export class EmitTests {
     const emitter = new EventEmitter();
     let message = "";
 
-    emitter.on("error", (error: unknown) => {
+    emitter.on("error", (error: JsValue) => {
       if (error instanceof Error) {
         message = error.message;
       }
@@ -44,9 +45,9 @@ export class EmitTests {
 
   public emit_passes_all_arguments_to_the_listener(): void {
     const emitter = new EventEmitter();
-    let first: unknown = undefined;
-    let second: unknown = undefined;
-    let third: unknown = undefined;
+    let first: JsValue | undefined = undefined;
+    let second: JsValue | undefined = undefined;
+    let third: JsValue | undefined = undefined;
 
     emitter.on("test", (arg1, arg2, arg3) => {
       first = arg1;
@@ -61,18 +62,18 @@ export class EmitTests {
   }
 }
 
-A.on(EmitTests)
+A<EmitTests>()
   .method((t) => t.emit_without_listeners_returns_false)
   .add(FactAttribute);
-A.on(EmitTests)
+A<EmitTests>()
   .method((t) => t.emit_with_listeners_returns_true)
   .add(FactAttribute);
-A.on(EmitTests)
+A<EmitTests>()
   .method((t) => t.emit_error_without_listeners_throws)
   .add(FactAttribute);
-A.on(EmitTests)
+A<EmitTests>()
   .method((t) => t.emit_error_with_listener_routes_the_error)
   .add(FactAttribute);
-A.on(EmitTests)
+A<EmitTests>()
   .method((t) => t.emit_passes_all_arguments_to_the_listener)
   .add(FactAttribute);

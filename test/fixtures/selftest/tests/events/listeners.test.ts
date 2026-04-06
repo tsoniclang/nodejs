@@ -27,12 +27,12 @@ export class ListenersTests {
   }
 }
 
-A.on(ListenersTests)
+A<ListenersTests>()
   .method((t) => t.listeners_returns_the_listener_array)
   .add(FactAttribute);
-A.on(ListenersTests)
+A<ListenersTests>()
   .method((t) => t.listeners_returns_empty_for_unknown_events)
   .add(FactAttribute);
-A.on(ListenersTests)
+A<ListenersTests>()
   .method((t) => t.rawListeners_returns_registered_listeners)
   .add(FactAttribute);

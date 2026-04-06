@@ -28,6 +28,6 @@ export class TcpSocketConnectOptsTests {
   }
 }
 
-A.on(TcpSocketConnectOptsTests)
+A<TcpSocketConnectOptsTests>()
   .method((t) => t.all_properties_can_be_set)
   .add(FactAttribute);

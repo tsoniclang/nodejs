@@ -25,18 +25,18 @@ export class ProcessVersionsTests {
   }
 }
 
-A.on(ProcessVersionsTests)
+A<ProcessVersionsTests>()
   .method((t) => t.versions_returns_a_valid_object)
   .add(FactAttribute);
-A.on(ProcessVersionsTests)
+A<ProcessVersionsTests>()
   .method((t) => t.versions_contains_node_version)
   .add(FactAttribute);
-A.on(ProcessVersionsTests)
+A<ProcessVersionsTests>()
   .method((t) => t.versions_contains_v8_version)
   .add(FactAttribute);
-A.on(ProcessVersionsTests)
+A<ProcessVersionsTests>()
   .method((t) => t.versions_contains_dotnet_version)
   .add(FactAttribute);
-A.on(ProcessVersionsTests)
+A<ProcessVersionsTests>()
   .method((t) => t.versions_contains_tsonic_version)
   .add(FactAttribute);

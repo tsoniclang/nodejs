@@ -58,11 +58,11 @@ export class readTests {
   }
 }
 
-A.on(readTests).method((t) => t.read_ShouldReadEntireFile).add(FactAttribute);
-A.on(readTests)
+A<readTests>().method((t) => t.read_ShouldReadEntireFile).add(FactAttribute);
+A<readTests>()
   .method((t) => t.read_WithPosition_ShouldReadFromSpecificPosition)
   .add(FactAttribute);
-A.on(readTests)
+A<readTests>()
   .method((t) => t.read_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(readTests).method((t) => t.read_EmptyFile_ShouldReturnZero).add(FactAttribute);
+A<readTests>().method((t) => t.read_EmptyFile_ShouldReturnZero).add(FactAttribute);

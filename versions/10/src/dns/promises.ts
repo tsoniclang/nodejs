@@ -3,7 +3,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/dns/promises.cs
  */
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 import { LookupAddress, LookupOptions } from "./options.ts";
 import {
   SoaRecord,
@@ -46,9 +46,9 @@ export class DnsPromises {
     return Promise.resolve([] as Array<string>);
   }
 
-  public resolveWithRrtype(hostname: string, rrtype: string): Promise<object> {
+  public resolveWithRrtype(hostname: string, rrtype: string): Promise<JsValue> {
     // TODO: delegate to dns.resolve with rrtype via promise wrapper
-    return Promise.resolve({} as object);
+    return Promise.resolve(null);
   }
 
   public resolve4(hostname: string): Promise<Array<string>> {
@@ -111,9 +111,9 @@ export class DnsPromises {
     return Promise.resolve([] as Array<Array<string>>);
   }
 
-  public resolveAny(hostname: string): Promise<Array<object>> {
+  public resolveAny(hostname: string): Promise<Array<JsValue>> {
     // TODO: delegate to dns.resolveAny via promise wrapper
-    return Promise.resolve([] as Array<object>);
+    return Promise.resolve([] as Array<JsValue>);
   }
 
   public reverse(ip: string): Promise<Array<string>> {

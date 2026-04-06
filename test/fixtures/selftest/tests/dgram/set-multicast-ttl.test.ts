@@ -15,6 +15,6 @@ export class SetMulticastTTLTests {
   }
 }
 
-A.on(SetMulticastTTLTests)
+A<SetMulticastTTLTests>()
   .method((t) => t.setMulticastTTL_SetsTTL)
   .add(FactAttribute);

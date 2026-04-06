@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/buffer/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 export { Buffer } from "./buffer.ts";
 export type { BufferEncoding } from "./buffer-encoding.ts";

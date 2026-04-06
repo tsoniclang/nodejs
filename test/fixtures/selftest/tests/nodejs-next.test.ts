@@ -28,9 +28,9 @@ export class NodejsNextIntegrationTests {
   }
 }
 
-A.on(NodejsNextIntegrationTests)
+A<NodejsNextIntegrationTests>()
   .method((t) => t.path_subpath_namespace_import_smoke)
   .add(FactAttribute);
-A.on(NodejsNextIntegrationTests)
+A<NodejsNextIntegrationTests>()
   .method((t) => t.root_exports_process_and_events)
   .add(FactAttribute);

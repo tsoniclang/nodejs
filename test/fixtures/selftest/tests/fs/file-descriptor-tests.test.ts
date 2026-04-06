@@ -127,12 +127,12 @@ export class fileDescriptorTests {
   }
 }
 
-A.on(fileDescriptorTests).method((t) => t.OpenSync_ReadMode_ReturnsValidFd).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.OpenSync_WriteMode_CreatesFile).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.ReadSync_ReadsDataIntoBuffer).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.WriteSync_WritesDataFromBuffer).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.WriteSync_String_WritesText).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.FstatSync_ReturnsStats).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.CloseSync_InvalidFd_Throws).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.Open_Async_Works).add(FactAttribute);
-A.on(fileDescriptorTests).method((t) => t.Read_Async_Works).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.OpenSync_ReadMode_ReturnsValidFd).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.OpenSync_WriteMode_CreatesFile).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.ReadSync_ReadsDataIntoBuffer).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.WriteSync_WritesDataFromBuffer).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.WriteSync_String_WritesText).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.FstatSync_ReturnsStats).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.CloseSync_InvalidFd_Throws).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.Open_Async_Works).add(FactAttribute);
+A<fileDescriptorTests>().method((t) => t.Read_Async_Works).add(FactAttribute);

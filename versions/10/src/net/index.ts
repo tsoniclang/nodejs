@@ -5,8 +5,9 @@
  * Baseline: nodejs-clr/src/nodejs/net/net.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
+import { overloads as O } from "@tsonic/core/lang.js";
 import type { int } from "@tsonic/core/types.js";
 
 export { BlockList } from "./block-list.ts";
@@ -45,19 +46,23 @@ export function createServer(
   connectionListener?: (socket: Socket) => void
 ): Server;
 export function createServer(
-  optionsOrListener?: ServerOpts | ((socket: Socket) => void),
+  _optionsOrListener?: any,
+  _connectionListener?: any
+): any {
+  throw new Error("stub");
+}
+
+function createServer_listener(
   connectionListener?: (socket: Socket) => void
 ): Server {
-  if (typeof optionsOrListener === "function") {
-    return new Server(optionsOrListener);
-  }
-  if (optionsOrListener !== undefined) {
-    return new Server(optionsOrListener, connectionListener);
-  }
-  if (connectionListener !== undefined) {
-    return new Server(connectionListener);
-  }
-  return new Server();
+  return new Server(connectionListener);
+}
+
+function createServer_options(
+  options: ServerOpts,
+  connectionListener?: (socket: Socket) => void
+): Server {
+  return new Server(options, connectionListener);
 }
 
 // ==================== connect / createConnection ====================
@@ -79,33 +84,38 @@ export function connect(
   connectionListener?: () => void
 ): Socket;
 export function connect(
-  portOrOptionsOrPath: int | TcpSocketConnectOpts | string,
-  hostOrListener?: string | (() => void),
+  _portOrOptionsOrPath: any,
+  _hostOrListener?: any,
+  _connectionListener?: any
+): any {
+  throw new Error("stub");
+}
+
+function connect_port(
+  port: int,
+  host?: string,
   connectionListener?: () => void
 ): Socket {
   const socket = new Socket();
+  socket.connect(port, host, connectionListener);
+  return socket;
+}
 
-  if (typeof portOrOptionsOrPath === "string") {
-    const listener =
-      typeof hostOrListener === "function" ? hostOrListener : undefined;
-    socket.connect(portOrOptionsOrPath, listener);
-    return socket;
-  }
+function connect_options(
+  options: TcpSocketConnectOpts,
+  connectionListener?: () => void
+): Socket {
+  const socket = new Socket();
+  socket.connect(options, connectionListener);
+  return socket;
+}
 
-  if (typeof portOrOptionsOrPath === "number") {
-    const host =
-      typeof hostOrListener === "string" ? hostOrListener : undefined;
-    const listener =
-      typeof hostOrListener === "function"
-        ? hostOrListener
-        : connectionListener;
-    socket.connect(portOrOptionsOrPath, host, listener);
-    return socket;
-  }
-
-  const listener =
-    typeof hostOrListener === "function" ? hostOrListener : undefined;
-  socket.connect(portOrOptionsOrPath, listener);
+function connect_path(
+  path: string,
+  connectionListener?: () => void
+): Socket {
+  const socket = new Socket();
+  socket.connect(path, connectionListener);
   return socket;
 }
 
@@ -126,27 +136,33 @@ export function createConnection(
   connectionListener?: () => void
 ): Socket;
 export function createConnection(
-  portOrOptionsOrPath: int | TcpSocketConnectOpts | string,
-  hostOrListener?: string | (() => void),
+  _portOrOptionsOrPath: any,
+  _hostOrListener?: any,
+  _connectionListener?: any
+): any {
+  throw new Error("stub");
+}
+
+function createConnection_port(
+  port: int,
+  host?: string,
   connectionListener?: () => void
 ): Socket {
-  if (typeof portOrOptionsOrPath === "string") {
-    const listener =
-      typeof hostOrListener === "function" ? hostOrListener : connectionListener;
-    return connect(portOrOptionsOrPath, listener);
-  }
+  return connect_port(port, host, connectionListener);
+}
 
-  if (typeof portOrOptionsOrPath === "number") {
-    const host =
-      typeof hostOrListener === "string" ? hostOrListener : undefined;
-    const listener =
-      typeof hostOrListener === "function" ? hostOrListener : connectionListener;
-    return connect(portOrOptionsOrPath, host, listener);
-  }
+function createConnection_options(
+  options: TcpSocketConnectOpts,
+  connectionListener?: () => void
+): Socket {
+  return connect_options(options, connectionListener);
+}
 
-  const listener =
-    typeof hostOrListener === "function" ? hostOrListener : connectionListener;
-  return connect(portOrOptionsOrPath, listener);
+function createConnection_path(
+  path: string,
+  connectionListener?: () => void
+): Socket {
+  return connect_path(path, connectionListener);
 }
 
 // ==================== IP Utilities ====================
@@ -222,3 +238,12 @@ export const setDefaultAutoSelectFamilyAttemptTimeout = (
 ): void => {
   defaultAutoSelectFamilyAttemptTimeout = value;
 };
+
+O(createServer_listener).family(createServer);
+O(createServer_options).family(createServer);
+O(connect_port).family(connect);
+O(connect_options).family(connect);
+O(connect_path).family(connect);
+O(createConnection_port).family(createConnection);
+O(createConnection_options).family(createConnection);
+O(createConnection_path).family(createConnection);

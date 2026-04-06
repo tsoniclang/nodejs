@@ -15,4 +15,4 @@ export class HkdfSyncTests {
   }
 }
 
-A.on(HkdfSyncTests).method((t) => t.hkdfSync_derives_key).add(FactAttribute);
+A<HkdfSyncTests>().method((t) => t.hkdfSync_derives_key).add(FactAttribute);

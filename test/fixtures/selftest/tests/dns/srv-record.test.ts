@@ -18,6 +18,6 @@ export class SrvRecordTests {
   }
 }
 
-A.on(SrvRecordTests)
+A<SrvRecordTests>()
   .method((t) => t.SrvRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

@@ -68,10 +68,10 @@ export class rmSyncTests {
   }
 }
 
-A.on(rmSyncTests).method((t) => t.rmSync_ShouldRemoveFile).add(FactAttribute);
-A.on(rmSyncTests).method((t) => t.rmSync_ShouldRemoveEmptyDirectory).add(FactAttribute);
-A.on(rmSyncTests).method((t) => t.rmSync_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);
-A.on(rmSyncTests)
+A<rmSyncTests>().method((t) => t.rmSync_ShouldRemoveFile).add(FactAttribute);
+A<rmSyncTests>().method((t) => t.rmSync_ShouldRemoveEmptyDirectory).add(FactAttribute);
+A<rmSyncTests>().method((t) => t.rmSync_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);
+A<rmSyncTests>()
   .method((t) => t.rmSync_NonRecursive_DirectoryWithContents_ShouldThrow)
   .add(FactAttribute);
-A.on(rmSyncTests).method((t) => t.rmSync_NonExistent_ShouldNotThrow).add(FactAttribute);
+A<rmSyncTests>().method((t) => t.rmSync_NonExistent_ShouldNotThrow).add(FactAttribute);

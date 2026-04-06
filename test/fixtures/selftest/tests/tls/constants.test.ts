@@ -22,6 +22,6 @@ export class TlsConstantsTests {
   }
 }
 
-A.on(TlsConstantsTests)
+A<TlsConstantsTests>()
   .method((t) => t.constants_HaveExpectedValues)
   .add(FactAttribute);

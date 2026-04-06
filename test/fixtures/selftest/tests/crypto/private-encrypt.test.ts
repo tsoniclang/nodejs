@@ -22,5 +22,5 @@ export class PrivateEncryptTests {
   }
 }
 
-A.on(PrivateEncryptTests).method((t) => t.privateEncrypt_publicDecrypt_roundtrip).add(FactAttribute);
-A.on(PrivateEncryptTests).method((t) => t.privateEncrypt_publicDecrypt_with_key_objects).add(FactAttribute);
+A<PrivateEncryptTests>().method((t) => t.privateEncrypt_publicDecrypt_roundtrip).add(FactAttribute);
+A<PrivateEncryptTests>().method((t) => t.privateEncrypt_publicDecrypt_with_key_objects).add(FactAttribute);

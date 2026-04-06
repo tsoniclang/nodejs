@@ -26,10 +26,10 @@ export class BasenameTests {
   }
 }
 
-A.on(BasenameTests).method((t) => t.basename_returns_file_name).add(FactAttribute);
-A.on(BasenameTests)
+A<BasenameTests>().method((t) => t.basename_returns_file_name).add(FactAttribute);
+A<BasenameTests>()
   .method((t) => t.basename_removes_matching_suffix)
   .add(FactAttribute);
-A.on(BasenameTests)
+A<BasenameTests>()
   .method((t) => t.basename_empty_path_returns_empty_string)
   .add(FactAttribute);

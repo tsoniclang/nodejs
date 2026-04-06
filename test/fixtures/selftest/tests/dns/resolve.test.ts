@@ -53,21 +53,21 @@ export class ResolveTests {
   }
 }
 
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_SimpleDomain_CallsCallback)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_WithARecordType_CallsCallback)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_WithAAAARecordType_CallsCallback)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_WithMXRecordType_CallsCallback)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_WithTXTRecordType_CallsCallback)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_WithInvalidRecordType_CallsCallback)
   .add(FactAttribute);

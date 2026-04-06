@@ -8,6 +8,7 @@
  * with TODO markers.
  */
 
+import { overloads as O } from "@tsonic/core/lang.js";
 import type { byte, int } from "@tsonic/core/types.js";
 import type { HttpListenerResponse } from "@tsonic/dotnet/System.Net.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
@@ -165,7 +166,7 @@ export class ServerResponse extends EventEmitter {
     this._headers.forEach((value, key, _map) => {
       copy.set(key, value);
     });
-    return copy as unknown as Map<string, string>;
+    return copy;
   }
 
   /**
@@ -238,14 +239,33 @@ export class ServerResponse extends EventEmitter {
     encoding?: string | null,
     callback?: (() => void) | null
   ): ServerResponse;
-  public end(
-    chunkOrCallback?:
-      | string
-      | Buffer
-      | byte[]
-      | Uint8Array
-      | (() => void)
-      | null,
+  public end(_chunkOrCallback?: any, _encoding?: any, _callback?: any): any {
+    throw new Error("stub");
+  }
+
+  public end_empty(): ServerResponse {
+    if (this._finished) {
+      return this;
+    }
+
+    this._finalizeResponse(this._flattenBodyChunks());
+    return this;
+  }
+
+  public end_callback(callback: (() => void) | null): ServerResponse {
+    if (this._finished) {
+      return this;
+    }
+
+    this._finalizeResponse([]);
+    if (callback !== null) {
+      callback();
+    }
+    return this;
+  }
+
+  public end_chunk(
+    chunk: string | Buffer | byte[] | Uint8Array,
     encoding?: string | null,
     callback?: (() => void) | null
   ): ServerResponse {
@@ -253,29 +273,11 @@ export class ServerResponse extends EventEmitter {
       return this;
     }
 
-    if (typeof chunkOrCallback === "function") {
-      // end(callback) overload
-      this._finalizeResponse([]);
-      chunkOrCallback();
-      return this;
-    }
-
-    if (
-      chunkOrCallback !== undefined &&
-      chunkOrCallback !== null &&
-      typeof chunkOrCallback !== "function"
-    ) {
-      // end(chunk, encoding?, callback?) overload
-      this.write(chunkOrCallback, encoding ?? undefined);
-      this._finalizeResponse(this._flattenBodyChunks());
-      if (callback !== undefined && callback !== null) {
-        callback();
-      }
-      return this;
-    }
-
-    // end() overload — no payload
+    this.write(chunk, encoding ?? undefined);
     this._finalizeResponse(this._flattenBodyChunks());
+    if (callback !== undefined && callback !== null) {
+      callback();
+    }
     return this;
   }
 
@@ -326,6 +328,14 @@ export class ServerResponse extends EventEmitter {
       const source = chunk.buffer;
       for (let index = 0; index < source.length; index += 1) {
         result.push(source[index]! as byte);
+      }
+      return result;
+    }
+
+    if (chunk instanceof Uint8Array) {
+      const result: byte[] = [];
+      for (let index = 0; index < chunk.length; index += 1) {
+        result.push(chunk.at(index)! as byte);
       }
       return result;
     }
@@ -403,3 +413,7 @@ export class ServerResponse extends EventEmitter {
     this.emit("close");
   }
 }
+
+O<ServerResponse>().method(x => x.end_empty).family(x => x.end);
+O<ServerResponse>().method(x => x.end_callback).family(x => x.end);
+O<ServerResponse>().method(x => x.end_chunk).family(x => x.end);

@@ -35,7 +35,7 @@ export class copyFileSyncTests {
   }
 }
 
-A.on(copyFileSyncTests).method((t) => t.copyFileSync_ShouldCopyFile).add(FactAttribute);
-A.on(copyFileSyncTests)
+A<copyFileSyncTests>().method((t) => t.copyFileSync_ShouldCopyFile).add(FactAttribute);
+A<copyFileSyncTests>()
   .method((t) => t.copyFileSync_ShouldOverwriteDestination)
   .add(FactAttribute);
