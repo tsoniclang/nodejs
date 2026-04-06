@@ -8,11 +8,19 @@ import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 
 export class Stream extends EventEmitter {
-  public write(_chunk: JsValue): JsValue | undefined {
-    return undefined;
+  public write(
+    _chunk: JsValue,
+    _encoding?: string,
+    _callback?: () => void,
+  ): boolean {
+    return true;
   }
 
-  public end(): Stream {
+  public end(
+    _chunk?: JsValue,
+    _encoding?: string,
+    _callback?: () => void,
+  ): Stream {
     return this;
   }
 

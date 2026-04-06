@@ -324,37 +324,39 @@ export class ServerResponse extends EventEmitter {
     }
 
     if (Buffer.isBuffer(chunk)) {
-      const result: byte[] = [];
-      const source = chunk.buffer;
-      for (let index = 0; index < source.length; index += 1) {
-        result.push(source[index]! as byte);
-      }
-      return result;
+      return Array.from(chunk.buffer, (value) => value as byte);
     }
 
     if (chunk instanceof Uint8Array) {
-      const result: byte[] = [];
+      const result = new Array<byte>(chunk.length);
       for (let index = 0; index < chunk.length; index += 1) {
-        result.push(chunk.at(index)! as byte);
+        result[index] = chunk.at(index)! as byte;
       }
       return result;
     }
 
     const rawBytes = chunk as byte[];
-    const result: byte[] = [];
+    const result = new Array<byte>(rawBytes.length);
     for (let index = 0; index < rawBytes.length; index += 1) {
-      result.push(rawBytes[index]! as byte);
+      result[index] = rawBytes[index]! as byte;
     }
     return result;
   }
 
   private _flattenBodyChunks(): byte[] {
-    const result: byte[] = [];
+    let totalLength = 0;
+    for (const chunk of this._bodyChunks) {
+      totalLength += chunk.length;
+    }
+
+    const result = new Array<byte>(totalLength);
+    let offset = 0;
 
     for (const chunk of this._bodyChunks) {
       for (let index = 0; index < chunk.length; index += 1) {
-        result.push(chunk[index]!);
+        result[offset + index] = chunk[index]!;
       }
+      offset += chunk.length;
     }
 
     return result;

@@ -100,12 +100,12 @@ export const format = (formatValue: JsValue, ...args: JsValue[]): string => {
   return result;
 };
 
-export const inspect = (value?: JsValue): string => {
-  if (value === undefined) {
-    return "undefined";
-  }
+export const inspect = (value: JsValue | undefined): string => {
   if (value === null) {
     return "null";
+  }
+  if (value === undefined) {
+    return "undefined";
   }
   if (typeof value === "string") {
     return `'${value}'`;

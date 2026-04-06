@@ -128,7 +128,7 @@ const getBufferLength = (buffer: WritableFsBuffer): int => {
     throw new Error("buffer must not be null");
   }
 
-  return Buffer.isBuffer(buffer) ? buffer.length : (buffer.length as int);
+  return buffer instanceof Buffer ? buffer.length : (buffer.length as int);
 };
 
 const validateBufferRange = (
@@ -151,7 +151,7 @@ const copyByteArrayToBuffer = (
   source: byte[],
   sourceLength: int
 ): void => {
-  if (Buffer.isBuffer(target)) {
+  if (target instanceof Buffer) {
     const targetBytes = target.buffer;
     for (let index = 0; index < sourceLength; index += 1) {
       targetBytes[targetOffset + index] = source[index]!;
@@ -169,27 +169,27 @@ const copyBufferSliceToByteArray = (
   offset: int,
   length: int
 ): byte[] => {
-  const result: byte[] = [];
+  const result = new Array<byte>(length);
 
-  if (Buffer.isBuffer(buffer)) {
+  if (buffer instanceof Buffer) {
     const sourceBytes = buffer.buffer;
     for (let index = 0; index < length; index += 1) {
-      result.push(sourceBytes[offset + index]! as byte);
+      result[index] = sourceBytes[offset + index]! as byte;
     }
     return result;
   }
 
   for (let index = 0; index < length; index += 1) {
-    result.push(buffer[offset + index]!);
+    result[index] = buffer[offset + index]!;
   }
 
   return result;
 };
 
 const createByteArray = (length: int): byte[] => {
-  const result: byte[] = [];
+  const result = new Array<byte>(length);
   for (let index = 0; index < length; index += 1) {
-    result.push(0 as byte);
+    result[index] = 0 as byte;
   }
   return result;
 };

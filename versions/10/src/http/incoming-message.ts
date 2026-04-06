@@ -338,11 +338,7 @@ export class IncomingMessage extends EventEmitter {
 }
 
 function toByteArray(bytes: Uint8Array): byte[] {
-  const result: byte[] = [];
-  for (let index = 0; index < bytes.length; index += 1) {
-    result.push(bytes[index]! as byte);
-  }
-  return result;
+  return Array.from(bytes, (value) => value as byte);
 }
 
 function toUint8Array(bytes: byte[]): Uint8Array {

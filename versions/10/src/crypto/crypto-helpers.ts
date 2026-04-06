@@ -48,11 +48,7 @@ const toInt = (value: number): int => {
 };
 
 export const toByteArray = (buffer: Uint8Array): byte[] => {
-  const result: byte[] = [];
-  for (let index = 0; index < buffer.length; index += 1) {
-    result.push(buffer[index]! as byte);
-  }
-  return result;
+  return Array.from(buffer, (value) => value as byte);
 };
 
 export const toReadOnlyByteSpan = (

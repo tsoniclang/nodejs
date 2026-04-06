@@ -810,10 +810,7 @@ const parseSendArgs = (
   }
 
   // Non-offset form: send(msg, port?, address?, callback?)
-  const data =
-    typeof msg === "string"
-      ? stringToBytes(msg, "utf8")
-      : (msg as Uint8Array);
+  const data = toBytes(msg);
 
   // send(msg, port, ...)
   if (typeof arg0 === "number") {

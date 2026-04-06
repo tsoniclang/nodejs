@@ -91,6 +91,24 @@ projectConfig.tests = {
   outputName: "NodejsNext.Selftests"
 };
 fs.writeFileSync(projectConfigPath, JSON.stringify(projectConfig, null, 2) + "\n");
+
+const runnerConfigPath = path.join(
+  workspaceDir,
+  "packages",
+  projectName,
+  "xunit.runner.json"
+);
+fs.writeFileSync(
+  runnerConfigPath,
+  JSON.stringify(
+    {
+      parallelizeTestCollections: false,
+      maxParallelThreads: 1
+    },
+    null,
+    2
+  ) + "\n"
+);
 NODE
 }
 

@@ -237,7 +237,7 @@ export class IntervalAsyncIterator<T> {
 
     while (this.waiters.Count > 0) {
       const waiter = this.waiters.Dequeue();
-      waiter(new IntervalIterationResult(true, undefined));
+      waiter(new IntervalIterationResult<T>(true, undefined));
     }
   }
 
@@ -248,7 +248,7 @@ export class IntervalAsyncIterator<T> {
     }
 
     if (this.closed) {
-      return Promise.resolve(new IntervalIterationResult(true, undefined));
+      return Promise.resolve(new IntervalIterationResult<T>(true, undefined));
     }
 
     return new Promise<IntervalIterationResult<T>>((resolve) => {
