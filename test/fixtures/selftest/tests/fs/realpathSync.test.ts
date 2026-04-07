@@ -61,11 +61,11 @@ export class realpathSyncTests {
   }
 }
 
-A.on(realpathSyncTests).method((t) => t.realpathSync_ShouldResolveAbsolutePath).add(FactAttribute);
-A.on(realpathSyncTests)
+A<realpathSyncTests>().method((t) => t.realpathSync_ShouldResolveAbsolutePath).add(FactAttribute);
+A<realpathSyncTests>()
   .method((t) => t.realpathSync_RelativePath_ShouldResolveToAbsolute)
   .add(FactAttribute);
-A.on(realpathSyncTests)
+A<realpathSyncTests>()
   .method((t) => t.realpathSync_NonExistent_ShouldResolveAnyway)
   .add(FactAttribute);
-A.on(realpathSyncTests).method((t) => t.realpathSync_Directory_ShouldResolve).add(FactAttribute);
+A<realpathSyncTests>().method((t) => t.realpathSync_Directory_ShouldResolve).add(FactAttribute);

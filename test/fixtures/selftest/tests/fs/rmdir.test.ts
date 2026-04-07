@@ -33,5 +33,5 @@ export class rmdirTests {
   }
 }
 
-A.on(rmdirTests).method((t) => t.rmdir_ShouldRemoveEmptyDirectory).add(FactAttribute);
-A.on(rmdirTests).method((t) => t.rmdir_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);
+A<rmdirTests>().method((t) => t.rmdir_ShouldRemoveEmptyDirectory).add(FactAttribute);
+A<rmdirTests>().method((t) => t.rmdir_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);

@@ -6,6 +6,6 @@ import {
 export class PerfHooksCollectionDefinition {}
 
 // @ts-expect-error Tsonic supports attribute named arguments beyond constructor parameters.
-A.on(PerfHooksCollectionDefinition).type.add(CollectionDefinitionAttribute, "perf_hooks", {
+A<PerfHooksCollectionDefinition>().add(CollectionDefinitionAttribute, "perf_hooks", {
   DisableParallelization: true,
 });

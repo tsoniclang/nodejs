@@ -91,18 +91,18 @@ export class ChildProcessExecOptionsTests {
   }
 }
 
-A.on(ChildProcessExecOptionsTests)
+A<ChildProcessExecOptionsTests>()
   .method((t) => t.ExecOptions_WithEnvVariables_PassesEnvironment)
   .add(FactAttribute);
-A.on(ChildProcessExecOptionsTests)
+A<ChildProcessExecOptionsTests>()
   .method((t) => t.ExecOptions_WithTimeout_TerminatesProcess)
   .add(FactAttribute);
-A.on(ChildProcessExecOptionsTests)
+A<ChildProcessExecOptionsTests>()
   .method((t) => t.ExecOptions_WithTimeout_SetsSignal)
   .add(FactAttribute);
-A.on(ChildProcessExecOptionsTests)
+A<ChildProcessExecOptionsTests>()
   .method((t) => t.ExecOptions_AllProperties_CanBeSet)
   .add(FactAttribute);
-A.on(ChildProcessExecOptionsTests)
+A<ChildProcessExecOptionsTests>()
   .method((t) => t.ExecOptions_WithMaxBuffer_RespectedInOptions)
   .add(FactAttribute);

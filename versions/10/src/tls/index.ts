@@ -5,7 +5,8 @@
  * Baseline: nodejs-clr/src/nodejs/tls/tls.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
+import type { JsValue } from "@tsonic/core/types.js";
 
 export {
   CipherNameAndProtocol,
@@ -157,7 +158,7 @@ export const connect = (
   const tlsSocket = new TLSSocket(transportSocket, socketOpts);
 
   if (listener !== null) {
-    tlsSocket.once("secureConnect", (..._args: unknown[]) => {
+    tlsSocket.once("secureConnect", (..._args: JsValue[]) => {
       listener();
     });
   }

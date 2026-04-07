@@ -11,6 +11,6 @@ export class CreateConnectionTests {
   }
 }
 
-A.on(CreateConnectionTests)
+A<CreateConnectionTests>()
   .method((t) => t.create_connection_creates_socket)
   .add(FactAttribute);

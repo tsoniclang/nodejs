@@ -7,8 +7,10 @@
  * Method signatures are correct; implementations that require OS interop use
  * TODO placeholders.
  */
+import { overloads as O } from "@tsonic/core/lang.js";
 import { EventEmitter, toEventListener } from "../events-module.ts";
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
+import { AddressInfo } from "./options.ts";
 import type { ListenOptions, ServerOpts } from "./options.ts";
 import type { Socket } from "./socket.ts";
 
@@ -40,12 +42,6 @@ export class Server extends EventEmitter {
     this._maxConnections = value;
   }
 
-  constructor();
-  constructor(connectionListener: (socket: Socket) => void);
-  constructor(
-    options: ServerOpts,
-    connectionListener?: (socket: Socket) => void
-  );
   constructor(
     optionsOrListener?: ServerOpts | ((socket: Socket) => void),
     connectionListener?: ((socket: Socket) => void)
@@ -56,7 +52,7 @@ export class Server extends EventEmitter {
       // Server(connectionListener)
       this._allowHalfOpen = false;
       this._pauseOnConnect = false;
-      this.on("connection", (...args: unknown[]) => {
+      this.on("connection", (...args: JsValue[]) => {
         optionsOrListener(args[0] as Socket);
       });
     } else {
@@ -64,7 +60,7 @@ export class Server extends EventEmitter {
       this._allowHalfOpen = optionsOrListener?.allowHalfOpen ?? false;
       this._pauseOnConnect = optionsOrListener?.pauseOnConnect ?? false;
       if (connectionListener !== undefined) {
-        this.on("connection", (...args: unknown[]) => {
+        this.on("connection", (...args: JsValue[]) => {
           connectionListener(args[0] as Socket);
         });
       }
@@ -96,81 +92,62 @@ export class Server extends EventEmitter {
     listeningListener?: () => void
   ): Server;
   public listen(
-    portOrOptions: int | ListenOptions,
-    hostnameOrBacklogOrListener?: string | int | (() => void),
-    backlogOrListener?: int | (() => void),
+    _portOrOptions: any,
+    _hostnameOrBacklogOrListener?: any,
+    _backlogOrListener?: any,
+    _listeningListener?: any
+  ): any {
+    throw new Error("stub");
+  }
+
+  public listen_port_hostname_backlog(
+    port: int,
+    hostname: string,
+    backlog: int,
     listeningListener?: () => void
   ): Server {
-    if (typeof portOrOptions === "object") {
-      // listen(options, listeningListener?)
-      const options = portOrOptions;
-      const listener =
-        typeof hostnameOrBacklogOrListener === "function"
-          ? hostnameOrBacklogOrListener
-          : undefined;
+    return this.listenInternal(port, hostname, backlog, listeningListener);
+  }
 
-      if (options.port !== undefined) {
-        const requestedPort = options.port;
-        return this.listenInternal(
-          requestedPort,
-          options.host,
-          options.backlog ?? 511,
-          listener
-        );
-      }
-      if (options.path !== undefined) {
-        // TODO: IPC server support
-        throw new Error("IPC server not supported");
-      }
-      throw new Error("Either port or path must be specified");
-    }
+  public listen_port_hostname(
+    port: int,
+    hostname: string,
+    listeningListener?: () => void
+  ): Server {
+    return this.listenInternal(port, hostname, 511, listeningListener);
+  }
 
-    const port = portOrOptions;
+  public listen_port_backlog(
+    port: int,
+    backlog: int,
+    listeningListener?: () => void
+  ): Server {
+    return this.listenInternal(port, undefined, backlog, listeningListener);
+  }
 
-    if (typeof hostnameOrBacklogOrListener === "string") {
-      // listen(port, hostname, ...)
-      const hostname = hostnameOrBacklogOrListener;
-      if (typeof backlogOrListener === "number") {
-        // listen(port, hostname, backlog, listeningListener?)
-        return this.listenInternal(
-          port,
-          hostname,
-          backlogOrListener,
-          listeningListener
-        );
-      }
-      // listen(port, hostname, listeningListener?)
+  public listen_port(
+    port: int,
+    listeningListener?: () => void
+  ): Server {
+    return this.listenInternal(port, undefined, 511, listeningListener);
+  }
+
+  public listen_options(
+    options: ListenOptions,
+    listeningListener?: () => void
+  ): Server {
+    if (options.port !== undefined) {
       return this.listenInternal(
-        port,
-        hostname,
-        511,
-        typeof backlogOrListener === "function"
-          ? backlogOrListener
-          : undefined
+        options.port,
+        options.host,
+        options.backlog ?? 511,
+        listeningListener
       );
     }
-
-    if (typeof hostnameOrBacklogOrListener === "number") {
-      // listen(port, backlog, listeningListener?)
-      return this.listenInternal(
-        port,
-        undefined,
-        hostnameOrBacklogOrListener,
-        typeof backlogOrListener === "function"
-          ? backlogOrListener
-          : undefined
-      );
+    if (options.path !== undefined) {
+      throw new Error("IPC server not supported");
     }
-
-    // listen(port, listeningListener?)
-    return this.listenInternal(
-      port,
-      undefined,
-      511,
-      typeof hostnameOrBacklogOrListener === "function"
-        ? hostnameOrBacklogOrListener
-        : undefined
-    );
+    throw new Error("Either port or path must be specified");
   }
 
   private listenInternal(
@@ -233,7 +210,7 @@ export class Server extends EventEmitter {
   /**
    * Returns the bound address, the address family name, and port of the server.
    */
-  public address(): object | null {
+  public address(): AddressInfo | null {
     // TODO: Read address info from the underlying TcpListener via OS interop.
     // In the CLR version this reads _listener.LocalEndpoint as IPEndPoint.
     return null;
@@ -264,3 +241,9 @@ export class Server extends EventEmitter {
     return this;
   }
 }
+
+O<Server>().method(x => x.listen_port_hostname_backlog).family(x => x.listen);
+O<Server>().method(x => x.listen_port_hostname).family(x => x.listen);
+O<Server>().method(x => x.listen_port_backlog).family(x => x.listen);
+O<Server>().method(x => x.listen_port).family(x => x.listen);
+O<Server>().method(x => x.listen_options).family(x => x.listen);

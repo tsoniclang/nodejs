@@ -30,12 +30,12 @@ export class CreateServerTests {
   }
 }
 
-A.on(CreateServerTests)
+A<CreateServerTests>()
   .method((t) => t.create_server_no_args_returns_server)
   .add(FactAttribute);
-A.on(CreateServerTests)
+A<CreateServerTests>()
   .method((t) => t.create_server_with_connection_listener_attaches_listener)
   .add(FactAttribute);
-A.on(CreateServerTests)
+A<CreateServerTests>()
   .method((t) => t.create_server_with_options_returns_server)
   .add(FactAttribute);

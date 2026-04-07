@@ -29,6 +29,6 @@ export class ConnectTests {
   }
 }
 
-A.on(ConnectTests)
+A<ConnectTests>()
   .method((t) => t.connect_ToRemote_ConnectsSuccessfully)
   .add(FactAttribute);

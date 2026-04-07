@@ -9,8 +9,8 @@
  * stubbed with TODO markers.
  */
 
-import type { int } from "@tsonic/core/types.js";
-import { StreamReader } from "@tsonic/dotnet/System.IO.js";
+import type { byte, int } from "@tsonic/core/types.js";
+import { MemoryStream } from "@tsonic/dotnet/System.IO.js";
 import type { HttpListenerRequest } from "@tsonic/dotnet/System.Net.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
 import {
@@ -33,7 +33,9 @@ export class IncomingMessage extends EventEmitter {
   private _complete: boolean = false;
   private readonly _nativeRequest: HttpListenerRequest | null;
   private _bodyReadPromise: Promise<string> | null = null;
+  private _bodyBytesReadPromise: Promise<Uint8Array> | null = null;
   private _bodyText: string | null = null;
+  private _bodyBytes: Uint8Array | null = null;
   private _bodyEmitted: boolean = false;
 
   constructor(request?: HttpListenerRequest | null) {
@@ -143,15 +145,26 @@ export class IncomingMessage extends EventEmitter {
    */
   public async readAll(): Promise<string> {
     const body = await this._ensureBodyLoaded();
-    this._emitLoadedBodyOnce(body);
+    const bodyBytes = await this._ensureBodyBytesLoaded();
+    this._emitLoadedBodyBytesOnce(bodyBytes);
+    return body;
+  }
+
+  /**
+   * Reads the entire body as bytes.
+   * @returns The body content as raw bytes.
+   */
+  public async readAllBytes(): Promise<Uint8Array> {
+    const body = await this._ensureBodyBytesLoaded();
+    this._emitLoadedBodyBytesOnce(body);
     return body;
   }
 
   /**
    * Event handler for 'data' event.
    */
-  public onData(callback: (chunk: string) => void): void {
-    this.on("data", toUnaryEventListener<string>(callback)!);
+  public onData(callback: (chunk: string | Uint8Array) => void): void {
+    this.on("data", toUnaryEventListener<string | Uint8Array>(callback)!);
   }
 
   /**
@@ -211,7 +224,8 @@ export class IncomingMessage extends EventEmitter {
    */
   public _emitBufferedClientBody(body: string): void {
     this._bodyText = body;
-    this._emitLoadedBodyOnce(body);
+    this._bodyBytes = toUint8Array(Encoding.UTF8.GetBytes(body));
+    this._emitLoadedBodyBytesOnce(this._bodyBytes);
   }
 
   /**
@@ -224,8 +238,8 @@ export class IncomingMessage extends EventEmitter {
   }
 
   private async _streamLoadedBody(): Promise<void> {
-    const body = await this._ensureBodyLoaded();
-    this._emitLoadedBodyOnce(body);
+    const bodyBytes = await this._ensureBodyBytesLoaded();
+    this._emitLoadedBodyBytesOnce(bodyBytes);
   }
 
   private _ensureBodyLoaded(): Promise<string> {
@@ -238,50 +252,112 @@ export class IncomingMessage extends EventEmitter {
     return this._bodyReadPromise;
   }
 
+  private _ensureBodyBytesLoaded(): Promise<Uint8Array> {
+    if (this._bodyBytesReadPromise !== null) {
+      return this._bodyBytesReadPromise;
+    }
+
+    this._bodyBytesReadPromise = this._loadBodyBytes();
+
+    return this._bodyBytesReadPromise;
+  }
+
   private async _loadBody(): Promise<string> {
     if (this._bodyText !== null) {
       return this._bodyText;
+    }
+
+    const bodyBytes = await this._ensureBodyBytesLoaded();
+    this._bodyText = this._decodeBodyBytes(bodyBytes);
+    return this._bodyText;
+  }
+
+  private async _loadBodyBytes(): Promise<Uint8Array> {
+    if (this._bodyBytes !== null) {
+      return this._bodyBytes;
     }
 
     if (
       this._nativeRequest === null ||
       !this._nativeRequest.HasEntityBody
     ) {
-      this._bodyText = "";
-      return this._bodyText;
+      this._bodyBytes = new Uint8Array(0);
+      return this._bodyBytes;
+    }
+
+    const output = new MemoryStream();
+    try {
+      this._nativeRequest.InputStream.CopyTo(output);
+      this._bodyBytes = toUint8Array(output.ToArray());
+    } finally {
+      output.Dispose();
+    }
+
+    return this._bodyBytes;
+  }
+
+  private _decodeBodyBytes(bodyBytes: Uint8Array): string {
+    if (bodyBytes.length === 0) {
+      return "";
+    }
+
+    if (
+      this._nativeRequest === null ||
+      !this._nativeRequest.HasEntityBody
+    ) {
+      return "";
     }
 
     const encoding = this._nativeRequest.ContentEncoding ?? Encoding.UTF8;
-    const reader = new StreamReader(
-      this._nativeRequest.InputStream,
-      encoding,
-      false,
-      1024 as int,
-      true
-    );
-
-    try {
-      this._bodyText = reader.ReadToEnd();
-    } finally {
-      reader.Dispose();
-    }
-
-    return this._bodyText;
+    return encoding.GetString(toByteArray(bodyBytes));
   }
 
-  private _emitLoadedBodyOnce(body: string): void {
+  private _markBodyEmitted(): boolean {
     if (this._bodyEmitted) {
-      return;
+      return false;
     }
 
     this._bodyEmitted = true;
+    this._complete = true;
+    return true;
+  }
 
-    if (body.length > 0) {
-      this.emit("data", body);
+  private _emitLoadedBodyOnce(body: string): void {
+    if (!this._markBodyEmitted()) {
+      return;
     }
 
-    this._complete = true;
+    if (body.length > 0) {
+      this.emit("data", toUint8Array(Encoding.UTF8.GetBytes(body)));
+    }
+
     this.emit("end");
     this.emit("close");
   }
+
+  private _emitLoadedBodyBytesOnce(bodyBytes: Uint8Array): void {
+    if (!this._markBodyEmitted()) {
+      return;
+    }
+
+    this._bodyBytes = bodyBytes;
+    this._bodyText = this._bodyText ?? this._decodeBodyBytes(bodyBytes);
+    if (bodyBytes.length > 0) {
+      this.emit("data", bodyBytes);
+    }
+    this.emit("end");
+    this.emit("close");
+  }
+}
+
+function toByteArray(bytes: Uint8Array): byte[] {
+  return Array.from(bytes, (value) => value as byte);
+}
+
+function toUint8Array(bytes: byte[]): Uint8Array {
+  const result = new Uint8Array(bytes.length);
+  for (let index = 0; index < bytes.length; index += 1) {
+    result[index] = bytes[index]!;
+  }
+  return result;
 }

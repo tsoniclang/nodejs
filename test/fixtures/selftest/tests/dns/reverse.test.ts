@@ -29,12 +29,12 @@ export class ReverseTests {
   }
 }
 
-A.on(ReverseTests)
+A<ReverseTests>()
   .method((t) => t.reverse_ValidIPv4_CallsCallback)
   .add(FactAttribute);
-A.on(ReverseTests)
+A<ReverseTests>()
   .method((t) => t.reverse_ValidIPv6_CallsCallback)
   .add(FactAttribute);
-A.on(ReverseTests)
+A<ReverseTests>()
   .method((t) => t.reverse_InvalidIP_CallsCallback)
   .add(FactAttribute);

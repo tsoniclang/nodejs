@@ -14,6 +14,6 @@ export class getCiphersTests {
   }
 }
 
-A.on(getCiphersTests)
+A<getCiphersTests>()
   .method((t) => t.getCiphers_ReturnsArray)
   .add(FactAttribute);

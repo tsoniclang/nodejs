@@ -1,4 +1,5 @@
-import type { byte } from "@tsonic/core/types.js";
+import { overloads as O } from "@tsonic/core/lang.js";
+import type { byte, JsValue } from "@tsonic/core/types.js";
 import { Guid } from "@tsonic/dotnet/System.js";
 import { Directory, File, Path } from "@tsonic/dotnet/System.IO.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
@@ -25,9 +26,13 @@ export const deleteIfExists = (value: string): void => {
 export const getTestPath = (dir: string, name: string): string =>
   Path.Combine(dir, name);
 
-export function assertThrows(action: () => void): unknown;
-export function assertThrows<T>(action: () => T): unknown;
-export function assertThrows(action: () => unknown): unknown {
+export function assertThrows(action: () => void): JsValue;
+export function assertThrows(action: () => JsValue): JsValue;
+export function assertThrows(_action: any): any {
+  throw new Error("stub");
+}
+
+function assertThrows_void(action: () => void): JsValue {
   try {
     action();
   } catch (error) {
@@ -37,13 +42,39 @@ export function assertThrows(action: () => unknown): unknown {
   throw new Error("Expected action to throw");
 }
 
-export function assertThrowsAsync(action: () => Promise<void>): Promise<unknown>;
-export function assertThrowsAsync<T>(
-  action: () => Promise<T>,
-): Promise<unknown>;
-export async function assertThrowsAsync(
-  action: () => Promise<unknown>,
-): Promise<unknown> {
+function assertThrows_value(action: () => JsValue): JsValue {
+  try {
+    action();
+  } catch (error) {
+    return error;
+  }
+
+  throw new Error("Expected action to throw");
+}
+
+export function assertThrowsAsync(action: () => Promise<void>): Promise<JsValue>;
+export function assertThrowsAsync(
+  action: () => Promise<JsValue>,
+): Promise<JsValue>;
+export async function assertThrowsAsync(_action: any): Promise<any> {
+  throw new Error("stub");
+}
+
+async function assertThrowsAsync_void(
+  action: () => Promise<void>,
+): Promise<JsValue> {
+  try {
+    await action();
+  } catch (error) {
+    return error;
+  }
+
+  throw new Error("Expected action to throw");
+}
+
+async function assertThrowsAsync_value(
+  action: () => Promise<JsValue>,
+): Promise<JsValue> {
   try {
     await action();
   } catch (error) {
@@ -55,3 +86,8 @@ export async function assertThrowsAsync(
 
 export const bytesToUtf8 = (value: byte[]): string =>
   Encoding.UTF8.GetString(value);
+
+O(assertThrows_void).family(assertThrows);
+O(assertThrows_value).family(assertThrows);
+O(assertThrowsAsync_void).family(assertThrowsAsync);
+O(assertThrowsAsync_value).family(assertThrowsAsync);

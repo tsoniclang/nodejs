@@ -22,12 +22,12 @@ export class MatchesGlobTests {
   }
 }
 
-A.on(MatchesGlobTests)
+A<MatchesGlobTests>()
   .method((t) => t.matchesGlob_matches_simple_patterns)
   .add(FactAttribute);
-A.on(MatchesGlobTests)
+A<MatchesGlobTests>()
   .method((t) => t.matchesGlob_supports_wildcards)
   .add(FactAttribute);
-A.on(MatchesGlobTests)
+A<MatchesGlobTests>()
   .method((t) => t.matchesGlob_rejects_empty_inputs)
   .add(FactAttribute);

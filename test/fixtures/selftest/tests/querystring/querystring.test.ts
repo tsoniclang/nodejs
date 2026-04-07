@@ -1,3 +1,4 @@
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert } from "xunit-types/Xunit.js";
 
 import * as querystring from "@tsonic/nodejs/querystring.js";
@@ -7,7 +8,7 @@ import * as querystring from "@tsonic/nodejs/querystring.js";
  */
 export class QueryStringTests {
   public stringify_ShouldSerializeSimpleObject(): void {
-    const obj: Record<string, unknown> = {
+    const obj: Record<string, JsValue> = {
       foo: "bar",
       baz: "qux",
     };
@@ -20,7 +21,7 @@ export class QueryStringTests {
   }
 
   public stringify_ShouldHandleArrayValues(): void {
-    const obj: Record<string, unknown> = {
+    const obj: Record<string, JsValue> = {
       foo: "bar",
       baz: ["qux", "quux"],
     };
@@ -33,7 +34,7 @@ export class QueryStringTests {
   }
 
   public stringify_ShouldHandleEmptyObject(): void {
-    const obj: Record<string, unknown> = {};
+    const obj: Record<string, JsValue> = {};
 
     const result = querystring.stringify(obj);
 
@@ -47,7 +48,7 @@ export class QueryStringTests {
   }
 
   public stringify_ShouldUseCustomSeparators(): void {
-    const obj: Record<string, unknown> = {
+    const obj: Record<string, JsValue> = {
       foo: "bar",
       baz: "qux",
     };
@@ -60,7 +61,7 @@ export class QueryStringTests {
   }
 
   public stringify_ShouldEscapeSpecialCharacters(): void {
-    const obj: Record<string, unknown> = {
+    const obj: Record<string, JsValue> = {
       "key with spaces": "value with spaces",
       special: "hello&world",
     };
@@ -136,7 +137,7 @@ export class QueryStringTests {
   }
 
   public encode_ShouldBeAliasForStringify(): void {
-    const obj: Record<string, unknown> = { foo: "bar" };
+    const obj: Record<string, JsValue> = { foo: "bar" };
 
     const stringifyResult = querystring.stringify(obj);
     const encodeResult = querystring.encode(obj);
@@ -185,7 +186,7 @@ export class QueryStringTests {
   }
 
   public roundTrip_ShouldPreserveData(): void {
-    const original: Record<string, unknown> = {
+    const original: Record<string, JsValue> = {
       name: "John Doe",
       email: "john@example.com",
       tags: ["developer", "designer"],

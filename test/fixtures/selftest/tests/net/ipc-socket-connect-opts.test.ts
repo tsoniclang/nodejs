@@ -12,6 +12,6 @@ export class IpcSocketConnectOptsTests {
   }
 }
 
-A.on(IpcSocketConnectOptsTests)
+A<IpcSocketConnectOptsTests>()
   .method((t) => t.path_can_be_set)
   .add(FactAttribute);

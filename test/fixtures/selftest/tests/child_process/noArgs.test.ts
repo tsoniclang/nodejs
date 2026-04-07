@@ -23,9 +23,9 @@ export class ChildProcessNoArgsTests {
   }
 }
 
-A.on(ChildProcessNoArgsTests)
+A<ChildProcessNoArgsTests>()
   .method((t) => t.noArgs_SpawnSync_Works)
   .add(FactAttribute);
-A.on(ChildProcessNoArgsTests)
+A<ChildProcessNoArgsTests>()
   .method((t) => t.noArgs_ExecFileSync_Works)
   .add(FactAttribute);

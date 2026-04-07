@@ -1,12 +1,13 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { generateKeyPair, PublicKeyObject, PrivateKeyObject } from "@tsonic/nodejs/crypto.js";
 
 export class GenerateKeyPairTests {
   public generateKeyPair_callback_works(): void {
-    let pubKey: unknown = null;
-    let privKey: unknown = null;
+    let pubKey: JsValue = null;
+    let privKey: JsValue = null;
     let error: Error | null = null;
     generateKeyPair("rsa", null, (err, pub, priv) => {
       error = err;
@@ -21,4 +22,4 @@ export class GenerateKeyPairTests {
   }
 }
 
-A.on(GenerateKeyPairTests).method((t) => t.generateKeyPair_callback_works).add(FactAttribute);
+A<GenerateKeyPairTests>().method((t) => t.generateKeyPair_callback_works).add(FactAttribute);

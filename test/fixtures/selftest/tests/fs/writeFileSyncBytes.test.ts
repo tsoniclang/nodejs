@@ -25,6 +25,6 @@ export class writeFileSyncBytesTests {
   }
 }
 
-A.on(writeFileSyncBytesTests)
+A<writeFileSyncBytesTests>()
   .method((t) => t.writeFileSyncBytes_ShouldWriteBinaryData)
   .add(FactAttribute);

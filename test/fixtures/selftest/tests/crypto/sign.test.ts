@@ -20,5 +20,5 @@ export class SignStaticTests {
   }
 }
 
-A.on(SignStaticTests).method((t) => t.sign_static_sign_works).add(FactAttribute);
-A.on(SignStaticTests).method((t) => t.sign_static_verify_works).add(FactAttribute);
+A<SignStaticTests>().method((t) => t.sign_static_sign_works).add(FactAttribute);
+A<SignStaticTests>().method((t) => t.sign_static_verify_works).add(FactAttribute);

@@ -22,6 +22,6 @@ export class CaaRecordTests {
   }
 }
 
-A.on(CaaRecordTests)
+A<CaaRecordTests>()
   .method((t) => t.CaaRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

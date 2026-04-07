@@ -53,8 +53,8 @@ export class readFileTests {
   }
 }
 
-A.on(readFileTests).method((t) => t.readFile_ShouldReadTextFile).add(FactAttribute);
-A.on(readFileTests).method((t) => t.readFile_NonExistentFile_ShouldThrow).add(FactAttribute);
-A.on(readFileTests)
+A<readFileTests>().method((t) => t.readFile_ShouldReadTextFile).add(FactAttribute);
+A<readFileTests>().method((t) => t.readFile_NonExistentFile_ShouldThrow).add(FactAttribute);
+A<readFileTests>()
   .method((t) => t.readFile_WithoutEncoding_ShouldReturnBuffer)
   .add(FactAttribute);

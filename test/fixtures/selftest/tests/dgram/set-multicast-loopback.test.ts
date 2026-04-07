@@ -15,6 +15,6 @@ export class SetMulticastLoopbackTests {
   }
 }
 
-A.on(SetMulticastLoopbackTests)
+A<SetMulticastLoopbackTests>()
   .method((t) => t.setMulticastLoopback_SetsLoopback)
   .add(FactAttribute);

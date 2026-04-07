@@ -48,12 +48,12 @@ export class readFileSyncTests {
   }
 }
 
-A.on(readFileSyncTests)
+A<readFileSyncTests>()
   .method((t) => t.readFileSync_ShouldReadTextFile)
   .add(FactAttribute);
-A.on(readFileSyncTests)
+A<readFileSyncTests>()
   .method((t) => t.readFileSync_NonExistentFile_ShouldThrow)
   .add(FactAttribute);
-A.on(readFileSyncTests)
+A<readFileSyncTests>()
   .method((t) => t.readFileSync_WithoutEncoding_ShouldReturnBuffer)
   .add(FactAttribute);

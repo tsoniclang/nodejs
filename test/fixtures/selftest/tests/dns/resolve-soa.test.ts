@@ -13,6 +13,6 @@ export class ResolveSoaTests {
   }
 }
 
-A.on(ResolveSoaTests)
+A<ResolveSoaTests>()
   .method((t) => t.resolveSoa_ValidDomain_CallsCallback)
   .add(FactAttribute);

@@ -18,6 +18,6 @@ export class DropMembershipTests {
   }
 }
 
-A.on(DropMembershipTests)
+A<DropMembershipTests>()
   .method((t) => t.dropMembership_LeavesMulticastGroup)
   .add(FactAttribute);

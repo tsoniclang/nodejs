@@ -1,8 +1,4 @@
-/**
- * TLS option and certificate info types.
- *
- * Baseline: nodejs-clr/src/nodejs/tls/Options.cs
- */
+import type { JsValue } from "@tsonic/core/types.js";
 
 /**
  * Certificate distinguished-name fields.
@@ -63,12 +59,12 @@ export class EphemeralKeyInfo {
  * Secure context options for TLS configuration.
  */
 export class SecureContextOptions {
-  public ca: unknown = null;
-  public cert: unknown = null;
+  public ca: JsValue = null;
+  public cert: JsValue = null;
   public ciphers: string | null = null;
-  public key: unknown = null;
+  public key: JsValue = null;
   public passphrase: string | null = null;
-  public pfx: unknown = null;
+  public pfx: JsValue = null;
   public maxVersion: string | null = null;
   public minVersion: string | null = null;
 }
@@ -93,11 +89,11 @@ import type { SecureContext } from "./secure-context.ts";
  */
 export class TLSSocketOptions extends CommonConnectionOptions {
   public isServer: boolean | null = null;
-  public server: unknown = null;
+  public server: JsValue = null;
   public servername: string | null = null;
-  public ca: unknown = null;
-  public cert: unknown = null;
-  public key: unknown = null;
+  public ca: JsValue = null;
+  public cert: JsValue = null;
+  public key: JsValue = null;
   public passphrase: string | null = null;
 }
 
@@ -108,9 +104,9 @@ export class ConnectionOptions extends CommonConnectionOptions {
   public host: string | null = null;
   public port: number | null = null;
   public servername: string | null = null;
-  public ca: unknown = null;
-  public cert: unknown = null;
-  public key: unknown = null;
+  public ca: JsValue = null;
+  public cert: JsValue = null;
+  public key: JsValue = null;
   public passphrase: string | null = null;
   public timeout: number | null = null;
 }
@@ -121,9 +117,9 @@ export class ConnectionOptions extends CommonConnectionOptions {
 export class TlsOptions extends CommonConnectionOptions {
   public handshakeTimeout: number | null = null;
   public sessionTimeout: number | null = null;
-  public ca: unknown = null;
-  public cert: unknown = null;
-  public key: unknown = null;
+  public ca: JsValue = null;
+  public cert: JsValue = null;
+  public key: JsValue = null;
   public passphrase: string | null = null;
   public allowHalfOpen: boolean | null = null;
   public pauseOnConnect: boolean | null = null;

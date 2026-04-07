@@ -10,6 +10,6 @@ export class GetServersTests {
   }
 }
 
-A.on(GetServersTests)
+A<GetServersTests>()
   .method((t) => t.getServers_ReturnsServerArray)
   .add(FactAttribute);

@@ -1,5 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 import { Thread } from "@tsonic/dotnet/System.Threading.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
@@ -121,7 +121,7 @@ export class StreamTests {
     const stream = new Readable();
     let caughtMessage = "";
 
-    stream.on("error", (err: unknown) => {
+    stream.on("error", (err: JsValue) => {
       if (err instanceof Error) {
         caughtMessage = err.message;
       }
@@ -137,7 +137,7 @@ export class StreamTests {
     const stream = new Readable();
     const received: string[] = [];
 
-    stream.on("data", (chunk: unknown) => {
+    stream.on("data", (chunk: JsValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -289,7 +289,7 @@ export class StreamTests {
     const stream = new Transform();
     const received: string[] = [];
 
-    stream.on("data", (chunk: unknown) => {
+    stream.on("data", (chunk: JsValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -317,7 +317,7 @@ export class StreamTests {
     const stream = new PassThrough();
     const received: string[] = [];
 
-    stream.on("data", (chunk: unknown) => {
+    stream.on("data", (chunk: JsValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -451,108 +451,108 @@ export class StreamTests {
   }
 }
 
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_should_be_creatable)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_push_should_add_data_to_buffer)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_push_null_should_end_stream)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_read_should_return_null_when_empty)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_pause_should_stop_flowing)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_resume_should_enable_flowing)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_setEncoding_should_return_self)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_unshift_should_prepend_data)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_readableLength_should_reflect_buffer_size)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_destroy_should_mark_as_destroyed)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_destroy_with_error_should_emit_error)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_flowing_mode_should_emit_data)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_should_be_creatable)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_write_should_return_true)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_end_should_mark_as_ended)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_end_with_data_should_write_then_end)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_write_after_end_should_throw)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_cork_should_buffer_writes)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_destroy_should_mark_as_destroyed)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_writableLength_should_reflect_buffer_size)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Duplex_should_be_creatable)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Duplex_should_support_readable_operations)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Duplex_should_support_writable_operations)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Duplex_should_support_both_ends)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Transform_should_be_creatable)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Transform_default_behavior_should_pass_through)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.PassThrough_should_be_creatable)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.PassThrough_should_pass_data_through)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Stream_pipe_should_transfer_data_between_streams)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Stream_pipe_should_return_destination)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Stream_pipe_should_not_end_destination_when_specified)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Readable_events_should_be_emitted)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Writable_finish_event_should_be_emitted)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Stream_close_event_should_be_emitted_on_destroy)
   .add(FactAttribute);
-A.on(StreamTests)
+A<StreamTests>()
   .method((t) => t.Complex_pipeline_should_work)
   .add(FactAttribute);

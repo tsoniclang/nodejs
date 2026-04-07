@@ -18,6 +18,6 @@ export class CipherNameAndProtocolTests {
   }
 }
 
-A.on(CipherNameAndProtocolTests)
+A<CipherNameAndProtocolTests>()
   .method((t) => t.CipherNameAndProtocol_AllProperties_CanBeSet)
   .add(FactAttribute);

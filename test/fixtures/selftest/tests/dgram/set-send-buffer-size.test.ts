@@ -17,6 +17,6 @@ export class SetSendBufferSizeTests {
   }
 }
 
-A.on(SetSendBufferSizeTests)
+A<SetSendBufferSizeTests>()
   .method((t) => t.setSendBufferSize_SetsBufferSize)
   .add(FactAttribute);

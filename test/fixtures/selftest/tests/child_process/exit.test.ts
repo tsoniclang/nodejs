@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
@@ -13,7 +14,7 @@ export class ChildProcessExitTests {
     let capturedExitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (code: unknown, signal: unknown) => {
+    child.on("exit", (code: JsValue, _signal: JsValue) => {
       capturedExitCode = code as number | null;
     });
 
@@ -28,7 +29,7 @@ export class ChildProcessExitTests {
     let capturedExitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (code: unknown, signal: unknown) => {
+    child.on("exit", (code: JsValue, _signal: JsValue) => {
       capturedExitCode = code as number | null;
     });
 
@@ -41,7 +42,7 @@ export class ChildProcessExitTests {
     const args = ["test"];
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (code: unknown, signal: unknown) => {
+    child.on("exit", (_code: JsValue, _signal: JsValue) => {
       // exit event fired
     });
 
@@ -50,12 +51,12 @@ export class ChildProcessExitTests {
   }
 }
 
-A.on(ChildProcessExitTests)
+A<ChildProcessExitTests>()
   .method((t) => t.exit_ExitEvent_ContainsExitCode)
   .add(FactAttribute);
-A.on(ChildProcessExitTests)
+A<ChildProcessExitTests>()
   .method((t) => t.exit_ExitEvent_NonZeroExitCode)
   .add(FactAttribute);
-A.on(ChildProcessExitTests)
+A<ChildProcessExitTests>()
   .method((t) => t.exit_ExitCodeProperty_SetAfterExit)
   .add(FactAttribute);

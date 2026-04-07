@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/stream/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 import type { Stream } from "./stream.ts";
 import {

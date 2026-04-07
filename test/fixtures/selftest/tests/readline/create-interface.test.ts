@@ -1,3 +1,4 @@
+import { asinterface } from "@tsonic/core/lang.js";
 import { Assert } from "xunit-types/Xunit.js";
 
 import {
@@ -35,7 +36,7 @@ export class CreateInterfaceTests {
   public createInterface_WithNullOptions_ShouldThrow(): void {
     let threw = false;
     try {
-      createInterface(null as unknown as InterfaceOptions);
+      createInterface(asinterface<InterfaceOptions>(null));
     } catch {
       threw = true;
     }

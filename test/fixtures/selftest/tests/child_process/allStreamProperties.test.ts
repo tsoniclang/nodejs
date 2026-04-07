@@ -17,6 +17,6 @@ export class ChildProcessAllStreamPropertiesTests {
   }
 }
 
-A.on(ChildProcessAllStreamPropertiesTests)
+A<ChildProcessAllStreamPropertiesTests>()
   .method((t) => t.allStreamProperties_AreNull)
   .add(FactAttribute);

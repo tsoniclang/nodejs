@@ -15,6 +15,6 @@ export class GetSendBufferSizeTests {
   }
 }
 
-A.on(GetSendBufferSizeTests)
+A<GetSendBufferSizeTests>()
   .method((t) => t.getSendBufferSize_ReturnsBufferSize)
   .add(FactAttribute);

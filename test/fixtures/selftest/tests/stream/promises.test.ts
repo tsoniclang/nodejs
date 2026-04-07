@@ -31,9 +31,9 @@ export class StreamPromisesTests {
   }
 }
 
-A.on(StreamPromisesTests)
+A<StreamPromisesTests>()
   .method((t) => t.finished_should_resolve_on_writable_finish)
   .add(FactAttribute);
-A.on(StreamPromisesTests)
+A<StreamPromisesTests>()
   .method((t) => t.pipeline_should_resolve_for_simple_streams)
   .add(FactAttribute);

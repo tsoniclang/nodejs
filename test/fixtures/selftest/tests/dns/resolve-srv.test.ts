@@ -13,6 +13,6 @@ export class ResolveSrvTests {
   }
 }
 
-A.on(ResolveSrvTests)
+A<ResolveSrvTests>()
   .method((t) => t.resolveSrv_ValidDomain_CallsCallback)
   .add(FactAttribute);

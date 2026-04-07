@@ -20,6 +20,6 @@ export class LookupOptionsTests {
   }
 }
 
-A.on(LookupOptionsTests)
+A<LookupOptionsTests>()
   .method((t) => t.LookupOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

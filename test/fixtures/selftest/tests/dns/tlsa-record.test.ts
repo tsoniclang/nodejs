@@ -22,6 +22,6 @@ export class TlsaRecordTests {
   }
 }
 
-A.on(TlsaRecordTests)
+A<TlsaRecordTests>()
   .method((t) => t.TlsaRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

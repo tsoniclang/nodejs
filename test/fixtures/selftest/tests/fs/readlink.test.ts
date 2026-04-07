@@ -42,10 +42,10 @@ export class readlinkTests {
   }
 }
 
-A.on(readlinkTests).method((t) => t.readlink_ShouldReturnTargetPath).add(FactAttribute);
-A.on(readlinkTests)
+A<readlinkTests>().method((t) => t.readlink_ShouldReturnTargetPath).add(FactAttribute);
+A<readlinkTests>()
   .method((t) => t.readlink_NonSymlink_ShouldThrow)
   .add(FactAttribute);
-A.on(readlinkTests)
+A<readlinkTests>()
   .method((t) => t.readlink_NonExistent_ShouldThrow)
   .add(FactAttribute);

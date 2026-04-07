@@ -22,6 +22,6 @@ export class SecureContextOptionsTests {
   }
 }
 
-A.on(SecureContextOptionsTests)
+A<SecureContextOptionsTests>()
   .method((t) => t.SecureContextOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

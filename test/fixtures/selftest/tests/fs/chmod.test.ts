@@ -42,8 +42,8 @@ export class chmodTests {
   }
 }
 
-A.on(chmodTests).method((t) => t.chmod_ShouldChangeFilePermissions).add(FactAttribute);
-A.on(chmodTests)
+A<chmodTests>().method((t) => t.chmod_ShouldChangeFilePermissions).add(FactAttribute);
+A<chmodTests>()
   .method((t) => t.chmod_NonExistentFile_ShouldThrow)
   .add(FactAttribute);
-A.on(chmodTests).method((t) => t.chmod_Directory_ShouldWork).add(FactAttribute);
+A<chmodTests>().method((t) => t.chmod_Directory_ShouldWork).add(FactAttribute);

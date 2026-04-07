@@ -30,9 +30,9 @@ export class fsPromisesTests {
   }
 }
 
-A.on(fsPromisesTests)
+A<fsPromisesTests>()
   .method((t) => t.writeFile_And_readFile_ShouldRoundTrip)
   .add(FactAttribute);
-A.on(fsPromisesTests)
+A<fsPromisesTests>()
   .method((t) => t.stat_ShouldReturnFileInfo)
   .add(FactAttribute);

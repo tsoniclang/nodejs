@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { createECDH } from "@tsonic/nodejs/crypto.js";
@@ -15,8 +15,8 @@ export class CreateECDHTests {
     const bob = createECDH("secp256r1");
     alice.generateKeys();
     bob.generateKeys();
-    const aliceSecret = alice.computeSecret(bob.getPublicKey() as unknown as Uint8Array);
-    const bobSecret = bob.computeSecret(alice.getPublicKey() as unknown as Uint8Array);
+    const aliceSecret = alice.computeSecret(asinterface<Uint8Array>(bob.getPublicKey()));
+    const bobSecret = bob.computeSecret(asinterface<Uint8Array>(alice.getPublicKey()));
     Assert.Equal(aliceSecret, bobSecret);
   }
 
@@ -45,8 +45,8 @@ export class CreateECDHTests {
     const bob = createECDH("secp256r1");
     alice.generateKeys();
     bob.generateKeys();
-    const aliceSecretHex = alice.computeSecret(bob.getPublicKey() as unknown as Uint8Array, "hex");
-    const bobSecretHex = bob.computeSecret(alice.getPublicKey() as unknown as Uint8Array, "hex");
+    const aliceSecretHex = alice.computeSecret(asinterface<Uint8Array>(bob.getPublicKey()), "hex");
+    const bobSecretHex = bob.computeSecret(asinterface<Uint8Array>(alice.getPublicKey()), "hex");
     Assert.Equal(aliceSecretHex, bobSecretHex);
   }
 
@@ -73,8 +73,8 @@ export class CreateECDHTests {
     const bob = createECDH("secp256k1");
     const alicePublic = alice.generateKeys();
     const bobPublic = bob.generateKeys();
-    const aliceShared = alice.computeSecret(bobPublic as unknown as Uint8Array);
-    const bobShared = bob.computeSecret(alicePublic as unknown as Uint8Array);
+    const aliceShared = alice.computeSecret(asinterface<Uint8Array>(bobPublic));
+    const bobShared = bob.computeSecret(asinterface<Uint8Array>(alicePublic));
     Assert.Equal(aliceShared, bobShared);
   }
 
@@ -100,15 +100,15 @@ export class CreateECDHTests {
   }
 }
 
-A.on(CreateECDHTests).method((t) => t.createECDH_generates_keys).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_computes_shared_secret).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_get_public_key).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_get_private_key).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_with_encoded_keys).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_shared_secret_with_encoding).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_secp384r1_curve).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_secp521r1_curve).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_secp256k1_curve).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_secp256k1_shared_secret).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_set_public_key_throws_not_supported).add(FactAttribute);
-A.on(CreateECDHTests).method((t) => t.createECDH_set_private_key_works).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_generates_keys).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_computes_shared_secret).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_get_public_key).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_get_private_key).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_with_encoded_keys).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_shared_secret_with_encoding).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_secp384r1_curve).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_secp521r1_curve).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_secp256k1_curve).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_secp256k1_shared_secret).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_set_public_key_throws_not_supported).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_set_private_key_works).add(FactAttribute);

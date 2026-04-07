@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/zlib/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 export type { BrotliOptions } from "./brotli-options.ts";
 export type { ZlibOptions } from "./zlib-options.ts";

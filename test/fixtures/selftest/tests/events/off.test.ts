@@ -51,15 +51,15 @@ export class OffTests {
   }
 }
 
-A.on(OffTests)
+A<OffTests>()
   .method((t) => t.off_is_an_alias_for_removeListener)
   .add(FactAttribute);
-A.on(OffTests)
+A<OffTests>()
   .method((t) => t.off_returns_the_emitter_for_chaining)
   .add(FactAttribute);
-A.on(OffTests)
+A<OffTests>()
   .method((t) => t.off_removes_only_the_target_listener)
   .add(FactAttribute);
-A.on(OffTests)
+A<OffTests>()
   .method((t) => t.off_tolerates_missing_listeners)
   .add(FactAttribute);

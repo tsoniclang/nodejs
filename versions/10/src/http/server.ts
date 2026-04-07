@@ -8,6 +8,7 @@
  * listen/close internals are stubbed with TODO markers.
  */
 
+import { overloads as O } from "@tsonic/core/lang.js";
 import type { int } from "@tsonic/core/types.js";
 import type { HttpListener, HttpListenerContext, IPEndPoint, IPAddress } from "@tsonic/dotnet/System.Net.js";
 import { Dns, HttpListener as DotNetHttpListener, IPAddress as DotNetIPAddress } from "@tsonic/dotnet/System.Net.js";
@@ -198,56 +199,51 @@ export class Server extends EventEmitter {
     callback?: (() => void) | null
   ): Server;
   public listen(
-    portOrPath: number | string,
-    hostname?: string | number | (() => void) | null,
-    backlog?: number | (() => void) | null,
+    _portOrPath: any,
+    _hostname?: any,
+    _backlog?: any,
+    _callback?: any
+  ): any {
+    throw new Error("stub");
+  }
+
+  public listen_path(
+    path: string,
     callback?: (() => void) | null
   ): Server {
-    if (typeof portOrPath === "string") {
-      const pathCallback =
-        typeof hostname === "function" ? hostname : callback;
-      return this.listenPath(portOrPath, pathCallback ?? undefined);
-    }
+    return this.listenPath(path, callback ?? undefined);
+  }
 
-    if (typeof hostname === "function") {
-      callback = hostname;
-      hostname = null;
-      backlog = null;
-    } else if (typeof hostname === "number") {
-      callback =
-        typeof backlog === "function" ? backlog : callback;
-      backlog = hostname;
-      hostname = null;
-    } else if (typeof backlog === "function") {
-      callback = backlog;
-      backlog = null;
-    }
+  public listen_port_hostname_backlog(
+    port: number,
+    hostname: string,
+    backlog: number,
+    callback?: (() => void) | null
+  ): Server {
+    return this.listenResolved(port, hostname, backlog, callback ?? undefined);
+  }
 
-    if (this._listening) {
-      throw new Error("Server is already listening");
-    }
+  public listen_port_hostname(
+    port: number,
+    hostname: string,
+    callback?: (() => void) | null
+  ): Server {
+    return this.listenResolved(port, hostname, 511 as int, callback ?? undefined);
+  }
 
-    const port = normalizePortNumber(portOrPath);
-    if (port < 0 || port > 65535) {
-      throw new RangeError(
-        `port must be >= 0 and <= 65535. Received ${String(port)}`
-      );
-    }
+  public listen_port_backlog(
+    port: number,
+    backlog: number,
+    callback?: (() => void) | null
+  ): Server {
+    return this.listenResolved(port, undefined, backlog, callback ?? undefined);
+  }
 
-    const normalizedHostname =
-      typeof hostname === "string" ? hostname : undefined;
-    const normalizedBacklog =
-      typeof backlog === "number" ? normalizePortNumber(backlog) : (511 as int);
-
-    if (normalizedBacklog < 0) {
-      throw new Error("Backlog must be non-negative");
-    }
-    return this.listenInternal(
-      port,
-      normalizedHostname,
-      normalizedBacklog,
-      callback ?? undefined
-    );
+  public listen_port(
+    port: number,
+    callback?: (() => void) | null
+  ): Server {
+    return this.listenResolved(port, undefined, 511 as int, callback ?? undefined);
   }
 
   /**
@@ -278,6 +274,36 @@ export class Server extends EventEmitter {
       hostname,
       511 as int,
       callback ?? undefined
+    );
+  }
+
+  private listenResolved(
+    port: number,
+    hostname: string | undefined,
+    backlog: number,
+    callback: (() => void) | undefined
+  ): Server {
+    if (this._listening) {
+      throw new Error("Server is already listening");
+    }
+
+    const normalizedPort = normalizePortNumber(port);
+    if (normalizedPort < 0 || normalizedPort > 65535) {
+      throw new RangeError(
+        `port must be >= 0 and <= 65535. Received ${String(normalizedPort)}`
+      );
+    }
+
+    const normalizedBacklog = normalizePortNumber(backlog);
+    if (normalizedBacklog < 0) {
+      throw new Error("Backlog must be non-negative");
+    }
+
+    return this.listenInternal(
+      normalizedPort,
+      hostname,
+      normalizedBacklog,
+      callback
     );
   }
 
@@ -428,7 +454,22 @@ export class Server extends EventEmitter {
         context = this._listener.GetContext();
       } catch (error) {
         if (this._listening) {
-          this.emit("error", error);
+          if (error === undefined) {
+            this.emit("error", new Error("Failed to accept request"));
+          } else if (
+            error === null ||
+            typeof error === "string" ||
+            typeof error === "number" ||
+            typeof error === "boolean" ||
+            typeof error === "bigint" ||
+            typeof error === "symbol" ||
+            typeof error === "object" ||
+            typeof error === "function"
+          ) {
+            this.emit("error", error);
+          } else {
+            this.emit("error", new Error("Failed to accept request"));
+          }
         }
         break;
       }
@@ -453,7 +494,22 @@ export class Server extends EventEmitter {
         response.end("Internal Server Error");
       }
 
-      this.emit("error", error);
+      if (error === undefined) {
+        this.emit("error", new Error("Failed to dispatch request"));
+      } else if (
+        error === null ||
+        typeof error === "string" ||
+        typeof error === "number" ||
+        typeof error === "boolean" ||
+        typeof error === "bigint" ||
+        typeof error === "symbol" ||
+        typeof error === "object" ||
+        typeof error === "function"
+      ) {
+        this.emit("error", error);
+      } else {
+        this.emit("error", new Error("Failed to dispatch request"));
+      }
     }
   }
 }
@@ -465,7 +521,7 @@ const reserveEphemeralPort = (hostname: string | undefined): int => {
   listener.Start();
 
   try {
-    const endpoint = listener.LocalEndpoint as unknown as IPEndPoint;
+    const endpoint = listener.LocalEndpoint as IPEndPoint;
     return endpoint.Port;
   } finally {
     listener.Stop();
@@ -587,3 +643,9 @@ const stripIpv6Brackets = (hostname: string): string => {
 
   return hostname;
 };
+
+O<Server>().method(x => x.listen_path).family(x => x.listen);
+O<Server>().method(x => x.listen_port_hostname_backlog).family(x => x.listen);
+O<Server>().method(x => x.listen_port_hostname).family(x => x.listen);
+O<Server>().method(x => x.listen_port_backlog).family(x => x.listen);
+O<Server>().method(x => x.listen_port).family(x => x.listen);

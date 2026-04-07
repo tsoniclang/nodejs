@@ -17,6 +17,6 @@ export class ChildProcessPidPropertyTests {
   }
 }
 
-A.on(ChildProcessPidPropertyTests)
+A<ChildProcessPidPropertyTests>()
   .method((t) => t.pidProperty_ValidAfterSpawn)
   .add(FactAttribute);

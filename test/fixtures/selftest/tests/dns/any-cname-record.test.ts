@@ -13,6 +13,6 @@ export class AnyCnameRecordTests {
   }
 }
 
-A.on(AnyCnameRecordTests)
+A<AnyCnameRecordTests>()
   .method((t) => t.AnyCnameRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

@@ -12,4 +12,4 @@ export class GetDiffieHellmanTests {
   }
 }
 
-A.on(GetDiffieHellmanTests).method((t) => t.getDiffieHellman_creates_group_instance).add(FactAttribute);
+A<GetDiffieHellmanTests>().method((t) => t.getDiffieHellman_creates_group_instance).add(FactAttribute);

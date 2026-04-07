@@ -1,3 +1,4 @@
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   computeHashBytes,
   concatBytes,
@@ -28,12 +29,17 @@ export class Hash {
    */
   public update(data: string, inputEncoding?: string): Hash;
   public update(data: Uint8Array): Hash;
-  public update(data: string | Uint8Array, inputEncoding?: string): Hash {
-    if (this._finalized) {
-      throw new Error("Digest already called");
-    }
+  public update(_data: any, _inputEncoding?: any): any {
+    throw new Error("stub");
+  }
 
-    this._chunks.push(decodeInputBytes(data, inputEncoding ?? "utf8"));
+  public update_string(data: string, inputEncoding?: string): Hash {
+    this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
+    return this;
+  }
+
+  public update_bytes(data: Uint8Array): Hash {
+    this.pushChunk(data);
     return this;
   }
 
@@ -43,23 +49,20 @@ export class Hash {
   public digest(encoding: string): string;
   public digest(): Uint8Array;
   public digest(outputLength: number): Uint8Array;
-  public digest(encodingOrLength?: string | number): string | Uint8Array {
-    if (this._finalized) {
-      throw new Error("Digest already called");
-    }
+  public digest(_encodingOrLength?: any): any {
+    throw new Error("stub");
+  }
 
-    this._finalized = true;
-    const bytes = computeHashBytes(
-      this._algorithm,
-      concatBytes(...this._chunks),
-      typeof encodingOrLength === "number" ? encodingOrLength : undefined,
-    );
+  public digest_encoding(encoding: string): string {
+    return encodeOutputString(this.finalizeDigest(), encoding);
+  }
 
-    if (typeof encodingOrLength === "string") {
-      return encodeOutputString(bytes, encodingOrLength);
-    }
+  public digest_bytes(): Uint8Array {
+    return this.finalizeDigest();
+  }
 
-    return bytes;
+  public digest_length(outputLength: number): Uint8Array {
+    return this.finalizeDigest(outputLength);
   }
 
   /**
@@ -76,4 +79,31 @@ export class Hash {
     }
     return copy;
   }
+
+  private pushChunk(chunk: Uint8Array): void {
+    if (this._finalized) {
+      throw new Error("Digest already called");
+    }
+
+    this._chunks.push(chunk);
+  }
+
+  private finalizeDigest(outputLength?: number): Uint8Array {
+    if (this._finalized) {
+      throw new Error("Digest already called");
+    }
+
+    this._finalized = true;
+    return computeHashBytes(
+      this._algorithm,
+      concatBytes(...this._chunks),
+      outputLength,
+    );
+  }
 }
+
+O<Hash>().method(x => x.update_string).family(x => x.update);
+O<Hash>().method(x => x.update_bytes).family(x => x.update);
+O<Hash>().method(x => x.digest_encoding).family(x => x.digest);
+O<Hash>().method(x => x.digest_bytes).family(x => x.digest);
+O<Hash>().method(x => x.digest_length).family(x => x.digest);

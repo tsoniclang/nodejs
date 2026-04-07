@@ -47,12 +47,12 @@ export class PrependListenerTests {
   }
 }
 
-A.on(PrependListenerTests)
+A<PrependListenerTests>()
   .method((t) => t.prependListener_adds_to_the_front)
   .add(FactAttribute);
-A.on(PrependListenerTests)
+A<PrependListenerTests>()
   .method((t) => t.prependOnceListener_adds_to_the_front_and_runs_once)
   .add(FactAttribute);
-A.on(PrependListenerTests)
+A<PrependListenerTests>()
   .method((t) => t.addListener_remains_an_alias_for_on)
   .add(FactAttribute);

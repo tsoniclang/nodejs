@@ -15,6 +15,6 @@ export class DropSourceSpecificMembershipTests {
   }
 }
 
-A.on(DropSourceSpecificMembershipTests)
+A<DropSourceSpecificMembershipTests>()
   .method((t) => t.dropSourceSpecificMembership_ThrowsNotSupported)
   .add(FactAttribute);

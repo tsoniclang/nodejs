@@ -18,5 +18,5 @@ export class GetCurvesTests {
   }
 }
 
-A.on(GetCurvesTests).method((t) => t.getCurves_returns_non_empty_list).add(FactAttribute);
-A.on(GetCurvesTests).method((t) => t.getCurves_contains_expected_curves).add(FactAttribute);
+A<GetCurvesTests>().method((t) => t.getCurves_returns_non_empty_list).add(FactAttribute);
+A<GetCurvesTests>().method((t) => t.getCurves_contains_expected_curves).add(FactAttribute);

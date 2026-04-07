@@ -3,8 +3,8 @@
  *
  * Baseline: nodejs-clr/src/nodejs/net/BlockList.cs
  */
-
 import type { int } from "@tsonic/core/types.js";
+import { SocketAddressInitOptions } from "./options.ts";
 
 /**
  * Represents a socket address.
@@ -15,12 +15,7 @@ export class SocketAddress {
   public readonly flowlabel: number | undefined;
   public readonly port: number;
 
-  constructor(options: {
-    address?: string;
-    family?: string;
-    flowlabel?: number;
-    port?: number;
-  }) {
+  constructor(options: SocketAddressInitOptions) {
     this.address = options.address ?? "0.0.0.0";
     this.family = options.family ?? "ipv4";
     this.flowlabel = options.flowlabel;

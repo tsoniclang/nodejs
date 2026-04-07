@@ -13,9 +13,9 @@ export class ProcessVersionTests {
   }
 }
 
-A.on(ProcessVersionTests)
+A<ProcessVersionTests>()
   .method((t) => t.version_has_a_node_style_prefix)
   .add(FactAttribute);
-A.on(ProcessVersionTests)
+A<ProcessVersionTests>()
   .method((t) => t.version_contains_tsonic_identifier)
   .add(FactAttribute);

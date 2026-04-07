@@ -21,5 +21,5 @@ export class GetHashesTests {
   }
 }
 
-A.on(GetHashesTests).method((t) => t.getHashes_returns_non_empty_list).add(FactAttribute);
-A.on(GetHashesTests).method((t) => t.getHashes_contains_expected_algorithms).add(FactAttribute);
+A<GetHashesTests>().method((t) => t.getHashes_returns_non_empty_list).add(FactAttribute);
+A<GetHashesTests>().method((t) => t.getHashes_contains_expected_algorithms).add(FactAttribute);

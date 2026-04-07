@@ -19,4 +19,4 @@ export class PrivateDecryptTests {
   }
 }
 
-A.on(PrivateDecryptTests).method((t) => t.privateDecrypt_invalid_key_type_throws).add(FactAttribute);
+A<PrivateDecryptTests>().method((t) => t.privateDecrypt_invalid_key_type_throws).add(FactAttribute);

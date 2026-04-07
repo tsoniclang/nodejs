@@ -275,80 +275,80 @@ export class PerformanceTests {
   }
 }
 
-A.on(PerformanceTests).type.add(CollectionAttribute, "perf_hooks");
+A<PerformanceTests>().add(CollectionAttribute, "perf_hooks");
 
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.now_should_return_positive_number)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.now_should_be_monotonic_increasing)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.mark_should_create_mark)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.mark_with_null_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.mark_with_empty_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.mark_with_detail_should_store_detail)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.mark_with_custom_start_time_should_use_provided_time)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_between_marks_should_calculate_duration)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_null_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_empty_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_missing_start_mark_should_use_zero)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_missing_end_mark_should_use_now)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_no_marks_should_work_with_current_time)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_options_should_work)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.measure_with_explicit_times_should_work)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_should_return_all_entries)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_by_name_should_filter_by_name)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_by_name_with_null_name_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_by_name_with_type_should_filter_by_both)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_by_type_should_filter_by_type)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.get_entries_by_type_with_null_type_should_throw)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.clear_marks_should_remove_all_marks)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.clear_marks_with_name_should_remove_specific_mark)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.clear_measures_should_remove_all_measures)
   .add(FactAttribute);
-A.on(PerformanceTests)
+A<PerformanceTests>()
   .method((t) => t.clear_measures_with_name_should_remove_specific_measure)
   .add(FactAttribute);

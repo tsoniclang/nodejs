@@ -29,7 +29,7 @@ export class TimingSafeEqualTests {
   }
 }
 
-A.on(TimingSafeEqualTests).method((t) => t.timingSafeEqual_returns_true_for_equal_buffers).add(FactAttribute);
-A.on(TimingSafeEqualTests).method((t) => t.timingSafeEqual_returns_false_for_different_buffers).add(FactAttribute);
-A.on(TimingSafeEqualTests).method((t) => t.timingSafeEqual_returns_false_for_different_lengths).add(FactAttribute);
-A.on(TimingSafeEqualTests).method((t) => t.timingSafeEqual_with_identical_content).add(FactAttribute);
+A<TimingSafeEqualTests>().method((t) => t.timingSafeEqual_returns_true_for_equal_buffers).add(FactAttribute);
+A<TimingSafeEqualTests>().method((t) => t.timingSafeEqual_returns_false_for_different_buffers).add(FactAttribute);
+A<TimingSafeEqualTests>().method((t) => t.timingSafeEqual_returns_false_for_different_lengths).add(FactAttribute);
+A<TimingSafeEqualTests>().method((t) => t.timingSafeEqual_with_identical_content).add(FactAttribute);

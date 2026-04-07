@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { generateKey, generateKeyAsync } from "@tsonic/nodejs/crypto.js";
@@ -20,7 +21,7 @@ export class GenerateKeyTests {
 
   public generateKey_callback_works(): void {
     let caughtError: Error | null = null;
-    let resultKey: unknown = null;
+    let resultKey: JsValue = null;
     generateKeyAsync("aes", { length: 256 }, (err, key) => {
       caughtError = err;
       resultKey = key;
@@ -30,6 +31,6 @@ export class GenerateKeyTests {
   }
 }
 
-A.on(GenerateKeyTests).method((t) => t.generateKey_aes256_generates_key).add(FactAttribute);
-A.on(GenerateKeyTests).method((t) => t.generateKey_aes128_generates_key).add(FactAttribute);
-A.on(GenerateKeyTests).method((t) => t.generateKey_callback_works).add(FactAttribute);
+A<GenerateKeyTests>().method((t) => t.generateKey_aes256_generates_key).add(FactAttribute);
+A<GenerateKeyTests>().method((t) => t.generateKey_aes128_generates_key).add(FactAttribute);
+A<GenerateKeyTests>().method((t) => t.generateKey_callback_works).add(FactAttribute);

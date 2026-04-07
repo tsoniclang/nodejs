@@ -32,5 +32,5 @@ export class writeFileTests {
   }
 }
 
-A.on(writeFileTests).method((t) => t.writeFile_ShouldCreateAndWriteFile).add(FactAttribute);
-A.on(writeFileTests).method((t) => t.writeFile_ShouldOverwriteExistingFile).add(FactAttribute);
+A<writeFileTests>().method((t) => t.writeFile_ShouldCreateAndWriteFile).add(FactAttribute);
+A<writeFileTests>().method((t) => t.writeFile_ShouldOverwriteExistingFile).add(FactAttribute);

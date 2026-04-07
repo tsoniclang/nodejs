@@ -39,15 +39,15 @@ export class SetDefaultResultOrderTests {
   }
 }
 
-A.on(SetDefaultResultOrderTests)
+A<SetDefaultResultOrderTests>()
   .method((t) => t.setDefaultResultOrder_IPv4First_UpdatesOrder)
   .add(FactAttribute);
-A.on(SetDefaultResultOrderTests)
+A<SetDefaultResultOrderTests>()
   .method((t) => t.setDefaultResultOrder_IPv6First_UpdatesOrder)
   .add(FactAttribute);
-A.on(SetDefaultResultOrderTests)
+A<SetDefaultResultOrderTests>()
   .method((t) => t.setDefaultResultOrder_Verbatim_UpdatesOrder)
   .add(FactAttribute);
-A.on(SetDefaultResultOrderTests)
+A<SetDefaultResultOrderTests>()
   .method((t) => t.setDefaultResultOrder_InvalidValue_ThrowsError)
   .add(FactAttribute);

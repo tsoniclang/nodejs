@@ -84,12 +84,12 @@ export class cpSyncTests {
   }
 }
 
-A.on(cpSyncTests).method((t) => t.cpSync_File_ShouldCopyFile).add(FactAttribute);
-A.on(cpSyncTests).method((t) => t.cpSync_ShouldOverwriteDestination).add(FactAttribute);
-A.on(cpSyncTests)
+A<cpSyncTests>().method((t) => t.cpSync_File_ShouldCopyFile).add(FactAttribute);
+A<cpSyncTests>().method((t) => t.cpSync_ShouldOverwriteDestination).add(FactAttribute);
+A<cpSyncTests>()
   .method((t) => t.cpSync_Directory_NonRecursive_ShouldThrow)
   .add(FactAttribute);
-A.on(cpSyncTests)
+A<cpSyncTests>()
   .method((t) => t.cpSync_Directory_Recursive_ShouldCopyAll)
   .add(FactAttribute);
-A.on(cpSyncTests).method((t) => t.cpSync_NonExistentSource_ShouldThrow).add(FactAttribute);
+A<cpSyncTests>().method((t) => t.cpSync_NonExistentSource_ShouldThrow).add(FactAttribute);

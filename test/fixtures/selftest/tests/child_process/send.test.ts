@@ -17,6 +17,6 @@ export class ChildProcessSendTests {
   }
 }
 
-A.on(ChildProcessSendTests)
+A<ChildProcessSendTests>()
   .method((t) => t.send_WhenNotConnected_ReturnsFalse)
   .add(FactAttribute);

@@ -29,9 +29,9 @@ export class ChildProcessKillTests {
   }
 }
 
-A.on(ChildProcessKillTests)
+A<ChildProcessKillTests>()
   .method((t) => t.kill_ReturnsTrue)
   .add(FactAttribute);
-A.on(ChildProcessKillTests)
+A<ChildProcessKillTests>()
   .method((t) => t.kill_AlreadyExited_ReturnsFalse)
   .add(FactAttribute);

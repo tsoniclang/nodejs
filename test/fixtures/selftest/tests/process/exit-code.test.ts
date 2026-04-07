@@ -49,15 +49,15 @@ export class ProcessExitCodeTests {
   }
 }
 
-A.on(ProcessExitCodeTests)
+A<ProcessExitCodeTests>()
   .method((t) => t.exitCode_is_null_by_default_when_reset)
   .add(FactAttribute);
-A.on(ProcessExitCodeTests)
+A<ProcessExitCodeTests>()
   .method((t) => t.exitCode_is_settable)
   .add(FactAttribute);
-A.on(ProcessExitCodeTests)
+A<ProcessExitCodeTests>()
   .method((t) => t.exitCode_accepts_zero)
   .add(FactAttribute);
-A.on(ProcessExitCodeTests)
+A<ProcessExitCodeTests>()
   .method((t) => t.exitCode_accepts_negative_values)
   .add(FactAttribute);

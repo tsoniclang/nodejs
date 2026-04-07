@@ -2,13 +2,18 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "lib": ["ES2022"],
     "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
     "strict": true,
     "noEmit": true,
+    "noLib": true,
     "skipLibCheck": false,
     "types": []
   },
+  "files": [
+    "node_modules/@tsonic/js/core-globals.d.ts",
+    "node_modules/@tsonic/js/globals.d.ts"
+  ],
   "include": [
     "**/*.ts"
   ],

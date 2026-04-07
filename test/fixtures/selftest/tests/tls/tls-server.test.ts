@@ -90,27 +90,27 @@ export class TLSServerTests {
   }
 }
 
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_Constructor_CreatesInstance)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_ConstructorWithListener_AttachesListener)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_ConstructorWithOptions_CreatesInstance)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_GetTicketKeys_Returns48Bytes)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_SetTicketKeys_AcceptsValidKeys)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_SetTicketKeys_InvalidLength_Throws)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_SetSecureContext_AcceptsOptions)
   .add(FactAttribute);
-A.on(TLSServerTests)
+A<TLSServerTests>()
   .method((t) => t.TLSServer_AddContext_DoesNotThrow)
   .add(FactAttribute);

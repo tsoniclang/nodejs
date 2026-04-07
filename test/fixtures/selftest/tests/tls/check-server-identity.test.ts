@@ -34,9 +34,9 @@ export class checkServerIdentityTests {
   }
 }
 
-A.on(checkServerIdentityTests)
+A<checkServerIdentityTests>()
   .method((t) => t.checkServerIdentity_MatchingHostname_ReturnsNull)
   .add(FactAttribute);
-A.on(checkServerIdentityTests)
+A<checkServerIdentityTests>()
   .method((t) => t.checkServerIdentity_MismatchedHostname_ReturnsError)
   .add(FactAttribute);

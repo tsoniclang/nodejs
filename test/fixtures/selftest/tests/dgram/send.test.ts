@@ -92,18 +92,18 @@ export class SendTests {
   }
 }
 
-A.on(SendTests)
+A<SendTests>()
   .method((t) => t.send_WithCallback_CallsCallback)
   .add(FactAttribute);
-A.on(SendTests)
+A<SendTests>()
   .method((t) => t.send_ConnectedSocket_SendsWithoutAddress)
   .add(FactAttribute);
-A.on(SendTests)
+A<SendTests>()
   .method((t) => t.send_WithOffsetAndLength_SendsCorrectSlice)
   .add(FactAttribute);
-A.on(SendTests)
+A<SendTests>()
   .method((t) => t.send_WithInvalidOffset_ThrowsException)
   .add(FactAttribute);
-A.on(SendTests)
+A<SendTests>()
   .method((t) => t.send_WithInvalidLength_ThrowsException)
   .add(FactAttribute);

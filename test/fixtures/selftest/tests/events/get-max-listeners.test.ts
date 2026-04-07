@@ -22,12 +22,12 @@ export class GetMaxListenersTests {
   }
 }
 
-A.on(GetMaxListenersTests)
+A<GetMaxListenersTests>()
   .method((t) => t.getMaxListeners_returns_the_default_value)
   .add(FactAttribute);
-A.on(GetMaxListenersTests)
+A<GetMaxListenersTests>()
   .method((t) => t.getMaxListeners_returns_the_configured_value)
   .add(FactAttribute);
-A.on(GetMaxListenersTests)
+A<GetMaxListenersTests>()
   .method((t) => t.getMaxListeners_allows_zero)
   .add(FactAttribute);

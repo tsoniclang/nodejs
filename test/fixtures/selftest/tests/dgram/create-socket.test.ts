@@ -29,12 +29,12 @@ export class CreateSocketTests {
   }
 }
 
-A.on(CreateSocketTests)
+A<CreateSocketTests>()
   .method((t) => t.createSocket_UDP4_CreatesSocket)
   .add(FactAttribute);
-A.on(CreateSocketTests)
+A<CreateSocketTests>()
   .method((t) => t.createSocket_UDP6_CreatesSocket)
   .add(FactAttribute);
-A.on(CreateSocketTests)
+A<CreateSocketTests>()
   .method((t) => t.createSocket_WithCallback_AttachesMessageListener)
   .add(FactAttribute);

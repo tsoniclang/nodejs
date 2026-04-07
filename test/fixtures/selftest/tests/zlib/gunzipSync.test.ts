@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { gunzipSync, gzipSync } from "@tsonic/nodejs/zlib.js";
@@ -32,7 +32,7 @@ export class Zlib_gunzipSyncTests {
   }
 
   public gunzipSync_WithNullBuffer_ShouldThrow(): void {
-    assertThrows(() => gunzipSync(null as unknown as Uint8Array));
+    assertThrows(() => gunzipSync(asinterface<Uint8Array>(null)));
   }
 
   public gunzipSync_WithInvalidData_ShouldThrow(): void {
@@ -62,21 +62,21 @@ export class Zlib_gunzipSyncTests {
   }
 }
 
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_ShouldDecompressData)
   .add(FactAttribute);
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_ShouldRestoreOriginalText)
   .add(FactAttribute);
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_WithInvalidData_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_EmptyCompressedData_ShouldDecompress)
   .add(FactAttribute);
-A.on(Zlib_gunzipSyncTests)
+A<Zlib_gunzipSyncTests>()
   .method((t) => t.gunzipSync_LargeData_ShouldDecompress)
   .add(FactAttribute);

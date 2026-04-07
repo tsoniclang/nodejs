@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import {
@@ -36,7 +36,7 @@ export class Zlib_brotliDecompressSyncTests {
   }
 
   public brotliDecompressSync_WithNullBuffer_ShouldThrow(): void {
-    assertThrows(() => brotliDecompressSync(null as unknown as Uint8Array));
+    assertThrows(() => brotliDecompressSync(asinterface<Uint8Array>(null)));
   }
 
   public brotliDecompressSync_WithInvalidData_ShouldThrow(): void {
@@ -58,18 +58,18 @@ export class Zlib_brotliDecompressSyncTests {
   }
 }
 
-A.on(Zlib_brotliDecompressSyncTests)
+A<Zlib_brotliDecompressSyncTests>()
   .method((t) => t.brotliDecompressSync_ShouldDecompressData)
   .add(FactAttribute);
-A.on(Zlib_brotliDecompressSyncTests)
+A<Zlib_brotliDecompressSyncTests>()
   .method((t) => t.brotliDecompressSync_ShouldRestoreOriginalText)
   .add(FactAttribute);
-A.on(Zlib_brotliDecompressSyncTests)
+A<Zlib_brotliDecompressSyncTests>()
   .method((t) => t.brotliDecompressSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_brotliDecompressSyncTests)
+A<Zlib_brotliDecompressSyncTests>()
   .method((t) => t.brotliDecompressSync_WithInvalidData_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_brotliDecompressSyncTests)
+A<Zlib_brotliDecompressSyncTests>()
   .method((t) => t.brotliDecompressSync_LargeData_ShouldDecompress)
   .add(FactAttribute);

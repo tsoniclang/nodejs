@@ -10,6 +10,6 @@ export class GetDefaultResultOrderTests {
   }
 }
 
-A.on(GetDefaultResultOrderTests)
+A<GetDefaultResultOrderTests>()
   .method((t) => t.getDefaultResultOrder_ReturnsVerbatim)
   .add(FactAttribute);

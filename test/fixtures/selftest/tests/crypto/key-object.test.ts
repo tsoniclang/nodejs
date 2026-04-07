@@ -26,6 +26,6 @@ export class KeyObjectTests {
   }
 }
 
-A.on(KeyObjectTests).method((t) => t.keyObject_secret_key_object_export_works).add(FactAttribute);
-A.on(KeyObjectTests).method((t) => t.keyObject_public_key_object_type).add(FactAttribute);
-A.on(KeyObjectTests).method((t) => t.keyObject_private_key_object_type).add(FactAttribute);
+A<KeyObjectTests>().method((t) => t.keyObject_secret_key_object_export_works).add(FactAttribute);
+A<KeyObjectTests>().method((t) => t.keyObject_public_key_object_type).add(FactAttribute);
+A<KeyObjectTests>().method((t) => t.keyObject_private_key_object_type).add(FactAttribute);

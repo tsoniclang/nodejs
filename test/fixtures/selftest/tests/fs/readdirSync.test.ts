@@ -37,7 +37,7 @@ export class readdirSyncTests {
   }
 }
 
-A.on(readdirSyncTests).method((t) => t.readdirSync_ShouldListDirectoryContents).add(FactAttribute);
-A.on(readdirSyncTests)
+A<readdirSyncTests>().method((t) => t.readdirSync_ShouldListDirectoryContents).add(FactAttribute);
+A<readdirSyncTests>()
   .method((t) => t.readdirSync_EmptyDirectory_ShouldReturnEmptyArray)
   .add(FactAttribute);

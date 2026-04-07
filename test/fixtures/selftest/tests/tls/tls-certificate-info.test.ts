@@ -25,6 +25,6 @@ export class TLSCertificateInfoTests {
   }
 }
 
-A.on(TLSCertificateInfoTests)
+A<TLSCertificateInfoTests>()
   .method((t) => t.TLSCertificateInfo_AllProperties_CanBeSet)
   .add(FactAttribute);

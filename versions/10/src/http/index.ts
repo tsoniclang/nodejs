@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/http/http.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 import type { int } from "@tsonic/core/types.js";
 import type { ClientRequest as ClientRequestType } from "./client-request.ts";

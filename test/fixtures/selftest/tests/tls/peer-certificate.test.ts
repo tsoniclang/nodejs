@@ -24,6 +24,6 @@ export class PeerCertificateTests {
   }
 }
 
-A.on(PeerCertificateTests)
+A<PeerCertificateTests>()
   .method((t) => t.PeerCertificate_AllProperties_CanBeSet)
   .add(FactAttribute);

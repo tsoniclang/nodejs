@@ -13,6 +13,6 @@ export class ResolveNsTests {
   }
 }
 
-A.on(ResolveNsTests)
+A<ResolveNsTests>()
   .method((t) => t.resolveNs_ValidDomain_CallsCallback)
   .add(FactAttribute);

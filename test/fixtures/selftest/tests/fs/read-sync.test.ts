@@ -152,29 +152,29 @@ export class readSyncTests {
   }
 }
 
-A.on(readSyncTests).method((t) => t.readSync_ShouldReadEntireFile).add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>().method((t) => t.readSync_ShouldReadEntireFile).add(FactAttribute);
+A<readSyncTests>()
   .method((t) => t.readSync_WithOffset_ShouldReadIntoBufferAtOffset)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_WithPosition_ShouldReadFromSpecificPosition)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_MultipleCalls_ShouldAdvanceFilePosition)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_ReadPastEndOfFile_ShouldReturnZero)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_WithInvalidOffset_ShouldThrow)
   .add(FactAttribute);
-A.on(readSyncTests)
+A<readSyncTests>()
   .method((t) => t.readSync_WithInvalidLength_ShouldThrow)
   .add(FactAttribute);
-A.on(readSyncTests).method((t) => t.readSync_EmptyFile_ShouldReturnZero).add(FactAttribute);
+A<readSyncTests>().method((t) => t.readSync_EmptyFile_ShouldReturnZero).add(FactAttribute);

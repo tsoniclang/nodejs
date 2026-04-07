@@ -14,4 +14,4 @@ export class CreatePrivateKeyTests {
   }
 }
 
-A.on(CreatePrivateKeyTests).method((t) => t.createPrivateKey_from_bytes_works).add(FactAttribute);
+A<CreatePrivateKeyTests>().method((t) => t.createPrivateKey_from_bytes_works).add(FactAttribute);

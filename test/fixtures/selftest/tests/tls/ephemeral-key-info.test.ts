@@ -19,6 +19,6 @@ export class EphemeralKeyInfoTests {
   }
 }
 
-A.on(EphemeralKeyInfoTests)
+A<EphemeralKeyInfoTests>()
   .method((t) => t.EphemeralKeyInfo_AllProperties_CanBeSet)
   .add(FactAttribute);

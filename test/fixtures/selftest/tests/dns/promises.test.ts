@@ -15,9 +15,9 @@ export class DnsPromisesTests {
   }
 }
 
-A.on(DnsPromisesTests)
+A<DnsPromisesTests>()
   .method((t) => t.promises_lookup_ReturnsPromise)
   .add(FactAttribute);
-A.on(DnsPromisesTests)
+A<DnsPromisesTests>()
   .method((t) => t.promises_resolve_ReturnsPromise)
   .add(FactAttribute);

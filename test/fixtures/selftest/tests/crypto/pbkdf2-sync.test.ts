@@ -51,11 +51,11 @@ export class Pbkdf2SyncTests {
   }
 }
 
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_generates_correct_length).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_deterministic_output).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_different_iterations).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_different_salts).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_sha1).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_sha384).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_sha512).add(FactAttribute);
-A.on(Pbkdf2SyncTests).method((t) => t.pbkdf2Sync_with_byte_arrays).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_generates_correct_length).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_deterministic_output).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_different_iterations).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_different_salts).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_sha1).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_sha384).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_sha512).add(FactAttribute);
+A<Pbkdf2SyncTests>().method((t) => t.pbkdf2Sync_with_byte_arrays).add(FactAttribute);

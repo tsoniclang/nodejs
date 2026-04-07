@@ -49,7 +49,7 @@ export class CreateSignTests {
   }
 }
 
-A.on(CreateSignTests).method((t) => t.createSign_rsa_sha256).add(FactAttribute);
-A.on(CreateSignTests).method((t) => t.createSign_verify_with_string_data).add(FactAttribute);
-A.on(CreateSignTests).method((t) => t.createSign_multiple_updates).add(FactAttribute);
-A.on(CreateSignTests).method((t) => t.createSign_dsa_works).add(FactAttribute);
+A<CreateSignTests>().method((t) => t.createSign_rsa_sha256).add(FactAttribute);
+A<CreateSignTests>().method((t) => t.createSign_verify_with_string_data).add(FactAttribute);
+A<CreateSignTests>().method((t) => t.createSign_multiple_updates).add(FactAttribute);
+A<CreateSignTests>().method((t) => t.createSign_dsa_works).add(FactAttribute);

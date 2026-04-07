@@ -15,6 +15,6 @@ export class AddSourceSpecificMembershipTests {
   }
 }
 
-A.on(AddSourceSpecificMembershipTests)
+A<AddSourceSpecificMembershipTests>()
   .method((t) => t.addSourceSpecificMembership_ThrowsNotSupported)
   .add(FactAttribute);

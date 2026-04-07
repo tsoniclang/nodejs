@@ -35,5 +35,5 @@ export class RandomFillSyncTests {
   }
 }
 
-A.on(RandomFillSyncTests).method((t) => t.randomFillSync_fills_buffer).add(FactAttribute);
-A.on(RandomFillSyncTests).method((t) => t.randomFillSync_with_offset_and_size).add(FactAttribute);
+A<RandomFillSyncTests>().method((t) => t.randomFillSync_fills_buffer).add(FactAttribute);
+A<RandomFillSyncTests>().method((t) => t.randomFillSync_with_offset_and_size).add(FactAttribute);

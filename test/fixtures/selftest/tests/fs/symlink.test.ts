@@ -35,7 +35,7 @@ export class symlinkTests {
   }
 }
 
-A.on(symlinkTests).method((t) => t.symlink_File_ShouldCreateSymbolicLink).add(FactAttribute);
-A.on(symlinkTests)
+A<symlinkTests>().method((t) => t.symlink_File_ShouldCreateSymbolicLink).add(FactAttribute);
+A<symlinkTests>()
   .method((t) => t.symlink_Directory_ShouldCreateSymbolicLink)
   .add(FactAttribute);

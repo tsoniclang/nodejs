@@ -20,12 +20,12 @@ export class IsIPv6Tests {
   }
 }
 
-A.on(IsIPv6Tests)
+A<IsIPv6Tests>()
   .method((t) => t.is_ipv6_valid_returns_true)
   .add(FactAttribute);
-A.on(IsIPv6Tests)
+A<IsIPv6Tests>()
   .method((t) => t.is_ipv6_ipv4_returns_false)
   .add(FactAttribute);
-A.on(IsIPv6Tests)
+A<IsIPv6Tests>()
   .method((t) => t.is_ipv6_invalid_returns_false)
   .add(FactAttribute);

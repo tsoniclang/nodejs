@@ -22,5 +22,5 @@ export class RandomIntTests {
   }
 }
 
-A.on(RandomIntTests).method((t) => t.randomInt_generates_within_range).add(FactAttribute);
-A.on(RandomIntTests).method((t) => t.randomInt_generates_within_custom_range).add(FactAttribute);
+A<RandomIntTests>().method((t) => t.randomInt_generates_within_range).add(FactAttribute);
+A<RandomIntTests>().method((t) => t.randomInt_generates_within_custom_range).add(FactAttribute);

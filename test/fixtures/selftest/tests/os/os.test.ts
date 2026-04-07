@@ -117,54 +117,54 @@ export class OsTests {
   }
 }
 
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.platform_should_return_valid_platform)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.arch_should_return_valid_architecture)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.hostname_should_return_non_empty_string)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.tmpdir_should_return_non_empty_string)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.homedir_should_return_non_empty_string)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.eol_should_be_correct_for_platform)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.dev_null_should_be_correct_for_platform)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.type_should_return_valid_type)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.release_should_return_non_empty_string)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.endianness_should_return_be_or_le)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.totalmem_should_return_positive_value)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.freemem_should_return_positive_value)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.uptime_should_return_non_negative_value)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.loadavg_should_return_array_of_three)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.cpus_should_return_non_empty_array)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.available_parallelism_should_return_positive_value)
   .add(FactAttribute);
-A.on(OsTests)
+A<OsTests>()
   .method((t) => t.user_info_should_return_valid_info)
   .add(FactAttribute);

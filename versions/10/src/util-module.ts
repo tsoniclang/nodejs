@@ -1,11 +1,12 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
-import { Environment } from "@tsonic/dotnet/System.js";
+import type { JsValue } from "@tsonic/core/types.js";
+import { Console as DotnetConsole, Environment } from "@tsonic/dotnet/System.js";
 
-export type DebugLogFunction = (message: string, ...args: unknown[]) => void;
+export type DebugLogFunction = (message: string, ...args: JsValue[]) => void;
 
-const toDisplayString = (value: unknown): string => {
+const toDisplayString = (value: JsValue): string => {
   if (value === undefined) {
     return "undefined";
   }
@@ -31,7 +32,7 @@ const toDisplayString = (value: unknown): string => {
   }
 };
 
-export const format = (formatValue: unknown, ...args: unknown[]): string => {
+export const format = (formatValue: JsValue, ...args: JsValue[]): string => {
   if (formatValue === null || formatValue === undefined) {
     return "";
   }
@@ -71,7 +72,9 @@ export const format = (formatValue: unknown, ...args: unknown[]): string => {
         break;
       case "j":
         try {
-          result += JSON.stringify(value);
+          const serialized =
+            value === undefined ? undefined : JSON.stringify(value);
+          result += serialized ?? "undefined";
         } catch {
           result += value === undefined || value === null ? "" : String(value);
         }
@@ -91,18 +94,24 @@ export const format = (formatValue: unknown, ...args: unknown[]): string => {
   }
 
   for (; argIndex < args.length; argIndex += 1) {
-    result += ` ${toDisplayString(args[argIndex])}`;
+    result += ` ${toDisplayString(args[argIndex]!)}`;
   }
 
   return result;
 };
 
-export const inspect = (value: unknown): string => {
+export const inspect = (value: JsValue | undefined): string => {
   if (value === null) {
     return "null";
   }
+  if (value === undefined) {
+    return "undefined";
+  }
   if (typeof value === "string") {
     return `'${value}'`;
+  }
+  if (typeof value === "symbol") {
+    return "Symbol()";
   }
   if (typeof value === "boolean" || typeof value === "number") {
     return String(value);
@@ -115,9 +124,9 @@ export const inspect = (value: unknown): string => {
   }
 };
 
-export const isArray = (value: unknown): boolean => Array.isArray(value);
+export const isArray = (value: JsValue): boolean => Array.isArray(value);
 
-export const isDeepStrictEqual = (left: unknown, right: unknown): boolean => {
+export const isDeepStrictEqual = (left: JsValue, right: JsValue): boolean => {
   if (left === right) {
     return true;
   }
@@ -144,8 +153,8 @@ export const isDeepStrictEqual = (left: unknown, right: unknown): boolean => {
 };
 
 export const inherits = (
-  _constructor: unknown,
-  _superConstructor: unknown
+  _constructor: JsValue,
+  _superConstructor: JsValue
 ): void => {
   return;
 };
@@ -153,18 +162,18 @@ export const inherits = (
 const deprecationWarnings = new Set<string>();
 
 export function deprecate(
-  fn: (...args: unknown[]) => unknown,
+  fn: (...args: JsValue[]) => JsValue,
   message: string,
   code?: string,
-): (...args: unknown[]) => unknown {
-  return (...args: unknown[]): unknown => {
+): (...args: JsValue[]) => JsValue {
+  return (...args: JsValue[]): JsValue => {
     const warning =
       code === undefined
         ? `DeprecationWarning: ${message}`
         : `[${code}] DeprecationWarning: ${message}`;
     if (!deprecationWarnings.has(warning)) {
       deprecationWarnings.add(warning);
-      console.error(warning);
+      DotnetConsole.Error.WriteLine(warning);
     }
     return fn(...args);
   };
@@ -186,16 +195,18 @@ export const debuglog = (section: string): DebugLogFunction => {
   }
 
   const pid = Environment.ProcessId;
-  return (message: string, ...args: unknown[]): void => {
+  return (message: string, ...args: JsValue[]): void => {
     const rendered = args.length > 0 ? format(message, ...args) : message;
-    console.error(`${section.toUpperCase()} ${String(pid)}: ${rendered}`);
+    DotnetConsole.Error.WriteLine(
+      `${section.toUpperCase()} ${String(pid)}: ${rendered}`
+    );
   };
 };
 
 export const formatWithOptions = (
-  _inspectOptions: unknown,
-  formatValue: unknown,
-  ...args: unknown[]
+  _inspectOptions: JsValue,
+  formatValue: JsValue,
+  ...args: JsValue[]
 ): string => format(formatValue, ...args);
 
 export const stripVTControlCharacters = (input: string): string => {

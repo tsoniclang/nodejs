@@ -37,5 +37,5 @@ export class readdirTests {
   }
 }
 
-A.on(readdirTests).method((t) => t.readdir_ShouldListDirectoryContents).add(FactAttribute);
-A.on(readdirTests).method((t) => t.readdir_EmptyDirectory_ShouldReturnEmptyArray).add(FactAttribute);
+A<readdirTests>().method((t) => t.readdir_ShouldListDirectoryContents).add(FactAttribute);
+A<readdirTests>().method((t) => t.readdir_EmptyDirectory_ShouldReturnEmptyArray).add(FactAttribute);

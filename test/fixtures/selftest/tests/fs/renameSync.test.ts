@@ -56,8 +56,8 @@ export class renameSyncTests {
   }
 }
 
-A.on(renameSyncTests).method((t) => t.renameSync_File_ShouldRenameFile).add(FactAttribute);
-A.on(renameSyncTests)
+A<renameSyncTests>().method((t) => t.renameSync_File_ShouldRenameFile).add(FactAttribute);
+A<renameSyncTests>()
   .method((t) => t.renameSync_Directory_ShouldRenameDirectory)
   .add(FactAttribute);
-A.on(renameSyncTests).method((t) => t.renameSync_NonExistent_ShouldThrow).add(FactAttribute);
+A<renameSyncTests>().method((t) => t.renameSync_NonExistent_ShouldThrow).add(FactAttribute);

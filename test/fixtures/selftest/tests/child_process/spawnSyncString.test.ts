@@ -30,9 +30,9 @@ export class ChildProcessSpawnSyncStringTests {
   }
 }
 
-A.on(ChildProcessSpawnSyncStringTests)
+A<ChildProcessSpawnSyncStringTests>()
   .method((t) => t.spawnSyncString_ReturnsStringOutput)
   .add(FactAttribute);
-A.on(ChildProcessSpawnSyncStringTests)
+A<ChildProcessSpawnSyncStringTests>()
   .method((t) => t.spawnSyncString_WithOptions_ReturnsStringOutput)
   .add(FactAttribute);

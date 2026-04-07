@@ -25,9 +25,9 @@ export class createSecureContextTests {
   }
 }
 
-A.on(createSecureContextTests)
+A<createSecureContextTests>()
   .method((t) => t.createSecureContext_NoOptions_ReturnsContext)
   .add(FactAttribute);
-A.on(createSecureContextTests)
+A<createSecureContextTests>()
   .method((t) => t.createSecureContext_WithCert_LoadsCertificate)
   .add(FactAttribute);

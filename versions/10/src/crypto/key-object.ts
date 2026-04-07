@@ -3,7 +3,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/crypto/KeyObject.cs
  */
-import type { int, out } from "@tsonic/core/types.js";
+import type { int, out, JsValue } from "@tsonic/core/types.js";
 import {
   DSA,
   ECDsa,
@@ -61,11 +61,11 @@ export class KeyObject {
     );
   }
 
-  public ["export"](options?: unknown): unknown {
+  public ["export"](options?: JsValue): JsValue {
     return this.exportCore(options);
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     throw new Error("KeyObject.exportCore must be implemented by a subclass");
   }
 }
@@ -93,11 +93,11 @@ export class SecretKeyObject extends KeyObject {
     return this._keyData.length;
   }
 
-  public ["export"](_options?: unknown): Uint8Array {
+  public ["export"](_options?: JsValue): Uint8Array {
     return this._keyData;
   }
 
-  protected exportCore(_options?: unknown): Uint8Array {
+  protected exportCore(_options?: JsValue): Uint8Array {
     return this._keyData;
   }
 }
@@ -141,7 +141,7 @@ export class PublicKeyObject extends KeyObject {
     return this._pem;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     if (this._pem !== null) {
       return this._pem;
     }
@@ -211,7 +211,7 @@ export class PrivateKeyObject extends KeyObject {
     return this._publicPem;
   }
 
-  protected exportCore(_options?: unknown): unknown {
+  protected exportCore(_options?: JsValue): JsValue {
     if (this._pem !== null) {
       return this._pem;
     }

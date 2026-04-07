@@ -44,15 +44,15 @@ export class ConstantsTests {
   }
 }
 
-A.on(ConstantsTests)
+A<ConstantsTests>()
   .method((t) => t.constants_ADDRCONFIG_IsCorrectValue)
   .add(FactAttribute);
-A.on(ConstantsTests)
+A<ConstantsTests>()
   .method((t) => t.constants_V4MAPPED_IsCorrectValue)
   .add(FactAttribute);
-A.on(ConstantsTests)
+A<ConstantsTests>()
   .method((t) => t.constants_ALL_IsCorrectValue)
   .add(FactAttribute);
-A.on(ConstantsTests)
+A<ConstantsTests>()
   .method((t) => t.constants_ErrorCodes_AllDefined)
   .add(FactAttribute);

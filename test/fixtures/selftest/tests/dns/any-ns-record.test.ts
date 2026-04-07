@@ -13,6 +13,6 @@ export class AnyNsRecordTests {
   }
 }
 
-A.on(AnyNsRecordTests)
+A<AnyNsRecordTests>()
   .method((t) => t.AnyNsRecord_AllProperties_CanBeSet)
   .add(FactAttribute);

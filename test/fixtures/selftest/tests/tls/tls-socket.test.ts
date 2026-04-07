@@ -128,45 +128,45 @@ export class TLSSocketTests {
   }
 }
 
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_Constructor_CreatesInstance)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_Encrypted_AlwaysTrue)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_Authorized_InitiallyFalse)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_GetCertificate_NoCert_ReturnsNull)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_GetPeerCertificate_NoCert_ReturnsNull)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_GetCipher_ReturnsInfo)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_GetProtocol_NoHandshake_ReturnsNull)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_GetSharedSigalgs_ReturnsArray)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_IsSessionReused_ReturnsFalse)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_Renegotiate_ReturnsFalseAndCallsCallback)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_SetMaxSendFragment_ReturnsFalse)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_DisableRenegotiation_DoesNotThrow)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_EnableTrace_DoesNotThrow)
   .add(FactAttribute);
-A.on(TLSSocketTests)
+A<TLSSocketTests>()
   .method((t) => t.TLSSocket_ExportKeyingMaterial_ThrowsNotSupported)
   .add(FactAttribute);

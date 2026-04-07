@@ -16,6 +16,6 @@ export class SetBroadcastTests {
   }
 }
 
-A.on(SetBroadcastTests)
+A<SetBroadcastTests>()
   .method((t) => t.setBroadcast_EnablesBroadcast)
   .add(FactAttribute);

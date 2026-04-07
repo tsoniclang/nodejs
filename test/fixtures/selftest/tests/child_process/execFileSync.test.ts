@@ -30,9 +30,9 @@ export class ChildProcessExecFileSyncTests {
   }
 }
 
-A.on(ChildProcessExecFileSyncTests)
+A<ChildProcessExecFileSyncTests>()
   .method((t) => t.execFileSync_SimpleCommand_ReturnsOutput)
   .add(FactAttribute);
-A.on(ChildProcessExecFileSyncTests)
+A<ChildProcessExecFileSyncTests>()
   .method((t) => t.execFileSync_WithStringEncoding_ReturnsString)
   .add(FactAttribute);

@@ -15,4 +15,4 @@ export class ExtnameTests {
   }
 }
 
-A.on(ExtnameTests).method((t) => t.extname_returns_extension).add(FactAttribute);
+A<ExtnameTests>().method((t) => t.extname_returns_extension).add(FactAttribute);

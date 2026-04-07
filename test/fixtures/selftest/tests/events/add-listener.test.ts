@@ -38,12 +38,12 @@ export class AddListenerTests {
   }
 }
 
-A.on(AddListenerTests)
+A<AddListenerTests>()
   .method((t) => t.addListener_is_an_alias_for_on)
   .add(FactAttribute);
-A.on(AddListenerTests)
+A<AddListenerTests>()
   .method((t) => t.addListener_returns_the_emitter_for_chaining)
   .add(FactAttribute);
-A.on(AddListenerTests)
+A<AddListenerTests>()
   .method((t) => t.addListener_appends_to_the_end_of_the_listener_list)
   .add(FactAttribute);

@@ -43,9 +43,9 @@ export class RemoveAllListenersTests {
   }
 }
 
-A.on(RemoveAllListenersTests)
+A<RemoveAllListenersTests>()
   .method((t) => t.removeAllListeners_without_an_event_name_clears_everything)
   .add(FactAttribute);
-A.on(RemoveAllListenersTests)
+A<RemoveAllListenersTests>()
   .method((t) => t.removeAllListeners_with_an_event_name_clears_only_that_event)
   .add(FactAttribute);

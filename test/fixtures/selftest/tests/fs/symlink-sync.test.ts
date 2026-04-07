@@ -35,9 +35,9 @@ export class symlinkSyncTests {
   }
 }
 
-A.on(symlinkSyncTests)
+A<symlinkSyncTests>()
   .method((t) => t.symlinkSync_File_ShouldCreateSymbolicLink)
   .add(FactAttribute);
-A.on(symlinkSyncTests)
+A<symlinkSyncTests>()
   .method((t) => t.symlinkSync_Directory_ShouldCreateSymbolicLink)
   .add(FactAttribute);

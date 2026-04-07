@@ -1,5 +1,5 @@
-
-import type {} from "./type-bootstrap.js";
+import { overloads as O } from "@tsonic/core/lang.js";
+import type {} from "./type-bootstrap.ts";
 
 import type { byte, int } from "@tsonic/core/types.js";
 import { DateTimeOffset } from "@tsonic/dotnet/System.js";
@@ -95,6 +95,7 @@ type OpenDescriptor = {
 };
 
 type WritableFsBuffer = Buffer | byte[];
+type MkdirOptionsLike = boolean | MkdirOptions;
 
 const openDescriptors = new Map<int, OpenDescriptor>();
 let nextDescriptor = 3 as int;
@@ -127,7 +128,7 @@ const getBufferLength = (buffer: WritableFsBuffer): int => {
     throw new Error("buffer must not be null");
   }
 
-  return Buffer.isBuffer(buffer) ? buffer.length : (buffer.length as int);
+  return buffer instanceof Buffer ? buffer.length : (buffer.length as int);
 };
 
 const validateBufferRange = (
@@ -150,7 +151,7 @@ const copyByteArrayToBuffer = (
   source: byte[],
   sourceLength: int
 ): void => {
-  if (Buffer.isBuffer(target)) {
+  if (target instanceof Buffer) {
     const targetBytes = target.buffer;
     for (let index = 0; index < sourceLength; index += 1) {
       targetBytes[targetOffset + index] = source[index]!;
@@ -168,27 +169,27 @@ const copyBufferSliceToByteArray = (
   offset: int,
   length: int
 ): byte[] => {
-  const result: byte[] = [];
+  const result = new Array<byte>(length);
 
-  if (Buffer.isBuffer(buffer)) {
+  if (buffer instanceof Buffer) {
     const sourceBytes = buffer.buffer;
     for (let index = 0; index < length; index += 1) {
-      result.push(sourceBytes[offset + index]! as byte);
+      result[index] = sourceBytes[offset + index]! as byte;
     }
     return result;
   }
 
   for (let index = 0; index < length; index += 1) {
-    result.push(buffer[offset + index]!);
+    result[index] = buffer[offset + index]!;
   }
 
   return result;
 };
 
 const createByteArray = (length: int): byte[] => {
-  const result: byte[] = [];
+  const result = new Array<byte>(length);
   for (let index = 0; index < length; index += 1) {
-    result.push(0 as byte);
+    result[index] = 0 as byte;
   }
   return result;
 };
@@ -201,7 +202,7 @@ const copyDirectoryRecursive = (
 
   for (const filePath of Directory.GetFiles(sourcePath)) {
     const fileName = Path.GetFileName(filePath);
-    if (fileName === undefined || fileName.length === 0) {
+    if (fileName == null || fileName.length === 0) {
       continue;
     }
 
@@ -210,7 +211,7 @@ const copyDirectoryRecursive = (
 
   for (const directoryPath of Directory.GetDirectories(sourcePath)) {
     const directoryName = Path.GetFileName(directoryPath);
-    if (directoryName === undefined || directoryName.length === 0) {
+    if (directoryName == null || directoryName.length === 0) {
       continue;
     }
 
@@ -436,16 +437,7 @@ export const appendFile = async (
 export const existsSync = (path: string): boolean =>
   File.Exists(path) || Directory.Exists(path);
 
-export function mkdirSync(path: string): void;
-export function mkdirSync(path: string, recursive: boolean): void;
-export function mkdirSync(
-  path: string,
-  options: { recursive?: boolean; mode?: int }
-): void;
-export function mkdirSync(
-  path: string,
-  options?: boolean | { recursive?: boolean; mode?: int }
-): void {
+const mkdirSyncImpl = (path: string, options?: MkdirOptionsLike): void => {
   const recursive =
     typeof options === "boolean" ? options : options?.recursive ?? false;
   if (recursive) {
@@ -455,7 +447,7 @@ export function mkdirSync(
 
   const parent = Path.GetDirectoryName(path);
   if (
-    parent !== undefined &&
+    parent != null &&
     parent.length > 0 &&
     !Directory.Exists(parent)
   ) {
@@ -465,29 +457,56 @@ export function mkdirSync(
   }
 
   Directory.CreateDirectory(path);
+};
+
+export function mkdirSync(path: string): void;
+export function mkdirSync(path: string, recursive: boolean): void;
+export function mkdirSync(
+  path: string,
+  options: MkdirOptions
+): void;
+export function mkdirSync(_path: any, _options?: any): any {
+  throw new Error("stub");
+}
+
+function mkdirSync_path(path: string): void {
+  mkdirSyncImpl(path);
+}
+
+function mkdirSync_recursive(path: string, recursive: boolean): void {
+  mkdirSyncImpl(path, recursive);
+}
+
+function mkdirSync_options(
+  path: string,
+  options: MkdirOptions
+): void {
+  mkdirSyncImpl(path, options);
 }
 
 export function mkdir(path: string): Promise<void>;
 export function mkdir(path: string, recursive: boolean): Promise<void>;
 export function mkdir(
   path: string,
-  options: { recursive?: boolean; mode?: int }
+  options: MkdirOptions
 ): Promise<void>;
-export async function mkdir(
+export async function mkdir(_path: any, _options?: any): Promise<any> {
+  throw new Error("stub");
+}
+
+async function mkdir_path(path: string): Promise<void> {
+  mkdirSyncImpl(path);
+}
+
+async function mkdir_recursive(path: string, recursive: boolean): Promise<void> {
+  mkdirSyncImpl(path, recursive);
+}
+
+async function mkdir_options(
   path: string,
-  options?: boolean | { recursive?: boolean; mode?: int }
+  options: MkdirOptions
 ): Promise<void> {
-  if (options === undefined) {
-    mkdirSync(path);
-    return;
-  }
-
-  if (typeof options === "boolean") {
-    mkdirSync(path, options);
-    return;
-  }
-
-  mkdirSync(path, options);
+  mkdirSyncImpl(path, options);
 }
 
 export const copyFileSync = (sourcePath: string, destinationPath: string): void => {
@@ -616,12 +635,12 @@ export const read = async (
 
 export const readlinkSync = (path: string): string => {
   const fileTarget = new FileInfo(path).LinkTarget;
-  if (fileTarget !== undefined) {
+  if (fileTarget != null) {
     return fileTarget;
   }
 
   const directoryTarget = new DirectoryInfo(path).LinkTarget;
-  if (directoryTarget !== undefined) {
+  if (directoryTarget != null) {
     return directoryTarget;
   }
 
@@ -691,30 +710,24 @@ export function writeSync(
   encoding?: string
 ): int;
 export function writeSync(
+  _fd: any,
+  _bufferOrData: any,
+  _offsetOrPosition?: any,
+  _lengthOrEncoding?: any,
+  _position?: any
+): any {
+  throw new Error("stub");
+}
+
+function writeSync_buffer(
   fd: int,
-  bufferOrData: WritableFsBuffer | string,
-  offsetOrPosition: int | null = null,
-  lengthOrEncoding?: int | string,
-  position?: int | null
+  buffer: WritableFsBuffer,
+  offset: int,
+  length: int,
+  position: int | null
 ): int {
   const descriptor = getDescriptor(fd);
-
-  if (typeof bufferOrData === "string") {
-    const bytes = parseEncoding(
-      typeof lengthOrEncoding === "string" ? lengthOrEncoding : "utf-8"
-    ).GetBytes(bufferOrData);
-    if (descriptor.appendMode && descriptor.stream.CanSeek) {
-      descriptor.stream.Position = descriptor.stream.Length;
-    } else if (offsetOrPosition !== null && descriptor.stream.CanSeek) {
-      descriptor.stream.Position = offsetOrPosition;
-    }
-    descriptor.stream.Write(bytes, 0 as int, bytes.length as int);
-    return bytes.length as int;
-  }
-
-  const offset = offsetOrPosition ?? (0 as int);
-  const length = resolveWriteLength(bufferOrData, offset, lengthOrEncoding);
-  validateBufferRange(getBufferLength(bufferOrData), offset, length);
+  validateBufferRange(getBufferLength(buffer), offset, length);
 
   if (descriptor.appendMode && descriptor.stream.CanSeek) {
     descriptor.stream.Position = descriptor.stream.Length;
@@ -722,9 +735,26 @@ export function writeSync(
     descriptor.stream.Position = position;
   }
 
-  const bytes = copyBufferSliceToByteArray(bufferOrData, offset, length);
+  const bytes = copyBufferSliceToByteArray(buffer, offset, length);
   descriptor.stream.Write(bytes, 0 as int, length);
   return length;
+}
+
+function writeSync_text(
+  fd: int,
+  data: string,
+  position?: int | null,
+  encoding?: string
+): int {
+  const descriptor = getDescriptor(fd);
+  const bytes = parseEncoding(encoding ?? "utf-8").GetBytes(data);
+  if (descriptor.appendMode && descriptor.stream.CanSeek) {
+    descriptor.stream.Position = descriptor.stream.Length;
+  } else if (position != null && descriptor.stream.CanSeek) {
+    descriptor.stream.Position = position;
+  }
+  descriptor.stream.Write(bytes, 0 as int, bytes.length as int);
+  return bytes.length as int;
 }
 
 export function write(
@@ -741,41 +771,45 @@ export function write(
   encoding?: string
 ): Promise<int>;
 export async function write(
-  fd: int,
-  bufferOrData: WritableFsBuffer | string,
-  offsetOrPosition: int | null = null,
-  lengthOrEncoding?: int | string,
-  position?: int | null
-): Promise<int> {
-  if (typeof bufferOrData === "string") {
-    return writeSync(
-      fd,
-      bufferOrData,
-      offsetOrPosition,
-      typeof lengthOrEncoding === "string" ? lengthOrEncoding : undefined
-    );
-  }
+  _fd: any,
+  _bufferOrData: any,
+  _offsetOrPosition?: any,
+  _lengthOrEncoding?: any,
+  _position?: any
+): Promise<any> {
+  throw new Error("stub");
+}
 
-  return writeSync(
-    fd,
-    bufferOrData,
-    offsetOrPosition ?? (0 as int),
-    resolveWriteLength(
-      bufferOrData,
-      offsetOrPosition ?? (0 as int),
-      lengthOrEncoding
-    ),
-    position ?? null
-  );
+async function write_buffer(
+  fd: int,
+  buffer: WritableFsBuffer,
+  offset: int,
+  length: int,
+  position: int | null
+): Promise<int> {
+  return writeSync_buffer(fd, buffer, offset, length, position);
+}
+
+async function write_text(
+  fd: int,
+  data: string,
+  position?: int | null,
+  encoding?: string
+): Promise<int> {
+  return writeSync_text(fd, data, position, encoding);
 }
 
 export function readFileSync(path: string): Buffer;
 export function readFileSync(path: string, encoding: string): string;
-export function readFileSync(path: string, encoding?: string): string | Buffer {
-  if (encoding === undefined) {
-    return Buffer.fromBytes(File.ReadAllBytes(path));
-  }
+export function readFileSync(_path: any, _encoding?: any): any {
+  throw new Error("stub");
+}
 
+function readFileSync_buffer(path: string): Buffer {
+  return Buffer.fromBytes(File.ReadAllBytes(path));
+}
+
+function readFileSync_text(path: string, encoding: string): string {
   return File.ReadAllText(path, parseEncoding(encoding));
 }
 
@@ -784,19 +818,31 @@ export const readFileSyncBytes = (path: string): byte[] =>
 
 export function readFile(path: string): Promise<Buffer>;
 export function readFile(path: string, encoding: string): Promise<string>;
-export async function readFile(
-  path: string,
-  encoding?: string
-): Promise<string | Buffer> {
-  if (encoding === undefined) {
-    return Buffer.fromBytes(await File.ReadAllBytesAsync(path));
-  }
+export async function readFile(_path: any, _encoding?: any): Promise<any> {
+  throw new Error("stub");
+}
 
+async function readFile_buffer(path: string): Promise<Buffer> {
+  return Buffer.fromBytes(await File.ReadAllBytesAsync(path));
+}
+
+async function readFile_text(path: string, encoding: string): Promise<string> {
   return await File.ReadAllTextAsync(path, parseEncoding(encoding));
 }
 
 export const readFileBytes = async (path: string): Promise<byte[]> =>
   await File.ReadAllBytesAsync(path);
+
+O(mkdirSync_path).family(mkdirSync);
+O(mkdirSync_recursive).family(mkdirSync);
+O(mkdirSync_options).family(mkdirSync);
+O(mkdir_path).family(mkdir);
+O(mkdir_recursive).family(mkdir);
+O(mkdir_options).family(mkdir);
+O(readFileSync_buffer).family(readFileSync);
+O(readFileSync_text).family(readFileSync);
+O(readFile_buffer).family(readFile);
+O(readFile_text).family(readFile);
 
 export const readdirSync = (path: string): string[] =>
   Directory.GetFileSystemEntries(path)
@@ -951,21 +997,25 @@ export class FsPromises {
   public mkdir(path: string, recursive: boolean): Promise<void>;
   public mkdir(
     path: string,
-    options: { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): Promise<void>;
-  public mkdir(
+  public mkdir(_path: any, _options?: any): any {
+    throw new Error("stub");
+  }
+
+  public mkdir_path(path: string): Promise<void> {
+    return mkdir_path(path);
+  }
+
+  public mkdir_recursive(path: string, recursive: boolean): Promise<void> {
+    return mkdir_recursive(path, recursive);
+  }
+
+  public mkdir_options(
     path: string,
-    options?: boolean | { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): Promise<void> {
-    if (options === undefined) {
-      return mkdir(path);
-    }
-
-    if (typeof options === "boolean") {
-      return mkdir(path, options);
-    }
-
-    return mkdir(path, options);
+    return mkdir_options(path, options);
   }
 
   public open(path: string, flags: string, mode?: int): Promise<int> {
@@ -984,15 +1034,16 @@ export class FsPromises {
 
   public readFile(path: string): Promise<Buffer>;
   public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(
-    path: string,
-    encoding?: string
-  ): Promise<string | Buffer> {
-    if (encoding === undefined) {
-      return readFile(path);
-    }
+  public readFile(_path: any, _encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    return readFile(path, encoding);
+  public readFile_buffer(path: string): Promise<Buffer> {
+    return readFile_buffer(path);
+  }
+
+  public readFile_text(path: string, encoding: string): Promise<string> {
+    return readFile_text(path, encoding);
   }
 
   public readFileBytes(path: string): Promise<byte[]> {
@@ -1065,32 +1116,32 @@ export class FsPromises {
     encoding?: string
   ): Promise<int>;
   public write(
-    fd: int,
-    bufferOrData: WritableFsBuffer | string,
-    offsetOrPosition: int | null = null,
-    lengthOrEncoding?: int | string,
-    position?: int | null
-  ): Promise<int> {
-    if (typeof bufferOrData === "string") {
-      return write(
-        fd,
-        bufferOrData,
-        offsetOrPosition,
-        typeof lengthOrEncoding === "string" ? lengthOrEncoding : undefined
-      );
-    }
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
+  ): Promise<any> {
+    throw new Error("stub");
+  }
 
-    return write(
-      fd,
-      bufferOrData,
-      offsetOrPosition ?? (0 as int),
-      resolveWriteLength(
-        bufferOrData,
-        offsetOrPosition ?? (0 as int),
-        lengthOrEncoding
-      ),
-      position ?? null
-    );
+  public write_buffer(
+    fd: int,
+    buffer: WritableFsBuffer,
+    offset: int,
+    length: int,
+    position: int | null
+  ): Promise<int> {
+    return write_buffer(fd, buffer, offset, length, position);
+  }
+
+  public write_text(
+    fd: int,
+    data: string,
+    position?: int | null,
+    encoding?: string
+  ): Promise<int> {
+    return write_text(fd, data, position, encoding);
   }
 
   public writeFileBytes(path: string, data: byte[]): Promise<void> {
@@ -1181,42 +1232,50 @@ export class FsModuleNamespace {
   public mkdir(path: string, recursive: boolean): Promise<void>;
   public mkdir(
     path: string,
-    options: { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): Promise<void>;
-  public mkdir(
+  public mkdir(_path: any, _options?: any): any {
+    throw new Error("stub");
+  }
+
+  public mkdir_path(path: string): Promise<void> {
+    return mkdir_path(path);
+  }
+
+  public mkdir_recursive(path: string, recursive: boolean): Promise<void> {
+    return mkdir_recursive(path, recursive);
+  }
+
+  public mkdir_options(
     path: string,
-    options?: boolean | { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): Promise<void> {
-    if (options === undefined) {
-      return mkdir(path);
-    }
-
-    if (typeof options === "boolean") {
-      return mkdir(path, options);
-    }
-
-    return mkdir(path, options);
+    return mkdir_options(path, options);
   }
 
   public mkdirSync(path: string): void;
   public mkdirSync(path: string, recursive: boolean): void;
   public mkdirSync(
     path: string,
-    options: { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): void;
-  public mkdirSync(
+  public mkdirSync(_path: any, _options?: any): any {
+    throw new Error("stub");
+  }
+
+  public mkdirSync_path(path: string): void {
+    return mkdirSync_path(path);
+  }
+
+  public mkdirSync_recursive(path: string, recursive: boolean): void {
+    return mkdirSync_recursive(path, recursive);
+  }
+
+  public mkdirSync_options(
     path: string,
-    options?: boolean | { recursive?: boolean; mode?: int }
+    options: MkdirOptions
   ): void {
-    if (options === undefined) {
-      return mkdirSync(path);
-    }
-
-    if (typeof options === "boolean") {
-      return mkdirSync(path, options);
-    }
-
-    return mkdirSync(path, options);
+    return mkdirSync_options(path, options);
   }
 
   public open(path: string, flags: string, mode?: int): Promise<int> {
@@ -1249,15 +1308,16 @@ export class FsModuleNamespace {
 
   public readFile(path: string): Promise<Buffer>;
   public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(
-    path: string,
-    encoding?: string
-  ): Promise<string | Buffer> {
-    if (encoding === undefined) {
-      return readFile(path);
-    }
+  public readFile(_path: any, _encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    return readFile(path, encoding);
+  public readFile_buffer(path: string): Promise<Buffer> {
+    return readFile_buffer(path);
+  }
+
+  public readFile_text(path: string, encoding: string): Promise<string> {
+    return readFile_text(path, encoding);
   }
 
   public readFileBytes(path: string): Promise<byte[]> {
@@ -1266,12 +1326,16 @@ export class FsModuleNamespace {
 
   public readFileSync(path: string): Buffer;
   public readFileSync(path: string, encoding: string): string;
-  public readFileSync(path: string, encoding?: string): string | Buffer {
-    if (encoding === undefined) {
-      return readFileSync(path);
-    }
+  public readFileSync(_path: any, _encoding?: any): any {
+    throw new Error("stub");
+  }
 
-    return readFileSync(path, encoding);
+  public readFileSync_buffer(path: string): Buffer {
+    return readFileSync_buffer(path);
+  }
+
+  public readFileSync_text(path: string, encoding: string): string {
+    return readFileSync_text(path, encoding);
   }
 
   public readFileSyncBytes(path: string): byte[] {
@@ -1384,32 +1448,32 @@ export class FsModuleNamespace {
     encoding?: string
   ): Promise<int>;
   public write(
-    fd: int,
-    bufferOrData: WritableFsBuffer | string,
-    offsetOrPosition: int | null = null,
-    lengthOrEncoding?: int | string,
-    position?: int | null
-  ): Promise<int> {
-    if (typeof bufferOrData === "string") {
-      return write(
-        fd,
-        bufferOrData,
-        offsetOrPosition,
-        typeof lengthOrEncoding === "string" ? lengthOrEncoding : undefined
-      );
-    }
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
+  ): Promise<any> {
+    throw new Error("stub");
+  }
 
-    return write(
-      fd,
-      bufferOrData,
-      offsetOrPosition ?? (0 as int),
-      resolveWriteLength(
-        bufferOrData,
-        offsetOrPosition ?? (0 as int),
-        lengthOrEncoding
-      ),
-      position ?? null
-    );
+  public write_buffer(
+    fd: int,
+    buffer: WritableFsBuffer,
+    offset: int,
+    length: int,
+    position: int | null
+  ): Promise<int> {
+    return write_buffer(fd, buffer, offset, length, position);
+  }
+
+  public write_text(
+    fd: int,
+    data: string,
+    position?: int | null,
+    encoding?: string
+  ): Promise<int> {
+    return write_text(fd, data, position, encoding);
   }
 
   public writeSync(
@@ -1426,32 +1490,32 @@ export class FsModuleNamespace {
     encoding?: string
   ): int;
   public writeSync(
-    fd: int,
-    bufferOrData: WritableFsBuffer | string,
-    offsetOrPosition: int | null = null,
-    lengthOrEncoding?: int | string,
-    position?: int | null
-  ): int {
-    if (typeof bufferOrData === "string") {
-      return writeSync(
-        fd,
-        bufferOrData,
-        offsetOrPosition,
-        typeof lengthOrEncoding === "string" ? lengthOrEncoding : undefined
-      );
-    }
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
+  ): any {
+    throw new Error("stub");
+  }
 
-    return writeSync(
-      fd,
-      bufferOrData,
-      offsetOrPosition ?? (0 as int),
-      resolveWriteLength(
-        bufferOrData,
-        offsetOrPosition ?? (0 as int),
-        lengthOrEncoding
-      ),
-      position ?? null
-    );
+  public writeSync_buffer(
+    fd: int,
+    buffer: WritableFsBuffer,
+    offset: int,
+    length: int,
+    position: int | null
+  ): int {
+    return writeSync_buffer(fd, buffer, offset, length, position);
+  }
+
+  public writeSync_text(
+    fd: int,
+    data: string,
+    position?: int | null,
+    encoding?: string
+  ): int {
+    return writeSync_text(fd, data, position, encoding);
   }
 
   public writeFileBytes(path: string, data: byte[]): Promise<void> {
@@ -1473,3 +1537,29 @@ export class FsModuleNamespace {
 
 export const promises: FsPromises = new FsPromises();
 export const fs: FsModuleNamespace = new FsModuleNamespace();
+
+O<FsPromises>().method(x => x.mkdir_path).family(x => x.mkdir);
+O<FsPromises>().method(x => x.mkdir_recursive).family(x => x.mkdir);
+O<FsPromises>().method(x => x.mkdir_options).family(x => x.mkdir);
+O<FsPromises>().method(x => x.readFile_buffer).family(x => x.readFile);
+O<FsPromises>().method(x => x.readFile_text).family(x => x.readFile);
+O<FsPromises>().method(x => x.write_buffer).family(x => x.write);
+O<FsPromises>().method(x => x.write_text).family(x => x.write);
+O<FsModuleNamespace>().method(x => x.mkdir_path).family(x => x.mkdir);
+O<FsModuleNamespace>().method(x => x.mkdir_recursive).family(x => x.mkdir);
+O<FsModuleNamespace>().method(x => x.mkdir_options).family(x => x.mkdir);
+O<FsModuleNamespace>().method(x => x.mkdirSync_path).family(x => x.mkdirSync);
+O<FsModuleNamespace>().method(x => x.mkdirSync_recursive).family(x => x.mkdirSync);
+O<FsModuleNamespace>().method(x => x.mkdirSync_options).family(x => x.mkdirSync);
+O<FsModuleNamespace>().method(x => x.readFile_buffer).family(x => x.readFile);
+O<FsModuleNamespace>().method(x => x.readFile_text).family(x => x.readFile);
+O<FsModuleNamespace>().method(x => x.readFileSync_buffer).family(x => x.readFileSync);
+O<FsModuleNamespace>().method(x => x.readFileSync_text).family(x => x.readFileSync);
+O<FsModuleNamespace>().method(x => x.write_buffer).family(x => x.write);
+O<FsModuleNamespace>().method(x => x.write_text).family(x => x.write);
+O<FsModuleNamespace>().method(x => x.writeSync_buffer).family(x => x.writeSync);
+O<FsModuleNamespace>().method(x => x.writeSync_text).family(x => x.writeSync);
+O(writeSync_buffer).family(writeSync);
+O(writeSync_text).family(writeSync);
+O(write_buffer).family(write);
+O(write_text).family(write);

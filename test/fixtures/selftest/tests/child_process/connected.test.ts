@@ -15,6 +15,6 @@ export class ChildProcessConnectedTests {
   }
 }
 
-A.on(ChildProcessConnectedTests)
+A<ChildProcessConnectedTests>()
   .method((t) => t.connected_InitiallyFalse)
   .add(FactAttribute);

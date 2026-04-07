@@ -73,10 +73,10 @@ export class GenerateKeyPairSyncTests {
   }
 }
 
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_rsa_creates_valid_key_pair).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_ec_creates_valid_key_pair).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_ed25519_generates_keys).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_dsa_generates_keys).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_dh_generates_keys).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_dh_generates_keys_reliably).add(FactAttribute);
-A.on(GenerateKeyPairSyncTests).method((t) => t.generateKeyPairSync_invalid_type_throws).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_rsa_creates_valid_key_pair).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_ec_creates_valid_key_pair).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_ed25519_generates_keys).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_dsa_generates_keys).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_dh_generates_keys).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_dh_generates_keys_reliably).add(FactAttribute);
+A<GenerateKeyPairSyncTests>().method((t) => t.generateKeyPairSync_invalid_type_throws).add(FactAttribute);

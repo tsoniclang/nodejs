@@ -20,12 +20,12 @@ export class UtilExtrasTests {
   }
 }
 
-A.on(UtilExtrasTests)
+A<UtilExtrasTests>()
   .method((t) => t.formatWithOptions_should_format)
   .add(FactAttribute);
-A.on(UtilExtrasTests)
+A<UtilExtrasTests>()
   .method((t) => t.stripVTControlCharacters_should_remove_ansi_sequences)
   .add(FactAttribute);
-A.on(UtilExtrasTests)
+A<UtilExtrasTests>()
   .method((t) => t.toUSVString_should_replace_lone_surrogates)
   .add(FactAttribute);

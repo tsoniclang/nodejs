@@ -10,6 +10,6 @@ export class AnyARecordTests {
   }
 }
 
-A.on(AnyARecordTests)
+A<AnyARecordTests>()
   .method((t) => t.AnyARecord_HasCorrectType)
   .add(FactAttribute);

@@ -4,7 +4,7 @@
  * Baseline: nodejs-clr/src/nodejs/os/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
 import { arch as archValue } from "./arch-value.ts";
 import { availableParallelism as availableParallelismValue } from "./available-parallelism.ts";

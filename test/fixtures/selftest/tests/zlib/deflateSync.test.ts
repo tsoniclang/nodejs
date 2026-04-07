@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { deflateSync } from "@tsonic/nodejs/zlib.js";
@@ -31,7 +31,7 @@ export class Zlib_deflateSyncTests {
   }
 
   public deflateSync_WithNullBuffer_ShouldThrow(): void {
-    assertThrows(() => deflateSync(null as unknown as Uint8Array));
+    assertThrows(() => deflateSync(asinterface<Uint8Array>(null)));
   }
 
   public deflateSync_EmptyBuffer_ShouldCompress(): void {
@@ -44,15 +44,15 @@ export class Zlib_deflateSyncTests {
   }
 }
 
-A.on(Zlib_deflateSyncTests)
+A<Zlib_deflateSyncTests>()
   .method((t) => t.deflateSync_ShouldCompressData)
   .add(FactAttribute);
-A.on(Zlib_deflateSyncTests)
+A<Zlib_deflateSyncTests>()
   .method((t) => t.deflateSync_WithCompressionLevel_ShouldWork)
   .add(FactAttribute);
-A.on(Zlib_deflateSyncTests)
+A<Zlib_deflateSyncTests>()
   .method((t) => t.deflateSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_deflateSyncTests)
+A<Zlib_deflateSyncTests>()
   .method((t) => t.deflateSync_EmptyBuffer_ShouldCompress)
   .add(FactAttribute);

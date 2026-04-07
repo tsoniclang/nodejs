@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
@@ -14,7 +15,7 @@ export class ChildProcessMessageTests {
     const child = child_process.spawn(command, args);
 
     // Verify we can attach message event handler
-    child.on("message", (message: unknown, sendHandle: unknown) => {
+    child.on("message", (_message: JsValue, _sendHandle: JsValue) => {
       // Handler attached successfully
     });
 
@@ -22,6 +23,6 @@ export class ChildProcessMessageTests {
   }
 }
 
-A.on(ChildProcessMessageTests)
+A<ChildProcessMessageTests>()
   .method((t) => t.message_MessageEvent_CanBeAttached)
   .add(FactAttribute);

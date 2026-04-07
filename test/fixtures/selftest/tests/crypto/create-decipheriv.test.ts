@@ -28,5 +28,5 @@ export class CreateDecipherivTests {
   }
 }
 
-A.on(CreateDecipherivTests).method((t) => t.createDecipheriv_set_auth_tag_throws_not_implemented).add(FactAttribute);
-A.on(CreateDecipherivTests).method((t) => t.createDecipheriv_set_aad_throws_not_implemented).add(FactAttribute);
+A<CreateDecipherivTests>().method((t) => t.createDecipheriv_set_auth_tag_throws_not_implemented).add(FactAttribute);
+A<CreateDecipherivTests>().method((t) => t.createDecipheriv_set_aad_throws_not_implemented).add(FactAttribute);

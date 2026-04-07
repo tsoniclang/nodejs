@@ -48,9 +48,9 @@ export class CreateSecretKeyTests {
   }
 }
 
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_creates_key_object).add(FactAttribute);
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_with_string).add(FactAttribute);
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_export_works).add(FactAttribute);
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_with_hex_encoding_works).add(FactAttribute);
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_with_base64_encoding_works).add(FactAttribute);
-A.on(CreateSecretKeyTests).method((t) => t.createSecretKey_with_base64url_encoding_works).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_creates_key_object).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_with_string).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_export_works).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_with_hex_encoding_works).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_with_base64_encoding_works).add(FactAttribute);
+A<CreateSecretKeyTests>().method((t) => t.createSecretKey_with_base64url_encoding_works).add(FactAttribute);

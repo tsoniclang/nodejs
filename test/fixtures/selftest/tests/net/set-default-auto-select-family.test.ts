@@ -13,6 +13,6 @@ export class SetDefaultAutoSelectFamilyTests {
   }
 }
 
-A.on(SetDefaultAutoSelectFamilyTests)
+A<SetDefaultAutoSelectFamilyTests>()
   .method((t) => t.set_default_auto_select_family_updates_value)
   .add(FactAttribute);

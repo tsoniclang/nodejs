@@ -39,8 +39,8 @@ export class existsSyncTests {
   }
 }
 
-A.on(existsSyncTests).method((t) => t.existsSync_ExistingFile_ShouldReturnTrue).add(FactAttribute);
-A.on(existsSyncTests)
+A<existsSyncTests>().method((t) => t.existsSync_ExistingFile_ShouldReturnTrue).add(FactAttribute);
+A<existsSyncTests>()
   .method((t) => t.existsSync_ExistingDirectory_ShouldReturnTrue)
   .add(FactAttribute);
-A.on(existsSyncTests).method((t) => t.existsSync_NonExistent_ShouldReturnFalse).add(FactAttribute);
+A<existsSyncTests>().method((t) => t.existsSync_NonExistent_ShouldReturnFalse).add(FactAttribute);

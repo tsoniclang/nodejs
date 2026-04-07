@@ -1,20 +1,20 @@
 
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 import {
   Convert,
   TypeCode,
 } from "@tsonic/dotnet/System.js";
 import { CultureInfo } from "@tsonic/dotnet/System.Globalization.js";
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
 import { AssertionError } from "./assertion-error.ts";
 
-const toNumericValue = (value: unknown): number => {
+const toNumericValue = (value: JsValue): number => {
   return Convert.ToDouble(value, CultureInfo.InvariantCulture);
 };
 
-const isNumeric = (value: unknown): boolean => {
+const isNumeric = (value: JsValue): boolean => {
   switch (Convert.GetTypeCode(value)) {
     case TypeCode.SByte:
     case TypeCode.Byte:
@@ -33,7 +33,7 @@ const isNumeric = (value: unknown): boolean => {
   }
 };
 
-const getPrimitiveKind = (value: unknown): string => {
+const getPrimitiveKind = (value: JsValue): string => {
   if (value === null || value === undefined) {
     return "undefined";
   }
@@ -44,7 +44,7 @@ const getPrimitiveKind = (value: unknown): string => {
   return typeof value;
 };
 
-const areLooselyEqual = (left: unknown, right: unknown): boolean => {
+const areLooselyEqual = (left: JsValue, right: JsValue): boolean => {
   if (left === null && right === null) {
     return true;
   }
@@ -58,7 +58,7 @@ const areLooselyEqual = (left: unknown, right: unknown): boolean => {
   return left === right;
 };
 
-const areStrictlyEqual = (left: unknown, right: unknown): boolean => {
+const areStrictlyEqual = (left: JsValue, right: JsValue): boolean => {
   if (getPrimitiveKind(left) !== getPrimitiveKind(right)) {
     return false;
   }
@@ -69,7 +69,7 @@ const areStrictlyEqual = (left: unknown, right: unknown): boolean => {
   return left === right;
 };
 
-type SeenPair = readonly [unknown, unknown];
+type SeenPair = readonly [JsValue, JsValue];
 
 const hasSeenPair = (
   seenPairs: readonly SeenPair[],
@@ -131,8 +131,8 @@ const areIndexedSequenceDeepEqual = (
   right: object,
   leftLength: int,
   rightLength: int,
-  getLeftValue: (index: int) => unknown,
-  getRightValue: (index: int) => unknown,
+  getLeftValue: (index: int) => JsValue,
+  getRightValue: (index: int) => JsValue,
   strict: boolean,
   seenPairs: readonly SeenPair[]
 ): boolean => {
@@ -162,8 +162,8 @@ const areIndexedSequenceDeepEqual = (
 };
 
 const areDeepEqualInternal = (
-  left: unknown,
-  right: unknown,
+  left: JsValue,
+  right: JsValue,
   strict: boolean,
   seenPairs: readonly SeenPair[]
 ): boolean => {
@@ -198,8 +198,8 @@ const areDeepEqualInternal = (
       rightBytes,
       leftBytes.length,
       rightBytes.length,
-      (index) => leftBytes[index],
-      (index) => rightBytes[index],
+      (index) => leftBytes[index]!,
+      (index) => rightBytes[index]!,
       strict,
       seenPairs
     );
@@ -215,10 +215,10 @@ const areDeepEqualInternal = (
     return areIndexedSequenceDeepEqual(
       left as object,
       right as object,
-      (left as unknown[]).length,
-      (right as unknown[]).length,
-      (index) => (left as unknown[])[index],
-      (index) => (right as unknown[])[index],
+      (left as JsValue[]).length,
+      (right as JsValue[]).length,
+      (index) => (left as JsValue[])[index]!,
+      (index) => (right as JsValue[])[index]!,
       strict,
       seenPairs
     );
@@ -231,8 +231,8 @@ const areDeepEqualInternal = (
 };
 
 const areDeepEqual = (
-  left: unknown,
-  right: unknown,
+  left: JsValue,
+  right: JsValue,
   strict: boolean
 ): boolean => {
   return areDeepEqualInternal(left, right, strict, []);
@@ -249,8 +249,8 @@ export const fail = (message?: string): never => {
 };
 
 export const equal = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (!areLooselyEqual(actual, expected)) {
@@ -259,8 +259,8 @@ export const equal = (
 };
 
 export const notEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (areLooselyEqual(actual, expected)) {
@@ -269,8 +269,8 @@ export const notEqual = (
 };
 
 export const strictEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (!areStrictlyEqual(actual, expected)) {
@@ -279,8 +279,8 @@ export const strictEqual = (
 };
 
 export const notStrictEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (areStrictlyEqual(actual, expected)) {
@@ -289,8 +289,8 @@ export const notStrictEqual = (
 };
 
 export const deepEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (!areDeepEqual(actual, expected, false)) {
@@ -299,8 +299,8 @@ export const deepEqual = (
 };
 
 export const notDeepEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (areDeepEqual(actual, expected, false)) {
@@ -309,8 +309,8 @@ export const notDeepEqual = (
 };
 
 export const deepStrictEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (!areDeepEqual(actual, expected, true)) {
@@ -319,8 +319,8 @@ export const deepStrictEqual = (
 };
 
 export const notDeepStrictEqual = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => {
   if (areDeepEqual(actual, expected, true)) {
@@ -377,7 +377,7 @@ export const doesNotMatch = (
   }
 };
 
-export const ifError = (value: unknown): void => {
+export const ifError = (value: JsValue): void => {
   if (value === null || value === undefined) {
     return;
   }
@@ -393,13 +393,13 @@ export const ifError = (value: unknown): void => {
 };
 
 export const strict = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue,
+  expected: JsValue,
   message?: string
 ): void => strictEqual(actual, expected, message);
 
 export const rejects = async (
-  fn: () => Promise<unknown>,
+  fn: () => Promise<JsValue | undefined>,
   message?: string,
 ): Promise<void> => {
   try {
@@ -415,7 +415,7 @@ export const rejects = async (
 };
 
 export const doesNotReject = async (
-  fn: () => Promise<unknown>,
+  fn: () => Promise<JsValue | undefined>,
   message?: string,
 ): Promise<void> => {
   try {

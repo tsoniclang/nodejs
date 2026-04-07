@@ -18,6 +18,6 @@ export class ChildProcessInvalidCommandTests {
   }
 }
 
-A.on(ChildProcessInvalidCommandTests)
+A<ChildProcessInvalidCommandTests>()
   .method((t) => t.invalidCommand_ThrowsException)
   .add(FactAttribute);

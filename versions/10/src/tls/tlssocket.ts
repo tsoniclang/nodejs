@@ -9,6 +9,7 @@
  * stubbed with TODO markers. The public API shape is preserved exactly.
  */
 
+import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 import { SecureContext } from "./secure-context.ts";
 import {
@@ -190,7 +191,7 @@ export class TLSSocket extends EventEmitter {
    * returns false here.
    */
   renegotiate(
-    _options: unknown,
+    _options: JsValue,
     callback: (err: Error | null) => void
   ): boolean {
     callback(new Error("Renegotiation not supported"));
@@ -202,7 +203,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  setKeyCert(context: unknown): void {
+  setKeyCert(context: JsValue): void {
     if (context instanceof SecureContext) {
       this._secureContext = context;
     }
@@ -238,7 +239,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  getPeerX509Certificate(): unknown {
+  getPeerX509Certificate(): JsValue {
     return null;
   }
 
@@ -247,7 +248,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  getX509Certificate(): unknown {
+  getX509Certificate(): JsValue {
     return null;
   }
 

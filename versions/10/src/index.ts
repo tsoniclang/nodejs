@@ -1,5 +1,5 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
 import {
   basename,

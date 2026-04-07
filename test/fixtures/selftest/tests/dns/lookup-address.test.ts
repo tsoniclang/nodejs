@@ -14,6 +14,6 @@ export class LookupAddressTests {
   }
 }
 
-A.on(LookupAddressTests)
+A<LookupAddressTests>()
   .method((t) => t.LookupAddress_AllProperties_CanBeSet)
   .add(FactAttribute);

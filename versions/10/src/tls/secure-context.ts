@@ -8,11 +8,13 @@
  * crypto/certificate operations are stubbed with TODO markers.
  */
 
+import type { JsValue } from "@tsonic/core/types.js";
+
 export class SecureContext {
   /**
    * Internal context reference (for compatibility).
    */
-  public context: unknown = null;
+  public context: JsValue = null;
 
   // -- internal state (substrate-dependent) --
 
@@ -59,8 +61,8 @@ export class SecureContext {
    * TODO: Implement certificate loading — requires substrate crypto primitives.
    */
   loadCertificate(
-    cert: unknown,
-    _key: unknown,
+    cert: JsValue,
+    _key: JsValue,
     _passphrase: string | null
   ): void {
     if (cert === null || cert === undefined) {
@@ -76,7 +78,7 @@ export class SecureContext {
    *
    * TODO: Implement CA certificate loading — requires substrate crypto primitives.
    */
-  loadCACertificates(ca: unknown): void {
+  loadCACertificates(ca: JsValue): void {
     if (ca === null || ca === undefined) {
       return;
     }

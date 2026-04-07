@@ -16,6 +16,6 @@ export class ResolverOptionsTests {
   }
 }
 
-A.on(ResolverOptionsTests)
+A<ResolverOptionsTests>()
   .method((t) => t.ResolverOptions_AllProperties_CanBeSet)
   .add(FactAttribute);

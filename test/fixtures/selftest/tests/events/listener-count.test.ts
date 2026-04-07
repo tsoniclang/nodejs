@@ -20,9 +20,9 @@ export class ListenerCountTests {
   }
 }
 
-A.on(ListenerCountTests)
+A<ListenerCountTests>()
   .method((t) => t.listenerCount_returns_the_number_of_registered_listeners)
   .add(FactAttribute);
-A.on(ListenerCountTests)
+A<ListenerCountTests>()
   .method((t) => t.listenerCount_returns_zero_without_listeners)
   .add(FactAttribute);

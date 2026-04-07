@@ -4,8 +4,9 @@
  * Baseline: nodejs-clr/src/nodejs/child_process/
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
 
+import { overloads as O } from "@tsonic/core/lang.js";
 import { Process, ProcessStartInfo } from "@tsonic/dotnet/System.Diagnostics.js";
 import {
   OSPlatform,
@@ -286,29 +287,39 @@ export function exec(
   callback: (error: Error | null, stdout: string, stderr: string) => void,
 ): void;
 export function exec(
+  _command: any,
+  _optionsOrCallback: any,
+  _callback?: any,
+): any {
+  throw new Error("stub");
+}
+
+function exec_callback(
   command: string,
-  optionsOrCallback:
-    | ExecOptions
-    | null
-    | ((error: Error | null, stdout: string, stderr: string) => void),
-  callback?: (error: Error | null, stdout: string, stderr: string) => void,
+  callback: (error: Error | null, stdout: string, stderr: string) => void,
 ): void {
-  const resolvedCallback =
-    typeof optionsOrCallback === "function" ? optionsOrCallback : callback;
-  const resolvedOptions =
-    typeof optionsOrCallback === "function" ? null : optionsOrCallback;
-
-  if (resolvedCallback === undefined) {
-    throw new Error("exec callback is required");
-  }
-
   try {
-    const finished = execWithShell(command, resolvedOptions);
-    resolvedCallback(finished.error, finished.stdout, finished.stderr);
+    const finished = execWithShell(command, null);
+    callback(finished.error, finished.stdout, finished.stderr);
   } catch (error) {
-    const resolvedError =
+    const resolvedError: Error =
       error instanceof Error ? error : new Error(String(error));
-    resolvedCallback(resolvedError, "", "");
+    callback(resolvedError, "", "");
+  }
+}
+
+function exec_options(
+  command: string,
+  options: ExecOptions | null,
+  callback: (error: Error | null, stdout: string, stderr: string) => void,
+): void {
+  try {
+    const finished = execWithShell(command, options);
+    callback(finished.error, finished.stdout, finished.stderr);
+  } catch (error) {
+    const resolvedError: Error =
+      error instanceof Error ? error : new Error(String(error));
+    callback(resolvedError, "", "");
   }
 }
 
@@ -353,3 +364,6 @@ export const fork = (
   child._setConnected(true);
   return child;
 };
+
+O(exec_callback).family(exec);
+O(exec_options).family(exec);

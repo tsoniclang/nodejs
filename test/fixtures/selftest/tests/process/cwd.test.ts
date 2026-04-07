@@ -26,15 +26,15 @@ export class ProcessCwdTests {
   }
 }
 
-A.on(ProcessCwdTests)
+A<ProcessCwdTests>()
   .method((t) => t.cwd_returns_current_directory)
   .add(FactAttribute);
-A.on(ProcessCwdTests)
+A<ProcessCwdTests>()
   .method((t) => t.cwd_matches_dotnet_current_directory)
   .add(FactAttribute);
-A.on(ProcessCwdTests)
+A<ProcessCwdTests>()
   .method((t) => t.cwd_is_absolute)
   .add(FactAttribute);
-A.on(ProcessCwdTests)
+A<ProcessCwdTests>()
   .method((t) => t.cwd_exists)
   .add(FactAttribute);

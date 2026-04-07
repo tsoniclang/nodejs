@@ -19,6 +19,6 @@ export class ChildProcessStdinTests {
   }
 }
 
-A.on(ChildProcessStdinTests)
+A<ChildProcessStdinTests>()
   .method((t) => t.stdin_StdinProperty_IsAccessible)
   .add(FactAttribute);

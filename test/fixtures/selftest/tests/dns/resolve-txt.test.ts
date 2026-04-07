@@ -13,6 +13,6 @@ export class ResolveTxtTests {
   }
 }
 
-A.on(ResolveTxtTests)
+A<ResolveTxtTests>()
   .method((t) => t.resolveTxt_ValidDomain_CallsCallback)
   .add(FactAttribute);

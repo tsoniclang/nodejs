@@ -18,4 +18,4 @@ export class HkdfTests {
   }
 }
 
-A.on(HkdfTests).method((t) => t.hkdf_callback_derives_key).add(FactAttribute);
+A<HkdfTests>().method((t) => t.hkdf_callback_derives_key).add(FactAttribute);

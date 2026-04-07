@@ -24,4 +24,4 @@ export class readFileBytesTests {
   }
 }
 
-A.on(readFileBytesTests).method((t) => t.readFileBytes_ShouldReadBinaryData).add(FactAttribute);
+A<readFileBytesTests>().method((t) => t.readFileBytes_ShouldReadBinaryData).add(FactAttribute);

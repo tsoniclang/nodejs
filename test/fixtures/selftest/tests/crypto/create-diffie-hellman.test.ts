@@ -73,11 +73,11 @@ export class CreateDiffieHellmanTests {
   }
 }
 
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_with_prime_and_generator).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_get_prime).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_get_generator).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_get_public_key).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_get_private_key).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_set_get_keys).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_with_encoded_keys).add(FactAttribute);
-A.on(CreateDiffieHellmanTests).method((t) => t.createDiffieHellman_with_generated_prime_works).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_with_prime_and_generator).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_get_prime).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_get_generator).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_get_public_key).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_get_private_key).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_set_get_keys).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_with_encoded_keys).add(FactAttribute);
+A<CreateDiffieHellmanTests>().method((t) => t.createDiffieHellman_with_generated_prime_works).add(FactAttribute);

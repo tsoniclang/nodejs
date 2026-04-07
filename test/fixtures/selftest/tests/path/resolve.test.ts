@@ -20,9 +20,9 @@ export class ResolveTests {
   }
 }
 
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_returns_absolute_path)
   .add(FactAttribute);
-A.on(ResolveTests)
+A<ResolveTests>()
   .method((t) => t.resolve_empty_segments_return_current_directory)
   .add(FactAttribute);

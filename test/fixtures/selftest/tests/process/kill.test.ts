@@ -42,12 +42,12 @@ export class ProcessKillTests {
   }
 }
 
-A.on(ProcessKillTests)
+A<ProcessKillTests>()
   .method((t) => t.kill_throws_for_non_existent_processes)
   .add(FactAttribute);
-A.on(ProcessKillTests)
+A<ProcessKillTests>()
   .method((t) => t.kill_signal_zero_returns_true_for_the_current_process)
   .add(FactAttribute);
-A.on(ProcessKillTests)
+A<ProcessKillTests>()
   .method((t) => t.kill_terminates_a_sleep_process_on_unix)
   .add(FactAttribute);

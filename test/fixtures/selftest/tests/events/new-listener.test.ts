@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
@@ -6,9 +7,9 @@ import { EventEmitter } from "@tsonic/nodejs/events.js";
 export class NewListenerTests {
   public newListener_event_fires_for_new_registrations(): void {
     const emitter = new EventEmitter();
-    let seen: unknown = undefined;
+    let seen: JsValue | undefined = undefined;
 
-    emitter.on("newListener", (name: unknown) => {
+    emitter.on("newListener", (name: JsValue) => {
       seen = name;
     });
     emitter.on("test", () => undefined);
@@ -17,6 +18,6 @@ export class NewListenerTests {
   }
 }
 
-A.on(NewListenerTests)
+A<NewListenerTests>()
   .method((t) => t.newListener_event_fires_for_new_registrations)
   .add(FactAttribute);

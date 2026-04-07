@@ -25,10 +25,10 @@ export class JoinTests {
   }
 }
 
-A.on(JoinTests).method((t) => t.join_combines_segments).add(FactAttribute);
-A.on(JoinTests)
+A<JoinTests>().method((t) => t.join_combines_segments).add(FactAttribute);
+A<JoinTests>()
   .method((t) => t.join_without_segments_returns_dot)
   .add(FactAttribute);
-A.on(JoinTests)
+A<JoinTests>()
   .method((t) => t.join_filters_empty_segments)
   .add(FactAttribute);

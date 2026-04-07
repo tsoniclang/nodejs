@@ -6,7 +6,7 @@
  * Baseline: nodejs-clr/src/nodejs/readline/Interface.cs
  */
 import { EventEmitter } from "../events-module.ts";
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";
 import { InterfaceOptions, CursorPosition } from "./interface-options.ts";
@@ -23,8 +23,8 @@ export class Interface extends EventEmitter {
   private _cursor: int = 0;
   private _closed: boolean = false;
   private _paused: boolean = false;
-  private readonly _dataListener: ((...args: unknown[]) => void) | undefined;
-  private readonly _endListener: ((...args: unknown[]) => void) | undefined;
+  private readonly _dataListener: ((...args: JsValue[]) => void) | undefined;
+  private readonly _endListener: ((...args: JsValue[]) => void) | undefined;
   private _historyIndex: int = -1;
   private _savedLine: string = "";
 
@@ -60,13 +60,13 @@ export class Interface extends EventEmitter {
     // integration. The listener wiring below is structurally correct but
     // depends on Readable emitting 'data' and 'end' events at runtime.
     if (this._input !== undefined) {
-      const dataListener = (...args: unknown[]): void => {
+      const dataListener = (...args: JsValue[]): void => {
         if (!this._paused && args.length > 0 && args[0] !== undefined && args[0] !== null) {
           this.processInput(String(args[0]));
         }
       };
 
-      const endListener = (..._args: unknown[]): void => {
+      const endListener = (..._args: JsValue[]): void => {
         if (!this._closed) {
           this.close();
         }
@@ -120,7 +120,7 @@ export class Interface extends EventEmitter {
     }
 
     // Set up a one-time listener for the next line
-    const lineListener = (...args: unknown[]): void => {
+    const lineListener = (...args: JsValue[]): void => {
       if (args.length > 0 && typeof args[0] === "string") {
         callback(args[0]);
       }
@@ -145,7 +145,7 @@ export class Interface extends EventEmitter {
     }
 
     return new Promise<string>((resolve) => {
-      const lineListener = (...args: unknown[]): void => {
+      const lineListener = (...args: JsValue[]): void => {
         if (args.length > 0 && typeof args[0] === "string") {
           resolve(String(args[0]));
         }
@@ -158,7 +158,7 @@ export class Interface extends EventEmitter {
   /**
    * Writes data to output stream or simulates keypresses.
    */
-  public write(data: unknown, key?: unknown): void {
+  public write(data: JsValue, key?: JsValue): void {
     if (this._closed) {
       throw new Error("Cannot write on closed interface");
     }

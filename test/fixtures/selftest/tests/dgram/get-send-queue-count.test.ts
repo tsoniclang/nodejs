@@ -15,6 +15,6 @@ export class GetSendQueueCountTests {
   }
 }
 
-A.on(GetSendQueueCountTests)
+A<GetSendQueueCountTests>()
   .method((t) => t.getSendQueueCount_ReturnsZero)
   .add(FactAttribute);

@@ -1,9 +1,10 @@
 
-import type {} from "./type-bootstrap.js";
+import type {} from "./type-bootstrap.ts";
 
-import type { int } from "@tsonic/core/types.js";
+import type { int, JsValue } from "@tsonic/core/types.js";
+import { Console as DotnetConsole } from "@tsonic/dotnet/System.js";
 
-export type EventListener = (...args: unknown[]) => void;
+export type EventListener = (...args: JsValue[]) => void;
 
 export const toEventListener = (
   listener: (() => void) | null | undefined
@@ -12,7 +13,7 @@ export const toEventListener = (
     return undefined;
   }
 
-  return (..._args: unknown[]): void => {
+  return (..._args: JsValue[]): void => {
     listener();
   };
 };
@@ -24,7 +25,7 @@ export const toUnaryEventListener = <T>(
     return undefined;
   }
 
-  return (...args: unknown[]): void => {
+  return (...args: JsValue[]): void => {
     listener(args[0] as T);
   };
 };
@@ -36,7 +37,7 @@ export const toBinaryEventListener = <T1, T2>(
     return undefined;
   }
 
-  return (...args: unknown[]): void => {
+  return (...args: JsValue[]): void => {
     listener(args[0] as T1, args[1] as T2);
   };
 };
@@ -51,7 +52,7 @@ const ERROR_EVENT = "error";
 const NEW_LISTENER_EVENT = "newListener";
 const REMOVE_LISTENER_EVENT = "removeListener";
 
-const throwUnhandledError = (value: unknown): never => {
+const throwUnhandledError = (value?: JsValue): never => {
   if (value instanceof Error) {
     throw value;
   }
@@ -65,7 +66,7 @@ export class EventEmitter {
   public static once(
     emitter: EventEmitter,
     eventName: string
-  ): Promise<unknown[]> {
+  ): Promise<JsValue[]> {
     if (emitter === undefined || emitter === null) {
       throw new Error("EventEmitter.once requires an emitter");
     }
@@ -183,7 +184,7 @@ export class EventEmitter {
     return this;
   }
 
-  public emit(eventName: string, ...args: unknown[]): boolean {
+  public emit(eventName: string, ...args: JsValue[]): boolean {
     const registrations = this.listenersByEvent.get(eventName);
     if (registrations === undefined || registrations.length === 0) {
       if (eventName === ERROR_EVENT) {
@@ -198,7 +199,22 @@ export class EventEmitter {
         registration.invoke(...args);
       } catch (error) {
         if (eventName !== ERROR_EVENT) {
-          this.emit(ERROR_EVENT, error);
+          if (error === undefined) {
+            this.emit(ERROR_EVENT, new Error("Unknown event handler error"));
+          } else if (
+            error === null ||
+            typeof error === "string" ||
+            typeof error === "number" ||
+            typeof error === "boolean" ||
+            typeof error === "bigint" ||
+            typeof error === "symbol" ||
+            typeof error === "object" ||
+            typeof error === "function"
+          ) {
+            this.emit(ERROR_EVENT, error);
+          } else {
+            this.emit(ERROR_EVENT, new Error("Unknown event handler error"));
+          }
         } else {
           throw error;
         }
@@ -269,7 +285,7 @@ export class EventEmitter {
     }
 
     if (this._maxListeners > 0 && next.length > this._maxListeners) {
-      console.error(
+      DotnetConsole.Error.WriteLine(
         `Warning: Possible EventEmitter memory leak detected. ${String(next.length)} ${eventName} listeners added.`
       );
     }
@@ -286,9 +302,9 @@ export class EventEmitter {
       return { original: listener, invoke: listener, once: false };
     }
 
-    const invoke: EventListener = (...args: unknown[]): unknown => {
+    const invoke: EventListener = (...args: JsValue[]): void => {
       this.removeListener(eventName, invoke);
-      return listener(...args);
+      listener(...args);
     };
 
     return { original: listener, invoke, once: true };
@@ -308,7 +324,7 @@ export const errorMonitor = "errorMonitor";
 let captureRejections: boolean = false;
 
 export const addAbortListener = (
-  _signal: unknown,
+  _signal: JsValue,
   listener: () => void
 ): (() => void) => listener;
 
@@ -326,7 +342,7 @@ export const listenerCount = (emitter: EventEmitter, eventName: string): int =>
 export const once = (
   emitter: EventEmitter,
   eventName: string
-): Promise<unknown[]> => {
+): Promise<JsValue[]> => {
   if (emitter === undefined || emitter === null) {
     throw new Error("EventEmitter.once requires an emitter");
   }
@@ -335,8 +351,8 @@ export const once = (
     throw new Error("EventEmitter.once requires a non-empty event name");
   }
 
-  return new Promise<unknown[]>((resolve) => {
-    emitter.once(eventName, (...args: unknown[]) => {
+  return new Promise<JsValue[]>((resolve) => {
+    emitter.once(eventName, (...args: JsValue[]) => {
       resolve(args);
     });
   });
@@ -376,7 +392,7 @@ export class EventsModule {
     return errorMonitor;
   }
 
-  public addAbortListener(signal: unknown, listener: () => void): () => void {
+  public addAbortListener(signal: JsValue, listener: () => void): () => void {
     return addAbortListener(signal, listener);
   }
 
@@ -398,7 +414,7 @@ export class EventsModule {
   public async once(
     emitter: EventEmitter,
     eventName: string
-  ): Promise<unknown[]> {
+  ): Promise<JsValue[]> {
     return await once(emitter, eventName);
   }
 

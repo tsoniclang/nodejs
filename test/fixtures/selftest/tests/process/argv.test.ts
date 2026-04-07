@@ -60,21 +60,21 @@ export class ProcessArgvTests {
   }
 }
 
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv_returns_an_array)
   .add(FactAttribute);
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv0_returns_a_string)
   .add(FactAttribute);
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv_is_settable)
   .add(FactAttribute);
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv0_is_settable)
   .add(FactAttribute);
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv_handles_undefined_by_becoming_empty)
   .add(FactAttribute);
-A.on(ProcessArgvTests)
+A<ProcessArgvTests>()
   .method((t) => t.argv0_handles_undefined_by_becoming_empty_string)
   .add(FactAttribute);

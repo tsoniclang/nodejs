@@ -5,6 +5,7 @@
  * Baseline: nodejs-clr/src/nodejs/perf_hooks/performance.cs
  */
 
+import type { JsValue } from "@tsonic/core/types.js";
 import { Stopwatch } from "@tsonic/dotnet/System.Diagnostics.js";
 
 import { PerformanceEntry, PerformanceMark, PerformanceMeasure } from "./performance-entry.ts";
@@ -14,7 +15,7 @@ import { PerformanceObserver } from "./performance-observer.ts";
  * Options for creating a performance mark.
  */
 export interface MarkOptions {
-  readonly detail?: unknown;
+  readonly detail?: JsValue;
   readonly startTime?: number;
 }
 
@@ -22,7 +23,7 @@ export interface MarkOptions {
  * Options for creating a performance measure.
  */
 export interface MeasureOptions {
-  readonly detail?: unknown;
+  readonly detail?: JsValue;
   readonly startMark?: string;
   readonly endMark?: string;
   readonly start?: number;
@@ -101,7 +102,7 @@ export const measure = (
 
   let startTime: number;
   let endTime: number;
-  let detail: unknown = null;
+  let detail: JsValue = null;
 
   if (
     startOrOptions !== null &&

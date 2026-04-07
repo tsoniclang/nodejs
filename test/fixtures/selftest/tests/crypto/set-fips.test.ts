@@ -25,5 +25,5 @@ export class SetFipsTests {
   }
 }
 
-A.on(SetFipsTests).method((t) => t.setFips_false_does_not_throw).add(FactAttribute);
-A.on(SetFipsTests).method((t) => t.setFips_true_throws).add(FactAttribute);
+A<SetFipsTests>().method((t) => t.setFips_false_does_not_throw).add(FactAttribute);
+A<SetFipsTests>().method((t) => t.setFips_true_throws).add(FactAttribute);

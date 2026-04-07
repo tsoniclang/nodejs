@@ -80,15 +80,15 @@ export class openTests {
   }
 }
 
-A.on(openTests).method((t) => t.open_WithReadFlag_ShouldOpenExistingFile).add(FactAttribute);
-A.on(openTests)
+A<openTests>().method((t) => t.open_WithReadFlag_ShouldOpenExistingFile).add(FactAttribute);
+A<openTests>()
   .method((t) => t.open_WithReadFlag_NonExistentFile_ShouldThrow)
   .add(FactAttribute);
-A.on(openTests).method((t) => t.open_WithWriteFlag_ShouldCreateFile).add(FactAttribute);
-A.on(openTests).method((t) => t.open_WithAppendFlag_ShouldCreateFile).add(FactAttribute);
-A.on(openTests)
+A<openTests>().method((t) => t.open_WithWriteFlag_ShouldCreateFile).add(FactAttribute);
+A<openTests>().method((t) => t.open_WithAppendFlag_ShouldCreateFile).add(FactAttribute);
+A<openTests>()
   .method((t) => t.open_WithReadPlusFlag_ShouldOpenForReadWrite)
   .add(FactAttribute);
-A.on(openTests)
+A<openTests>()
   .method((t) => t.open_WithExclusiveWriteFlag_ExistingFile_ShouldThrow)
   .add(FactAttribute);

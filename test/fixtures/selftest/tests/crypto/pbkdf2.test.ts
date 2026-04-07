@@ -30,5 +30,5 @@ export class Pbkdf2Tests {
   }
 }
 
-A.on(Pbkdf2Tests).method((t) => t.pbkdf2_async_works).add(FactAttribute);
-A.on(Pbkdf2Tests).method((t) => t.pbkdf2_callback_works).add(FactAttribute);
+A<Pbkdf2Tests>().method((t) => t.pbkdf2_async_works).add(FactAttribute);
+A<Pbkdf2Tests>().method((t) => t.pbkdf2_callback_works).add(FactAttribute);

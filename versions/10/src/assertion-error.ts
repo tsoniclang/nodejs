@@ -1,4 +1,6 @@
-const formatAssertionValue = (value: unknown): string => {
+import type { JsValue } from "@tsonic/core/types.js";
+
+const formatAssertionValue = (value: JsValue | undefined): string => {
   if (value === null) {
     return "null";
   }
@@ -12,8 +14,8 @@ const formatAssertionValue = (value: unknown): string => {
 };
 
 const generateMessage = (
-  actual: unknown,
-  expected: unknown,
+  actual: JsValue | undefined,
+  expected: JsValue | undefined,
   operator: string
 ): string => {
   switch (operator) {
@@ -39,8 +41,8 @@ const generateMessage = (
 };
 
 export class AssertionError extends Error {
-  public actual: unknown = undefined;
-  public expected: unknown = undefined;
+  public actual: JsValue | undefined = undefined;
+  public expected: JsValue | undefined = undefined;
   public operator: string = "";
   public generatedMessage: boolean = false;
 
@@ -50,13 +52,13 @@ export class AssertionError extends Error {
 
   public constructor(
     message?: string,
-    actual?: unknown,
-    expected?: unknown,
+    actual?: JsValue,
+    expected?: JsValue,
     operator: string = ""
   ) {
     super(message ?? generateMessage(actual, expected, operator));
-    this.actual = actual as unknown;
-    this.expected = expected as unknown;
+    this.actual = actual;
+    this.expected = expected;
     this.operator = operator;
     this.generatedMessage = message === undefined;
   }

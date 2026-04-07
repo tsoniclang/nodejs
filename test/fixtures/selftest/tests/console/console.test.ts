@@ -250,94 +250,94 @@ export class ConsoleTests {
   }
 }
 
-A.on(ConsoleTests).method((t) => t.log_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.error_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.warn_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.info_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.debug_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.log_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.error_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.warn_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.info_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.debug_should_not_throw).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.assert_should_not_throw_when_true)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.assert_should_output_when_false)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.clear_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.clear_should_not_throw).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.count_should_track_counts)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.count_should_use_default_label)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.countReset_should_reset_counter)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.dir_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.dir_should_not_throw).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.dirxml_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.group_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.group_without_label).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.group_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.group_without_label).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.groupCollapsed_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.nestedGroups_should_work).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.nestedGroups_should_work).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.groupEnd_without_group_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.table_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.table_should_not_throw).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.time_should_measure_elapsed_time)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.time_with_default_label)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.timeLog_should_log_intermediate_time)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.timeLog_with_data)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.timeEnd_without_matching_time_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.trace_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests).method((t) => t.profile_should_not_throw).add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>().method((t) => t.trace_should_not_throw).add(FactAttribute);
+A<ConsoleTests>().method((t) => t.profile_should_not_throw).add(FactAttribute);
+A<ConsoleTests>()
   .method((t) => t.profileEnd_without_profile_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.timeStamp_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_string_substitution)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_number_substitution)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_object_substitution)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_escaped_percent)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_extra_parameters)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.formatting_no_parameters)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.multipleConsecutiveCalls_should_work)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.mixedLoggingMethods_should_work)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.complexObjects_should_not_throw)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.counterScenario_should_track_multiple_counters)
   .add(FactAttribute);
-A.on(ConsoleTests)
+A<ConsoleTests>()
   .method((t) => t.timerScenario_should_handle_multiple_timers)
   .add(FactAttribute);

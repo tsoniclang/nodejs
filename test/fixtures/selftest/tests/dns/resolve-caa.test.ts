@@ -13,6 +13,6 @@ export class ResolveCaaTests {
   }
 }
 
-A.on(ResolveCaaTests)
+A<ResolveCaaTests>()
   .method((t) => t.resolveCaa_ValidDomain_CallsCallback)
   .add(FactAttribute);

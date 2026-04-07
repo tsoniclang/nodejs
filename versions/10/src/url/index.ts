@@ -4,7 +4,8 @@
  * Baseline: nodejs-clr/src/nodejs/url/module.cs
  */
 
-import type {} from "../type-bootstrap.js";
+import type {} from "../type-bootstrap.ts";
+import type { JsValue } from "@tsonic/core/types.js";
 
 export { URL } from "./url.ts";
 export { URLSearchParams } from "./urlsearch-params.ts";
@@ -22,7 +23,7 @@ export const parse = (input: string): URL | null => {
 /**
  * Formats URL input to string.
  */
-export const format = (input: unknown): string => {
+export const format = (input: JsValue): string => {
   if (input === null || input === undefined) {
     return "";
   }

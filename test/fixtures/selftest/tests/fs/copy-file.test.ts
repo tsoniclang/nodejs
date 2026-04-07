@@ -35,7 +35,7 @@ export class copyFileTests {
   }
 }
 
-A.on(copyFileTests).method((t) => t.copyFile_ShouldCopyFile).add(FactAttribute);
-A.on(copyFileTests)
+A<copyFileTests>().method((t) => t.copyFile_ShouldCopyFile).add(FactAttribute);
+A<copyFileTests>()
   .method((t) => t.copyFile_ShouldOverwriteDestination)
   .add(FactAttribute);

@@ -14,6 +14,6 @@ export class ServerOptsTests {
   }
 }
 
-A.on(ServerOptsTests)
+A<ServerOptsTests>()
   .method((t) => t.all_properties_can_be_set)
   .add(FactAttribute);

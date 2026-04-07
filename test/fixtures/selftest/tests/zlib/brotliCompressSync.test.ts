@@ -1,4 +1,4 @@
-import { attributes as A } from "@tsonic/core/lang.js";
+import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { brotliCompressSync } from "@tsonic/nodejs/zlib.js";
@@ -31,7 +31,7 @@ export class Zlib_brotliCompressSyncTests {
   }
 
   public brotliCompressSync_WithNullBuffer_ShouldThrow(): void {
-    assertThrows(() => brotliCompressSync(null as unknown as Uint8Array));
+    assertThrows(() => brotliCompressSync(asinterface<Uint8Array>(null)));
   }
 
   public brotliCompressSync_EmptyBuffer_ShouldCompress(): void {
@@ -54,18 +54,18 @@ export class Zlib_brotliCompressSyncTests {
   }
 }
 
-A.on(Zlib_brotliCompressSyncTests)
+A<Zlib_brotliCompressSyncTests>()
   .method((t) => t.brotliCompressSync_ShouldCompressData)
   .add(FactAttribute);
-A.on(Zlib_brotliCompressSyncTests)
+A<Zlib_brotliCompressSyncTests>()
   .method((t) => t.brotliCompressSync_WithQuality_ShouldWork)
   .add(FactAttribute);
-A.on(Zlib_brotliCompressSyncTests)
+A<Zlib_brotliCompressSyncTests>()
   .method((t) => t.brotliCompressSync_WithNullBuffer_ShouldThrow)
   .add(FactAttribute);
-A.on(Zlib_brotliCompressSyncTests)
+A<Zlib_brotliCompressSyncTests>()
   .method((t) => t.brotliCompressSync_EmptyBuffer_ShouldCompress)
   .add(FactAttribute);
-A.on(Zlib_brotliCompressSyncTests)
+A<Zlib_brotliCompressSyncTests>()
   .method((t) => t.brotliCompressSync_LargeData_ShouldCompress)
   .add(FactAttribute);

@@ -4,6 +4,7 @@
  *
  * Baseline: nodejs-clr/src/nodejs/stream/Transform.cs
  */
+import type { JsValue } from "@tsonic/core/types.js";
 import { Duplex } from "./duplex.ts";
 
 export class Transform extends Duplex {
@@ -16,9 +17,9 @@ export class Transform extends Duplex {
    *   (error, data).
    */
   protected _transform(
-    chunk: unknown,
+    chunk: JsValue,
     encoding: string | undefined,
-    callback: (error: Error | null, data: unknown) => void,
+    callback: (error: Error | null, data: JsValue | null | undefined) => void,
   ): void {
     // Default implementation: pass through
     callback(null, chunk);
@@ -43,7 +44,7 @@ export class Transform extends Duplex {
    * @param callback - Callback for when write is complete.
    */
   protected override _write(
-    chunk: unknown,
+    chunk: JsValue,
     encoding: string | undefined,
     callback: () => void,
   ): void {

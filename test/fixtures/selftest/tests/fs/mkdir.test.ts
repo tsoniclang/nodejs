@@ -84,17 +84,17 @@ export class mkdirTests {
   }
 }
 
-A.on(mkdirTests).method((t) => t.mkdir_ShouldCreateDirectory).add(FactAttribute);
-A.on(mkdirTests).method((t) => t.mkdir_Recursive_ShouldCreateNestedDirectories).add(FactAttribute);
-A.on(mkdirTests)
+A<mkdirTests>().method((t) => t.mkdir_ShouldCreateDirectory).add(FactAttribute);
+A<mkdirTests>().method((t) => t.mkdir_Recursive_ShouldCreateNestedDirectories).add(FactAttribute);
+A<mkdirTests>()
   .method((t) => t.mkdir_NonRecursive_MissingParent_ShouldThrow)
   .add(FactAttribute);
-A.on(mkdirTests)
+A<mkdirTests>()
   .method((t) => t.mkdir_MkdirOptions_Recursive_ShouldCreateNestedDirectories)
   .add(FactAttribute);
-A.on(mkdirTests)
+A<mkdirTests>()
   .method((t) => t.mkdir_MkdirOptions_NonRecursive_MissingParent_ShouldThrow)
   .add(FactAttribute);
-A.on(mkdirTests)
+A<mkdirTests>()
   .method((t) => t.mkdir_ObjectOptions_Recursive_ShouldCreateNestedDirectories)
   .add(FactAttribute);

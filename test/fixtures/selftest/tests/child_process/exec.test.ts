@@ -50,12 +50,12 @@ export class ChildProcessExecTests {
   }
 }
 
-A.on(ChildProcessExecTests)
+A<ChildProcessExecTests>()
   .method((t) => t.exec_CallsCallback)
   .add(FactAttribute);
-A.on(ChildProcessExecTests)
+A<ChildProcessExecTests>()
   .method((t) => t.exec_WithOptions_CallsCallback)
   .add(FactAttribute);
-A.on(ChildProcessExecTests)
+A<ChildProcessExecTests>()
   .method((t) => t.exec_FailingCommand_PassesErrorToCallback)
   .add(FactAttribute);

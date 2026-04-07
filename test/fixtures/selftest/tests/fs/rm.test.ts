@@ -73,10 +73,10 @@ export class rmTests {
   }
 }
 
-A.on(rmTests).method((t) => t.rm_ShouldRemoveFile).add(FactAttribute);
-A.on(rmTests).method((t) => t.rm_ShouldRemoveEmptyDirectory).add(FactAttribute);
-A.on(rmTests).method((t) => t.rm_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);
-A.on(rmTests)
+A<rmTests>().method((t) => t.rm_ShouldRemoveFile).add(FactAttribute);
+A<rmTests>().method((t) => t.rm_ShouldRemoveEmptyDirectory).add(FactAttribute);
+A<rmTests>().method((t) => t.rm_Recursive_ShouldRemoveDirectoryWithContents).add(FactAttribute);
+A<rmTests>()
   .method((t) => t.rm_NonRecursive_DirectoryWithContents_ShouldThrow)
   .add(FactAttribute);
-A.on(rmTests).method((t) => t.rm_NonExistent_ShouldNotThrow).add(FactAttribute);
+A<rmTests>().method((t) => t.rm_NonExistent_ShouldNotThrow).add(FactAttribute);

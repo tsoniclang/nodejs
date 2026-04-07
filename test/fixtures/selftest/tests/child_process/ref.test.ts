@@ -25,6 +25,6 @@ export class ChildProcessRefTests {
   }
 }
 
-A.on(ChildProcessRefTests)
+A<ChildProcessRefTests>()
   .method((t) => t.ref_RefUnref_UpdatesReferencedProperty)
   .add(FactAttribute);

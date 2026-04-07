@@ -10,6 +10,6 @@ export class AnyCaaRecordTests {
   }
 }
 
-A.on(AnyCaaRecordTests)
+A<AnyCaaRecordTests>()
   .method((t) => t.AnyCaaRecord_HasCorrectType)
   .add(FactAttribute);

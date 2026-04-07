@@ -24,9 +24,9 @@ export class Resolve6Tests {
   }
 }
 
-A.on(Resolve6Tests)
+A<Resolve6Tests>()
   .method((t) => t.resolve6_ValidDomain_CallsCallback)
   .add(FactAttribute);
-A.on(Resolve6Tests)
+A<Resolve6Tests>()
   .method((t) => t.resolve6_WithTtlOption_CallsCallback)
   .add(FactAttribute);

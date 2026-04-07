@@ -82,8 +82,8 @@ export class statSyncTests {
   }
 }
 
-A.on(statSyncTests).method((t) => t.statSync_File_ShouldReturnFileStats).add(FactAttribute);
-A.on(statSyncTests).method((t) => t.statSync_Directory_ShouldReturnDirectoryStats).add(FactAttribute);
-A.on(statSyncTests).method((t) => t.statSync_NonExistent_ShouldThrow).add(FactAttribute);
-A.on(statSyncTests).method((t) => t.stats_Methods_ShouldWorkCorrectly).add(FactAttribute);
-A.on(statSyncTests).method((t) => t.statSync_ShouldExposeUnixMillisecondTimestamps).add(FactAttribute);
+A<statSyncTests>().method((t) => t.statSync_File_ShouldReturnFileStats).add(FactAttribute);
+A<statSyncTests>().method((t) => t.statSync_Directory_ShouldReturnDirectoryStats).add(FactAttribute);
+A<statSyncTests>().method((t) => t.statSync_NonExistent_ShouldThrow).add(FactAttribute);
+A<statSyncTests>().method((t) => t.stats_Methods_ShouldWorkCorrectly).add(FactAttribute);
+A<statSyncTests>().method((t) => t.statSync_ShouldExposeUnixMillisecondTimestamps).add(FactAttribute);

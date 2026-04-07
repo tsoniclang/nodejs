@@ -94,36 +94,36 @@ export class ResolverTests {
   }
 }
 
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Constructor_CreatesInstance)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_ConstructorWithOptions_CreatesInstance)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Cancel_DoesNotThrow)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Cancel_SubsequentCallsReturnCancelledError)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Resolve4_CallsCallback)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Resolve6_CallsCallback)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_ResolveMx_CallsCallback)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_Reverse_CallsCallback)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_SetLocalAddress_DoesNotThrow)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_GetServers_ReturnsArray)
   .add(FactAttribute);
-A.on(ResolverTests)
+A<ResolverTests>()
   .method((t) => t.Resolver_SetServers_DoesNotThrow)
   .add(FactAttribute);

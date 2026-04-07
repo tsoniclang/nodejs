@@ -52,15 +52,15 @@ export class closeSyncTests {
   }
 }
 
-A.on(closeSyncTests)
+A<closeSyncTests>()
   .method((t) => t.closeSync_ShouldCloseValidDescriptor)
   .add(FactAttribute);
-A.on(closeSyncTests)
+A<closeSyncTests>()
   .method((t) => t.closeSync_WithInvalidDescriptor_ShouldThrow)
   .add(FactAttribute);
-A.on(closeSyncTests)
+A<closeSyncTests>()
   .method((t) => t.closeSync_CalledTwice_ShouldThrowSecondTime)
   .add(FactAttribute);
-A.on(closeSyncTests)
+A<closeSyncTests>()
   .method((t) => t.closeSync_AfterWrite_ShouldFlushAndClose)
   .add(FactAttribute);

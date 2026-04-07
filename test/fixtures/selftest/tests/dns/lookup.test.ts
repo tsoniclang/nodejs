@@ -88,30 +88,30 @@ export class LookupTests {
   }
 }
 
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_SimpleDomain_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithIPv4Family_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithIPv6Family_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithOptionsAll_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithIPv4FirstOrder_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_InvalidHostname_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithOptionsFamily_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithStringFamilyIPv4_CallsCallback)
   .add(FactAttribute);
-A.on(LookupTests)
+A<LookupTests>()
   .method((t) => t.lookup_WithStringFamilyIPv6_CallsCallback)
   .add(FactAttribute);

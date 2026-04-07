@@ -35,6 +35,6 @@ export class PublicEncryptTests {
   }
 }
 
-A.on(PublicEncryptTests).method((t) => t.publicEncrypt_privateDecrypt_round_trip).add(FactAttribute);
-A.on(PublicEncryptTests).method((t) => t.publicEncrypt_privateDecrypt_with_key_object_works).add(FactAttribute);
-A.on(PublicEncryptTests).method((t) => t.publicEncrypt_invalid_key_type_throws).add(FactAttribute);
+A<PublicEncryptTests>().method((t) => t.publicEncrypt_privateDecrypt_round_trip).add(FactAttribute);
+A<PublicEncryptTests>().method((t) => t.publicEncrypt_privateDecrypt_with_key_object_works).add(FactAttribute);
+A<PublicEncryptTests>().method((t) => t.publicEncrypt_invalid_key_type_throws).add(FactAttribute);

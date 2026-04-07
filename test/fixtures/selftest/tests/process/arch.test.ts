@@ -33,7 +33,7 @@ export class ProcessArchTests {
   }
 }
 
-A.on(ProcessArchTests).method((t) => t.arch_returns_known_name).add(FactAttribute);
-A.on(ProcessArchTests)
+A<ProcessArchTests>().method((t) => t.arch_returns_known_name).add(FactAttribute);
+A<ProcessArchTests>()
   .method((t) => t.arch_matches_runtime_architecture)
   .add(FactAttribute);

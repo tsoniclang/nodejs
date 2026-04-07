@@ -31,15 +31,15 @@ export class PathModuleTests {
   }
 }
 
-A.on(PathModuleTests)
+A<PathModuleTests>()
   .method((t) => t.separator_matches_platform_value)
   .add(FactAttribute);
-A.on(PathModuleTests)
+A<PathModuleTests>()
   .method((t) => t.delimiter_matches_platform_value)
   .add(FactAttribute);
-A.on(PathModuleTests)
+A<PathModuleTests>()
   .method((t) => t.posix_and_win32_exports_exist_and_alias_the_same_namespace)
   .add(FactAttribute);
-A.on(PathModuleTests)
+A<PathModuleTests>()
   .method((t) => t.path_namespace_objects_delegate_to_named_exports)
   .add(FactAttribute);

@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter, type EventListener } from "@tsonic/nodejs/events.js";
@@ -37,10 +38,10 @@ export class RemoveListenerTests {
 
   public removeListener_emits_the_removeListener_event(): void {
     const emitter = new EventEmitter();
-    let seen: unknown = undefined;
+    let seen: JsValue | undefined = undefined;
     const listener: EventListener = () => undefined;
 
-    emitter.on("removeListener", (name: unknown) => {
+    emitter.on("removeListener", (name: JsValue) => {
       seen = name;
     });
     emitter.on("test", listener);
@@ -50,12 +51,12 @@ export class RemoveListenerTests {
   }
 }
 
-A.on(RemoveListenerTests)
+A<RemoveListenerTests>()
   .method((t) => t.removeListener_removes_the_target_listener)
   .add(FactAttribute);
-A.on(RemoveListenerTests)
+A<RemoveListenerTests>()
   .method((t) => t.off_remains_an_alias_for_removeListener)
   .add(FactAttribute);
-A.on(RemoveListenerTests)
+A<RemoveListenerTests>()
   .method((t) => t.removeListener_emits_the_removeListener_event)
   .add(FactAttribute);

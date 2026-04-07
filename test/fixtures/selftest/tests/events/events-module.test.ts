@@ -33,9 +33,9 @@ export class EventsModuleTests {
   }
 }
 
-A.on(EventsModuleTests)
+A<EventsModuleTests>()
   .method((t) => t.events_once_resolves_on_the_next_event)
   .add(FactAttribute);
-A.on(EventsModuleTests)
+A<EventsModuleTests>()
   .method((t) => t.listener_helpers_reflect_emitter_state)
   .add(FactAttribute);

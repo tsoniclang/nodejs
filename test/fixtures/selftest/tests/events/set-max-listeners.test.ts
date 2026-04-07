@@ -38,18 +38,18 @@ export class SetMaxListenersTests {
   }
 }
 
-A.on(SetMaxListenersTests)
+A<SetMaxListenersTests>()
   .method((t) => t.setMaxListeners_sets_the_limit)
   .add(FactAttribute);
-A.on(SetMaxListenersTests)
+A<SetMaxListenersTests>()
   .method((t) => t.setMaxListeners_rejects_negative_values)
   .add(FactAttribute);
-A.on(SetMaxListenersTests)
+A<SetMaxListenersTests>()
   .method((t) => t.getMaxListeners_defaults_to_ten)
   .add(FactAttribute);
-A.on(SetMaxListenersTests)
+A<SetMaxListenersTests>()
   .method((t) => t.defaultMaxListeners_defaults_to_ten)
   .add(FactAttribute);
-A.on(SetMaxListenersTests)
+A<SetMaxListenersTests>()
   .method((t) => t.defaultMaxListeners_can_be_modified)
   .add(FactAttribute);

@@ -263,126 +263,126 @@ export class AssertTests {
   }
 }
 
-A.on(AssertTests).method((t) => t.ok_with_true_should_not_throw).add(FactAttribute);
-A.on(AssertTests).method((t) => t.ok_with_false_should_throw).add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>().method((t) => t.ok_with_true_should_not_throw).add(FactAttribute);
+A<AssertTests>().method((t) => t.ok_with_false_should_throw).add(FactAttribute);
+A<AssertTests>()
   .method((t) => t.ok_with_false_should_throw_with_message)
   .add(FactAttribute);
-A.on(AssertTests).method((t) => t.fail_should_always_throw).add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>().method((t) => t.fail_should_always_throw).add(FactAttribute);
+A<AssertTests>()
   .method((t) => t.fail_with_message_should_throw_with_message)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.equal_with_equal_values_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.equal_with_different_values_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.equal_with_numeric_coercion_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notEqual_with_different_values_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notEqual_with_equal_values_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.strictEqual_with_equal_values_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.strictEqual_with_different_values_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.strictEqual_with_different_types_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notStrictEqual_with_different_values_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notStrictEqual_with_equal_values_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_equal_objects_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_different_objects_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_nested_objects_should_work)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_equal_arrays_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_different_arrays_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_equal_uint8arrays_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepEqual_with_different_uint8arrays_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notDeepEqual_with_different_objects_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notDeepEqual_with_equal_objects_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepStrictEqual_with_equal_objects_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.deepStrictEqual_with_different_objects_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notDeepStrictEqual_with_different_objects_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.notDeepStrictEqual_with_equal_objects_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.throws_when_function_throws_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.throws_when_function_does_not_throw_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.throws_with_message_should_include_message)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.doesNotThrow_when_function_does_not_throw_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.doesNotThrow_when_function_throws_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.match_with_matching_string_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.match_with_non_matching_string_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.match_with_complex_pattern_should_work)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.doesNotMatch_with_non_matching_string_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.doesNotMatch_with_matching_string_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.ifError_with_null_should_not_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.ifError_with_non_null_should_throw)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.ifError_with_exception_should_throw_exception)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.AssertionError_should_have_correct_properties)
   .add(FactAttribute);
-A.on(AssertTests)
+A<AssertTests>()
   .method((t) => t.AssertionError_without_message_should_generate_message)
   .add(FactAttribute);

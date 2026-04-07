@@ -10,6 +10,6 @@ export class AnyNaptrRecordTests {
   }
 }
 
-A.on(AnyNaptrRecordTests)
+A<AnyNaptrRecordTests>()
   .method((t) => t.AnyNaptrRecord_HasCorrectType)
   .add(FactAttribute);

@@ -1,4 +1,5 @@
 import { attributes as A } from "@tsonic/core/lang.js";
+import type { JsValue } from "@tsonic/core/types.js";
 import { Environment } from "@tsonic/dotnet/System.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
@@ -128,7 +129,7 @@ export class UtilTests {
 
   public deprecate_should_wrap_function(): void {
     let called = false;
-    const fn = (..._args: unknown[]): unknown => {
+    const fn = (..._args: JsValue[]): JsValue => {
       called = true;
       return 42;
     };
@@ -141,7 +142,7 @@ export class UtilTests {
 
   public deprecate_should_wrap_action(): void {
     let called = false;
-    const action = (..._args: unknown[]): unknown => {
+    const action = (..._args: JsValue[]): JsValue => {
       called = true;
       return undefined;
     };
@@ -152,84 +153,84 @@ export class UtilTests {
   }
 }
 
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_return_empty_string_for_null)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_return_string_as_is)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_format_string_placeholder)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_format_number_placeholder)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_format_multiple_placeholders)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_handle_literal_percent)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_append_extra_arguments)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.format_should_format_json_placeholder)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inspect_should_return_null_for_null)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inspect_should_format_string)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inspect_should_format_boolean)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inspect_should_format_number)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inspect_should_format_object)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isArray_should_return_true_for_array)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isArray_should_return_false_for_non_array)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isArray_should_return_false_for_null)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_true_for_nulls)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_false_for_null_and_non_null)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_true_for_same_reference)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_true_for_equal_primitives)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_false_for_different_primitives)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.isDeepStrictEqual_should_return_false_for_different_types)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.inherits_should_not_throw)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.debuglog_should_return_function)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.debuglog_should_be_no_op_when_not_enabled)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.deprecate_should_wrap_function)
   .add(FactAttribute);
-A.on(UtilTests)
+A<UtilTests>()
   .method((t) => t.deprecate_should_wrap_action)
   .add(FactAttribute);

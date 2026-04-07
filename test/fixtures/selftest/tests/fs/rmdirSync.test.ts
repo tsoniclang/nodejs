@@ -33,7 +33,7 @@ export class rmdirSyncTests {
   }
 }
 
-A.on(rmdirSyncTests).method((t) => t.rmdirSync_ShouldRemoveEmptyDirectory).add(FactAttribute);
-A.on(rmdirSyncTests)
+A<rmdirSyncTests>().method((t) => t.rmdirSync_ShouldRemoveEmptyDirectory).add(FactAttribute);
+A<rmdirSyncTests>()
   .method((t) => t.rmdirSync_Recursive_ShouldRemoveDirectoryWithContents)
   .add(FactAttribute);

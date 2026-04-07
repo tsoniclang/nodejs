@@ -14,6 +14,6 @@ export class RemoteAddressTests {
   }
 }
 
-A.on(RemoteAddressTests)
+A<RemoteAddressTests>()
   .method((t) => t.remoteAddress_UnconnectedSocket_ThrowsException)
   .add(FactAttribute);

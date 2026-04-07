@@ -15,6 +15,6 @@ export class UnrefTests {
   }
 }
 
-A.on(UnrefTests)
+A<UnrefTests>()
   .method((t) => t.unref_ReturnsSocket)
   .add(FactAttribute);
