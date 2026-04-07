@@ -374,6 +374,32 @@ export class HttpServerTests {
     Assert.True(msg.complete);
     Assert.True(closeEmitted);
   }
+
+  public incoming_message_buffered_body_emits_bytes(): void {
+    const msg = new IncomingMessage();
+    let dataChunk: Uint8Array | undefined = undefined;
+    let endEmitted = false;
+
+    msg.on("data", (chunk) => {
+      if (chunk instanceof Uint8Array) {
+        dataChunk = chunk;
+      }
+    });
+
+    msg.on("end", () => {
+      endEmitted = true;
+    });
+
+    msg._emitBufferedClientBody("pong");
+
+    Assert.NotNull(dataChunk);
+    Assert.True(endEmitted);
+    Assert.Equal(4, dataChunk!.length);
+    Assert.Equal(112, dataChunk![0]);
+    Assert.Equal(111, dataChunk![1]);
+    Assert.Equal(110, dataChunk![2]);
+    Assert.Equal(103, dataChunk![3]);
+  }
 }
 
 A<HttpServerTests>()
@@ -444,4 +470,7 @@ A<HttpServerTests>()
   .add(FactAttribute);
 A<HttpServerTests>()
   .method((t) => t.incoming_message_destroy_marks_complete)
+  .add(FactAttribute);
+A<HttpServerTests>()
+  .method((t) => t.incoming_message_buffered_body_emits_bytes)
   .add(FactAttribute);

@@ -145,7 +145,8 @@ export class IncomingMessage extends EventEmitter {
    */
   public async readAll(): Promise<string> {
     const body = await this._ensureBodyLoaded();
-    this._emitLoadedBodyOnce(body);
+    const bodyBytes = await this._ensureBodyBytesLoaded();
+    this._emitLoadedBodyBytesOnce(bodyBytes);
     return body;
   }
 
@@ -162,8 +163,8 @@ export class IncomingMessage extends EventEmitter {
   /**
    * Event handler for 'data' event.
    */
-  public onData(callback: (chunk: string) => void): void {
-    this.on("data", toUnaryEventListener<string>(callback)!);
+  public onData(callback: (chunk: string | Uint8Array) => void): void {
+    this.on("data", toUnaryEventListener<string | Uint8Array>(callback)!);
   }
 
   /**
@@ -224,7 +225,7 @@ export class IncomingMessage extends EventEmitter {
   public _emitBufferedClientBody(body: string): void {
     this._bodyText = body;
     this._bodyBytes = toUint8Array(Encoding.UTF8.GetBytes(body));
-    this._emitLoadedBodyOnce(body);
+    this._emitLoadedBodyBytesOnce(this._bodyBytes);
   }
 
   /**
@@ -237,8 +238,8 @@ export class IncomingMessage extends EventEmitter {
   }
 
   private async _streamLoadedBody(): Promise<void> {
-    const body = await this._ensureBodyLoaded();
-    this._emitLoadedBodyOnce(body);
+    const bodyBytes = await this._ensureBodyBytesLoaded();
+    this._emitLoadedBodyBytesOnce(bodyBytes);
   }
 
   private _ensureBodyLoaded(): Promise<string> {
@@ -311,29 +312,41 @@ export class IncomingMessage extends EventEmitter {
     return encoding.GetString(toByteArray(bodyBytes));
   }
 
-  private _emitLoadedBodyOnce(body: string): void {
+  private _markBodyEmitted(): boolean {
     if (this._bodyEmitted) {
-      return;
+      return false;
     }
 
     this._bodyEmitted = true;
+    this._complete = true;
+    return true;
+  }
 
-    if (body.length > 0) {
-      this.emit("data", body);
+  private _emitLoadedBodyOnce(body: string): void {
+    if (!this._markBodyEmitted()) {
+      return;
     }
 
-    this._complete = true;
+    if (body.length > 0) {
+      this.emit("data", toUint8Array(Encoding.UTF8.GetBytes(body)));
+    }
+
     this.emit("end");
     this.emit("close");
   }
 
   private _emitLoadedBodyBytesOnce(bodyBytes: Uint8Array): void {
-    if (this._bodyEmitted) {
+    if (!this._markBodyEmitted()) {
       return;
     }
 
+    this._bodyBytes = bodyBytes;
     this._bodyText = this._bodyText ?? this._decodeBodyBytes(bodyBytes);
-    this._emitLoadedBodyOnce(this._bodyText);
+    if (bodyBytes.length > 0) {
+      this.emit("data", bodyBytes);
+    }
+    this.emit("end");
+    this.emit("close");
   }
 }
 
