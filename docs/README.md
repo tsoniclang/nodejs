@@ -1,46 +1,63 @@
-# Node.js Compatibility (`@tsonic/nodejs`)
+---
+title: Node.js Package
+---
 
-Tsonic targets the .NET BCL by default. If you want **Node-style APIs** (`fs`, `path`, `crypto`, `process`, `http`, ...), use `surface: "@tsonic/js"` and add `@tsonic/nodejs`.
+# `@tsonic/nodejs`
 
-This is **not** Node.js itself, and it is **not a byte-for-byte clone** of the Node standard library. It is a curated, Node-inspired API surface implemented on .NET for Tsonic projects.
+`@tsonic/nodejs` is the first-party source package for Node-style modules in
+Tsonic.
 
-## Table of Contents
+## What it is
 
-### Getting Started
+- a first-party `tsonic-source-package`
+- used alongside `@tsonic/js`
+- provides `node:*` module aliases and package-root entry points
+- carries manifest metadata that can add CLR framework/runtime requirements
 
-1. [Getting Started](getting-started.md) - enable `@tsonic/nodejs` in a Tsonic project
-2. [Importing Modules](imports.md) - what to import from `@tsonic/nodejs/index.js` vs submodules
+## What it is not
 
-### Modules
+- not a separate ambient surface
+- not Node.js itself
+- not a separate public companion-package model
 
-3. [`path`](modules/path.md)
-4. [`fs`](modules/fs.md)
-5. [`events`](modules/events.md)
-6. [`crypto`](modules/crypto.md)
-7. [`process`](modules/process.md)
-8. [`http`](modules/http.md) (separate submodule)
+The active model is:
 
-## Overview
+- workspace surface: `@tsonic/js`
+- package dependency: `@tsonic/nodejs`
 
-In JS-surface projects with `@tsonic/nodejs` installed you can write natural Node imports:
+## What the package manifest is doing
+
+The package manifest declares:
+
+- compatibility with `@tsonic/js`
+- required type roots
+- `node:*` and bare module aliases
+- exported subpaths such as `./fs.js`, `./path.js`, and `./http.js`
+- runtime metadata when framework packages are required underneath
+
+## Quick start
+
+```bash
+tsonic init --surface @tsonic/js
+tsonic add npm @tsonic/nodejs
+```
 
 ```ts
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 export function main(): void {
-  const path = join("a", "b", "c");
-  console.log(path);
-  const text = readFileSync("./README.md", "utf-8");
-  console.log(text);
+  const file = path.join("src", "App.ts");
+  console.log(file, fs.existsSync(file));
 }
 ```
 
-Direct package imports from `@tsonic/nodejs/index.js` remain supported when you want explicit package-root access instead of Node module specifiers.
+After installation, run `tsonic restore` or `tsonic build` so the workspace
+materializes the CLR dependencies declared by the package manifest.
 
-## Relationship to `@tsonic/js`
+## Pages
 
-- `@tsonic/js` provides JavaScript runtime APIs (e.g. `JSON`, JS-style `console`, timers).
-- `@tsonic/nodejs` provides Node-style APIs (e.g. `fs`, `path`, `crypto`, `http`).
-
-Use `@tsonic/js` for the ambient JavaScript world. Add `@tsonic/nodejs` when you want Node module imports.
+- [Getting Started](getting-started.md)
+- [Imports](imports.md)
+- [Modules](modules/)
+- [Modules and Runtime Model](modules-and-runtime.md)
