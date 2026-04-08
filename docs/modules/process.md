@@ -1,9 +1,13 @@
+---
+title: process
+---
+
 # `process`
 
-Import:
+Preferred import:
 
 ```ts
-import { process } from "@tsonic/nodejs/index.js";
+import * as process from "node:process";
 ```
 
 Example:
@@ -17,3 +21,6 @@ export function main(): void {
   console.log(`cwd: ${process.cwd()}`);
 }
 ```
+
+Prefer importing `node:process` explicitly rather than assuming process-like
+ambient globals.

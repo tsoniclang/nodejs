@@ -1,3 +1,7 @@
+---
+title: http
+---
+
 # `http`
 
 Prefer importing HTTP APIs through the standard Node module name.
@@ -26,3 +30,6 @@ export function main(): void {
   });
 }
 ```
+
+This module is part of what downstream apps like proof examples and Jotster use
+to prove the Node-style package layer works in real programs.

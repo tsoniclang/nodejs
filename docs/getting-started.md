@@ -1,47 +1,52 @@
+---
+title: Getting Started
+---
+
 # Getting Started
 
-## Enable Node.js APIs in a Tsonic Project
-
-### New project
+## Enable the package
 
 ```bash
-npx --yes tsonic@latest init --surface @tsonic/js
-npx --yes tsonic@latest add npm @tsonic/nodejs
+tsonic init --surface @tsonic/js
+tsonic add npm @tsonic/nodejs
+tsonic restore
 ```
 
-### Existing project
+If the workspace is still CLR-first, switch `surface` to `@tsonic/js` first.
 
-```bash
-npx --yes tsonic@latest add npm @tsonic/nodejs
-```
-
-If your workspace is still on CLR, switch `surface` to `@tsonic/js` first.
-
-That will:
-
-- Install the `@tsonic/nodejs` bindings package in your workspace (`package.json`) for `tsc` typechecking
-- Apply the package’s `.NET` dependency manifest (`tsonic.bindings.json`) to `tsonic.workspace.json`
-  - Adds the required `dotnet.frameworkReferences` / `dotnet.packageReferences`
-  - Installs any additional `types` packages referenced by the manifest
-
-Then run `npx --yes tsonic@latest restore` (or just `npx --yes tsonic@latest build`) to materialize .NET dependencies.
-
-## Minimal Example
+## Start with normal Node-style imports
 
 ```ts
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import * as fs from "node:fs";
+import * as path from "node:path";
+```
+
+Example:
+
+```ts
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 export function main(): void {
-  const fullPath = join("src", "App.ts");
-  console.log(fullPath);
-  console.log(readFileSync(fullPath, "utf-8"));
+  const file = path.join("src", "App.ts");
+  console.log(file, fs.existsSync(file));
 }
 ```
 
-## Notes
+## Remember the model
 
-- With `surface: "@tsonic/js"` and `@tsonic/nodejs` installed, prefer `node:*` imports.
-- Bare aliases like `"fs"` and `"path"` are also supported.
-- Direct imports from `@tsonic/nodejs/index.js` remain valid for package-root access.
-- This library is Node-inspired, but many APIs intentionally follow .NET behavior where it improves ergonomics.
+- `@tsonic/js` is still the ambient surface
+- `@tsonic/nodejs` is the package that adds `node:*` modules
+- package metadata can add CLR framework/runtime requirements during restore
+
+That last point is important: `@tsonic/nodejs` is not just a bag of `.d.ts`
+files. Its package manifest actively contributes module aliases, runtime
+packages, and framework requirements to the workspace.
+
+## Typical next steps
+
+- `node:fs` and `node:path` for file/process work
+- `node:http` for servers
+- `node:crypto` for hashes and signatures
+- `node:events` for emitter-style flows
+- `node:process` for process-level information and environment access

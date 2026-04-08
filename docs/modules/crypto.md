@@ -1,3 +1,7 @@
+---
+title: crypto
+---
+
 # `crypto`
 
 Import:
@@ -16,3 +20,8 @@ export function main(): void {
   console.log(hash);
 }
 ```
+
+This is a package import, not ambient behavior. Keep the model explicit:
+
+- `@tsonic/js` gives you the JS world
+- `@tsonic/nodejs` gives you Node-style modules like `node:crypto`

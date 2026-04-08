@@ -1,3 +1,7 @@
+---
+title: fs
+---
+
 # `fs`
 
 Import:
@@ -6,7 +10,7 @@ Import:
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 ```
 
-Example:
+Examples:
 
 ```ts
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -25,3 +29,13 @@ export function main(): void {
   writeFileSync("./out.txt", "Hello from Tsonic!");
 }
 ```
+
+Common patterns also include:
+
+- `fs.readFile(...)`
+- `fs.readdir(...)`
+- `fs.mkdir(...)`
+- `fs.mkdirSync(...)`
+
+Use `node:fs` for the normal Node-style authoring model, not `@tsonic/nodejs`
+subpaths unless you need an explicit package-root import.

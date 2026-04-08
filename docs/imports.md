@@ -1,48 +1,40 @@
-# Importing Modules
+# Imports
 
-## Preferred with `@tsonic/js` + `@tsonic/nodejs`: Node-style specifiers
+You can use either:
 
-With `surface: "@tsonic/js"` and `@tsonic/nodejs` installed, import using Node module names:
+- Node-style aliases such as `node:fs`
+- direct package subpaths such as `@tsonic/nodejs/fs.js`
 
-```ts
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
-import * as process from "node:process";
-```
+## Recommended style
 
-Bare aliases are also supported:
+Prefer `node:*` imports when you want the most natural authoring style:
 
 ```ts
-import { readFileSync } from "fs";
-import { join } from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 ```
 
-## Direct package imports remain supported
+Use direct package imports when you want explicit package-root references.
 
-You can still import directly from `@tsonic/nodejs/index.js`:
+## Package root imports
+
+These remain valid:
 
 ```ts
 import { fs, path, process, crypto } from "@tsonic/nodejs/index.js";
 ```
 
-Types exported from the package root are also available there:
+Use them when you want explicit package-root access rather than Node-style
+module specifiers.
 
-```ts
-import { EventEmitter } from "@tsonic/nodejs/index.js";
-```
+## Bare aliases
 
-Use direct package imports for class/value exports that are not surfaced as module-static members.
+The package currently also declares bare aliases such as:
 
-## Explicit package entry points
+- `fs`
+- `path`
+- `crypto`
+- `process`
 
-Direct package entry points remain available when you want them explicitly:
-
-```ts
-import { http, IncomingMessage, ServerResponse } from "@tsonic/nodejs/nodejs.Http.js";
-```
-
-For normal Node-style authoring, prefer:
-
-```ts
-import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
-```
+But the recommended public style remains `node:*` imports because they are
+clearer and match user expectation better.
