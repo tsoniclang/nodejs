@@ -1,7 +1,6 @@
 /**
  * os.version — returns a human-readable OS version string.
  *
- * Baseline: nodejs-clr/src/nodejs/os/version.cs
  */
 import {
   RuntimeInformation,

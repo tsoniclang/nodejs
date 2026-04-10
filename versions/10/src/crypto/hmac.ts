@@ -9,7 +9,6 @@ import {
 /**
  * Node.js crypto Hmac class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/Hmac.cs
  */
 
 /**
@@ -31,8 +30,12 @@ export class Hmac {
    */
   public update(data: string, inputEncoding?: string): Hmac;
   public update(data: Uint8Array): Hmac;
-  public update(_data: any, _inputEncoding?: any): any {
-    throw new Error("stub");
+  public update(data: any, inputEncoding?: any): any {
+    if (typeof data === "string") {
+      return this.update_string(data, inputEncoding);
+    }
+
+    return this.update_bytes(data);
   }
 
   public update_string(data: string, inputEncoding?: string): Hmac {
@@ -50,8 +53,12 @@ export class Hmac {
    */
   public digest(encoding: string): string;
   public digest(): Uint8Array;
-  public digest(_encoding?: any): any {
-    throw new Error("stub");
+  public digest(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.digest_encoding(encoding);
+    }
+
+    return this.digest_bytes();
   }
 
   public digest_encoding(encoding: string): string {

@@ -37,7 +37,7 @@ export class EventEmitterOnceStaticTests {
 
     const args = await task;
     Assert.Equal(1, args.length);
-    Assert.Equal(1, args[0]);
+    Assert.Equal(1 as number, args[0] as number);
   }
 
   public once_static_rejects_missing_emitter(): void {

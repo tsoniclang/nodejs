@@ -2,7 +2,6 @@
  * Node.js readline module — provides an interface for reading data from a
  * Readable stream (such as process.stdin) one line at a time.
  *
- * Baseline: nodejs-clr/src/nodejs/readline/readline.cs
  */
 
 import type {} from "../type-bootstrap.ts";

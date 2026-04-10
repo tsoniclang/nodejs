@@ -1,7 +1,6 @@
 /**
  * TLSServer — accepts encrypted connections using TLS or SSL.
  *
- * Baseline: nodejs-clr/src/nodejs/tls/Server.cs
  *
  * The CLR implementation extends net.Server and wraps SslStream for each
  * incoming connection. In the native port all network / crypto operations

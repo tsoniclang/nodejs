@@ -1,7 +1,5 @@
 /**
- * Port of nodejs-clr/tests/nodejs.Tests/http/Server.tests.cs
- *
- * Tests that can run without actual OS network substrate are ported directly.
+ * Tests that can run without actual OS network substrate are covered here.
  * Tests requiring real HTTP traffic (client <-> server round-trip) are marked
  * with TODO comments — they need the substrate to be wired up before they
  * can pass end-to-end.
@@ -13,6 +11,7 @@ import type { int } from "@tsonic/core/types.js";
 import { HttpClient } from "@tsonic/dotnet/System.Net.Http.js";
 import {
   AddressInfo,
+  requestFromUrl,
   createServer,
   Server,
   ServerResponse,
@@ -199,6 +198,17 @@ export class HttpServerTests {
     Assert.Equal(60000, server.headersTimeout);
     Assert.Equal(300000, server.requestTimeout);
     Assert.Equal(5000, server.keepAliveTimeout);
+  }
+
+  public requestFromUrl_parses_hostname_path_port_and_auth(): void {
+    const request = requestFromUrl(
+      "https://user:pass@example.com:8443/a/b?x=1"
+    );
+
+    Assert.Equal("https:", request.protocol);
+    Assert.Equal("example.com", request.host);
+    Assert.Equal("/a/b?x=1", request.path);
+    Assert.Equal("Basic dXNlcjpwYXNz", request.getHeader("Authorization"));
   }
 
   public server_timeout_properties_are_settable(): void {

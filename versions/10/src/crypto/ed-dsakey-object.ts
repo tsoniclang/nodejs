@@ -1,7 +1,6 @@
 /**
  * Node.js crypto EdDSA key objects.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/EdDSAKeyObject.cs
  */
 import { KeyObject } from "./key-object.ts";
 import type { int, JsValue } from "@tsonic/core/types.js";
@@ -23,7 +22,7 @@ export class EdDSAPublicKeyObject extends KeyObject {
     return "public";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 
@@ -54,7 +53,7 @@ export class EdDSAPrivateKeyObject extends KeyObject {
     return "private";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 

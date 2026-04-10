@@ -1,7 +1,6 @@
 /**
  * Node.js crypto DSA key objects.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/DSAKeyObject.cs
  */
 import { KeyObject } from "./key-object.ts";
 import type { int, JsValue } from "@tsonic/core/types.js";
@@ -21,7 +20,7 @@ export class DSAPublicKeyObject extends KeyObject {
     return "public";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return "dsa";
   }
 
@@ -50,7 +49,7 @@ export class DSAPrivateKeyObject extends KeyObject {
     return "private";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return "dsa";
   }
 

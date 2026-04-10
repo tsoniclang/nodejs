@@ -1,10 +1,9 @@
 /**
  * URL class — parsed URL with properties for accessing and modifying URL components.
  *
- * Baseline: nodejs-clr/src/nodejs/url/URL.cs
  *
  * NOTE: This implementation wraps the global URL constructor which is available
- * in modern JS runtimes. The CLR baseline wraps System.Uri. The native version
+ * in modern JS runtimes. This implementation wraps System.Uri and
  * preserves the same public surface shape.
  */
 

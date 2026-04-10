@@ -4,9 +4,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/multipleEventHandlers.tests.cs
- */
 export class ChildProcessMultipleEventHandlersTests {
   public multipleEventHandlers_AllCalled(): void {
     const command = "echo";

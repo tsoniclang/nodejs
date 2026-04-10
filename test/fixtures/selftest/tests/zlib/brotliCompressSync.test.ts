@@ -6,7 +6,6 @@ import { brotliCompressSync } from "@tsonic/nodejs/zlib.js";
 import { assertThrows, utf8Bytes } from "./helpers.ts";
 
 /**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/brotliCompressSync.tests.cs
  *
  * NOTE: brotliCompressSync is a placeholder pending native brotli bindings.
  * These tests will pass once the native implementation is provided.

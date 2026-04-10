@@ -1,7 +1,6 @@
 /**
  * Node.js http.ClientRequest — wraps an outgoing HTTP request.
  *
- * Baseline: nodejs-clr/src/nodejs/http/ClientRequest.cs
  *
  * This class requires OS network substrate for the actual HTTP client.
  * Class shape and method signatures are ported; network I/O internals are
@@ -9,13 +8,14 @@
  */
 
 import type { int } from "@tsonic/core/types.js";
-import type { IncomingMessage as IncomingMessageType } from "./incoming-message.ts";
 import type { RequestOptions as RequestOptionsType } from "./request-options.ts";
+import { bytesToBase64, stringToBytes } from "../buffer/buffer-encoding.ts";
 import {
   EventEmitter,
   toEventListener,
   toUnaryEventListener,
 } from "../events-module.ts";
+import { IncomingMessage } from "./incoming-message.ts";
 
 /**
  * Implements Node.js http.ClientRequest.
@@ -32,7 +32,7 @@ export class ClientRequest extends EventEmitter {
 
   constructor(
     options: RequestOptionsType,
-    callback?: ((res: IncomingMessageType) => void) | null
+    callback?: ((res: IncomingMessage) => void) | null
   ) {
     super();
     this._options = options;
@@ -46,13 +46,15 @@ export class ClientRequest extends EventEmitter {
 
     // Add basic auth if provided
     if (options.auth !== null) {
-      // TODO: Base64 encode auth and set Authorization header (requires btoa or Buffer substrate)
-      this._requestHeaders.set("Authorization", `Basic ${options.auth}`);
+      this._requestHeaders.set(
+        "Authorization",
+        `Basic ${bytesToBase64(stringToBytes(options.auth, "utf8"))}`
+      );
     }
 
     // Register response callback if provided
     if (callback !== undefined && callback !== null) {
-      this.on("response", toUnaryEventListener<IncomingMessageType>(callback)!);
+      this.on("response", toUnaryEventListener(callback)!);
     }
   }
 

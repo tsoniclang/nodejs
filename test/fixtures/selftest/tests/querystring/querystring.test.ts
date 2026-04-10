@@ -3,9 +3,6 @@ import { Assert } from "xunit-types/Xunit.js";
 
 import * as querystring from "@tsonic/nodejs/querystring.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/querystring/querystring.tests.cs
- */
 export class QueryStringTests {
   public stringify_ShouldSerializeSimpleObject(): void {
     const obj: Record<string, JsValue> = {

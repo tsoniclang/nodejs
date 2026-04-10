@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { CipherNameAndProtocol } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/CipherNameAndProtocol.tests.cs
- */
 export class CipherNameAndProtocolTests {
   public CipherNameAndProtocol_AllProperties_CanBeSet(): void {
     const cipher = new CipherNameAndProtocol();

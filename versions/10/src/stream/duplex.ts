@@ -2,7 +2,6 @@
  * Duplex streams are streams that implement both the Readable and Writable
  * interfaces.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/Duplex.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { Readable } from "./readable.ts";

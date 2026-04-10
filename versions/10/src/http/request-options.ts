@@ -1,7 +1,6 @@
 /**
  * Node.js http.RequestOptions — options for making HTTP requests.
  *
- * Baseline: nodejs-clr/src/nodejs/http/RequestOptions.cs
  */
 
 import type { int, JsValue } from "@tsonic/core/types.js";

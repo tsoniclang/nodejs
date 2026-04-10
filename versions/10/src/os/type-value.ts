@@ -1,7 +1,6 @@
 /**
  * os.type — returns the OS name (e.g. 'Linux', 'Darwin', 'Windows_NT').
  *
- * Baseline: nodejs-clr/src/nodejs/os/type.cs
  */
 import {
   OSPlatform,

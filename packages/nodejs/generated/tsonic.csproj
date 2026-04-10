@@ -22,11 +22,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Tsonic.Runtime">
-      <HintPath>../../../node_modules/@tsonic/cli/runtime/Tsonic.Runtime.dll</HintPath>
+      <HintPath>../../../../tsonic/packages/cli/runtime/Tsonic.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Tsonic.JSRuntime" Version="0.0.9" />
-  </ItemGroup>
 </Project>

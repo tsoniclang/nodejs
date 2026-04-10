@@ -3,7 +3,6 @@
  * Instances are not intended to be created directly.
  * Use spawn(), exec(), execFile(), or fork() to create instances.
  *
- * Baseline: nodejs-clr/src/nodejs/child_process/ChildProcess.cs
  */
 import { Process } from "@tsonic/dotnet/System.Diagnostics.js";
 import type { JsValue } from "@tsonic/core/types.js";
@@ -14,7 +13,6 @@ import type { Writable } from "../stream/writable.ts";
 /**
  * Options for exec, spawn, and related methods.
  *
- * Baseline: nodejs-clr/src/nodejs/child_process/child_process.cs (ExecOptions)
  */
 export class ExecOptions {
   /** Current working directory of the child process. */
@@ -77,7 +75,6 @@ export class ExecOptions {
 /**
  * Represents a spawned child process.
  *
- * Baseline: nodejs-clr/src/nodejs/child_process/ChildProcess.cs
  */
 export class ChildProcess extends EventEmitter {
   private _killed: boolean = false;

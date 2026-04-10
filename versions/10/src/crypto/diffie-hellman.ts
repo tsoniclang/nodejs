@@ -48,7 +48,6 @@ const resolveDiffieHellmanGeneratorBytes = (
 /**
  * Node.js crypto DiffieHellman class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/DiffieHellman.cs
  */
 
 /**
@@ -81,8 +80,12 @@ export class DiffieHellman {
    */
   public generateKeys(encoding?: undefined): Uint8Array;
   public generateKeys(encoding: string): string;
-  public generateKeys(_encoding?: any): any {
-    throw new Error("stub");
+  public generateKeys(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.generateKeys_string(encoding);
+    }
+
+    return this.generateKeys_bytes(encoding);
   }
 
   public generateKeys_bytes(_encoding?: undefined): Uint8Array {
@@ -108,7 +111,17 @@ export class DiffieHellman {
     inputOrOutputEncoding?: string,
     outputEncoding?: string
   ): any {
-    throw new Error("stub");
+    if (typeof otherPublicKey === "string") {
+      return this.computeSecret_string(
+        otherPublicKey,
+        inputOrOutputEncoding,
+        outputEncoding
+      );
+    }
+
+    return typeof inputOrOutputEncoding === "string"
+      ? this.computeSecret_bytes_string(otherPublicKey, inputOrOutputEncoding)
+      : this.computeSecret_bytes(otherPublicKey, undefined);
   }
 
   public computeSecret_string(
@@ -146,8 +159,12 @@ export class DiffieHellman {
    */
   public getPrime(encoding?: undefined): Uint8Array;
   public getPrime(encoding: string): string;
-  public getPrime(_encoding?: any): any {
-    throw new Error("stub");
+  public getPrime(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.getPrime_string(encoding);
+    }
+
+    return this.getPrime_bytes(encoding);
   }
 
   public getPrime_bytes(_encoding?: undefined): Uint8Array {
@@ -163,8 +180,12 @@ export class DiffieHellman {
    */
   public getGenerator(encoding?: undefined): Uint8Array;
   public getGenerator(encoding: string): string;
-  public getGenerator(_encoding?: any): any {
-    throw new Error("stub");
+  public getGenerator(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.getGenerator_string(encoding);
+    }
+
+    return this.getGenerator_bytes(encoding);
   }
 
   public getGenerator_bytes(_encoding?: undefined): Uint8Array {
@@ -180,8 +201,12 @@ export class DiffieHellman {
    */
   public getPublicKey(encoding?: undefined): Uint8Array;
   public getPublicKey(encoding: string): string;
-  public getPublicKey(_encoding?: any): any {
-    throw new Error("stub");
+  public getPublicKey(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.getPublicKey_string(encoding);
+    }
+
+    return this.getPublicKey_bytes(encoding);
   }
 
   public getPublicKey_bytes(_encoding?: undefined): Uint8Array {
@@ -197,8 +222,12 @@ export class DiffieHellman {
    */
   public getPrivateKey(encoding?: undefined): Uint8Array;
   public getPrivateKey(encoding: string): string;
-  public getPrivateKey(_encoding?: any): any {
-    throw new Error("stub");
+  public getPrivateKey(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.getPrivateKey_string(encoding);
+    }
+
+    return this.getPrivateKey_bytes(encoding);
   }
 
   public getPrivateKey_bytes(_encoding?: undefined): Uint8Array {
@@ -214,8 +243,12 @@ export class DiffieHellman {
    */
   public setPublicKey(publicKey: string, encoding?: string): void;
   public setPublicKey(publicKey: Uint8Array): void;
-  public setPublicKey(_publicKey: any, _encoding?: any): any {
-    throw new Error("stub");
+  public setPublicKey(publicKey: any, encoding?: any): any {
+    if (typeof publicKey === "string") {
+      return this.setPublicKey_string(publicKey, encoding);
+    }
+
+    return this.setPublicKey_bytes(publicKey);
   }
 
   public setPublicKey_string(publicKey: string, encoding?: string): void {
@@ -231,8 +264,12 @@ export class DiffieHellman {
    */
   public setPrivateKey(privateKey: string, encoding?: string): void;
   public setPrivateKey(privateKey: Uint8Array): void;
-  public setPrivateKey(_privateKey: any, _encoding?: any): any {
-    throw new Error("stub");
+  public setPrivateKey(privateKey: any, encoding?: any): any {
+    if (typeof privateKey === "string") {
+      return this.setPrivateKey_string(privateKey, encoding);
+    }
+
+    return this.setPrivateKey_bytes(privateKey);
   }
 
   public setPrivateKey_string(privateKey: string, encoding?: string): void {

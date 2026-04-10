@@ -5,9 +5,6 @@ import { StringDecoder } from "@tsonic/nodejs/string_decoder.js";
 
 const utf8Bytes = (str: string): Uint8Array => Buffer.from(str, "utf8").buffer;
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/string_decoder/string_decoder.tests.cs
- */
 export class StringDecoderTests {
   public write_ShouldDecodeSimpleUtf8String(): void {
     const decoder = new StringDecoder("utf8");

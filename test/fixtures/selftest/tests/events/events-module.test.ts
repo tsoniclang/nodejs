@@ -16,7 +16,7 @@ export class EventsModuleTests {
 
     const args = await task;
     Assert.Equal(1, args.length);
-    Assert.Equal(123, args[0]);
+    Assert.Equal(123 as number, args[0] as number);
   }
 
   public listener_helpers_reflect_emitter_state(): void {

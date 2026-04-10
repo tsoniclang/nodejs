@@ -6,10 +6,15 @@ import * as dns from "@tsonic/nodejs/dns.js";
 export class ResolveNsTests {
   public resolveNs_ValidDomain_CallsCallback(): void {
     let called = false;
+    let nameservers: Array<string> = [];
     dns.resolveNs("localhost", (err, ns) => {
       called = true;
+      if (err === null) {
+        nameservers = ns;
+      }
     });
     Assert.True(called);
+    Assert.True(nameservers.length > 0);
   }
 }
 

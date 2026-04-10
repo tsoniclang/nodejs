@@ -7,9 +7,6 @@ import {
   TLSCertificateInfo,
 } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/checkServerIdentity.tests.cs
- */
 export class checkServerIdentityTests {
   public checkServerIdentity_MatchingHostname_ReturnsNull(): void {
     const subject = new TLSCertificateInfo();

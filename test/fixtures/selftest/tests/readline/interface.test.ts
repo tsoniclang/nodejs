@@ -8,9 +8,6 @@ import {
 import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/readline/Interface.tests.cs
- */
 export class InterfaceTests {
   public Interface_line_ShouldReturnCurrentLine(): void {
     const input = new Readable();

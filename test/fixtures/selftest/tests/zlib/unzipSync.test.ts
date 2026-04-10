@@ -6,7 +6,6 @@ import { deflateSync, gzipSync, unzipSync } from "@tsonic/nodejs/zlib.js";
 import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
 
 /**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/unzipSync.tests.cs
  *
  * NOTE: unzipSync, gzipSync, and deflateSync are placeholders pending
  * native zlib bindings. These tests will pass once the native

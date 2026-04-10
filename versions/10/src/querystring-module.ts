@@ -1,7 +1,6 @@
 /**
  * Node.js querystring module — utilities for parsing and formatting URL query strings.
  *
- * Baseline: nodejs-clr/src/nodejs/querystring/querystring.cs
  */
 
 import type {} from "./type-bootstrap.ts";

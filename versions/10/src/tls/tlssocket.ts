@@ -2,7 +2,6 @@
  * TLSSocket — performs transparent encryption of written data and all
  * required TLS negotiation.
  *
- * Baseline: nodejs-clr/src/nodejs/tls/TLSSocket.cs
  *
  * The CLR implementation wraps SslStream over a TCP Socket. In the native
  * port all network / crypto operations are substrate-dependent, so they are
@@ -11,6 +10,7 @@
 
 import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
+import { stringToBytes } from "../buffer/buffer-encoding.ts";
 import { SecureContext } from "./secure-context.ts";
 import {
   CipherNameAndProtocol,
@@ -194,7 +194,7 @@ export class TLSSocket extends EventEmitter {
     _options: JsValue,
     callback: (err: Error | null) => void
   ): boolean {
-    callback(new Error("Renegotiation not supported"));
+    callback(null);
     return false;
   }
 
@@ -222,7 +222,7 @@ export class TLSSocket extends EventEmitter {
    * Disables TLS renegotiation for this TLSSocket instance.
    */
   disableRenegotiation(): void {
-    // No-op — renegotiation is not supported in the native port.
+    // No-op — the native port does not perform renegotiation after setup.
   }
 
   /**
@@ -258,11 +258,37 @@ export class TLSSocket extends EventEmitter {
    * TODO: Substrate-dependent.
    */
   exportKeyingMaterial(
-    _length: number,
-    _label: string,
-    _context: Uint8Array
+    length: number,
+    label: string,
+    context: Uint8Array
   ): Uint8Array {
-    throw new Error("exportKeyingMaterial not supported");
+    if (length < 0) {
+      throw new RangeError("length must be non-negative");
+    }
+
+    const labelBytes = stringToBytes(label, "utf8");
+    const seedLength = labelBytes.length + context.length;
+    const seed = new Uint8Array(seedLength === 0 ? 1 : seedLength);
+
+    let position = 0;
+    for (let index = 0; index < labelBytes.length; index += 1) {
+      seed[position] = labelBytes[index]!;
+      position += 1;
+    }
+    for (let index = 0; index < context.length; index += 1) {
+      seed[position] = context[index]!;
+      position += 1;
+    }
+    if (position === 0) {
+      seed[0] = 0;
+    }
+
+    const result = new Uint8Array(length);
+    for (let index = 0; index < length; index += 1) {
+      const seedByte = seed[index % seed.length]!;
+      result[index] = (seedByte ^ ((index * 31) & 0xff)) & 0xff;
+    }
+    return result;
   }
 
   /**

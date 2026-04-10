@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/send.tests.cs
- */
 export class ChildProcessSendTests {
   public send_WhenNotConnected_ReturnsFalse(): void {
     const command = "echo";

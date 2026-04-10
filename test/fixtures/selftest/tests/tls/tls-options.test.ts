@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { TlsOptions } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/TlsOptions.tests.cs
- */
 export class TlsOptionsTests {
   public TlsOptions_AllProperties_CanBeSet(): void {
     const opts = new TlsOptions();

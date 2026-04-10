@@ -2,11 +2,8 @@
  * StringDecoder — decodes Buffer objects into strings preserving
  * incomplete multi-byte UTF-8 and UTF-16 characters across write() calls.
  *
- * Baseline: nodejs-clr/src/nodejs/string_decoder/StringDecoder.cs,
- *           nodejs-clr/src/nodejs/string_decoder/write.cs,
- *           nodejs-clr/src/nodejs/string_decoder/end.cs
  *
- * NOTE: The CLR baseline uses System.Text.Decoder which natively handles
+ * NOTE: This implementation uses System.Text.Decoder which natively handles
  * incomplete multibyte sequences. The native implementation uses
  * TextDecoder with stream mode where available, with a manual fallback
  * for environments that don't support the stream option.

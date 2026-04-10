@@ -8,9 +8,6 @@ import {
 } from "@tsonic/nodejs/readline.js";
 import { Readable } from "@tsonic/nodejs/stream.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/readline/createInterface.tests.cs
- */
 export class CreateInterfaceTests {
   public createInterface_WithValidOptions_ShouldCreateInterface(): void {
     const input = new Readable();

@@ -1,7 +1,6 @@
 /**
  * os.arch — returns the CPU architecture.
  *
- * Baseline: nodejs-clr/src/nodejs/os/arch.cs
  */
 import {
   Convert,

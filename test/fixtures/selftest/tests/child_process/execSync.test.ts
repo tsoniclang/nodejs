@@ -5,9 +5,6 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/execSync.tests.cs
- */
 export class ChildProcessExecSyncTests {
   public execSync_SimpleCommand_ReturnsOutput(): void {
     const command = "echo 'Hello'";

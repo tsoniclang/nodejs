@@ -6,7 +6,6 @@ import { deflateSync, inflateSync } from "@tsonic/nodejs/zlib.js";
 import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
 
 /**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/inflateSync.tests.cs
  *
  * NOTE: inflateSync and deflateSync are placeholders pending native zlib bindings.
  * These tests will pass once the native implementation is provided.

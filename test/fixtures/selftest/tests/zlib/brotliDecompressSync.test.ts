@@ -9,7 +9,6 @@ import {
 import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
 
 /**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/brotliDecompressSync.tests.cs
  *
  * NOTE: brotliCompressSync and brotliDecompressSync are placeholders
  * pending native brotli bindings. These tests will pass once the

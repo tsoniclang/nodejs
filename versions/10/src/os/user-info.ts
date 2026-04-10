@@ -1,7 +1,6 @@
 /**
  * os.userInfo — returns information about the current user.
  *
- * Baseline: nodejs-clr/src/nodejs/os/userInfo.cs
  */
 import { Environment, Environment_SpecialFolder } from "@tsonic/dotnet/System.js";
 import {

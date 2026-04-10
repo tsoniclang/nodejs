@@ -1,7 +1,6 @@
 /**
  * Node.js http.ServerResponse — wraps the outgoing HTTP response.
  *
- * Baseline: nodejs-clr/src/nodejs/http/ServerResponse.cs
  *
  * This class requires OS network substrate for the actual response write path.
  * Class shape and method signatures are ported; actual network I/O is stubbed
@@ -239,8 +238,16 @@ export class ServerResponse extends EventEmitter {
     encoding?: string | null,
     callback?: (() => void) | null
   ): ServerResponse;
-  public end(_chunkOrCallback?: any, _encoding?: any, _callback?: any): any {
-    throw new Error("stub");
+  public end(chunkOrCallback?: any, encoding?: any, callback?: any): any {
+    if (typeof chunkOrCallback === "function") {
+      return this.end_callback(chunkOrCallback);
+    }
+
+    if (chunkOrCallback === undefined) {
+      return this.end_empty();
+    }
+
+    return this.end_chunk(chunkOrCallback, encoding, callback);
   }
 
   public end_empty(): ServerResponse {

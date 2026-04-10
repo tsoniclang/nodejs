@@ -4,16 +4,10 @@
   "surface": "@tsonic/js",
   "dotnet": {
     "typeRoots": [
-      "/home/jester/repos/tsoniclang/js/versions/10"
+      "../js/versions/10"
     ],
     "libraries": [],
     "frameworkReferences": [],
-    "packageReferences": [
-      {
-        "id": "Tsonic.JSRuntime",
-        "version": "0.0.9",
-        "types": "@tsonic/js"
-      }
-    ]
+    "packageReferences": []
   }
 }

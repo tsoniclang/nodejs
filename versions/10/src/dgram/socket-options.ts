@@ -1,7 +1,6 @@
 /**
  * Options for creating and binding dgram sockets.
  *
- * Baseline: nodejs-clr/src/nodejs/dgram/SocketOptions.cs
  */
 import type { int } from "@tsonic/core/types.js";
 
@@ -37,6 +36,6 @@ export class BindOptions {
   /** If true, the socket will be bound exclusively. */
   public exclusive: boolean = false;
 
-  /** File descriptor (not supported in native). */
+  /** File descriptor to bind the socket to. */
   public fd: int | undefined = undefined;
 }

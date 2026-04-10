@@ -2,9 +2,8 @@
  * Buffer — fixed-length sequence of bytes wrapping Uint8Array with
  * Node.js-compatible APIs.
  *
- * Baseline: nodejs-clr/src/nodejs/buffer/Buffer.cs
  *
- * NOTE: The CLR baseline wraps byte[]. The native implementation wraps
+ * NOTE: This implementation wraps byte[]. The native surface wraps
  * Uint8Array, which is the natural JS equivalent.
  */
 

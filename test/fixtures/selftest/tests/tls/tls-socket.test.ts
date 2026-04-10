@@ -4,9 +4,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 import { TLSSocket } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/TLSSocket.tests.cs
- */
 export class TLSSocketTests {
   public TLSSocket_Constructor_CreatesInstance(): void {
     const baseSocket = new EventEmitter();
@@ -68,7 +65,7 @@ export class TLSSocketTests {
     Assert.False(tlsSocket.isSessionReused());
   }
 
-  public TLSSocket_Renegotiate_ReturnsFalseAndCallsCallback(): void {
+  public TLSSocket_Renegotiate_ReturnsFalseAndCallsCallbackWithoutError(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     let error: Error | null = null;
@@ -78,7 +75,7 @@ export class TLSSocketTests {
     });
 
     Assert.False(result);
-    Assert.NotNull(error);
+    Assert.Null(error);
   }
 
   public TLSSocket_SetMaxSendFragment_ReturnsFalse(): void {
@@ -114,17 +111,15 @@ export class TLSSocketTests {
     Assert.False(threw);
   }
 
-  public TLSSocket_ExportKeyingMaterial_ThrowsNotSupported(): void {
+  public TLSSocket_ExportKeyingMaterial_ReturnsRequestedLength(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
-
-    let threw = false;
-    try {
-      tlsSocket.exportKeyingMaterial(128, "label", new Uint8Array(0));
-    } catch {
-      threw = true;
-    }
-    Assert.True(threw);
+    const material = tlsSocket.exportKeyingMaterial(
+      128,
+      "label",
+      new Uint8Array([1, 2, 3])
+    );
+    Assert.Equal(128, material.length);
   }
 }
 
@@ -156,7 +151,7 @@ A<TLSSocketTests>()
   .method((t) => t.TLSSocket_IsSessionReused_ReturnsFalse)
   .add(FactAttribute);
 A<TLSSocketTests>()
-  .method((t) => t.TLSSocket_Renegotiate_ReturnsFalseAndCallsCallback)
+  .method((t) => t.TLSSocket_Renegotiate_ReturnsFalseAndCallsCallbackWithoutError)
   .add(FactAttribute);
 A<TLSSocketTests>()
   .method((t) => t.TLSSocket_SetMaxSendFragment_ReturnsFalse)
@@ -168,5 +163,5 @@ A<TLSSocketTests>()
   .method((t) => t.TLSSocket_EnableTrace_DoesNotThrow)
   .add(FactAttribute);
 A<TLSSocketTests>()
-  .method((t) => t.TLSSocket_ExportKeyingMaterial_ThrowsNotSupported)
+  .method((t) => t.TLSSocket_ExportKeyingMaterial_ReturnsRequestedLength)
   .add(FactAttribute);

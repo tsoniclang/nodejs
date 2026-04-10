@@ -4,9 +4,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/exit.tests.cs
- */
 export class ChildProcessExitTests {
   public exit_ExitEvent_ContainsExitCode(): void {
     const command = "sh";

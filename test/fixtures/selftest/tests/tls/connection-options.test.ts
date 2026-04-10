@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { ConnectionOptions } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/ConnectionOptions.tests.cs
- */
 export class ConnectionOptionsTests {
   public ConnectionOptions_AllProperties_CanBeSet(): void {
     const opts = new ConnectionOptions();

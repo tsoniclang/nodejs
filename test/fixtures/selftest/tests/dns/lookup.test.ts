@@ -7,19 +7,36 @@ import { LookupOptions } from "@tsonic/nodejs/dns.js";
 export class LookupTests {
   public lookup_SimpleDomain_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
+    let address = "";
+    let family = 0;
     dns.lookup("localhost", null, (err, addr, fam) => {
       called = true;
+      error = err;
+      address = addr;
+      family = fam;
     });
-    // TODO: callback is synchronous in stub; real implementation will be async
     Assert.True(called);
+    Assert.Null(error);
+    Assert.True(address.length > 0);
+    Assert.True(family === 4 || family === 6);
   }
 
   public lookup_WithIPv4Family_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
+    let address = "";
+    let family = 0;
     dns.lookup("localhost", 4, (err, addr, fam) => {
       called = true;
+      error = err;
+      address = addr;
+      family = fam;
     });
     Assert.True(called);
+    Assert.Null(error);
+    Assert.Equal(4, family);
+    Assert.True(address.includes("."));
   }
 
   public lookup_WithIPv6Family_CallsCallback(): void {
@@ -32,12 +49,15 @@ export class LookupTests {
 
   public lookup_WithOptionsAll_CallsCallback(): void {
     let called = false;
+    let count = 0;
     const opts = new LookupOptions();
     opts.all = true;
     dns.lookupAll("localhost", opts, (err, addrs) => {
       called = true;
+      count = addrs.length;
     });
     Assert.True(called);
+    Assert.True(count > 0);
   }
 
   public lookup_WithIPv4FirstOrder_CallsCallback(): void {
@@ -53,10 +73,13 @@ export class LookupTests {
 
   public lookup_InvalidHostname_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
     dns.lookup("this-hostname-definitely-does-not-exist-12345.invalid", null, (err, addr, fam) => {
       called = true;
+      error = err;
     });
     Assert.True(called);
+    Assert.NotNull(error);
   }
 
   public lookup_WithOptionsFamily_CallsCallback(): void {
@@ -69,12 +92,15 @@ export class LookupTests {
 
   public lookup_WithStringFamilyIPv4_CallsCallback(): void {
     let called = false;
+    let family = 0;
     const opts = new LookupOptions();
     opts.family = "IPv4";
     dns.lookup("localhost", opts, (err, addr, fam) => {
       called = true;
+      family = fam;
     });
     Assert.True(called);
+    Assert.Equal(4, family);
   }
 
   public lookup_WithStringFamilyIPv6_CallsCallback(): void {

@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { getCiphers } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/getCiphers.tests.cs
- */
 export class getCiphersTests {
   public getCiphers_ReturnsArray(): void {
     const ciphers = getCiphers();

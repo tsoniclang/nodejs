@@ -8,9 +8,6 @@ import {
 } from "@tsonic/nodejs/readline.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/readline/utilities.tests.cs
- */
 export class UtilitiesTests {
   public clearLine_WithValidStream_ShouldReturnTrue(): void {
     const output = new Writable();

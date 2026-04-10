@@ -2,7 +2,6 @@
  * A writable stream is an abstraction for a destination to which data is
  * written.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/Writable.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { Stream } from "./stream.ts";

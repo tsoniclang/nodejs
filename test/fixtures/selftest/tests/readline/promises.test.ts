@@ -4,9 +4,6 @@ import { promises } from "@tsonic/nodejs/readline.js";
 import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/readline/promises.tests.cs
- */
 export class PromisesTests {
   public createInterface_ShouldCreateInterface(): void {
     const input = new Readable();

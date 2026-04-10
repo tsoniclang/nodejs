@@ -1,7 +1,6 @@
 /**
  * os.machine — returns the machine type (e.g. x86_64, arm64).
  *
- * Baseline: nodejs-clr/src/nodejs/os/machine.cs
  */
 import {
   Convert,

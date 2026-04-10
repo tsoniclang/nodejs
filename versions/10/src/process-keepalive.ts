@@ -25,7 +25,7 @@ export const acquireProcessKeepAlive = (): void => {
       signal.Wait();
     });
     thread.IsBackground = false;
-    thread.Name = "Tsonic.Nodejs.ProcessKeepAlive";
+    thread.Name = "nodejs.ProcessKeepAlive";
 
     releaseSignal = signal;
     thread.Start();

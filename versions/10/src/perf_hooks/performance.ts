@@ -2,7 +2,6 @@
  * performance singleton — provides access to performance-related information.
  * High-resolution timing and performance measurement.
  *
- * Baseline: nodejs-clr/src/nodejs/perf_hooks/performance.cs
  */
 
 import type { JsValue } from "@tsonic/core/types.js";

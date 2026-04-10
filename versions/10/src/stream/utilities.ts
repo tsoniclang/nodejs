@@ -1,7 +1,6 @@
 /**
  * Utility functions for working with streams.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/utilities.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { Stream } from "./stream.ts";

@@ -2,7 +2,6 @@
  * Transform streams are Duplex streams where the output is computed from the
  * input.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/Transform.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { Duplex } from "./duplex.ts";

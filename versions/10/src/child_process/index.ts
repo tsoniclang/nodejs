@@ -1,7 +1,6 @@
 /**
  * Node.js child_process module.
  *
- * Baseline: nodejs-clr/src/nodejs/child_process/
  */
 
 import type {} from "../type-bootstrap.ts";
@@ -287,11 +286,15 @@ export function exec(
   callback: (error: Error | null, stdout: string, stderr: string) => void,
 ): void;
 export function exec(
-  _command: any,
-  _optionsOrCallback: any,
-  _callback?: any,
+  command: any,
+  optionsOrCallback: any,
+  callback?: any,
 ): any {
-  throw new Error("stub");
+  if (typeof optionsOrCallback === "function") {
+    return exec_callback(command, optionsOrCallback);
+  }
+
+  return exec_options(command, optionsOrCallback, callback);
 }
 
 function exec_callback(

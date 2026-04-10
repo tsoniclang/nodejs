@@ -1,7 +1,6 @@
 /**
  * Options for Gzip and Deflate compression operations.
  *
- * Baseline: nodejs-clr/src/nodejs/zlib/ZlibOptions.cs
  */
 export interface ZlibOptions {
   /**

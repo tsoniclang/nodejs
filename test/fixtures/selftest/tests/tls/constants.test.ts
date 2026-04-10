@@ -9,9 +9,6 @@ import {
   DEFAULT_MIN_VERSION,
 } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/constants.tests.cs
- */
 export class TlsConstantsTests {
   public constants_HaveExpectedValues(): void {
     Assert.Equal(3, CLIENT_RENEG_LIMIT);

@@ -6,10 +6,16 @@ import * as dns from "@tsonic/nodejs/dns.js";
 export class ResolveTests {
   public resolve_SimpleDomain_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
+    let count = 0;
     dns.resolve("localhost", (err, addrs) => {
       called = true;
+      error = err;
+      count = addrs.length;
     });
     Assert.True(called);
+    Assert.Null(error);
+    Assert.True(count > 0);
   }
 
   public resolve_WithARecordType_CallsCallback(): void {
@@ -46,10 +52,13 @@ export class ResolveTests {
 
   public resolve_WithInvalidRecordType_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
     dns.resolveWithRrtype("localhost", "INVALID", (err, res) => {
       called = true;
+      error = err;
     });
     Assert.True(called);
+    Assert.NotNull(error);
   }
 }
 

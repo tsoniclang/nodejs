@@ -1,9 +1,8 @@
 /**
  * Node.js zlib module — compression functionality using Gzip, Deflate, and Brotli.
  *
- * Baseline: nodejs-clr/src/nodejs/zlib/zlib.cs
  *
- * NOTE: The CLR baseline uses System.IO.Compression (GZipStream, DeflateStream,
+ * NOTE: This implementation uses System.IO.Compression (GZipStream, DeflateStream,
  * BrotliStream). The native implementation delegates to the platform's native
  * zlib / brotli via CompressionStream/DecompressionStream where available,
  * with TODO placeholders for sync variants that require native bindings.
@@ -53,7 +52,11 @@ const toInt = (value: number): int => {
 };
 
 const toByteArray = (buffer: Uint8Array): byte[] => {
-  return Array.from(buffer, (value) => value as byte);
+  const result: byte[] = new Array<byte>(buffer.length);
+  for (let index = 0; index < buffer.length; index += 1) {
+    result[index] = buffer[index]! as byte;
+  }
+  return result;
 };
 
 const fromByteArray = (buffer: byte[]): Uint8Array => {

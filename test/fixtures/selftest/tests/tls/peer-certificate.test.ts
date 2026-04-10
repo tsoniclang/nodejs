@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { PeerCertificate } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/PeerCertificate.tests.cs
- */
 export class PeerCertificateTests {
   public PeerCertificate_AllProperties_CanBeSet(): void {
     const cert = new PeerCertificate();

@@ -1,7 +1,6 @@
 /**
  * os.uptime — returns system uptime in seconds.
  *
- * Baseline: nodejs-clr/src/nodejs/os/uptime.cs
  */
 import { Environment } from "@tsonic/dotnet/System.js";
 

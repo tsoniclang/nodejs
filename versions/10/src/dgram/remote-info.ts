@@ -1,7 +1,6 @@
 /**
  * Information about the remote endpoint that sent a datagram.
  *
- * Baseline: nodejs-clr/src/nodejs/dgram/RemoteInfo.cs
  */
 
 export class RemoteInfo {

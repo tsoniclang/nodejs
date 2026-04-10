@@ -1,7 +1,6 @@
 /**
  * Options for creating a readline Interface.
  *
- * Baseline: nodejs-clr/src/nodejs/readline/Interface.cs (InterfaceOptions)
  */
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";

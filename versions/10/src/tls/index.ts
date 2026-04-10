@@ -2,7 +2,6 @@
  * Node.js tls module — Transport Layer Security (TLS) and Secure Socket
  * Layer (SSL) protocol implementation.
  *
- * Baseline: nodejs-clr/src/nodejs/tls/tls.cs
  */
 
 import type {} from "../type-bootstrap.ts";

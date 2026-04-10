@@ -1,7 +1,6 @@
 /**
  * Node.js stream module.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/
  */
 
 import type {} from "../type-bootstrap.ts";

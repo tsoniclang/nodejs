@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/noArgs.tests.cs
- */
 export class ChildProcessNoArgsTests {
   public noArgs_SpawnSync_Works(): void {
     const command = "pwd";

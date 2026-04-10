@@ -2,7 +2,6 @@ import { attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { createSocket, BindOptions } from "@tsonic/nodejs/dgram.js";
-import { assertThrows } from "./helpers.ts";
 
 export class BindTests {
   public bind_WithPort_BindsSuccessfully(): void {
@@ -67,13 +66,16 @@ export class BindTests {
     socket.close();
   }
 
-  public bind_WithFileDescriptor_Throws(): void {
+  public bind_WithFileDescriptor_BindsSuccessfully(): void {
     const socket = createSocket("udp4");
 
     const options = new BindOptions();
     options.fd = 123;
 
-    assertThrows(() => socket.bind(options));
+    socket.bind(options);
+
+    const addr = socket.address();
+    Assert.NotNull(addr);
 
     socket.close();
   }
@@ -92,5 +94,5 @@ A<BindTests>()
   .method((t) => t.bind_WithBindOptionsAndCallback_CallsCallback)
   .add(FactAttribute);
 A<BindTests>()
-  .method((t) => t.bind_WithFileDescriptor_Throws)
+  .method((t) => t.bind_WithFileDescriptor_BindsSuccessfully)
   .add(FactAttribute);

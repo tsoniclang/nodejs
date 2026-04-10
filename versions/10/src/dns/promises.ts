@@ -1,9 +1,9 @@
 /**
  * Promise-based DNS APIs.
  *
- * Baseline: nodejs-clr/src/nodejs/dns/promises.cs
  */
 import type { int, JsValue } from "@tsonic/core/types.js";
+import * as dns from "./index.ts";
 import { LookupAddress, LookupOptions } from "./options.ts";
 import {
   SoaRecord,
@@ -27,115 +27,271 @@ export class LookupServiceResult {
  */
 export class DnsPromises {
   public lookup(hostname: string, options: LookupOptions | null = null): Promise<LookupAddress> {
-    // TODO: delegate to dns.lookup via promise wrapper
-    return Promise.resolve(new LookupAddress());
+    return new Promise((resolve, reject) => {
+      dns.lookup(hostname, options, (err, address, family) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        const result = new LookupAddress();
+        result.address = address;
+        result.family = family;
+        resolve(result);
+      });
+    });
   }
 
   public lookupAll(hostname: string, options: LookupOptions | null = null): Promise<Array<LookupAddress>> {
-    // TODO: delegate to dns.lookup with all=true via promise wrapper
-    return Promise.resolve([] as Array<LookupAddress>);
+    return new Promise((resolve, reject) => {
+      dns.lookupAll(hostname, options, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public lookupService(address: string, port: int): Promise<LookupServiceResult> {
-    // TODO: delegate to dns.lookupService via promise wrapper
-    return Promise.resolve(new LookupServiceResult());
+    return new Promise((resolve, reject) => {
+      dns.lookupService(address, port, (err, hostname, service) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        const result = new LookupServiceResult();
+        result.hostname = hostname;
+        result.service = service;
+        resolve(result);
+      });
+    });
   }
 
   public resolve(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolve via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolve(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolveWithRrtype(hostname: string, rrtype: string): Promise<JsValue> {
-    // TODO: delegate to dns.resolve with rrtype via promise wrapper
-    return Promise.resolve(null);
+    return new Promise((resolve, reject) => {
+      dns.resolveWithRrtype(hostname, rrtype, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolve4(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolve4 via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolve4(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolve6(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolve6 via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolve6(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolveCname(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolveCname via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolveCname(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolveCaa(hostname: string): Promise<Array<CaaRecord>> {
-    // TODO: delegate to dns.resolveCaa via promise wrapper
-    return Promise.resolve([] as Array<CaaRecord>);
+    return new Promise((resolve, reject) => {
+      dns.resolveCaa(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveMx(hostname: string): Promise<Array<MxRecord>> {
-    // TODO: delegate to dns.resolveMx via promise wrapper
-    return Promise.resolve([] as Array<MxRecord>);
+    return new Promise((resolve, reject) => {
+      dns.resolveMx(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveNaptr(hostname: string): Promise<Array<NaptrRecord>> {
-    // TODO: delegate to dns.resolveNaptr via promise wrapper
-    return Promise.resolve([] as Array<NaptrRecord>);
+    return new Promise((resolve, reject) => {
+      dns.resolveNaptr(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveNs(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolveNs via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolveNs(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolvePtr(hostname: string): Promise<Array<string>> {
-    // TODO: delegate to dns.resolvePtr via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.resolvePtr(hostname, (err, addresses) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(addresses);
+      });
+    });
   }
 
   public resolveSoa(hostname: string): Promise<SoaRecord> {
-    // TODO: delegate to dns.resolveSoa via promise wrapper
-    return Promise.resolve(new SoaRecord());
+    return new Promise((resolve, reject) => {
+      dns.resolveSoa(hostname, (err, record) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(record);
+      });
+    });
   }
 
   public resolveSrv(hostname: string): Promise<Array<SrvRecord>> {
-    // TODO: delegate to dns.resolveSrv via promise wrapper
-    return Promise.resolve([] as Array<SrvRecord>);
+    return new Promise((resolve, reject) => {
+      dns.resolveSrv(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveTlsa(hostname: string): Promise<Array<TlsaRecord>> {
-    // TODO: delegate to dns.resolveTlsa via promise wrapper
-    return Promise.resolve([] as Array<TlsaRecord>);
+    return new Promise((resolve, reject) => {
+      dns.resolveTlsa(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveTxt(hostname: string): Promise<Array<Array<string>>> {
-    // TODO: delegate to dns.resolveTxt via promise wrapper
-    return Promise.resolve([] as Array<Array<string>>);
+    return new Promise((resolve, reject) => {
+      dns.resolveTxt(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public resolveAny(hostname: string): Promise<Array<JsValue>> {
-    // TODO: delegate to dns.resolveAny via promise wrapper
-    return Promise.resolve([] as Array<JsValue>);
+    return new Promise((resolve, reject) => {
+      dns.resolveAny(hostname, (err, records) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(records);
+      });
+    });
   }
 
   public reverse(ip: string): Promise<Array<string>> {
-    // TODO: delegate to dns.reverse via promise wrapper
-    return Promise.resolve([] as Array<string>);
+    return new Promise((resolve, reject) => {
+      dns.reverse(ip, (err, hostnames) => {
+        if (err !== null) {
+          reject(err);
+          return;
+        }
+
+        resolve(hostnames);
+      });
+    });
   }
 
   public getDefaultResultOrder(): string {
-    // TODO: delegate to dns.getDefaultResultOrder()
-    return "verbatim";
+    return dns.getDefaultResultOrder();
   }
 
   public setDefaultResultOrder(order: string): void {
-    // TODO: delegate to dns.setDefaultResultOrder()
+    dns.setDefaultResultOrder(order);
   }
 
   public getServers(): Array<string> {
-    // TODO: delegate to dns.getServers()
-    return [] as Array<string>;
+    return dns.getServers();
   }
 
   public setServers(servers: Array<string>): void {
-    // TODO: delegate to dns.setServers()
+    dns.setServers(servers);
   }
 }

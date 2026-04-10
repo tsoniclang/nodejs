@@ -64,6 +64,21 @@ export class ResolverTests {
     Assert.True(called);
   }
 
+  public Resolver_ResolveSoa_CallsCallbackWithRecord(): void {
+    const resolver = new Resolver();
+    let called = false;
+    let error: Error | null = null;
+    let nsname = "";
+    resolver.resolveSoa("localhost", (err, rec) => {
+      called = true;
+      error = err;
+      nsname = rec.nsname;
+    });
+    Assert.True(called);
+    Assert.Null(error);
+    Assert.Equal("localhost", nsname);
+  }
+
   public Resolver_Reverse_CallsCallback(): void {
     const resolver = new Resolver();
     let called = false;
@@ -114,6 +129,9 @@ A<ResolverTests>()
   .add(FactAttribute);
 A<ResolverTests>()
   .method((t) => t.Resolver_ResolveMx_CallsCallback)
+  .add(FactAttribute);
+A<ResolverTests>()
+  .method((t) => t.Resolver_ResolveSoa_CallsCallbackWithRecord)
   .add(FactAttribute);
 A<ResolverTests>()
   .method((t) => t.Resolver_Reverse_CallsCallback)

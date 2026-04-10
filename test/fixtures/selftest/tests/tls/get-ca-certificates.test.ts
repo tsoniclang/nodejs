@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { getCACertificates } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/getCACertificates.tests.cs
- */
 export class getCACertificatesTests {
   public getCACertificates_ReturnsArray(): void {
     const certs = getCACertificates();

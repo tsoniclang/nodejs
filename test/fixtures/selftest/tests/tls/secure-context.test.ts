@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { SecureContext } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/SecureContext.tests.cs
- */
 export class SecureContextTests {
   public SecureContext_Constructor_CreatesInstance(): void {
     const context = new SecureContext();

@@ -1,7 +1,6 @@
 /**
  * Promise-based stream helpers.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/promises.cs
  */
 import { Stream } from "./stream.ts";
 import {

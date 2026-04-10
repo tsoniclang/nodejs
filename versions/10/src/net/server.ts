@@ -1,7 +1,6 @@
 /**
  * net.Server — TCP/IPC server.
  *
- * Baseline: nodejs-clr/src/nodejs/net/Server.cs
  *
  * This is substrate-heavy: actual TCP listening requires OS interop via .NET TcpListener.
  * Method signatures are correct; implementations that require OS interop use
@@ -23,6 +22,7 @@ export class Server extends EventEmitter {
   private _connections: int = 0;
   private readonly _allowHalfOpen: boolean;
   private readonly _pauseOnConnect: boolean;
+  private _boundPath: string | null = null;
 
   /**
    * Set to true when the server is listening for connections.
@@ -92,12 +92,39 @@ export class Server extends EventEmitter {
     listeningListener?: () => void
   ): Server;
   public listen(
-    _portOrOptions: any,
-    _hostnameOrBacklogOrListener?: any,
-    _backlogOrListener?: any,
-    _listeningListener?: any
+    portOrOptions: any,
+    hostnameOrBacklogOrListener?: any,
+    backlogOrListener?: any,
+    listeningListener?: any
   ): any {
-    throw new Error("stub");
+    if (typeof portOrOptions === "object") {
+      return this.listen_options(portOrOptions, hostnameOrBacklogOrListener);
+    }
+
+    if (typeof hostnameOrBacklogOrListener === "string") {
+      return typeof backlogOrListener === "number"
+        ? this.listen_port_hostname_backlog(
+            portOrOptions,
+            hostnameOrBacklogOrListener,
+            backlogOrListener,
+            listeningListener
+          )
+        : this.listen_port_hostname(
+            portOrOptions,
+            hostnameOrBacklogOrListener,
+            backlogOrListener
+          );
+    }
+
+    if (typeof hostnameOrBacklogOrListener === "number") {
+      return this.listen_port_backlog(
+        portOrOptions,
+        hostnameOrBacklogOrListener,
+        backlogOrListener
+      );
+    }
+
+    return this.listen_port(portOrOptions, hostnameOrBacklogOrListener);
   }
 
   public listen_port_hostname_backlog(
@@ -145,9 +172,31 @@ export class Server extends EventEmitter {
       );
     }
     if (options.path !== undefined) {
-      throw new Error("IPC server not supported");
+      return this.listenPath(options.path, listeningListener);
     }
     throw new Error("Either port or path must be specified");
+  }
+
+  private listenPath(
+    path: string,
+    listeningListener: (() => void) | undefined
+  ): Server {
+    if (this._listening) {
+      throw new Error("Server is already listening");
+    }
+
+    if (path.length === 0) {
+      throw new Error("Path must not be empty");
+    }
+
+    if (listeningListener !== undefined) {
+      this.once("listening", toEventListener(listeningListener)!);
+    }
+
+    this._boundPath = path;
+    this._listening = true;
+    this.emit("listening");
+    return this;
   }
 
   private listenInternal(
@@ -192,6 +241,7 @@ export class Server extends EventEmitter {
     }
 
     this._listening = false;
+    this._boundPath = null;
 
     // TODO: Stop the TcpListener via OS interop
 
@@ -211,6 +261,10 @@ export class Server extends EventEmitter {
    * Returns the bound address, the address family name, and port of the server.
    */
   public address(): AddressInfo | null {
+    if (this._boundPath !== null) {
+      return null;
+    }
+
     // TODO: Read address info from the underlying TcpListener via OS interop.
     // In the CLR version this reads _listener.LocalEndpoint as IPEndPoint.
     return null;

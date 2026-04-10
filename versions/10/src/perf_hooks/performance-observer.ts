@@ -2,7 +2,6 @@
  * PerformanceObserver — observes performance measurement events and notifies
  * when new performance entries are added to the performance timeline.
  *
- * Baseline: nodejs-clr/src/nodejs/perf_hooks/PerformanceObserver.cs
  */
 
 import type { int } from "@tsonic/core/types.js";

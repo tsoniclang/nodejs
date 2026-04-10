@@ -9,8 +9,17 @@ export class CreateConnectionTests {
     Assert.NotNull(socket);
     Assert.True(socket instanceof Socket);
   }
+
+  public create_connection_path_creates_connected_socket(): void {
+    const socket: Socket = createConnection("/tmp/tsonic-nodejs.sock");
+    Assert.NotNull(socket);
+    Assert.Equal("open", socket.readyState);
+  }
 }
 
 A<CreateConnectionTests>()
   .method((t) => t.create_connection_creates_socket)
+  .add(FactAttribute);
+A<CreateConnectionTests>()
+  .method((t) => t.create_connection_path_creates_connected_socket)
   .add(FactAttribute);

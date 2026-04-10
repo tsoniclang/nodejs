@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EphemeralKeyInfo } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/EphemeralKeyInfo.tests.cs
- */
 export class EphemeralKeyInfoTests {
   public EphemeralKeyInfo_AllProperties_CanBeSet(): void {
     const info = new EphemeralKeyInfo();

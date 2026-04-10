@@ -4,9 +4,6 @@ import { createInterface, InterfaceOptions } from "@tsonic/nodejs/readline.js";
 import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/readline/advanced.tests.cs
- */
 export class AdvancedTests {
   public async Interface_questionAsync_ShouldReturnAnswer(): Promise<void> {
     const input = new Readable();
