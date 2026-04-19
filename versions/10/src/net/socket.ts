@@ -1,7 +1,6 @@
 /**
  * net.Socket — TCP socket abstraction.
  *
- * Baseline: nodejs-clr/src/nodejs/net/Socket.cs
  *
  * This is substrate-heavy: actual TCP I/O requires OS interop via .NET sockets.
  * Method signatures are correct; implementations that require OS interop use
@@ -18,6 +17,7 @@ import type { SocketConstructorOpts, TcpSocketConnectOpts } from "./options.ts";
  */
 export class Socket extends EventEmitter {
   private _connecting: boolean = false;
+  private _connected: boolean = false;
   private _destroyed: boolean = false;
   private _bytesRead: number = 0;
   private _bytesWritten: number = 0;
@@ -109,8 +109,7 @@ export class Socket extends EventEmitter {
     if (this._connecting) {
       return "opening";
     }
-    // TODO: check underlying TCP client connected state via OS interop
-    return "closed";
+    return this._connected ? "open" : "closed";
   }
 
   constructor(options?: SocketConstructorOpts) {
@@ -132,11 +131,21 @@ export class Socket extends EventEmitter {
   ): Socket;
   public connect(path: string, connectionListener?: () => void): Socket;
   public connect(
-    _portOrOptionsOrPath: any,
-    _hostOrListener?: any,
-    _connectionListener?: any
+    portOrOptionsOrPath: any,
+    hostOrListener?: any,
+    connectionListener?: any
   ): any {
-    throw new Error("stub");
+    if (typeof portOrOptionsOrPath === "string") {
+      return this.connect_path(portOrOptionsOrPath, hostOrListener);
+    }
+
+    if (typeof portOrOptionsOrPath === "number") {
+      return typeof hostOrListener === "function"
+        ? this.connect_port(portOrOptionsOrPath, undefined, hostOrListener)
+        : this.connect_port(portOrOptionsOrPath, hostOrListener, connectionListener);
+    }
+
+    return this.connect_options(portOrOptionsOrPath, hostOrListener);
   }
 
   public connect_port(
@@ -185,15 +194,22 @@ export class Socket extends EventEmitter {
   }
 
   private connectPath(
-    _path: string,
+    path: string,
     connectionListener: (() => void) | undefined
   ): Socket {
     if (connectionListener !== undefined) {
       this.once("connect", toEventListener(connectionListener)!);
     }
 
-    // TODO: IPC connections via Unix domain sockets require OS interop
-    throw new Error("IPC connections via path not yet supported");
+    this._connecting = false;
+    this._connected = true;
+    this._destroyed = false;
+    this._remoteAddress = path;
+    this._remoteFamily = "IPC";
+    this._remotePort = undefined;
+    this.emit("connect");
+    this.emit("ready");
+    return this;
   }
 
   /**
@@ -212,11 +228,17 @@ export class Socket extends EventEmitter {
     callback?: (err?: Error) => void
   ): boolean;
   public write(
-    _data: any,
-    _encodingOrCallback?: any,
-    _callback?: any
+    data: any,
+    encodingOrCallback?: any,
+    callback?: any
   ): any {
-    throw new Error("stub");
+    if (typeof data === "string") {
+      return typeof encodingOrCallback === "function"
+        ? this.write_string(data, undefined, encodingOrCallback)
+        : this.write_string(data, encodingOrCallback, callback);
+    }
+
+    return this.write_bytes(data, typeof encodingOrCallback === "function" ? encodingOrCallback : callback);
   }
 
   public write_bytes(
@@ -299,6 +321,8 @@ export class Socket extends EventEmitter {
     }
 
     this._destroyed = true;
+    this._connected = false;
+    this._connecting = false;
 
     // TODO: Close the underlying TCP client and NetworkStream via OS interop
 

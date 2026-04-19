@@ -2,7 +2,6 @@
  * Node.js net module — asynchronous network API for creating stream-based
  * TCP or IPC servers and clients.
  *
- * Baseline: nodejs-clr/src/nodejs/net/net.cs
  */
 
 import type {} from "../type-bootstrap.ts";
@@ -46,10 +45,14 @@ export function createServer(
   connectionListener?: (socket: Socket) => void
 ): Server;
 export function createServer(
-  _optionsOrListener?: any,
-  _connectionListener?: any
+  optionsOrListener?: any,
+  connectionListener?: any
 ): any {
-  throw new Error("stub");
+  if (typeof optionsOrListener === "function" || optionsOrListener === undefined) {
+    return createServer_listener(optionsOrListener);
+  }
+
+  return createServer_options(optionsOrListener, connectionListener);
 }
 
 function createServer_listener(
@@ -84,11 +87,21 @@ export function connect(
   connectionListener?: () => void
 ): Socket;
 export function connect(
-  _portOrOptionsOrPath: any,
-  _hostOrListener?: any,
-  _connectionListener?: any
+  portOrOptionsOrPath: any,
+  hostOrListener?: any,
+  connectionListener?: any
 ): any {
-  throw new Error("stub");
+  if (typeof portOrOptionsOrPath === "string") {
+    return connect_path(portOrOptionsOrPath, hostOrListener);
+  }
+
+  if (typeof portOrOptionsOrPath === "number") {
+    return typeof hostOrListener === "function"
+      ? connect_port(portOrOptionsOrPath, undefined, hostOrListener)
+      : connect_port(portOrOptionsOrPath, hostOrListener, connectionListener);
+  }
+
+  return connect_options(portOrOptionsOrPath, hostOrListener);
 }
 
 function connect_port(
@@ -136,11 +149,21 @@ export function createConnection(
   connectionListener?: () => void
 ): Socket;
 export function createConnection(
-  _portOrOptionsOrPath: any,
-  _hostOrListener?: any,
-  _connectionListener?: any
+  portOrOptionsOrPath: any,
+  hostOrListener?: any,
+  connectionListener?: any
 ): any {
-  throw new Error("stub");
+  if (typeof portOrOptionsOrPath === "string") {
+    return createConnection_path(portOrOptionsOrPath, hostOrListener);
+  }
+
+  if (typeof portOrOptionsOrPath === "number") {
+    return typeof hostOrListener === "function"
+      ? createConnection_port(portOrOptionsOrPath, undefined, hostOrListener)
+      : createConnection_port(portOrOptionsOrPath, hostOrListener, connectionListener);
+  }
+
+  return createConnection_options(portOrOptionsOrPath, hostOrListener);
 }
 
 function createConnection_port(

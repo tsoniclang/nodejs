@@ -3,6 +3,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import {
   createServer,
+  ListenOptions,
   Server,
   ServerOpts,
   Socket,
@@ -28,6 +29,17 @@ export class CreateServerTests {
     const server: Server = createServer(options);
     Assert.NotNull(server);
   }
+
+  public create_server_listens_on_ipc_path_options(): void {
+    const server: Server = createServer();
+    const options = new ListenOptions();
+    options.path = "/tmp/tsonic-nodejs.sock";
+
+    server.listen(options);
+
+    Assert.True(server.listening);
+    server.close();
+  }
 }
 
 A<CreateServerTests>()
@@ -38,4 +50,7 @@ A<CreateServerTests>()
   .add(FactAttribute);
 A<CreateServerTests>()
   .method((t) => t.create_server_with_options_returns_server)
+  .add(FactAttribute);
+A<CreateServerTests>()
+  .method((t) => t.create_server_listens_on_ipc_path_options)
   .add(FactAttribute);

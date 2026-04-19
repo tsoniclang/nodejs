@@ -1,7 +1,6 @@
 /**
  * URLPattern — minimal URL pattern matching.
  *
- * Baseline: nodejs-clr/src/nodejs/url/URLPattern.cs
  */
 
 export class URLPattern {

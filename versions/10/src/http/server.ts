@@ -1,7 +1,6 @@
 /**
  * Node.js http.Server — HTTP server implementation.
  *
- * Baseline: nodejs-clr/src/nodejs/http/Server.cs
  *
  * This class requires OS network substrate (TCP listener, HTTP parser) for
  * actual server functionality. Class shape and method signatures are ported;
@@ -16,8 +15,6 @@ import { TcpListener } from "@tsonic/dotnet/System.Net.Sockets.js";
 import { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
 import { IncomingMessage } from "./incoming-message.ts";
 import { ServerResponse } from "./server-response.ts";
-import type { IncomingMessage as IncomingMessageType } from "./incoming-message.ts";
-import type { ServerResponse as ServerResponseType } from "./server-response.ts";
 import {
   EventEmitter,
   toBinaryEventListener,
@@ -72,7 +69,7 @@ export class Server extends EventEmitter {
 
   constructor(
     requestListener?:
-      | ((req: IncomingMessageType, res: ServerResponseType) => void)
+      | ((req: IncomingMessage, res: ServerResponse) => void)
       | null
   ) {
     super();
@@ -81,7 +78,7 @@ export class Server extends EventEmitter {
     if (requestListener !== undefined && requestListener !== null) {
       this.on(
         "request",
-        toBinaryEventListener<IncomingMessageType, ServerResponseType>(requestListener)!
+        toBinaryEventListener(requestListener)!
       );
     }
   }
@@ -199,12 +196,26 @@ export class Server extends EventEmitter {
     callback?: (() => void) | null
   ): Server;
   public listen(
-    _portOrPath: any,
-    _hostname?: any,
-    _backlog?: any,
-    _callback?: any
+    portOrPath: any,
+    hostname?: any,
+    backlog?: any,
+    callback?: any
   ): any {
-    throw new Error("stub");
+    if (typeof portOrPath === "string") {
+      return this.listen_path(portOrPath, hostname);
+    }
+
+    if (typeof hostname === "string") {
+      return typeof backlog === "number"
+        ? this.listen_port_hostname_backlog(portOrPath, hostname, backlog, callback)
+        : this.listen_port_hostname(portOrPath, hostname, backlog);
+    }
+
+    if (typeof hostname === "number") {
+      return this.listen_port_backlog(portOrPath, hostname, backlog);
+    }
+
+    return this.listen_port(portOrPath, hostname);
   }
 
   public listen_path(

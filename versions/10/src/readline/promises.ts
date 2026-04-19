@@ -1,7 +1,6 @@
 /**
  * Promise-based readline wrappers.
  *
- * Baseline: nodejs-clr/src/nodejs/readline/promises.cs
  */
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";

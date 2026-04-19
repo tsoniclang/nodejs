@@ -2,7 +2,6 @@
  * Buffer encoding helpers -- normalizing encoding names and converting
  * between byte arrays and encoded string forms (hex, base64, base64url).
  *
- * Baseline: nodejs-clr/src/nodejs/buffer/Buffer.encoding.cs
  */
 
 import type { byte, int } from "@tsonic/core/types.js";

@@ -1,7 +1,6 @@
 /**
  * os.platform — returns the operating system platform identifier.
  *
- * Baseline: nodejs-clr/src/nodejs/os/platform.cs
  */
 import {
   OSPlatform,

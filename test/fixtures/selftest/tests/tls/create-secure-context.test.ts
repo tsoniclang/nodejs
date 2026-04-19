@@ -6,9 +6,6 @@ import {
   SecureContextOptions,
 } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/createSecureContext.tests.cs
- */
 export class createSecureContextTests {
   public createSecureContext_NoOptions_ReturnsContext(): void {
     const context = createSecureContext();

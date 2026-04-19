@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { TLSSocketOptions } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/TLSSocketOptions.tests.cs
- */
 export class TLSSocketOptionsTests {
   public TLSSocketOptions_AllProperties_CanBeSet(): void {
     const opts = new TLSSocketOptions();

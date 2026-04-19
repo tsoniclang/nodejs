@@ -1,7 +1,6 @@
 /**
  * Node.js buffer module.
  *
- * Baseline: nodejs-clr/src/nodejs/buffer/
  */
 
 import type {} from "../type-bootstrap.ts";

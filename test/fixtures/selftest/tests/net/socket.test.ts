@@ -158,6 +158,19 @@ export class SocketTests {
     Assert.Equal(socket, result);
     Assert.True(socket.destroyed);
   }
+
+  public connect_path_transitions_socket_to_open(): void {
+    const socket: Socket = new Socket();
+    let connected = false;
+
+    socket.connect("/tmp/tsonic-nodejs.sock", () => {
+      connected = true;
+    });
+
+    Assert.True(connected);
+    Assert.Equal("open", socket.readyState);
+    Assert.Equal("/tmp/tsonic-nodejs.sock", socket.remoteAddress);
+  }
 }
 
 A<SocketTests>()
@@ -222,4 +235,7 @@ A<SocketTests>()
   .add(FactAttribute);
 A<SocketTests>()
   .method((t) => t.reset_and_destroy_returns_socket)
+  .add(FactAttribute);
+A<SocketTests>()
+  .method((t) => t.connect_path_transitions_socket_to_open)
   .add(FactAttribute);

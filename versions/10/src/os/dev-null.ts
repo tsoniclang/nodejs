@@ -1,7 +1,6 @@
 /**
  * os.devNull — platform-specific path to the null device.
  *
- * Baseline: nodejs-clr/src/nodejs/os/devNull.cs
  */
 import {
   OSPlatform,

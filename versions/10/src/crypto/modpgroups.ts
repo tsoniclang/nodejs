@@ -1,7 +1,6 @@
 /**
  * Predefined Diffie-Hellman MODP groups from RFC 2409 and RFC 3526.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/MODPGroups.cs
  */
 
 type MODPGroupEntry = {

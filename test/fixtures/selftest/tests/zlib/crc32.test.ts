@@ -5,9 +5,6 @@ import { crc32, crc32String } from "@tsonic/nodejs/zlib.js";
 
 import { assertThrows, utf8Bytes } from "./helpers.ts";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/crc32.tests.cs
- */
 export class Zlib_crc32Tests {
   public crc32_WithByteArray_ShouldReturnChecksum(): void {
     const data = utf8Bytes("Hello, World!");

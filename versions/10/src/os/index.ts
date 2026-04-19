@@ -1,7 +1,6 @@
 /**
  * Node.js os module.
  *
- * Baseline: nodejs-clr/src/nodejs/os/
  */
 
 import type {} from "../type-bootstrap.ts";

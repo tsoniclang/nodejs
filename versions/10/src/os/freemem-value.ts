@@ -1,7 +1,6 @@
 /**
  * os.freemem — returns free system memory in bytes.
  *
- * Baseline: nodejs-clr/src/nodejs/os/freemem.cs
  */
 import { GC } from "@tsonic/dotnet/System.js";
 

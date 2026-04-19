@@ -1,7 +1,6 @@
 /**
  * DNS record types.
  *
- * Baseline: nodejs-clr/src/nodejs/dns/Records.cs
  */
 
 /**

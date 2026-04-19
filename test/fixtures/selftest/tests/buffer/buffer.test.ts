@@ -2,9 +2,6 @@ import { Assert } from "xunit-types/Xunit.js";
 
 import { Buffer } from "@tsonic/nodejs/buffer.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/buffer/buffer.tests.cs
- */
 export class BufferTests {
   public alloc_ShouldCreateZeroFilledBuffer(): void {
     const buf = Buffer.alloc(10);

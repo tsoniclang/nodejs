@@ -31,7 +31,6 @@ const encodeEcdhSecret = (
 /**
  * Node.js crypto ECDH class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/ECDH.cs
  */
 
 /**
@@ -40,6 +39,7 @@ const encodeEcdhSecret = (
 export class ECDH {
   private readonly _curveName: string;
   private _ecdh: ECDiffieHellman;
+  private _publicKeyOverride: Uint8Array | null = null;
 
   public constructor(curveName: string) {
     this._curveName = curveName;
@@ -51,8 +51,12 @@ export class ECDH {
    */
   public generateKeys(encoding?: undefined, _format?: string): Uint8Array;
   public generateKeys(encoding: string, _format?: string): string;
-  public generateKeys(_encoding?: any, _format?: any): any {
-    throw new Error("stub");
+  public generateKeys(encoding?: any, format?: any): any {
+    if (typeof encoding === "string") {
+      return this.generateKeys_string(encoding, format);
+    }
+
+    return this.generateKeys_bytes(encoding, format);
   }
 
   public generateKeys_bytes(
@@ -84,7 +88,17 @@ export class ECDH {
     inputOrOutputEncoding?: string,
     outputEncoding?: string
   ): any {
-    throw new Error("stub");
+    if (typeof otherPublicKey === "string") {
+      return this.computeSecret_string(
+        otherPublicKey,
+        inputOrOutputEncoding,
+        outputEncoding
+      );
+    }
+
+    return typeof inputOrOutputEncoding === "string"
+      ? this.computeSecret_bytes_string(otherPublicKey, inputOrOutputEncoding)
+      : this.computeSecret_bytes(otherPublicKey, undefined);
   }
 
   public computeSecret_string(
@@ -119,8 +133,12 @@ export class ECDH {
    */
   public getPublicKey(encoding?: undefined, _format?: string): Uint8Array;
   public getPublicKey(encoding: string, _format?: string): string;
-  public getPublicKey(_encoding?: any, _format?: any): any {
-    throw new Error("stub");
+  public getPublicKey(encoding?: any, format?: any): any {
+    if (typeof encoding === "string") {
+      return this.getPublicKey_string(encoding, format);
+    }
+
+    return this.getPublicKey_bytes(encoding, format);
   }
 
   public getPublicKey_bytes(
@@ -142,8 +160,12 @@ export class ECDH {
    */
   public getPrivateKey(encoding?: undefined): Uint8Array;
   public getPrivateKey(encoding: string): string;
-  public getPrivateKey(_encoding?: any): any {
-    throw new Error("stub");
+  public getPrivateKey(encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.getPrivateKey_string(encoding);
+    }
+
+    return this.getPrivateKey_bytes(encoding);
   }
 
   public getPrivateKey_bytes(_encoding?: undefined): Uint8Array {
@@ -159,16 +181,22 @@ export class ECDH {
    */
   public setPublicKey(_publicKey: string, _encoding?: string): void;
   public setPublicKey(_publicKey: Uint8Array): void;
-  public setPublicKey(_publicKey: any, _encoding?: any): any {
-    throw new Error("stub");
+  public setPublicKey(publicKey: any, encoding?: any): any {
+    if (typeof publicKey === "string") {
+      return this.setPublicKey_string(publicKey, encoding);
+    }
+
+    return this.setPublicKey_bytes(publicKey);
   }
 
-  public setPublicKey_string(_publicKey: string, _encoding?: string): void {
-    throw new Error("setPublicKey() is not supported. Use setPrivateKey() instead.");
+  public setPublicKey_string(publicKey: string, encoding?: string): void {
+    this.setPublicKeyBytes(
+      decodeInputBytes(publicKey, encoding ?? "base64")
+    );
   }
 
-  public setPublicKey_bytes(_publicKey: Uint8Array): void {
-    throw new Error("setPublicKey() is not supported. Use setPrivateKey() instead.");
+  public setPublicKey_bytes(publicKey: Uint8Array): void {
+    this.setPublicKeyBytes(publicKey);
   }
 
   /**
@@ -176,8 +204,12 @@ export class ECDH {
    */
   public setPrivateKey(privateKey: string, encoding?: string): void;
   public setPrivateKey(privateKey: Uint8Array): void;
-  public setPrivateKey(_privateKey: any, _encoding?: any): any {
-    throw new Error("stub");
+  public setPrivateKey(privateKey: any, encoding?: any): any {
+    if (typeof privateKey === "string") {
+      return this.setPrivateKey_string(privateKey, encoding);
+    }
+
+    return this.setPrivateKey_bytes(privateKey);
   }
 
   public setPrivateKey_string(privateKey: string, encoding?: string): void {
@@ -189,6 +221,10 @@ export class ECDH {
   }
 
   private publicKeyBytes(): Uint8Array {
+    if (this._publicKeyOverride !== null) {
+      return this._publicKeyOverride;
+    }
+
     return fromByteArray(this._ecdh.PublicKey.ExportSubjectPublicKeyInfo());
   }
 
@@ -211,6 +247,11 @@ export class ECDH {
     this._ecdh.Dispose();
     this._ecdh = ECDiffieHellman.Create(curveFromName(this._curveName));
     this._ecdh.ImportECPrivateKey(toReadOnlyByteSpan(privateKey), 0 as out<int>);
+    this._publicKeyOverride = null;
+  }
+
+  private setPublicKeyBytes(publicKey: Uint8Array): void {
+    this._publicKeyOverride = publicKey;
   }
 }
 

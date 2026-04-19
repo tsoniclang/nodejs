@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { SecureContextOptions } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/SecureContextOptions.tests.cs
- */
 export class SecureContextOptionsTests {
   public SecureContextOptions_AllProperties_CanBeSet(): void {
     const opts = new SecureContextOptions();

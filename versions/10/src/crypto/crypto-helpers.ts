@@ -10,6 +10,7 @@ import {
   DSA,
   ECCurve,
   ECCurve_NamedCurves,
+  AesGcm,
   HKDF,
   HMACMD5,
   HMACSHA1,
@@ -39,7 +40,7 @@ import {
   stringToBytes,
 } from "../buffer/buffer-encoding.ts";
 
-const toInt = (value: number): int => {
+export const toInt = (value: number): int => {
   if (Number.isInteger(value) && value >= -2147483648 && value <= 2147483647) {
     return value as int;
   }
@@ -354,6 +355,12 @@ interface AesConfig {
   mode: AesMode;
 }
 
+export interface AesGcmTransformOptions {
+  aad?: Uint8Array | null;
+  authTag?: Uint8Array | null;
+  authTagLength?: int;
+}
+
 const parseAesAlgorithm = (algorithm: string): AesConfig => {
   switch (normalizeCryptoName(algorithm)) {
     case "aes128cbc":
@@ -394,12 +401,14 @@ export const transformAes = (
 ): Uint8Array => {
   const config = parseAesAlgorithm(algorithm);
 
-  if (config.mode === "gcm") {
-    throw new Error("GCM mode is not yet implemented");
-  }
-
   if (key.length !== config.keyLength) {
     throw new Error(`Invalid key length for ${algorithm}`);
+  }
+
+  if (config.mode === "gcm") {
+    throw new Error(
+      "Use transformAesGcmEncrypt/transformAesGcmDecrypt for GCM mode"
+    );
   }
 
   if (config.mode !== "ecb" && (iv === null || iv.length !== 16)) {
@@ -442,6 +451,82 @@ export const transformAes = (
       output.Dispose();
       transform.Dispose();
     }
+  } finally {
+    aes.Dispose();
+  }
+};
+
+export const transformAesGcmEncrypt = (
+  algorithm: string,
+  key: Uint8Array,
+  iv: Uint8Array,
+  data: Uint8Array,
+  options: AesGcmTransformOptions = {},
+): { ciphertext: Uint8Array; authTag: Uint8Array } => {
+  const config = parseAesAlgorithm(algorithm);
+  if (config.mode !== "gcm") {
+    throw new Error(`Algorithm ${algorithm} is not an AES-GCM cipher`);
+  }
+  if (key.length !== config.keyLength) {
+    throw new Error(`Invalid key length for ${algorithm}`);
+  }
+  if (!AesGcm.IsSupported) {
+    throw new Error("AES-GCM is not supported on this platform");
+  }
+
+  const authTagLength = options.authTagLength ?? (16 as int);
+  const ciphertextBytes = new Array<byte>(data.length);
+  const authTagBytes = new Array<byte>(authTagLength);
+  const aes = new AesGcm(toByteArray(key), authTagLength);
+
+  try {
+    aes.Encrypt(
+      toByteArray(iv),
+      toByteArray(data),
+      ciphertextBytes,
+      authTagBytes,
+      options.aad ? toByteArray(options.aad) : null,
+    );
+    return {
+      ciphertext: fromByteArray(ciphertextBytes),
+      authTag: fromByteArray(authTagBytes),
+    };
+  } finally {
+    aes.Dispose();
+  }
+};
+
+export const transformAesGcmDecrypt = (
+  algorithm: string,
+  key: Uint8Array,
+  iv: Uint8Array,
+  data: Uint8Array,
+  authTag: Uint8Array,
+  options: AesGcmTransformOptions = {},
+): Uint8Array => {
+  const config = parseAesAlgorithm(algorithm);
+  if (config.mode !== "gcm") {
+    throw new Error(`Algorithm ${algorithm} is not an AES-GCM cipher`);
+  }
+  if (key.length !== config.keyLength) {
+    throw new Error(`Invalid key length for ${algorithm}`);
+  }
+  if (!AesGcm.IsSupported) {
+    throw new Error("AES-GCM is not supported on this platform");
+  }
+
+  const plaintextBytes = new Array<byte>(data.length);
+  const aes = new AesGcm(toByteArray(key), authTag.length as int);
+
+  try {
+    aes.Decrypt(
+      toByteArray(iv),
+      toByteArray(data),
+      toByteArray(authTag),
+      plaintextBytes,
+      options.aad ? toByteArray(options.aad) : null,
+    );
+    return fromByteArray(plaintextBytes);
   } finally {
     aes.Dispose();
   }

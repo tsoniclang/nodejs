@@ -12,9 +12,6 @@ import {
   transcode,
 } from "@tsonic/nodejs/buffer.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/buffer/buffer.module.tests.cs
- */
 export class BufferModuleTests {
   public btoa_And_atob_ShouldRoundTrip(): void {
     const encoded = btoa("hello");

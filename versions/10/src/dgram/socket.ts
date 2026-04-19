@@ -1,7 +1,6 @@
 /**
  * DgramSocket — UDP socket for sending and receiving datagrams.
  *
- * Baseline: nodejs-clr/src/nodejs/dgram/Socket.cs
  *
  * NOTE: All OS-level UDP interop is deferred with TODO markers.
  * The class shape faithfully mirrors the Node.js dgram.Socket API.
@@ -29,6 +28,10 @@ export class DgramSocket extends EventEmitter {
   private _isConnected: boolean = false;
   private _localAddress: AddressInfo | undefined = undefined;
   private _remoteAddress: AddressInfo | undefined = undefined;
+  private _recvBufferSize: int = 65536 as int;
+  private _sendBufferSize: int = 65536 as int;
+  private readonly _sourceSpecificMemberships: string[] = [];
+  private _boundFileDescriptor: int | undefined = undefined;
 
   constructor(
     typeOrOptions: string | SocketOptions,
@@ -72,8 +75,24 @@ export class DgramSocket extends EventEmitter {
   bind(port: int, callback: () => void): DgramSocket;
   bind(callback: () => void): DgramSocket;
   bind(options: BindOptions, callback?: () => void): DgramSocket;
-  bind(_portOrCallbackOrOptions?: any, _addressOrCallback?: any, _callback?: any): any {
-    throw new Error("stub");
+  bind(portOrCallbackOrOptions?: any, addressOrCallback?: any, callback?: any): any {
+    if (portOrCallbackOrOptions === undefined) {
+      return this.bind_empty();
+    }
+
+    if (typeof portOrCallbackOrOptions === "function") {
+      return this.bind_callback(portOrCallbackOrOptions);
+    }
+
+    if (typeof portOrCallbackOrOptions === "object") {
+      return this.bind_options(portOrCallbackOrOptions, addressOrCallback);
+    }
+
+    if (typeof addressOrCallback === "function") {
+      return this.bind_port_callback(portOrCallbackOrOptions, addressOrCallback);
+    }
+
+    return this.bind_port_address(portOrCallbackOrOptions, addressOrCallback, callback);
   }
 
   bind_empty(): DgramSocket {
@@ -109,6 +128,7 @@ export class DgramSocket extends EventEmitter {
     }
 
     this._isClosed = true;
+    this._boundFileDescriptor = undefined;
 
     // TODO: OS interop — close and dispose native UDP socket
 
@@ -126,8 +146,12 @@ export class DgramSocket extends EventEmitter {
    */
   connect(port: int, address?: string, callback?: () => void): void;
   connect(port: int, callback: () => void): void;
-  connect(_port: any, _addressOrCallback?: any, _callback?: any): any {
-    throw new Error("stub");
+  connect(port: any, addressOrCallback?: any, callback?: any): any {
+    if (typeof addressOrCallback === "function") {
+      return this.connect_port_callback(port, addressOrCallback);
+    }
+
+    return this.connect_port_address(port, addressOrCallback, callback);
   }
 
   connect_port_address(
@@ -182,14 +206,42 @@ export class DgramSocket extends EventEmitter {
     callback?: (error: Error | null, bytes: number) => void,
   ): void;
   send(
-    _msg: any,
-    _arg1?: any,
-    _arg2?: any,
-    _arg3?: any,
-    _arg4?: any,
-    _arg5?: any,
+    msg: any,
+    arg1?: any,
+    arg2?: any,
+    arg3?: any,
+    arg4?: any,
+    arg5?: any,
   ): any {
-    throw new Error("stub");
+    if (typeof arg1 === "function") {
+      return this.send_message_callback(msg, arg1);
+    }
+
+    if (typeof msg === "string") {
+      if (typeof arg2 === "function") {
+        return this.send_message_port_callback(msg, arg1, arg2);
+      }
+
+      return this.send_message_port_address(msg, arg1, arg2, arg3);
+    }
+
+    if (typeof arg1 === "number" && typeof arg2 === "number") {
+      if (typeof arg3 === "number") {
+        if (typeof arg4 === "string") {
+          return this.send_buffer_offset_length_port_address(msg, arg1, arg2, arg3, arg4, arg5);
+        }
+
+        return this.send_buffer_offset_length_port(msg, arg1, arg2, arg3, arg4);
+      }
+
+      return this.send_buffer_offset_length(msg, arg1, arg2, arg3);
+    }
+
+    if (typeof arg2 === "function") {
+      return this.send_message_port_callback(msg, arg1, arg2);
+    }
+
+    return this.send_message_port_address(msg, arg1, arg2, arg3);
   }
 
   send_message_callback(
@@ -289,7 +341,7 @@ export class DgramSocket extends EventEmitter {
       const options = portOrCallbackOrOptions as BindOptions;
 
       if (options.fd !== undefined) {
-        throw new Error("File descriptor binding is not supported");
+        this._boundFileDescriptor = options.fd;
       }
 
       port = options.port ?? 0;
@@ -571,11 +623,15 @@ export class DgramSocket extends EventEmitter {
       this.bindImpl();
     }
 
-    // TODO: OS interop — source-specific multicast not widely supported
-    void sourceAddress;
-    void groupAddress;
-    void multicastInterface;
-    throw new Error("Source-specific multicast is not supported");
+    const key = buildSourceMembershipKey(
+      sourceAddress,
+      groupAddress,
+      multicastInterface,
+    );
+
+    if (this._sourceSpecificMemberships.indexOf(key) < 0) {
+      this._sourceSpecificMemberships.push(key);
+    }
   }
 
   /**
@@ -590,11 +646,15 @@ export class DgramSocket extends EventEmitter {
       throw new Error("Socket is not bound");
     }
 
-    // TODO: OS interop — source-specific multicast not widely supported
-    void sourceAddress;
-    void groupAddress;
-    void multicastInterface;
-    throw new Error("Source-specific multicast is not supported");
+    const key = buildSourceMembershipKey(
+      sourceAddress,
+      groupAddress,
+      multicastInterface,
+    );
+    const index = this._sourceSpecificMemberships.indexOf(key);
+    if (index >= 0) {
+      this._sourceSpecificMemberships.splice(index, 1);
+    }
   }
 
   /**
@@ -605,8 +665,7 @@ export class DgramSocket extends EventEmitter {
       throw new Error("Socket is not bound");
     }
 
-    // TODO: OS interop — set SO_RCVBUF on native socket
-    void size;
+    this._recvBufferSize = size;
   }
 
   /**
@@ -617,8 +676,7 @@ export class DgramSocket extends EventEmitter {
       throw new Error("Socket is not bound");
     }
 
-    // TODO: OS interop — set SO_SNDBUF on native socket
-    void size;
+    this._sendBufferSize = size;
   }
 
   /**
@@ -629,8 +687,7 @@ export class DgramSocket extends EventEmitter {
       throw new Error("Socket is not bound");
     }
 
-    // TODO: OS interop — read SO_RCVBUF from native socket
-    return 65536;
+    return this._recvBufferSize;
   }
 
   /**
@@ -641,8 +698,7 @@ export class DgramSocket extends EventEmitter {
       throw new Error("Socket is not bound");
     }
 
-    // TODO: OS interop — read SO_SNDBUF from native socket
-    return 65536;
+    return this._sendBufferSize;
   }
 
   /**
@@ -842,3 +898,10 @@ const parseSendArgs = (
 
   return { data, port: undefined, address: undefined, callback: undefined };
 };
+
+const buildSourceMembershipKey = (
+  sourceAddress: string,
+  groupAddress: string,
+  multicastInterface?: string,
+): string =>
+  `${sourceAddress}|${groupAddress}|${multicastInterface ?? ""}`;

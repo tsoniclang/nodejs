@@ -1,7 +1,8 @@
+import type { int } from "@tsonic/core/types.js";
+
 /**
  * DNS option types.
  *
- * Baseline: nodejs-clr/src/nodejs/dns/Options.cs
  */
 
 /**
@@ -45,7 +46,7 @@ export class LookupAddress {
   public address: string = "";
 
   /** 4 or 6, denoting the family of address. */
-  public family: number = 0;
+  public family: int = 0 as int;
 }
 
 /**

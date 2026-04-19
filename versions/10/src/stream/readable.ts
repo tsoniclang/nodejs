@@ -1,7 +1,6 @@
 /**
  * A readable stream is an abstraction for a source from which data is read.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/Readable.cs
  */
 import type { int, JsValue } from "@tsonic/core/types.js";
 

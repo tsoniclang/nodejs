@@ -7,9 +7,6 @@ import {
   SecureContextOptions,
 } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/TLSServer.tests.cs
- */
 export class TLSServerTests {
   public TLSServer_Constructor_CreatesInstance(): void {
     const server = new TLSServer();

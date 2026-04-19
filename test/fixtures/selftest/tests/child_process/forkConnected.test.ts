@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/forkConnected.tests.cs
- */
 export class ChildProcessForkConnectedTests {
   public forkConnected_InitiallyTrue(): void {
     const modulePath = "/usr/bin/echo";

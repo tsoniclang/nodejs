@@ -1,7 +1,6 @@
 /**
  * net module — option types and data classes.
  *
- * Baseline: nodejs-clr/src/nodejs/net/Options.cs
  */
 import type { int } from "@tsonic/core/types.js";
 

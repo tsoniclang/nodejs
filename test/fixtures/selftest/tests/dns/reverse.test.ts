@@ -6,10 +6,16 @@ import * as dns from "@tsonic/nodejs/dns.js";
 export class ReverseTests {
   public reverse_ValidIPv4_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
+    let count = 0;
     dns.reverse("127.0.0.1", (err, hosts) => {
       called = true;
+      error = err;
+      count = hosts.length;
     });
     Assert.True(called);
+    Assert.Null(error);
+    Assert.True(count > 0);
   }
 
   public reverse_ValidIPv6_CallsCallback(): void {
@@ -22,10 +28,13 @@ export class ReverseTests {
 
   public reverse_InvalidIP_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
     dns.reverse("invalid-ip", (err, hosts) => {
       called = true;
+      error = err;
     });
     Assert.True(called);
+    Assert.NotNull(error);
   }
 }
 

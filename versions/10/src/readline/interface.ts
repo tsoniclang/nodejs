@@ -3,7 +3,6 @@
  * stream. Extends EventEmitter to emit events like 'line', 'close', 'pause',
  * 'resume', etc.
  *
- * Baseline: nodejs-clr/src/nodejs/readline/Interface.cs
  */
 import { EventEmitter } from "../events-module.ts";
 import type { int, JsValue } from "@tsonic/core/types.js";

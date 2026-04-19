@@ -7,9 +7,6 @@ import {
   TlsOptions,
 } from "@tsonic/nodejs/tls.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/tls/createServer.tests.cs
- */
 export class createServerTests {
   public createServer_NoArgs_ReturnsServer(): void {
     const server = createServer();

@@ -2,13 +2,12 @@
 
 Native Tsonic source-package implementation of Node.js APIs.
 
-Current native slice:
+This package is the canonical first-party source implementation for the Node-style surface in Tsonic.
 
-- `path`
-- `events`
-- `process`
+Key points:
 
-The checked-in selftest suites for that slice match the baseline `nodejs-clr`
-runtime tests at both file and fact-count granularity.
+- Node imports such as `node:fs`, `node:path`, `node:crypto`, and `node:http` resolve through this package.
+- Runtime behavior is authored here in TypeScript source under `src/`, not in a separate CLR mirror package.
+- The old CLR split is retired architecture; it is no longer part of the active build or publish path.
 
-This package is authored as a first-party Tsonic source package and is intended to replace the current generated package over time.
+Validation lives in the checked-in selftest suites under `test/fixtures/selftest`.

@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/killWithSignal.tests.cs
- */
 export class ChildProcessKillWithSignalTests {
   public killWithSignal_SetsSignalCode(): void {
     const child = child_process.spawn("sleep", ["10"]);

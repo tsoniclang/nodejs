@@ -1,11 +1,12 @@
 /**
  * DNS Resolver class.
  *
- * Baseline: nodejs-clr/src/nodejs/dns/Resolver.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
+import * as dns from "./index.ts";
 import type { ResolverOptions, ResolveOptions } from "./options.ts";
 import {
+  RecordWithTtl,
   SoaRecord,
   type CaaRecord,
   type MxRecord,
@@ -21,6 +22,8 @@ import {
 export class Resolver {
   private _options: ResolverOptions | null;
   private _cancelled: boolean = false;
+  private _localIpv4: string | null = null;
+  private _localIpv6: string | null = null;
 
   constructor(options: ResolverOptions | null = null) {
     this._options = options;
@@ -33,18 +36,18 @@ export class Resolver {
 
   /** Returns an array of IP address strings currently configured for DNS resolution. */
   public getServers(): Array<string> {
-    // TODO: delegate to dns.getServers()
-    return [];
+    return dns.getServers();
   }
 
   /** Sets the IP address and port of servers to be used when performing DNS resolution. */
   public setServers(servers: Array<string>): void {
-    // TODO: delegate to dns.setServers()
+    dns.setServers(servers);
   }
 
   /** The resolver instance will send its requests from the specified IP address. */
   public setLocalAddress(ipv4: string | null = null, ipv6: string | null = null): void {
-    // TODO: stub -- .NET doesn't support setting local address for DNS queries
+    this._localIpv4 = ipv4;
+    this._localIpv6 = ipv6;
   }
 
   /** Uses the DNS protocol to resolve a host name. */
@@ -53,8 +56,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolve()
-    callback(null, []);
+    dns.resolve(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve IPv4 addresses (A records). */
@@ -63,18 +65,20 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolve4()
-    callback(null, []);
+    dns.resolve4(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve IPv4 addresses with options. */
-  public resolve4WithOptions(hostname: string, options: ResolveOptions, callback: (err: Error | null, result: object) => void): void {
+  public resolve4WithOptions(
+    hostname: string,
+    options: ResolveOptions,
+    callback: (err: Error | null, result: Array<RecordWithTtl> | Array<string>) => void,
+  ): void {
     if (this._cancelled) {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolve4() with options
-    callback(null, []);
+    dns.resolve4WithOptions(hostname, options, callback);
   }
 
   /** Uses the DNS protocol to resolve IPv6 addresses (AAAA records). */
@@ -83,18 +87,20 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolve6()
-    callback(null, []);
+    dns.resolve6(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve IPv6 addresses with options. */
-  public resolve6WithOptions(hostname: string, options: ResolveOptions, callback: (err: Error | null, result: JsValue) => void): void {
+  public resolve6WithOptions(
+    hostname: string,
+    options: ResolveOptions,
+    callback: (err: Error | null, result: Array<RecordWithTtl> | Array<string>) => void,
+  ): void {
     if (this._cancelled) {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolve6() with options
-    callback(null, []);
+    dns.resolve6WithOptions(hostname, options, callback);
   }
 
   /** Uses the DNS protocol to resolve all records (ANY query). */
@@ -103,8 +109,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveAny()
-    callback(null, []);
+    dns.resolveAny(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve CAA records. */
@@ -113,8 +118,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveCaa()
-    callback(null, []);
+    dns.resolveCaa(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve CNAME records. */
@@ -123,8 +127,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveCname()
-    callback(null, []);
+    dns.resolveCname(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve MX records. */
@@ -133,8 +136,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveMx()
-    callback(null, []);
+    dns.resolveMx(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve NAPTR records. */
@@ -143,8 +145,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveNaptr()
-    callback(null, []);
+    dns.resolveNaptr(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve NS records. */
@@ -153,8 +154,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveNs()
-    callback(null, []);
+    dns.resolveNs(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve PTR records. */
@@ -163,8 +163,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolvePtr()
-    callback(null, []);
+    dns.resolvePtr(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve SOA record. */
@@ -173,7 +172,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), new SoaRecord());
       return;
     }
-    // TODO: delegate to dns.resolveSoa()
+    dns.resolveSoa(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve SRV records. */
@@ -182,8 +181,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveSrv()
-    callback(null, []);
+    dns.resolveSrv(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve TLSA records. */
@@ -192,8 +190,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveTlsa()
-    callback(null, []);
+    dns.resolveTlsa(hostname, callback);
   }
 
   /** Uses the DNS protocol to resolve TXT records. */
@@ -202,8 +199,7 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.resolveTxt()
-    callback(null, []);
+    dns.resolveTxt(hostname, callback);
   }
 
   /** Performs a reverse DNS query. */
@@ -212,7 +208,6 @@ export class Resolver {
       callback(new Error("ECANCELLED"), []);
       return;
     }
-    // TODO: delegate to dns.reverse()
-    callback(null, []);
+    dns.reverse(ip, callback);
   }
 }

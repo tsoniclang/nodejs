@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packages", "packages", "{809F86A1-1C4C-B159-0CD4-DF9D33D876CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nodejs", "nodejs", "{5A52B53F-31B3-FF31-D2C2-B6C48A2FD04B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generated", "generated", "{9ACC2573-9630-A097-A2C2-700FBD55F2EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tsonic", "packages\nodejs\generated\tsonic.csproj", "{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A52B53F-31B3-FF31-D2C2-B6C48A2FD04B} = {809F86A1-1C4C-B159-0CD4-DF9D33D876CE}
+		{9ACC2573-9630-A097-A2C2-700FBD55F2EA} = {5A52B53F-31B3-FF31-D2C2-B6C48A2FD04B}
+		{C02D4D4F-E0A9-1A28-12DD-1BCC74B5401E} = {9ACC2573-9630-A097-A2C2-700FBD55F2EA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A7F6E36-F2C7-471E-8A72-B06C5F21272E}
+	EndGlobalSection
+EndGlobal

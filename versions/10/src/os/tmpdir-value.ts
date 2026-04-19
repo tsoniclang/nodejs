@@ -1,7 +1,6 @@
 /**
  * os.tmpdir — returns the OS default temporary directory.
  *
- * Baseline: nodejs-clr/src/nodejs/os/tmpdir.cs
  */
 import { Convert } from "@tsonic/dotnet/System.js";
 import { Path } from "@tsonic/dotnet/System.IO.js";

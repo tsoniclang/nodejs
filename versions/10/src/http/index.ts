@@ -1,7 +1,6 @@
 /**
  * Node.js http module — HTTP server and client utilities.
  *
- * Baseline: nodejs-clr/src/nodejs/http/http.cs
  */
 
 import type {} from "../type-bootstrap.ts";
@@ -12,6 +11,7 @@ import type { IncomingMessage as IncomingMessageType } from "./incoming-message.
 import type { RequestOptions as RequestOptionsType } from "./request-options.ts";
 import type { Server as ServerType } from "./server.ts";
 import type { ServerResponse as ServerResponseType } from "./server-response.ts";
+import { URL } from "../url/url.ts";
 
 export { ClientRequest } from "./client-request.ts";
 export { IncomingMessage } from "./incoming-message.ts";
@@ -22,6 +22,16 @@ export { ServerResponse } from "./server-response.ts";
 import { ClientRequest } from "./client-request.ts";
 import { RequestOptions } from "./request-options.ts";
 import { Server } from "./server.ts";
+
+const normalizePortNumber = (value: number): int => {
+  if (Number.isInteger(value) && value >= -2147483648 && value <= 2147483647) {
+    return value as int;
+  }
+
+  throw new RangeError(
+    `port must be an Int32-compatible integer. Received ${String(value)}`
+  );
+};
 
 /**
  * Maximum allowed size of HTTP headers in bytes.
@@ -63,9 +73,18 @@ export const requestFromUrl = (
   url: string,
   callback?: ((res: IncomingMessageType) => void) | null
 ): ClientRequestType => {
-  // TODO: Parse the URL properly (requires URL class integration)
+  const parsed = new URL(url);
   const options = new RequestOptions();
-  options.path = url;
+  options.protocol = parsed.protocol;
+  options.hostname = parsed.hostname;
+  options.path = `${parsed.pathname}${parsed.search}`;
+  options.auth =
+    parsed.username.length > 0
+      ? `${parsed.username}:${parsed.password}`
+      : null;
+  if (parsed.port.length > 0) {
+    options.port = normalizePortNumber(parseInt(parsed.port, 10));
+  }
   options.method = "GET";
   return new ClientRequest(options, callback);
 };

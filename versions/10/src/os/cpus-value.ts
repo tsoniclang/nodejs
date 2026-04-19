@@ -1,7 +1,6 @@
 /**
  * os.cpus — returns per-core CPU information.
  *
- * Baseline: nodejs-clr/src/nodejs/os/cpus.cs
  */
 import { Environment } from "@tsonic/dotnet/System.js";
 

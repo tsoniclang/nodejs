@@ -5,9 +5,6 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/ExecOptions.tests.cs
- */
 export class ChildProcessExecOptionsTests {
   public ExecOptions_WithEnvVariables_PassesEnvironment(): void {
     const command = "echo $TEST_VAR";

@@ -1,7 +1,6 @@
 /**
  * Node.js dgram module — UDP datagram sockets.
  *
- * Baseline: nodejs-clr/src/nodejs/dgram/dgram.cs
  */
 
 import type {} from "../type-bootstrap.ts";

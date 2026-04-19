@@ -58,8 +58,8 @@
     "url": "https://github.com/tsoniclang/nodejs.git"
   },
   "peerDependencies": {
-    "@tsonic/core": "10.0.40",
-    "@tsonic/dotnet": "10.0.40",
+    "@tsonic/core": "10.0.41",
+    "@tsonic/dotnet": "10.0.41",
     "@tsonic/js": "10.0.49"
   }
 }

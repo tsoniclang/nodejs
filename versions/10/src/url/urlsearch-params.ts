@@ -1,7 +1,6 @@
 /**
  * URLSearchParams — read/write access to the query of a URL.
  *
- * Baseline: nodejs-clr/src/nodejs/url/URLSearchParams.cs
  */
 
 type SearchParamEntry = {

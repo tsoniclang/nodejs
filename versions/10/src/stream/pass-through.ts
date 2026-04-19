@@ -2,7 +2,6 @@
  * PassThrough streams are a trivial implementation of a Transform stream that
  * simply passes the input bytes across to the output.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/PassThrough.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { Transform } from "./transform.ts";

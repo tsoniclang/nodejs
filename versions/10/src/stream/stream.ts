@@ -2,7 +2,6 @@
  * Base class for all streams. A stream is an abstract interface for working
  * with streaming data.
  *
- * Baseline: nodejs-clr/src/nodejs/stream/Stream.cs
  */
 import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";

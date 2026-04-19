@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/disconnectEvent.tests.cs
- */
 export class ChildProcessDisconnectEventTests {
   public disconnectEvent_CanBeEmitted(): void {
     const child = child_process.spawn("echo", ["test"]);

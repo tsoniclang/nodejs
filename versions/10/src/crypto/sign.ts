@@ -1,7 +1,6 @@
 /**
  * Node.js crypto Sign class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/Sign.cs
  */
 import { overloads as O } from "@tsonic/core/lang.js";
 import {
@@ -45,8 +44,12 @@ export class Sign {
    */
   public update(data: string, inputEncoding?: string): Sign;
   public update(data: Uint8Array): Sign;
-  public update(_data: any, _inputEncoding?: any): any {
-    throw new Error("stub");
+  public update(data: any, inputEncoding?: any): any {
+    if (typeof data === "string") {
+      return this.update_string(data, inputEncoding);
+    }
+
+    return this.update_bytes(data);
   }
 
   public update_string(data: string, inputEncoding?: string): Sign {
@@ -69,8 +72,16 @@ export class Sign {
    */
   public sign(privateKey: KeyObject, outputEncoding: string): string;
   public sign(privateKey: KeyObject): Uint8Array;
-  public sign(_privateKey: any, _outputEncoding?: any): any {
-    throw new Error("stub");
+  public sign(privateKey: any, outputEncoding?: any): any {
+    if (typeof privateKey === "string") {
+      return typeof outputEncoding === "string"
+        ? this.sign_string_string(privateKey, outputEncoding)
+        : this.sign_string_bytes(privateKey);
+    }
+
+    return typeof outputEncoding === "string"
+      ? this.sign_key_string(privateKey, outputEncoding)
+      : this.sign_key_bytes(privateKey);
   }
 
   public sign_string_string(privateKey: string, outputEncoding: string): string {

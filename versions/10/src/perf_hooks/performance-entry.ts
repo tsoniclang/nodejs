@@ -1,7 +1,6 @@
 /**
  * Performance entry classes for the perf_hooks module.
  *
- * Baseline: nodejs-clr/src/nodejs/perf_hooks/PerformanceEntry.cs
  */
 
 import type { JsValue } from "@tsonic/core/types.js";

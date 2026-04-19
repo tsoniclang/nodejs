@@ -1,7 +1,6 @@
 /**
  * Node.js crypto KeyObject types.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/KeyObject.cs
  */
 import type { int, out, JsValue } from "@tsonic/core/types.js";
 import {
@@ -125,7 +124,7 @@ export class PublicKeyObject extends KeyObject {
     return "public";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 
@@ -187,7 +186,7 @@ export class PrivateKeyObject extends KeyObject {
     return "private";
   }
 
-  public get asymmetricKeyType(): string {
+  public get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 

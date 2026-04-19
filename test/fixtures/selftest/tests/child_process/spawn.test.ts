@@ -5,9 +5,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/spawn.tests.cs
- */
 export class ChildProcessSpawnTests {
   public spawn_SimpleCommand_ReturnsChildProcess(): void {
     const command = "echo";

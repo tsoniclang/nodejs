@@ -1,7 +1,6 @@
 /**
  * Node.js crypto module.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/crypto.cs
  */
 
 import type {} from "../type-bootstrap.ts";

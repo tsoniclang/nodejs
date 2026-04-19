@@ -1,7 +1,6 @@
 /**
  * Node.js crypto Verify class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/Verify.cs
  */
 import { overloads as O } from "@tsonic/core/lang.js";
 import {
@@ -43,8 +42,12 @@ export class Verify {
    */
   public update(data: string, inputEncoding?: string): Verify;
   public update(data: Uint8Array): Verify;
-  public update(_data: any, _inputEncoding?: any): any {
-    throw new Error("stub");
+  public update(data: any, inputEncoding?: any): any {
+    if (typeof data === "string") {
+      return this.update_string(data, inputEncoding);
+    }
+
+    return this.update_bytes(data);
   }
 
   public update_string(data: string, inputEncoding?: string): Verify {
@@ -67,8 +70,16 @@ export class Verify {
    */
   public verify(publicKey: KeyObject, signature: string, signatureEncoding?: string): boolean;
   public verify(publicKey: KeyObject, signature: Uint8Array): boolean;
-  public verify(_publicKey: any, _signature: any, _signatureEncoding?: any): any {
-    throw new Error("stub");
+  public verify(publicKey: any, signature: any, signatureEncoding?: any): any {
+    if (typeof publicKey === "string") {
+      return typeof signature === "string"
+        ? this.verify_string_string(publicKey, signature, signatureEncoding)
+        : this.verify_string_bytes(publicKey, signature);
+    }
+
+    return typeof signature === "string"
+      ? this.verify_key_string(publicKey, signature, signatureEncoding)
+      : this.verify_key_bytes(publicKey, signature);
   }
 
   public verify_string_string(

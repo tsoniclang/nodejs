@@ -1,6 +1,4 @@
 /**
- * Port of nodejs-clr/tests/nodejs.Tests/http/JsSurfaceContract.tests.cs
- *
  * Validates that integer-backed members and method signatures compile
  * against exact numeric contracts.
  */

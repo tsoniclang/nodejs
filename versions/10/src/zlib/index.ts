@@ -1,7 +1,6 @@
 /**
  * Node.js zlib module.
  *
- * Baseline: nodejs-clr/src/nodejs/zlib/
  */
 
 import type {} from "../type-bootstrap.ts";

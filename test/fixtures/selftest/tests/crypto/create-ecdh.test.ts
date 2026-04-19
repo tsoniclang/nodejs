@@ -78,15 +78,13 @@ export class CreateECDHTests {
     Assert.Equal(aliceShared, bobShared);
   }
 
-  public createECDH_set_public_key_throws_not_supported(): void {
+  public createECDH_set_public_key_round_trips(): void {
     const ecdh = createECDH("secp256r1");
-    let threw = false;
-    try {
-      ecdh.setPublicKey(new Uint8Array(65));
-    } catch {
-      threw = true;
-    }
-    Assert.True(threw);
+    const publicKey = new Uint8Array(65);
+    publicKey[0] = 4;
+    publicKey[64] = 1;
+    ecdh.setPublicKey(publicKey);
+    Assert.Equal(publicKey, ecdh.getPublicKey());
   }
 
   public createECDH_set_private_key_works(): void {
@@ -110,5 +108,5 @@ A<CreateECDHTests>().method((t) => t.createECDH_secp384r1_curve).add(FactAttribu
 A<CreateECDHTests>().method((t) => t.createECDH_secp521r1_curve).add(FactAttribute);
 A<CreateECDHTests>().method((t) => t.createECDH_secp256k1_curve).add(FactAttribute);
 A<CreateECDHTests>().method((t) => t.createECDH_secp256k1_shared_secret).add(FactAttribute);
-A<CreateECDHTests>().method((t) => t.createECDH_set_public_key_throws_not_supported).add(FactAttribute);
+A<CreateECDHTests>().method((t) => t.createECDH_set_public_key_round_trips).add(FactAttribute);
 A<CreateECDHTests>().method((t) => t.createECDH_set_private_key_works).add(FactAttribute);

@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/stderr.tests.cs
- */
 export class ChildProcessStderrTests {
   public stderr_StderrProperty_IsAccessible(): void {
     const command = "echo";

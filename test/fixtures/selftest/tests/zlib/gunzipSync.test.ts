@@ -6,7 +6,6 @@ import { gunzipSync, gzipSync } from "@tsonic/nodejs/zlib.js";
 import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
 
 /**
- * Baseline: nodejs-clr/tests/nodejs.Tests/zlib/gunzipSync.tests.cs
  *
  * NOTE: gunzipSync and gzipSync are placeholders pending native zlib bindings.
  * These tests will pass once the native implementation is provided.

@@ -1,7 +1,6 @@
 /**
  * Return type for spawnSync and related synchronous child process methods.
  *
- * Baseline: nodejs-clr/src/nodejs/child_process/SpawnSyncReturns.cs
  */
 
 /**

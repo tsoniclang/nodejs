@@ -2,7 +2,6 @@
  * Node.js http.IncomingMessage — represents an incoming HTTP request (server-side)
  * or response (client-side).
  *
- * Baseline: nodejs-clr/src/nodejs/http/IncomingMessage.cs
  *
  * This class requires OS network substrate for the actual readable-stream body.
  * Class shape and method signatures are ported; body-streaming internals are

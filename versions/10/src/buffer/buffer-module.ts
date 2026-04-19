@@ -2,7 +2,6 @@
  * Buffer module-level helpers: constants, atob/btoa, isAscii, isUtf8,
  * transcode, SlowBuffer, etc.
  *
- * Baseline: nodejs-clr/src/nodejs/buffer/module.cs
  */
 
 import { Buffer } from "./buffer.ts";

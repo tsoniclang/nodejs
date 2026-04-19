@@ -127,6 +127,29 @@ export class CreateCipherivTests {
     }
     Assert.True(threw);
   }
+
+  public createCipheriv_aes256gcm_round_trip(): void {
+    const key = randomBytes(32 as int);
+    const iv = randomBytes(12 as int);
+    const aad = new Uint8Array([97, 97, 100]);
+    const plaintext = "hello gcm";
+
+    const cipher = createCipheriv("aes-256-gcm", key, iv);
+    cipher.setAAD(aad);
+    const encrypted = cipher.update(plaintext, "utf8", "hex");
+    const encryptedFinal = encrypted + cipher.final("hex");
+    const authTag = cipher.getAuthTag();
+
+    Assert.Equal(16, authTag.length);
+
+    const decipher = createDecipheriv("aes-256-gcm", key, iv);
+    decipher.setAAD(aad);
+    decipher.setAuthTag(authTag);
+    const decrypted = decipher.update(encryptedFinal, "hex", "utf8");
+    const decryptedFinal = decrypted + decipher.final("utf8");
+
+    Assert.Equal(plaintext, decryptedFinal);
+  }
 }
 
 A<CreateCipherivTests>().method((t) => t.createCipheriv_decipher_aes256_round_trip).add(FactAttribute);
@@ -139,3 +162,4 @@ A<CreateCipherivTests>().method((t) => t.createCipheriv_string_key_and_iv).add(F
 A<CreateCipherivTests>().method((t) => t.createCipheriv_update_after_final_throws).add(FactAttribute);
 A<CreateCipherivTests>().method((t) => t.createCipheriv_get_auth_tag_throws_not_implemented).add(FactAttribute);
 A<CreateCipherivTests>().method((t) => t.createCipheriv_set_aad_throws_not_implemented).add(FactAttribute);
+A<CreateCipherivTests>().method((t) => t.createCipheriv_aes256gcm_round_trip).add(FactAttribute);

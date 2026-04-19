@@ -1,7 +1,6 @@
 /**
  * Node.js perf_hooks module — performance measurement APIs.
  *
- * Baseline: nodejs-clr/src/nodejs/perf_hooks/
  */
 
 import type {} from "../type-bootstrap.ts";

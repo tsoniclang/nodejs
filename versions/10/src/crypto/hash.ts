@@ -9,7 +9,6 @@ import {
 /**
  * Node.js crypto Hash class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/Hash.cs
  */
 
 /**
@@ -29,8 +28,12 @@ export class Hash {
    */
   public update(data: string, inputEncoding?: string): Hash;
   public update(data: Uint8Array): Hash;
-  public update(_data: any, _inputEncoding?: any): any {
-    throw new Error("stub");
+  public update(data: any, inputEncoding?: any): any {
+    if (typeof data === "string") {
+      return this.update_string(data, inputEncoding);
+    }
+
+    return this.update_bytes(data);
   }
 
   public update_string(data: string, inputEncoding?: string): Hash {
@@ -49,8 +52,16 @@ export class Hash {
   public digest(encoding: string): string;
   public digest(): Uint8Array;
   public digest(outputLength: number): Uint8Array;
-  public digest(_encodingOrLength?: any): any {
-    throw new Error("stub");
+  public digest(encodingOrLength?: any): any {
+    if (typeof encodingOrLength === "string") {
+      return this.digest_encoding(encodingOrLength);
+    }
+
+    if (typeof encodingOrLength === "number") {
+      return this.digest_length(encodingOrLength);
+    }
+
+    return this.digest_bytes();
   }
 
   public digest_encoding(encoding: string): string {

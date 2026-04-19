@@ -6,27 +6,38 @@ import * as dns from "@tsonic/nodejs/dns.js";
 export class LookupServiceTests {
   public lookupService_ValidIPAndPort_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
+    let service = "";
     dns.lookupService("127.0.0.1", 22, (err, host, svc) => {
       called = true;
+      error = err;
+      service = svc;
     });
-    // TODO: callback is synchronous in stub; real implementation will be async
     Assert.True(called);
+    Assert.Null(error);
+    Assert.Equal("ssh", service);
   }
 
   public lookupService_InvalidIP_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
     dns.lookupService("invalid-ip", 22, (err, host, svc) => {
       called = true;
+      error = err;
     });
     Assert.True(called);
+    Assert.NotNull(error);
   }
 
   public lookupService_InvalidPort_CallsCallback(): void {
     let called = false;
+    let error: Error | null = null;
     dns.lookupService("127.0.0.1", 99999, (err, host, svc) => {
       called = true;
+      error = err;
     });
     Assert.True(called);
+    Assert.NotNull(error);
   }
 }
 

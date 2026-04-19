@@ -465,8 +465,16 @@ export function mkdirSync(
   path: string,
   options: MkdirOptions
 ): void;
-export function mkdirSync(_path: any, _options?: any): any {
-  throw new Error("stub");
+export function mkdirSync(path: any, options?: any): any {
+  if (options === undefined) {
+    return mkdirSync_path(path);
+  }
+
+  if (typeof options === "boolean") {
+    return mkdirSync_recursive(path, options);
+  }
+
+  return mkdirSync_options(path, options);
 }
 
 function mkdirSync_path(path: string): void {
@@ -490,8 +498,16 @@ export function mkdir(
   path: string,
   options: MkdirOptions
 ): Promise<void>;
-export async function mkdir(_path: any, _options?: any): Promise<any> {
-  throw new Error("stub");
+export async function mkdir(path: any, options?: any): Promise<any> {
+  if (options === undefined) {
+    return mkdir_path(path);
+  }
+
+  if (typeof options === "boolean") {
+    return mkdir_recursive(path, options);
+  }
+
+  return mkdir_options(path, options);
 }
 
 async function mkdir_path(path: string): Promise<void> {
@@ -710,13 +726,17 @@ export function writeSync(
   encoding?: string
 ): int;
 export function writeSync(
-  _fd: any,
-  _bufferOrData: any,
-  _offsetOrPosition?: any,
-  _lengthOrEncoding?: any,
-  _position?: any
+  fd: any,
+  bufferOrData: any,
+  offsetOrPosition?: any,
+  lengthOrEncoding?: any,
+  position?: any
 ): any {
-  throw new Error("stub");
+  if (typeof bufferOrData === "string") {
+    return writeSync_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
+  }
+
+  return writeSync_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
 }
 
 function writeSync_buffer(
@@ -771,13 +791,17 @@ export function write(
   encoding?: string
 ): Promise<int>;
 export async function write(
-  _fd: any,
-  _bufferOrData: any,
-  _offsetOrPosition?: any,
-  _lengthOrEncoding?: any,
-  _position?: any
+  fd: any,
+  bufferOrData: any,
+  offsetOrPosition?: any,
+  lengthOrEncoding?: any,
+  position?: any
 ): Promise<any> {
-  throw new Error("stub");
+  if (typeof bufferOrData === "string") {
+    return write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
+  }
+
+  return write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
 }
 
 async function write_buffer(
@@ -801,8 +825,12 @@ async function write_text(
 
 export function readFileSync(path: string): Buffer;
 export function readFileSync(path: string, encoding: string): string;
-export function readFileSync(_path: any, _encoding?: any): any {
-  throw new Error("stub");
+export function readFileSync(path: any, encoding?: any): any {
+  if (typeof encoding === "string") {
+    return readFileSync_text(path, encoding);
+  }
+
+  return readFileSync_buffer(path);
 }
 
 function readFileSync_buffer(path: string): Buffer {
@@ -818,8 +846,12 @@ export const readFileSyncBytes = (path: string): byte[] =>
 
 export function readFile(path: string): Promise<Buffer>;
 export function readFile(path: string, encoding: string): Promise<string>;
-export async function readFile(_path: any, _encoding?: any): Promise<any> {
-  throw new Error("stub");
+export async function readFile(path: any, encoding?: any): Promise<any> {
+  if (typeof encoding === "string") {
+    return readFile_text(path, encoding);
+  }
+
+  return readFile_buffer(path);
 }
 
 async function readFile_buffer(path: string): Promise<Buffer> {
@@ -999,8 +1031,16 @@ export class FsPromises {
     path: string,
     options: MkdirOptions
   ): Promise<void>;
-  public mkdir(_path: any, _options?: any): any {
-    throw new Error("stub");
+  public mkdir(path: any, options?: any): any {
+    if (options === undefined) {
+      return this.mkdir_path(path);
+    }
+
+    if (typeof options === "boolean") {
+      return this.mkdir_recursive(path, options);
+    }
+
+    return this.mkdir_options(path, options);
   }
 
   public mkdir_path(path: string): Promise<void> {
@@ -1034,8 +1074,12 @@ export class FsPromises {
 
   public readFile(path: string): Promise<Buffer>;
   public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(_path: any, _encoding?: any): any {
-    throw new Error("stub");
+  public readFile(path: any, encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.readFile_text(path, encoding);
+    }
+
+    return this.readFile_buffer(path);
   }
 
   public readFile_buffer(path: string): Promise<Buffer> {
@@ -1116,13 +1160,17 @@ export class FsPromises {
     encoding?: string
   ): Promise<int>;
   public write(
-    _fd: any,
-    _bufferOrData: any,
-    _offsetOrPosition?: any,
-    _lengthOrEncoding?: any,
-    _position?: any
+    fd: any,
+    bufferOrData: any,
+    offsetOrPosition?: any,
+    lengthOrEncoding?: any,
+    position?: any
   ): Promise<any> {
-    throw new Error("stub");
+    if (typeof bufferOrData === "string") {
+      return this.write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
+    }
+
+    return this.write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
   }
 
   public write_buffer(
@@ -1234,8 +1282,16 @@ export class FsModuleNamespace {
     path: string,
     options: MkdirOptions
   ): Promise<void>;
-  public mkdir(_path: any, _options?: any): any {
-    throw new Error("stub");
+  public mkdir(path: any, options?: any): any {
+    if (options === undefined) {
+      return this.mkdir_path(path);
+    }
+
+    if (typeof options === "boolean") {
+      return this.mkdir_recursive(path, options);
+    }
+
+    return this.mkdir_options(path, options);
   }
 
   public mkdir_path(path: string): Promise<void> {
@@ -1259,8 +1315,16 @@ export class FsModuleNamespace {
     path: string,
     options: MkdirOptions
   ): void;
-  public mkdirSync(_path: any, _options?: any): any {
-    throw new Error("stub");
+  public mkdirSync(path: any, options?: any): any {
+    if (options === undefined) {
+      return this.mkdirSync_path(path);
+    }
+
+    if (typeof options === "boolean") {
+      return this.mkdirSync_recursive(path, options);
+    }
+
+    return this.mkdirSync_options(path, options);
   }
 
   public mkdirSync_path(path: string): void {
@@ -1308,8 +1372,12 @@ export class FsModuleNamespace {
 
   public readFile(path: string): Promise<Buffer>;
   public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(_path: any, _encoding?: any): any {
-    throw new Error("stub");
+  public readFile(path: any, encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.readFile_text(path, encoding);
+    }
+
+    return this.readFile_buffer(path);
   }
 
   public readFile_buffer(path: string): Promise<Buffer> {
@@ -1326,8 +1394,12 @@ export class FsModuleNamespace {
 
   public readFileSync(path: string): Buffer;
   public readFileSync(path: string, encoding: string): string;
-  public readFileSync(_path: any, _encoding?: any): any {
-    throw new Error("stub");
+  public readFileSync(path: any, encoding?: any): any {
+    if (typeof encoding === "string") {
+      return this.readFileSync_text(path, encoding);
+    }
+
+    return this.readFileSync_buffer(path);
   }
 
   public readFileSync_buffer(path: string): Buffer {
@@ -1448,13 +1520,17 @@ export class FsModuleNamespace {
     encoding?: string
   ): Promise<int>;
   public write(
-    _fd: any,
-    _bufferOrData: any,
-    _offsetOrPosition?: any,
-    _lengthOrEncoding?: any,
-    _position?: any
+    fd: any,
+    bufferOrData: any,
+    offsetOrPosition?: any,
+    lengthOrEncoding?: any,
+    position?: any
   ): Promise<any> {
-    throw new Error("stub");
+    if (typeof bufferOrData === "string") {
+      return this.write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
+    }
+
+    return this.write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
   }
 
   public write_buffer(
@@ -1490,13 +1566,17 @@ export class FsModuleNamespace {
     encoding?: string
   ): int;
   public writeSync(
-    _fd: any,
-    _bufferOrData: any,
-    _offsetOrPosition?: any,
-    _lengthOrEncoding?: any,
-    _position?: any
+    fd: any,
+    bufferOrData: any,
+    offsetOrPosition?: any,
+    lengthOrEncoding?: any,
+    position?: any
   ): any {
-    throw new Error("stub");
+    if (typeof bufferOrData === "string") {
+      return this.writeSync_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
+    }
+
+    return this.writeSync_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
   }
 
   public writeSync_buffer(

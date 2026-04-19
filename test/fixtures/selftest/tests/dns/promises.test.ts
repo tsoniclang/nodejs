@@ -13,6 +13,11 @@ export class DnsPromisesTests {
     const result = dns.promises.resolve("localhost");
     Assert.NotNull(result);
   }
+
+  public async promises_resolveSoa_ReturnsRecord(): Promise<void> {
+    const result = await dns.promises.resolveSoa("localhost");
+    Assert.Equal("localhost", result.nsname);
+  }
 }
 
 A<DnsPromisesTests>()
@@ -20,4 +25,7 @@ A<DnsPromisesTests>()
   .add(FactAttribute);
 A<DnsPromisesTests>()
   .method((t) => t.promises_resolve_ReturnsPromise)
+  .add(FactAttribute);
+A<DnsPromisesTests>()
+  .method((t) => t.promises_resolveSoa_ReturnsRecord)
   .add(FactAttribute);

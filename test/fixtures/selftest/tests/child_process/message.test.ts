@@ -4,9 +4,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/message.tests.cs
- */
 export class ChildProcessMessageTests {
   public message_MessageEvent_CanBeAttached(): void {
     const command = "echo";

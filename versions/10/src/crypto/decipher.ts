@@ -4,12 +4,12 @@ import {
   decodeInputBytes,
   encodeOutputBytes,
   transformAes,
+  transformAesGcmDecrypt,
 } from "./crypto-helpers.ts";
 
 /**
  * Node.js crypto Decipher class.
  *
- * Baseline: nodejs-clr/src/nodejs/crypto/Decipher.cs
  */
 
 /**
@@ -37,8 +37,12 @@ export class Decipher {
    */
   public update(data: string, inputEncoding?: string, outputEncoding?: string): string;
   public update(data: Uint8Array, outputEncoding?: string): string;
-  public update(_data: any, _inputOrOutputEncoding?: any, _outputEncoding?: any): any {
-    throw new Error("stub");
+  public update(data: any, inputOrOutputEncoding?: any, outputEncoding?: any): any {
+    if (typeof data === "string") {
+      return this.update_string(data, inputOrOutputEncoding, outputEncoding);
+    }
+
+    return this.update_bytes(data, inputOrOutputEncoding);
   }
 
   public update_string(
@@ -60,8 +64,12 @@ export class Decipher {
    */
   public final(outputEncoding: string): string;
   public final(): Uint8Array;
-  public final(_outputEncoding?: any): any {
-    throw new Error("stub");
+  public final(outputEncoding?: any): any {
+    if (typeof outputEncoding === "string") {
+      return this.final_string(outputEncoding);
+    }
+
+    return this.final_bytes();
   }
 
   public final_string(outputEncoding: string): string {
@@ -118,6 +126,25 @@ export class Decipher {
     }
 
     this._finalized = true;
+    if (this._isGcmMode) {
+      if (this._iv === null) {
+        throw new Error(`Invalid IV for ${this._algorithm}`);
+      }
+      if (this._gcmTag === null) {
+        throw new Error("Must call setAuthTag() before final() for GCM modes");
+      }
+      return transformAesGcmDecrypt(
+        this._algorithm,
+        this._key,
+        this._iv,
+        concatBytes(...this._chunks),
+        this._gcmTag,
+        {
+          aad: this._gcmAad,
+        },
+      );
+    }
+
     return transformAes(
       this._algorithm,
       this._key,

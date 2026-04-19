@@ -1,7 +1,6 @@
 /**
  * SecureContext — holds TLS configuration (certificates, protocol versions).
  *
- * Baseline: nodejs-clr/src/nodejs/tls/SecureContext.cs
  *
  * The CLR implementation wraps System.Security.Cryptography.X509Certificates
  * and SslProtocols. In the native port these are substrate-dependent, so all

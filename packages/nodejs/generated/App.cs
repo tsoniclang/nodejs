@@ -1,8 +1,6 @@
 // Generated from: App.ts
-// Generated at: 2026-04-01T01:21:27.281Z
+// Generated at: 2026-04-08T15:26:46.739Z
 // WARNING: Do not modify this file manually
-
-using Tsonic.JSRuntime;
 
 namespace MyApp
 {
@@ -11,8 +9,8 @@ namespace MyApp
     {
         public static void main()
         {
-            var message = "  Hello from Tsonic JS surface!  ".trim();
-            global::Tsonic.JSRuntime.console.log(message);
+            var message = global::js.String.trim("  Hello from Tsonic JS surface!  ");
+            global::js.ConsoleModule.log(message);
         }
     }
 }

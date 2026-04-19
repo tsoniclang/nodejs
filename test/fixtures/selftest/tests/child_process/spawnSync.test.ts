@@ -3,9 +3,6 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/child_process/spawnSync.tests.cs
- */
 export class ChildProcessSpawnSyncTests {
   public spawnSync_SimpleCommand_ReturnsResult(): void {
     const command = "echo";

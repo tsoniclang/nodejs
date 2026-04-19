@@ -1,7 +1,6 @@
 /**
  * Options for Brotli compression operations.
  *
- * Baseline: nodejs-clr/src/nodejs/zlib/BrotliOptions.cs
  */
 export interface BrotliOptions {
   /**

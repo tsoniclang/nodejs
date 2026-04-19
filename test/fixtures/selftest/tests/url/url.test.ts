@@ -2,9 +2,6 @@ import { Assert } from "xunit-types/Xunit.js";
 
 import { URL, URLSearchParams } from "@tsonic/nodejs/url.js";
 
-/**
- * Baseline: nodejs-clr/tests/nodejs.Tests/url/url.tests.cs
- */
 export class URLTests {
   public URL_Constructor_ShouldParseSimpleURL(): void {
     const parsed = new URL("https://example.com/path");

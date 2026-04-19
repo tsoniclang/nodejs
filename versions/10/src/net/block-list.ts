@@ -1,7 +1,6 @@
 /**
  * net.BlockList — IP address block list management.
  *
- * Baseline: nodejs-clr/src/nodejs/net/BlockList.cs
  */
 import type { int } from "@tsonic/core/types.js";
 import { SocketAddressInitOptions } from "./options.ts";
