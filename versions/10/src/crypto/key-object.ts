@@ -124,7 +124,7 @@ export class PublicKeyObject extends KeyObject {
     return "public";
   }
 
-  public get asymmetricKeyType(): string | null {
+  public get asymmetricKeyType(): string {
     return this._keyType;
   }
 
@@ -186,7 +186,7 @@ export class PrivateKeyObject extends KeyObject {
     return "private";
   }
 
-  public get asymmetricKeyType(): string | null {
+  public get asymmetricKeyType(): string {
     return this._keyType;
   }
 
