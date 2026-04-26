@@ -158,7 +158,7 @@ Run the publish-gated validation suite with:
 npm run selftest
 ```
 
-When sibling `@tsonic/*` repos are checked out locally, the selftest installs those local packages first, whether they are versioned package repos (for example `../js/versions/10`) or root-package repos (for example `../aspnetcore`). That keeps the consumer validation coherent across a local release wave instead of mixing one local package with stale published transitive dependencies. The selftest also fails on peer-dependency warnings, so stale local release waves are caught before publish.
+When sibling `@tsonic/*` repos are checked out locally, the selftest installs those local packages first, whether they are versioned package repos (for example `../js/versions/10`) or root-package repos (for example `../aspnetcore`). That keeps consumer validation coherent across a local release wave instead of mixing local packages with incompatible published transitive dependencies. The selftest also fails on peer-dependency warnings, so inconsistent package waves are caught before publish.
 
 ## License
 
