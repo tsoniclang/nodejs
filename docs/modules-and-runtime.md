@@ -30,7 +30,7 @@ That gives users two practical import styles:
 
 ## Package metadata
 
-The current manifest defines:
+The manifest defines:
 
 - ambient declarations
 - module alias map
@@ -45,8 +45,8 @@ decoration.
 That is why adding `@tsonic/nodejs` can update effective workspace runtime
 requirements without making Node a separate ambient surface.
 
-That is why the site now describes `@tsonic/nodejs` as a real first-party
-source package, not a generated companion.
+That is why the site describes `@tsonic/nodejs` as a real first-party source
+package, not a generated CLR binding package.
 
 ## Relationship to ASP.NET Core bindings
 
@@ -56,9 +56,8 @@ thing for users is still the package boundary:
 - author against `@tsonic/nodejs`
 - let package metadata pull in the CLR binding/runtime requirements
 
-In the current repo, that includes a framework reference on
-`Microsoft.AspNetCore.App` plus the required type package
-`@tsonic/aspnetcore`.
+The package metadata includes a framework reference on `Microsoft.AspNetCore.App`
+plus the required type package `@tsonic/aspnetcore`.
 
 That keeps the authoring model source-first even when CLR frameworks are part of
 the implementation underneath.
