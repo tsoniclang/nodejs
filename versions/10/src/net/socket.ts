@@ -16,93 +16,93 @@ import type { SocketConstructorOpts, TcpSocketConnectOpts } from "./options.ts";
  * It is also an EventEmitter.
  */
 export class Socket extends EventEmitter {
-  private _connecting: boolean = false;
-  private _connected: boolean = false;
-  private _destroyed: boolean = false;
-  private _bytesRead: number = 0;
-  private _bytesWritten: number = 0;
-  private _localAddress: string | undefined = undefined;
-  private _localPort: number | undefined = undefined;
-  private _localFamily: string | undefined = undefined;
-  private _remoteAddress: string | undefined = undefined;
-  private _remotePort: number | undefined = undefined;
-  private _remoteFamily: string | undefined = undefined;
-  private readonly _allowHalfOpen: boolean;
+  _connecting: boolean = false;
+  _connected: boolean = false;
+  _destroyed: boolean = false;
+  _bytesRead: number = 0;
+  _bytesWritten: number = 0;
+  _localAddress: string | undefined = undefined;
+  _localPort: number | undefined = undefined;
+  _localFamily: string | undefined = undefined;
+  _remoteAddress: string | undefined = undefined;
+  _remotePort: number | undefined = undefined;
+  _remoteFamily: string | undefined = undefined;
+  _allowHalfOpen: boolean;
 
   /**
    * The amount of received bytes.
    */
-  public get bytesRead(): number {
+  get bytesRead(): number {
     return this._bytesRead;
   }
 
   /**
    * The amount of bytes sent.
    */
-  public get bytesWritten(): number {
+  get bytesWritten(): number {
     return this._bytesWritten;
   }
 
   /**
    * Whether the connection is active.
    */
-  public get connecting(): boolean {
+  get connecting(): boolean {
     return this._connecting;
   }
 
   /**
    * Whether the socket has been destroyed.
    */
-  public get destroyed(): boolean {
+  get destroyed(): boolean {
     return this._destroyed;
   }
 
   /**
    * The string representation of the local IP address.
    */
-  public get localAddress(): string | undefined {
+  get localAddress(): string | undefined {
     return this._localAddress;
   }
 
   /**
    * The numeric representation of the local port.
    */
-  public get localPort(): number | undefined {
+  get localPort(): number | undefined {
     return this._localPort;
   }
 
   /**
    * The string representation of the local IP family.
    */
-  public get localFamily(): string | undefined {
+  get localFamily(): string | undefined {
     return this._localFamily;
   }
 
   /**
    * The string representation of the remote IP address.
    */
-  public get remoteAddress(): string | undefined {
+  get remoteAddress(): string | undefined {
     return this._remoteAddress;
   }
 
   /**
    * The numeric representation of the remote port.
    */
-  public get remotePort(): number | undefined {
+  get remotePort(): number | undefined {
     return this._remotePort;
   }
 
   /**
    * The string representation of the remote IP family.
    */
-  public get remoteFamily(): string | undefined {
+  get remoteFamily(): string | undefined {
     return this._remoteFamily;
   }
 
   /**
    * This property represents the state of the connection as a string.
    */
-  public get readyState(): string {
+  get readyState(): string {
     if (this._destroyed) {
       return "closed";
     }
@@ -120,35 +120,25 @@ export class Socket extends EventEmitter {
   /**
    * Initiate a connection on a given socket.
    */
-  public connect(
+  connect(
     port: number,
     host?: string,
     connectionListener?: () => void
   ): Socket;
-  public connect(
+  connect(
     options: TcpSocketConnectOpts,
     connectionListener?: () => void
   ): Socket;
-  public connect(path: string, connectionListener?: () => void): Socket;
-  public connect(
-    portOrOptionsOrPath: any,
-    hostOrListener?: any,
-    connectionListener?: any
+  connect(path: string, connectionListener?: () => void): Socket;
+  connect(
+    _portOrOptionsOrPath: any,
+    _hostOrListener?: any,
+    _connectionListener?: any
   ): any {
-    if (typeof portOrOptionsOrPath === "string") {
-      return this.connect_path(portOrOptionsOrPath, hostOrListener);
-    }
-
-    if (typeof portOrOptionsOrPath === "number") {
-      return typeof hostOrListener === "function"
-        ? this.connect_port(portOrOptionsOrPath, undefined, hostOrListener)
-        : this.connect_port(portOrOptionsOrPath, hostOrListener, connectionListener);
-    }
-
-    return this.connect_options(portOrOptionsOrPath, hostOrListener);
+    throw new Error("Unreachable overload stub");
   }
 
-  public connect_port(
+  connect_port(
     port: number,
     host?: string,
     connectionListener?: () => void
@@ -156,21 +146,21 @@ export class Socket extends EventEmitter {
     return this.connectPort(port, host, connectionListener);
   }
 
-  public connect_options(
+  connect_options(
     options: TcpSocketConnectOpts,
     connectionListener?: () => void
   ): Socket {
     return this.connectPort(options.port, options.host, connectionListener);
   }
 
-  public connect_path(
+  connect_path(
     path: string,
     connectionListener?: () => void
   ): Socket {
     return this.connectPath(path, connectionListener);
   }
 
-  private connectPort(
+  connectPort(
     port: number,
     host: string | undefined,
     connectionListener: (() => void) | undefined
@@ -193,7 +183,7 @@ export class Socket extends EventEmitter {
     return this;
   }
 
-  private connectPath(
+  connectPath(
     path: string,
     connectionListener: (() => void) | undefined
   ): Socket {
@@ -215,33 +205,27 @@ export class Socket extends EventEmitter {
   /**
    * Sends data on the socket (byte array form).
    */
-  public write(
+  write(
     data: Uint8Array,
     callback?: (err?: Error) => void
   ): boolean;
   /**
    * Sends string data on the socket.
    */
-  public write(
+  write(
     data: string,
     encoding?: string,
     callback?: (err?: Error) => void
   ): boolean;
-  public write(
-    data: any,
-    encodingOrCallback?: any,
-    callback?: any
+  write(
+    _data: any,
+    _encodingOrCallback?: any,
+    _callback?: any
   ): any {
-    if (typeof data === "string") {
-      return typeof encodingOrCallback === "function"
-        ? this.write_string(data, undefined, encodingOrCallback)
-        : this.write_string(data, encodingOrCallback, callback);
-    }
-
-    return this.write_bytes(data, typeof encodingOrCallback === "function" ? encodingOrCallback : callback);
+    throw new Error("Unreachable overload stub");
   }
 
-  public write_bytes(
+  write_bytes(
     _data: Uint8Array,
     callback?: (err?: Error) => void
   ): boolean {
@@ -259,7 +243,7 @@ export class Socket extends EventEmitter {
     return true;
   }
 
-  public write_string(
+  write_string(
     _data: string,
     _encoding?: string,
     callback?: (err?: Error) => void
@@ -281,32 +265,10 @@ export class Socket extends EventEmitter {
   /**
    * Half-closes the socket.
    */
-  public end(
-    dataOrCallback?: Uint8Array | string | (() => void),
-    encodingOrCallback?: string | (() => void),
-    callback?: () => void
-  ): Socket {
-    // TODO: Wait for pending writes to complete, then close the stream via OS interop.
-    // In the CLR version this waits for write queue empty, then closes the NetworkStream.
-    // On completion: emit("end"), invoke callback
-
-    if (typeof dataOrCallback === "function") {
-      // end(callback)
-      this.emit("end");
-      dataOrCallback();
-    } else if (dataOrCallback !== undefined) {
-      // end(data, ...) — write then close
-      // TODO: write data first, then close
-      this.emit("end");
-      const cb =
-        typeof encodingOrCallback === "function"
-          ? encodingOrCallback
-          : callback;
-      if (cb !== undefined) {
-        cb();
-      }
-    } else {
-      this.emit("end");
+  end(callback?: () => void): Socket {
+    this.emit("end");
+    if (callback !== undefined) {
+      callback();
     }
 
     return this;
@@ -315,7 +277,7 @@ export class Socket extends EventEmitter {
   /**
    * Ensures that no more I/O activity happens on this socket.
    */
-  public destroy(error?: Error): Socket {
+  destroy(error?: Error): Socket {
     if (this._destroyed) {
       return this;
     }
@@ -337,7 +299,7 @@ export class Socket extends EventEmitter {
   /**
    * Destroys the socket after all data is written.
    */
-  public destroySoon(): void {
+  destroySoon(): void {
     // TODO: Wait for write queue to drain, then call destroy()
     this.destroy();
   }
@@ -345,7 +307,7 @@ export class Socket extends EventEmitter {
   /**
    * Close the TCP connection by sending an RST packet.
    */
-  public resetAndDestroy(): Socket {
+  resetAndDestroy(): Socket {
     // TODO: Close the underlying socket with linger=0 for RST via OS interop
     return this.destroy();
   }
@@ -353,7 +315,7 @@ export class Socket extends EventEmitter {
   /**
    * Set the encoding for the socket as a Readable Stream.
    */
-  public setEncoding(_encoding?: string): Socket {
+  setEncoding(_encoding?: string): Socket {
     // TODO: Encoding handling with full stream support
     return this;
   }
@@ -361,7 +323,7 @@ export class Socket extends EventEmitter {
   /**
    * Pauses the reading of data.
    */
-  public pause(): Socket {
+  pause(): Socket {
     // TODO: Pause the async read loop
     return this;
   }
@@ -369,7 +331,7 @@ export class Socket extends EventEmitter {
   /**
    * Resumes reading after a call to socket.pause().
    */
-  public resume(): Socket {
+  resume(): Socket {
     // TODO: Resume the async read loop
     return this;
   }
@@ -377,7 +339,7 @@ export class Socket extends EventEmitter {
   /**
    * Sets the socket to timeout after timeout milliseconds of inactivity.
    */
-  public setTimeout(timeout: number, callback?: () => void): Socket {
+  setTimeout(timeout: number, callback?: () => void): Socket {
     if (callback !== undefined) {
       this.once("timeout", toEventListener(callback)!);
     }
@@ -390,7 +352,7 @@ export class Socket extends EventEmitter {
   /**
    * Enable/disable the use of Nagle's algorithm.
    */
-  public setNoDelay(_noDelay: boolean = true): Socket {
+  setNoDelay(_noDelay: boolean = true): Socket {
     // TODO: Set TcpClient.NoDelay via OS interop
     return this;
   }
@@ -398,7 +360,7 @@ export class Socket extends EventEmitter {
   /**
    * Enable/disable keep-alive functionality.
    */
-  public setKeepAlive(
+  setKeepAlive(
     _enable: boolean = false,
     _initialDelay: number = 0
   ): Socket {
@@ -409,7 +371,7 @@ export class Socket extends EventEmitter {
   /**
    * Returns the bound address, the address family name and port of the socket.
    */
-  public address(): AddressInfo | null {
+  address(): AddressInfo | null {
     if (
       this._localAddress !== undefined &&
       this._localPort !== undefined &&
@@ -427,7 +389,7 @@ export class Socket extends EventEmitter {
   /**
    * Calling unref() on a socket will allow the program to exit if this is the only active socket.
    */
-  public unref(): Socket {
+  unref(): Socket {
     // Not applicable in managed context
     return this;
   }
@@ -435,7 +397,7 @@ export class Socket extends EventEmitter {
   /**
    * Opposite of unref().
    */
-  public ref(): Socket {
+  ref(): Socket {
     // Not applicable in managed context
     return this;
   }

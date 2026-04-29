@@ -11,7 +11,7 @@ import {
 } from "./helpers.ts";
 
 export class statTests {
-  public async stat_File_ShouldReturnFileStats(): Promise<void> {
+  async stat_File_ShouldReturnFileStats(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stat-test-async.txt");
@@ -28,7 +28,7 @@ export class statTests {
     }
   }
 
-  public async stat_Directory_ShouldReturnDirectoryStats(): Promise<void> {
+  async stat_Directory_ShouldReturnDirectoryStats(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "stat-dir-async");
@@ -44,7 +44,7 @@ export class statTests {
     }
   }
 
-  public async stat_NonExistent_ShouldThrow(): Promise<void> {
+  async stat_NonExistent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-async.txt");

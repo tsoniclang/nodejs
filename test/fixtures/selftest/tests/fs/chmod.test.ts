@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class chmodTests {
-  public async chmod_ShouldChangeFilePermissions(): Promise<void> {
+  async chmod_ShouldChangeFilePermissions(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "chmod-test-async.txt");
@@ -19,7 +19,7 @@ export class chmodTests {
     }
   }
 
-  public async chmod_NonExistentFile_ShouldThrow(): Promise<void> {
+  async chmod_NonExistentFile_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-chmod-async.txt");
@@ -29,7 +29,7 @@ export class chmodTests {
     }
   }
 
-  public async chmod_Directory_ShouldWork(): Promise<void> {
+  async chmod_Directory_ShouldWork(): Promise<void> {
     const dir = createTempDir();
     try {
       const directoryPath = getTestPath(dir, "chmod-dir-async");

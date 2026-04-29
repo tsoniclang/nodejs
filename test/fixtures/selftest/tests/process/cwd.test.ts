@@ -5,22 +5,22 @@ import { Directory, Path } from "@tsonic/dotnet/System.IO.js";
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessCwdTests {
-  public cwd_returns_current_directory(): void {
+  cwd_returns_current_directory(): void {
     const cwd = process.cwd();
     Assert.True(cwd.length > 0);
   }
 
-  public cwd_matches_dotnet_current_directory(): void {
+  cwd_matches_dotnet_current_directory(): void {
     const cwd = process.cwd();
     Assert.Equal(Directory.GetCurrentDirectory(), cwd);
   }
 
-  public cwd_is_absolute(): void {
+  cwd_is_absolute(): void {
     const cwd = process.cwd();
     Assert.True(Path.IsPathRooted(cwd));
   }
 
-  public cwd_exists(): void {
+  cwd_exists(): void {
     const cwd = process.cwd();
     Assert.True(Directory.Exists(cwd));
   }

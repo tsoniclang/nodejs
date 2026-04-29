@@ -5,7 +5,7 @@ import { randomFillSync } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class RandomFillSyncTests {
-  public randomFillSync_fills_buffer(): void {
+  randomFillSync_fills_buffer(): void {
     const buffer = new Uint8Array(32);
     randomFillSync(buffer);
     let allZeros = true;
@@ -18,7 +18,7 @@ export class RandomFillSyncTests {
     Assert.False(allZeros);
   }
 
-  public randomFillSync_with_offset_and_size(): void {
+  randomFillSync_with_offset_and_size(): void {
     const buffer = new Uint8Array(64);
     randomFillSync(buffer, 16 as int, 32 as int);
     for (let i = 0; i < 16; i++) {

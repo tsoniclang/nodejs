@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter, type EventListener } from "@tsonic/nodejs/events.js";
 
 export class ListenersTests {
-  public listeners_returns_the_listener_array(): void {
+  listeners_returns_the_listener_array(): void {
     const emitter = new EventEmitter();
     const listener1: EventListener = () => undefined;
     const listener2: EventListener = () => undefined;
@@ -15,12 +15,12 @@ export class ListenersTests {
     Assert.Equal(2, emitter.listeners("test").length);
   }
 
-  public listeners_returns_empty_for_unknown_events(): void {
+  listeners_returns_empty_for_unknown_events(): void {
     const emitter = new EventEmitter();
     Assert.Equal(0, emitter.listeners("test").length);
   }
 
-  public rawListeners_returns_registered_listeners(): void {
+  rawListeners_returns_registered_listeners(): void {
     const emitter = new EventEmitter();
     emitter.on("test", (): undefined => undefined);
     Assert.Equal(1, emitter.rawListeners("test").length);

@@ -8,12 +8,12 @@ import {
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessArchTests {
-  public arch_returns_known_name(): void {
+  arch_returns_known_name(): void {
     const valid = ["x64", "ia32", "arm", "arm64", "wasm", "s390x"];
     Assert.True(valid.includes(process.arch));
   }
 
-  public arch_matches_runtime_architecture(): void {
+  arch_matches_runtime_architecture(): void {
     const expected =
       RuntimeInformation.ProcessArchitecture === Architecture.X64
         ? "x64"

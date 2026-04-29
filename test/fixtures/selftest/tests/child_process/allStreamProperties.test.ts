@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessAllStreamPropertiesTests {
-  public allStreamProperties_AreNull(): void {
+  allStreamProperties_AreNull(): void {
     const child = child_process.spawn("echo", ["test"]);
 
     // All stream properties should be null (streams not yet implemented)

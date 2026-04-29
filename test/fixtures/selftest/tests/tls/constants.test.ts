@@ -10,7 +10,7 @@ import {
 } from "@tsonic/nodejs/tls.js";
 
 export class TlsConstantsTests {
-  public constants_HaveExpectedValues(): void {
+  constants_HaveExpectedValues(): void {
     Assert.Equal(3, CLIENT_RENEG_LIMIT);
     Assert.Equal(600, CLIENT_RENEG_WINDOW);
     Assert.Equal("auto", DEFAULT_ECDH_CURVE);

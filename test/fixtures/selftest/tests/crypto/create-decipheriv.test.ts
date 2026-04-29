@@ -5,7 +5,7 @@ import { createDecipheriv, randomBytes } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class CreateDecipherivTests {
-  public createDecipheriv_set_auth_tag_throws_not_implemented(): void {
+  createDecipheriv_set_auth_tag_throws_not_implemented(): void {
     const decipher = createDecipheriv("aes-256-cbc", randomBytes(32 as int), randomBytes(16 as int));
     let threw = false;
     try {
@@ -16,7 +16,7 @@ export class CreateDecipherivTests {
     Assert.True(threw);
   }
 
-  public createDecipheriv_set_aad_throws_not_implemented(): void {
+  createDecipheriv_set_aad_throws_not_implemented(): void {
     const decipher = createDecipheriv("aes-256-cbc", randomBytes(32 as int), randomBytes(16 as int));
     let threw = false;
     try {

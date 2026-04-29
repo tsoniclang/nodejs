@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readFileSyncBytesTests {
-  public readFileSyncBytes_ShouldReadBinaryData(): void {
+  readFileSyncBytes_ShouldReadBinaryData(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "binary-test.bin");

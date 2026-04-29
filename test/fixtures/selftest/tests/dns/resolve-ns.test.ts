@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ResolveNsTests {
-  public resolveNs_ValidDomain_CallsCallback(): void {
+  resolveNs_ValidDomain_CallsCallback(): void {
     let called = false;
     let nameservers: Array<string> = [];
     dns.resolveNs("localhost", (err, ns) => {

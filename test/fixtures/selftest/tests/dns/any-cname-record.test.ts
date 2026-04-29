@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnyCnameRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnyCnameRecordTests {
-  public AnyCnameRecord_AllProperties_CanBeSet(): void {
+  AnyCnameRecord_AllProperties_CanBeSet(): void {
     const record = new AnyCnameRecord();
     record.value = "www.example.com";
 

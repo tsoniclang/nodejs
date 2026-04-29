@@ -4,21 +4,21 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createHash } from "@tsonic/nodejs/crypto.js";
 
 export class CreateHashTests {
-  public createHash_sha256_produces_correct_digest(): void {
+  createHash_sha256_produces_correct_digest(): void {
     const hash = createHash("sha256");
     hash.update("Hello, World!");
     const digest = hash.digest("hex");
     Assert.Equal("dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f", digest);
   }
 
-  public createHash_md5_produces_correct_digest(): void {
+  createHash_md5_produces_correct_digest(): void {
     const hash = createHash("md5");
     hash.update("Hello, World!");
     const digest = hash.digest("hex");
     Assert.Equal("65a8e27d8879283831b664bd8b7f0ad4", digest);
   }
 
-  public createHash_multiple_updates_produces_correct_digest(): void {
+  createHash_multiple_updates_produces_correct_digest(): void {
     const hash = createHash("sha256");
     hash.update("Hello");
     hash.update(", ");
@@ -27,7 +27,7 @@ export class CreateHashTests {
     Assert.Equal("dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f", digest);
   }
 
-  public createHash_digest_only_once(): void {
+  createHash_digest_only_once(): void {
     const hash = createHash("sha256");
     hash.update("test");
     hash.digest();
@@ -40,70 +40,70 @@ export class CreateHashTests {
     Assert.True(threw);
   }
 
-  public createHash_sha1_produces_correct_length(): void {
+  createHash_sha1_produces_correct_length(): void {
     const hash = createHash("sha1");
     hash.update("test");
     const digest = hash.digest("hex");
     Assert.Equal(40, digest.length);
   }
 
-  public createHash_sha384_produces_correct_length(): void {
+  createHash_sha384_produces_correct_length(): void {
     const hash = createHash("sha384");
     hash.update("test");
     const digest = hash.digest("hex");
     Assert.Equal(96, digest.length);
   }
 
-  public createHash_sha512_produces_correct_length(): void {
+  createHash_sha512_produces_correct_length(): void {
     const hash = createHash("sha512");
     hash.update("test");
     const digest = hash.digest("hex");
     Assert.Equal(128, digest.length);
   }
 
-  public createHash_sha512_224_produces_correct_length(): void {
+  createHash_sha512_224_produces_correct_length(): void {
     const hash = createHash("sha512-224");
     hash.update("test");
     const digest = hash.digest("hex");
     Assert.Equal(56, digest.length);
   }
 
-  public createHash_sha512_256_produces_correct_length(): void {
+  createHash_sha512_256_produces_correct_length(): void {
     const hash = createHash("sha512-256");
     hash.update("test");
     const digest = hash.digest("hex");
     Assert.Equal(64, digest.length);
   }
 
-  public createHash_shake128_produces_correct_length(): void {
+  createHash_shake128_produces_correct_length(): void {
     const hash = createHash("shake128");
     hash.update("test");
     const digest = hash.digest(16);
     Assert.Equal(16, digest.length);
   }
 
-  public createHash_shake128_default_output(): void {
+  createHash_shake128_default_output(): void {
     const hash = createHash("shake128");
     hash.update("test");
     const digest = hash.digest();
     Assert.Equal(16, digest.length);
   }
 
-  public createHash_shake256_produces_correct_length(): void {
+  createHash_shake256_produces_correct_length(): void {
     const hash = createHash("shake256");
     hash.update("test");
     const digest = hash.digest(32);
     Assert.Equal(32, digest.length);
   }
 
-  public createHash_shake256_default_output(): void {
+  createHash_shake256_default_output(): void {
     const hash = createHash("shake256");
     hash.update("test");
     const digest = hash.digest();
     Assert.Equal(32, digest.length);
   }
 
-  public createHash_copy_works_correctly(): void {
+  createHash_copy_works_correctly(): void {
     const hash1 = createHash("blake2b512");
     hash1.update("part1");
     const hash2 = hash1.copy();
@@ -114,7 +114,7 @@ export class CreateHashTests {
     Assert.NotEqual(digest1, digest2);
   }
 
-  public createHash_copy_sha3_works_correctly(): void {
+  createHash_copy_sha3_works_correctly(): void {
     const hash1 = createHash("sha3-256");
     hash1.update("test");
     const hash2 = hash1.copy();
@@ -123,7 +123,7 @@ export class CreateHashTests {
     Assert.Equal(digest1, digest2);
   }
 
-  public createHash_copy_shake_works_correctly(): void {
+  createHash_copy_shake_works_correctly(): void {
     const hash1 = createHash("shake128");
     hash1.update("test");
     const hash2 = hash1.copy();
@@ -132,14 +132,14 @@ export class CreateHashTests {
     Assert.Equal(digest1, digest2);
   }
 
-  public createHash_base64_encoding(): void {
+  createHash_base64_encoding(): void {
     const hash = createHash("sha256");
     hash.update("test");
     const digest = hash.digest("base64");
     Assert.True(digest.length > 0);
   }
 
-  public createHash_base64url_encoding(): void {
+  createHash_base64url_encoding(): void {
     const hash = createHash("sha256");
     hash.update("test");
     const digest = hash.digest("base64url");
@@ -148,14 +148,14 @@ export class CreateHashTests {
     Assert.False(digest.includes("/"));
   }
 
-  public createHash_binary_output(): void {
+  createHash_binary_output(): void {
     const hash = createHash("sha256");
     hash.update("test");
     const digest = hash.digest();
     Assert.Equal(32, digest.length);
   }
 
-  public createHash_update_after_digest_throws(): void {
+  createHash_update_after_digest_throws(): void {
     const hash = createHash("sha256");
     hash.update("test");
     hash.digest();
@@ -168,7 +168,7 @@ export class CreateHashTests {
     Assert.True(threw);
   }
 
-  public createHash_update_with_bytes_works(): void {
+  createHash_update_with_bytes_works(): void {
     const hash = createHash("sha256");
     const bytes = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33]);
     hash.update(bytes);
@@ -176,14 +176,14 @@ export class CreateHashTests {
     Assert.Equal("dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f", digest);
   }
 
-  public createHash_digest_as_bytes_works(): void {
+  createHash_digest_as_bytes_works(): void {
     const hash = createHash("sha256");
     hash.update("test");
     const digest = hash.digest();
     Assert.Equal(32, digest.length);
   }
 
-  public createHash_digest_base64url_works(): void {
+  createHash_digest_base64url_works(): void {
     const hash = createHash("sha256");
     hash.update("test");
     const digest = hash.digest("base64url");

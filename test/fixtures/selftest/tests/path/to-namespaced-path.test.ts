@@ -6,7 +6,7 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { isWindows } from "./helpers.ts";
 
 export class ToNamespacedPathTests {
-  public toNamespacedPath_handles_empty_path(): void {
+  toNamespacedPath_handles_empty_path(): void {
     Assert.Equal("", nodePath.toNamespacedPath(""));
     const input = "foo/bar";
     const output = nodePath.toNamespacedPath(input);

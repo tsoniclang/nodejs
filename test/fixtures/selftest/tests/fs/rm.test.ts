@@ -11,7 +11,7 @@ import {
 } from "./helpers.ts";
 
 export class rmTests {
-  public async rm_ShouldRemoveFile(): Promise<void> {
+  async rm_ShouldRemoveFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "rm-test-async.txt");
@@ -23,7 +23,7 @@ export class rmTests {
     }
   }
 
-  public async rm_ShouldRemoveEmptyDirectory(): Promise<void> {
+  async rm_ShouldRemoveEmptyDirectory(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-dir-async");
@@ -35,7 +35,7 @@ export class rmTests {
     }
   }
 
-  public async rm_Recursive_ShouldRemoveDirectoryWithContents(): Promise<void> {
+  async rm_Recursive_ShouldRemoveDirectoryWithContents(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-tree-async");
@@ -49,7 +49,7 @@ export class rmTests {
     }
   }
 
-  public async rm_NonRecursive_DirectoryWithContents_ShouldThrow(): Promise<void> {
+  async rm_NonRecursive_DirectoryWithContents_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-non-recursive-async");
@@ -62,7 +62,7 @@ export class rmTests {
     }
   }
 
-  public async rm_NonExistent_ShouldNotThrow(): Promise<void> {
+  async rm_NonExistent_ShouldNotThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-rm-async.txt");

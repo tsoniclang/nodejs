@@ -16,7 +16,7 @@ import {
 } from "./helpers.ts";
 
 export class renameTests {
-  public async rename_File_ShouldRenameFile(): Promise<void> {
+  async rename_File_ShouldRenameFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "old-name-async.txt");
@@ -32,7 +32,7 @@ export class renameTests {
     }
   }
 
-  public async rename_Directory_ShouldRenameDirectory(): Promise<void> {
+  async rename_Directory_ShouldRenameDirectory(): Promise<void> {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "old-dir-async");
@@ -48,7 +48,7 @@ export class renameTests {
     }
   }
 
-  public async rename_NonExistent_ShouldThrow(): Promise<void> {
+  async rename_NonExistent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "nonexistent-async-rename.txt");

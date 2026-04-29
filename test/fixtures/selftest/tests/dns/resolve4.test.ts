@@ -1,12 +1,12 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as dns from "@tsonic/nodejs/dns.js";
 import { ResolveOptions } from "@tsonic/nodejs/dns.js";
 
 export class Resolve4Tests {
-  public resolve4_ValidDomain_CallsCallback(): void {
+  resolve4_ValidDomain_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     let first = "";
@@ -20,20 +20,20 @@ export class Resolve4Tests {
     Assert.True(first.includes("."));
   }
 
-  public resolve4_WithTtlOption_CallsCallback(): void {
+  resolve4_WithTtlOption_CallsCallback(): void {
     let called = false;
     let count = 0;
     const opts = new ResolveOptions();
     opts.ttl = true;
     dns.resolve4WithOptions("localhost", opts, (err, res) => {
       called = true;
-      count = (res as Array<JsValue>).length;
+      count = (res as Array<RuntimeValue>).length;
     });
     Assert.True(called);
     Assert.True(count > 0);
   }
 
-  public resolve4_WithoutTtlOption_CallsCallback(): void {
+  resolve4_WithoutTtlOption_CallsCallback(): void {
     let called = false;
     const opts = new ResolveOptions();
     opts.ttl = false;

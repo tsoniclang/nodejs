@@ -3,20 +3,20 @@
  * with streaming data.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export class Stream extends EventEmitter {
-  public write(
-    _chunk: JsValue,
+  write(
+    _chunk: RuntimeValue,
     _encoding?: string,
     _callback?: () => void,
   ): boolean {
     return true;
   }
 
-  public end(
-    _chunk?: JsValue,
+  end(
+    _chunk?: RuntimeValue,
     _encoding?: string,
     _callback?: () => void,
   ): Stream {
@@ -33,23 +33,23 @@ export class Stream extends EventEmitter {
    *   Default is true.
    * @returns The destination stream.
    */
-  public pipe(
+  pipe(
     destination: Stream,
     options?: { readonly end?: boolean },
   ): Stream {
     const end = options?.end !== false;
 
-    this.on("data", (...args: JsValue[]) => {
+    this.on("data", (...args: RuntimeValue[]) => {
       destination.write(args[0]!);
     });
 
     if (end) {
-      this.on("end", (..._args: JsValue[]) => {
+      this.on("end", (..._args: RuntimeValue[]) => {
         destination.end();
       });
     }
 
-    this.on("error", (...args: JsValue[]) => {
+    this.on("error", (...args: RuntimeValue[]) => {
       destination.emit("error", args[0]!);
     });
 
@@ -58,7 +58,7 @@ export class Stream extends EventEmitter {
     return destination;
   }
 
-  public resume(): Stream {
+  resume(): Stream {
     return this;
   }
 
@@ -67,7 +67,7 @@ export class Stream extends EventEmitter {
    *
    * @param error - Optional error to emit.
    */
-  public destroy(error?: Error): void {
+  destroy(error?: Error): void {
     if (error !== undefined) {
       this.emit("error", error);
     }

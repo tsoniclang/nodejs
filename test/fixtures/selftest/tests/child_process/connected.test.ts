@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessConnectedTests {
-  public connected_InitiallyFalse(): void {
+  connected_InitiallyFalse(): void {
     const child = child_process.spawn("echo", ["test"]);
 
     // Connected is for IPC, which spawn doesn't set up

@@ -3,44 +3,44 @@
  * written.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { Stream } from "./stream.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 type WriteRequest = {
-  readonly chunk: JsValue;
-  readonly encoding: string | undefined;
-  readonly callback: (() => void) | undefined;
+  chunk: RuntimeValue;
+  encoding: string | undefined;
+  callback: (() => void) | undefined;
 };
 
 export class Writable extends Stream {
-  private _buffer: WriteRequest[] = [];
-  private _ended = false;
-  private _writing = false;
-  private _corked = false;
-  private _destroyed = false;
+  _buffer: WriteRequest[] = [];
+  _ended = false;
+  _writing = false;
+  _corked = false;
+  _destroyed = false;
 
   /** Is true if it is safe to call write(). */
-  public get writable(): boolean {
+  get writable(): boolean {
     return !this._ended && !this._destroyed;
   }
 
   /** Is true after writable.end() has been called. */
-  public get writableEnded(): boolean {
+  get writableEnded(): boolean {
     return this._ended;
   }
 
   /** Is true after destroy() has been called. */
-  public get destroyed(): boolean {
+  get destroyed(): boolean {
     return this._destroyed;
   }
 
   /** Number of bytes (or objects) in the write queue ready to be written. */
-  public get writableLength(): number {
+  get writableLength(): number {
     return this._buffer.length;
   }
 
   /** Is true if the stream's buffer has been corked. */
-  public get writableCorked(): boolean {
+  get writableCorked(): boolean {
     return this._corked;
   }
 
@@ -53,8 +53,8 @@ export class Writable extends Stream {
    * @returns False if the stream wishes for the calling code to wait for the
    *   'drain' event to be emitted before continuing to write.
    */
-  public write(
-    chunk: JsValue,
+  write(
+    chunk: RuntimeValue,
     encoding?: string,
     callback?: () => void,
   ): boolean {
@@ -86,8 +86,8 @@ export class Writable extends Stream {
    * @param encoding - The encoding if chunk is a string.
    * @param callback - Optional callback for when the stream has finished.
    */
-  public end(
-    chunk?: JsValue,
+  end(
+    chunk?: RuntimeValue,
     encoding?: string,
     callback?: () => void,
   ): Writable {
@@ -96,7 +96,7 @@ export class Writable extends Stream {
     }
 
     if (callback !== undefined) {
-      this.once("finish", (..._args: JsValue[]) => {
+      this.once("finish", (..._args: RuntimeValue[]) => {
         callback();
       });
     }
@@ -118,14 +118,14 @@ export class Writable extends Stream {
    * Forces all written data to be buffered in memory. The buffered data will
    * be flushed when uncork() is called.
    */
-  public cork(): void {
+  cork(): void {
     this._corked = true;
   }
 
   /**
    * Flushes all data buffered since cork() was called.
    */
-  public uncork(): void {
+  uncork(): void {
     this._corked = false;
     this.processWrites();
   }
@@ -135,7 +135,7 @@ export class Writable extends Stream {
    *
    * @param error - Optional error to emit.
    */
-  public override destroy(error?: Error): void {
+  override destroy(error?: Error): void {
     if (this._destroyed) {
       return;
     }
@@ -148,7 +148,7 @@ export class Writable extends Stream {
     super.destroy(error);
   }
 
-  private processWrites(): void {
+  processWrites(): void {
     if (this._writing || this._buffer.length === 0) {
       return;
     }
@@ -178,8 +178,8 @@ export class Writable extends Stream {
    * @param _encoding - Encoding if chunk is a string.
    * @param callback - Callback for when write is complete.
    */
-  protected _write(
-    _chunk: JsValue,
+  _write(
+    _chunk: RuntimeValue,
     _encoding: string | undefined,
     callback: () => void,
   ): void {
@@ -192,7 +192,7 @@ export class Writable extends Stream {
    *
    * @param callback - Callback for when finalize is complete.
    */
-  protected _final(callback: () => void): void {
+  _final(callback: () => void): void {
     // To be implemented by subclasses
     callback();
   }

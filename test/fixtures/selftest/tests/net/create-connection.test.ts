@@ -4,13 +4,13 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createConnection, Socket } from "@tsonic/nodejs/net.js";
 
 export class CreateConnectionTests {
-  public create_connection_creates_socket(): void {
+  create_connection_creates_socket(): void {
     const socket: Socket = createConnection(18234, "localhost");
     Assert.NotNull(socket);
     Assert.True(socket instanceof Socket);
   }
 
-  public create_connection_path_creates_connected_socket(): void {
+  create_connection_path_creates_connected_socket(): void {
     const socket: Socket = createConnection("/tmp/tsonic-nodejs.sock");
     Assert.NotNull(socket);
     Assert.Equal("open", socket.readyState);

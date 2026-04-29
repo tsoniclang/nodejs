@@ -9,15 +9,15 @@ import { process } from "@tsonic/nodejs/process.js";
 import { assertThrows, isWindows } from "./helpers.ts";
 
 export class ProcessKillTests {
-  public kill_throws_for_non_existent_processes(): void {
+  kill_throws_for_non_existent_processes(): void {
     assertThrows(() => process.kill(999999 as int));
   }
 
-  public kill_signal_zero_returns_true_for_the_current_process(): void {
+  kill_signal_zero_returns_true_for_the_current_process(): void {
     Assert.True(process.kill(process.pid, 0 as int));
   }
 
-  public kill_terminates_a_sleep_process_on_unix(): void {
+  kill_terminates_a_sleep_process_on_unix(): void {
     if (isWindows()) {
       return;
     }

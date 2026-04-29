@@ -12,7 +12,7 @@ import {
 } from "./helpers.ts";
 
 export class readFileTests {
-  public async readFile_ShouldReadTextFile(): Promise<void> {
+  async readFile_ShouldReadTextFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test-async.txt");
@@ -25,7 +25,7 @@ export class readFileTests {
     }
   }
 
-  public async readFile_NonExistentFile_ShouldThrow(): Promise<void> {
+  async readFile_NonExistentFile_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-async.txt");
@@ -36,7 +36,7 @@ export class readFileTests {
     }
   }
 
-  public async readFile_WithoutEncoding_ShouldReturnBuffer(): Promise<void> {
+  async readFile_WithoutEncoding_ShouldReturnBuffer(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "buffer-async.bin");

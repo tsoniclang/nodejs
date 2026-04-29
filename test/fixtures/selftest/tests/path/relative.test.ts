@@ -5,7 +5,7 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { Directory, Path } from "@tsonic/dotnet/System.IO.js";
 
 export class RelativeTests {
-  public relative_calculates_non_absolute_path(): void {
+  relative_calculates_non_absolute_path(): void {
     const from = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "foo", "bar"));
     const to = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "foo", "baz"));
 
@@ -14,7 +14,7 @@ export class RelativeTests {
     Assert.True(!Path.IsPathRooted(result));
   }
 
-  public relative_same_path_returns_empty_string(): void {
+  relative_same_path_returns_empty_string(): void {
     const samePath = Path.GetFullPath("foo");
     Assert.Equal("", nodePath.relative(samePath, samePath));
   }

@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class existsSyncTests {
-  public existsSync_ExistingFile_ShouldReturnTrue(): void {
+  existsSync_ExistingFile_ShouldReturnTrue(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "exists-test.txt");
@@ -17,7 +17,7 @@ export class existsSyncTests {
     }
   }
 
-  public existsSync_ExistingDirectory_ShouldReturnTrue(): void {
+  existsSync_ExistingDirectory_ShouldReturnTrue(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "exists-dir");
@@ -28,7 +28,7 @@ export class existsSyncTests {
     }
   }
 
-  public existsSync_NonExistent_ShouldReturnFalse(): void {
+  existsSync_NonExistent_ShouldReturnFalse(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent.txt");

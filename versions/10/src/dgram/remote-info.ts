@@ -5,14 +5,14 @@
 
 export class RemoteInfo {
   /** The IP address of the remote endpoint. */
-  public address: string = "";
+  address: string = "";
 
   /** The address family ('IPv4' or 'IPv6'). */
-  public family: string = "IPv4";
+  family: string = "IPv4";
 
   /** The port number of the remote endpoint. */
-  public port: number = 0;
+  port: number = 0;
 
   /** The size of the message in bytes. */
-  public size: number = 0;
+  size: number = 0;
 }

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessExitCodeTests {
-  public exitCode_is_null_by_default_when_reset(): void {
+  exitCode_is_null_by_default_when_reset(): void {
     const original = process.exitCode;
 
     try {
@@ -15,7 +15,7 @@ export class ProcessExitCodeTests {
     }
   }
 
-  public exitCode_is_settable(): void {
+  exitCode_is_settable(): void {
     const original = process.exitCode;
 
     try {
@@ -26,7 +26,7 @@ export class ProcessExitCodeTests {
     }
   }
 
-  public exitCode_accepts_zero(): void {
+  exitCode_accepts_zero(): void {
     const original = process.exitCode;
 
     try {
@@ -37,7 +37,7 @@ export class ProcessExitCodeTests {
     }
   }
 
-  public exitCode_accepts_negative_values(): void {
+  exitCode_accepts_negative_values(): void {
     const original = process.exitCode;
 
     try {

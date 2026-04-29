@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createSign, createVerify, generateKeyPairSync } from "@tsonic/nodejs/crypto.js";
 
 export class CreateSignTests {
-  public createSign_rsa_sha256(): void {
+  createSign_rsa_sha256(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const data = new Uint8Array([73, 109, 112, 111, 114, 116, 97, 110, 116]);
     const s = createSign("sha256");
@@ -13,7 +13,7 @@ export class CreateSignTests {
     Assert.True(signature.length > 0);
   }
 
-  public createSign_verify_with_string_data(): void {
+  createSign_verify_with_string_data(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const s = createSign("sha256");
     s.update("Important message");
@@ -24,7 +24,7 @@ export class CreateSignTests {
     Assert.True(isValid);
   }
 
-  public createSign_multiple_updates(): void {
+  createSign_multiple_updates(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const s = createSign("sha256");
     s.update("Part 1");
@@ -37,7 +37,7 @@ export class CreateSignTests {
     Assert.True(isValid);
   }
 
-  public createSign_dsa_works(): void {
+  createSign_dsa_works(): void {
     const { publicKey, privateKey } = generateKeyPairSync("dsa");
     const s = createSign("sha256");
     s.update("test data");

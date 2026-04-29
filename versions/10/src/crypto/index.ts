@@ -5,7 +5,8 @@
 
 import type {} from "../type-bootstrap.ts";
 
-import type { int, out, JsValue } from "@tsonic/core/types.js";
+import type { int, out } from "@tsonic/core/types.js";
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   DSA,
   ECDsa,
@@ -30,10 +31,8 @@ import {
   PrivateKeyObject,
   coercePrivateKeyObject,
   coercePublicKeyObject,
-  extractPublicKey,
-  importPrivateKey,
-  importPublicKey,
   isRsaKey,
+  type KeyExportOptions,
 } from "./key-object.ts";
 import { DSAPublicKeyObject, DSAPrivateKeyObject } from "./dsakey-object.ts";
 import { EdDSAPublicKeyObject, EdDSAPrivateKeyObject } from "./ed-dsakey-object.ts";
@@ -61,11 +60,15 @@ const createDiffieHellmanFromLength = (
   primeLength: number,
   generatorNumber: number
 ): DiffieHellman => {
-  return new DiffieHellman(primeLength, generatorNumber);
+  const byteLength = primeLength > 7 ? primeLength / 8 : 1;
+  const prime = randomBytesExact(byteLength);
+  prime[0] = prime[0]! | 0x80;
+  prime[prime.length - 1] = prime[prime.length - 1]! | 0x01;
+  return new DiffieHellman(prime, numberToBytes(generatorNumber));
 };
 
-const toError = (error: JsValue): Error =>
-  error instanceof Error ? error : new Error(String(error));
+const toError = (error: object | null | undefined): Error =>
+  error instanceof Error ? error : new Error("Operation failed");
 
 const createDiffieHellmanFromBytes = (
   primeBytes: Uint8Array,
@@ -77,14 +80,12 @@ const createDiffieHellmanFromBytes = (
 const createDiffieHellmanFromString = (
   prime: string,
   primeEncoding: string,
-  generatorOrEncodingStr?: number | string,
+  generatorOrEncodingStr?: string,
   generatorEncoding?: string
 ): DiffieHellman => {
   const primeBytes = decodeInputBytes(prime, primeEncoding);
   let generatorBytes = numberToBytes(2);
-  if (typeof generatorOrEncodingStr === "number") {
-    generatorBytes = numberToBytes(generatorOrEncodingStr);
-  } else if (typeof generatorOrEncodingStr === "string") {
+  if (generatorOrEncodingStr !== undefined) {
     generatorBytes = decodeInputBytes(
       generatorOrEncodingStr,
       generatorEncoding ?? "base64",
@@ -111,11 +112,11 @@ export const createHmac = (
   algorithm: string,
   key: string | Uint8Array
 ): Hmac => {
-  if (typeof key === "string") {
-    return new Hmac(algorithm, decodeInputBytes(key, "utf8"));
+  if (key instanceof Uint8Array) {
+    return new Hmac(algorithm, key);
   }
 
-  return new Hmac(algorithm, key);
+  return new Hmac(algorithm, decodeInputBytes(key, "utf8"));
 };
 
 // ── Cipher / Decipher ──────────────────────────────────────────────────────
@@ -128,9 +129,9 @@ export const createCipheriv = (
   key: string | Uint8Array,
   iv: string | Uint8Array | null
 ): Cipher => {
-  const keyBytes = typeof key === "string" ? decodeInputBytes(key, "utf8") : key;
+  const keyBytes = key instanceof Uint8Array ? key : decodeInputBytes(key, "utf8");
   const ivBytes =
-    iv === null ? null : typeof iv === "string" ? decodeInputBytes(iv, "utf8") : iv;
+    iv === null ? null : iv instanceof Uint8Array ? iv : decodeInputBytes(iv, "utf8");
   return new Cipher(algorithm, keyBytes, ivBytes);
 };
 
@@ -142,9 +143,9 @@ export const createDecipheriv = (
   key: string | Uint8Array,
   iv: string | Uint8Array | null
 ): Decipher => {
-  const keyBytes = typeof key === "string" ? decodeInputBytes(key, "utf8") : key;
+  const keyBytes = key instanceof Uint8Array ? key : decodeInputBytes(key, "utf8");
   const ivBytes =
-    iv === null ? null : typeof iv === "string" ? decodeInputBytes(iv, "utf8") : iv;
+    iv === null ? null : iv instanceof Uint8Array ? iv : decodeInputBytes(iv, "utf8");
   return new Decipher(algorithm, keyBytes, ivBytes);
 };
 
@@ -167,8 +168,8 @@ export const randomBytesAsync = (
   try {
     const bytes = randomBytes(size);
     callback(null, bytes);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -206,8 +207,8 @@ export const randomFill = (
   try {
     randomFillSync(buffer, offset, size);
     callback(null, buffer);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -253,8 +254,8 @@ export const pbkdf2 = (
   try {
     const result = pbkdf2Sync(password, salt, iterations, keylen, digest);
     callback(null, result);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -265,7 +266,7 @@ export const scryptSync = (
   password: string | Uint8Array,
   salt: string | Uint8Array,
   keylen: int,
-  _options?: JsValue
+  _options?: KeyExportOptions
 ): Uint8Array => {
   return pbkdf2Sync(password, salt, 16384 as int, keylen, "sha256");
 };
@@ -277,14 +278,14 @@ export const scrypt = (
   password: string,
   salt: string,
   keylen: int,
-  options: JsValue,
+  options: KeyExportOptions,
   callback: (err: Error | null, derivedKey: Uint8Array | null) => void
 ): void => {
   try {
     const result = scryptSync(password, salt, keylen, options);
     callback(null, result);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -315,8 +316,8 @@ export const hkdf = (
   try {
     const key = hkdfSync(digest, ikm, salt, info, keylen);
     callback(null, key);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -417,11 +418,12 @@ export const sign = (
   data: Uint8Array,
   privateKey: string | KeyObject
 ): Uint8Array => {
-  const s = createSign(algorithm ?? "sha256");
-  s.update(data);
-  return typeof privateKey === "string"
-    ? (s.sign(privateKey) as Uint8Array)
-    : (s.sign(privateKey) as Uint8Array);
+  const signer = createSign(algorithm ?? "sha256");
+  signer.update(data);
+  if (privateKey instanceof KeyObject) {
+    return signer.sign_key_bytes(privateKey);
+  }
+  return signer.sign_string_bytes(privateKey);
 };
 
 /**
@@ -433,11 +435,12 @@ export const verify = (
   publicKey: string | KeyObject,
   signature: Uint8Array
 ): boolean => {
-  const v = createVerify(algorithm ?? "sha256");
-  v.update(data);
-  return typeof publicKey === "string"
-    ? v.verify(publicKey, signature)
-    : v.verify(publicKey, signature);
+  const verifier = createVerify(algorithm ?? "sha256");
+  verifier.update(data);
+  if (publicKey instanceof KeyObject) {
+    return verifier.verify_key_bytes(publicKey, signature);
+  }
+  return verifier.verify_string_bytes(publicKey, signature);
 };
 
 // ── Diffie-Hellman ─────────────────────────────────────────────────────────
@@ -445,44 +448,61 @@ export const verify = (
 /**
  * Creates a DiffieHellman key exchange object.
  */
-export const createDiffieHellman = (
-  primeOrLength: number | Uint8Array | string,
-  generatorOrEncoding?: number | Uint8Array | string,
-  generatorOrEncodingStr?: number | string,
-  generatorEncoding?: string
-): DiffieHellman => {
-  if (typeof primeOrLength === "number") {
-    if (typeof generatorOrEncoding === "number") {
-      return createDiffieHellmanFromLength(
-        primeOrLength,
-        generatorOrEncoding
-      );
-    }
-    return createDiffieHellmanFromLength(primeOrLength, 2);
-  }
+export function createDiffieHellman(
+  primeLength: number,
+  generator?: number,
+): DiffieHellman;
+export function createDiffieHellman(
+  prime: Uint8Array,
+  generator?: number | Uint8Array,
+): DiffieHellman;
+export function createDiffieHellman(
+  prime: string,
+  primeEncoding?: string,
+  generator?: string,
+  generatorEncoding?: string,
+): DiffieHellman;
+export function createDiffieHellman(
+  _primeOrLength: any,
+  _generatorOrEncoding?: any,
+  _generatorOrEncodingStr?: any,
+  _generatorEncoding?: any,
+): any {
+  throw new Error("Unreachable overload stub");
+}
 
-  if (typeof primeOrLength === "string") {
-    return createDiffieHellmanFromString(
-      primeOrLength,
-      typeof generatorOrEncoding === "string" ? generatorOrEncoding : "base64",
-      generatorOrEncodingStr,
-      generatorEncoding,
-    );
-  }
+function createDiffieHellman_length(
+  primeLength: number,
+  generator?: number,
+): DiffieHellman {
+  return createDiffieHellmanFromLength(primeLength, generator ?? 2);
+}
 
-  const primeBytes: Uint8Array = primeOrLength;
-  if (generatorOrEncoding instanceof Uint8Array) {
-    const generatorBytes: Uint8Array = generatorOrEncoding;
-    return createDiffieHellmanFromBytes(primeBytes, generatorBytes);
+function createDiffieHellman_bytes(
+  prime: Uint8Array,
+  generator?: number | Uint8Array,
+): DiffieHellman {
+  let generatorBytes = numberToBytes(2);
+  if (generator !== undefined) {
+    generatorBytes =
+      typeof generator === "number" ? numberToBytes(generator) : generator;
   }
-  if (typeof generatorOrEncoding === "number") {
-    return createDiffieHellmanFromBytes(
-      primeBytes,
-      new Uint8Array([generatorOrEncoding])
-    );
-  }
-  return createDiffieHellmanFromBytes(primeBytes, new Uint8Array([2]));
-};
+  return createDiffieHellmanFromBytes(prime, generatorBytes);
+}
+
+function createDiffieHellman_string(
+  prime: string,
+  primeEncoding?: string,
+  generator?: string,
+  generatorEncoding?: string,
+): DiffieHellman {
+  return createDiffieHellmanFromString(
+    prime,
+    primeEncoding ?? "base64",
+    generator,
+    generatorEncoding,
+  );
+}
 
 /**
  * Gets a predefined Diffie-Hellman group by name.
@@ -514,11 +534,11 @@ export const createSecretKey = (
   key: Uint8Array | string,
   encoding?: string
 ): SecretKeyObject => {
-  if (typeof key === "string") {
-    return new SecretKeyObject(decodeInputBytes(key, encoding ?? "utf8"));
+  if (key instanceof Uint8Array) {
+    return new SecretKeyObject(key);
   }
 
-  return new SecretKeyObject(key);
+  return new SecretKeyObject(decodeInputBytes(key, encoding ?? "utf8"));
 };
 
 /**
@@ -527,34 +547,14 @@ export const createSecretKey = (
 export const createPublicKey = (
   key: string | Uint8Array | KeyObject
 ): KeyObject => {
-  if (typeof key === "string" || key instanceof Uint8Array) {
-    return importPublicKey(key);
-  }
-
-  if (key instanceof PublicKeyObject) {
-    return key;
-  }
-
-  if (key instanceof PrivateKeyObject) {
-    return extractPublicKey(key);
-  }
-
-  if (key instanceof KeyObject) {
-    if (key.type === "public") {
-      return key;
-    }
-
-    throw new Error("Key must be a private or public key");
-  }
-
-  throw new Error("Unexpected key shape");
+  return coercePublicKeyObject(key);
 };
 
 /**
  * Creates a private KeyObject from a key.
  */
 export const createPrivateKey = (key: string | Uint8Array): KeyObject => {
-  return importPrivateKey(key);
+  return coercePrivateKeyObject(key);
 };
 
 /**
@@ -562,7 +562,7 @@ export const createPrivateKey = (key: string | Uint8Array): KeyObject => {
  */
 export const generateKeyPairSync = (
   type: string,
-  _options?: JsValue
+  _options?: KeyExportOptions
 ): { publicKey: KeyObject; privateKey: KeyObject } => {
   const keyType = type.toLowerCase();
 
@@ -632,7 +632,7 @@ export const generateKeyPairSync = (
  */
 export const generateKeyPair = (
   type: string,
-  options: JsValue,
+  options: KeyExportOptions,
   callback: (
     err: Error | null,
     publicKey: KeyObject | null,
@@ -642,8 +642,8 @@ export const generateKeyPair = (
   try {
     const { publicKey, privateKey } = generateKeyPairSync(type, options);
     callback(null, publicKey, privateKey);
-  } catch (e) {
-    callback(toError(e as JsValue), null, null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null, null);
   }
 };
 
@@ -687,8 +687,8 @@ export const generateKeyAsync = (
   try {
     const key = generateKey(type, options);
     callback(null, key);
-  } catch (e) {
-    callback(toError(e as JsValue), null);
+  } catch (error) {
+    callback(toError(error as object | null | undefined), null);
   }
 };
 
@@ -837,8 +837,11 @@ export const setFips = (enabled: boolean): void => {
  * Sets the default encoding for crypto operations (deprecated).
  */
 export const setDefaultEncoding = (_encoding: string): void => {
-  // Legacy deprecated API - no-op
 };
+
+O(createDiffieHellman_length).family(createDiffieHellman);
+O(createDiffieHellman_bytes).family(createDiffieHellman);
+O(createDiffieHellman_string).family(createDiffieHellman);
 
 // ── Re-exports ─────────────────────────────────────────────────────────────
 

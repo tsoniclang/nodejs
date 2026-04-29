@@ -8,7 +8,7 @@ import {
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessPlatformTests {
-  public platform_returns_a_known_platform_string(): void {
+  platform_returns_a_known_platform_string(): void {
     Assert.True(
       [
         "win32",
@@ -22,7 +22,7 @@ export class ProcessPlatformTests {
     );
   }
 
-  public platform_matches_runtime_platform(): void {
+  platform_matches_runtime_platform(): void {
     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
       Assert.Equal("win32", process.platform);
       return;

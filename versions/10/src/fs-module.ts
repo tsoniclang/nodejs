@@ -18,6 +18,7 @@ import {
   FileStream,
   Path,
 } from "@tsonic/dotnet/System.IO.js";
+import { List } from "@tsonic/dotnet/System.Collections.Generic.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
 
 const parseEncoding = (value?: string): Encoding => {
@@ -49,11 +50,11 @@ const parseEncoding = (value?: string): Encoding => {
 const resolveWriteLength = (
   buffer: WritableFsBuffer,
   offset: int,
-  lengthOrEncoding?: int | string
+  length?: int
 ): int =>
-  lengthOrEncoding === undefined || typeof lengthOrEncoding === "string"
+  length === undefined
     ? ((getBufferLength(buffer) - offset) as int)
-    : lengthOrEncoding;
+    : length;
 
 const toUnixMilliseconds = (value: DateTime): number =>
   Number(new DateTimeOffset(value).ToUnixTimeMilliseconds());
@@ -95,8 +96,6 @@ type OpenDescriptor = {
 };
 
 type WritableFsBuffer = Buffer | byte[];
-type MkdirOptionsLike = boolean | MkdirOptions;
-
 const openDescriptors = new Map<int, OpenDescriptor>();
 let nextDescriptor = 3 as int;
 
@@ -169,29 +168,29 @@ const copyBufferSliceToByteArray = (
   offset: int,
   length: int
 ): byte[] => {
-  const result = new Array<byte>(length);
+  const result = new List<byte>();
 
   if (buffer instanceof Buffer) {
     const sourceBytes = buffer.buffer;
     for (let index = 0; index < length; index += 1) {
-      result[index] = sourceBytes[offset + index]! as byte;
+      result.Add(sourceBytes[offset + index]! as byte);
     }
-    return result;
+    return result.ToArray();
   }
 
   for (let index = 0; index < length; index += 1) {
-    result[index] = buffer[offset + index]!;
+    result.Add(buffer[offset + index]!);
   }
 
-  return result;
+  return result.ToArray();
 };
 
 const createByteArray = (length: int): byte[] => {
-  const result = new Array<byte>(length);
+  const result = new List<byte>();
   for (let index = 0; index < length; index += 1) {
-    result[index] = 0 as byte;
+    result.Add(0 as byte);
   }
-  return result;
+  return result.ToArray();
 };
 
 const copyDirectoryRecursive = (
@@ -335,25 +334,25 @@ const openStream = (path: string, flags: string): OpenDescriptor => {
 };
 
 export class MkdirOptions {
-  public recursive?: boolean;
-  public mode?: int;
+  recursive?: boolean;
+  mode?: int;
 }
 
 export class Stats {
-  public readonly mode: int;
-  public readonly atimeMs: number;
-  public readonly mtimeMs: number;
-  public readonly ctimeMs: number;
-  public readonly birthtimeMs: number;
-  public readonly size: number;
-  public readonly isFile: boolean;
-  public readonly isDirectory: boolean;
-  public readonly atime: Date;
-  public readonly mtime: Date;
-  public readonly ctime: Date;
-  public readonly birthtime: Date;
+  mode: int;
+  atimeMs: number;
+  mtimeMs: number;
+  ctimeMs: number;
+  birthtimeMs: number;
+  size: number;
+  isFile: boolean;
+  isDirectory: boolean;
+  atime: Date;
+  mtime: Date;
+  ctime: Date;
+  birthtime: Date;
 
-  public constructor(
+  constructor(
     size: number,
     isFile: boolean,
     isDirectory: boolean,
@@ -376,31 +375,31 @@ export class Stats {
     this.birthtimeMs = birthtime.getTime();
   }
 
-  public IsFile(): boolean {
+  IsFile(): boolean {
     return this.isFile;
   }
 
-  public IsDirectory(): boolean {
+  IsDirectory(): boolean {
     return this.isDirectory;
   }
 
-  public IsSymbolicLink(): boolean {
+  IsSymbolicLink(): boolean {
     return false;
   }
 
-  public IsBlockDevice(): boolean {
+  IsBlockDevice(): boolean {
     return false;
   }
 
-  public IsCharacterDevice(): boolean {
+  IsCharacterDevice(): boolean {
     return false;
   }
 
-  public IsFIFO(): boolean {
+  IsFIFO(): boolean {
     return false;
   }
 
-  public IsSocket(): boolean {
+  IsSocket(): boolean {
     return false;
   }
 }
@@ -437,9 +436,7 @@ export const appendFile = async (
 export const existsSync = (path: string): boolean =>
   File.Exists(path) || Directory.Exists(path);
 
-const mkdirSyncImpl = (path: string, options?: MkdirOptionsLike): void => {
-  const recursive =
-    typeof options === "boolean" ? options : options?.recursive ?? false;
+const mkdirSyncImpl = (path: string, recursive: boolean): void => {
   if (recursive) {
     Directory.CreateDirectory(path);
     return;
@@ -465,20 +462,12 @@ export function mkdirSync(
   path: string,
   options: MkdirOptions
 ): void;
-export function mkdirSync(path: any, options?: any): any {
-  if (options === undefined) {
-    return mkdirSync_path(path);
-  }
-
-  if (typeof options === "boolean") {
-    return mkdirSync_recursive(path, options);
-  }
-
-  return mkdirSync_options(path, options);
+export function mkdirSync(_path: any, _options?: any): any {
+  throw new Error("Unreachable overload stub");
 }
 
 function mkdirSync_path(path: string): void {
-  mkdirSyncImpl(path);
+  mkdirSyncImpl(path, false);
 }
 
 function mkdirSync_recursive(path: string, recursive: boolean): void {
@@ -489,7 +478,7 @@ function mkdirSync_options(
   path: string,
   options: MkdirOptions
 ): void {
-  mkdirSyncImpl(path, options);
+  mkdirSyncImpl(path, options.recursive ?? false);
 }
 
 export function mkdir(path: string): Promise<void>;
@@ -498,20 +487,12 @@ export function mkdir(
   path: string,
   options: MkdirOptions
 ): Promise<void>;
-export async function mkdir(path: any, options?: any): Promise<any> {
-  if (options === undefined) {
-    return mkdir_path(path);
-  }
-
-  if (typeof options === "boolean") {
-    return mkdir_recursive(path, options);
-  }
-
-  return mkdir_options(path, options);
+export async function mkdir(_path: any, _options?: any): Promise<any> {
+  throw new Error("Unreachable overload stub");
 }
 
 async function mkdir_path(path: string): Promise<void> {
-  mkdirSyncImpl(path);
+  mkdirSyncImpl(path, false);
 }
 
 async function mkdir_recursive(path: string, recursive: boolean): Promise<void> {
@@ -522,7 +503,7 @@ async function mkdir_options(
   path: string,
   options: MkdirOptions
 ): Promise<void> {
-  mkdirSyncImpl(path, options);
+  mkdirSyncImpl(path, options.recursive ?? false);
 }
 
 export const copyFileSync = (sourcePath: string, destinationPath: string): void => {
@@ -732,11 +713,7 @@ export function writeSync(
   lengthOrEncoding?: any,
   position?: any
 ): any {
-  if (typeof bufferOrData === "string") {
-    return writeSync_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
-  }
-
-  return writeSync_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
+  throw new Error("Unreachable overload stub");
 }
 
 function writeSync_buffer(
@@ -797,11 +774,7 @@ export async function write(
   lengthOrEncoding?: any,
   position?: any
 ): Promise<any> {
-  if (typeof bufferOrData === "string") {
-    return write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
-  }
-
-  return write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
+  throw new Error("Unreachable overload stub");
 }
 
 async function write_buffer(
@@ -825,12 +798,8 @@ async function write_text(
 
 export function readFileSync(path: string): Buffer;
 export function readFileSync(path: string, encoding: string): string;
-export function readFileSync(path: any, encoding?: any): any {
-  if (typeof encoding === "string") {
-    return readFileSync_text(path, encoding);
-  }
-
-  return readFileSync_buffer(path);
+export function readFileSync(_path: any, _encoding?: any): any {
+  throw new Error("Unreachable overload stub");
 }
 
 function readFileSync_buffer(path: string): Buffer {
@@ -846,12 +815,8 @@ export const readFileSyncBytes = (path: string): byte[] =>
 
 export function readFile(path: string): Promise<Buffer>;
 export function readFile(path: string, encoding: string): Promise<string>;
-export async function readFile(path: any, encoding?: any): Promise<any> {
-  if (typeof encoding === "string") {
-    return readFile_text(path, encoding);
-  }
-
-  return readFile_buffer(path);
+export async function readFile(_path: any, _encoding?: any): Promise<any> {
+  throw new Error("Unreachable overload stub");
 }
 
 async function readFile_buffer(path: string): Promise<Buffer> {
@@ -989,23 +954,23 @@ export const writeFileBytes = async (
 };
 
 export class FsPromises {
-  public access(path: string, mode: int = 0 as int): Promise<void> {
+  access(path: string, mode: int = 0 as int): Promise<void> {
     return access(path, mode);
   }
 
-  public chmod(path: string, mode: int): Promise<void> {
+  chmod(path: string, mode: int): Promise<void> {
     return chmod(path, mode);
   }
 
-  public close(fd: int): Promise<void> {
+  close(fd: int): Promise<void> {
     return close(fd);
   }
 
-  public copyFile(sourcePath: string, destinationPath: string): Promise<void> {
+  copyFile(sourcePath: string, destinationPath: string): Promise<void> {
     return copyFile(sourcePath, destinationPath);
   }
 
-  public cp(
+  cp(
     sourcePath: string,
     destinationPath: string,
     recursive: boolean = false
@@ -1013,11 +978,11 @@ export class FsPromises {
     return cp(sourcePath, destinationPath, recursive);
   }
 
-  public fstat(fd: int): Promise<Stats> {
+  fstat(fd: int): Promise<Stats> {
     return fstat(fd);
   }
 
-  public appendFile(
+  appendFile(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1025,44 +990,36 @@ export class FsPromises {
     return appendFile(path, data, encoding);
   }
 
-  public mkdir(path: string): Promise<void>;
-  public mkdir(path: string, recursive: boolean): Promise<void>;
-  public mkdir(
+  mkdir(path: string): Promise<void>;
+  mkdir(path: string, recursive: boolean): Promise<void>;
+  mkdir(
     path: string,
     options: MkdirOptions
   ): Promise<void>;
-  public mkdir(path: any, options?: any): any {
-    if (options === undefined) {
-      return this.mkdir_path(path);
-    }
-
-    if (typeof options === "boolean") {
-      return this.mkdir_recursive(path, options);
-    }
-
-    return this.mkdir_options(path, options);
+  mkdir(_path: any, _options?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public mkdir_path(path: string): Promise<void> {
+  mkdir_path(path: string): Promise<void> {
     return mkdir_path(path);
   }
 
-  public mkdir_recursive(path: string, recursive: boolean): Promise<void> {
+  mkdir_recursive(path: string, recursive: boolean): Promise<void> {
     return mkdir_recursive(path, recursive);
   }
 
-  public mkdir_options(
+  mkdir_options(
     path: string,
     options: MkdirOptions
   ): Promise<void> {
     return mkdir_options(path, options);
   }
 
-  public open(path: string, flags: string, mode?: int): Promise<int> {
+  open(path: string, flags: string, mode?: int): Promise<int> {
     return open(path, flags, mode);
   }
 
-  public read(
+  read(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1072,57 +1029,53 @@ export class FsPromises {
     return read(fd, buffer, offset, length, position);
   }
 
-  public readFile(path: string): Promise<Buffer>;
-  public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(path: any, encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.readFile_text(path, encoding);
-    }
-
-    return this.readFile_buffer(path);
+  readFile(path: string): Promise<Buffer>;
+  readFile(path: string, encoding: string): Promise<string>;
+  readFile(_path: any, _encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public readFile_buffer(path: string): Promise<Buffer> {
+  readFile_buffer(path: string): Promise<Buffer> {
     return readFile_buffer(path);
   }
 
-  public readFile_text(path: string, encoding: string): Promise<string> {
+  readFile_text(path: string, encoding: string): Promise<string> {
     return readFile_text(path, encoding);
   }
 
-  public readFileBytes(path: string): Promise<byte[]> {
+  readFileBytes(path: string): Promise<byte[]> {
     return readFileBytes(path);
   }
 
-  public readdir(path: string): Promise<string[]> {
+  readdir(path: string): Promise<string[]> {
     return readdir(path);
   }
 
-  public realpath(path: string): Promise<string> {
+  realpath(path: string): Promise<string> {
     return realpath(path);
   }
 
-  public readlink(path: string): Promise<string> {
+  readlink(path: string): Promise<string> {
     return readlink(path);
   }
 
-  public rename(oldPath: string, newPath: string): Promise<void> {
+  rename(oldPath: string, newPath: string): Promise<void> {
     return rename(oldPath, newPath);
   }
 
-  public rm(path: string, recursive: boolean = false): Promise<void> {
+  rm(path: string, recursive: boolean = false): Promise<void> {
     return rm(path, recursive);
   }
 
-  public rmdir(path: string, recursive: boolean = false): Promise<void> {
+  rmdir(path: string, recursive: boolean = false): Promise<void> {
     return rmdir(path, recursive);
   }
 
-  public stat(path: string): Promise<Stats> {
+  stat(path: string): Promise<Stats> {
     return stat(path);
   }
 
-  public symlink(
+  symlink(
     target: string,
     path: string,
     type?: string
@@ -1130,15 +1083,15 @@ export class FsPromises {
     return symlink(target, path, type);
   }
 
-  public truncate(path: string, length: number = 0): Promise<void> {
+  truncate(path: string, length: number = 0): Promise<void> {
     return truncate(path, length);
   }
 
-  public unlink(path: string): Promise<void> {
+  unlink(path: string): Promise<void> {
     return unlink(path);
   }
 
-  public writeFile(
+  writeFile(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1146,34 +1099,30 @@ export class FsPromises {
     return writeFile(path, data, encoding);
   }
 
-  public write(
+  write(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
     length: int,
     position: int | null
   ): Promise<int>;
-  public write(
+  write(
     fd: int,
     data: string,
     position?: int | null,
     encoding?: string
   ): Promise<int>;
-  public write(
-    fd: any,
-    bufferOrData: any,
-    offsetOrPosition?: any,
-    lengthOrEncoding?: any,
-    position?: any
+  write(
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
   ): Promise<any> {
-    if (typeof bufferOrData === "string") {
-      return this.write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
-    }
-
-    return this.write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
+    throw new Error("Unreachable overload stub");
   }
 
-  public write_buffer(
+  write_buffer(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1183,7 +1132,7 @@ export class FsPromises {
     return write_buffer(fd, buffer, offset, length, position);
   }
 
-  public write_text(
+  write_text(
     fd: int,
     data: string,
     position?: int | null,
@@ -1192,31 +1141,31 @@ export class FsPromises {
     return write_text(fd, data, position, encoding);
   }
 
-  public writeFileBytes(path: string, data: byte[]): Promise<void> {
+  writeFileBytes(path: string, data: byte[]): Promise<void> {
     return writeFileBytes(path, data);
   }
 }
 
 export class FsModuleNamespace {
-  public readonly promises: FsPromises = new FsPromises();
+  promises: FsPromises = new FsPromises();
 
-  public access(path: string, mode: int = 0 as int): Promise<void> {
+  access(path: string, mode: int = 0 as int): Promise<void> {
     return access(path, mode);
   }
 
-  public accessSync(path: string, mode: int = 0 as int): void {
+  accessSync(path: string, mode: int = 0 as int): void {
     return accessSync(path, mode);
   }
 
-  public chmod(path: string, mode: int): Promise<void> {
+  chmod(path: string, mode: int): Promise<void> {
     return chmod(path, mode);
   }
 
-  public chmodSync(path: string, mode: int): void {
+  chmodSync(path: string, mode: int): void {
     return chmodSync(path, mode);
   }
 
-  public appendFile(
+  appendFile(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1224,7 +1173,7 @@ export class FsModuleNamespace {
     return appendFile(path, data, encoding);
   }
 
-  public appendFileSync(
+  appendFileSync(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1232,15 +1181,15 @@ export class FsModuleNamespace {
     return appendFileSync(path, data, encoding);
   }
 
-  public copyFile(sourcePath: string, destinationPath: string): Promise<void> {
+  copyFile(sourcePath: string, destinationPath: string): Promise<void> {
     return copyFile(sourcePath, destinationPath);
   }
 
-  public copyFileSync(sourcePath: string, destinationPath: string): void {
+  copyFileSync(sourcePath: string, destinationPath: string): void {
     return copyFileSync(sourcePath, destinationPath);
   }
 
-  public cp(
+  cp(
     sourcePath: string,
     destinationPath: string,
     recursive: boolean = false
@@ -1248,7 +1197,7 @@ export class FsModuleNamespace {
     return cp(sourcePath, destinationPath, recursive);
   }
 
-  public cpSync(
+  cpSync(
     sourcePath: string,
     destinationPath: string,
     recursive: boolean = false
@@ -1256,101 +1205,85 @@ export class FsModuleNamespace {
     return cpSync(sourcePath, destinationPath, recursive);
   }
 
-  public close(fd: int): Promise<void> {
+  close(fd: int): Promise<void> {
     return close(fd);
   }
 
-  public closeSync(fd: int): void {
+  closeSync(fd: int): void {
     return closeSync(fd);
   }
 
-  public fstat(fd: int): Promise<Stats> {
+  fstat(fd: int): Promise<Stats> {
     return fstat(fd);
   }
 
-  public fstatSync(fd: int): Stats {
+  fstatSync(fd: int): Stats {
     return fstatSync(fd);
   }
 
-  public existsSync(path: string): boolean {
+  existsSync(path: string): boolean {
     return existsSync(path);
   }
 
-  public mkdir(path: string): Promise<void>;
-  public mkdir(path: string, recursive: boolean): Promise<void>;
-  public mkdir(
+  mkdir(path: string): Promise<void>;
+  mkdir(path: string, recursive: boolean): Promise<void>;
+  mkdir(
     path: string,
     options: MkdirOptions
   ): Promise<void>;
-  public mkdir(path: any, options?: any): any {
-    if (options === undefined) {
-      return this.mkdir_path(path);
-    }
-
-    if (typeof options === "boolean") {
-      return this.mkdir_recursive(path, options);
-    }
-
-    return this.mkdir_options(path, options);
+  mkdir(_path: any, _options?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public mkdir_path(path: string): Promise<void> {
+  mkdir_path(path: string): Promise<void> {
     return mkdir_path(path);
   }
 
-  public mkdir_recursive(path: string, recursive: boolean): Promise<void> {
+  mkdir_recursive(path: string, recursive: boolean): Promise<void> {
     return mkdir_recursive(path, recursive);
   }
 
-  public mkdir_options(
+  mkdir_options(
     path: string,
     options: MkdirOptions
   ): Promise<void> {
     return mkdir_options(path, options);
   }
 
-  public mkdirSync(path: string): void;
-  public mkdirSync(path: string, recursive: boolean): void;
-  public mkdirSync(
+  mkdirSync(path: string): void;
+  mkdirSync(path: string, recursive: boolean): void;
+  mkdirSync(
     path: string,
     options: MkdirOptions
   ): void;
-  public mkdirSync(path: any, options?: any): any {
-    if (options === undefined) {
-      return this.mkdirSync_path(path);
-    }
-
-    if (typeof options === "boolean") {
-      return this.mkdirSync_recursive(path, options);
-    }
-
-    return this.mkdirSync_options(path, options);
+  mkdirSync(_path: any, _options?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public mkdirSync_path(path: string): void {
+  mkdirSync_path(path: string): void {
     return mkdirSync_path(path);
   }
 
-  public mkdirSync_recursive(path: string, recursive: boolean): void {
+  mkdirSync_recursive(path: string, recursive: boolean): void {
     return mkdirSync_recursive(path, recursive);
   }
 
-  public mkdirSync_options(
+  mkdirSync_options(
     path: string,
     options: MkdirOptions
   ): void {
     return mkdirSync_options(path, options);
   }
 
-  public open(path: string, flags: string, mode?: int): Promise<int> {
+  open(path: string, flags: string, mode?: int): Promise<int> {
     return open(path, flags, mode);
   }
 
-  public openSync(path: string, flags: string, mode?: int): int {
+  openSync(path: string, flags: string, mode?: int): int {
     return openSync(path, flags, mode);
   }
 
-  public read(
+  read(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1360,7 +1293,7 @@ export class FsModuleNamespace {
     return read(fd, buffer, offset, length, position);
   }
 
-  public readSync(
+  readSync(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1370,107 +1303,99 @@ export class FsModuleNamespace {
     return readSync(fd, buffer, offset, length, position);
   }
 
-  public readFile(path: string): Promise<Buffer>;
-  public readFile(path: string, encoding: string): Promise<string>;
-  public readFile(path: any, encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.readFile_text(path, encoding);
-    }
-
-    return this.readFile_buffer(path);
+  readFile(path: string): Promise<Buffer>;
+  readFile(path: string, encoding: string): Promise<string>;
+  readFile(_path: any, _encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public readFile_buffer(path: string): Promise<Buffer> {
+  readFile_buffer(path: string): Promise<Buffer> {
     return readFile_buffer(path);
   }
 
-  public readFile_text(path: string, encoding: string): Promise<string> {
+  readFile_text(path: string, encoding: string): Promise<string> {
     return readFile_text(path, encoding);
   }
 
-  public readFileBytes(path: string): Promise<byte[]> {
+  readFileBytes(path: string): Promise<byte[]> {
     return readFileBytes(path);
   }
 
-  public readFileSync(path: string): Buffer;
-  public readFileSync(path: string, encoding: string): string;
-  public readFileSync(path: any, encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.readFileSync_text(path, encoding);
-    }
-
-    return this.readFileSync_buffer(path);
+  readFileSync(path: string): Buffer;
+  readFileSync(path: string, encoding: string): string;
+  readFileSync(_path: any, _encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public readFileSync_buffer(path: string): Buffer {
+  readFileSync_buffer(path: string): Buffer {
     return readFileSync_buffer(path);
   }
 
-  public readFileSync_text(path: string, encoding: string): string {
+  readFileSync_text(path: string, encoding: string): string {
     return readFileSync_text(path, encoding);
   }
 
-  public readFileSyncBytes(path: string): byte[] {
+  readFileSyncBytes(path: string): byte[] {
     return readFileSyncBytes(path);
   }
 
-  public readdir(path: string): Promise<string[]> {
+  readdir(path: string): Promise<string[]> {
     return readdir(path);
   }
 
-  public readdirSync(path: string): string[] {
+  readdirSync(path: string): string[] {
     return readdirSync(path);
   }
 
-  public realpath(path: string): Promise<string> {
+  realpath(path: string): Promise<string> {
     return realpath(path);
   }
 
-  public realpathSync(path: string): string {
+  realpathSync(path: string): string {
     return realpathSync(path);
   }
 
-  public readlink(path: string): Promise<string> {
+  readlink(path: string): Promise<string> {
     return readlink(path);
   }
 
-  public readlinkSync(path: string): string {
+  readlinkSync(path: string): string {
     return readlinkSync(path);
   }
 
-  public rename(oldPath: string, newPath: string): Promise<void> {
+  rename(oldPath: string, newPath: string): Promise<void> {
     return rename(oldPath, newPath);
   }
 
-  public renameSync(oldPath: string, newPath: string): void {
+  renameSync(oldPath: string, newPath: string): void {
     return renameSync(oldPath, newPath);
   }
 
-  public rm(path: string, recursive: boolean = false): Promise<void> {
+  rm(path: string, recursive: boolean = false): Promise<void> {
     return rm(path, recursive);
   }
 
-  public rmSync(path: string, recursive: boolean = false): void {
+  rmSync(path: string, recursive: boolean = false): void {
     return rmSync(path, recursive);
   }
 
-  public rmdir(path: string, recursive: boolean = false): Promise<void> {
+  rmdir(path: string, recursive: boolean = false): Promise<void> {
     return rmdir(path, recursive);
   }
 
-  public rmdirSync(path: string, recursive: boolean = false): void {
+  rmdirSync(path: string, recursive: boolean = false): void {
     return rmdirSync(path, recursive);
   }
 
-  public stat(path: string): Promise<Stats> {
+  stat(path: string): Promise<Stats> {
     return stat(path);
   }
 
-  public statSync(path: string): Stats {
+  statSync(path: string): Stats {
     return statSync(path);
   }
 
-  public symlink(
+  symlink(
     target: string,
     path: string,
     type?: string
@@ -1478,27 +1403,27 @@ export class FsModuleNamespace {
     return symlink(target, path, type);
   }
 
-  public symlinkSync(target: string, path: string, type?: string): void {
+  symlinkSync(target: string, path: string, type?: string): void {
     return symlinkSync(target, path, type);
   }
 
-  public truncate(path: string, length: number = 0): Promise<void> {
+  truncate(path: string, length: number = 0): Promise<void> {
     return truncate(path, length);
   }
 
-  public truncateSync(path: string, length: number = 0): void {
+  truncateSync(path: string, length: number = 0): void {
     return truncateSync(path, length);
   }
 
-  public unlink(path: string): Promise<void> {
+  unlink(path: string): Promise<void> {
     return unlink(path);
   }
 
-  public unlinkSync(path: string): void {
+  unlinkSync(path: string): void {
     return unlinkSync(path);
   }
 
-  public writeFile(
+  writeFile(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1506,34 +1431,30 @@ export class FsModuleNamespace {
     return writeFile(path, data, encoding);
   }
 
-  public write(
+  write(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
     length: int,
     position: int | null
   ): Promise<int>;
-  public write(
+  write(
     fd: int,
     data: string,
     position?: int | null,
     encoding?: string
   ): Promise<int>;
-  public write(
-    fd: any,
-    bufferOrData: any,
-    offsetOrPosition?: any,
-    lengthOrEncoding?: any,
-    position?: any
+  write(
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
   ): Promise<any> {
-    if (typeof bufferOrData === "string") {
-      return this.write_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
-    }
-
-    return this.write_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
+    throw new Error("Unreachable overload stub");
   }
 
-  public write_buffer(
+  write_buffer(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1543,7 +1464,7 @@ export class FsModuleNamespace {
     return write_buffer(fd, buffer, offset, length, position);
   }
 
-  public write_text(
+  write_text(
     fd: int,
     data: string,
     position?: int | null,
@@ -1552,34 +1473,30 @@ export class FsModuleNamespace {
     return write_text(fd, data, position, encoding);
   }
 
-  public writeSync(
+  writeSync(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
     length: int,
     position: int | null
   ): int;
-  public writeSync(
+  writeSync(
     fd: int,
     data: string,
     position?: int | null,
     encoding?: string
   ): int;
-  public writeSync(
-    fd: any,
-    bufferOrData: any,
-    offsetOrPosition?: any,
-    lengthOrEncoding?: any,
-    position?: any
+  writeSync(
+    _fd: any,
+    _bufferOrData: any,
+    _offsetOrPosition?: any,
+    _lengthOrEncoding?: any,
+    _position?: any
   ): any {
-    if (typeof bufferOrData === "string") {
-      return this.writeSync_text(fd, bufferOrData, offsetOrPosition, lengthOrEncoding);
-    }
-
-    return this.writeSync_buffer(fd, bufferOrData, offsetOrPosition, lengthOrEncoding, position);
+    throw new Error("Unreachable overload stub");
   }
 
-  public writeSync_buffer(
+  writeSync_buffer(
     fd: int,
     buffer: WritableFsBuffer,
     offset: int,
@@ -1589,7 +1506,7 @@ export class FsModuleNamespace {
     return writeSync_buffer(fd, buffer, offset, length, position);
   }
 
-  public writeSync_text(
+  writeSync_text(
     fd: int,
     data: string,
     position?: int | null,
@@ -1598,11 +1515,11 @@ export class FsModuleNamespace {
     return writeSync_text(fd, data, position, encoding);
   }
 
-  public writeFileBytes(path: string, data: byte[]): Promise<void> {
+  writeFileBytes(path: string, data: byte[]): Promise<void> {
     return writeFileBytes(path, data);
   }
 
-  public writeFileSync(
+  writeFileSync(
     path: string,
     data: string,
     encoding: string = "utf-8"
@@ -1610,7 +1527,7 @@ export class FsModuleNamespace {
     return writeFileSync(path, data, encoding);
   }
 
-  public writeFileSyncBytes(path: string, data: byte[]): void {
+  writeFileSyncBytes(path: string, data: byte[]): void {
     return writeFileSyncBytes(path, data);
   }
 }

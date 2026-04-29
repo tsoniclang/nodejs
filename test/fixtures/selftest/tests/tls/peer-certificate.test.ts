@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { PeerCertificate } from "@tsonic/nodejs/tls.js";
 
 export class PeerCertificateTests {
-  public PeerCertificate_AllProperties_CanBeSet(): void {
+  PeerCertificate_AllProperties_CanBeSet(): void {
     const cert = new PeerCertificate();
     cert.ca = true;
     cert.raw = new Uint8Array([1, 2, 3]);

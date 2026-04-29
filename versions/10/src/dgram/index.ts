@@ -20,8 +20,10 @@ export const createSocket = (
   typeOrOptions: string | SocketOptions,
   callback?: (msg: Uint8Array, rinfo: RemoteInfo) => void,
 ): DgramSocket => {
-  if (typeof typeOrOptions === "string") {
+  if (typeOrOptions instanceof SocketOptions) {
     return new DgramSocket(typeOrOptions, callback);
   }
-  return new DgramSocket(typeOrOptions, callback);
+  const options = new SocketOptions();
+  options.type = typeOrOptions;
+  return new DgramSocket(options, callback);
 };

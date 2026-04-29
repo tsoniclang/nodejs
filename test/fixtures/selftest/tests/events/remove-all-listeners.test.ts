@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class RemoveAllListenersTests {
-  public removeAllListeners_without_an_event_name_clears_everything(): void {
+  removeAllListeners_without_an_event_name_clears_everything(): void {
     const emitter = new EventEmitter();
     let count1 = 0;
     let count2 = 0;
@@ -23,7 +23,7 @@ export class RemoveAllListenersTests {
     Assert.Equal(0, count2);
   }
 
-  public removeAllListeners_with_an_event_name_clears_only_that_event(): void {
+  removeAllListeners_with_an_event_name_clears_only_that_event(): void {
     const emitter = new EventEmitter();
     let count1 = 0;
     let count2 = 0;

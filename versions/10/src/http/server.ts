@@ -32,17 +32,17 @@ export class AddressInfo {
   /**
    * The port number the server is listening on.
    */
-  public port: int;
+  port: int;
 
   /**
    * The address family (e.g., "IPv4" or "IPv6").
    */
-  public family: string;
+  family: string;
 
   /**
    * The IP address the server is listening on.
    */
-  public address: string;
+  address: string;
 
   constructor(port: int, family: string, address: string) {
     this.port = port;
@@ -56,16 +56,16 @@ export class AddressInfo {
  * Extends EventEmitter to support events like 'request', 'connection', 'close', etc.
  */
 export class Server extends EventEmitter {
-  private _boundAddress: AddressInfo | null = null;
-  private _boundPath: string | null = null;
-  private _maxHeadersCount: int = 2000 as int;
-  private _timeout: int = 0 as int;
-  private _headersTimeout: int = 60000 as int;
-  private _requestTimeout: int = 300000 as int;
-  private _keepAliveTimeout: int = 5000 as int;
-  private _listening: boolean = false;
-  private _listener: HttpListener | null = null;
-  private _keepAliveAcquired: boolean = false;
+  _boundAddress: AddressInfo | null = null;
+  _boundPath: string | null = null;
+  _maxHeadersCount: int = 2000 as int;
+  _timeout: int = 0 as int;
+  _headersTimeout: int = 60000 as int;
+  _requestTimeout: int = 300000 as int;
+  _keepAliveTimeout: int = 5000 as int;
+  _listening: boolean = false;
+  _listener: HttpListener | null = null;
+  _keepAliveAcquired: boolean = false;
 
   constructor(
     requestListener?:
@@ -87,11 +87,11 @@ export class Server extends EventEmitter {
    * Limits maximum incoming headers count.
    * If set to 0, no limit will be applied.
    */
-  public get maxHeadersCount(): int {
+  get maxHeadersCount(): int {
     return this._maxHeadersCount;
   }
 
-  public set maxHeadersCount(value: int) {
+  set maxHeadersCount(value: int) {
     this._maxHeadersCount = value;
   }
 
@@ -99,11 +99,11 @@ export class Server extends EventEmitter {
    * Sets the timeout value in milliseconds for receiving the entire request.
    * Default: 0 (no timeout)
    */
-  public get timeout(): int {
+  get timeout(): int {
     return this._timeout;
   }
 
-  public set timeout(value: int) {
+  set timeout(value: int) {
     if (value < 0) {
       throw new Error("Timeout must be non-negative");
     }
@@ -114,11 +114,11 @@ export class Server extends EventEmitter {
    * Limits the amount of time the parser will wait to receive the complete HTTP headers.
    * Default: 60000 (60 seconds)
    */
-  public get headersTimeout(): int {
+  get headersTimeout(): int {
     return this._headersTimeout;
   }
 
-  public set headersTimeout(value: int) {
+  set headersTimeout(value: int) {
     if (value < 0) {
       throw new Error("Headers timeout must be non-negative");
     }
@@ -129,11 +129,11 @@ export class Server extends EventEmitter {
    * Sets the timeout value in milliseconds for receiving the entire request from the client.
    * Default: 300000 (5 minutes)
    */
-  public get requestTimeout(): int {
+  get requestTimeout(): int {
     return this._requestTimeout;
   }
 
-  public set requestTimeout(value: int) {
+  set requestTimeout(value: int) {
     if (value < 0) {
       throw new Error("Request timeout must be non-negative");
     }
@@ -145,11 +145,11 @@ export class Server extends EventEmitter {
    * after it has finished writing the last response, before a socket will be destroyed.
    * Default: 5000 (5 seconds)
    */
-  public get keepAliveTimeout(): int {
+  get keepAliveTimeout(): int {
     return this._keepAliveTimeout;
   }
 
-  public set keepAliveTimeout(value: int) {
+  set keepAliveTimeout(value: int) {
     if (value < 0) {
       throw new Error("Keep-alive timeout must be non-negative");
     }
@@ -159,7 +159,7 @@ export class Server extends EventEmitter {
   /**
    * Indicates whether or not the server is listening for connections.
    */
-  public get listening(): boolean {
+  get listening(): boolean {
     return this._listening;
   }
 
@@ -171,61 +171,47 @@ export class Server extends EventEmitter {
    * @param callback - Optional callback when server has been started.
    * @returns The server instance for chaining.
    */
-  public listen(
+  listen(
     path: string,
     callback?: (() => void) | null
   ): Server;
-  public listen(
+  listen(
     port: number,
     hostname: string,
     backlog: number,
     callback?: (() => void) | null
   ): Server;
-  public listen(
+  listen(
     port: number,
     hostname: string,
     callback?: (() => void) | null
   ): Server;
-  public listen(
+  listen(
     port: number,
     backlog: number,
     callback?: (() => void) | null
   ): Server;
-  public listen(
+  listen(
     port: number,
     callback?: (() => void) | null
   ): Server;
-  public listen(
-    portOrPath: any,
-    hostname?: any,
-    backlog?: any,
-    callback?: any
+  listen(
+    _portOrPath: any,
+    _hostname?: any,
+    _backlog?: any,
+    _callback?: any
   ): any {
-    if (typeof portOrPath === "string") {
-      return this.listen_path(portOrPath, hostname);
-    }
-
-    if (typeof hostname === "string") {
-      return typeof backlog === "number"
-        ? this.listen_port_hostname_backlog(portOrPath, hostname, backlog, callback)
-        : this.listen_port_hostname(portOrPath, hostname, backlog);
-    }
-
-    if (typeof hostname === "number") {
-      return this.listen_port_backlog(portOrPath, hostname, backlog);
-    }
-
-    return this.listen_port(portOrPath, hostname);
+    throw new Error("Unreachable overload stub");
   }
 
-  public listen_path(
+  listen_path(
     path: string,
     callback?: (() => void) | null
   ): Server {
     return this.listenPath(path, callback ?? undefined);
   }
 
-  public listen_port_hostname_backlog(
+  listen_port_hostname_backlog(
     port: number,
     hostname: string,
     backlog: number,
@@ -234,7 +220,7 @@ export class Server extends EventEmitter {
     return this.listenResolved(port, hostname, backlog, callback ?? undefined);
   }
 
-  public listen_port_hostname(
+  listen_port_hostname(
     port: number,
     hostname: string,
     callback?: (() => void) | null
@@ -242,7 +228,7 @@ export class Server extends EventEmitter {
     return this.listenResolved(port, hostname, 511 as int, callback ?? undefined);
   }
 
-  public listen_port_backlog(
+  listen_port_backlog(
     port: number,
     backlog: number,
     callback?: (() => void) | null
@@ -250,7 +236,7 @@ export class Server extends EventEmitter {
     return this.listenResolved(port, undefined, backlog, callback ?? undefined);
   }
 
-  public listen_port(
+  listen_port(
     port: number,
     callback?: (() => void) | null
   ): Server {
@@ -263,7 +249,7 @@ export class Server extends EventEmitter {
    * @param callback - Optional callback when server has been started.
    * @returns The server instance for chaining.
    */
-  public listenWithCallback(port: int, callback?: (() => void) | null): Server {
+  listenWithCallback(port: int, callback?: (() => void) | null): Server {
     return this.listenInternal(
       port,
       undefined,
@@ -275,7 +261,7 @@ export class Server extends EventEmitter {
   /**
    * Begin accepting connections on the specified port and hostname with callback.
    */
-  public listenWithHostname(
+  listenWithHostname(
     port: int,
     hostname: string,
     callback?: (() => void) | null
@@ -288,7 +274,7 @@ export class Server extends EventEmitter {
     );
   }
 
-  private listenResolved(
+  listenResolved(
     port: number,
     hostname: string | undefined,
     backlog: number,
@@ -318,7 +304,7 @@ export class Server extends EventEmitter {
     );
   }
 
-  private listenInternal(
+  listenInternal(
     port: int,
     hostname: string | undefined,
     backlog: int,
@@ -362,7 +348,7 @@ export class Server extends EventEmitter {
    * @param callback - Optional callback when server has closed.
    * @returns The server instance for chaining.
    */
-  public close(callback?: (() => void) | null): Server {
+  close(callback?: (() => void) | null): Server {
     if (!this._listening && this._listener === null) {
       if (callback !== undefined && callback !== null) {
         callback();
@@ -409,7 +395,7 @@ export class Server extends EventEmitter {
    * @param callback - Optional callback to be added as a listener on the 'timeout' event.
    * @returns The server instance for chaining.
    */
-  public setTimeout(msecs: int, callback?: (() => void) | null): Server {
+  setTimeout(msecs: int, callback?: (() => void) | null): Server {
     if (msecs < 0) {
       throw new Error("Timeout must be non-negative");
     }
@@ -427,11 +413,11 @@ export class Server extends EventEmitter {
    * Only useful after 'listening' event.
    * @returns An object with 'port', 'family', and 'address' properties, or null.
    */
-  public address(): AddressInfo | null {
+  address(): AddressInfo | null {
     return this._boundAddress;
   }
 
-  private listenPath(
+  listenPath(
     path: string,
     callback: (() => void) | undefined
   ): Server {
@@ -457,7 +443,7 @@ export class Server extends EventEmitter {
     return this;
   }
 
-  private _acceptLoop(): void {
+  _acceptLoop(): void {
     while (this._listening && this._listener !== null) {
       let context: HttpListenerContext;
 
@@ -465,22 +451,11 @@ export class Server extends EventEmitter {
         context = this._listener.GetContext();
       } catch (error) {
         if (this._listening) {
-          if (error === undefined) {
-            this.emit("error", new Error("Failed to accept request"));
-          } else if (
-            error === null ||
-            typeof error === "string" ||
-            typeof error === "number" ||
-            typeof error === "boolean" ||
-            typeof error === "bigint" ||
-            typeof error === "symbol" ||
-            typeof error === "object" ||
-            typeof error === "function"
-          ) {
-            this.emit("error", error);
-          } else {
-            this.emit("error", new Error("Failed to accept request"));
-          }
+          const eventError =
+            error instanceof Error
+              ? error
+              : new Error("Failed to accept request");
+          this.emit("error", eventError);
         }
         break;
       }
@@ -491,7 +466,7 @@ export class Server extends EventEmitter {
     }
   }
 
-  private _dispatchContext(context: HttpListenerContext): void {
+  _dispatchContext(context: HttpListenerContext): void {
     const request = new IncomingMessage(context.Request);
     const response = new ServerResponse(context.Response);
 
@@ -505,22 +480,11 @@ export class Server extends EventEmitter {
         response.end("Internal Server Error");
       }
 
-      if (error === undefined) {
-        this.emit("error", new Error("Failed to dispatch request"));
-      } else if (
-        error === null ||
-        typeof error === "string" ||
-        typeof error === "number" ||
-        typeof error === "boolean" ||
-        typeof error === "bigint" ||
-        typeof error === "symbol" ||
-        typeof error === "object" ||
-        typeof error === "function"
-      ) {
-        this.emit("error", error);
-      } else {
-        this.emit("error", new Error("Failed to dispatch request"));
-      }
+      const eventError =
+        error instanceof Error
+          ? error
+          : new Error("Failed to dispatch request");
+      this.emit("error", eventError);
     }
   }
 }

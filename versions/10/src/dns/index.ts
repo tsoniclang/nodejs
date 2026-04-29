@@ -5,7 +5,7 @@
 
 import type {} from "../type-bootstrap.ts";
 
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import { Dns, IPAddress } from "@tsonic/dotnet/System.Net.js";
 import { AddressFamily } from "@tsonic/dotnet/System.Net.Sockets.js";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
@@ -31,6 +31,7 @@ import {
 } from "./records.ts";
 import type { ResolveOptions } from "./options.ts";
 import { DnsPromises } from "./promises.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 // ==================== Re-exports ====================
 
@@ -157,42 +158,24 @@ const selectResultOrder = (options: LookupOptions | null): string => {
 const resolveLookupFamily = (
   optionsOrFamily: LookupOptions | int | null
 ): int | null => {
-  if (typeof optionsOrFamily === "number") {
-    return optionsOrFamily as int;
-  }
-
   if (optionsOrFamily === null) {
     return null;
   }
 
+  if (!(optionsOrFamily instanceof LookupOptions)) {
+    return optionsOrFamily as int;
+  }
+
   const family = optionsOrFamily.family;
-  if (typeof family === "string") {
-    if (family === "IPv4") {
-      return 4 as int;
-    }
-
-    if (family === "IPv6") {
-      return 6 as int;
-    }
-
-    return null;
+  if (family === 0) {
+    return 0 as int;
   }
 
-  if (typeof family === "number") {
-    if (family === 0) {
-      return 0 as int;
-    }
-
-    if (family === 4) {
-      return 4 as int;
-    }
-
-    if (family === 6) {
-      return 6 as int;
-    }
+  if (family === 4) {
+    return 4 as int;
   }
 
-  return null;
+  return family === 6 ? (6 as int) : null;
 };
 
 const toNodeFamily = (address: IPAddress): int =>
@@ -317,14 +300,17 @@ const getLookupAddresses = (
   optionsOrFamily: LookupOptions | int | null
 ): Array<LookupAddress> => {
   const family = resolveLookupFamily(optionsOrFamily);
-  const order = typeof optionsOrFamily === "number" ? defaultResultOrder : selectResultOrder(optionsOrFamily);
+  const order =
+    optionsOrFamily instanceof LookupOptions
+      ? selectResultOrder(optionsOrFamily)
+      : defaultResultOrder;
   const addresses = sortAddresses(getHostAddresses(hostname, family), order);
   return mapLookupAddresses(addresses);
 };
 
 const callbackError = <TResult>(
   callback: (err: Error | null, result: TResult) => void,
-  error: JsValue,
+  error: RuntimeValue,
   fallback: TResult
 ): void => {
   callback(error instanceof Error ? error : new Error("DNS resolution failed"), fallback);
@@ -332,7 +318,7 @@ const callbackError = <TResult>(
 
 const callbackLookupError = (
   callback: (err: Error | null, address: string, family: int) => void,
-  error: JsValue
+  error: RuntimeValue
 ): void => {
   callback(error instanceof Error ? error : new Error("DNS lookup failed"), "", 0 as int);
 };
@@ -421,7 +407,7 @@ export const resolve = (
 export const resolveWithRrtype = (
   hostname: string,
   rrtype: string,
-  callback: (err: Error | null, records: JsValue) => void,
+  callback: (err: Error | null, records: RuntimeValue) => void,
 ): void => {
   switch (rrtype.toUpperCase()) {
     case "A":

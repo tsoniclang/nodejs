@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class writeSyncTests {
-  public writeSync_WithBytes_ShouldWriteToFile(): void {
+  writeSync_WithBytes_ShouldWriteToFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithString_ShouldWriteToFile(): void {
+  writeSync_WithString_ShouldWriteToFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -36,7 +36,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithOffset_ShouldWritePartialBuffer(): void {
+  writeSync_WithOffset_ShouldWritePartialBuffer(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -51,7 +51,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithPosition_ShouldWriteAtSpecificPosition(): void {
+  writeSync_WithPosition_ShouldWriteAtSpecificPosition(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -66,7 +66,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_MultipleCalls_ShouldAdvanceFilePosition(): void {
+  writeSync_MultipleCalls_ShouldAdvanceFilePosition(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -81,7 +81,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithAppendFlag_ShouldAppendToFile(): void {
+  writeSync_WithAppendFlag_ShouldAppendToFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -95,7 +95,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithDifferentEncodings_ShouldWork(): void {
+  writeSync_WithDifferentEncodings_ShouldWork(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -108,7 +108,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithNullBuffer_ShouldThrow(): void {
+  writeSync_WithNullBuffer_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -120,12 +120,12 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithInvalidDescriptor_ShouldThrow(): void {
+  writeSync_WithInvalidDescriptor_ShouldThrow(): void {
     const data = Buffer.from("test", "utf8");
     assertThrows(() => fs.writeSync(999, data, 0, data.length, null));
   }
 
-  public writeSync_WithInvalidOffset_ShouldThrow(): void {
+  writeSync_WithInvalidOffset_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -139,7 +139,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_WithInvalidLength_ShouldThrow(): void {
+  writeSync_WithInvalidLength_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -153,7 +153,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_EmptyString_ShouldCreateEmptyFile(): void {
+  writeSync_EmptyString_ShouldCreateEmptyFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -165,7 +165,7 @@ export class writeSyncTests {
     }
   }
 
-  public writeSync_LargeData_ShouldWriteCompletely(): void {
+  writeSync_LargeData_ShouldWriteCompletely(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

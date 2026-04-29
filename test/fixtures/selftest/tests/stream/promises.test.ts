@@ -10,7 +10,7 @@ import {
 } from "@tsonic/nodejs/stream.js";
 
 export class StreamPromisesTests {
-  public async finished_should_resolve_on_writable_finish(): Promise<void> {
+  async finished_should_resolve_on_writable_finish(): Promise<void> {
     const writable = new Writable();
     const finishedPromise = streamPromises.finished(writable);
 
@@ -18,7 +18,7 @@ export class StreamPromisesTests {
     await finishedPromise;
   }
 
-  public async pipeline_should_resolve_for_simple_streams(): Promise<void> {
+  async pipeline_should_resolve_for_simple_streams(): Promise<void> {
     const source = new Readable();
     const destination = new Writable();
 

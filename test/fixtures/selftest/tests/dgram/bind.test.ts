@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createSocket, BindOptions } from "@tsonic/nodejs/dgram.js";
 
 export class BindTests {
-  public bind_WithPort_BindsSuccessfully(): void {
+  bind_WithPort_BindsSuccessfully(): void {
     const socket = createSocket("udp4");
     let listening = false;
 
@@ -21,7 +21,7 @@ export class BindTests {
     socket.close();
   }
 
-  public bind_WithCallback_CallsCallback(): void {
+  bind_WithCallback_CallsCallback(): void {
     const socket = createSocket("udp4");
     let callbackCalled = false;
 
@@ -34,7 +34,7 @@ export class BindTests {
     socket.close();
   }
 
-  public bind_WithBindOptions_BindsSuccessfully(): void {
+  bind_WithBindOptions_BindsSuccessfully(): void {
     const socket = createSocket("udp4");
 
     const options = new BindOptions();
@@ -49,7 +49,7 @@ export class BindTests {
     socket.close();
   }
 
-  public bind_WithBindOptionsAndCallback_CallsCallback(): void {
+  bind_WithBindOptionsAndCallback_CallsCallback(): void {
     const socket = createSocket("udp4");
     let callbackCalled = false;
 
@@ -66,7 +66,7 @@ export class BindTests {
     socket.close();
   }
 
-  public bind_WithFileDescriptor_BindsSuccessfully(): void {
+  bind_WithFileDescriptor_BindsSuccessfully(): void {
     const socket = createSocket("udp4");
 
     const options = new BindOptions();

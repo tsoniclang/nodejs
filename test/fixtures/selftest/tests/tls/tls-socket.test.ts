@@ -5,39 +5,39 @@ import { EventEmitter } from "@tsonic/nodejs/events.js";
 import { TLSSocket } from "@tsonic/nodejs/tls.js";
 
 export class TLSSocketTests {
-  public TLSSocket_Constructor_CreatesInstance(): void {
+  TLSSocket_Constructor_CreatesInstance(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     Assert.NotNull(tlsSocket);
   }
 
-  public TLSSocket_Encrypted_AlwaysTrue(): void {
+  TLSSocket_Encrypted_AlwaysTrue(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     Assert.True(tlsSocket.encrypted);
   }
 
-  public TLSSocket_Authorized_InitiallyFalse(): void {
+  TLSSocket_Authorized_InitiallyFalse(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     Assert.False(tlsSocket.authorized);
   }
 
-  public TLSSocket_GetCertificate_NoCert_ReturnsNull(): void {
+  TLSSocket_GetCertificate_NoCert_ReturnsNull(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const cert = tlsSocket.getCertificate();
     Assert.Null(cert);
   }
 
-  public TLSSocket_GetPeerCertificate_NoCert_ReturnsNull(): void {
+  TLSSocket_GetPeerCertificate_NoCert_ReturnsNull(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const cert = tlsSocket.getPeerCertificate();
     Assert.Null(cert);
   }
 
-  public TLSSocket_GetCipher_ReturnsInfo(): void {
+  TLSSocket_GetCipher_ReturnsInfo(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const cipher = tlsSocket.getCipher();
@@ -45,32 +45,32 @@ export class TLSSocketTests {
     Assert.NotNull(cipher.name);
   }
 
-  public TLSSocket_GetProtocol_NoHandshake_ReturnsNull(): void {
+  TLSSocket_GetProtocol_NoHandshake_ReturnsNull(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const protocol = tlsSocket.getProtocol();
     Assert.Null(protocol);
   }
 
-  public TLSSocket_GetSharedSigalgs_ReturnsArray(): void {
+  TLSSocket_GetSharedSigalgs_ReturnsArray(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const sigalgs = tlsSocket.getSharedSigalgs();
     Assert.NotNull(sigalgs);
   }
 
-  public TLSSocket_IsSessionReused_ReturnsFalse(): void {
+  TLSSocket_IsSessionReused_ReturnsFalse(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     Assert.False(tlsSocket.isSessionReused());
   }
 
-  public TLSSocket_Renegotiate_ReturnsFalseAndCallsCallbackWithoutError(): void {
+  TLSSocket_Renegotiate_ReturnsFalseAndCallsCallbackWithoutError(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     let error: Error | null = null;
 
-    const result = tlsSocket.renegotiate({}, (err) => {
+    const result = tlsSocket.renegotiate(null, (err) => {
       error = err;
     });
 
@@ -78,14 +78,14 @@ export class TLSSocketTests {
     Assert.Null(error);
   }
 
-  public TLSSocket_SetMaxSendFragment_ReturnsFalse(): void {
+  TLSSocket_SetMaxSendFragment_ReturnsFalse(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const result = tlsSocket.setMaxSendFragment(1024);
     Assert.False(result);
   }
 
-  public TLSSocket_DisableRenegotiation_DoesNotThrow(): void {
+  TLSSocket_DisableRenegotiation_DoesNotThrow(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
 
@@ -98,7 +98,7 @@ export class TLSSocketTests {
     Assert.False(threw);
   }
 
-  public TLSSocket_EnableTrace_DoesNotThrow(): void {
+  TLSSocket_EnableTrace_DoesNotThrow(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
 
@@ -111,7 +111,7 @@ export class TLSSocketTests {
     Assert.False(threw);
   }
 
-  public TLSSocket_ExportKeyingMaterial_ReturnsRequestedLength(): void {
+  TLSSocket_ExportKeyingMaterial_ReturnsRequestedLength(): void {
     const baseSocket = new EventEmitter();
     const tlsSocket = new TLSSocket(baseSocket);
     const material = tlsSocket.exportKeyingMaterial(

@@ -4,19 +4,19 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ConstantsTests {
-  public constants_ADDRCONFIG_IsCorrectValue(): void {
+  constants_ADDRCONFIG_IsCorrectValue(): void {
     Assert.Equal(0x0400, dns.ADDRCONFIG);
   }
 
-  public constants_V4MAPPED_IsCorrectValue(): void {
+  constants_V4MAPPED_IsCorrectValue(): void {
     Assert.Equal(0x0800, dns.V4MAPPED);
   }
 
-  public constants_ALL_IsCorrectValue(): void {
+  constants_ALL_IsCorrectValue(): void {
     Assert.Equal(dns.V4MAPPED | dns.ADDRCONFIG, dns.ALL);
   }
 
-  public constants_ErrorCodes_AllDefined(): void {
+  constants_ErrorCodes_AllDefined(): void {
     Assert.Equal("ENODATA", dns.NODATA);
     Assert.Equal("EFORMERR", dns.FORMERR);
     Assert.Equal("ESERVFAIL", dns.SERVFAIL);

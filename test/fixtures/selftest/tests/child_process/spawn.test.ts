@@ -1,12 +1,12 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
 export class ChildProcessSpawnTests {
-  public spawn_SimpleCommand_ReturnsChildProcess(): void {
+  spawn_SimpleCommand_ReturnsChildProcess(): void {
     const command = "echo";
     const args = ["test"];
     const child = child_process.spawn(command, args);
@@ -15,7 +15,7 @@ export class ChildProcessSpawnTests {
     Assert.True(child.pid > 0);
   }
 
-  public spawn_HasSpawnProperties(): void {
+  spawn_HasSpawnProperties(): void {
     const command = "echo";
     const args = ["test"];
     const child = child_process.spawn(command, args);
@@ -27,7 +27,7 @@ export class ChildProcessSpawnTests {
     Assert.Equal(command, child.spawnfile);
   }
 
-  public spawn_EmitsSpawnEvent(): void {
+  spawn_EmitsSpawnEvent(): void {
     const command = "echo";
     const args = ["test"];
 
@@ -41,14 +41,14 @@ export class ChildProcessSpawnTests {
     Assert.NotNull(child);
   }
 
-  public spawn_EmitsCloseEvent(): void {
+  spawn_EmitsCloseEvent(): void {
     const command = "sleep";
     const args = ["0.1"];
     let closeEmitted = false;
     let exitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("close", (code: JsValue, _signal: JsValue) => {
+    child.on("close", (code: RuntimeValue, _signal: RuntimeValue) => {
       closeEmitted = true;
       exitCode = code as number | null;
     });
@@ -58,7 +58,7 @@ export class ChildProcessSpawnTests {
     Assert.True(closeEmitted || !closeEmitted); // placeholder
   }
 
-  public spawn_InvalidCommand_ThrowsWithoutHandler(): void {
+  spawn_InvalidCommand_ThrowsWithoutHandler(): void {
     // When there's no error handler, spawn throws for invalid commands
     assertThrows(() => {
       child_process.spawn("nonexistent_command_xyz");

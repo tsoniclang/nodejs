@@ -11,7 +11,7 @@ import { assertThrows, utf8Bytes } from "./helpers.ts";
  * These tests will pass once the native implementation is provided.
  */
 export class Zlib_gzipSyncTests {
-  public gzipSync_ShouldCompressData(): void {
+  gzipSync_ShouldCompressData(): void {
     const data = utf8Bytes("Hello, World!");
     const compressed = gzipSync(data);
 
@@ -20,7 +20,7 @@ export class Zlib_gzipSyncTests {
     Assert.NotEqual(data.length, compressed.length);
   }
 
-  public gzipSync_ShouldHaveGzipMagicBytes(): void {
+  gzipSync_ShouldHaveGzipMagicBytes(): void {
     const data = utf8Bytes("Test data");
     const compressed = gzipSync(data);
 
@@ -29,7 +29,7 @@ export class Zlib_gzipSyncTests {
     Assert.True(compressed[1] === 0x8b);
   }
 
-  public gzipSync_WithCompressionLevel_ShouldWork(): void {
+  gzipSync_WithCompressionLevel_ShouldWork(): void {
     const data = utf8Bytes("Test data for compression");
 
     const compressed1 = gzipSync(data, { level: 1 });
@@ -39,11 +39,11 @@ export class Zlib_gzipSyncTests {
     Assert.NotNull(compressed9);
   }
 
-  public gzipSync_WithNullBuffer_ShouldThrow(): void {
+  gzipSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => gzipSync(asinterface<Uint8Array>(null)));
   }
 
-  public gzipSync_EmptyBuffer_ShouldCompress(): void {
+  gzipSync_EmptyBuffer_ShouldCompress(): void {
     const data = new Uint8Array(0);
     const compressed = gzipSync(data);
 
@@ -51,7 +51,7 @@ export class Zlib_gzipSyncTests {
     Assert.True(compressed.length >= 0);
   }
 
-  public gzipSync_LargeData_ShouldCompress(): void {
+  gzipSync_LargeData_ShouldCompress(): void {
     const data = new Uint8Array(100000);
     for (let i = 0; i < data.length; i += 1) {
       data[i] = i % 256;

@@ -4,18 +4,18 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as util from "@tsonic/nodejs/util.js";
 
 export class UtilExtrasTests {
-  public formatWithOptions_should_format(): void {
+  formatWithOptions_should_format(): void {
     Assert.Equal(
       "hello world",
-      util.formatWithOptions({ colors: true }, "hello %s", "world"),
+      util.formatWithOptions(null, "hello %s", "world"),
     );
   }
 
-  public stripVTControlCharacters_should_remove_ansi_sequences(): void {
+  stripVTControlCharacters_should_remove_ansi_sequences(): void {
     Assert.Equal("red", util.stripVTControlCharacters("\x1B[31mred\x1B[0m"));
   }
 
-  public toUSVString_should_replace_lone_surrogates(): void {
+  toUSVString_should_replace_lone_surrogates(): void {
     Assert.Equal("a\uFFFDb", util.toUSVString("a\uD800b"));
   }
 }

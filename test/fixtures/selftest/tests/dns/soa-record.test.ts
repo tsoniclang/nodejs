@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SoaRecord } from "@tsonic/nodejs/dns.js";
 
 export class SoaRecordTests {
-  public SoaRecord_AllProperties_CanBeSet(): void {
+  SoaRecord_AllProperties_CanBeSet(): void {
     const record = new SoaRecord();
     record.nsname = "ns.example.com";
     record.hostmaster = "root.example.com";

@@ -11,7 +11,7 @@ export class ReadlinePromises {
   /**
    * Creates a readline interface from options.
    */
-  public createInterface(options: InterfaceOptions): Interface {
+  createInterface(options: InterfaceOptions): Interface {
     if (options === undefined || options === null) {
       throw new Error("options is required");
     }
@@ -26,7 +26,7 @@ export class ReadlinePromises {
   /**
    * Creates a readline interface from input/output streams.
    */
-  public createInterfaceFromStreams(
+  createInterfaceFromStreams(
     input: Readable,
     output?: Writable,
   ): Interface {
@@ -39,7 +39,7 @@ export class ReadlinePromises {
   /**
    * Asks a question and resolves with the response.
    */
-  public question(rl: Interface, query: string): Promise<string> {
+  question(rl: Interface, query: string): Promise<string> {
     if (rl === undefined || rl === null) {
       throw new Error("rl is required");
     }

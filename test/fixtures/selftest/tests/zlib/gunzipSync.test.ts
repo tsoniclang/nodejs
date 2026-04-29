@@ -11,7 +11,7 @@ import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
  * These tests will pass once the native implementation is provided.
  */
 export class Zlib_gunzipSyncTests {
-  public gunzipSync_ShouldDecompressData(): void {
+  gunzipSync_ShouldDecompressData(): void {
     const original = utf8Bytes("Hello, World!");
     const compressed = gzipSync(original);
     const decompressed = gunzipSync(compressed);
@@ -19,7 +19,7 @@ export class Zlib_gunzipSyncTests {
     Assert.Equal(original.length, decompressed.length);
   }
 
-  public gunzipSync_ShouldRestoreOriginalText(): void {
+  gunzipSync_ShouldRestoreOriginalText(): void {
     const originalText = "The quick brown fox jumps over the lazy dog";
     const original = utf8Bytes(originalText);
 
@@ -30,17 +30,17 @@ export class Zlib_gunzipSyncTests {
     Assert.Equal(originalText, resultText);
   }
 
-  public gunzipSync_WithNullBuffer_ShouldThrow(): void {
+  gunzipSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => gunzipSync(asinterface<Uint8Array>(null)));
   }
 
-  public gunzipSync_WithInvalidData_ShouldThrow(): void {
+  gunzipSync_WithInvalidData_ShouldThrow(): void {
     const invalidData = utf8Bytes("This is not compressed");
 
     assertThrows(() => gunzipSync(invalidData));
   }
 
-  public gunzipSync_EmptyCompressedData_ShouldDecompress(): void {
+  gunzipSync_EmptyCompressedData_ShouldDecompress(): void {
     const empty = new Uint8Array(0);
     const compressed = gzipSync(empty);
     const decompressed = gunzipSync(compressed);
@@ -48,7 +48,7 @@ export class Zlib_gunzipSyncTests {
     Assert.Equal(0, decompressed.length);
   }
 
-  public gunzipSync_LargeData_ShouldDecompress(): void {
+  gunzipSync_LargeData_ShouldDecompress(): void {
     const original = new Uint8Array(100000);
     for (let i = 0; i < original.length; i += 1) {
       original[i] = i % 256;

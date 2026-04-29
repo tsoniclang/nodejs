@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ResolveMxTests {
-  public resolveMx_ValidDomain_CallsCallback(): void {
+  resolveMx_ValidDomain_CallsCallback(): void {
     let called = false;
     let exchange = "";
     dns.resolveMx("localhost", (err, recs) => {

@@ -15,7 +15,7 @@ import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
  * native implementation is provided.
  */
 export class Zlib_brotliDecompressSyncTests {
-  public brotliDecompressSync_ShouldDecompressData(): void {
+  brotliDecompressSync_ShouldDecompressData(): void {
     const original = utf8Bytes("Hello, World!");
     const compressed = brotliCompressSync(original);
     const decompressed = brotliDecompressSync(compressed);
@@ -23,7 +23,7 @@ export class Zlib_brotliDecompressSyncTests {
     Assert.Equal(original.length, decompressed.length);
   }
 
-  public brotliDecompressSync_ShouldRestoreOriginalText(): void {
+  brotliDecompressSync_ShouldRestoreOriginalText(): void {
     const originalText = "The quick brown fox jumps over the lazy dog";
     const original = utf8Bytes(originalText);
 
@@ -34,17 +34,17 @@ export class Zlib_brotliDecompressSyncTests {
     Assert.Equal(originalText, resultText);
   }
 
-  public brotliDecompressSync_WithNullBuffer_ShouldThrow(): void {
+  brotliDecompressSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => brotliDecompressSync(asinterface<Uint8Array>(null)));
   }
 
-  public brotliDecompressSync_WithInvalidData_ShouldThrow(): void {
+  brotliDecompressSync_WithInvalidData_ShouldThrow(): void {
     const invalidData = utf8Bytes("This is not compressed");
 
     assertThrows(() => brotliDecompressSync(invalidData));
   }
 
-  public brotliDecompressSync_LargeData_ShouldDecompress(): void {
+  brotliDecompressSync_LargeData_ShouldDecompress(): void {
     const original = new Uint8Array(50000);
     for (let i = 0; i < original.length; i += 1) {
       original[i] = i % 256;

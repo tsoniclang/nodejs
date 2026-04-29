@@ -6,16 +6,16 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { assertContains } from "./helpers.ts";
 
 export class FormatTests {
-  public format_builds_path_from_dir_and_base(): void {
+  format_builds_path_from_dir_and_base(): void {
     const result = nodePath.format(nodePath.parse("/home/user/dir/file.txt"));
     assertContains("file.txt", result);
   }
 
-  public format_with_only_base_returns_base(): void {
+  format_with_only_base_returns_base(): void {
     Assert.Equal("file.txt", nodePath.format(nodePath.parse("file.txt")));
   }
 
-  public format_preserves_root_only_directory_joining(): void {
+  format_preserves_root_only_directory_joining(): void {
     Assert.Equal("/file.txt", nodePath.format(nodePath.parse("/file.txt")));
   }
 }

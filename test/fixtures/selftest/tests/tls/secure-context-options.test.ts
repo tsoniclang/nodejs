@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SecureContextOptions } from "@tsonic/nodejs/tls.js";
 
 export class SecureContextOptionsTests {
-  public SecureContextOptions_AllProperties_CanBeSet(): void {
+  SecureContextOptions_AllProperties_CanBeSet(): void {
     const opts = new SecureContextOptions();
     opts.ca = "ca-cert";
     opts.cert = "cert";

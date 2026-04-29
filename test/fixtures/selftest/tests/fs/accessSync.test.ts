@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class accessSyncTests {
-  public accessSync_ExistingFile_ShouldNotThrow(): void {
+  accessSync_ExistingFile_ShouldNotThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "access-test.txt");
@@ -18,7 +18,7 @@ export class accessSyncTests {
     }
   }
 
-  public accessSync_ExistingDirectory_ShouldNotThrow(): void {
+  accessSync_ExistingDirectory_ShouldNotThrow(): void {
     const dir = createTempDir();
     try {
       const childDir = getTestPath(dir, "access-dir");
@@ -29,7 +29,7 @@ export class accessSyncTests {
     }
   }
 
-  public accessSync_NonExistent_ShouldThrow(): void {
+  accessSync_NonExistent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-access.txt");
@@ -39,7 +39,7 @@ export class accessSyncTests {
     }
   }
 
-  public accessSync_ReadableFile_ShouldNotThrow(): void {
+  accessSync_ReadableFile_ShouldNotThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "readable-test.txt");

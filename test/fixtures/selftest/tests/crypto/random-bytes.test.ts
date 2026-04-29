@@ -5,18 +5,18 @@ import { randomBytes, randomBytesAsync } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class RandomBytesTests {
-  public randomBytes_generates_correct_length(): void {
+  randomBytes_generates_correct_length(): void {
     const bytes = randomBytes(32 as int);
     Assert.Equal(32, bytes.length);
   }
 
-  public randomBytes_generates_different_values(): void {
+  randomBytes_generates_different_values(): void {
     const bytes1 = randomBytes(16 as int);
     const bytes2 = randomBytes(16 as int);
     Assert.NotEqual(bytes1, bytes2);
   }
 
-  public randomBytes_async_works(): void {
+  randomBytes_async_works(): void {
     let result: Uint8Array | null = null;
     let error: Error | null = null;
     randomBytesAsync(32 as int, (err, buf) => {
@@ -28,7 +28,7 @@ export class RandomBytesTests {
     Assert.Equal(32, result!.length);
   }
 
-  public randomBytes_callback_works(): void {
+  randomBytes_callback_works(): void {
     let result: Uint8Array | null = null;
     let error: Error | null = null;
     randomBytesAsync(32 as int, (err, bytes) => {

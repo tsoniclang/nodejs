@@ -14,11 +14,11 @@ import {
 import { assertThrows } from "./helpers.ts";
 
 export class PerformanceObserverTests {
-  public constructor_with_null_callback_should_throw(): void {
+  constructor_with_null_callback_should_throw(): void {
     assertThrows(() => new PerformanceObserver(null!));
   }
 
-  public observe_with_null_options_should_throw(): void {
+  observe_with_null_options_should_throw(): void {
     const observer = new PerformanceObserver((_list, _obs) => {
       return;
     });
@@ -26,7 +26,7 @@ export class PerformanceObserverTests {
     assertThrows(() => observer.observe(null!));
   }
 
-  public observe_with_empty_entry_types_should_throw(): void {
+  observe_with_empty_entry_types_should_throw(): void {
     const observer = new PerformanceObserver((_list, _obs) => {
       return;
     });
@@ -34,7 +34,7 @@ export class PerformanceObserverTests {
     assertThrows(() => observer.observe({ entryTypes: [] }));
   }
 
-  public observe_with_null_entry_types_should_throw(): void {
+  observe_with_null_entry_types_should_throw(): void {
     const observer = new PerformanceObserver((_list, _obs) => {
       return;
     });
@@ -42,7 +42,7 @@ export class PerformanceObserverTests {
     assertThrows(() => observer.observe({ entryTypes: null! }));
   }
 
-  public observer_should_receive_mark_entries(): void {
+  observer_should_receive_mark_entries(): void {
     performance.clearMarks();
 
     const received: PerformanceEntry[] = [];
@@ -64,7 +64,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public observer_should_receive_measure_entries(): void {
+  observer_should_receive_measure_entries(): void {
     performance.clearMeasures();
 
     const received: PerformanceEntry[] = [];
@@ -86,7 +86,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public observer_should_receive_multiple_entry_types(): void {
+  observer_should_receive_multiple_entry_types(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -110,7 +110,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public observer_should_not_receive_after_disconnect(): void {
+  observer_should_not_receive_after_disconnect(): void {
     performance.clearMarks();
 
     const received: PerformanceEntry[] = [];
@@ -134,7 +134,7 @@ export class PerformanceObserverTests {
     Assert.Equal("before-disconnect", received[0].name);
   }
 
-  public observer_should_filter_by_entry_type(): void {
+  observer_should_filter_by_entry_type(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -157,7 +157,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public take_records_should_return_empty_list(): void {
+  take_records_should_return_empty_list(): void {
     const observer = new PerformanceObserver((_list, _obs) => {
       return;
     });
@@ -172,7 +172,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public callback_should_receive_self(): void {
+  callback_should_receive_self(): void {
     performance.clearMarks();
 
     let receivedObserver: PerformanceObserver | null = null;
@@ -190,7 +190,7 @@ export class PerformanceObserverTests {
     observer.disconnect();
   }
 
-  public supported_entry_types_should_return_types(): void {
+  supported_entry_types_should_return_types(): void {
     const types = PerformanceObserver.supportedEntryTypes();
 
     Assert.True(types.length > 0);
@@ -198,7 +198,7 @@ export class PerformanceObserverTests {
     Assert.True(types.includes("measure"));
   }
 
-  public entry_list_get_entries_should_return_all(): void {
+  entry_list_get_entries_should_return_all(): void {
     const entries: PerformanceEntry[] = [
       new PerformanceMark("mark1", 100.0),
       new PerformanceMark("mark2", 200.0),
@@ -212,7 +212,7 @@ export class PerformanceObserverTests {
     Assert.Equal("mark2", result[1].name);
   }
 
-  public entry_list_get_entries_by_name_should_filter(): void {
+  entry_list_get_entries_by_name_should_filter(): void {
     const entries: PerformanceEntry[] = [
       new PerformanceMark("test", 100.0),
       new PerformanceMark("other", 200.0),
@@ -226,7 +226,7 @@ export class PerformanceObserverTests {
     Assert.True(result.every((e) => e.name === "test"));
   }
 
-  public entry_list_get_entries_by_name_with_type_should_filter(): void {
+  entry_list_get_entries_by_name_with_type_should_filter(): void {
     const entries: PerformanceEntry[] = [
       new PerformanceMark("test", 100.0),
       new PerformanceMeasure("test", 200.0, 50.0),
@@ -240,12 +240,12 @@ export class PerformanceObserverTests {
     Assert.Equal("mark", result[0].entryType);
   }
 
-  public entry_list_get_entries_by_name_with_null_name_should_throw(): void {
+  entry_list_get_entries_by_name_with_null_name_should_throw(): void {
     const list = new PerformanceObserverEntryList([]);
     assertThrows(() => list.getEntriesByName(null!));
   }
 
-  public entry_list_get_entries_by_type_should_filter(): void {
+  entry_list_get_entries_by_type_should_filter(): void {
     const entries: PerformanceEntry[] = [
       new PerformanceMark("mark1", 100.0),
       new PerformanceMark("mark2", 200.0),
@@ -263,12 +263,12 @@ export class PerformanceObserverTests {
     Assert.Equal("measure", measures[0].entryType);
   }
 
-  public entry_list_get_entries_by_type_with_null_type_should_throw(): void {
+  entry_list_get_entries_by_type_with_null_type_should_throw(): void {
     const list = new PerformanceObserverEntryList([]);
     assertThrows(() => list.getEntriesByType(null!));
   }
 
-  public multiple_observers_should_all_receive_notifications(): void {
+  multiple_observers_should_all_receive_notifications(): void {
     performance.clearMarks();
 
     const received1: PerformanceEntry[] = [];

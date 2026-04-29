@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnyPtrRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnyPtrRecordTests {
-  public AnyPtrRecord_AllProperties_CanBeSet(): void {
+  AnyPtrRecord_AllProperties_CanBeSet(): void {
     const record = new AnyPtrRecord();
     record.value = "example.com";
 

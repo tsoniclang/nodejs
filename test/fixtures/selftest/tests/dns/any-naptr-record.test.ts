@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnyNaptrRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnyNaptrRecordTests {
-  public AnyNaptrRecord_HasCorrectType(): void {
+  AnyNaptrRecord_HasCorrectType(): void {
     const record = new AnyNaptrRecord();
     Assert.Equal("NAPTR", record.type);
   }

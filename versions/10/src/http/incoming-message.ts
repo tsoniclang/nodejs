@@ -23,19 +23,19 @@ import {
  * Extends EventEmitter and implements a simplified readable-stream interface.
  */
 export class IncomingMessage extends EventEmitter {
-  private _method: string | null;
-  private _url: string | null;
-  private _httpVersion: string;
-  private _statusCode: int | null;
-  private _statusMessage: string | null;
-  private _headers: Record<string, string>;
-  private _complete: boolean = false;
-  private readonly _nativeRequest: HttpListenerRequest | null;
-  private _bodyReadPromise: Promise<string> | null = null;
-  private _bodyBytesReadPromise: Promise<Uint8Array> | null = null;
-  private _bodyText: string | null = null;
-  private _bodyBytes: Uint8Array | null = null;
-  private _bodyEmitted: boolean = false;
+  _method: string | null;
+  _url: string | null;
+  _httpVersion: string;
+  _statusCode: int | null;
+  _statusMessage: string | null;
+  _headers: Record<string, string>;
+  _complete: boolean = false;
+  _nativeRequest: HttpListenerRequest | null;
+  _bodyReadPromise: Promise<string> | null = null;
+  _bodyBytesReadPromise: Promise<Uint8Array> | null = null;
+  _bodyText: string | null = null;
+  _bodyBytes: Uint8Array | null = null;
+  _bodyEmitted: boolean = false;
 
   constructor(request?: HttpListenerRequest | null) {
     super();
@@ -64,56 +64,56 @@ export class IncomingMessage extends EventEmitter {
   /**
    * Request method (server-side) or null (client-side).
    */
-  public get method(): string | null {
+  get method(): string | null {
     return this._method;
   }
 
   /**
    * Request URL (server-side) or null (client-side).
    */
-  public get url(): string | null {
+  get url(): string | null {
     return this._url;
   }
 
   /**
    * HTTP version sent by the client.
    */
-  public get httpVersion(): string {
+  get httpVersion(): string {
     return this._httpVersion;
   }
 
   /**
    * Response status code (client-side) or null (server-side).
    */
-  public get statusCode(): int | null {
+  get statusCode(): int | null {
     return this._statusCode;
   }
 
   /**
    * Response status message (client-side) or null (server-side).
    */
-  public get statusMessage(): string | null {
+  get statusMessage(): string | null {
     return this._statusMessage;
   }
 
   /**
    * Request/response headers object.
    */
-  public get headers(): Record<string, string> {
+  get headers(): Record<string, string> {
     return this._headers;
   }
 
   /**
    * Indicates that the underlying connection was closed.
    */
-  public get complete(): boolean {
+  get complete(): boolean {
     return this._complete;
   }
 
   /**
    * Calls destroy() on the socket that received the IncomingMessage.
    */
-  public destroy(): void {
+  destroy(): void {
     this._complete = true;
     this.emit("close");
   }
@@ -124,7 +124,7 @@ export class IncomingMessage extends EventEmitter {
    * @param callback - Optional callback for timeout event.
    * @returns The IncomingMessage instance.
    */
-  public setTimeout(msecs: int, callback?: () => void): IncomingMessage {
+  setTimeout(msecs: int, callback?: () => void): IncomingMessage {
     if (msecs < 0) {
       throw new Error("Timeout must be non-negative");
     }
@@ -142,7 +142,7 @@ export class IncomingMessage extends EventEmitter {
    * In a full implementation, this would be a streaming interface.
    * @returns The body content as a string.
    */
-  public async readAll(): Promise<string> {
+  async readAll(): Promise<string> {
     const body = await this._ensureBodyLoaded();
     const bodyBytes = await this._ensureBodyBytesLoaded();
     this._emitLoadedBodyBytesOnce(bodyBytes);
@@ -153,7 +153,7 @@ export class IncomingMessage extends EventEmitter {
    * Reads the entire body as bytes.
    * @returns The body content as raw bytes.
    */
-  public async readAllBytes(): Promise<Uint8Array> {
+  async readAllBytes(): Promise<Uint8Array> {
     const body = await this._ensureBodyBytesLoaded();
     this._emitLoadedBodyBytesOnce(body);
     return body;
@@ -162,58 +162,58 @@ export class IncomingMessage extends EventEmitter {
   /**
    * Event handler for 'data' event.
    */
-  public onData(callback: (chunk: string | Uint8Array) => void): void {
+  onData(callback: (chunk: string | Uint8Array) => void): void {
     this.on("data", toUnaryEventListener<string | Uint8Array>(callback)!);
   }
 
   /**
    * Event handler for 'end' event.
    */
-  public onEnd(callback: () => void): void {
+  onEnd(callback: () => void): void {
     this.on("end", toEventListener(callback)!);
   }
 
   /**
    * Event handler for 'close' event.
    */
-  public onClose(callback: () => void): void {
+  onClose(callback: () => void): void {
     this.on("close", toEventListener(callback)!);
   }
 
   // -- Internal setters for server/client construction --
 
   /** @internal */
-  public _setMethod(method: string | null): void {
+  _setMethod(method: string | null): void {
     this._method = method;
   }
 
   /** @internal */
-  public _setUrl(url: string | null): void {
+  _setUrl(url: string | null): void {
     this._url = url;
   }
 
   /** @internal */
-  public _setHttpVersion(version: string): void {
+  _setHttpVersion(version: string): void {
     this._httpVersion = version;
   }
 
   /** @internal */
-  public _setStatusCode(code: int | null): void {
+  _setStatusCode(code: int | null): void {
     this._statusCode = code;
   }
 
   /** @internal */
-  public _setStatusMessage(message: string | null): void {
+  _setStatusMessage(message: string | null): void {
     this._statusMessage = message;
   }
 
   /** @internal */
-  public _setHeaders(headers: Record<string, string>): void {
+  _setHeaders(headers: Record<string, string>): void {
     this._headers = headers;
   }
 
   /** @internal */
-  public _markComplete(): void {
+  _markComplete(): void {
     this._complete = true;
   }
 
@@ -221,7 +221,7 @@ export class IncomingMessage extends EventEmitter {
    * Emits buffered client body data/end/close events.
    * @internal
    */
-  public _emitBufferedClientBody(body: string): void {
+  _emitBufferedClientBody(body: string): void {
     this._bodyText = body;
     this._bodyBytes = toUint8Array(Encoding.UTF8.GetBytes(body));
     this._emitLoadedBodyBytesOnce(this._bodyBytes);
@@ -232,16 +232,16 @@ export class IncomingMessage extends EventEmitter {
    * the stream/event API rather than `readAll()`.
    * @internal
    */
-  public _beginStreamingBody(): void {
+  _beginStreamingBody(): void {
     void this._streamLoadedBody();
   }
 
-  private async _streamLoadedBody(): Promise<void> {
+  async _streamLoadedBody(): Promise<void> {
     const bodyBytes = await this._ensureBodyBytesLoaded();
     this._emitLoadedBodyBytesOnce(bodyBytes);
   }
 
-  private _ensureBodyLoaded(): Promise<string> {
+  _ensureBodyLoaded(): Promise<string> {
     if (this._bodyReadPromise !== null) {
       return this._bodyReadPromise;
     }
@@ -251,7 +251,7 @@ export class IncomingMessage extends EventEmitter {
     return this._bodyReadPromise;
   }
 
-  private _ensureBodyBytesLoaded(): Promise<Uint8Array> {
+  _ensureBodyBytesLoaded(): Promise<Uint8Array> {
     if (this._bodyBytesReadPromise !== null) {
       return this._bodyBytesReadPromise;
     }
@@ -261,7 +261,7 @@ export class IncomingMessage extends EventEmitter {
     return this._bodyBytesReadPromise;
   }
 
-  private async _loadBody(): Promise<string> {
+  async _loadBody(): Promise<string> {
     if (this._bodyText !== null) {
       return this._bodyText;
     }
@@ -271,7 +271,7 @@ export class IncomingMessage extends EventEmitter {
     return this._bodyText;
   }
 
-  private async _loadBodyBytes(): Promise<Uint8Array> {
+  async _loadBodyBytes(): Promise<Uint8Array> {
     if (this._bodyBytes !== null) {
       return this._bodyBytes;
     }
@@ -295,7 +295,7 @@ export class IncomingMessage extends EventEmitter {
     return this._bodyBytes;
   }
 
-  private _decodeBodyBytes(bodyBytes: Uint8Array): string {
+  _decodeBodyBytes(bodyBytes: Uint8Array): string {
     if (bodyBytes.length === 0) {
       return "";
     }
@@ -311,7 +311,7 @@ export class IncomingMessage extends EventEmitter {
     return encoding.GetString(toByteArray(bodyBytes));
   }
 
-  private _markBodyEmitted(): boolean {
+  _markBodyEmitted(): boolean {
     if (this._bodyEmitted) {
       return false;
     }
@@ -321,7 +321,7 @@ export class IncomingMessage extends EventEmitter {
     return true;
   }
 
-  private _emitLoadedBodyOnce(body: string): void {
+  _emitLoadedBodyOnce(body: string): void {
     if (!this._markBodyEmitted()) {
       return;
     }
@@ -334,7 +334,7 @@ export class IncomingMessage extends EventEmitter {
     this.emit("close");
   }
 
-  private _emitLoadedBodyBytesOnce(bodyBytes: Uint8Array): void {
+  _emitLoadedBodyBytesOnce(bodyBytes: Uint8Array): void {
     if (!this._markBodyEmitted()) {
       return;
     }

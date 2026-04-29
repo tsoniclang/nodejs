@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as net from "@tsonic/nodejs/net.js";
 
 export class GetDefaultAutoSelectFamilyTests {
-  public get_default_auto_select_family_returns_boolean(): void {
+  get_default_auto_select_family_returns_boolean(): void {
     const value = net.getDefaultAutoSelectFamily();
     Assert.Equal(false, value);
   }

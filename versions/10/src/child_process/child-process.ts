@@ -5,10 +5,10 @@
  *
  */
 import { Process } from "@tsonic/dotnet/System.Diagnostics.js";
-import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 /**
  * Options for exec, spawn, and related methods.
@@ -16,60 +16,60 @@ import type { Writable } from "../stream/writable.ts";
  */
 export class ExecOptions {
   /** Current working directory of the child process. */
-  public cwd: string | null = null;
+  cwd: string | null = null;
 
   /** Environment variables to pass to the child process. */
-  public env: Record<string, string> | null = null;
+  env: Map<string, string> | null = null;
 
   /**
    * Encoding to use for string output ('utf8', 'buffer', etc).
    * Default is 'buffer' (returns Uint8Array).
    */
-  public encoding: string | null = null;
+  encoding: string | null = null;
 
   /**
    * Shell to execute the command with
    * (default: '/bin/sh' on Unix, 'cmd.exe' on Windows).
    */
-  public shell: string | null = null;
+  shell: string | null = null;
 
   /** Timeout in milliseconds (default: 0 = no timeout). */
-  public timeout: number = 0;
+  timeout: number = 0;
 
   /**
    * Largest amount of data in bytes allowed on stdout or stderr
    * (default: 1024*1024).
    */
-  public maxBuffer: number = 1024 * 1024;
+  maxBuffer: number = 1024 * 1024;
 
   /** Signal to use to kill the process (default: 'SIGTERM'). */
-  public killSignal: string | null = null;
+  killSignal: string | null = null;
 
   /** Hide the subprocess console window on Windows (default: false). */
-  public windowsHide: boolean = false;
+  windowsHide: boolean = false;
 
   /** No quoting or escaping of arguments on Windows (default: false). */
-  public windowsVerbatimArguments: boolean = false;
+  windowsVerbatimArguments: boolean = false;
 
   /**
    * Prepare child to run independently of its parent process (Unix only).
    */
-  public detached: boolean = false;
+  detached: boolean = false;
 
   /** User identity of the process (Unix only). */
-  public uid: number | null = null;
+  uid: number | null = null;
 
   /** Group identity of the process (Unix only). */
-  public gid: number | null = null;
+  gid: number | null = null;
 
   /** Explicitly set the value of argv[0] sent to the child process. */
-  public argv0: string | null = null;
+  argv0: string | null = null;
 
   /** stdio configuration ('pipe', 'inherit', 'ignore'). */
-  public stdio: string | null = null;
+  stdio: string | null = null;
 
   /** Input to be sent to stdin (for sync methods). */
-  public input: string | null = null;
+  input: string | null = null;
 }
 
 /**
@@ -77,35 +77,35 @@ export class ExecOptions {
  *
  */
 export class ChildProcess extends EventEmitter {
-  private _killed: boolean = false;
-  private _pid: number = -1;
-  private _process: Process | null = null;
+  _killed: boolean = false;
+  _pid: number = -1;
+  _process: Process | null = null;
 
   /**
    * A Writable Stream that represents the child process's stdin.
    * If the child was spawned with stdio[0] set to anything other than
    * 'pipe', this will be null.
    */
-  public stdin: Writable | null = null;
+  stdin: Writable | null = null;
 
   /**
    * A Readable Stream that represents the child process's stdout.
    * If the child was spawned with stdio[1] set to anything other than
    * 'pipe', this will be null.
    */
-  public stdout: Readable | null = null;
+  stdout: Readable | null = null;
 
   /**
    * A Readable Stream that represents the child process's stderr.
    * If the child was spawned with stdio[2] set to anything other than
    * 'pipe', this will be null.
    */
-  public stderr: Readable | null = null;
+  stderr: Readable | null = null;
 
   /**
    * The process identifier (PID) of the child process.
    */
-  public get pid(): number {
+  get pid(): number {
     return this._pid;
   }
 
@@ -113,13 +113,13 @@ export class ChildProcess extends EventEmitter {
    * Indicates whether it is still possible to send and receive messages
    * from the child process.
    */
-  public connected: boolean = false;
+  connected: boolean = false;
 
   /**
    * Indicates whether the child process successfully received a signal
    * from kill().
    */
-  public get killed(): boolean {
+  get killed(): boolean {
     return this._killed;
   }
 
@@ -128,30 +128,30 @@ export class ChildProcess extends EventEmitter {
    * for it). When true, the parent process will wait for this child to
    * exit. When false (unreferenced), the parent can exit independently.
    */
-  public referenced: boolean = true;
+  referenced: boolean = true;
 
   /**
    * The exit code of the child process. Returns null if the process has
    * not yet exited.
    */
-  public exitCode: number | null = null;
+  exitCode: number | null = null;
 
   /**
    * The signal by which the child process was terminated. Returns null
    * if not terminated by signal.
    */
-  public signalCode: string | null = null;
+  signalCode: string | null = null;
 
   /**
    * The full list of command-line arguments the child process was
    * launched with.
    */
-  public spawnargs: string[] = [];
+  spawnargs: string[] = [];
 
   /**
    * The executable file name of the child process that is launched.
    */
-  public spawnfile: string = "";
+  spawnfile: string = "";
 
   /**
    * The subprocess.kill() method sends a signal to the child process.
@@ -159,7 +159,7 @@ export class ChildProcess extends EventEmitter {
    * @param signal - The signal to send (default: 'SIGTERM').
    * @returns True if the signal was sent successfully.
    */
-  public kill(signal?: string | null): boolean {
+  kill(signal?: string | null): boolean {
     const normalizedSignal = signal ?? "SIGTERM";
 
     if (this._process === null) {
@@ -193,7 +193,7 @@ export class ChildProcess extends EventEmitter {
   }
 
   /** Closes the IPC channel between parent and child. */
-  public disconnect(): void {
+  disconnect(): void {
     this.connected = false;
     this.emit("disconnect");
   }
@@ -208,10 +208,10 @@ export class ChildProcess extends EventEmitter {
    * @param callback - Optional callback when message is sent.
    * @returns True if message was queued successfully.
    */
-  public send(
-    message: JsValue,
-    sendHandle?: JsValue,
-    options?: JsValue,
+  send(
+    message: RuntimeValue,
+    sendHandle?: RuntimeValue,
+    options?: RuntimeValue,
     callback?: ((error: Error | null) => void) | null,
   ): boolean {
     void sendHandle;
@@ -234,7 +234,7 @@ export class ChildProcess extends EventEmitter {
    * Calling ref() on a child process will prevent the parent process
    * from exiting until the child exits. This is the default behavior.
    */
-  public ref(): void {
+  ref(): void {
     this.referenced = true;
   }
 
@@ -243,39 +243,39 @@ export class ChildProcess extends EventEmitter {
    * exit independently of the child. The child process will continue
    * running in the background.
    */
-  public unref(): void {
+  unref(): void {
     this.referenced = false;
   }
 
   /**
    * Set the process identifier. Internal use only by spawn helpers.
    */
-  public _setPid(pid: number): void {
+  _setPid(pid: number): void {
     this._pid = pid;
   }
 
   /**
    * Mark the child as killed. Internal use only by spawn helpers.
    */
-  public _setKilled(killed: boolean): void {
+  _setKilled(killed: boolean): void {
     this._killed = killed;
   }
 
-  public _attachProcess(process: Process): void {
+  _attachProcess(process: Process): void {
     this._process = process;
     this._pid = process.Id;
   }
 
-  public _setSpawnInfo(file: string, args: string[]): void {
+  _setSpawnInfo(file: string, args: string[]): void {
     this.spawnfile = file;
     this.spawnargs = [file, ...args];
   }
 
-  public _setConnected(connected: boolean): void {
+  _setConnected(connected: boolean): void {
     this.connected = connected;
   }
 
-  public _syncFromProcessExit(): void {
+  _syncFromProcessExit(): void {
     if (this._process === null || !this._process.HasExited) {
       return;
     }
@@ -284,7 +284,7 @@ export class ChildProcess extends EventEmitter {
     this.connected = false;
   }
 
-  public _recordSyntheticExit(
+  _recordSyntheticExit(
     exitCode: number | null,
     signalCode: string | null,
   ): void {

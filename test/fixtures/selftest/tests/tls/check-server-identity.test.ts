@@ -8,7 +8,7 @@ import {
 } from "@tsonic/nodejs/tls.js";
 
 export class checkServerIdentityTests {
-  public checkServerIdentity_MatchingHostname_ReturnsNull(): void {
+  checkServerIdentity_MatchingHostname_ReturnsNull(): void {
     const subject = new TLSCertificateInfo();
     subject.CN = "example.com";
 
@@ -19,7 +19,7 @@ export class checkServerIdentityTests {
     Assert.Null(error);
   }
 
-  public checkServerIdentity_MismatchedHostname_ReturnsError(): void {
+  checkServerIdentity_MismatchedHostname_ReturnsError(): void {
     const subject = new TLSCertificateInfo();
     subject.CN = "example.com";
 

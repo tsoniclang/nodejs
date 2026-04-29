@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessExitTests {
-  public exit_method_exists(): void {
+  exit_method_exists(): void {
     Assert.True(typeof process.exit === "function");
   }
 }

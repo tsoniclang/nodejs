@@ -8,10 +8,10 @@
  */
 export class RecordWithTtl {
   /** IP address. */
-  public address: string = "";
+  address: string = "";
 
   /** Time-to-live in seconds. */
-  public ttl: number = 0;
+  ttl: number = 0;
 }
 
 /**
@@ -19,7 +19,7 @@ export class RecordWithTtl {
  */
 export class AnyARecord extends RecordWithTtl {
   /** Record type: "A". */
-  public readonly type: string = "A";
+  type: string = "A";
 }
 
 /**
@@ -27,7 +27,7 @@ export class AnyARecord extends RecordWithTtl {
  */
 export class AnyAaaaRecord extends RecordWithTtl {
   /** Record type: "AAAA". */
-  public readonly type: string = "AAAA";
+  type: string = "AAAA";
 }
 
 /**
@@ -35,22 +35,22 @@ export class AnyAaaaRecord extends RecordWithTtl {
  */
 export class CaaRecord {
   /** Critical flag (0 or 128). */
-  public critical: number = 0;
+  critical: number = 0;
 
   /** Issue property. */
-  public issue: string | null = null;
+  issue: string | null = null;
 
   /** Issue wildcard property. */
-  public issuewild: string | null = null;
+  issuewild: string | null = null;
 
   /** IODEF property. */
-  public iodef: string | null = null;
+  iodef: string | null = null;
 
   /** Contact email property. */
-  public contactemail: string | null = null;
+  contactemail: string | null = null;
 
   /** Contact phone property. */
-  public contactphone: string | null = null;
+  contactphone: string | null = null;
 }
 
 /**
@@ -58,7 +58,7 @@ export class CaaRecord {
  */
 export class AnyCaaRecord extends CaaRecord {
   /** Record type: "CAA". */
-  public readonly type: string = "CAA";
+  type: string = "CAA";
 }
 
 /**
@@ -66,10 +66,10 @@ export class AnyCaaRecord extends CaaRecord {
  */
 export class MxRecord {
   /** Mail server priority (lower is higher priority). */
-  public priority: number = 0;
+  priority: number = 0;
 
   /** Mail server hostname. */
-  public exchange: string = "";
+  exchange: string = "";
 }
 
 /**
@@ -77,7 +77,7 @@ export class MxRecord {
  */
 export class AnyMxRecord extends MxRecord {
   /** Record type: "MX". */
-  public readonly type: string = "MX";
+  type: string = "MX";
 }
 
 /**
@@ -85,22 +85,22 @@ export class AnyMxRecord extends MxRecord {
  */
 export class NaptrRecord {
   /** NAPTR flags. */
-  public flags: string = "";
+  flags: string = "";
 
   /** Service specification. */
-  public service: string = "";
+  service: string = "";
 
   /** Regular expression. */
-  public regexp: string = "";
+  regexp: string = "";
 
   /** Replacement value. */
-  public replacement: string = "";
+  replacement: string = "";
 
   /** Order value. */
-  public order: number = 0;
+  order: number = 0;
 
   /** Preference value. */
-  public preference: number = 0;
+  preference: number = 0;
 }
 
 /**
@@ -108,7 +108,7 @@ export class NaptrRecord {
  */
 export class AnyNaptrRecord extends NaptrRecord {
   /** Record type: "NAPTR". */
-  public readonly type: string = "NAPTR";
+  type: string = "NAPTR";
 }
 
 /**
@@ -116,25 +116,25 @@ export class AnyNaptrRecord extends NaptrRecord {
  */
 export class SoaRecord {
   /** Primary name server. */
-  public nsname: string = "";
+  nsname: string = "";
 
   /** Responsible party email. */
-  public hostmaster: string = "";
+  hostmaster: string = "";
 
   /** Serial number. */
-  public serial: number = 0;
+  serial: number = 0;
 
   /** Refresh interval in seconds. */
-  public refresh: number = 0;
+  refresh: number = 0;
 
   /** Retry interval in seconds. */
-  public retry: number = 0;
+  retry: number = 0;
 
   /** Expire timeout in seconds. */
-  public expire: number = 0;
+  expire: number = 0;
 
   /** Minimum TTL in seconds. */
-  public minttl: number = 0;
+  minttl: number = 0;
 }
 
 /**
@@ -142,7 +142,7 @@ export class SoaRecord {
  */
 export class AnySoaRecord extends SoaRecord {
   /** Record type: "SOA". */
-  public readonly type: string = "SOA";
+  type: string = "SOA";
 }
 
 /**
@@ -150,16 +150,16 @@ export class AnySoaRecord extends SoaRecord {
  */
 export class SrvRecord {
   /** Service priority. */
-  public priority: number = 0;
+  priority: number = 0;
 
   /** Service weight. */
-  public weight: number = 0;
+  weight: number = 0;
 
   /** Service port. */
-  public port: number = 0;
+  port: number = 0;
 
   /** Target hostname. */
-  public name: string = "";
+  name: string = "";
 }
 
 /**
@@ -167,7 +167,7 @@ export class SrvRecord {
  */
 export class AnySrvRecord extends SrvRecord {
   /** Record type: "SRV". */
-  public readonly type: string = "SRV";
+  type: string = "SRV";
 }
 
 /**
@@ -175,16 +175,16 @@ export class AnySrvRecord extends SrvRecord {
  */
 export class TlsaRecord {
   /** Certificate usage field. */
-  public certUsage: number = 0;
+  certUsage: number = 0;
 
   /** Selector field. */
-  public selector: number = 0;
+  selector: number = 0;
 
   /** Matching type field. */
-  public match: number = 0;
+  match: number = 0;
 
   /** Certificate association data. */
-  public data: Array<number> = [];
+  data: Array<number> = [];
 }
 
 /**
@@ -192,7 +192,7 @@ export class TlsaRecord {
  */
 export class AnyTlsaRecord extends TlsaRecord {
   /** Record type: "TLSA". */
-  public readonly type: string = "TLSA";
+  type: string = "TLSA";
 }
 
 /**
@@ -200,10 +200,10 @@ export class AnyTlsaRecord extends TlsaRecord {
  */
 export class AnyTxtRecord {
   /** Record type: "TXT". */
-  public readonly type: string = "TXT";
+  type: string = "TXT";
 
   /** Text entries. */
-  public entries: Array<string> = [];
+  entries: Array<string> = [];
 }
 
 /**
@@ -211,10 +211,10 @@ export class AnyTxtRecord {
  */
 export class AnyNsRecord {
   /** Record type: "NS". */
-  public readonly type: string = "NS";
+  type: string = "NS";
 
   /** Name server hostname. */
-  public value: string = "";
+  value: string = "";
 }
 
 /**
@@ -222,10 +222,10 @@ export class AnyNsRecord {
  */
 export class AnyPtrRecord {
   /** Record type: "PTR". */
-  public readonly type: string = "PTR";
+  type: string = "PTR";
 
   /** Pointer value. */
-  public value: string = "";
+  value: string = "";
 }
 
 /**
@@ -233,8 +233,8 @@ export class AnyPtrRecord {
  */
 export class AnyCnameRecord {
   /** Record type: "CNAME". */
-  public readonly type: string = "CNAME";
+  type: string = "CNAME";
 
   /** Canonical name value. */
-  public value: string = "";
+  value: string = "";
 }

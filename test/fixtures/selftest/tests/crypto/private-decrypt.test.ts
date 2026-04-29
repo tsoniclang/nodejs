@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { privateDecrypt, generateKeyPairSync } from "@tsonic/nodejs/crypto.js";
 
 export class PrivateDecryptTests {
-  public privateDecrypt_invalid_key_type_throws(): void {
+  privateDecrypt_invalid_key_type_throws(): void {
     const { publicKey } = generateKeyPairSync("rsa");
     const ciphertext = new Uint8Array(256);
     let threw = false;

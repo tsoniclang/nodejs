@@ -97,3 +97,4 @@ export {
 };
 
 export type { ParsedPath, PathModuleNamespace } from "./path-module.ts";
+export type { RuntimeValue } from "./runtime-value.ts";

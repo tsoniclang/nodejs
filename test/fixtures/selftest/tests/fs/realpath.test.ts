@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class realpathTests {
-  public async realpath_ShouldResolveAbsolutePath(): Promise<void> {
+  async realpath_ShouldResolveAbsolutePath(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "realpath-test-async.txt");
@@ -19,7 +19,7 @@ export class realpathTests {
     }
   }
 
-  public async realpath_RelativePath_ShouldResolveToAbsolute(): Promise<void> {
+  async realpath_RelativePath_ShouldResolveToAbsolute(): Promise<void> {
     const dir = createTempDir();
     const originalDir = Directory.GetCurrentDirectory();
     try {
@@ -36,7 +36,7 @@ export class realpathTests {
     }
   }
 
-  public async realpath_NonExistent_ShouldResolveAnyway(): Promise<void> {
+  async realpath_NonExistent_ShouldResolveAnyway(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-realpath-async.txt");
@@ -47,7 +47,7 @@ export class realpathTests {
     }
   }
 
-  public async realpath_Directory_ShouldResolve(): Promise<void> {
+  async realpath_Directory_ShouldResolve(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "realpath-dir-async");

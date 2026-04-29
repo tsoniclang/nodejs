@@ -5,7 +5,7 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessSpawnSyncStringTests {
-  public spawnSyncString_ReturnsStringOutput(): void {
+  spawnSyncString_ReturnsStringOutput(): void {
     const command = "echo";
     const args = ["Hello"];
     const result = child_process.spawnSyncString(command, args);
@@ -15,7 +15,7 @@ export class ChildProcessSpawnSyncStringTests {
     Assert.True(result.stdout.includes("Hello"));
   }
 
-  public spawnSyncString_WithOptions_ReturnsStringOutput(): void {
+  spawnSyncString_WithOptions_ReturnsStringOutput(): void {
     const command = "echo";
     const args = ["Test"];
     const options = new ExecOptions();

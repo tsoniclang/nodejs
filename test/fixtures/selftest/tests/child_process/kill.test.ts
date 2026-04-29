@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessKillTests {
-  public kill_ReturnsTrue(): void {
+  kill_ReturnsTrue(): void {
     const child = child_process.spawn("sleep", ["5"]);
     // Let it start -- in CLR version Thread.Sleep(100) is used
 
@@ -13,7 +13,7 @@ export class ChildProcessKillTests {
     Assert.True(child.killed);
   }
 
-  public kill_AlreadyExited_ReturnsFalse(): void {
+  kill_AlreadyExited_ReturnsFalse(): void {
     const command = "echo";
     const args = ["test"];
     const child = child_process.spawn(command, args);

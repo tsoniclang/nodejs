@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class fileDescriptorTests {
-  public OpenSync_ReadMode_ReturnsValidFd(): void {
+  OpenSync_ReadMode_ReturnsValidFd(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -20,7 +20,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public OpenSync_WriteMode_CreatesFile(): void {
+  OpenSync_WriteMode_CreatesFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "new.txt");
@@ -33,7 +33,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public ReadSync_ReadsDataIntoBuffer(): void {
+  ReadSync_ReadsDataIntoBuffer(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "read.txt");
@@ -49,7 +49,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public WriteSync_WritesDataFromBuffer(): void {
+  WriteSync_WritesDataFromBuffer(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "write.txt");
@@ -64,7 +64,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public WriteSync_String_WritesText(): void {
+  WriteSync_String_WritesText(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "write-str.txt");
@@ -78,7 +78,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public FstatSync_ReturnsStats(): void {
+  FstatSync_ReturnsStats(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stat.txt");
@@ -94,11 +94,11 @@ export class fileDescriptorTests {
     }
   }
 
-  public CloseSync_InvalidFd_Throws(): void {
+  CloseSync_InvalidFd_Throws(): void {
     assertThrows(() => fs.closeSync(999));
   }
 
-  public async Open_Async_Works(): Promise<void> {
+  async Open_Async_Works(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "async.txt");
@@ -111,7 +111,7 @@ export class fileDescriptorTests {
     }
   }
 
-  public async Read_Async_Works(): Promise<void> {
+  async Read_Async_Works(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "async-read.txt");

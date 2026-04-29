@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class writeFileSyncTests {
-  public writeFileSync_ShouldCreateAndWriteFile(): void {
+  writeFileSync_ShouldCreateAndWriteFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "write-test.txt");
@@ -19,7 +19,7 @@ export class writeFileSyncTests {
     }
   }
 
-  public writeFileSync_ShouldOverwriteExistingFile(): void {
+  writeFileSync_ShouldOverwriteExistingFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "overwrite-test.txt");

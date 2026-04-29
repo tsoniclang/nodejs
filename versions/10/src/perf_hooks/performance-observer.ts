@@ -12,25 +12,25 @@ import { PerformanceEntry } from "./performance-entry.ts";
  * Options for configuring a PerformanceObserver.
  */
 export interface PerformanceObserverOptions {
-  readonly entryTypes: readonly string[];
-  readonly buffered?: boolean;
+  entryTypes: readonly string[];
+  buffered?: boolean;
 }
 
 /**
  * A list of performance entries provided to PerformanceObserver callbacks.
  */
 export class PerformanceObserverEntryList {
-  private readonly entries: readonly PerformanceEntry[];
+  entries: readonly PerformanceEntry[];
 
-  public constructor(entries: readonly PerformanceEntry[]) {
+  constructor(entries: readonly PerformanceEntry[]) {
     this.entries = entries;
   }
 
-  public getEntries(): PerformanceEntry[] {
+  getEntries(): PerformanceEntry[] {
     return [...this.entries];
   }
 
-  public getEntriesByName(
+  getEntriesByName(
     name: string,
     type?: string | null,
   ): PerformanceEntry[] {
@@ -56,7 +56,7 @@ export class PerformanceObserverEntryList {
     return filtered;
   }
 
-  public getEntriesByType(type: string): PerformanceEntry[] {
+  getEntriesByType(type: string): PerformanceEntry[] {
     if (type === null || type === undefined || type.length === 0) {
       throw new Error("Type cannot be null or empty");
     }
@@ -83,12 +83,12 @@ let nextObserverId = 1 as int;
  * when new performance entries are added to the performance timeline.
  */
 export class PerformanceObserver {
-  private readonly observerId: int;
-  private readonly callback: PerformanceObserverCallback;
-  private entryTypes: string[] = [];
-  private observing = false;
+  observerId: int;
+  callback: PerformanceObserverCallback;
+  entryTypes: string[] = [];
+  observing = false;
 
-  public constructor(callback: PerformanceObserverCallback) {
+  constructor(callback: PerformanceObserverCallback) {
     if (callback === null || callback === undefined) {
       throw new Error("callback must not be null");
     }
@@ -97,7 +97,7 @@ export class PerformanceObserver {
     this.callback = callback;
   }
 
-  public observe(options: PerformanceObserverOptions): void {
+  observe(options: PerformanceObserverOptions): void {
     if (options === null || options === undefined) {
       throw new Error("options must not be null");
     }
@@ -121,7 +121,7 @@ export class PerformanceObserver {
     }
   }
 
-  public disconnect(): void {
+  disconnect(): void {
     this.observing = false;
 
     const index = observers.findIndex(
@@ -132,11 +132,11 @@ export class PerformanceObserver {
     }
   }
 
-  public takeRecords(): PerformanceObserverEntryList {
+  takeRecords(): PerformanceObserverEntryList {
     return new PerformanceObserverEntryList([]);
   }
 
-  public static supportedEntryTypes(): string[] {
+  static supportedEntryTypes(): string[] {
     return ["mark", "measure", "function", "gc", "resource"];
   }
 

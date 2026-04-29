@@ -2,30 +2,14 @@
  * Utility functions for working with streams.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { Stream } from "./stream.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 type PipelineCallback = (error: Error | undefined) => void;
 
-const coerceError = (value: JsValue | undefined): Error => {
+const coerceError = (value: RuntimeValue | undefined): Error => {
   if (value instanceof Error) {
     return value;
-  }
-
-  if (typeof value === "string") {
-    return new Error(value);
-  }
-
-  if (
-    typeof value === "number" ||
-    typeof value === "boolean" ||
-    typeof value === "bigint"
-  ) {
-    return new Error(String(value));
-  }
-
-  if (typeof value === "symbol") {
-    return new Error(String(value));
   }
 
   return new Error("Unknown stream error");
@@ -55,7 +39,7 @@ export const pipelineStreams = (
       const source = streamList[i]!;
       const dest = streamList[i + 1]!;
 
-      source.on("error", (...errorArgs: JsValue[]) => {
+      source.on("error", (...errorArgs: RuntimeValue[]) => {
         const error = coerceError(errorArgs[0]);
 
         for (let j = i; j < streamList.length; j += 1) {
@@ -71,13 +55,13 @@ export const pipelineStreams = (
     }
 
     const lastStream = streamList[streamList.length - 1]!;
-    lastStream.on("finish", (..._args: JsValue[]) => {
+    lastStream.on("finish", (..._args: RuntimeValue[]) => {
       finish(undefined);
     });
-    lastStream.on("end", (..._args: JsValue[]) => {
+    lastStream.on("end", (..._args: RuntimeValue[]) => {
       finish(undefined);
     });
-    lastStream.on("error", (...errorArgs: JsValue[]) => {
+    lastStream.on("error", (...errorArgs: RuntimeValue[]) => {
       const error = coerceError(errorArgs[0]);
       finish(error);
     });
@@ -96,31 +80,11 @@ export const pipelineStreams = (
 /**
  * A method to pipe between streams forwarding errors and properly cleaning up.
  *
- * The last argument may be a callback of the form (error: Error | undefined) => void.
- * All other arguments must be Stream instances. At least two streams are required.
  */
-export const pipeline = (...args: JsValue[]): void => {
-  if (args.length < 2) {
-    throw new Error(
-      "pipeline requires at least a source and destination",
-    );
-  }
-
-  // Check if last argument is a callback
-  let callback: PipelineCallback | undefined;
-  const streamList: Stream[] = [];
-
-  for (let i = 0; i < args.length; i += 1) {
-    const arg = args[i];
-    if (i === args.length - 1 && typeof arg === "function") {
-      callback = arg as PipelineCallback;
-    } else if (arg instanceof Stream) {
-      streamList.push(arg);
-    } else {
-      throw new Error(`Argument ${String(i)} is not a Stream or callback`);
-    }
-  }
-
+export const pipeline = (
+  streamList: Stream[],
+  callback?: PipelineCallback,
+): void => {
   pipelineStreams(streamList, callback);
 };
 
@@ -151,24 +115,21 @@ export const finished = (
     callback(error);
   }
 
-  function onFinish(..._args: JsValue[]): void {
+  function onFinish(..._args: RuntimeValue[]): void {
     onFinished(undefined);
   }
 
-  function onEnd(..._args: JsValue[]): void {
+  function onEnd(..._args: RuntimeValue[]): void {
     onFinished(undefined);
   }
 
-  function onError(...args: JsValue[]): void {
+  function onError(...args: RuntimeValue[]): void {
     const error = coerceError(args[0]);
     onFinished(error);
   }
 
-  function onClose(...args: JsValue[]): void {
-    const hadError =
-      args.length > 0 && typeof args[0] === "boolean"
-        ? (args[0] as boolean)
-        : false;
+  function onClose(...args: RuntimeValue[]): void {
+    const hadError = args.length > 0 && args[0] === true;
     onFinished(
       hadError
         ? new Error("Stream closed with error")

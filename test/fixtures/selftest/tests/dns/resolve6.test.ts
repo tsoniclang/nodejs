@@ -5,7 +5,7 @@ import * as dns from "@tsonic/nodejs/dns.js";
 import { ResolveOptions } from "@tsonic/nodejs/dns.js";
 
 export class Resolve6Tests {
-  public resolve6_ValidDomain_CallsCallback(): void {
+  resolve6_ValidDomain_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     dns.resolve6("localhost", (err, addrs) => {
@@ -16,7 +16,7 @@ export class Resolve6Tests {
     Assert.Null(error);
   }
 
-  public resolve6_WithTtlOption_CallsCallback(): void {
+  resolve6_WithTtlOption_CallsCallback(): void {
     let called = false;
     const opts = new ResolveOptions();
     opts.ttl = true;

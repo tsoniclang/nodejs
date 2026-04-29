@@ -1,21 +1,18 @@
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "./runtime-value.ts";
 
-const formatAssertionValue = (value: JsValue | undefined): string => {
+const formatAssertionValue = (value: RuntimeValue): string => {
   if (value === null) {
     return "null";
   }
   if (value === undefined) {
     return "undefined";
   }
-  if (typeof value === "string") {
-    return `"${value}"`;
-  }
   return String(value);
 };
 
 const generateMessage = (
-  actual: JsValue | undefined,
-  expected: JsValue | undefined,
+  actual: RuntimeValue,
+  expected: RuntimeValue,
   operator: string
 ): string => {
   switch (operator) {
@@ -41,19 +38,19 @@ const generateMessage = (
 };
 
 export class AssertionError extends Error {
-  public actual: JsValue | undefined = undefined;
-  public expected: JsValue | undefined = undefined;
-  public operator: string = "";
-  public generatedMessage: boolean = false;
+  actual: RuntimeValue = undefined;
+  expected: RuntimeValue = undefined;
+  operator: string = "";
+  generatedMessage: boolean = false;
 
-  public get code(): string {
+  get code(): string {
     return "ERR_ASSERTION";
   }
 
-  public constructor(
+  constructor(
     message?: string,
-    actual?: JsValue,
-    expected?: JsValue,
+    actual?: RuntimeValue,
+    expected?: RuntimeValue,
     operator: string = ""
   ) {
     super(message ?? generateMessage(actual, expected, operator));

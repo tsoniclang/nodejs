@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { setDefaultEncoding } from "@tsonic/nodejs/crypto.js";
 
 export class SetDefaultEncodingTests {
-  public setDefaultEncoding_does_not_throw(): void {
+  setDefaultEncoding_does_not_throw(): void {
     let threw = false;
     try {
       setDefaultEncoding("hex");

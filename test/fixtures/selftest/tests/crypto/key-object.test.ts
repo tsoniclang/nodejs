@@ -5,7 +5,7 @@ import { createSecretKey, generateKeyPairSync, randomBytes, SecretKeyObject } fr
 import type { int } from "@tsonic/core/types.js";
 
 export class KeyObjectTests {
-  public keyObject_secret_key_object_export_works(): void {
+  keyObject_secret_key_object_export_works(): void {
     const keyData = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
     const keyObj = createSecretKey(keyData);
     Assert.True(keyObj instanceof SecretKeyObject);
@@ -13,13 +13,13 @@ export class KeyObjectTests {
     Assert.Equal(keyData, exported);
   }
 
-  public keyObject_public_key_object_type(): void {
+  keyObject_public_key_object_type(): void {
     const { publicKey } = generateKeyPairSync("rsa");
     Assert.Equal("public", publicKey.type);
     Assert.Equal("rsa", publicKey.asymmetricKeyType);
   }
 
-  public keyObject_private_key_object_type(): void {
+  keyObject_private_key_object_type(): void {
     const { privateKey } = generateKeyPairSync("rsa");
     Assert.Equal("private", privateKey.type);
     Assert.Equal("rsa", privateKey.asymmetricKeyType);

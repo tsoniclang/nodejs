@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnyAaaaRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnyAaaaRecordTests {
-  public AnyAaaaRecord_HasCorrectType(): void {
+  AnyAaaaRecord_HasCorrectType(): void {
     const record = new AnyAaaaRecord();
     Assert.Equal("AAAA", record.type);
   }

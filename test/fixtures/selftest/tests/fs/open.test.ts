@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class openTests {
-  public async open_WithReadFlag_ShouldOpenExistingFile(): Promise<void> {
+  async open_WithReadFlag_ShouldOpenExistingFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -19,7 +19,7 @@ export class openTests {
     }
   }
 
-  public async open_WithReadFlag_NonExistentFile_ShouldThrow(): Promise<void> {
+  async open_WithReadFlag_NonExistentFile_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent.txt");
@@ -29,7 +29,7 @@ export class openTests {
     }
   }
 
-  public async open_WithWriteFlag_ShouldCreateFile(): Promise<void> {
+  async open_WithWriteFlag_ShouldCreateFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -42,7 +42,7 @@ export class openTests {
     }
   }
 
-  public async open_WithAppendFlag_ShouldCreateFile(): Promise<void> {
+  async open_WithAppendFlag_ShouldCreateFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -55,7 +55,7 @@ export class openTests {
     }
   }
 
-  public async open_WithReadPlusFlag_ShouldOpenForReadWrite(): Promise<void> {
+  async open_WithReadPlusFlag_ShouldOpenForReadWrite(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -68,7 +68,7 @@ export class openTests {
     }
   }
 
-  public async open_WithExclusiveWriteFlag_ExistingFile_ShouldThrow(): Promise<void> {
+  async open_WithExclusiveWriteFlag_ExistingFile_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

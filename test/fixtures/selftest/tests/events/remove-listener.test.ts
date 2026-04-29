@@ -1,11 +1,11 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter, type EventListener } from "@tsonic/nodejs/events.js";
 
 export class RemoveListenerTests {
-  public removeListener_removes_the_target_listener(): void {
+  removeListener_removes_the_target_listener(): void {
     const emitter = new EventEmitter();
     let count = 0;
     const listener: EventListener = () => {
@@ -21,7 +21,7 @@ export class RemoveListenerTests {
     Assert.Equal(1, count);
   }
 
-  public off_remains_an_alias_for_removeListener(): void {
+  off_remains_an_alias_for_removeListener(): void {
     const emitter = new EventEmitter();
     let count = 0;
     const listener: EventListener = () => {
@@ -36,12 +36,12 @@ export class RemoveListenerTests {
     Assert.Equal(1, count);
   }
 
-  public removeListener_emits_the_removeListener_event(): void {
+  removeListener_emits_the_removeListener_event(): void {
     const emitter = new EventEmitter();
-    let seen: JsValue | undefined = undefined;
+    let seen: RuntimeValue | undefined = undefined;
     const listener: EventListener = () => undefined;
 
-    emitter.on("removeListener", (name: JsValue) => {
+    emitter.on("removeListener", (name: RuntimeValue) => {
       seen = name;
     });
     emitter.on("test", listener);

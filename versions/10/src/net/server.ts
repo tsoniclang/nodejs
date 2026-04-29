@@ -8,126 +8,100 @@
  */
 import { overloads as O } from "@tsonic/core/lang.js";
 import { EventEmitter, toEventListener } from "../events-module.ts";
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import { AddressInfo } from "./options.ts";
 import type { ListenOptions, ServerOpts } from "./options.ts";
 import type { Socket } from "./socket.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 /**
  * This class is used to create a TCP or IPC server.
  */
 export class Server extends EventEmitter {
-  private _listening: boolean = false;
-  private _maxConnections: int = 0;
-  private _connections: int = 0;
-  private readonly _allowHalfOpen: boolean;
-  private readonly _pauseOnConnect: boolean;
-  private _boundPath: string | null = null;
+  _listening: boolean = false;
+  _maxConnections: int = 0;
+  _connections: int = 0;
+  _allowHalfOpen: boolean;
+  _pauseOnConnect: boolean;
+  _boundPath: string | null = null;
 
   /**
    * Set to true when the server is listening for connections.
    */
-  public get listening(): boolean {
+  get listening(): boolean {
     return this._listening;
   }
 
   /**
    * The maximum number of connections.
    */
-  public get maxConnections(): int {
+  get maxConnections(): int {
     return this._maxConnections;
   }
 
-  public set maxConnections(value: int) {
+  set maxConnections(value: int) {
     this._maxConnections = value;
   }
 
   constructor(
-    optionsOrListener?: ServerOpts | ((socket: Socket) => void),
-    connectionListener?: ((socket: Socket) => void)
+    optionsOrListener?: ServerOpts | ((socket: Socket) => void) | null,
+    connectionListener?: ((socket: Socket) => void) | null
   ) {
     super();
 
+    let options: ServerOpts | null = null;
+    let listener: ((socket: Socket) => void) | null = null;
     if (typeof optionsOrListener === "function") {
-      // Server(connectionListener)
-      this._allowHalfOpen = false;
-      this._pauseOnConnect = false;
-      this.on("connection", (...args: JsValue[]) => {
-        optionsOrListener(args[0] as Socket);
-      });
+      listener = optionsOrListener;
     } else {
-      // Server(options?, connectionListener?)
-      this._allowHalfOpen = optionsOrListener?.allowHalfOpen ?? false;
-      this._pauseOnConnect = optionsOrListener?.pauseOnConnect ?? false;
-      if (connectionListener !== undefined) {
-        this.on("connection", (...args: JsValue[]) => {
-          connectionListener(args[0] as Socket);
-        });
-      }
+      options = optionsOrListener ?? null;
+      listener = connectionListener ?? null;
+    }
+
+    this._allowHalfOpen = options?.allowHalfOpen ?? false;
+    this._pauseOnConnect = options?.pauseOnConnect ?? false;
+    const activeListener = listener;
+    if (activeListener !== null) {
+      this.on("connection", (...args: RuntimeValue[]) => {
+        activeListener(args[0] as Socket);
+      });
     }
   }
 
   /**
    * Start a server listening for connections.
    */
-  public listen(
+  listen(
     port: int,
     hostname: string,
     backlog: int,
     listeningListener?: () => void
   ): Server;
-  public listen(
+  listen(
     port: int,
     hostname: string,
     listeningListener?: () => void
   ): Server;
-  public listen(
+  listen(
     port: int,
     backlog: int,
     listeningListener?: () => void
   ): Server;
-  public listen(port: int, listeningListener?: () => void): Server;
-  public listen(
+  listen(port: int, listeningListener?: () => void): Server;
+  listen(
     options: ListenOptions,
     listeningListener?: () => void
   ): Server;
-  public listen(
-    portOrOptions: any,
-    hostnameOrBacklogOrListener?: any,
-    backlogOrListener?: any,
-    listeningListener?: any
+  listen(
+    _portOrOptions: any,
+    _hostnameOrBacklogOrListener?: any,
+    _backlogOrListener?: any,
+    _listeningListener?: any
   ): any {
-    if (typeof portOrOptions === "object") {
-      return this.listen_options(portOrOptions, hostnameOrBacklogOrListener);
-    }
-
-    if (typeof hostnameOrBacklogOrListener === "string") {
-      return typeof backlogOrListener === "number"
-        ? this.listen_port_hostname_backlog(
-            portOrOptions,
-            hostnameOrBacklogOrListener,
-            backlogOrListener,
-            listeningListener
-          )
-        : this.listen_port_hostname(
-            portOrOptions,
-            hostnameOrBacklogOrListener,
-            backlogOrListener
-          );
-    }
-
-    if (typeof hostnameOrBacklogOrListener === "number") {
-      return this.listen_port_backlog(
-        portOrOptions,
-        hostnameOrBacklogOrListener,
-        backlogOrListener
-      );
-    }
-
-    return this.listen_port(portOrOptions, hostnameOrBacklogOrListener);
+    throw new Error("Unreachable overload stub");
   }
 
-  public listen_port_hostname_backlog(
+  listen_port_hostname_backlog(
     port: int,
     hostname: string,
     backlog: int,
@@ -136,7 +110,7 @@ export class Server extends EventEmitter {
     return this.listenInternal(port, hostname, backlog, listeningListener);
   }
 
-  public listen_port_hostname(
+  listen_port_hostname(
     port: int,
     hostname: string,
     listeningListener?: () => void
@@ -144,7 +118,7 @@ export class Server extends EventEmitter {
     return this.listenInternal(port, hostname, 511, listeningListener);
   }
 
-  public listen_port_backlog(
+  listen_port_backlog(
     port: int,
     backlog: int,
     listeningListener?: () => void
@@ -152,14 +126,14 @@ export class Server extends EventEmitter {
     return this.listenInternal(port, undefined, backlog, listeningListener);
   }
 
-  public listen_port(
+  listen_port(
     port: int,
     listeningListener?: () => void
   ): Server {
     return this.listenInternal(port, undefined, 511, listeningListener);
   }
 
-  public listen_options(
+  listen_options(
     options: ListenOptions,
     listeningListener?: () => void
   ): Server {
@@ -177,7 +151,7 @@ export class Server extends EventEmitter {
     throw new Error("Either port or path must be specified");
   }
 
-  private listenPath(
+  listenPath(
     path: string,
     listeningListener: (() => void) | undefined
   ): Server {
@@ -199,7 +173,7 @@ export class Server extends EventEmitter {
     return this;
   }
 
-  private listenInternal(
+  listenInternal(
     _port: int,
     _hostname: string | undefined,
     _backlog: int,
@@ -231,7 +205,7 @@ export class Server extends EventEmitter {
   /**
    * Stops the server from accepting new connections.
    */
-  public close(callback?: (err?: Error) => void): Server {
+  close(callback?: (err?: Error) => void): Server {
     if (!this._listening) {
       const error = new Error("Server is not listening");
       if (callback !== undefined) {
@@ -260,7 +234,7 @@ export class Server extends EventEmitter {
   /**
    * Returns the bound address, the address family name, and port of the server.
    */
-  public address(): AddressInfo | null {
+  address(): AddressInfo | null {
     if (this._boundPath !== null) {
       return null;
     }
@@ -273,7 +247,7 @@ export class Server extends EventEmitter {
   /**
    * Asynchronously get the number of concurrent connections on the server.
    */
-  public getConnections(
+  getConnections(
     callback: (err: Error | undefined, count: int) => void
   ): void {
     callback(undefined, this._connections);
@@ -282,7 +256,7 @@ export class Server extends EventEmitter {
   /**
    * Calling unref() on a server will allow the program to exit if this is the only active server.
    */
-  public unref(): Server {
+  unref(): Server {
     // Not applicable in managed context
     return this;
   }
@@ -290,7 +264,7 @@ export class Server extends EventEmitter {
   /**
    * Opposite of unref().
    */
-  public ref(): Server {
+  ref(): Server {
     // Not applicable in managed context
     return this;
   }

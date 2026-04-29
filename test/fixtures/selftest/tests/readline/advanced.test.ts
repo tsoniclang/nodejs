@@ -5,7 +5,7 @@ import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
 export class AdvancedTests {
-  public async Interface_questionAsync_ShouldReturnAnswer(): Promise<void> {
+  async Interface_questionAsync_ShouldReturnAnswer(): Promise<void> {
     const input = new Readable();
     const output = new Writable();
     const options = new InterfaceOptions();
@@ -25,7 +25,7 @@ export class AdvancedTests {
     Assert.Equal("Alice", answer);
   }
 
-  public Interface_questionAsync_WhenClosed_ShouldThrow(): void {
+  Interface_questionAsync_WhenClosed_ShouldThrow(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -40,7 +40,7 @@ export class AdvancedTests {
     Assert.True(threw);
   }
 
-  public async Interface_questionAsync_MultipleQuestions_ShouldWork(): Promise<void> {
+  async Interface_questionAsync_MultipleQuestions_ShouldWork(): Promise<void> {
     const input = new Readable();
     const output = new Writable();
     const options = new InterfaceOptions();
@@ -63,7 +63,7 @@ export class AdvancedTests {
     Assert.Equal("Answer 2", answer2);
   }
 
-  public Interface_ArrowKeys_ShouldMoveCursor(): void {
+  Interface_ArrowKeys_ShouldMoveCursor(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -85,7 +85,7 @@ export class AdvancedTests {
     Assert.Equal(4, rl.cursor);
   }
 
-  public Interface_HomeEndKeys_ShouldMoveCursorToEdges(): void {
+  Interface_HomeEndKeys_ShouldMoveCursorToEdges(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -102,7 +102,7 @@ export class AdvancedTests {
     Assert.Equal(11, rl.cursor);
   }
 
-  public Interface_DeleteKey_ShouldDeleteCharacterAtCursor(): void {
+  Interface_DeleteKey_ShouldDeleteCharacterAtCursor(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -121,7 +121,7 @@ export class AdvancedTests {
     Assert.Equal(2, rl.cursor);
   }
 
-  public Interface_CtrlA_ShouldMoveToBeginning(): void {
+  Interface_CtrlA_ShouldMoveToBeginning(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -133,7 +133,7 @@ export class AdvancedTests {
     Assert.Equal(0, rl.cursor);
   }
 
-  public Interface_CtrlE_ShouldMoveToEnd(): void {
+  Interface_CtrlE_ShouldMoveToEnd(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -148,7 +148,7 @@ export class AdvancedTests {
     Assert.Equal(5, rl.cursor);
   }
 
-  public Interface_CtrlU_ShouldClearLineBeforeCursor(): void {
+  Interface_CtrlU_ShouldClearLineBeforeCursor(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -166,7 +166,7 @@ export class AdvancedTests {
     Assert.Equal(0, rl.cursor);
   }
 
-  public Interface_CtrlK_ShouldClearLineAfterCursor(): void {
+  Interface_CtrlK_ShouldClearLineAfterCursor(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -189,7 +189,7 @@ export class AdvancedTests {
     Assert.Equal(5, rl.cursor);
   }
 
-  public Interface_CtrlW_ShouldDeleteWordBeforeCursor(): void {
+  Interface_CtrlW_ShouldDeleteWordBeforeCursor(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -210,7 +210,7 @@ export class AdvancedTests {
     Assert.Equal("", rl.line);
   }
 
-  public Interface_TabKey_ShouldInsertSpaces(): void {
+  Interface_TabKey_ShouldInsertSpaces(): void {
     const input = new Readable();
     const rl = createInterface(input);
 

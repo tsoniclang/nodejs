@@ -1,7 +1,7 @@
 
 import type {} from "./type-bootstrap.ts";
 
-import type { int, long, out, JsValue } from "@tsonic/core/types.js";
+import type { int, long, out } from "@tsonic/core/types.js";
 import { Environment } from "@tsonic/dotnet/System.js";
 import { ConcurrentQueue } from "@tsonic/dotnet/System.Collections.Concurrent.js";
 import { Queue } from "@tsonic/dotnet/System.Collections.Generic.js";
@@ -11,7 +11,7 @@ import {
   Thread,
 } from "@tsonic/dotnet/System.Threading.js";
 import { Task } from "@tsonic/dotnet/System.Threading.Tasks.js";
-import { Error } from "@tsonic/js/Error.js";
+import type { RuntimeValue } from "./runtime-value.ts";
 
 const normalizeDelay = (value?: int): int => {
   if (value === undefined || value < (0 as int)) {
@@ -23,23 +23,23 @@ const normalizeDelay = (value?: int): int => {
 const immediateDispatchDelay = 50 as int;
 
 export class Timeout {
-  private readonly callback: () => void;
-  private readonly delay: int;
-  private readonly period: int | undefined;
-  private readonly cancellation: CancellationTokenSource =
+  callback: () => void;
+  delay: int;
+  period: int | undefined;
+  cancellation: CancellationTokenSource =
     new CancellationTokenSource();
-  private generation = 0;
-  private disposed = false;
-  private referenced = true;
+  generation = 0;
+  disposed = false;
+  referenced = true;
 
-  public constructor(callback: () => void, delay: int, period?: int) {
+  constructor(callback: () => void, delay: int, period?: int) {
     this.callback = callback;
     this.delay = normalizeDelay(delay);
     this.period = period;
     this.schedule(this.delay);
   }
 
-  private schedule(initialDelay: int): void {
+  schedule(initialDelay: int): void {
     this.generation += 1;
     const currentGeneration = this.generation;
 
@@ -63,32 +63,32 @@ export class Timeout {
     });
   }
 
-  public ref(): Timeout {
+  ref(): Timeout {
     this.referenced = true;
     return this;
   }
 
-  public unref(): Timeout {
+  unref(): Timeout {
     this.referenced = false;
     return this;
   }
 
-  public hasRef(): boolean {
+  hasRef(): boolean {
     return this.referenced;
   }
 
-  public refresh(): Timeout {
+  refresh(): Timeout {
     if (!this.disposed) {
       this.schedule(this.delay);
     }
     return this;
   }
 
-  public close(): void {
+  close(): void {
     this.dispose();
   }
 
-  public dispose(): void {
+  dispose(): void {
     if (this.disposed) {
       return;
     }
@@ -100,12 +100,12 @@ export class Timeout {
 }
 
 export class Immediate {
-  private static readonly pendingHandles: ConcurrentQueue<Immediate> =
+  static pendingHandles: ConcurrentQueue<Immediate> =
     new ConcurrentQueue<Immediate>();
-  private static readonly dispatchThread: Thread =
+  static dispatchThread: Thread =
     Immediate.startDispatchThread();
 
-  private static startDispatchThread(): Thread {
+  static startDispatchThread(): Thread {
     const thread = new Thread(() => {
       let handle!: Immediate;
       while (true) {
@@ -127,20 +127,20 @@ export class Immediate {
     return thread;
   }
 
-  private readonly callback: () => void;
-  private readonly cancelSignal: ManualResetEventSlim =
+  callback: () => void;
+  cancelSignal: ManualResetEventSlim =
     new ManualResetEventSlim(false);
-  private readonly readyAfterTick: long =
+  readyAfterTick: long =
     Environment.TickCount64 + immediateDispatchDelay;
-  private disposed = false;
-  private referenced = true;
+  disposed = false;
+  referenced = true;
 
-  public constructor(callback: () => void) {
+  constructor(callback: () => void) {
     this.callback = callback;
     Immediate.pendingHandles.Enqueue(this);
   }
 
-  private tryExecute(): void {
+  tryExecute(): void {
     if (this.cancelSignal.IsSet || this.disposed) {
       return;
     }
@@ -157,21 +157,21 @@ export class Immediate {
     }
   }
 
-  public ref(): Immediate {
+  ref(): Immediate {
     this.referenced = true;
     return this;
   }
 
-  public unref(): Immediate {
+  unref(): Immediate {
     this.referenced = false;
     return this;
   }
 
-  public hasRef(): boolean {
+  hasRef(): boolean {
     return this.referenced;
   }
 
-  public dispose(): void {
+  dispose(): void {
     if (this.disposed) {
       return;
     }
@@ -182,38 +182,41 @@ export class Immediate {
 }
 
 export class TimersScheduler {
-  public async wait(delay: int = 1 as int): Promise<void> {
+  async wait(delay: int = 1 as int): Promise<void> {
     await Task.Delay(normalizeDelay(delay));
   }
 
-  public async yield(): Promise<void> {
+  async yield(): Promise<void> {
     await Task.Delay(0 as int);
   }
 }
 
 export class IntervalIterationResult<T> {
-  public constructor(
-    public readonly done: boolean,
-    public readonly value: T | undefined
-  ) {}
+  done: boolean;
+  value: T | undefined;
+
+  constructor(done: boolean, value: T | undefined) {
+    this.done = done;
+    this.value = value;
+  }
 }
 
 export class IntervalAsyncIterator<T> {
-  private readonly queue: Queue<T | undefined> = new Queue<T | undefined>();
-  private readonly waiters: Queue<
+  queue: Queue<T | undefined> = new Queue<T | undefined>();
+  waiters: Queue<
     (result: IntervalIterationResult<T>) => void
   > = new Queue<(result: IntervalIterationResult<T>) => void>();
-  private readonly handle: Timeout;
-  private closed = false;
+  handle: Timeout;
+  closed = false;
 
-  public constructor(delay: int, value?: T) {
+  constructor(delay: int, value?: T) {
     const actualDelay = normalizeDelay(delay);
     this.handle = new Timeout(() => {
       this.enqueue(value);
     }, actualDelay, actualDelay);
   }
 
-  private enqueue(value?: T): void {
+  enqueue(value?: T): void {
     if (this.closed) {
       return;
     }
@@ -227,7 +230,7 @@ export class IntervalAsyncIterator<T> {
     this.queue.Enqueue(value);
   }
 
-  private close(): void {
+  close(): void {
     if (this.closed) {
       return;
     }
@@ -241,7 +244,7 @@ export class IntervalAsyncIterator<T> {
     }
   }
 
-  public next(): Promise<IntervalIterationResult<T>> {
+  next(): Promise<IntervalIterationResult<T>> {
     if (this.queue.Count > 0) {
       const value = this.queue.Dequeue();
       return Promise.resolve(new IntervalIterationResult(false, value));
@@ -256,45 +259,45 @@ export class IntervalAsyncIterator<T> {
     });
   }
 
-  public return(
+  return(
     value: T | undefined = undefined
   ): Promise<IntervalIterationResult<T>> {
     this.close();
     return Promise.resolve(new IntervalIterationResult(true, value));
   }
 
-  public async throw(
-    error?: JsValue
+  async throw(
+    error?: Error
   ): Promise<IntervalIterationResult<T>> {
     this.close();
-    throw error instanceof Error ? error : new Error("Promise rejected");
+    throw error ?? new Error("Promise rejected");
   }
 
-  public [Symbol.asyncIterator](): IntervalAsyncIterator<T> {
+  [Symbol.asyncIterator](): IntervalAsyncIterator<T> {
     return this;
   }
 }
 
 export class TimersPromises {
-  public readonly scheduler: TimersScheduler = new TimersScheduler();
+  scheduler: TimersScheduler = new TimersScheduler();
 
-  public async setTimeout(
+  async setTimeout(
     delay: int = 1 as int,
-    value?: JsValue
-  ): Promise<JsValue | undefined> {
+    value?: RuntimeValue
+  ): Promise<RuntimeValue> {
     await Task.Delay(normalizeDelay(delay));
     return value;
   }
 
-  public async setImmediate(value?: JsValue): Promise<JsValue | undefined> {
+  async setImmediate(value?: RuntimeValue): Promise<RuntimeValue> {
     await Task.Delay(immediateDispatchDelay);
     return value;
   }
 
-  public setInterval(
+  setInterval(
     delay: int = 1 as int,
-    value?: JsValue
-  ): IntervalAsyncIterator<JsValue> {
+    value?: RuntimeValue
+  ): IntervalAsyncIterator<RuntimeValue> {
     return new IntervalAsyncIterator(delay, value);
   }
 }

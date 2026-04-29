@@ -7,7 +7,7 @@ import { process } from "@tsonic/nodejs/process.js";
 import { assertThrows, createTempDir, deleteIfExists } from "./helpers.ts";
 
 export class ProcessChdirTests {
-  public chdir_changes_current_directory(): void {
+  chdir_changes_current_directory(): void {
     const original = Directory.GetCurrentDirectory();
     const target = createTempDir();
 
@@ -20,7 +20,7 @@ export class ProcessChdirTests {
     }
   }
 
-  public chdir_updates_dotnet_current_directory(): void {
+  chdir_updates_dotnet_current_directory(): void {
     const original = Directory.GetCurrentDirectory();
     const target = createTempDir();
 
@@ -33,7 +33,7 @@ export class ProcessChdirTests {
     }
   }
 
-  public chdir_supports_relative_paths(): void {
+  chdir_supports_relative_paths(): void {
     const original = Directory.GetCurrentDirectory();
     const target = createTempDir();
     const child = Path.Combine(target, "subdir");
@@ -49,15 +49,15 @@ export class ProcessChdirTests {
     }
   }
 
-  public chdir_rejects_missing_directory(): void {
+  chdir_rejects_missing_directory(): void {
     assertThrows(() => process.chdir(undefined as never));
   }
 
-  public chdir_rejects_empty_directory(): void {
+  chdir_rejects_empty_directory(): void {
     assertThrows(() => process.chdir(""));
   }
 
-  public chdir_rejects_non_existent_directory(): void {
+  chdir_rejects_non_existent_directory(): void {
     assertThrows(() =>
       process.chdir(Path.Combine(Path.GetTempPath(), "does-not-exist-nodejs-next"))
     );

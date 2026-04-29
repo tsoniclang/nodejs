@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SocketConstructorOpts } from "@tsonic/nodejs/net.js";
 
 export class SocketConstructorOptsTests {
-  public all_properties_can_be_set(): void {
+  all_properties_can_be_set(): void {
     const opts = new SocketConstructorOpts();
     opts.fd = 123;
     opts.allowHalfOpen = true;

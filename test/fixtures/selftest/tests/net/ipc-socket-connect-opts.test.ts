@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { IpcSocketConnectOpts } from "@tsonic/nodejs/net.js";
 
 export class IpcSocketConnectOptsTests {
-  public path_can_be_set(): void {
+  path_can_be_set(): void {
     const opts = new IpcSocketConnectOpts();
     opts.path = "/tmp/socket";
 

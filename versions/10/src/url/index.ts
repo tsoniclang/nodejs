@@ -4,7 +4,7 @@
  */
 
 import type {} from "../type-bootstrap.ts";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "../runtime-value.ts";
 import { IdnMapping } from "@tsonic/dotnet/System.Globalization.js";
 import { Uri } from "@tsonic/dotnet/System.js";
 import { Path } from "@tsonic/dotnet/System.IO.js";
@@ -25,16 +25,12 @@ export const parse = (input: string): URL | null => {
 /**
  * Formats URL input to string.
  */
-export const format = (input: JsValue): string => {
+export const format = (input: RuntimeValue): string => {
   if (input === null || input === undefined) {
     return "";
   }
   if (input instanceof URL) {
     return input.href;
-  }
-  if (typeof input === "string") {
-    const parsed = URL.parse(input);
-    return parsed !== null ? parsed.href : input;
   }
   return String(input);
 };
@@ -77,7 +73,7 @@ export const pathToFileURL = (filePath: string): URL => {
 };
 
 export const fileURLToPath = (input: string | URL): string => {
-  const href = typeof input === "string" ? input : input.href;
+  const href = input instanceof URL ? input.href : input;
   return new Uri(href).LocalPath;
 };
 

@@ -5,21 +5,21 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { Path } from "@tsonic/dotnet/System.IO.js";
 
 export class PathModuleTests {
-  public separator_matches_platform_value(): void {
+  separator_matches_platform_value(): void {
     Assert.Equal(Path.DirectorySeparatorChar, nodePath.sep);
   }
 
-  public delimiter_matches_platform_value(): void {
+  delimiter_matches_platform_value(): void {
     Assert.Equal(Path.PathSeparator, nodePath.delimiter);
   }
 
-  public posix_and_win32_exports_exist_and_alias_the_same_namespace(): void {
+  posix_and_win32_exports_exist_and_alias_the_same_namespace(): void {
     Assert.True(nodePath.posix !== undefined);
     Assert.True(nodePath.win32 !== undefined);
     Assert.True(nodePath.posix === nodePath.win32);
   }
 
-  public path_namespace_objects_delegate_to_named_exports(): void {
+  path_namespace_objects_delegate_to_named_exports(): void {
     Assert.Equal("file.txt", nodePath.basename("file.txt"));
     Assert.Equal("/foo", nodePath.dirname("/foo/bar"));
     Assert.Equal(".txt", nodePath.extname("file.txt"));

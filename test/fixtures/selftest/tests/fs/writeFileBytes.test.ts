@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class writeFileBytesTests {
-  public async writeFileBytes_ShouldWriteBinaryData(): Promise<void> {
+  async writeFileBytes_ShouldWriteBinaryData(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "binary-write-async.bin");

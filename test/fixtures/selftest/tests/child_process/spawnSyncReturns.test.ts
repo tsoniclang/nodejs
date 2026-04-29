@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessSpawnSyncReturnsTests {
-  public spawnSyncReturns_AllPropertiesAccessible(): void {
+  spawnSyncReturns_AllPropertiesAccessible(): void {
     const command = "echo";
     const args = ["test"];
     const result = child_process.spawnSync(command, args);

@@ -6,7 +6,7 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { assertOneOf } from "./helpers.ts";
 
 export class ExtnameTests {
-  public extname_returns_extension(): void {
+  extname_returns_extension(): void {
     Assert.Equal(".html", nodePath.extname("index.html"));
     Assert.Equal(".md", nodePath.extname("index.coffee.md"));
     Assert.Equal("", nodePath.extname("index"));

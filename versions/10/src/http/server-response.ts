@@ -9,10 +9,14 @@
 
 import { overloads as O } from "@tsonic/core/lang.js";
 import type { byte, int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
+import { List } from "@tsonic/dotnet/System.Collections.Generic.js";
 import type { HttpListenerResponse } from "@tsonic/dotnet/System.Net.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
 import { Buffer } from "../buffer/index.ts";
 import { EventEmitter, toEventListener } from "../events-module.ts";
+
+const toByte = (value: number): byte => Convert.ToByte(value);
 
 /**
  * Implements Node.js http.ServerResponse.
@@ -20,13 +24,13 @@ import { EventEmitter, toEventListener } from "../events-module.ts";
  * Extends EventEmitter to support events like 'finish', 'close'.
  */
 export class ServerResponse extends EventEmitter {
-  private _statusCode: int = 200 as int;
-  private _statusMessage: string = "";
-  private _headersSent: boolean = false;
-  private _finished: boolean = false;
-  private _headers: Map<string, string> = new Map<string, string>();
-  private readonly _nativeResponse: HttpListenerResponse | null;
-  private readonly _bodyChunks: byte[][] = [];
+  _statusCode: int = 200 as int;
+  _statusMessage: string = "";
+  _headersSent: boolean = false;
+  _finished: boolean = false;
+  _headers: Map<string, string> = new Map<string, string>();
+  _nativeResponse: HttpListenerResponse | null;
+  _bodyChunks: byte[][] = [];
 
   constructor(nativeResponse?: HttpListenerResponse | null) {
     super();
@@ -36,11 +40,11 @@ export class ServerResponse extends EventEmitter {
   /**
    * Gets or sets the HTTP status code that will be sent to the client.
    */
-  public get statusCode(): int {
+  get statusCode(): int {
     return this._statusCode;
   }
 
-  public set statusCode(value: int) {
+  set statusCode(value: int) {
     if (this._headersSent) {
       throw new Error("Cannot set status code after headers have been sent");
     }
@@ -51,25 +55,25 @@ export class ServerResponse extends EventEmitter {
    * Gets or sets the HTTP status message that will be sent to the client.
    * Note: In HTTP/2, status messages are ignored.
    */
-  public get statusMessage(): string {
+  get statusMessage(): string {
     return this._statusMessage;
   }
 
-  public set statusMessage(value: string) {
+  set statusMessage(value: string) {
     this._statusMessage = value;
   }
 
   /**
    * Boolean indicating if headers were sent. Read-only.
    */
-  public get headersSent(): boolean {
+  get headersSent(): boolean {
     return this._headersSent;
   }
 
   /**
    * Boolean indicating if the response has completed.
    */
-  public get finished(): boolean {
+  get finished(): boolean {
     return this._finished;
   }
 
@@ -81,7 +85,7 @@ export class ServerResponse extends EventEmitter {
    * @param headers - Optional headers object.
    * @returns The ServerResponse instance for chaining.
    */
-  public writeHead(
+  writeHead(
     statusCode: int,
     statusMessage?: string | null,
     headers?: Map<string, string> | null
@@ -112,7 +116,7 @@ export class ServerResponse extends EventEmitter {
    * @param headers - Headers object.
    * @returns The ServerResponse instance for chaining.
    */
-  public writeHeadWithHeaders(
+  writeHeadWithHeaders(
     statusCode: int,
     headers: Map<string, string>
   ): ServerResponse {
@@ -125,7 +129,7 @@ export class ServerResponse extends EventEmitter {
    * @param value - Header value.
    * @returns The ServerResponse instance for chaining.
    */
-  public setHeader(name: string, value: string): ServerResponse {
+  setHeader(name: string, value: string): ServerResponse {
     if (this._headersSent) {
       throw new Error("Headers already sent");
     }
@@ -139,7 +143,7 @@ export class ServerResponse extends EventEmitter {
    * @param name - Header name.
    * @returns Header value or null if not set.
    */
-  public getHeader(name: string): string | null {
+  getHeader(name: string): string | null {
     const value = this._headers.get(this._normalizeHeaderName(name));
     return value !== undefined ? value : null;
   }
@@ -148,7 +152,7 @@ export class ServerResponse extends EventEmitter {
    * Returns an array containing the unique names of the current outgoing headers.
    * @returns Array of header names.
    */
-  public getHeaderNames(): string[] {
+  getHeaderNames(): string[] {
     const names: string[] = [];
     this._headers.forEach((_value, key, _map) => {
       names.push(key);
@@ -160,7 +164,7 @@ export class ServerResponse extends EventEmitter {
    * Returns a shallow copy of the current outgoing headers.
    * @returns Map of headers.
    */
-  public getHeaders(): Map<string, string> {
+  getHeaders(): Map<string, string> {
     const copy = new Map<string, string>();
     this._headers.forEach((value, key, _map) => {
       copy.set(key, value);
@@ -173,7 +177,7 @@ export class ServerResponse extends EventEmitter {
    * @param name - Header name.
    * @returns True if header exists.
    */
-  public hasHeader(name: string): boolean {
+  hasHeader(name: string): boolean {
     return this._headers.has(this._normalizeHeaderName(name));
   }
 
@@ -181,7 +185,7 @@ export class ServerResponse extends EventEmitter {
    * Removes a header that's queued for implicit sending.
    * @param name - Header name.
    */
-  public removeHeader(name: string): void {
+  removeHeader(name: string): void {
     if (this._headersSent) {
       throw new Error("Headers already sent");
     }
@@ -196,8 +200,8 @@ export class ServerResponse extends EventEmitter {
    * @param callback - Optional callback when chunk is flushed.
    * @returns True if entire data was flushed successfully.
    */
-  public write(
-    chunk: string | Buffer | byte[] | Uint8Array,
+  write(
+    chunk: string | Buffer | Uint8Array,
     encoding?: string | null,
     callback?: (() => void) | null
   ): boolean {
@@ -221,11 +225,11 @@ export class ServerResponse extends EventEmitter {
    * Signals that all response headers and body have been sent (no payload).
    * @returns This response for chaining.
    */
-  public end(): ServerResponse;
+  end(): ServerResponse;
   /**
    * Signals response completion with an optional callback and no payload.
    */
-  public end(callback: (() => void) | null): ServerResponse;
+  end(callback: (() => void) | null): ServerResponse;
   /**
    * Signals that all response headers and body have been sent.
    * @param chunk - Final chunk to send.
@@ -233,24 +237,20 @@ export class ServerResponse extends EventEmitter {
    * @param callback - Optional callback when response is finished.
    * @returns This response for chaining.
    */
-  public end(
-    chunk: string | Buffer | byte[] | Uint8Array,
+  end(
+    chunk: string | Buffer | Uint8Array,
     encoding?: string | null,
     callback?: (() => void) | null
   ): ServerResponse;
-  public end(chunkOrCallback?: any, encoding?: any, callback?: any): any {
-    if (typeof chunkOrCallback === "function") {
-      return this.end_callback(chunkOrCallback);
-    }
-
-    if (chunkOrCallback === undefined) {
-      return this.end_empty();
-    }
-
-    return this.end_chunk(chunkOrCallback, encoding, callback);
+  end(
+    _chunkOrCallback?: any,
+    _encoding?: any,
+    _callback?: any,
+  ): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public end_empty(): ServerResponse {
+  end_empty(): ServerResponse {
     if (this._finished) {
       return this;
     }
@@ -259,7 +259,7 @@ export class ServerResponse extends EventEmitter {
     return this;
   }
 
-  public end_callback(callback: (() => void) | null): ServerResponse {
+  end_callback(callback: (() => void) | null): ServerResponse {
     if (this._finished) {
       return this;
     }
@@ -271,8 +271,8 @@ export class ServerResponse extends EventEmitter {
     return this;
   }
 
-  public end_chunk(
-    chunk: string | Buffer | byte[] | Uint8Array,
+  end_chunk(
+    chunk: string | Buffer | Uint8Array,
     encoding?: string | null,
     callback?: (() => void) | null
   ): ServerResponse {
@@ -294,7 +294,7 @@ export class ServerResponse extends EventEmitter {
    * @param callback - Optional callback for timeout event.
    * @returns The ServerResponse instance.
    */
-  public setTimeout(msecs: int, callback?: () => void): ServerResponse {
+  setTimeout(msecs: int, callback?: () => void): ServerResponse {
     if (msecs < 0) {
       throw new Error("Timeout must be non-negative");
     }
@@ -310,7 +310,7 @@ export class ServerResponse extends EventEmitter {
   /**
    * Flushes the response headers.
    */
-  public flushHeaders(): void {
+  flushHeaders(): void {
     if (!this._headersSent) {
       this._headersSent = true;
     }
@@ -318,58 +318,45 @@ export class ServerResponse extends EventEmitter {
     this._applyHeadersToNativeResponse();
   }
 
-  private _normalizeHeaderName(name: string): string {
+  _normalizeHeaderName(name: string): string {
     return name.toLowerCase();
   }
 
-  private _toByteArray(
-    chunk: string | Buffer | byte[] | Uint8Array,
+  _toByteArray(
+    chunk: string | Buffer | Uint8Array,
     encoding?: string
   ): byte[] {
-    if (typeof chunk === "string") {
-      return Encoding.UTF8.GetBytes(chunk);
-    }
-
-    if (Buffer.isBuffer(chunk)) {
-      return Array.from(chunk.buffer, (value) => value as byte);
+    if (chunk instanceof Buffer) {
+      return ServerResponse._copyUint8Array(chunk.buffer);
     }
 
     if (chunk instanceof Uint8Array) {
-      const result = new Array<byte>(chunk.length);
-      for (let index = 0; index < chunk.length; index += 1) {
-        result[index] = chunk.at(index)! as byte;
-      }
-      return result;
+      return ServerResponse._copyUint8Array(chunk);
     }
 
-    const rawBytes = chunk as byte[];
-    const result = new Array<byte>(rawBytes.length);
-    for (let index = 0; index < rawBytes.length; index += 1) {
-      result[index] = rawBytes[index]! as byte;
-    }
-    return result;
+    return Encoding.UTF8.GetBytes(chunk as string);
   }
 
-  private _flattenBodyChunks(): byte[] {
-    let totalLength = 0;
-    for (const chunk of this._bodyChunks) {
-      totalLength += chunk.length;
+  static _copyUint8Array(source: Uint8Array): byte[] {
+    const result = new List<byte>();
+    for (let index = 0; index < source.length; index += 1) {
+      result.Add(toByte(source[index]!));
     }
-
-    const result = new Array<byte>(totalLength);
-    let offset = 0;
-
-    for (const chunk of this._bodyChunks) {
-      for (let index = 0; index < chunk.length; index += 1) {
-        result[offset + index] = chunk[index]!;
-      }
-      offset += chunk.length;
-    }
-
-    return result;
+    return result.ToArray();
   }
 
-  private _applyHeadersToNativeResponse(): void {
+  _flattenBodyChunks(): byte[] {
+    const result = new List<byte>();
+    for (const chunk of this._bodyChunks) {
+      for (let index = 0; index < chunk.length; index += 1) {
+        result.Add(chunk[index]!);
+      }
+    }
+
+    return result.ToArray();
+  }
+
+  _applyHeadersToNativeResponse(): void {
     if (this._nativeResponse === null) {
       return;
     }
@@ -402,7 +389,7 @@ export class ServerResponse extends EventEmitter {
     });
   }
 
-  private _finalizeResponse(body: byte[]): void {
+  _finalizeResponse(body: byte[]): void {
     if (this._finished) {
       return;
     }

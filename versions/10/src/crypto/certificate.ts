@@ -18,11 +18,11 @@ const normalizeSpkacString = (value: string): string => {
 };
 
 const parseSpkacBytes = (spkac: string | Uint8Array): Uint8Array => {
-  if (typeof spkac !== "string") {
+  if (spkac instanceof Uint8Array) {
     return spkac;
   }
 
-  const normalized = normalizeSpkacString(spkac);
+  const normalized = normalizeSpkacString(spkac as string);
   if (normalized.length === 0) {
     return emptyBytes();
   }
@@ -158,7 +158,7 @@ export class Certificate {
   /**
    * Exports the challenge component of an SPKAC data structure.
    */
-  public static exportChallenge(spkac: string | Uint8Array): Uint8Array {
+  static exportChallenge(spkac: string | Uint8Array): Uint8Array {
     const bytes = parseSpkacBytes(spkac);
     return extractTaggedValue(tryToUtf8(bytes), "challenge");
   }
@@ -166,7 +166,7 @@ export class Certificate {
   /**
    * Exports the public key component of an SPKAC data structure.
    */
-  public static exportPublicKey(spkac: string | Uint8Array): Uint8Array {
+  static exportPublicKey(spkac: string | Uint8Array): Uint8Array {
     const bytes = parseSpkacBytes(spkac);
     const tagged = extractTaggedValue(tryToUtf8(bytes), "publickey");
     if (tagged.length > 0) {
@@ -179,7 +179,7 @@ export class Certificate {
   /**
    * Validates an SPKAC data structure.
    */
-  public static verifySpkac(spkac: string | Uint8Array): boolean {
+  static verifySpkac(spkac: string | Uint8Array): boolean {
     const bytes = parseSpkacBytes(spkac);
     if (bytes.length === 0) {
       return false;
@@ -201,18 +201,18 @@ export class Certificate {
  * Information about an X.509 certificate.
  */
 export class X509CertificateInfo {
-  public readonly subject: string;
-  public readonly issuer: string;
-  public readonly serialNumber: string;
-  public readonly validFrom: string;
-  public readonly validTo: string;
-  public readonly fingerprint: string;
-  public readonly fingerprint256: string;
-  public readonly fingerprint512: string;
-  public readonly publicKey: Uint8Array;
-  public readonly raw: Uint8Array;
+  subject: string;
+  issuer: string;
+  serialNumber: string;
+  validFrom: string;
+  validTo: string;
+  fingerprint: string;
+  fingerprint256: string;
+  fingerprint512: string;
+  publicKey: Uint8Array;
+  raw: Uint8Array;
 
-  public constructor(
+  constructor(
     subject: string,
     issuer: string,
     serialNumber: string,
@@ -239,7 +239,7 @@ export class X509CertificateInfo {
   /**
    * Checks whether the certificate matches the given hostname.
    */
-  public checkHost(hostname: string): string | null {
+  checkHost(hostname: string): string | null {
     const commonName = extractNamedValue(this.subject, ["cn", "dns"]);
     if (commonName === null) {
       return null;
@@ -251,7 +251,7 @@ export class X509CertificateInfo {
   /**
    * Checks whether the certificate matches the given email address.
    */
-  public checkEmail(email: string): string | null {
+  checkEmail(email: string): string | null {
     const subjectEmail = extractNamedValue(this.subject, [
       "emailaddress",
       "email",
@@ -267,7 +267,7 @@ export class X509CertificateInfo {
   /**
    * Checks whether the certificate matches the given IP address.
    */
-  public checkIP(ip: string): string | null {
+  checkIP(ip: string): string | null {
     const subjectIp = extractNamedValue(this.subject, [
       "ip",
       "ip address",
@@ -283,25 +283,25 @@ export class X509CertificateInfo {
   /**
    * Checks whether this certificate issued the other certificate.
    */
-  public checkIssued(otherCert: X509CertificateInfo): string | null {
+  checkIssued(otherCert: X509CertificateInfo): string | null {
     return this.subject === otherCert.issuer ? null : "Issuer mismatch";
   }
 
   /**
    * Checks whether the certificate was issued by the given issuer certificate.
    */
-  public verify(issuerCert: X509CertificateInfo): boolean {
+  verify(issuerCert: X509CertificateInfo): boolean {
     return issuerCert.subject === this.issuer;
   }
 
   /**
    * Returns the PEM-encoded certificate.
    */
-  public toPEM(): string {
+  toPEM(): string {
     return `-----BEGIN CERTIFICATE-----\n${toPemBody(this.raw)}\n-----END CERTIFICATE-----`;
   }
 
-  public toString(): string {
+  toString(): string {
     return `X509Certificate(subject=${this.subject}, issuer=${this.issuer})`;
   }
 }

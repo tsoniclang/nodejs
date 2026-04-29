@@ -6,7 +6,7 @@ import { createSocket } from "@tsonic/nodejs/dgram.js";
 import { assertThrows } from "./helpers.ts";
 
 export class SendTests {
-  public send_WithCallback_CallsCallback(): void {
+  send_WithCallback_CallsCallback(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 
@@ -31,7 +31,7 @@ export class SendTests {
     socket.close();
   }
 
-  public send_ConnectedSocket_SendsWithoutAddress(): void {
+  send_ConnectedSocket_SendsWithoutAddress(): void {
     const server = createSocket("udp4");
     server.bind(0, "127.0.0.1");
 
@@ -50,7 +50,7 @@ export class SendTests {
     server.close();
   }
 
-  public send_WithOffsetAndLength_SendsCorrectSlice(): void {
+  send_WithOffsetAndLength_SendsCorrectSlice(): void {
     const server = createSocket("udp4");
     server.bind(0, "127.0.0.1");
 
@@ -71,7 +71,7 @@ export class SendTests {
     server.close();
   }
 
-  public send_WithInvalidOffset_ThrowsException(): void {
+  send_WithInvalidOffset_ThrowsException(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 
@@ -81,7 +81,7 @@ export class SendTests {
     socket.close();
   }
 
-  public send_WithInvalidLength_ThrowsException(): void {
+  send_WithInvalidLength_ThrowsException(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 

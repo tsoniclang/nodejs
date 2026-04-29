@@ -6,14 +6,14 @@ import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
 export class ChildProcessExecSyncTests {
-  public execSync_SimpleCommand_ReturnsOutput(): void {
+  execSync_SimpleCommand_ReturnsOutput(): void {
     const command = "echo 'Hello'";
     const result = child_process.execSync(command);
 
     Assert.NotNull(result);
   }
 
-  public execSync_WithOptions_ReturnsString(): void {
+  execSync_WithOptions_ReturnsString(): void {
     const command = "echo 'Hello'";
     const options = new ExecOptions();
     options.encoding = "utf8";
@@ -23,7 +23,7 @@ export class ChildProcessExecSyncTests {
     Assert.True((result as string).includes("Hello"));
   }
 
-  public execSync_WithBufferEncoding_ReturnsByteArray(): void {
+  execSync_WithBufferEncoding_ReturnsByteArray(): void {
     const command = "echo 'Hello'";
     const options = new ExecOptions();
     options.encoding = "buffer";
@@ -32,7 +32,7 @@ export class ChildProcessExecSyncTests {
     Assert.True(typeof result === "string" || result instanceof Uint8Array);
   }
 
-  public execSync_WithCwd_ExecutesInDirectory(): void {
+  execSync_WithCwd_ExecutesInDirectory(): void {
     const command = "pwd";
     const options = new ExecOptions();
     options.cwd = "/tmp";
@@ -43,7 +43,7 @@ export class ChildProcessExecSyncTests {
     // Result should contain temp directory path
   }
 
-  public execSync_NonZeroExit_ThrowsException(): void {
+  execSync_NonZeroExit_ThrowsException(): void {
     const command = "exit 1";
 
     assertThrows(() => {

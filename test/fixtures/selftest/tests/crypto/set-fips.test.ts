@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { setFips } from "@tsonic/nodejs/crypto.js";
 
 export class SetFipsTests {
-  public setFips_false_does_not_throw(): void {
+  setFips_false_does_not_throw(): void {
     let threw = false;
     try {
       setFips(false);
@@ -14,7 +14,7 @@ export class SetFipsTests {
     Assert.False(threw);
   }
 
-  public setFips_true_throws(): void {
+  setFips_true_throws(): void {
     let threw = false;
     try {
       setFips(true);

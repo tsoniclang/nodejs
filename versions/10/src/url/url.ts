@@ -42,14 +42,14 @@ const buildUriBuilder = (input: string, base?: string): UriBuilder => {
 };
 
 export class URL {
-  private builder: UriBuilder;
-  private cachedSearchParams: URLSearchParams | null = null;
+  builder: UriBuilder;
+  cachedSearchParams: URLSearchParams | null = null;
 
   constructor(input: string, base?: string) {
     this.builder = buildUriBuilder(input, base);
   }
 
-  private get uri(): Uri {
+  get uri(): Uri {
     return this.builder.Uri;
   }
 

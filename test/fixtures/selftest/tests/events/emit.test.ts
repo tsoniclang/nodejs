@@ -1,22 +1,22 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class EmitTests {
-  public emit_without_listeners_returns_false(): void {
+  emit_without_listeners_returns_false(): void {
     const emitter = new EventEmitter();
     Assert.False(emitter.emit("test"));
   }
 
-  public emit_with_listeners_returns_true(): void {
+  emit_with_listeners_returns_true(): void {
     const emitter = new EventEmitter();
     emitter.on("test", () => undefined);
     Assert.True(emitter.emit("test"));
   }
 
-  public emit_error_without_listeners_throws(): void {
+  emit_error_without_listeners_throws(): void {
     const emitter = new EventEmitter();
     let threw = false;
 
@@ -29,11 +29,11 @@ export class EmitTests {
     Assert.True(threw);
   }
 
-  public emit_error_with_listener_routes_the_error(): void {
+  emit_error_with_listener_routes_the_error(): void {
     const emitter = new EventEmitter();
     let message = "";
 
-    emitter.on("error", (error: JsValue) => {
+    emitter.on("error", (error: RuntimeValue) => {
       if (error instanceof Error) {
         message = error.message;
       }
@@ -43,11 +43,11 @@ export class EmitTests {
     Assert.Equal("boom", message);
   }
 
-  public emit_passes_all_arguments_to_the_listener(): void {
+  emit_passes_all_arguments_to_the_listener(): void {
     const emitter = new EventEmitter();
-    let first: JsValue | undefined = undefined;
-    let second: JsValue | undefined = undefined;
-    let third: JsValue | undefined = undefined;
+    let first: RuntimeValue | undefined = undefined;
+    let second: RuntimeValue | undefined = undefined;
+    let third: RuntimeValue | undefined = undefined;
 
     emitter.on("test", (arg1, arg2, arg3) => {
       first = arg1;

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { publicEncrypt, privateDecrypt, generateKeyPairSync } from "@tsonic/nodejs/crypto.js";
 
 export class PublicEncryptTests {
-  public publicEncrypt_privateDecrypt_round_trip(): void {
+  publicEncrypt_privateDecrypt_round_trip(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const plaintext = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33]);
     const encrypted = publicEncrypt(publicKey, plaintext);
@@ -12,7 +12,7 @@ export class PublicEncryptTests {
     Assert.Equal(plaintext, decrypted);
   }
 
-  public publicEncrypt_privateDecrypt_with_key_object_works(): void {
+  publicEncrypt_privateDecrypt_with_key_object_works(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const plaintext = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33]);
     const encrypted = publicEncrypt(publicKey, plaintext);
@@ -20,7 +20,7 @@ export class PublicEncryptTests {
     Assert.Equal(plaintext, decrypted);
   }
 
-  public publicEncrypt_invalid_key_type_throws(): void {
+  publicEncrypt_invalid_key_type_throws(): void {
     const { privateKey } = generateKeyPairSync("rsa");
     const plaintext = new Uint8Array([116, 101, 115, 116]);
     let threw = false;

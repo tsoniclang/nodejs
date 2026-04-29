@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createSocket } from "@tsonic/nodejs/dgram.js";
 
 export class DropMembershipTests {
-  public dropMembership_LeavesMulticastGroup(): void {
+  dropMembership_LeavesMulticastGroup(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "0.0.0.0");
 

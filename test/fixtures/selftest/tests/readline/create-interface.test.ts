@@ -9,7 +9,7 @@ import {
 import { Readable } from "@tsonic/nodejs/stream.js";
 
 export class CreateInterfaceTests {
-  public createInterface_WithValidOptions_ShouldCreateInterface(): void {
+  createInterface_WithValidOptions_ShouldCreateInterface(): void {
     const input = new Readable();
     const options = new InterfaceOptions();
     options.input = input;
@@ -20,7 +20,7 @@ export class CreateInterfaceTests {
     Assert.True(rl instanceof Interface);
   }
 
-  public createInterface_WithInputOnly_ShouldWork(): void {
+  createInterface_WithInputOnly_ShouldWork(): void {
     const input = new Readable();
     const options = new InterfaceOptions();
     options.input = input;
@@ -30,7 +30,7 @@ export class CreateInterfaceTests {
     Assert.NotNull(rl);
   }
 
-  public createInterface_WithNullOptions_ShouldThrow(): void {
+  createInterface_WithNullOptions_ShouldThrow(): void {
     let threw = false;
     try {
       createInterface(asinterface<InterfaceOptions>(null));
@@ -40,7 +40,7 @@ export class CreateInterfaceTests {
     Assert.True(threw);
   }
 
-  public createInterface_WithNullInput_ShouldThrow(): void {
+  createInterface_WithNullInput_ShouldThrow(): void {
     let threw = false;
     try {
       createInterface(new InterfaceOptions());
@@ -50,7 +50,7 @@ export class CreateInterfaceTests {
     Assert.True(threw);
   }
 
-  public createInterface_WithStreams_ShouldWork(): void {
+  createInterface_WithStreams_ShouldWork(): void {
     const input = new Readable();
 
     const rl = createInterface(input);
@@ -58,7 +58,7 @@ export class CreateInterfaceTests {
     Assert.NotNull(rl);
   }
 
-  public createInterface_WithCustomPrompt_ShouldUsePrompt(): void {
+  createInterface_WithCustomPrompt_ShouldUsePrompt(): void {
     const input = new Readable();
     const customPrompt = "custom> ";
     const options = new InterfaceOptions();
@@ -70,7 +70,7 @@ export class CreateInterfaceTests {
     Assert.Equal(customPrompt, rl.getPrompt());
   }
 
-  public createInterface_WithHistory_ShouldInitializeHistory(): void {
+  createInterface_WithHistory_ShouldInitializeHistory(): void {
     const input = new Readable();
     const history = ["line1", "line2", "line3"];
     const options = new InterfaceOptions();
@@ -83,7 +83,7 @@ export class CreateInterfaceTests {
     // History is initialized (we can't directly access it, but no exception)
   }
 
-  public createInterface_WithTerminalOption_ShouldWork(): void {
+  createInterface_WithTerminalOption_ShouldWork(): void {
     const input = new Readable();
     const options = new InterfaceOptions();
     options.input = input;
@@ -94,7 +94,7 @@ export class CreateInterfaceTests {
     Assert.NotNull(rl);
   }
 
-  public createInterface_WithHistorySize_ShouldWork(): void {
+  createInterface_WithHistorySize_ShouldWork(): void {
     const input = new Readable();
     const options = new InterfaceOptions();
     options.input = input;

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createSocket } from "@tsonic/nodejs/dgram.js";
 
 export class CloseTests {
-  public close_BoundSocket_ClosesSuccessfully(): void {
+  close_BoundSocket_ClosesSuccessfully(): void {
     const socket = createSocket("udp4");
     let closed = false;
 

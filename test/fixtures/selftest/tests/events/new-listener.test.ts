@@ -1,15 +1,15 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class NewListenerTests {
-  public newListener_event_fires_for_new_registrations(): void {
+  newListener_event_fires_for_new_registrations(): void {
     const emitter = new EventEmitter();
-    let seen: JsValue | undefined = undefined;
+    let seen: RuntimeValue | undefined = undefined;
 
-    emitter.on("newListener", (name: JsValue) => {
+    emitter.on("newListener", (name: RuntimeValue) => {
       seen = name;
     });
     emitter.on("test", () => undefined);

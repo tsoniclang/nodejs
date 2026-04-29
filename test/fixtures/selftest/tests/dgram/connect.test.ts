@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createSocket } from "@tsonic/nodejs/dgram.js";
 
 export class ConnectTests {
-  public connect_ToRemote_ConnectsSuccessfully(): void {
+  connect_ToRemote_ConnectsSuccessfully(): void {
     const server = createSocket("udp4");
     server.bind(0, "127.0.0.1");
 

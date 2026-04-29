@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class rmdirSyncTests {
-  public rmdirSync_ShouldRemoveEmptyDirectory(): void {
+  rmdirSync_ShouldRemoveEmptyDirectory(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "remove-dir");
@@ -18,7 +18,7 @@ export class rmdirSyncTests {
     }
   }
 
-  public rmdirSync_Recursive_ShouldRemoveDirectoryWithContents(): void {
+  rmdirSync_Recursive_ShouldRemoveDirectoryWithContents(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "remove-tree");

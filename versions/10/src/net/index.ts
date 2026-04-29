@@ -26,6 +26,7 @@ export {
 import { Server } from "./server.ts";
 import { Socket } from "./socket.ts";
 import type { ServerOpts, TcpSocketConnectOpts } from "./options.ts";
+import { toUnaryEventListener } from "../events-module.ts";
 
 // ==================== Module-level state ====================
 
@@ -45,20 +46,20 @@ export function createServer(
   connectionListener?: (socket: Socket) => void
 ): Server;
 export function createServer(
-  optionsOrListener?: any,
-  connectionListener?: any
+  _optionsOrListener?: any,
+  _connectionListener?: any
 ): any {
-  if (typeof optionsOrListener === "function" || optionsOrListener === undefined) {
-    return createServer_listener(optionsOrListener);
-  }
-
-  return createServer_options(optionsOrListener, connectionListener);
+  throw new Error("Unreachable overload stub");
 }
 
 function createServer_listener(
   connectionListener?: (socket: Socket) => void
 ): Server {
-  return new Server(connectionListener);
+  const server = new Server();
+  if (connectionListener !== undefined) {
+    server.on("connection", toUnaryEventListener(connectionListener)!);
+  }
+  return server;
 }
 
 function createServer_options(
@@ -87,21 +88,11 @@ export function connect(
   connectionListener?: () => void
 ): Socket;
 export function connect(
-  portOrOptionsOrPath: any,
-  hostOrListener?: any,
-  connectionListener?: any
+  _portOrOptionsOrPath: any,
+  _hostOrListener?: any,
+  _connectionListener?: any
 ): any {
-  if (typeof portOrOptionsOrPath === "string") {
-    return connect_path(portOrOptionsOrPath, hostOrListener);
-  }
-
-  if (typeof portOrOptionsOrPath === "number") {
-    return typeof hostOrListener === "function"
-      ? connect_port(portOrOptionsOrPath, undefined, hostOrListener)
-      : connect_port(portOrOptionsOrPath, hostOrListener, connectionListener);
-  }
-
-  return connect_options(portOrOptionsOrPath, hostOrListener);
+  throw new Error("Unreachable overload stub");
 }
 
 function connect_port(
@@ -149,21 +140,11 @@ export function createConnection(
   connectionListener?: () => void
 ): Socket;
 export function createConnection(
-  portOrOptionsOrPath: any,
-  hostOrListener?: any,
-  connectionListener?: any
+  _portOrOptionsOrPath: any,
+  _hostOrListener?: any,
+  _connectionListener?: any
 ): any {
-  if (typeof portOrOptionsOrPath === "string") {
-    return createConnection_path(portOrOptionsOrPath, hostOrListener);
-  }
-
-  if (typeof portOrOptionsOrPath === "number") {
-    return typeof hostOrListener === "function"
-      ? createConnection_port(portOrOptionsOrPath, undefined, hostOrListener)
-      : createConnection_port(portOrOptionsOrPath, hostOrListener, connectionListener);
-  }
-
-  return createConnection_options(portOrOptionsOrPath, hostOrListener);
+  throw new Error("Unreachable overload stub");
 }
 
 function createConnection_port(

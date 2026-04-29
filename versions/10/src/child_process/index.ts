@@ -20,12 +20,12 @@ export { ChildProcess, ExecOptions } from "./child-process.ts";
 export { SpawnSyncReturns } from "./spawn-sync-returns.ts";
 
 type ProcessRunResult = {
-  readonly pid: number;
-  readonly stdout: string;
-  readonly stderr: string;
-  readonly status: number | null;
-  readonly signal: string | null;
-  readonly error: Error | null;
+  pid: number;
+  stdout: string;
+  stderr: string;
+  status: number | null;
+  signal: string | null;
+  error: Error | null;
 };
 
 const isWindows = (): boolean =>
@@ -38,7 +38,7 @@ const normalizeSignal = (options?: ExecOptions | null): string =>
 
 const escapeShellArg = (value: string): string =>
   value.includes(" ") || value.includes("\"") || value.includes("'")
-    ? JSON.stringify(value)
+    ? `"${value.split("\\").join("\\\\").split("\"").join("\\\"")}"`
     : value;
 
 const buildArgumentsString = (args: readonly string[]): string =>
@@ -60,8 +60,8 @@ const configureStartInfo = (
   }
 
   if (options?.env !== null && options?.env !== undefined) {
-    for (const key in options.env) {
-      const value = options.env[key];
+    for (const key of options.env.keys()) {
+      const value = options.env.get(key);
       if (value !== undefined) {
         startInfo.EnvironmentVariables.Add(key, value);
       }
@@ -79,7 +79,7 @@ const createShellStartInfo = (
   if (isWindows()) {
     startInfo.Arguments = `/c ${command}`;
   } else {
-    startInfo.Arguments = `-c ${JSON.stringify(command)}`;
+    startInfo.Arguments = `-c ${escapeShellArg(command)}`;
   }
 
   configureStartInfo(startInfo, options, options?.input !== null && options?.input !== undefined);
@@ -286,15 +286,11 @@ export function exec(
   callback: (error: Error | null, stdout: string, stderr: string) => void,
 ): void;
 export function exec(
-  command: any,
-  optionsOrCallback: any,
-  callback?: any,
+  _command: any,
+  _optionsOrCallback: any,
+  _callback?: any,
 ): any {
-  if (typeof optionsOrCallback === "function") {
-    return exec_callback(command, optionsOrCallback);
-  }
-
-  return exec_options(command, optionsOrCallback, callback);
+  throw new Error("Unreachable overload stub");
 }
 
 function exec_callback(

@@ -5,7 +5,7 @@
  */
 
 import type {} from "../type-bootstrap.ts";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export {
   CipherNameAndProtocol,
@@ -84,16 +84,13 @@ export const rootCertificates: readonly string[] = [];
  * Creates a new TLS server.
  */
 export const createServer = (
-  optionsOrListener?: TlsOptions | ((socket: TLSSocket) => void),
-  secureConnectionListener?: (socket: TLSSocket) => void
+  optionsOrListener?: TlsOptions | ((socket: TLSSocket) => void) | null,
+  secureConnectionListener?: ((socket: TLSSocket) => void) | null
 ): TLSServer => {
-  if (typeof optionsOrListener === "function") {
-    return new TLSServer(optionsOrListener);
-  }
-  if (optionsOrListener !== undefined) {
-    return new TLSServer(optionsOrListener, secureConnectionListener ?? null);
-  }
-  return new TLSServer();
+  return new TLSServer(
+    optionsOrListener ?? null,
+    secureConnectionListener ?? null
+  );
 };
 
 /**
@@ -102,34 +99,9 @@ export const createServer = (
  * TODO: Implement — requires substrate TCP connect + TLS handshake.
  */
 export const connect = (
-  optionsOrPort: ConnectionOptions | number,
-  hostOrListener?: string | (() => void) | null,
-  optionsOrCallback?: ConnectionOptions | (() => void) | null,
-  secureConnectListener?: (() => void) | null
+  options: ConnectionOptions,
+  secureConnectListener?: (() => void) | null,
 ): TLSSocket => {
-  let options: ConnectionOptions;
-  // Normalise overloads
-  if (typeof optionsOrPort === "number") {
-    const opts =
-      optionsOrCallback instanceof ConnectionOptions
-        ? optionsOrCallback
-        : new ConnectionOptions();
-    opts.port = optionsOrPort;
-    if (typeof hostOrListener === "string") {
-      opts.host = hostOrListener;
-    }
-    options = opts;
-  } else {
-    options = optionsOrPort;
-  }
-
-  const listener: (() => void) | null =
-    typeof hostOrListener === "function"
-      ? hostOrListener
-      : typeof optionsOrCallback === "function"
-        ? optionsOrCallback
-        : secureConnectListener ?? null;
-
   const rejectUnauthorized = options.rejectUnauthorized ?? true;
 
   const ctxOpts = new SecureContextOptions();
@@ -156,9 +128,9 @@ export const connect = (
 
   const tlsSocket = new TLSSocket(transportSocket, socketOpts);
 
-  if (listener !== null) {
-    tlsSocket.once("secureConnect", (..._args: JsValue[]) => {
-      listener();
+  if (secureConnectListener !== null && secureConnectListener !== undefined) {
+    tlsSocket.once("secureConnect", (..._args: RuntimeValue[]) => {
+      secureConnectListener();
     });
   }
 

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AddressInfo } from "@tsonic/nodejs/net.js";
 
 export class AddressInfoTests {
-  public all_properties_can_be_set(): void {
+  all_properties_can_be_set(): void {
     const addressInfo = new AddressInfo();
     addressInfo.address = "192.168.1.1";
     addressInfo.family = "IPv4";

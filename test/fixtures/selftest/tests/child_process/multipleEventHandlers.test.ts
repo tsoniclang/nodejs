@@ -1,11 +1,11 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessMultipleEventHandlersTests {
-  public multipleEventHandlers_AllCalled(): void {
+  multipleEventHandlers_AllCalled(): void {
     const command = "echo";
     const args = ["test"];
     let handler1Called = false;
@@ -13,11 +13,11 @@ export class ChildProcessMultipleEventHandlersTests {
 
     const child = child_process.spawn(command, args);
 
-    child.on("exit", (_code: JsValue, _signal: JsValue) => {
+    child.on("exit", (_code: RuntimeValue, _signal: RuntimeValue) => {
       handler1Called = true;
     });
 
-    child.on("exit", (_code: JsValue, _signal: JsValue) => {
+    child.on("exit", (_code: RuntimeValue, _signal: RuntimeValue) => {
       handler2Called = true;
     });
 

@@ -7,12 +7,12 @@ import {
 } from "@tsonic/nodejs/tls.js";
 
 export class createSecureContextTests {
-  public createSecureContext_NoOptions_ReturnsContext(): void {
+  createSecureContext_NoOptions_ReturnsContext(): void {
     const context = createSecureContext();
     Assert.NotNull(context);
   }
 
-  public createSecureContext_WithCert_LoadsCertificate(): void {
+  createSecureContext_WithCert_LoadsCertificate(): void {
     const opts = new SecureContextOptions();
     opts.cert = "test-pem-data";
 

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { CaaRecord } from "@tsonic/nodejs/dns.js";
 
 export class CaaRecordTests {
-  public CaaRecord_AllProperties_CanBeSet(): void {
+  CaaRecord_AllProperties_CanBeSet(): void {
     const record = new CaaRecord();
     record.critical = 0;
     record.issue = "example.com";

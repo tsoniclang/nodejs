@@ -4,7 +4,7 @@
  */
 
 export class URLPattern {
-  private readonly regex: RegExp;
+  regex: RegExp;
 
   constructor(pattern: string) {
     let escaped = "";

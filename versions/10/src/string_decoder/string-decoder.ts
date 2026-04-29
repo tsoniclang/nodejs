@@ -16,8 +16,8 @@ const fromCharCode = (code: number): string =>
   Convert.ToChar(code).toString();
 
 export class StringDecoder {
-  private readonly encoding: string;
-  private pendingBytes: Uint8Array = new Uint8Array(0);
+  encoding: string;
+  pendingBytes: Uint8Array = new Uint8Array(0);
 
   constructor(encoding?: string | null) {
     const normalized = (encoding ?? "utf8").toLowerCase();
@@ -92,7 +92,7 @@ export class StringDecoder {
     return result;
   }
 
-  private combineWithPending(buffer: Uint8Array): Uint8Array {
+  combineWithPending(buffer: Uint8Array): Uint8Array {
     if (this.pendingBytes.length === 0) {
       return buffer;
     }
@@ -103,7 +103,7 @@ export class StringDecoder {
     return combined;
   }
 
-  private decodeSingleByte(buffer: Uint8Array): string {
+  decodeSingleByte(buffer: Uint8Array): string {
     let result = "";
     for (let i = 0; i < buffer.length; i += 1) {
       result += fromCharCode(buffer[i]!);
@@ -111,7 +111,7 @@ export class StringDecoder {
     return result;
   }
 
-  private writeUtf8(buffer: Uint8Array): string {
+  writeUtf8(buffer: Uint8Array): string {
     // Find the last complete character boundary
     const boundary = this.findUtf8Boundary(buffer);
     if (boundary === buffer.length) {
@@ -127,7 +127,7 @@ export class StringDecoder {
     return this.decodeAll(this.copyRange(buffer, 0, boundary));
   }
 
-  private writeUtf16le(buffer: Uint8Array): string {
+  writeUtf16le(buffer: Uint8Array): string {
     // UTF-16LE: each code unit is 2 bytes
     // If odd number of bytes, last byte is incomplete
     const completeBytes = buffer.length - (buffer.length % 2);
@@ -165,7 +165,7 @@ export class StringDecoder {
     return this.decodeAll(this.copyRange(buffer, 0, completeBytes));
   }
 
-  private findUtf8Boundary(buffer: Uint8Array): number {
+  findUtf8Boundary(buffer: Uint8Array): number {
     let i = buffer.length;
     // Walk backwards to find the start of the last (possibly incomplete) character
     while (i > 0) {
@@ -201,7 +201,7 @@ export class StringDecoder {
     return 0;
   }
 
-  private decodeAll(buffer: Uint8Array): string {
+  decodeAll(buffer: Uint8Array): string {
     if (buffer.length === 0) {
       return "";
     }
@@ -213,7 +213,7 @@ export class StringDecoder {
     return bytesToString(buffer, this.encoding, 0, buffer.length);
   }
 
-  private copyRange(buffer: Uint8Array, start: number, end: number): Uint8Array {
+  copyRange(buffer: Uint8Array, start: number, end: number): Uint8Array {
     const result = new Uint8Array(end - start);
     let targetIndex = 0;
     for (let index = 0; index < buffer.length; index += 1) {

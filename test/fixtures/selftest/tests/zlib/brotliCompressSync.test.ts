@@ -11,7 +11,7 @@ import { assertThrows, utf8Bytes } from "./helpers.ts";
  * These tests will pass once the native implementation is provided.
  */
 export class Zlib_brotliCompressSyncTests {
-  public brotliCompressSync_ShouldCompressData(): void {
+  brotliCompressSync_ShouldCompressData(): void {
     const data = utf8Bytes("Hello, World!");
     const compressed = brotliCompressSync(data);
 
@@ -19,7 +19,7 @@ export class Zlib_brotliCompressSyncTests {
     Assert.True(compressed.length > 0);
   }
 
-  public brotliCompressSync_WithQuality_ShouldWork(): void {
+  brotliCompressSync_WithQuality_ShouldWork(): void {
     const data = utf8Bytes("Test data for compression");
 
     const compressed1 = brotliCompressSync(data, { quality: 1 });
@@ -29,18 +29,18 @@ export class Zlib_brotliCompressSyncTests {
     Assert.NotNull(compressed11);
   }
 
-  public brotliCompressSync_WithNullBuffer_ShouldThrow(): void {
+  brotliCompressSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => brotliCompressSync(asinterface<Uint8Array>(null)));
   }
 
-  public brotliCompressSync_EmptyBuffer_ShouldCompress(): void {
+  brotliCompressSync_EmptyBuffer_ShouldCompress(): void {
     const data = new Uint8Array(0);
     const compressed = brotliCompressSync(data);
 
     Assert.NotNull(compressed);
   }
 
-  public brotliCompressSync_LargeData_ShouldCompress(): void {
+  brotliCompressSync_LargeData_ShouldCompress(): void {
     const data = new Uint8Array(50000);
     for (let i = 0; i < data.length; i += 1) {
       data[i] = i % 256;

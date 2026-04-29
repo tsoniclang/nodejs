@@ -8,19 +8,19 @@ import {
 } from "@tsonic/nodejs/tls.js";
 
 export class createServerTests {
-  public createServer_NoArgs_ReturnsServer(): void {
+  createServer_NoArgs_ReturnsServer(): void {
     const server = createServer();
     Assert.NotNull(server);
   }
 
-  public createServer_WithListener_AttachesListener(): void {
+  createServer_WithListener_AttachesListener(): void {
     const server = createServer((_socket) => {
       // listener
     });
     Assert.NotNull(server);
   }
 
-  public createServer_WithOptions_ReturnsServer(): void {
+  createServer_WithOptions_ReturnsServer(): void {
     const options = new TlsOptions();
     options.cert = "test-cert";
     const server = createServer(options);

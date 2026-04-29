@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { getFips } from "@tsonic/nodejs/crypto.js";
 
 export class GetFipsTests {
-  public getFips_returns_false(): void {
+  getFips_returns_false(): void {
     Assert.False(getFips());
   }
 }

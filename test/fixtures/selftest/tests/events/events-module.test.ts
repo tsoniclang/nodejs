@@ -8,7 +8,7 @@ import {
 } from "@tsonic/nodejs/events.js";
 
 export class EventsModuleTests {
-  public async events_once_resolves_on_the_next_event(): Promise<void> {
+  async events_once_resolves_on_the_next_event(): Promise<void> {
     const emitter = new EventEmitter();
     const task = events.once(emitter, "ready");
 
@@ -19,7 +19,7 @@ export class EventsModuleTests {
     Assert.Equal(123 as number, args[0] as number);
   }
 
-  public listener_helpers_reflect_emitter_state(): void {
+  listener_helpers_reflect_emitter_state(): void {
     const emitter = new EventEmitter();
     const listener: EventListener = () => undefined;
 

@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class openSyncTests {
-  public openSync_WithReadFlag_ShouldOpenExistingFile(): void {
+  openSync_WithReadFlag_ShouldOpenExistingFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -19,7 +19,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithReadFlag_NonExistentFile_ShouldThrow(): void {
+  openSync_WithReadFlag_NonExistentFile_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent.txt");
@@ -29,7 +29,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithWriteFlag_ShouldCreateFile(): void {
+  openSync_WithWriteFlag_ShouldCreateFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -42,7 +42,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithWriteFlag_ShouldTruncateExistingFile(): void {
+  openSync_WithWriteFlag_ShouldTruncateExistingFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -55,7 +55,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithAppendFlag_ShouldCreateFile(): void {
+  openSync_WithAppendFlag_ShouldCreateFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -68,7 +68,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithReadPlusFlag_ShouldOpenForReadWrite(): void {
+  openSync_WithReadPlusFlag_ShouldOpenForReadWrite(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -81,7 +81,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithWritePlusFlag_ShouldCreateForReadWrite(): void {
+  openSync_WithWritePlusFlag_ShouldCreateForReadWrite(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -94,7 +94,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithAppendPlusFlag_ShouldOpenForReadWriteAppend(): void {
+  openSync_WithAppendPlusFlag_ShouldOpenForReadWriteAppend(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -107,7 +107,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithExclusiveWriteFlag_ShouldCreateNewFile(): void {
+  openSync_WithExclusiveWriteFlag_ShouldCreateNewFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -120,7 +120,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithExclusiveWriteFlag_ExistingFile_ShouldThrow(): void {
+  openSync_WithExclusiveWriteFlag_ExistingFile_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -131,11 +131,11 @@ export class openSyncTests {
     }
   }
 
-  public openSync_WithEmptyPath_ShouldThrow(): void {
+  openSync_WithEmptyPath_ShouldThrow(): void {
     assertThrows(() => fs.openSync("", "r"));
   }
 
-  public openSync_WithInvalidFlags_ShouldThrow(): void {
+  openSync_WithInvalidFlags_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -145,7 +145,7 @@ export class openSyncTests {
     }
   }
 
-  public openSync_MultipleFiles_ShouldReturnDifferentDescriptors(): void {
+  openSync_MultipleFiles_ShouldReturnDifferentDescriptors(): void {
     const dir = createTempDir();
     try {
       const filePath1 = getTestPath(dir, "test.txt");

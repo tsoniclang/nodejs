@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SrvRecord } from "@tsonic/nodejs/dns.js";
 
 export class SrvRecordTests {
-  public SrvRecord_AllProperties_CanBeSet(): void {
+  SrvRecord_AllProperties_CanBeSet(): void {
     const record = new SrvRecord();
     record.priority = 10;
     record.weight = 5;

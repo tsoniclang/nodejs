@@ -5,99 +5,120 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { console } from "@tsonic/nodejs/console.js";
 
+class ComplexConsoleNested {
+  value: number = 42;
+  array: number[] = [1, 2, 3];
+}
+
+class ComplexConsoleObject {
+  name: string = "test";
+  nested: ComplexConsoleNested = new ComplexConsoleNested();
+  nullValue: string | undefined = undefined;
+}
+
+class SimpleConsoleObject {
+  name: string;
+  value: number;
+
+  constructor(name: string, value: number) {
+    this.name = name;
+    this.value = value;
+  }
+}
+
 export class ConsoleTests {
-  public log_should_not_throw(): void {
+  log_should_not_throw(): void {
     console.log("test message");
     console.log("test with %s", "format");
     console.log(undefined);
   }
 
-  public error_should_not_throw(): void {
+  error_should_not_throw(): void {
     console.error("error message");
     console.error("error with %s", "format");
     console.error(undefined);
   }
 
-  public warn_should_not_throw(): void {
+  warn_should_not_throw(): void {
     console.warn("warning message");
     console.warn("warning with %s", "format");
   }
 
-  public info_should_not_throw(): void {
+  info_should_not_throw(): void {
     console.info("info message");
     console.info("info with %s", "format");
   }
 
-  public debug_should_not_throw(): void {
+  debug_should_not_throw(): void {
     console.debug("debug message");
     console.debug("debug with %s", "format");
   }
 
-  public assert_should_not_throw_when_true(): void {
+  assert_should_not_throw_when_true(): void {
     console.assert(true, "This should not print");
     console.assert(1 === 1, "This should not print either");
   }
 
-  public assert_should_output_when_false(): void {
+  assert_should_output_when_false(): void {
     const brokenMath = false;
     console.assert(false, "This assertion failed");
     console.assert(brokenMath, "Math is broken");
   }
 
-  public clear_should_not_throw(): void {
+  clear_should_not_throw(): void {
     console.clear();
   }
 
-  public count_should_track_counts(): void {
+  count_should_track_counts(): void {
     console.countReset("testCounter");
     console.count("testCounter");
     console.count("testCounter");
     console.count("testCounter");
   }
 
-  public count_should_use_default_label(): void {
+  count_should_use_default_label(): void {
     console.countReset();
     console.count();
     console.count();
   }
 
-  public countReset_should_reset_counter(): void {
+  countReset_should_reset_counter(): void {
     console.count("resetTest");
     console.count("resetTest");
     console.countReset("resetTest");
     console.count("resetTest");
   }
 
-  public dir_should_not_throw(): void {
-    console.dir({ name: "test", value: 42 });
+  dir_should_not_throw(): void {
+    console.dir(new SimpleConsoleObject("test", 42));
     console.dir("simple string");
     console.dir(undefined);
   }
 
-  public dirxml_should_not_throw(): void {
-    console.dirxml({ name: "test" });
-    console.dirxml("test", 123, {});
+  dirxml_should_not_throw(): void {
+    console.dirxml(new SimpleConsoleObject("test", 0));
+    console.dirxml("test", 123, new SimpleConsoleObject("empty", 0));
   }
 
-  public group_should_not_throw(): void {
+  group_should_not_throw(): void {
     console.group("Test Group");
     console.log("Inside group");
     console.groupEnd();
   }
 
-  public group_without_label(): void {
+  group_without_label(): void {
     console.group();
     console.log("Inside anonymous group");
     console.groupEnd();
   }
 
-  public groupCollapsed_should_not_throw(): void {
+  groupCollapsed_should_not_throw(): void {
     console.groupCollapsed("Collapsed Group");
     console.log("Inside collapsed group");
     console.groupEnd();
   }
 
-  public nestedGroups_should_work(): void {
+  nestedGroups_should_work(): void {
     console.group("Outer");
     console.log("Outer message");
     console.group("Inner");
@@ -107,34 +128,34 @@ export class ConsoleTests {
     console.groupEnd();
   }
 
-  public groupEnd_without_group_should_not_throw(): void {
+  groupEnd_without_group_should_not_throw(): void {
     console.groupEnd();
     console.groupEnd();
     console.groupEnd();
   }
 
-  public table_should_not_throw(): void {
+  table_should_not_throw(): void {
     console.table([
-      { name: "Alice", age: 30 },
-      { name: "Bob", age: 25 },
+      new SimpleConsoleObject("Alice", 30),
+      new SimpleConsoleObject("Bob", 25),
     ]);
     console.table(undefined);
     console.table("simple string");
   }
 
-  public time_should_measure_elapsed_time(): void {
+  time_should_measure_elapsed_time(): void {
     console.time("testTimer");
     Thread.Sleep(10 as int);
     console.timeEnd("testTimer");
   }
 
-  public time_with_default_label(): void {
+  time_with_default_label(): void {
     console.time();
     Thread.Sleep(5 as int);
     console.timeEnd();
   }
 
-  public timeLog_should_log_intermediate_time(): void {
+  timeLog_should_log_intermediate_time(): void {
     console.time("logTimer");
     Thread.Sleep(5 as int);
     console.timeLog("logTimer", "checkpoint 1");
@@ -143,71 +164,71 @@ export class ConsoleTests {
     console.timeEnd("logTimer");
   }
 
-  public timeLog_with_data(): void {
+  timeLog_with_data(): void {
     console.time("dataTimer");
     console.timeLog("dataTimer", "value", 42, "more data");
     console.timeEnd("dataTimer");
   }
 
-  public timeEnd_without_matching_time_should_not_throw(): void {
+  timeEnd_without_matching_time_should_not_throw(): void {
     console.timeEnd("nonExistentTimer");
   }
 
-  public trace_should_not_throw(): void {
+  trace_should_not_throw(): void {
     console.trace("Trace message");
     console.trace("Trace with %s", "formatting");
     console.trace();
   }
 
-  public profile_should_not_throw(): void {
+  profile_should_not_throw(): void {
     console.profile("testProfile");
     console.profileEnd("testProfile");
   }
 
-  public profileEnd_without_profile_should_not_throw(): void {
+  profileEnd_without_profile_should_not_throw(): void {
     console.profileEnd("nonExistent");
   }
 
-  public timeStamp_should_not_throw(): void {
+  timeStamp_should_not_throw(): void {
     console.timeStamp("testStamp");
     console.timeStamp();
   }
 
-  public formatting_string_substitution(): void {
+  formatting_string_substitution(): void {
     console.log("Hello %s", "World");
     console.log("Multiple %s %s", "substitutions", "here");
   }
 
-  public formatting_number_substitution(): void {
+  formatting_number_substitution(): void {
     console.log("Number: %d", 42);
     console.log("Integer: %i", 123);
     console.log("Float: %f", 3.14);
   }
 
-  public formatting_object_substitution(): void {
-    console.log("Object: %o", { name: "test", value: 42 });
-    console.log("Object: %O", { name: "test" });
+  formatting_object_substitution(): void {
+    console.log("Object: %o", new SimpleConsoleObject("test", 42));
+    console.log("Object: %O", new SimpleConsoleObject("test", 0));
   }
 
-  public formatting_escaped_percent(): void {
+  formatting_escaped_percent(): void {
     console.log("Percentage: 50%%");
   }
 
-  public formatting_extra_parameters(): void {
+  formatting_extra_parameters(): void {
     console.log("One %s", "param", "extra", "params");
   }
 
-  public formatting_no_parameters(): void {
+  formatting_no_parameters(): void {
     console.log("No substitution needed");
   }
 
-  public multipleConsecutiveCalls_should_work(): void {
+  multipleConsecutiveCalls_should_work(): void {
     for (let index = 0 as int; index < (10 as int); index += 1 as int) {
       console.log("Message %d", index);
     }
   }
 
-  public mixedLoggingMethods_should_work(): void {
+  mixedLoggingMethods_should_work(): void {
     console.log("Log message");
     console.error("Error message");
     console.warn("Warning message");
@@ -215,21 +236,14 @@ export class ConsoleTests {
     console.debug("Debug message");
   }
 
-  public complexObjects_should_not_throw(): void {
-    const complexObj = {
-      name: "test",
-      nested: {
-        value: 42,
-        array: [1, 2, 3],
-      },
-      nullValue: undefined as string | undefined,
-    };
+  complexObjects_should_not_throw(): void {
+    const complexObj = new ComplexConsoleObject();
 
     console.log("Complex object: %o", complexObj);
     console.dir(complexObj);
   }
 
-  public counterScenario_should_track_multiple_counters(): void {
+  counterScenario_should_track_multiple_counters(): void {
     console.countReset("api");
     console.countReset("db");
     console.countReset("cache");
@@ -240,7 +254,7 @@ export class ConsoleTests {
     console.count("api");
   }
 
-  public timerScenario_should_handle_multiple_timers(): void {
+  timerScenario_should_handle_multiple_timers(): void {
     console.time("timer1");
     console.time("timer2");
     Thread.Sleep(10 as int);

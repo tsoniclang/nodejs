@@ -5,6 +5,7 @@
  */
 
 import type { byte, int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 
 export type BufferEncoding =
   | "utf8"
@@ -63,12 +64,7 @@ const toUint8Array = (values: readonly number[]): Uint8Array => {
   return bytes;
 };
 
-const fromCharCode = (code: int): string =>
-  JSON.parse(
-    `"\\u${HEX_DIGITS.charAt((code >> 12) & 0x0f)}${HEX_DIGITS.charAt(
-      (code >> 8) & 0x0f
-    )}${HEX_DIGITS.charAt((code >> 4) & 0x0f)}${HEX_DIGITS.charAt(code & 0x0f)}"`
-  ) as string;
+const fromCharCode = (code: int): string => Convert.ToChar(code).toString();
 
 const utf8StringToBytes = (value: string): Uint8Array => {
   const encoded = encodeURIComponent(value);

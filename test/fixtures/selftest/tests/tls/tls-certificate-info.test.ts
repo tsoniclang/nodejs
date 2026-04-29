@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { TLSCertificateInfo } from "@tsonic/nodejs/tls.js";
 
 export class TLSCertificateInfoTests {
-  public TLSCertificateInfo_AllProperties_CanBeSet(): void {
+  TLSCertificateInfo_AllProperties_CanBeSet(): void {
     const cert = new TLSCertificateInfo();
     cert.C = "US";
     cert.ST = "CA";

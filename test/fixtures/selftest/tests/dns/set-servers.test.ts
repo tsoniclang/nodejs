@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class SetServersTests {
-  public setServers_ValidServers_DoesNotThrow(): void {
+  setServers_ValidServers_DoesNotThrow(): void {
     dns.setServers(["8.8.8.8", "8.8.4.4"]);
     const servers = dns.getServers();
     Assert.Equal(2 as number, servers.length as number);

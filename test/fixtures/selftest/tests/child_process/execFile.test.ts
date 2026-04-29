@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessExecFileTests {
-  public execFile_CallsCallback(): void {
+  execFile_CallsCallback(): void {
     const file = "/bin/echo";
     const args = ["Hello"];
     let callbackCalled = false;

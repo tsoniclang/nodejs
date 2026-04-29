@@ -5,7 +5,7 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessExecTests {
-  public exec_CallsCallback(): void {
+  exec_CallsCallback(): void {
     const command = "echo 'Hello'";
     let callbackCalled = false;
     let capturedStdout = "";
@@ -20,7 +20,7 @@ export class ChildProcessExecTests {
     Assert.True(callbackCalled || !callbackCalled); // placeholder assertion
   }
 
-  public exec_WithOptions_CallsCallback(): void {
+  exec_WithOptions_CallsCallback(): void {
     const command = "echo 'Test'";
     const options = new ExecOptions();
     options.encoding = "utf8";
@@ -34,7 +34,7 @@ export class ChildProcessExecTests {
     Assert.True(callbackCalled || !callbackCalled); // placeholder assertion
   }
 
-  public exec_FailingCommand_PassesErrorToCallback(): void {
+  exec_FailingCommand_PassesErrorToCallback(): void {
     const command = "exit 1";
     let capturedError: Error | null = null;
 

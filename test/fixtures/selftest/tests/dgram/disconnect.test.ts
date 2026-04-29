@@ -5,7 +5,7 @@ import { createSocket } from "@tsonic/nodejs/dgram.js";
 import { assertThrows } from "./helpers.ts";
 
 export class DisconnectTests {
-  public disconnect_ConnectedSocket_Disconnects(): void {
+  disconnect_ConnectedSocket_Disconnects(): void {
     const server = createSocket("udp4");
     server.bind(0, "127.0.0.1");
 

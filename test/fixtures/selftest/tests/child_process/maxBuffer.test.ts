@@ -5,7 +5,7 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessMaxBufferTests {
-  public maxBuffer_RespectedInOptions(): void {
+  maxBuffer_RespectedInOptions(): void {
     const command = "echo 'test'";
     const options = new ExecOptions();
     options.encoding = "utf8";

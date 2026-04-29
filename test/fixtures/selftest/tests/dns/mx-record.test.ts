@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { MxRecord } from "@tsonic/nodejs/dns.js";
 
 export class MxRecordTests {
-  public MxRecord_AllProperties_CanBeSet(): void {
+  MxRecord_AllProperties_CanBeSet(): void {
     const record = new MxRecord();
     record.priority = 10;
     record.exchange = "mail.example.com";

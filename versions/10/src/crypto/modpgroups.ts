@@ -4,8 +4,8 @@
  */
 
 type MODPGroupEntry = {
-  readonly prime: string;
-  readonly generator: number;
+  prime: string;
+  generator: number;
 };
 
 const GROUPS: Record<string, MODPGroupEntry> = {

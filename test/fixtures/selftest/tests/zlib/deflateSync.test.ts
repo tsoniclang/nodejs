@@ -11,7 +11,7 @@ import { assertThrows, utf8Bytes } from "./helpers.ts";
  * These tests will pass once the native implementation is provided.
  */
 export class Zlib_deflateSyncTests {
-  public deflateSync_ShouldCompressData(): void {
+  deflateSync_ShouldCompressData(): void {
     const data = utf8Bytes("Hello, World!");
     const compressed = deflateSync(data);
 
@@ -19,7 +19,7 @@ export class Zlib_deflateSyncTests {
     Assert.True(compressed.length > 0);
   }
 
-  public deflateSync_WithCompressionLevel_ShouldWork(): void {
+  deflateSync_WithCompressionLevel_ShouldWork(): void {
     const data = utf8Bytes("Test data for compression");
 
     const compressed1 = deflateSync(data, { level: 1 });
@@ -29,11 +29,11 @@ export class Zlib_deflateSyncTests {
     Assert.NotNull(compressed9);
   }
 
-  public deflateSync_WithNullBuffer_ShouldThrow(): void {
+  deflateSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => deflateSync(asinterface<Uint8Array>(null)));
   }
 
-  public deflateSync_EmptyBuffer_ShouldCompress(): void {
+  deflateSync_EmptyBuffer_ShouldCompress(): void {
     const data = new Uint8Array(0);
     const compressed = deflateSync(data);
 

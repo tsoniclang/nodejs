@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class truncateTests {
-  public async truncate_ShouldTruncateFileToLength(): Promise<void> {
+  async truncate_ShouldTruncateFileToLength(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "truncate-test-async.txt");
@@ -18,7 +18,7 @@ export class truncateTests {
     }
   }
 
-  public async truncate_ZeroLength_ShouldEmptyFile(): Promise<void> {
+  async truncate_ZeroLength_ShouldEmptyFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "truncate-zero-async.txt");
@@ -30,7 +30,7 @@ export class truncateTests {
     }
   }
 
-  public async truncate_LongerLength_ShouldPadWithZeros(): Promise<void> {
+  async truncate_LongerLength_ShouldPadWithZeros(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "truncate-extend-async.txt");
@@ -42,7 +42,7 @@ export class truncateTests {
     }
   }
 
-  public async truncate_NonExistentFile_ShouldThrow(): Promise<void> {
+  async truncate_NonExistentFile_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-truncate-async.txt");

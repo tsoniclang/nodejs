@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class closeTests {
-  public async close_ShouldCloseValidDescriptor(): Promise<void> {
+  async close_ShouldCloseValidDescriptor(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -20,11 +20,11 @@ export class closeTests {
     }
   }
 
-  public async close_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
+  async close_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
     await assertThrowsAsync(() => fs.close(999));
   }
 
-  public async close_AfterWrite_ShouldFlushAndClose(): Promise<void> {
+  async close_AfterWrite_ShouldFlushAndClose(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

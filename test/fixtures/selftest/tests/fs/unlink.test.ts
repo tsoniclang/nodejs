@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class unlinkTests {
-  public async unlink_ShouldDeleteFile(): Promise<void> {
+  async unlink_ShouldDeleteFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "delete-test-async.txt");
@@ -18,7 +18,7 @@ export class unlinkTests {
     }
   }
 
-  public async unlink_NonExistentFile_ShouldNotThrow(): Promise<void> {
+  async unlink_NonExistentFile_ShouldNotThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-async-unlink.txt");

@@ -1,12 +1,12 @@
 import { overloads as O } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 
-export function assertThrows(action: () => void): JsValue;
+export function assertThrows(action: () => void): RuntimeValue;
 export function assertThrows(_action: any): any {
   throw new Error("stub");
 }
 
-function assertThrows_void(action: () => void): JsValue {
+function assertThrows_void(action: () => void): RuntimeValue {
   try {
     action();
   } catch (error) {

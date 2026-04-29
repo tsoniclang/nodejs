@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readTests {
-  public async read_ShouldReadEntireFile(): Promise<void> {
+  async read_ShouldReadEntireFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class readTests {
     }
   }
 
-  public async read_WithPosition_ShouldReadFromSpecificPosition(): Promise<void> {
+  async read_WithPosition_ShouldReadFromSpecificPosition(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -37,12 +37,12 @@ export class readTests {
     }
   }
 
-  public async read_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
+  async read_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
     const buffer = Buffer.alloc(10);
     await assertThrowsAsync(() => fs.read(999, buffer, 0, 10, null));
   }
 
-  public async read_EmptyFile_ShouldReturnZero(): Promise<void> {
+  async read_EmptyFile_ShouldReturnZero(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

@@ -4,17 +4,17 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class DnsPromisesTests {
-  public promises_lookup_ReturnsPromise(): void {
+  promises_lookup_ReturnsPromise(): void {
     const result = dns.promises.lookup("localhost");
     Assert.NotNull(result);
   }
 
-  public promises_resolve_ReturnsPromise(): void {
+  promises_resolve_ReturnsPromise(): void {
     const result = dns.promises.resolve("localhost");
     Assert.NotNull(result);
   }
 
-  public async promises_resolveSoa_ReturnsRecord(): Promise<void> {
+  async promises_resolveSoa_ReturnsRecord(): Promise<void> {
     const result = await dns.promises.resolveSoa("localhost");
     Assert.Equal("localhost", result.nsname);
   }

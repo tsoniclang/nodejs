@@ -8,11 +8,11 @@ import {
 } from "@tsonic/dotnet/System.Runtime.InteropServices.js";
 
 export type ParsedPath = {
-  readonly root: string;
-  readonly dir: string;
-  readonly base: string;
-  readonly ext: string;
-  readonly name: string;
+  root: string;
+  dir: string;
+  base: string;
+  ext: string;
+  name: string;
 };
 
 const isWindows = (): boolean =>
@@ -196,59 +196,59 @@ export const toNamespacedPath = (value: string): string => {
 };
 
 export class PathModuleNamespace {
-  public get sep(): string {
+  get sep(): string {
     return sep;
   }
 
-  public get delimiter(): string {
+  get delimiter(): string {
     return delimiter;
   }
 
-  public basename(value: string, suffix?: string): string {
+  basename(value: string, suffix?: string): string {
     return basename(value, suffix);
   }
 
-  public dirname(value: string): string {
+  dirname(value: string): string {
     return dirname(value);
   }
 
-  public extname(value: string): string {
+  extname(value: string): string {
     return extname(value);
   }
 
-  public join(...values: string[]): string {
+  join(...values: string[]): string {
     return join(...values);
   }
 
-  public normalize(value: string): string {
+  normalize(value: string): string {
     return normalize(value);
   }
 
-  public resolve(...values: string[]): string {
+  resolve(...values: string[]): string {
     return resolve(...values);
   }
 
-  public isAbsolute(value: string): boolean {
+  isAbsolute(value: string): boolean {
     return isAbsolute(value);
   }
 
-  public relative(from: string, to: string): string {
+  relative(from: string, to: string): string {
     return relative(from, to);
   }
 
-  public parse(value: string): ParsedPath {
+  parse(value: string): ParsedPath {
     return parse(value);
   }
 
-  public format(value: ParsedPath): string {
+  format(value: ParsedPath): string {
     return format(value);
   }
 
-  public matchesGlob(value: string, pattern: string): boolean {
+  matchesGlob(value: string, pattern: string): boolean {
     return matchesGlob(value, pattern);
   }
 
-  public toNamespacedPath(value: string): string {
+  toNamespacedPath(value: string): string {
     return toNamespacedPath(value);
   }
 }

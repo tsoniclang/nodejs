@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { LookupOptions, ADDRCONFIG } from "@tsonic/nodejs/dns.js";
 
 export class LookupOptionsTests {
-  public LookupOptions_AllProperties_CanBeSet(): void {
+  LookupOptions_AllProperties_CanBeSet(): void {
     const options = new LookupOptions();
     options.family = 4;
     options.hints = ADDRCONFIG;

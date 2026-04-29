@@ -1,13 +1,13 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { generateKeyPair, PublicKeyObject, PrivateKeyObject } from "@tsonic/nodejs/crypto.js";
 
 export class GenerateKeyPairTests {
-  public generateKeyPair_callback_works(): void {
-    let pubKey: JsValue = null;
-    let privKey: JsValue = null;
+  generateKeyPair_callback_works(): void {
+    let pubKey: RuntimeValue = null;
+    let privKey: RuntimeValue = null;
     let error: Error | null = null;
     generateKeyPair("rsa", null, (err, pub, priv) => {
       error = err;

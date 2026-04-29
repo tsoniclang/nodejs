@@ -3,33 +3,33 @@
  *
  */
 import { KeyObject } from "./key-object.ts";
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
+import type { KeyExportOptions, KeyExportValue } from "./key-object.ts";
 
 /**
  * Represents a DSA public key.
  */
 export class DSAPublicKeyObject extends KeyObject {
-  private readonly _publicKeyData: JsValue;
+  _publicKeyData: KeyExportValue;
 
-  public constructor(publicKeyData: JsValue) {
+  constructor(publicKeyData: KeyExportValue) {
     super();
     this._publicKeyData = publicKeyData;
   }
 
-  public get type(): string {
+  get type(): string {
     return "public";
   }
 
-  public get asymmetricKeyType(): string | null {
+  get asymmetricKeyType(): string | null {
     return "dsa";
   }
 
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     return null;
   }
 
-  protected exportCore(_options?: JsValue): JsValue {
-    // TODO: actual DSA public key export in PEM/DER format
+  exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._publicKeyData;
   }
 }
@@ -38,27 +38,26 @@ export class DSAPublicKeyObject extends KeyObject {
  * Represents a DSA private key.
  */
 export class DSAPrivateKeyObject extends KeyObject {
-  private readonly _privateKeyData: JsValue;
+  _privateKeyData: KeyExportValue;
 
-  public constructor(privateKeyData: JsValue) {
+  constructor(privateKeyData: KeyExportValue) {
     super();
     this._privateKeyData = privateKeyData;
   }
 
-  public get type(): string {
+  get type(): string {
     return "private";
   }
 
-  public get asymmetricKeyType(): string | null {
+  get asymmetricKeyType(): string | null {
     return "dsa";
   }
 
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     return null;
   }
 
-  protected exportCore(_options?: JsValue): JsValue {
-    // TODO: actual DSA private key export in PEM/DER format
+  exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._privateKeyData;
   }
 }

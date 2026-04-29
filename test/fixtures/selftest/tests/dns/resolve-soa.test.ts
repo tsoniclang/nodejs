@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ResolveSoaTests {
-  public resolveSoa_ValidDomain_CallsCallbackWithRecord(): void {
+  resolveSoa_ValidDomain_CallsCallbackWithRecord(): void {
     let called = false;
     let error: Error | null = null;
     let nsname = "";

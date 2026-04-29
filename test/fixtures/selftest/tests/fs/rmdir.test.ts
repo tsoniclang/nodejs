@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class rmdirTests {
-  public async rmdir_ShouldRemoveEmptyDirectory(): Promise<void> {
+  async rmdir_ShouldRemoveEmptyDirectory(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "remove-dir-async");
@@ -18,7 +18,7 @@ export class rmdirTests {
     }
   }
 
-  public async rmdir_Recursive_ShouldRemoveDirectoryWithContents(): Promise<void> {
+  async rmdir_Recursive_ShouldRemoveDirectoryWithContents(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "remove-tree-async");

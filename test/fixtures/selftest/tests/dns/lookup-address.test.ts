@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { LookupAddress } from "@tsonic/nodejs/dns.js";
 
 export class LookupAddressTests {
-  public LookupAddress_AllProperties_CanBeSet(): void {
+  LookupAddress_AllProperties_CanBeSet(): void {
     const address = new LookupAddress();
     address.address = "127.0.0.1";
     address.family = 4;

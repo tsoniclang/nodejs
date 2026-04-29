@@ -18,17 +18,17 @@ import {
  * Instances of the Cipher class are used to encrypt data.
  */
 export class Cipher {
-  private readonly _algorithm: string;
-  private readonly _key: Uint8Array;
-  private readonly _iv: Uint8Array | null;
-  private readonly _isGcmMode: boolean;
-  private readonly _chunks: Uint8Array[] = [];
-  private _gcmTag: Uint8Array | null = null;
-  private _gcmAad: Uint8Array | null = null;
-  private _gcmTagLength: int = 16;
-  private _finalized: boolean = false;
+  _algorithm: string;
+  _key: Uint8Array;
+  _iv: Uint8Array | null;
+  _isGcmMode: boolean;
+  _chunks: Uint8Array[] = [];
+  _gcmTag: Uint8Array | null = null;
+  _gcmAad: Uint8Array | null = null;
+  _gcmTagLength: int = 16;
+  _finalized: boolean = false;
 
-  public constructor(algorithm: string, key: Uint8Array, iv: Uint8Array | null) {
+  constructor(algorithm: string, key: Uint8Array, iv: Uint8Array | null) {
     this._algorithm = algorithm;
     this._key = key;
     this._iv = iv;
@@ -38,17 +38,13 @@ export class Cipher {
   /**
    * Updates the cipher with data.
    */
-  public update(data: string, inputEncoding?: string, outputEncoding?: string): string;
-  public update(data: Uint8Array, outputEncoding?: string): string;
-  public update(data: any, inputOrOutputEncoding?: any, outputEncoding?: any): any {
-    if (typeof data === "string") {
-      return this.update_string(data, inputOrOutputEncoding, outputEncoding);
-    }
-
-    return this.update_bytes(data, inputOrOutputEncoding);
+  update(data: string, inputEncoding?: string, outputEncoding?: string): string;
+  update(data: Uint8Array, outputEncoding?: string): string;
+  update(_data: any, _inputOrOutputEncoding?: any, _outputEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public update_string(
+  update_string(
     data: string,
     inputEncoding?: string,
     _outputEncoding?: string,
@@ -57,7 +53,7 @@ export class Cipher {
     return "";
   }
 
-  public update_bytes(data: Uint8Array, _outputEncoding?: string): string {
+  update_bytes(data: Uint8Array, _outputEncoding?: string): string {
     this.pushChunk(data);
     return "";
   }
@@ -65,28 +61,24 @@ export class Cipher {
   /**
    * Returns any remaining enciphered contents.
    */
-  public final(outputEncoding: string): string;
-  public final(): Uint8Array;
-  public final(outputEncoding?: any): any {
-    if (typeof outputEncoding === "string") {
-      return this.final_string(outputEncoding);
-    }
-
-    return this.final_bytes();
+  final(outputEncoding: string): string;
+  final(): Uint8Array;
+  final(_outputEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public final_string(outputEncoding: string): string {
+  final_string(outputEncoding: string): string {
     return encodeOutputBytes(this.finalizeBytes(), outputEncoding) as string;
   }
 
-  public final_bytes(): Uint8Array {
+  final_bytes(): Uint8Array {
     return this.finalizeBytes();
   }
 
   /**
    * When using an authenticated encryption mode, sets the length of the authentication tag.
    */
-  public setAuthTag(tagLength: number): void {
+  setAuthTag(tagLength: number): void {
     if (!this._isGcmMode) {
       throw new Error("setAuthTag is only supported for GCM modes");
     }
@@ -145,7 +137,7 @@ export class Cipher {
   /**
    * When using an authenticated encryption mode, returns the authentication tag.
    */
-  public getAuthTag(): Uint8Array {
+  getAuthTag(): Uint8Array {
     if (!this._isGcmMode) {
       throw new Error("getAuthTag is only supported for GCM modes");
     }
@@ -164,7 +156,7 @@ export class Cipher {
   /**
    * When using an authenticated encryption mode, sets AAD (Additional Authenticated Data).
    */
-  public setAAD(buffer: Uint8Array): void {
+  setAAD(buffer: Uint8Array): void {
     if (!this._isGcmMode) {
       throw new Error("setAAD is only supported for GCM modes");
     }
@@ -177,7 +169,7 @@ export class Cipher {
     void this._gcmAad;
   }
 
-  private pushChunk(chunk: Uint8Array): void {
+  pushChunk(chunk: Uint8Array): void {
     if (this._finalized) {
       throw new Error("Cipher already finalized");
     }
@@ -185,7 +177,7 @@ export class Cipher {
     this._chunks.push(chunk);
   }
 
-  private finalizeBytes(): Uint8Array {
+  finalizeBytes(): Uint8Array {
     if (this._finalized) {
       throw new Error("Cipher already finalized");
     }

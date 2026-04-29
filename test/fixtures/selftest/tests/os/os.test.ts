@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as os from "@tsonic/nodejs/os.js";
 
 export class OsTests {
-  public platform_should_return_valid_platform(): void {
+  platform_should_return_valid_platform(): void {
     const value = os.platform();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
@@ -12,7 +12,7 @@ export class OsTests {
     Assert.True(valid.includes(value));
   }
 
-  public arch_should_return_valid_architecture(): void {
+  arch_should_return_valid_architecture(): void {
     const value = os.arch();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
@@ -20,38 +20,38 @@ export class OsTests {
     Assert.True(valid.includes(value));
   }
 
-  public hostname_should_return_non_empty_string(): void {
+  hostname_should_return_non_empty_string(): void {
     const value = os.hostname();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
   }
 
-  public tmpdir_should_return_non_empty_string(): void {
+  tmpdir_should_return_non_empty_string(): void {
     const value = os.tmpdir();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
   }
 
-  public homedir_should_return_non_empty_string(): void {
+  homedir_should_return_non_empty_string(): void {
     const value = os.homedir();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
   }
 
-  public eol_should_be_correct_for_platform(): void {
+  eol_should_be_correct_for_platform(): void {
     const value = os.EOL;
     Assert.NotNull(value);
     // On POSIX it is "\n", on Windows "\r\n"
     Assert.True(value === "\n" || value === "\r\n");
   }
 
-  public dev_null_should_be_correct_for_platform(): void {
+  dev_null_should_be_correct_for_platform(): void {
     const value = os.devNull;
     Assert.NotNull(value);
     Assert.True(value === "/dev/null" || value === "\\\\.\\nul");
   }
 
-  public type_should_return_valid_type(): void {
+  type_should_return_valid_type(): void {
     const value = os.type();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
@@ -59,39 +59,39 @@ export class OsTests {
     Assert.True(valid.includes(value));
   }
 
-  public release_should_return_non_empty_string(): void {
+  release_should_return_non_empty_string(): void {
     const value = os.release();
     Assert.NotNull(value);
     Assert.False(value.length === 0);
   }
 
-  public endianness_should_return_be_or_le(): void {
+  endianness_should_return_be_or_le(): void {
     const value = os.endianness();
     Assert.True(value === "BE" || value === "LE");
   }
 
-  public totalmem_should_return_positive_value(): void {
+  totalmem_should_return_positive_value(): void {
     const value = os.totalmem();
     Assert.True(value > 0);
   }
 
-  public freemem_should_return_positive_value(): void {
+  freemem_should_return_positive_value(): void {
     const value = os.freemem();
     Assert.True(value > 0);
   }
 
-  public uptime_should_return_non_negative_value(): void {
+  uptime_should_return_non_negative_value(): void {
     const value = os.uptime();
     Assert.True(value >= 0);
   }
 
-  public loadavg_should_return_array_of_three(): void {
+  loadavg_should_return_array_of_three(): void {
     const value = os.loadavg();
     Assert.NotNull(value);
     Assert.Equal(3, value.length);
   }
 
-  public cpus_should_return_non_empty_array(): void {
+  cpus_should_return_non_empty_array(): void {
     const value = os.cpus();
     Assert.NotNull(value);
     Assert.True(value.length > 0);
@@ -102,12 +102,12 @@ export class OsTests {
     }
   }
 
-  public available_parallelism_should_return_positive_value(): void {
+  available_parallelism_should_return_positive_value(): void {
     const value = os.availableParallelism();
     Assert.True(value > 0);
   }
 
-  public user_info_should_return_valid_info(): void {
+  user_info_should_return_valid_info(): void {
     const value = os.userInfo();
     Assert.NotNull(value);
     Assert.NotNull(value.username);

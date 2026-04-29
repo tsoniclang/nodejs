@@ -1,11 +1,11 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class OnTests {
-  public on_registers_a_listener(): void {
+  on_registers_a_listener(): void {
     const emitter = new EventEmitter();
     let called = false;
 
@@ -17,7 +17,7 @@ export class OnTests {
     Assert.True(called);
   }
 
-  public on_calls_all_registered_listeners(): void {
+  on_calls_all_registered_listeners(): void {
     const emitter = new EventEmitter();
     let count = 0;
 
@@ -35,11 +35,11 @@ export class OnTests {
     Assert.Equal(3, count);
   }
 
-  public on_passes_through_arguments(): void {
+  on_passes_through_arguments(): void {
     const emitter = new EventEmitter();
-    let received: JsValue | undefined = undefined;
+    let received: RuntimeValue | undefined = undefined;
 
-    emitter.on("test", (arg: JsValue) => {
+    emitter.on("test", (arg: RuntimeValue) => {
       received = arg;
     });
     emitter.emit("test", 42);
@@ -47,13 +47,13 @@ export class OnTests {
     Assert.Equal(42, received);
   }
 
-  public on_returns_the_emitter(): void {
+  on_returns_the_emitter(): void {
     const emitter = new EventEmitter();
     const result = emitter.on("test", () => undefined);
     Assert.True(result === emitter);
   }
 
-  public on_supports_method_chaining(): void {
+  on_supports_method_chaining(): void {
     const emitter = new EventEmitter();
     let count = 0;
 

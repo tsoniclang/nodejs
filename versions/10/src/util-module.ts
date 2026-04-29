@@ -1,38 +1,23 @@
 
 import type {} from "./type-bootstrap.ts";
 
-import type { JsValue } from "@tsonic/core/types.js";
 import { Console as DotnetConsole, Environment } from "@tsonic/dotnet/System.js";
+import { areDeepEqual, isArrayValue } from "./deep-equality.ts";
+import type { RuntimeValue } from "./runtime-value.ts";
 
-export type DebugLogFunction = (message: string, ...args: JsValue[]) => void;
+export type DebugLogFunction = (message: string, ...args: RuntimeValue[]) => void;
 
-const toDisplayString = (value: JsValue): string => {
+const toDisplayString = (value: RuntimeValue): string => {
   if (value === undefined) {
     return "undefined";
   }
   if (value === null) {
     return "null";
   }
-  if (typeof value === "string") {
-    return value;
-  }
-  if (
-    typeof value === "number" ||
-    typeof value === "boolean" ||
-    typeof value === "bigint"
-  ) {
-    return String(value);
-  }
-
-  try {
-    const json = JSON.stringify(value);
-    return json ?? String(value);
-  } catch {
-    return String(value);
-  }
+  return String(value);
 };
 
-export const format = (formatValue: JsValue, ...args: JsValue[]): string => {
+export const format = (formatValue: RuntimeValue, ...args: RuntimeValue[]): string => {
   if (formatValue === null || formatValue === undefined) {
     return "";
   }
@@ -71,13 +56,7 @@ export const format = (formatValue: JsValue, ...args: JsValue[]): string => {
         index += 1;
         break;
       case "j":
-        try {
-          const serialized =
-            value === undefined ? undefined : JSON.stringify(value);
-          result += serialized ?? "undefined";
-        } catch {
-          result += value === undefined || value === null ? "" : String(value);
-        }
+        result += value === undefined || value === null ? "" : String(value);
         argIndex += 1;
         index += 1;
         break;
@@ -100,7 +79,7 @@ export const format = (formatValue: JsValue, ...args: JsValue[]): string => {
   return result;
 };
 
-export const inspect = (value: JsValue | undefined): string => {
+export const inspect = (value: RuntimeValue): string => {
   if (value === null) {
     return "null";
   }
@@ -110,51 +89,19 @@ export const inspect = (value: JsValue | undefined): string => {
   if (typeof value === "string") {
     return `'${value}'`;
   }
-  if (typeof value === "symbol") {
-    return "Symbol()";
-  }
-  if (typeof value === "boolean" || typeof value === "number") {
-    return String(value);
-  }
-
-  try {
-    return JSON.stringify(value) ?? String(value);
-  } catch {
-    return String(value);
-  }
+  return String(value);
 };
 
-export const isArray = (value: JsValue): boolean => Array.isArray(value);
+export const isArray = (value: RuntimeValue): boolean => isArrayValue(value);
 
-export const isDeepStrictEqual = (left: JsValue, right: JsValue): boolean => {
-  if (left === right) {
-    return true;
-  }
-  if (left === null || right === null || left === undefined || right === undefined) {
-    return left === right;
-  }
-  if (typeof left !== typeof right) {
-    return false;
-  }
-  if (
-    typeof left === "string" ||
-    typeof left === "number" ||
-    typeof left === "boolean" ||
-    typeof left === "bigint"
-  ) {
-    return left === right;
-  }
-
-  try {
-    return JSON.stringify(left) === JSON.stringify(right);
-  } catch {
-    return left === right;
-  }
-};
+export const isDeepStrictEqual = (
+  left: RuntimeValue,
+  right: RuntimeValue
+): boolean => areDeepEqual(left, right);
 
 export const inherits = (
-  _constructor: JsValue,
-  _superConstructor: JsValue
+  _constructor: object,
+  _superConstructor: object
 ): void => {
   return;
 };
@@ -162,11 +109,11 @@ export const inherits = (
 const deprecationWarnings = new Set<string>();
 
 export function deprecate(
-  fn: (...args: JsValue[]) => JsValue,
+  fn: (...args: RuntimeValue[]) => RuntimeValue,
   message: string,
   code?: string,
-): (...args: JsValue[]) => JsValue {
-  return (...args: JsValue[]): JsValue => {
+): (...args: RuntimeValue[]) => RuntimeValue {
+  return (...args: RuntimeValue[]): RuntimeValue => {
     const warning =
       code === undefined
         ? `DeprecationWarning: ${message}`
@@ -195,7 +142,7 @@ export const debuglog = (section: string): DebugLogFunction => {
   }
 
   const pid = Environment.ProcessId;
-  return (message: string, ...args: JsValue[]): void => {
+  return (message: string, ...args: RuntimeValue[]): void => {
     const rendered = args.length > 0 ? format(message, ...args) : message;
     DotnetConsole.Error.WriteLine(
       `${section.toUpperCase()} ${String(pid)}: ${rendered}`
@@ -204,9 +151,9 @@ export const debuglog = (section: string): DebugLogFunction => {
 };
 
 export const formatWithOptions = (
-  _inspectOptions: JsValue,
-  formatValue: JsValue,
-  ...args: JsValue[]
+  _inspectOptions: object | null | undefined,
+  formatValue: RuntimeValue,
+  ...args: RuntimeValue[]
 ): string => format(formatValue, ...args);
 
 export const stripVTControlCharacters = (input: string): string => {

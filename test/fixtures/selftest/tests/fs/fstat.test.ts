@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class fstatTests {
-  public async fstat_ShouldReturnStats(): Promise<void> {
+  async fstat_ShouldReturnStats(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class fstatTests {
     }
   }
 
-  public async fstat_ShouldReturnCorrectSize(): Promise<void> {
+  async fstat_ShouldReturnCorrectSize(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -36,11 +36,11 @@ export class fstatTests {
     }
   }
 
-  public async fstat_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
+  async fstat_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
     await assertThrowsAsync(() => fs.fstat(999));
   }
 
-  public async fstat_EmptyFile_ShouldHaveZeroSize(): Promise<void> {
+  async fstat_EmptyFile_ShouldHaveZeroSize(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

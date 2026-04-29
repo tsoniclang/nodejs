@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ResolveCnameTests {
-  public resolveCname_ValidDomain_CallsCallback(): void {
+  resolveCname_ValidDomain_CallsCallback(): void {
     let called = false;
     let resultNames: Array<string> = [];
     dns.resolveCname("localhost", (err, names) => {
