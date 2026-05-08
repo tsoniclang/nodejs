@@ -1,5 +1,5 @@
 export interface RuntimeObject {
-  [key: string]: RuntimeValue;
+  readonly __runtimeObjectBrand?: undefined;
 }
 
 export type RuntimeArray = RuntimeValue[];
