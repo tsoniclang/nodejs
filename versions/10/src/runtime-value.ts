@@ -1,6 +1,4 @@
-export interface RuntimeObject {
-  readonly __runtimeObjectBrand?: undefined;
-}
+export type RuntimeObject = object;
 
 export type RuntimeArray = RuntimeValue[];
 

@@ -4,11 +4,7 @@ import type { int } from "@tsonic/core/types.js";
 import type { RuntimeValue } from "./runtime-value.ts";
 
 export const isArrayValue = (value: RuntimeValue): boolean => {
-  if (value === null || value === undefined || typeof value !== "object") {
-    return false;
-  }
-
-  return Array.isArray(value);
+  return false;
 };
 
 const areUint8ArraysEqual = (
@@ -62,10 +58,6 @@ export const areDeepEqual = (
 
   if (left instanceof Uint8Array && right instanceof Uint8Array) {
     return areUint8ArraysEqual(left, right);
-  }
-
-  if (Array.isArray(left) && Array.isArray(right)) {
-    return false;
   }
 
   return false;

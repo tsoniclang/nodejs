@@ -760,8 +760,8 @@ export const publicDecrypt = (
   }
 
   return rsaPublicDecryptPkcs1(
-    new Uint8Array(parameters.Modulus),
-    new Uint8Array(parameters.Exponent),
+    fromByteArray(parameters.Modulus),
+    fromByteArray(parameters.Exponent),
     buffer,
   );
 };
@@ -790,8 +790,8 @@ export const privateEncrypt = (
   }
 
   return rsaPrivateEncryptPkcs1(
-    new Uint8Array(parameters.Modulus),
-    new Uint8Array(parameters.D),
+    fromByteArray(parameters.Modulus),
+    fromByteArray(parameters.D),
     buffer,
   );
 };

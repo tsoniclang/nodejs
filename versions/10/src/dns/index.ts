@@ -689,10 +689,10 @@ export const resolveTxt = (
 /** Uses the DNS protocol to resolve all records (ANY or * query). */
 export const resolveAny = (
   hostname: string,
-  callback: (err: Error | null, records: Array<object>) => void,
+  callback: (err: Error | null, records: Array<RuntimeValue>) => void,
 ): void => {
   try {
-    const records: Array<object> = [];
+    const records: Array<RuntimeValue> = [];
     const ipv4 = getHostAddresses(hostname, 4 as int);
     for (let index = 0; index < ipv4.length; index += 1) {
       const record = new AnyARecord();

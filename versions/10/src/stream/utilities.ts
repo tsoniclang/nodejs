@@ -129,12 +129,7 @@ export const finished = (
   }
 
   function onClose(...args: RuntimeValue[]): void {
-    const hadError = args.length > 0 && args[0] === true;
-    onFinished(
-      hadError
-        ? new Error("Stream closed with error")
-        : undefined,
-    );
+    onFinished(undefined);
   }
 
   stream.on("finish", onFinish);

@@ -203,7 +203,8 @@ export const getGroup = (
 
   // TODO: convert hex string to Uint8Array
   const primeBytes = hexToBytes(group.prime);
-  const generatorBytes = new Uint8Array([group.generator]);
+  const generatorBytes = new Uint8Array(1);
+  generatorBytes[0] = group.generator;
 
   return { prime: primeBytes, generator: generatorBytes };
 };
