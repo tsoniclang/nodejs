@@ -2,7 +2,7 @@ import type { byte, int } from "@tsonic/core/types.js";
 import type { Byte } from "@tsonic/dotnet/System.js";
 import { List } from "@tsonic/dotnet/System.Collections.Generic.js";
 import { MemoryStream } from "@tsonic/dotnet/System.IO.js";
-import { Guid, ReadOnlySpan } from "@tsonic/dotnet/System.js";
+import { Convert, Guid, ReadOnlySpan } from "@tsonic/dotnet/System.js";
 import { BigInteger } from "@tsonic/dotnet/System.Numerics.js";
 import {
   CipherMode,
@@ -122,8 +122,9 @@ export const leftPadBytes = (
     return buffer;
   }
 
-  const result = new Uint8Array(length);
-  result.set(buffer, length - buffer.length);
+  const targetLength = toInt(length);
+  const result = new Uint8Array(targetLength);
+  result.set(buffer, toInt(targetLength - buffer.length));
   return result;
 };
 
@@ -193,7 +194,7 @@ const truncateHash = (bytes: Uint8Array, outputLength: number): Uint8Array => {
     return bytes;
   }
 
-  const result = new Uint8Array(outputLength);
+  const result = new Uint8Array(toInt(outputLength));
   for (let index = 0; index < outputLength; index += 1) {
     result[index] = bytes[index]!;
   }
@@ -616,14 +617,14 @@ const pkcs1Type1Pad = (
     throw new Error("Data too large for RSA privateEncrypt block");
   }
 
-  const padded = new Uint8Array(blockLength);
-  padded[0] = 0x00;
-  padded[1] = 0x01;
+  const padded = new Uint8Array(toInt(blockLength));
+  padded[0] = 0x00 as byte;
+  padded[1] = 0x01 as byte;
   const separatorIndex = toInt(blockLength - data.length - 1);
   for (let index = 2 as int; index < separatorIndex; index += 1) {
-    padded[index] = 0xff;
+    padded[index] = 0xff as byte;
   }
-  padded[separatorIndex] = 0x00;
+  padded[separatorIndex] = 0x00 as byte;
   padded.set(data, separatorIndex + 1);
   return padded;
 };
@@ -640,7 +641,7 @@ const pkcs1Type1Unpad = (data: Uint8Array): Uint8Array => {
   if (index >= data.length || data[index] !== 0x00) {
     throw new Error("Invalid PKCS#1 type 1 block");
   }
-  return sliceBytes(data, index + 1);
+  return sliceBytes(data, toInt(index + 1));
 };
 
 export const rsaPrivateEncryptPkcs1 = (

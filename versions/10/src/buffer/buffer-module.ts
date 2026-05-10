@@ -5,6 +5,8 @@
  */
 
 import { Buffer } from "./buffer.ts";
+import type { int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 import {
   base64ToBytes,
   bytesToBase64,
@@ -45,18 +47,22 @@ export const constants: BufferConstants = new BufferConstants();
  * Maximum buffer length.
  * In JS-land, ArrayBuffer is limited to ~2 GiB (2^31 - 1 on most engines).
  */
-export const kMaxLength: number = 2147483647;
+export const kMaxLength: int = 2147483647 as int;
 
 /**
  * Maximum string length.
  */
-export const kStringMaxLength: number = 1073741823;
+export const kStringMaxLength: int = 1073741823 as int;
 
 /**
  * SlowBuffer compatibility helper.
  */
 export const SlowBuffer = (size: number): Buffer => {
-  return Buffer.alloc(size);
+  if (Number.isInteger(size) && size >= 0 && size <= kMaxLength) {
+    return Buffer.alloc(Convert.ToInt32(size));
+  }
+
+  throw new RangeError("Buffer size must be a non-negative Int32-compatible value");
 };
 
 /**

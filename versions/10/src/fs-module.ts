@@ -2,7 +2,7 @@ import { overloads as O } from "@tsonic/core/lang.js";
 import type {} from "./type-bootstrap.ts";
 
 import type { byte, int } from "@tsonic/core/types.js";
-import { DateTimeOffset } from "@tsonic/dotnet/System.js";
+import { Convert, DateTimeOffset } from "@tsonic/dotnet/System.js";
 import type { DateTime } from "@tsonic/dotnet/System.js";
 import { Buffer } from "./buffer/index.ts";
 import {
@@ -680,7 +680,7 @@ export const symlink = async (
 export const truncateSync = (path: string, length: number = 0): void => {
   const stream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
   try {
-    stream.SetLength(length);
+    stream.SetLength(Convert.ToInt64(length));
   } finally {
     stream.Dispose();
   }

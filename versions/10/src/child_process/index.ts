@@ -7,6 +7,7 @@ import type {} from "../type-bootstrap.ts";
 
 import { overloads as O } from "@tsonic/core/lang.js";
 import { Process, ProcessStartInfo } from "@tsonic/dotnet/System.Diagnostics.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 import {
   OSPlatform,
   RuntimeInformation,
@@ -118,7 +119,7 @@ const finishSyncProcess = (
   let signal: string | null = null;
   let error: Error | null = null;
 
-  const timeout = options?.timeout ?? 0;
+  const timeout = Convert.ToInt32(options?.timeout ?? 0);
   if (timeout > 0) {
     const exited = process.WaitForExit(timeout);
     if (!exited) {

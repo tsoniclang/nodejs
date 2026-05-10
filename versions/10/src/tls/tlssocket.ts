@@ -9,6 +9,7 @@
  */
 
 import type { RuntimeValue } from "../runtime-value.ts";
+import { Convert } from "@tsonic/dotnet/System.js";
 import { EventEmitter } from "../events-module.ts";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
 import { SecureContext } from "./secure-context.ts";
@@ -262,9 +263,10 @@ export class TLSSocket extends EventEmitter {
     label: string,
     context: Uint8Array
   ): Uint8Array {
-    if (length < 0) {
-      throw new RangeError("length must be non-negative");
+    if (!Number.isInteger(length) || length < 0) {
+      throw new RangeError("length must be a non-negative integer");
     }
+    const byteLength = Convert.ToInt32(length);
 
     const labelBytes = stringToBytes(label, "utf8");
     const seedLength = labelBytes.length + context.length;
@@ -283,10 +285,10 @@ export class TLSSocket extends EventEmitter {
       seed[0] = 0;
     }
 
-    const result = new Uint8Array(length);
-    for (let index = 0; index < length; index += 1) {
+    const result = new Uint8Array(byteLength);
+    for (let index = 0; index < byteLength; index += 1) {
       const seedByte = seed[index % seed.length]!;
-      result[index] = (seedByte ^ ((index * 31) & 0xff)) & 0xff;
+      result[index] = Convert.ToByte((seedByte ^ ((index * 31) & 0xff)) & 0xff);
     }
     return result;
   }

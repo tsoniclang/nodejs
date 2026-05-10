@@ -74,7 +74,7 @@ const utf8StringToBytes = (value: string): Uint8Array => {
     const char = encoded.charAt(index);
     if (char === "%") {
       const hex = encoded.substring(index + 1, index + 3);
-      bytes.push(parseInt(hex, 16));
+      bytes.push(Convert.ToByte(parseInt(hex, 16)));
       index += 2;
       continue;
     }
@@ -263,7 +263,7 @@ export const hexToBytes = (hex: string): Uint8Array => {
   const cleaned = stripCharacters(hex, (char) => char === " " || char === "\n" || char === "\r" || char === "\t");
   const bytes = new Uint8Array(cleaned.length >> 1);
   for (let i = 0; i < bytes.length; i += 1) {
-    bytes[i] = parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0;
+    bytes[i] = Convert.ToByte(parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0);
   }
   return bytes;
 };

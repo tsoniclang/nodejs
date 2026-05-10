@@ -12,10 +12,19 @@ import {
   UriBuilder,
   UriFormatException,
 } from "@tsonic/dotnet/System.js";
+import type { int } from "@tsonic/core/types.js";
 import { URLSearchParams } from "./urlsearch-params.ts";
 
 const trimLeading = (value: string, prefix: string): string => {
   return value.startsWith(prefix) ? value.slice(prefix.length) : value;
+};
+
+const parsePort = (value: string): int => {
+  const parsed = parseInt(value, 10);
+  if (Number.isInteger(parsed) && parsed >= -1 && parsed <= 65535) {
+    return parsed as int;
+  }
+  return -1 as int;
 };
 
 const splitUserInfo = (userInfo: string): { username: string; password: string } => {
@@ -94,7 +103,7 @@ export class URL {
     const separatorIndex = value.lastIndexOf(":");
     if (separatorIndex > 0) {
       this.builder.Host = value.slice(0, separatorIndex);
-      this.builder.Port = parseInt(value.slice(separatorIndex + 1), 10);
+      this.builder.Port = parsePort(value.slice(separatorIndex + 1));
       return;
     }
 
@@ -115,7 +124,7 @@ export class URL {
   }
 
   set port(value: string) {
-    this.builder.Port = value.length === 0 ? -1 : parseInt(value, 10);
+    this.builder.Port = value.length === 0 ? -1 : parsePort(value);
   }
 
   get pathname(): string {
