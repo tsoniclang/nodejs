@@ -15,7 +15,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@tsonic/js": "10.0.49",
-    "tsonic": "0.0.76"
+    "@tsonic/js": "10.0.50",
+    "tsonic": "0.0.77"
   }
 }
