@@ -7,6 +7,7 @@
  * TODO placeholders.
  */
 import { overloads as O } from "@tsonic/core/lang.js";
+import type { int } from "@tsonic/core/types.js";
 import { EventEmitter, toEventListener } from "../events-module.ts";
 import { AddressInfo } from "./options.ts";
 import type { SocketConstructorOpts, TcpSocketConnectOpts } from "./options.ts";
@@ -22,10 +23,10 @@ export class Socket extends EventEmitter {
   _bytesRead: number = 0;
   _bytesWritten: number = 0;
   _localAddress: string | undefined = undefined;
-  _localPort: number | undefined = undefined;
+  _localPort: int | undefined = undefined;
   _localFamily: string | undefined = undefined;
   _remoteAddress: string | undefined = undefined;
-  _remotePort: number | undefined = undefined;
+  _remotePort: int | undefined = undefined;
   _remoteFamily: string | undefined = undefined;
   _allowHalfOpen: boolean;
 

@@ -57,14 +57,14 @@ const resolveWriteLength = (
     : length;
 
 const toUnixMilliseconds = (value: DateTime): number =>
-  Number(new DateTimeOffset(value).ToUnixTimeMilliseconds());
+  Convert.ToDouble(new DateTimeOffset(value).ToUnixTimeMilliseconds());
 
 const toJsDate = (value: DateTime): Date =>
   new Date(toUnixMilliseconds(value));
 
 const buildFileStats = (info: FileInfo): Stats =>
   new Stats(
-    Number(info.Length),
+    Convert.ToDouble(info.Length),
     true,
     false,
     toJsDate(info.LastAccessTime),

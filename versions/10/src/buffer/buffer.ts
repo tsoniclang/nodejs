@@ -621,7 +621,7 @@ export class Buffer {
 
     let len = 0;
     if (totalLength !== undefined) {
-      len = totalLength;
+      len = BufferInternals.toInt(totalLength);
     } else {
       for (let i = 0; i < list.length; i += 1) {
         len += list[i]!.length;

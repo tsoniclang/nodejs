@@ -15,7 +15,7 @@ export class SendTests {
 
     let callbackCalled = false;
     let callbackError: Error | null = null;
-    let bytesSent = 0;
+    let bytesSent: number = 0;
 
     client.send("test", addr.port, "127.0.0.1", (err: Error | null, bytes: number) => {
       callbackCalled = true;
@@ -58,7 +58,7 @@ export class SendTests {
     const client = createSocket("udp4");
 
     const buffer = Buffer.from("HelloWorld", "utf8").buffer;
-    let sentBytes = 0;
+    let sentBytes: number = 0;
 
     client.send(buffer, 5, 5, addr.port, "127.0.0.1", (err: Error | null, bytes: number) => {
       sentBytes = bytes;

@@ -272,8 +272,8 @@ export class AssertTests {
   AssertionError_should_have_correct_properties(): void {
     const error = new AssertionError("Test message", 5, 10, "===");
     Assert.Equal("Test message", error.message);
-    Assert.Equal(5, error.actual);
-    Assert.Equal(10, error.expected);
+    assert.strictEqual(error.actual, 5);
+    assert.strictEqual(error.expected, 10);
     Assert.Equal("===", error.operator);
     Assert.False(error.generatedMessage);
     Assert.Equal("ERR_ASSERTION", error.code);

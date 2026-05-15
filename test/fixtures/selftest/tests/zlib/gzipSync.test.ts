@@ -2,6 +2,7 @@ import { asinterface, attributes as A } from "@tsonic/core/lang.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { gzipSync } from "@tsonic/nodejs/zlib.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 
 import { assertThrows, utf8Bytes } from "./helpers.ts";
 
@@ -54,7 +55,7 @@ export class Zlib_gzipSyncTests {
   gzipSync_LargeData_ShouldCompress(): void {
     const data = new Uint8Array(100000);
     for (let i = 0; i < data.length; i += 1) {
-      data[i] = i % 256;
+      data[i] = Convert.ToByte(i % 256);
     }
 
     const compressed = gzipSync(data);

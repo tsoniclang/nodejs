@@ -11,6 +11,7 @@
 
 import { bytesToString } from "../buffer/buffer-encoding.ts";
 import { Convert } from "@tsonic/dotnet/System.js";
+import type { int } from "@tsonic/core/types.js";
 
 const fromCharCode = (code: number): string =>
   Convert.ToChar(code).toString();
@@ -130,7 +131,7 @@ export class StringDecoder {
   writeUtf16le(buffer: Uint8Array): string {
     // UTF-16LE: each code unit is 2 bytes
     // If odd number of bytes, last byte is incomplete
-    const completeBytes = buffer.length - (buffer.length % 2);
+    const completeBytes = (buffer.length - (buffer.length % 2)) as int;
 
     if (completeBytes === 0) {
       this.pendingBytes = this.copyRange(buffer, 0, buffer.length);
@@ -151,7 +152,7 @@ export class StringDecoder {
       if (lastCodeUnit >= 0xd800 && lastCodeUnit <= 0xdbff) {
         // Move the high surrogate to pending
         const pending = new Uint8Array(
-          2 + (buffer.length - completeBytes)
+          (2 + (buffer.length - completeBytes)) as int
         );
         pending.set(this.copyRange(buffer, completeBytes - 2, buffer.length));
         this.pendingBytes = pending;
@@ -165,16 +166,16 @@ export class StringDecoder {
     return this.decodeAll(this.copyRange(buffer, 0, completeBytes));
   }
 
-  findUtf8Boundary(buffer: Uint8Array): number {
-    let i = buffer.length;
+  findUtf8Boundary(buffer: Uint8Array): int {
+    let i = buffer.length as int;
     // Walk backwards to find the start of the last (possibly incomplete) character
     while (i > 0) {
-      i -= 1;
+      i = (i - 1) as int;
       const byte = buffer[i]!;
 
       // Single-byte (0xxxxxxx) — this is a complete character
       if ((byte & 0x80) === 0) {
-        return i + 1;
+        return (i + 1) as int;
       }
 
       // Continuation byte (10xxxxxx) — keep walking back
@@ -213,15 +214,15 @@ export class StringDecoder {
     return bytesToString(buffer, this.encoding, 0, buffer.length);
   }
 
-  copyRange(buffer: Uint8Array, start: number, end: number): Uint8Array {
-    const result = new Uint8Array(end - start);
-    let targetIndex = 0;
-    for (let index = 0; index < buffer.length; index += 1) {
+  copyRange(buffer: Uint8Array, start: int, end: int): Uint8Array {
+    const result = new Uint8Array((end - start) as int);
+    let targetIndex = 0 as int;
+    for (let index = 0 as int; index < buffer.length; index += 1) {
       if (index < start || index >= end) {
         continue;
       }
       result[targetIndex] = buffer[index]!;
-      targetIndex += 1;
+      targetIndex = (targetIndex + 1) as int;
     }
     return result;
   }

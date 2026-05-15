@@ -281,15 +281,17 @@ export class IntervalAsyncIterator<T> {
 export class TimersPromises {
   scheduler: TimersScheduler = new TimersScheduler();
 
-  async setTimeout(
+  async setTimeout<T extends RuntimeValue>(
     delay: int = 1 as int,
-    value?: RuntimeValue
-  ): Promise<RuntimeValue> {
+    value?: T,
+  ): Promise<T | undefined> {
     await Task.Delay(normalizeDelay(delay));
     return value;
   }
 
-  async setImmediate(value?: RuntimeValue): Promise<RuntimeValue> {
+  async setImmediate<T extends RuntimeValue>(
+    value?: T
+  ): Promise<T | undefined> {
     await Task.Delay(immediateDispatchDelay);
     return value;
   }
@@ -298,7 +300,7 @@ export class TimersPromises {
     delay: int = 1 as int,
     value?: RuntimeValue
   ): IntervalAsyncIterator<RuntimeValue> {
-    return new IntervalAsyncIterator(delay, value);
+    return new IntervalAsyncIterator<RuntimeValue>(delay, value);
   }
 }
 

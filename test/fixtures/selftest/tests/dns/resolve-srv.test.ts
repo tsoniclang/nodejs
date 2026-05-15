@@ -6,7 +6,7 @@ import * as dns from "@tsonic/nodejs/dns.js";
 export class ResolveSrvTests {
   resolveSrv_ValidDomain_CallsCallback(): void {
     let called = false;
-    let port = -1;
+    let port: number = -1;
     dns.resolveSrv("localhost", (err, recs) => {
       called = true;
       if (err === null && recs.length > 0) {

@@ -2,7 +2,7 @@
 import type {} from "./type-bootstrap.ts";
 
 import { AssertionError } from "./assertion-error.ts";
-import { areDeepEqual } from "./deep-equality.ts";
+import { areDeepEqual, areStrictEqual } from "./deep-equality.ts";
 import type { RuntimeValue } from "./runtime-value.ts";
 
 export const ok = (value: boolean, message?: string): void => {
@@ -20,7 +20,7 @@ export const equal = (
   expected: RuntimeValue,
   message?: string
 ): void => {
-  if (actual !== expected) {
+  if (!areStrictEqual(actual, expected)) {
     throw new AssertionError(message, actual, expected, "==");
   }
 };
@@ -30,7 +30,7 @@ export const notEqual = (
   expected: RuntimeValue,
   message?: string
 ): void => {
-  if (actual === expected) {
+  if (areStrictEqual(actual, expected)) {
     throw new AssertionError(message, actual, expected, "!=");
   }
 };
@@ -40,7 +40,7 @@ export const strictEqual = (
   expected: RuntimeValue,
   message?: string
 ): void => {
-  if (actual !== expected) {
+  if (!areStrictEqual(actual, expected)) {
     throw new AssertionError(message, actual, expected, "===");
   }
 };
@@ -50,7 +50,7 @@ export const notStrictEqual = (
   expected: RuntimeValue,
   message?: string
 ): void => {
-  if (actual === expected) {
+  if (areStrictEqual(actual, expected)) {
     throw new AssertionError(message, actual, expected, "!==");
   }
 };

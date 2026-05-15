@@ -461,12 +461,16 @@ export const resolve4 = (
   hostname: string,
   callback: (err: Error | null, addresses: Array<string>) => void,
 ): void => {
+  let addresses: IPAddress[];
   try {
-    callback(null, mapAddresses(getHostAddresses(hostname, 4 as int)));
+    addresses = getHostAddresses(hostname, 4 as int);
   } catch (error) {
     const empty: Array<string> = [];
     callbackError(callback, error, empty);
+    return;
   }
+
+  callback(null, mapAddresses(addresses));
 };
 
 /** Uses the DNS protocol to resolve IPv4 addresses with TTL information. */
@@ -475,12 +479,21 @@ export const resolve4WithOptions = (
   options: ResolveOptions,
   callback: (err: Error | null, result: Array<RecordWithTtl> | Array<string>) => void,
 ): void => {
+  let addresses: IPAddress[];
   try {
-    const addresses = getHostAddresses(hostname, 4 as int);
-    callback(null, options.ttl ? mapAddressesWithTtl(addresses) : mapAddresses(addresses));
+    addresses = getHostAddresses(hostname, 4 as int);
   } catch (error) {
-    callback(error instanceof Error ? error : new Error("DNS resolve4 failed"), []);
+    callback(
+      error instanceof Error ? error : new Error("DNS resolve4 failed"),
+      []
+    );
+    return;
   }
+
+  callback(
+    null,
+    options.ttl ? mapAddressesWithTtl(addresses) : mapAddresses(addresses)
+  );
 };
 
 // ==================== resolve6 ====================

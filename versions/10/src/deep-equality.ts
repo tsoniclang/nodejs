@@ -4,7 +4,35 @@ import type { int } from "@tsonic/core/types.js";
 import type { RuntimeValue } from "./runtime-value.ts";
 
 export const isArrayValue = (value: RuntimeValue): boolean => {
-  return false;
+  return Array.isArray(value);
+};
+
+export const areStrictEqual = (
+  left: RuntimeValue,
+  right: RuntimeValue
+): boolean => {
+  if (
+    left === null ||
+    left === undefined ||
+    right === null ||
+    right === undefined
+  ) {
+    return left === right;
+  }
+
+  if (typeof left === "number" && typeof right === "number") {
+    return (left as number) === (right as number);
+  }
+
+  if (typeof left === "string" && typeof right === "string") {
+    return (left as string) === (right as string);
+  }
+
+  if (typeof left === "boolean" && typeof right === "boolean") {
+    return (left as boolean) === (right as boolean);
+  }
+
+  return left === right;
 };
 
 const areUint8ArraysEqual = (
@@ -28,7 +56,7 @@ export const areDeepEqual = (
   left: RuntimeValue,
   right: RuntimeValue
 ): boolean => {
-  if (left === right) {
+  if (areStrictEqual(left, right)) {
     return true;
   }
 

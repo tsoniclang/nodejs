@@ -88,7 +88,7 @@ export class ServerResponse extends EventEmitter {
   writeHead(
     statusCode: int,
     statusMessage?: string | null,
-    headers?: Map<string, string> | null
+    headers?: Map<string, string> | null,
   ): ServerResponse {
     if (this._headersSent) {
       throw new Error("Headers already sent");
@@ -118,7 +118,7 @@ export class ServerResponse extends EventEmitter {
    */
   writeHeadWithHeaders(
     statusCode: int,
-    headers: Map<string, string>
+    headers: Map<string, string>,
   ): ServerResponse {
     return this.writeHead(statusCode, null, headers);
   }
@@ -201,9 +201,9 @@ export class ServerResponse extends EventEmitter {
    * @returns True if entire data was flushed successfully.
    */
   write(
-    chunk: string | Buffer | Uint8Array,
+    chunk: string | Buffer | Uint8Array | byte[],
     encoding?: string | null,
-    callback?: (() => void) | null
+    callback?: (() => void) | null,
   ): boolean {
     if (this._finished) {
       throw new Error("Cannot write after end");
@@ -238,15 +238,11 @@ export class ServerResponse extends EventEmitter {
    * @returns This response for chaining.
    */
   end(
-    chunk: string | Buffer | Uint8Array,
+    chunk: string | Buffer | Uint8Array | byte[],
     encoding?: string | null,
-    callback?: (() => void) | null
+    callback?: (() => void) | null,
   ): ServerResponse;
-  end(
-    _chunkOrCallback?: any,
-    _encoding?: any,
-    _callback?: any,
-  ): any {
+  end(_chunkOrCallback?: any, _encoding?: any, _callback?: any): any {
     throw new Error("Unreachable overload stub");
   }
 
@@ -272,9 +268,9 @@ export class ServerResponse extends EventEmitter {
   }
 
   end_chunk(
-    chunk: string | Buffer | Uint8Array,
+    chunk: string | Buffer | Uint8Array | byte[],
     encoding?: string | null,
-    callback?: (() => void) | null
+    callback?: (() => void) | null,
   ): ServerResponse {
     if (this._finished) {
       return this;
@@ -323,8 +319,8 @@ export class ServerResponse extends EventEmitter {
   }
 
   _toByteArray(
-    chunk: string | Buffer | Uint8Array,
-    encoding?: string
+    chunk: string | Buffer | Uint8Array | byte[],
+    encoding?: string,
   ): byte[] {
     if (chunk instanceof Buffer) {
       return ServerResponse._copyUint8Array(chunk.buffer);
@@ -332,6 +328,10 @@ export class ServerResponse extends EventEmitter {
 
     if (chunk instanceof Uint8Array) {
       return ServerResponse._copyUint8Array(chunk);
+    }
+
+    if (Array.isArray(chunk)) {
+      return chunk;
     }
 
     return Encoding.UTF8.GetBytes(chunk as string);
@@ -410,6 +410,12 @@ export class ServerResponse extends EventEmitter {
   }
 }
 
-O<ServerResponse>().method(x => x.end_empty).family(x => x.end);
-O<ServerResponse>().method(x => x.end_callback).family(x => x.end);
-O<ServerResponse>().method(x => x.end_chunk).family(x => x.end);
+O<ServerResponse>()
+  .method((x) => x.end_empty)
+  .family((x) => x.end);
+O<ServerResponse>()
+  .method((x) => x.end_callback)
+  .family((x) => x.end);
+O<ServerResponse>()
+  .method((x) => x.end_chunk)
+  .family((x) => x.end);
