@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { ServerOpts } from "@tsonic/nodejs/net.js";
 
 export class ServerOptsTests {
-  public all_properties_can_be_set(): void {
+  all_properties_can_be_set(): void {
     const opts = new ServerOpts();
     opts.allowHalfOpen = true;
     opts.pauseOnConnect = true;

@@ -6,11 +6,13 @@ import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
 export class ChildProcessExecOptionsTests {
-  public ExecOptions_WithEnvVariables_PassesEnvironment(): void {
+  ExecOptions_WithEnvVariables_PassesEnvironment(): void {
     const command = "echo $TEST_VAR";
     const options = new ExecOptions();
     options.encoding = "utf8";
-    options.env = { TEST_VAR: "test_value" };
+    const env = new Map<string, string>();
+    env.set("TEST_VAR", "test_value");
+    options.env = env;
     const result = child_process.execSync(command, options);
 
     Assert.NotNull(result);
@@ -18,7 +20,7 @@ export class ChildProcessExecOptionsTests {
     Assert.True((result as string).includes("test_value"));
   }
 
-  public ExecOptions_WithTimeout_TerminatesProcess(): void {
+  ExecOptions_WithTimeout_TerminatesProcess(): void {
     const command = "sleep 10";
     const options = new ExecOptions();
     options.timeout = 100; // 100ms timeout
@@ -29,7 +31,7 @@ export class ChildProcessExecOptionsTests {
     });
   }
 
-  public ExecOptions_WithTimeout_SetsSignal(): void {
+  ExecOptions_WithTimeout_SetsSignal(): void {
     const command = "sleep";
     const args = ["10"];
     const options = new ExecOptions();
@@ -41,10 +43,12 @@ export class ChildProcessExecOptionsTests {
     Assert.NotNull(result.error);
   }
 
-  public ExecOptions_AllProperties_CanBeSet(): void {
+  ExecOptions_AllProperties_CanBeSet(): void {
     const options = new ExecOptions();
     options.cwd = "/tmp";
-    options.env = { TEST: "value" };
+    const env = new Map<string, string>();
+    env.set("TEST", "value");
+    options.env = env;
     options.encoding = "utf8";
     options.shell = "/bin/sh";
     options.timeout = 1000;
@@ -76,7 +80,7 @@ export class ChildProcessExecOptionsTests {
     Assert.Equal("test input", options.input);
   }
 
-  public ExecOptions_WithMaxBuffer_RespectedInOptions(): void {
+  ExecOptions_WithMaxBuffer_RespectedInOptions(): void {
     const command = "echo 'test'";
     const options = new ExecOptions();
     options.encoding = "utf8";

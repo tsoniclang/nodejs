@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class realpathSyncTests {
-  public realpathSync_ShouldResolveAbsolutePath(): void {
+  realpathSync_ShouldResolveAbsolutePath(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "realpath-test.txt");
@@ -19,7 +19,7 @@ export class realpathSyncTests {
     }
   }
 
-  public realpathSync_RelativePath_ShouldResolveToAbsolute(): void {
+  realpathSync_RelativePath_ShouldResolveToAbsolute(): void {
     const dir = createTempDir();
     const originalDir = Directory.GetCurrentDirectory();
     try {
@@ -36,7 +36,7 @@ export class realpathSyncTests {
     }
   }
 
-  public realpathSync_NonExistent_ShouldResolveAnyway(): void {
+  realpathSync_NonExistent_ShouldResolveAnyway(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-realpath.txt");
@@ -47,7 +47,7 @@ export class realpathSyncTests {
     }
   }
 
-  public realpathSync_Directory_ShouldResolve(): void {
+  realpathSync_Directory_ShouldResolve(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "realpath-dir");

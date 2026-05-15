@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { ListenOptions } from "@tsonic/nodejs/net.js";
 
 export class ListenOptionsTests {
-  public all_properties_can_be_set(): void {
+  all_properties_can_be_set(): void {
     const opts = new ListenOptions();
     opts.port = 8080;
     opts.host = "localhost";

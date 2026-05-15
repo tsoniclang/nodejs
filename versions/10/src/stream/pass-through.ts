@@ -3,8 +3,8 @@
  * simply passes the input bytes across to the output.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { Transform } from "./transform.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export class PassThrough extends Transform {
   /**
@@ -14,10 +14,10 @@ export class PassThrough extends Transform {
    * @param _encoding - Encoding if chunk is a string.
    * @param callback - Callback for when transform is complete.
    */
-  protected override _transform(
-    chunk: JsValue,
+  override _transform(
+    chunk: RuntimeValue,
     _encoding: string | undefined,
-    callback: (error: Error | null, data: JsValue | null | undefined) => void,
+    callback: (error: Error | null, data: RuntimeValue | null | undefined) => void,
   ): void {
     // Just pass the data through unchanged
     callback(null, chunk);

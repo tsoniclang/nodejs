@@ -9,21 +9,21 @@ import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
 export class InterfaceTests {
-  public Interface_line_ShouldReturnCurrentLine(): void {
+  Interface_line_ShouldReturnCurrentLine(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
     Assert.Equal("", rl.line);
   }
 
-  public Interface_cursor_ShouldReturnCursorPosition(): void {
+  Interface_cursor_ShouldReturnCursorPosition(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
     Assert.Equal(0, rl.cursor);
   }
 
-  public Interface_setPrompt_ShouldChangePrompt(): void {
+  Interface_setPrompt_ShouldChangePrompt(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -32,7 +32,7 @@ export class InterfaceTests {
     Assert.Equal("new> ", rl.getPrompt());
   }
 
-  public Interface_getPrompt_ShouldReturnCurrentPrompt(): void {
+  Interface_getPrompt_ShouldReturnCurrentPrompt(): void {
     const input = new Readable();
     const options = new InterfaceOptions();
     options.input = input;
@@ -43,7 +43,7 @@ export class InterfaceTests {
     Assert.Equal("test> ", rl.getPrompt());
   }
 
-  public Interface_prompt_ShouldNotThrow(): void {
+  Interface_prompt_ShouldNotThrow(): void {
     const input = new Readable();
     const output = new Writable();
     const options = new InterfaceOptions();
@@ -59,7 +59,7 @@ export class InterfaceTests {
     Assert.True(true);
   }
 
-  public Interface_pause_ShouldPauseInput(): void {
+  Interface_pause_ShouldPauseInput(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -74,7 +74,7 @@ export class InterfaceTests {
     Assert.True(pauseEmitted);
   }
 
-  public Interface_resume_ShouldResumeInput(): void {
+  Interface_resume_ShouldResumeInput(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -91,7 +91,7 @@ export class InterfaceTests {
     Assert.True(resumeEmitted);
   }
 
-  public Interface_close_ShouldEmitCloseEvent(): void {
+  Interface_close_ShouldEmitCloseEvent(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -105,7 +105,7 @@ export class InterfaceTests {
     Assert.True(closeEmitted);
   }
 
-  public Interface_close_WhenAlreadyClosed_ShouldNotEmitAgain(): void {
+  Interface_close_WhenAlreadyClosed_ShouldNotEmitAgain(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -120,7 +120,7 @@ export class InterfaceTests {
     Assert.Equal(1, closeCount);
   }
 
-  public Interface_question_ShouldInvokeCallback(): void {
+  Interface_question_ShouldInvokeCallback(): void {
     const input = new Readable();
     const output = new Writable();
     const options = new InterfaceOptions();
@@ -140,7 +140,7 @@ export class InterfaceTests {
     Assert.Equal("Alice", answer);
   }
 
-  public Interface_question_WithNullCallback_ShouldThrow(): void {
+  Interface_question_WithNullCallback_ShouldThrow(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -153,7 +153,7 @@ export class InterfaceTests {
     Assert.True(threw);
   }
 
-  public Interface_write_ShouldNotThrow(): void {
+  Interface_write_ShouldNotThrow(): void {
     const input = new Readable();
     const output = new Writable();
     const options = new InterfaceOptions();
@@ -167,7 +167,7 @@ export class InterfaceTests {
     Assert.True(true);
   }
 
-  public Interface_getCursorPos_ShouldReturnPosition(): void {
+  Interface_getCursorPos_ShouldReturnPosition(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -178,7 +178,7 @@ export class InterfaceTests {
     Assert.True(pos.cols >= 0);
   }
 
-  public Interface_prompt_WhenClosed_ShouldThrow(): void {
+  Interface_prompt_WhenClosed_ShouldThrow(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -193,7 +193,7 @@ export class InterfaceTests {
     Assert.True(threw);
   }
 
-  public Interface_question_WhenClosed_ShouldThrow(): void {
+  Interface_question_WhenClosed_ShouldThrow(): void {
     const input = new Readable();
     const rl = createInterface(input);
 
@@ -208,7 +208,7 @@ export class InterfaceTests {
     Assert.True(threw);
   }
 
-  public Interface_write_WhenClosed_ShouldThrow(): void {
+  Interface_write_WhenClosed_ShouldThrow(): void {
     const input = new Readable();
     const rl = createInterface(input);
 

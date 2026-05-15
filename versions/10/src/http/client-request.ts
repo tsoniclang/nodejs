@@ -23,12 +23,12 @@ import { IncomingMessage } from "./incoming-message.ts";
  * Extends EventEmitter to support events like 'response', 'error', 'timeout'.
  */
 export class ClientRequest extends EventEmitter {
-  private readonly _options: RequestOptionsType;
-  private readonly _requestHeaders: Map<string, string> =
+  _options: RequestOptionsType;
+  _requestHeaders: Map<string, string> =
     new Map<string, string>();
-  private _requestBody: string = "";
-  private _aborted: boolean = false;
-  private _ended: boolean = false;
+  _requestBody: string = "";
+  _aborted: boolean = false;
+  _ended: boolean = false;
 
   constructor(
     options: RequestOptionsType,
@@ -61,35 +61,35 @@ export class ClientRequest extends EventEmitter {
   /**
    * Gets the request path.
    */
-  public get path(): string {
+  get path(): string {
     return this._options.path ?? "/";
   }
 
   /**
    * Gets the request method.
    */
-  public get method(): string {
+  get method(): string {
     return this._options.method;
   }
 
   /**
    * Gets the request host.
    */
-  public get host(): string {
+  get host(): string {
     return this._options.hostname ?? "localhost";
   }
 
   /**
    * Gets the request protocol.
    */
-  public get protocol(): string {
+  get protocol(): string {
     return this._options.protocol;
   }
 
   /**
    * Boolean indicating if the request has been aborted.
    */
-  public get aborted(): boolean {
+  get aborted(): boolean {
     return this._aborted;
   }
 
@@ -98,7 +98,7 @@ export class ClientRequest extends EventEmitter {
    * @param name - Header name.
    * @param value - Header value.
    */
-  public setHeader(name: string, value: string): void {
+  setHeader(name: string, value: string): void {
     if (this._ended) {
       throw new Error("Cannot set headers after request has been sent");
     }
@@ -111,7 +111,7 @@ export class ClientRequest extends EventEmitter {
    * @param name - Header name.
    * @returns Header value or null if not set.
    */
-  public getHeader(name: string): string | null {
+  getHeader(name: string): string | null {
     const value = this._requestHeaders.get(name);
     return value !== undefined ? value : null;
   }
@@ -120,7 +120,7 @@ export class ClientRequest extends EventEmitter {
    * Returns an array containing the unique names of the current outgoing headers.
    * @returns Array of header names.
    */
-  public getHeaderNames(): string[] {
+  getHeaderNames(): string[] {
     const names: string[] = [];
     this._requestHeaders.forEach((_value, key, _map) => {
       names.push(key);
@@ -132,7 +132,7 @@ export class ClientRequest extends EventEmitter {
    * Removes a header that's already been added to the request.
    * @param name - Header name.
    */
-  public removeHeader(name: string): void {
+  removeHeader(name: string): void {
     if (this._ended) {
       throw new Error("Cannot remove headers after request has been sent");
     }
@@ -147,7 +147,7 @@ export class ClientRequest extends EventEmitter {
    * @param callback - Optional callback when chunk is flushed.
    * @returns True if entire data was flushed successfully.
    */
-  public write(
+  write(
     chunk: string,
     encoding?: string | null,
     callback?: (() => void) | null
@@ -170,7 +170,7 @@ export class ClientRequest extends EventEmitter {
    * @param encoding - Optional encoding (ignored, always UTF-8).
    * @param callback - Optional callback when request is sent.
    */
-  public end(
+  end(
     chunk?: string | null,
     encoding?: string | null,
     callback?: (() => void) | null
@@ -199,7 +199,7 @@ export class ClientRequest extends EventEmitter {
   /**
    * Aborts the ongoing request.
    */
-  public abort(): void {
+  abort(): void {
     if (this._aborted) {
       return;
     }
@@ -214,7 +214,7 @@ export class ClientRequest extends EventEmitter {
    * @param callback - Optional callback for timeout event.
    * @returns The ClientRequest instance.
    */
-  public setTimeout(
+  setTimeout(
     msecs: int,
     callback?: (() => void) | null
   ): ClientRequest {

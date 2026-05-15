@@ -7,15 +7,15 @@ import { process } from "@tsonic/nodejs/process.js";
 import { assertFileExists } from "./helpers.ts";
 
 export class ProcessExecPathTests {
-  public execPath_is_non_empty(): void {
+  execPath_is_non_empty(): void {
     Assert.True(process.execPath.length > 0);
   }
 
-  public execPath_is_absolute(): void {
+  execPath_is_absolute(): void {
     Assert.True(Path.IsPathRooted(process.execPath));
   }
 
-  public execPath_points_to_an_existing_file(): void {
+  execPath_points_to_an_existing_file(): void {
     assertFileExists(process.execPath);
   }
 }

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { ResolverOptions } from "@tsonic/nodejs/dns.js";
 
 export class ResolverOptionsTests {
-  public ResolverOptions_AllProperties_CanBeSet(): void {
+  ResolverOptions_AllProperties_CanBeSet(): void {
     const options = new ResolverOptions();
     options.timeout = 5000;
     options.tries = 3;

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class PrependListenerTests {
-  public prependListener_adds_to_the_front(): void {
+  prependListener_adds_to_the_front(): void {
     const emitter = new EventEmitter();
     const order: number[] = [];
 
@@ -19,7 +19,7 @@ export class PrependListenerTests {
     Assert.Equal(2, order[2]);
   }
 
-  public prependOnceListener_adds_to_the_front_and_runs_once(): void {
+  prependOnceListener_adds_to_the_front_and_runs_once(): void {
     const emitter = new EventEmitter();
     const order: number[] = [];
 
@@ -34,7 +34,7 @@ export class PrependListenerTests {
     Assert.Equal(1, order[2]);
   }
 
-  public addListener_remains_an_alias_for_on(): void {
+  addListener_remains_an_alias_for_on(): void {
     const emitter = new EventEmitter();
     let count = 0;
 

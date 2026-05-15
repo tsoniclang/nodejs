@@ -1,83 +1,83 @@
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 /**
  * Certificate distinguished-name fields.
  */
 export class TLSCertificateInfo {
-  public C: string = "";
-  public ST: string = "";
-  public L: string = "";
-  public O: string = "";
-  public OU: string = "";
-  public CN: string = "";
+  C: string = "";
+  ST: string = "";
+  L: string = "";
+  O: string = "";
+  OU: string = "";
+  CN: string = "";
 }
 
 /**
  * Peer certificate information returned by getPeerCertificate().
  */
 export class PeerCertificate {
-  public ca: boolean = false;
-  public raw: Uint8Array | null = null;
-  public subject: TLSCertificateInfo = new TLSCertificateInfo();
-  public issuer: TLSCertificateInfo = new TLSCertificateInfo();
-  public valid_from: string = "";
-  public valid_to: string = "";
-  public serialNumber: string = "";
-  public fingerprint: string = "";
-  public fingerprint256: string = "";
-  public fingerprint512: string = "";
-  public ext_key_usage: string[] | null = null;
-  public subjectaltname: string | null = null;
+  ca: boolean = false;
+  raw: Uint8Array | null = null;
+  subject: TLSCertificateInfo = new TLSCertificateInfo();
+  issuer: TLSCertificateInfo = new TLSCertificateInfo();
+  valid_from: string = "";
+  valid_to: string = "";
+  serialNumber: string = "";
+  fingerprint: string = "";
+  fingerprint256: string = "";
+  fingerprint512: string = "";
+  ext_key_usage: string[] | null = null;
+  subjectaltname: string | null = null;
 }
 
 /**
  * Detailed peer certificate with issuer chain.
  */
 export class DetailedPeerCertificate extends PeerCertificate {
-  public issuerCertificate: DetailedPeerCertificate | null = null;
+  issuerCertificate: DetailedPeerCertificate | null = null;
 }
 
 /**
  * Cipher name and protocol information.
  */
 export class CipherNameAndProtocol {
-  public name: string = "";
-  public version: string = "";
-  public standardName: string = "";
+  name: string = "";
+  version: string = "";
+  standardName: string = "";
 }
 
 /**
  * Ephemeral key exchange information.
  */
 export class EphemeralKeyInfo {
-  public type: string = "";
-  public name: string | null = null;
-  public size: number = 0;
+  type: string = "";
+  name: string | null = null;
+  size: number = 0;
 }
 
 /**
  * Secure context options for TLS configuration.
  */
 export class SecureContextOptions {
-  public ca: JsValue = null;
-  public cert: JsValue = null;
-  public ciphers: string | null = null;
-  public key: JsValue = null;
-  public passphrase: string | null = null;
-  public pfx: JsValue = null;
-  public maxVersion: string | null = null;
-  public minVersion: string | null = null;
+  ca: RuntimeValue = null;
+  cert: RuntimeValue = null;
+  ciphers: string | null = null;
+  key: RuntimeValue = null;
+  passphrase: string | null = null;
+  pfx: RuntimeValue = null;
+  maxVersion: string | null = null;
+  minVersion: string | null = null;
 }
 
 /**
  * Common connection options for TLS.
  */
 export class CommonConnectionOptions {
-  public secureContext: SecureContext | null = null;
-  public enableTrace: boolean | null = null;
-  public requestCert: boolean | null = null;
-  public rejectUnauthorized: boolean | null = null;
-  public ALPNProtocols: string[] | null = null;
+  secureContext: SecureContext | null = null;
+  enableTrace: boolean | null = null;
+  requestCert: boolean | null = null;
+  rejectUnauthorized: boolean | null = null;
+  ALPNProtocols: string[] | null = null;
 }
 
 // Forward-declare SecureContext to avoid circular import at the type level.
@@ -88,39 +88,39 @@ import type { SecureContext } from "./secure-context.ts";
  * TLS socket options.
  */
 export class TLSSocketOptions extends CommonConnectionOptions {
-  public isServer: boolean | null = null;
-  public server: JsValue = null;
-  public servername: string | null = null;
-  public ca: JsValue = null;
-  public cert: JsValue = null;
-  public key: JsValue = null;
-  public passphrase: string | null = null;
+  isServer: boolean | null = null;
+  server: RuntimeValue = null;
+  servername: string | null = null;
+  ca: RuntimeValue = null;
+  cert: RuntimeValue = null;
+  key: RuntimeValue = null;
+  passphrase: string | null = null;
 }
 
 /**
  * Connection options for TLS client.
  */
 export class ConnectionOptions extends CommonConnectionOptions {
-  public host: string | null = null;
-  public port: number | null = null;
-  public servername: string | null = null;
-  public ca: JsValue = null;
-  public cert: JsValue = null;
-  public key: JsValue = null;
-  public passphrase: string | null = null;
-  public timeout: number | null = null;
+  host: string | null = null;
+  port: number | null = null;
+  servername: string | null = null;
+  ca: RuntimeValue = null;
+  cert: RuntimeValue = null;
+  key: RuntimeValue = null;
+  passphrase: string | null = null;
+  timeout: number | null = null;
 }
 
 /**
  * TLS server options.
  */
 export class TlsOptions extends CommonConnectionOptions {
-  public handshakeTimeout: number | null = null;
-  public sessionTimeout: number | null = null;
-  public ca: JsValue = null;
-  public cert: JsValue = null;
-  public key: JsValue = null;
-  public passphrase: string | null = null;
-  public allowHalfOpen: boolean | null = null;
-  public pauseOnConnect: boolean | null = null;
+  handshakeTimeout: number | null = null;
+  sessionTimeout: number | null = null;
+  ca: RuntimeValue = null;
+  cert: RuntimeValue = null;
+  key: RuntimeValue = null;
+  passphrase: string | null = null;
+  allowHalfOpen: boolean | null = null;
+  pauseOnConnect: boolean | null = null;
 }

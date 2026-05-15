@@ -1,5 +1,6 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Thread } from "@tsonic/dotnet/System.Threading.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
@@ -16,7 +17,7 @@ import { assertThrows } from "./helpers.ts";
 export class StreamTests {
   // ------------------------------------------------------------------ Readable
 
-  public Readable_should_be_creatable(): void {
+  Readable_should_be_creatable(): void {
     const stream = new Readable();
 
     Assert.NotNull(stream);
@@ -24,7 +25,7 @@ export class StreamTests {
     Assert.False(stream.readableEnded);
   }
 
-  public Readable_push_should_add_data_to_buffer(): void {
+  Readable_push_should_add_data_to_buffer(): void {
     const stream = new Readable();
 
     stream.push("hello");
@@ -37,7 +38,7 @@ export class StreamTests {
     Assert.Equal("world", chunk2);
   }
 
-  public Readable_push_null_should_end_stream(): void {
+  Readable_push_null_should_end_stream(): void {
     const stream = new Readable();
 
     stream.push("data");
@@ -46,7 +47,7 @@ export class StreamTests {
     Assert.True(stream.readableEnded);
   }
 
-  public Readable_read_should_return_null_when_empty(): void {
+  Readable_read_should_return_null_when_empty(): void {
     const stream = new Readable();
 
     const result = stream.read();
@@ -54,7 +55,7 @@ export class StreamTests {
     Assert.Null(result);
   }
 
-  public Readable_pause_should_stop_flowing(): void {
+  Readable_pause_should_stop_flowing(): void {
     const stream = new Readable();
 
     stream.resume();
@@ -64,7 +65,7 @@ export class StreamTests {
     Assert.True(stream.isPaused());
   }
 
-  public Readable_resume_should_enable_flowing(): void {
+  Readable_resume_should_enable_flowing(): void {
     const stream = new Readable();
 
     Assert.True(stream.isPaused());
@@ -73,7 +74,7 @@ export class StreamTests {
     Assert.False(stream.isPaused());
   }
 
-  public Readable_setEncoding_should_return_self(): void {
+  Readable_setEncoding_should_return_self(): void {
     const stream = new Readable();
 
     const result = stream.setEncoding("utf8");
@@ -81,7 +82,7 @@ export class StreamTests {
     Assert.True(result === stream);
   }
 
-  public Readable_unshift_should_prepend_data(): void {
+  Readable_unshift_should_prepend_data(): void {
     const stream = new Readable();
 
     stream.push("second");
@@ -94,7 +95,7 @@ export class StreamTests {
     Assert.Equal("second", chunk2);
   }
 
-  public Readable_readableLength_should_reflect_buffer_size(): void {
+  Readable_readableLength_should_reflect_buffer_size(): void {
     const stream = new Readable();
 
     Assert.Equal(0, stream.readableLength);
@@ -108,7 +109,7 @@ export class StreamTests {
     Assert.Equal(1, stream.readableLength);
   }
 
-  public Readable_destroy_should_mark_as_destroyed(): void {
+  Readable_destroy_should_mark_as_destroyed(): void {
     const stream = new Readable();
 
     stream.destroy();
@@ -117,11 +118,11 @@ export class StreamTests {
     Assert.False(stream.readable);
   }
 
-  public Readable_destroy_with_error_should_emit_error(): void {
+  Readable_destroy_with_error_should_emit_error(): void {
     const stream = new Readable();
     let caughtMessage = "";
 
-    stream.on("error", (err: JsValue) => {
+    stream.on("error", (err: RuntimeValue) => {
       if (err instanceof Error) {
         caughtMessage = err.message;
       }
@@ -133,11 +134,11 @@ export class StreamTests {
     Assert.Equal("test error", caughtMessage);
   }
 
-  public Readable_flowing_mode_should_emit_data(): void {
+  Readable_flowing_mode_should_emit_data(): void {
     const stream = new Readable();
     const received: string[] = [];
 
-    stream.on("data", (chunk: JsValue) => {
+    stream.on("data", (chunk: RuntimeValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -157,7 +158,7 @@ export class StreamTests {
 
   // ------------------------------------------------------------------ Writable
 
-  public Writable_should_be_creatable(): void {
+  Writable_should_be_creatable(): void {
     const stream = new Writable();
 
     Assert.NotNull(stream);
@@ -165,7 +166,7 @@ export class StreamTests {
     Assert.False(stream.writableEnded);
   }
 
-  public Writable_write_should_return_true(): void {
+  Writable_write_should_return_true(): void {
     const stream = new Writable();
 
     const result = stream.write("test data");
@@ -173,7 +174,7 @@ export class StreamTests {
     Assert.True(result);
   }
 
-  public Writable_end_should_mark_as_ended(): void {
+  Writable_end_should_mark_as_ended(): void {
     const stream = new Writable();
 
     stream.end();
@@ -181,7 +182,7 @@ export class StreamTests {
     Assert.True(stream.writableEnded);
   }
 
-  public Writable_end_with_data_should_write_then_end(): void {
+  Writable_end_with_data_should_write_then_end(): void {
     const stream = new Writable();
 
     stream.end("final chunk");
@@ -189,7 +190,7 @@ export class StreamTests {
     Assert.True(stream.writableEnded);
   }
 
-  public Writable_write_after_end_should_throw(): void {
+  Writable_write_after_end_should_throw(): void {
     const stream = new Writable();
 
     stream.end();
@@ -199,7 +200,7 @@ export class StreamTests {
     });
   }
 
-  public Writable_cork_should_buffer_writes(): void {
+  Writable_cork_should_buffer_writes(): void {
     const stream = new Writable();
 
     stream.cork();
@@ -212,7 +213,7 @@ export class StreamTests {
     Assert.False(stream.writableCorked);
   }
 
-  public Writable_destroy_should_mark_as_destroyed(): void {
+  Writable_destroy_should_mark_as_destroyed(): void {
     const stream = new Writable();
 
     stream.destroy();
@@ -221,7 +222,7 @@ export class StreamTests {
     Assert.False(stream.writable);
   }
 
-  public Writable_writableLength_should_reflect_buffer_size(): void {
+  Writable_writableLength_should_reflect_buffer_size(): void {
     const stream = new Writable();
 
     stream.cork();
@@ -235,7 +236,7 @@ export class StreamTests {
 
   // -------------------------------------------------------------------- Duplex
 
-  public Duplex_should_be_creatable(): void {
+  Duplex_should_be_creatable(): void {
     const stream = new Duplex();
 
     Assert.NotNull(stream);
@@ -243,7 +244,7 @@ export class StreamTests {
     Assert.True(stream.writable);
   }
 
-  public Duplex_should_support_readable_operations(): void {
+  Duplex_should_support_readable_operations(): void {
     const stream = new Duplex();
 
     stream.push("data");
@@ -252,7 +253,7 @@ export class StreamTests {
     Assert.Equal("data", result);
   }
 
-  public Duplex_should_support_writable_operations(): void {
+  Duplex_should_support_writable_operations(): void {
     const stream = new Duplex();
 
     const result = stream.write("data");
@@ -260,7 +261,7 @@ export class StreamTests {
     Assert.True(result);
   }
 
-  public Duplex_should_support_both_ends(): void {
+  Duplex_should_support_both_ends(): void {
     const stream = new Duplex();
 
     // Write side
@@ -277,7 +278,7 @@ export class StreamTests {
 
   // ----------------------------------------------------------------- Transform
 
-  public Transform_should_be_creatable(): void {
+  Transform_should_be_creatable(): void {
     const stream = new Transform();
 
     Assert.NotNull(stream);
@@ -285,11 +286,11 @@ export class StreamTests {
     Assert.True(stream.writable);
   }
 
-  public Transform_default_behavior_should_pass_through(): void {
+  Transform_default_behavior_should_pass_through(): void {
     const stream = new Transform();
     const received: string[] = [];
 
-    stream.on("data", (chunk: JsValue) => {
+    stream.on("data", (chunk: RuntimeValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -305,7 +306,7 @@ export class StreamTests {
 
   // --------------------------------------------------------------- PassThrough
 
-  public PassThrough_should_be_creatable(): void {
+  PassThrough_should_be_creatable(): void {
     const stream = new PassThrough();
 
     Assert.NotNull(stream);
@@ -313,11 +314,11 @@ export class StreamTests {
     Assert.True(stream.writable);
   }
 
-  public PassThrough_should_pass_data_through(): void {
+  PassThrough_should_pass_data_through(): void {
     const stream = new PassThrough();
     const received: string[] = [];
 
-    stream.on("data", (chunk: JsValue) => {
+    stream.on("data", (chunk: RuntimeValue) => {
       if (chunk !== null && chunk !== undefined) {
         received.push(String(chunk));
       }
@@ -338,7 +339,7 @@ export class StreamTests {
 
   // ----------------------------------------------------------------- Pipe / IO
 
-  public Stream_pipe_should_transfer_data_between_streams(): void {
+  Stream_pipe_should_transfer_data_between_streams(): void {
     const readable = new Readable();
     const writable = new Writable();
 
@@ -352,7 +353,7 @@ export class StreamTests {
     Assert.True(writable.writableLength >= 0);
   }
 
-  public Stream_pipe_should_return_destination(): void {
+  Stream_pipe_should_return_destination(): void {
     const readable = new Readable();
     const writable = new Writable();
 
@@ -361,7 +362,7 @@ export class StreamTests {
     Assert.True(result === writable);
   }
 
-  public Stream_pipe_should_not_end_destination_when_specified(): void {
+  Stream_pipe_should_not_end_destination_when_specified(): void {
     const readable = new Readable();
     const writable = new Writable();
 
@@ -377,7 +378,7 @@ export class StreamTests {
 
   // -------------------------------------------------------------------- Events
 
-  public Readable_events_should_be_emitted(): void {
+  Readable_events_should_be_emitted(): void {
     const stream = new Readable();
     let readableEmitted = false;
     let endEmitted = false;
@@ -397,7 +398,7 @@ export class StreamTests {
     Assert.True(endEmitted);
   }
 
-  public Writable_finish_event_should_be_emitted(): void {
+  Writable_finish_event_should_be_emitted(): void {
     const stream = new Writable();
     let finishEmitted = false;
 
@@ -412,7 +413,7 @@ export class StreamTests {
     Assert.True(finishEmitted);
   }
 
-  public Stream_close_event_should_be_emitted_on_destroy(): void {
+  Stream_close_event_should_be_emitted_on_destroy(): void {
     const stream = new Readable();
     let closeEmitted = false;
 
@@ -427,7 +428,7 @@ export class StreamTests {
     Assert.True(closeEmitted);
   }
 
-  public Complex_pipeline_should_work(): void {
+  Complex_pipeline_should_work(): void {
     const readable = new Readable();
     const transform1 = new PassThrough();
     const transform2 = new PassThrough();

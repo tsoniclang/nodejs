@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class statSyncTests {
-  public statSync_File_ShouldReturnFileStats(): void {
+  statSync_File_ShouldReturnFileStats(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stat-test.txt");
@@ -22,7 +22,7 @@ export class statSyncTests {
     }
   }
 
-  public statSync_Directory_ShouldReturnDirectoryStats(): void {
+  statSync_Directory_ShouldReturnDirectoryStats(): void {
     const dir = createTempDir();
     try {
       const childDir = getTestPath(dir, "stat-dir");
@@ -38,7 +38,7 @@ export class statSyncTests {
     }
   }
 
-  public statSync_NonExistent_ShouldThrow(): void {
+  statSync_NonExistent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent.txt");
@@ -48,7 +48,7 @@ export class statSyncTests {
     }
   }
 
-  public stats_Methods_ShouldWorkCorrectly(): void {
+  stats_Methods_ShouldWorkCorrectly(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stats-methods.txt");
@@ -66,7 +66,7 @@ export class statSyncTests {
     }
   }
 
-  public statSync_ShouldExposeUnixMillisecondTimestamps(): void {
+  statSync_ShouldExposeUnixMillisecondTimestamps(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stats-time.txt");

@@ -80,18 +80,18 @@ export const platform = platformToNodeName();
 export const version = "v24.0.0-tsonic";
 
 export class ProcessVersions {
-  public node: string = "24.0.0";
-  public v8: string = "0.0.0";
-  public dotnet: string = Environment.Version.ToString();
-  public tsonic: string = "0.0.74";
+  node: string = "24.0.0";
+  v8: string = "0.0.0";
+  dotnet: string = Environment.Version.ToString();
+  tsonic: string = "0.0.74";
 }
 
 const currentVersions = new ProcessVersions();
 
 export class ProcessEnv {
-  private readonly values: Record<string, string | undefined> = {};
+  values: Map<string, string> = new Map<string, string>();
 
-  public constructor() {
+  constructor() {
     const variables = Environment.GetEnvironmentVariables();
     const iterator = variables.GetEnumerator();
     while (iterator.MoveNext()) {
@@ -101,53 +101,52 @@ export class ProcessEnv {
         continue;
       }
 
-      const key = String(rawKey);
+      const key = Convert.ToString(rawKey) ?? "";
       const rawValue = entry.Value;
-      this.values[key] =
-        rawValue === undefined || rawValue === null ? undefined : String(rawValue);
+      if (rawValue !== undefined && rawValue !== null) {
+        this.values.set(key, Convert.ToString(rawValue) ?? "");
+      }
     }
   }
 
-  public containsKey(key: string): boolean {
+  containsKey(key: string): boolean {
     return this.resolveKey(key) !== undefined;
   }
 
-  public get(key: string): string | undefined {
+  get(key: string): string | undefined {
     const resolvedKey = this.resolveKey(key);
-    return resolvedKey === undefined ? undefined : this.values[resolvedKey];
+    return resolvedKey === undefined ? undefined : this.values.get(resolvedKey);
   }
 
-  public set(key: string, value: string | undefined): void {
+  set(key: string, value: string | undefined): void {
     const resolvedKey = this.resolveKey(key) ?? key;
     if (value === undefined) {
-      if (this.hasOwnKey(resolvedKey)) {
-        delete this.values[resolvedKey];
-      }
+      this.values.delete(resolvedKey);
       unsetEnvironmentVariable(resolvedKey);
       return;
     }
 
-    this.values[resolvedKey] = value;
+    this.values.set(resolvedKey, value);
     Environment.SetEnvironmentVariable(resolvedKey, value);
   }
 
-  public remove(key: string): boolean {
+  remove(key: string): boolean {
     const resolvedKey = this.resolveKey(key);
     if (resolvedKey === undefined) {
       return false;
     }
 
-    delete this.values[resolvedKey];
+    this.values.delete(resolvedKey);
     unsetEnvironmentVariable(resolvedKey);
     return true;
   }
 
-  private resolveKey(key: string): string | undefined {
+  resolveKey(key: string): string | undefined {
     if (this.hasOwnKey(key)) {
       return key;
     }
 
-    for (const existingKey in this.values) {
+    for (const existingKey of this.values.keys()) {
       if (stringsEqual(existingKey, key)) {
         return existingKey;
       }
@@ -156,8 +155,8 @@ export class ProcessEnv {
     return undefined;
   }
 
-  private hasOwnKey(key: string): boolean {
-    for (const existingKey in this.values) {
+  hasOwnKey(key: string): boolean {
+    for (const existingKey of this.values.keys()) {
       if (existingKey === key) {
         return true;
       }
@@ -193,27 +192,11 @@ const normalizeSignal = (signal?: int | string): string => {
     return "SIGTERM";
   }
 
-  if (typeof signal === "string") {
-    return signal.toUpperCase();
+  if (typeof signal === "number") {
+    return signal === 0 ? "0" : signal.toString();
   }
 
-  if (signal === (0 as int)) {
-    return "0";
-  }
-  if (signal === (1 as int)) {
-    return "SIGHUP";
-  }
-  if (signal === (2 as int)) {
-    return "SIGINT";
-  }
-  if (signal === (9 as int)) {
-    return "SIGKILL";
-  }
-  if (signal === (15 as int)) {
-    return "SIGTERM";
-  }
-
-  return "SIGTERM";
+  return signal.toUpperCase();
 };
 
 export const kill = (targetPid: int, signal?: int | string): boolean => {
@@ -276,75 +259,75 @@ const getParentProcessId = (): int => {
 };
 
 export class ProcessModule {
-  public get env(): ProcessEnv {
+  get env(): ProcessEnv {
     return currentEnv;
   }
 
-  public get argv(): string[] {
+  get argv(): string[] {
     return currentArgv;
   }
 
-  public set argv(value: string[] | undefined) {
+  set argv(value: string[] | undefined) {
     currentArgv = value ?? [];
   }
 
-  public get argv0(): string {
+  get argv0(): string {
     return currentArgv0;
   }
 
-  public set argv0(value: string | undefined) {
+  set argv0(value: string | undefined) {
     currentArgv0 = value ?? "";
   }
 
-  public get pid(): int {
+  get pid(): int {
     return pid;
   }
 
-  public get execPath(): string {
+  get execPath(): string {
     return execPath;
   }
 
-  public get arch(): string {
+  get arch(): string {
     return arch;
   }
 
-  public get platform(): string {
+  get platform(): string {
     return platform;
   }
 
-  public get ppid(): int {
+  get ppid(): int {
     return getParentProcessId();
   }
 
-  public get version(): string {
+  get version(): string {
     return version;
   }
 
-  public get versions(): ProcessVersions {
+  get versions(): ProcessVersions {
     return currentVersions;
   }
 
-  public get exitCode(): int | undefined {
+  get exitCode(): int | undefined {
     return currentExitCode;
   }
 
-  public set exitCode(value: int | undefined) {
+  set exitCode(value: int | undefined) {
     currentExitCode = value;
   }
 
-  public cwd(): string {
+  cwd(): string {
     return cwd();
   }
 
-  public chdir(directory: string): void {
+  chdir(directory: string): void {
     chdir(directory);
   }
 
-  public exit(code?: int): void {
+  exit(code?: int): void {
     exit(code);
   }
 
-  public kill(pid: int, signal?: int | string): boolean {
+  kill(pid: int, signal?: int | string): boolean {
     return kill(pid, signal);
   }
 }

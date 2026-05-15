@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { TlsaRecord } from "@tsonic/nodejs/dns.js";
 
 export class TlsaRecordTests {
-  public TlsaRecord_AllProperties_CanBeSet(): void {
+  TlsaRecord_AllProperties_CanBeSet(): void {
     const record = new TlsaRecord();
     record.certUsage = 3;
     record.selector = 1;

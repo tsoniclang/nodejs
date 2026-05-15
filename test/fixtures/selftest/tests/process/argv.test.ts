@@ -4,15 +4,15 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { process } from "@tsonic/nodejs/process.js";
 
 export class ProcessArgvTests {
-  public argv_returns_an_array(): void {
+  argv_returns_an_array(): void {
     Assert.True(process.argv !== undefined);
   }
 
-  public argv0_returns_a_string(): void {
+  argv0_returns_a_string(): void {
     Assert.True(process.argv0 !== undefined);
   }
 
-  public argv_is_settable(): void {
+  argv_is_settable(): void {
     const original = process.argv;
     const next = ["test", "args"];
 
@@ -26,7 +26,7 @@ export class ProcessArgvTests {
     }
   }
 
-  public argv0_is_settable(): void {
+  argv0_is_settable(): void {
     const original = process.argv0;
 
     try {
@@ -37,7 +37,7 @@ export class ProcessArgvTests {
     }
   }
 
-  public argv_handles_undefined_by_becoming_empty(): void {
+  argv_handles_undefined_by_becoming_empty(): void {
     const original = process.argv;
 
     try {
@@ -48,7 +48,7 @@ export class ProcessArgvTests {
     }
   }
 
-  public argv0_handles_undefined_by_becoming_empty_string(): void {
+  argv0_handles_undefined_by_becoming_empty_string(): void {
     const original = process.argv0;
 
     try {

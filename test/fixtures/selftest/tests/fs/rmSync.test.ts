@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class rmSyncTests {
-  public rmSync_ShouldRemoveFile(): void {
+  rmSync_ShouldRemoveFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "rm-test.txt");
@@ -18,7 +18,7 @@ export class rmSyncTests {
     }
   }
 
-  public rmSync_ShouldRemoveEmptyDirectory(): void {
+  rmSync_ShouldRemoveEmptyDirectory(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-dir");
@@ -30,7 +30,7 @@ export class rmSyncTests {
     }
   }
 
-  public rmSync_Recursive_ShouldRemoveDirectoryWithContents(): void {
+  rmSync_Recursive_ShouldRemoveDirectoryWithContents(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-tree");
@@ -44,7 +44,7 @@ export class rmSyncTests {
     }
   }
 
-  public rmSync_NonRecursive_DirectoryWithContents_ShouldThrow(): void {
+  rmSync_NonRecursive_DirectoryWithContents_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "rm-non-recursive");
@@ -57,7 +57,7 @@ export class rmSyncTests {
     }
   }
 
-  public rmSync_NonExistent_ShouldNotThrow(): void {
+  rmSync_NonExistent_ShouldNotThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-rm.txt");

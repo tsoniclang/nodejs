@@ -1,14 +1,14 @@
 import { overloads as O } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert } from "xunit-types/Xunit.js";
 
-export function assertThrows(action: () => void): JsValue;
-export function assertThrows(action: () => JsValue): JsValue;
+export function assertThrows(action: () => void): RuntimeValue;
+export function assertThrows(action: () => RuntimeValue): RuntimeValue;
 export function assertThrows(_action: any): any {
   throw new Error("stub");
 }
 
-function assertThrows_void(action: () => void): JsValue {
+function assertThrows_void(action: () => void): RuntimeValue {
   try {
     action();
   } catch (error) {
@@ -19,7 +19,7 @@ function assertThrows_void(action: () => void): JsValue {
   return undefined;
 }
 
-function assertThrows_value(action: () => JsValue): JsValue {
+function assertThrows_value(action: () => RuntimeValue): RuntimeValue {
   try {
     action();
   } catch (error) {
@@ -30,17 +30,17 @@ function assertThrows_value(action: () => JsValue): JsValue {
   return undefined;
 }
 
-export function assertThrowsAsync(action: () => Promise<void>): Promise<JsValue>;
+export function assertThrowsAsync(action: () => Promise<void>): Promise<RuntimeValue>;
 export function assertThrowsAsync(
-  action: () => Promise<JsValue>,
-): Promise<JsValue>;
+  action: () => Promise<RuntimeValue>,
+): Promise<RuntimeValue>;
 export async function assertThrowsAsync(_action: any): Promise<any> {
   throw new Error("stub");
 }
 
 async function assertThrowsAsync_void(
   action: () => Promise<void>,
-): Promise<JsValue> {
+): Promise<RuntimeValue> {
   try {
     await action();
   } catch (error) {
@@ -52,8 +52,8 @@ async function assertThrowsAsync_void(
 }
 
 async function assertThrowsAsync_value(
-  action: () => Promise<JsValue>,
-): Promise<JsValue> {
+  action: () => Promise<RuntimeValue>,
+): Promise<RuntimeValue> {
   try {
     await action();
   } catch (error) {

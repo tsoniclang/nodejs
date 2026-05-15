@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readSyncTests {
-  public readSync_ShouldReadEntireFile(): void {
+  readSync_ShouldReadEntireFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_WithOffset_ShouldReadIntoBufferAtOffset(): void {
+  readSync_WithOffset_ShouldReadIntoBufferAtOffset(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -39,7 +39,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_WithPosition_ShouldReadFromSpecificPosition(): void {
+  readSync_WithPosition_ShouldReadFromSpecificPosition(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -54,7 +54,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_MultipleCalls_ShouldAdvanceFilePosition(): void {
+  readSync_MultipleCalls_ShouldAdvanceFilePosition(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -72,7 +72,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_ReadPastEndOfFile_ShouldReturnZero(): void {
+  readSync_ReadPastEndOfFile_ShouldReturnZero(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -88,7 +88,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_WithNullBuffer_ShouldThrow(): void {
+  readSync_WithNullBuffer_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -101,12 +101,12 @@ export class readSyncTests {
     }
   }
 
-  public readSync_WithInvalidDescriptor_ShouldThrow(): void {
+  readSync_WithInvalidDescriptor_ShouldThrow(): void {
     const buffer = Buffer.alloc(10);
     assertThrows(() => fs.readSync(999, buffer, 0, 10, null));
   }
 
-  public readSync_WithInvalidOffset_ShouldThrow(): void {
+  readSync_WithInvalidOffset_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -121,7 +121,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_WithInvalidLength_ShouldThrow(): void {
+  readSync_WithInvalidLength_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -136,7 +136,7 @@ export class readSyncTests {
     }
   }
 
-  public readSync_EmptyFile_ShouldReturnZero(): void {
+  readSync_EmptyFile_ShouldReturnZero(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

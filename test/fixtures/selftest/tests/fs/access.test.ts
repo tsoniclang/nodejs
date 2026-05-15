@@ -16,7 +16,7 @@ import {
 } from "./helpers.ts";
 
 export class accessTests {
-  public async access_ExistingFile_ShouldNotThrow(): Promise<void> {
+  async access_ExistingFile_ShouldNotThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "access-test-async.txt");
@@ -27,7 +27,7 @@ export class accessTests {
     }
   }
 
-  public async access_ExistingDirectory_ShouldNotThrow(): Promise<void> {
+  async access_ExistingDirectory_ShouldNotThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "access-dir-async");
@@ -38,7 +38,7 @@ export class accessTests {
     }
   }
 
-  public async access_NonExistent_ShouldThrow(): Promise<void> {
+  async access_NonExistent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-access-async.txt");
@@ -49,7 +49,7 @@ export class accessTests {
     }
   }
 
-  public async access_ReadableFile_ShouldNotThrow(): Promise<void> {
+  async access_ReadableFile_ShouldNotThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "readable-test-async.txt");

@@ -12,7 +12,7 @@ import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
  * implementation is provided.
  */
 export class Zlib_unzipSyncTests {
-  public unzipSync_ShouldDecompressGzip(): void {
+  unzipSync_ShouldDecompressGzip(): void {
     const original = utf8Bytes("Hello, World!");
     const compressed = gzipSync(original);
     const decompressed = unzipSync(compressed);
@@ -20,7 +20,7 @@ export class Zlib_unzipSyncTests {
     Assert.Equal(original.length, decompressed.length);
   }
 
-  public unzipSync_ShouldDecompressDeflate(): void {
+  unzipSync_ShouldDecompressDeflate(): void {
     const original = utf8Bytes("Hello, World!");
     const compressed = deflateSync(original);
     const decompressed = unzipSync(compressed);
@@ -28,7 +28,7 @@ export class Zlib_unzipSyncTests {
     Assert.Equal(original.length, decompressed.length);
   }
 
-  public unzipSync_WithGzipData_ShouldAutoDetect(): void {
+  unzipSync_WithGzipData_ShouldAutoDetect(): void {
     const originalText = "Test data for auto-detection";
     const original = utf8Bytes(originalText);
     const compressed = gzipSync(original);
@@ -38,11 +38,11 @@ export class Zlib_unzipSyncTests {
     Assert.Equal(originalText, resultText);
   }
 
-  public unzipSync_WithNullBuffer_ShouldThrow(): void {
+  unzipSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => unzipSync(asinterface<Uint8Array>(null)));
   }
 
-  public unzipSync_WithTooSmallBuffer_ShouldThrow(): void {
+  unzipSync_WithTooSmallBuffer_ShouldThrow(): void {
     const tooSmall = new Uint8Array([0x00]);
 
     assertThrows(() => unzipSync(tooSmall));

@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class chmodSyncTests {
-  public chmodSync_ShouldChangeFilePermissions(): void {
+  chmodSync_ShouldChangeFilePermissions(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "chmod-test.txt");
@@ -19,7 +19,7 @@ export class chmodSyncTests {
     }
   }
 
-  public chmodSync_NonExistentFile_ShouldThrow(): void {
+  chmodSync_NonExistentFile_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent-chmod.txt");
@@ -29,7 +29,7 @@ export class chmodSyncTests {
     }
   }
 
-  public chmodSync_Directory_ShouldWork(): void {
+  chmodSync_Directory_ShouldWork(): void {
     const dir = createTempDir();
     try {
       const directoryPath = getTestPath(dir, "chmod-dir");

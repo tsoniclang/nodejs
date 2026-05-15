@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnyTxtRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnyTxtRecordTests {
-  public AnyTxtRecord_AllProperties_CanBeSet(): void {
+  AnyTxtRecord_AllProperties_CanBeSet(): void {
     const record = new AnyTxtRecord();
     record.entries = ["v=spf1 include:_spf.example.com ~all"];
 

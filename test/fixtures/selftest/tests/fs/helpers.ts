@@ -1,5 +1,6 @@
 import { overloads as O } from "@tsonic/core/lang.js";
-import type { byte, JsValue } from "@tsonic/core/types.js";
+import type { byte } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Guid } from "@tsonic/dotnet/System.js";
 import { Directory, File, Path } from "@tsonic/dotnet/System.IO.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
@@ -26,13 +27,13 @@ export const deleteIfExists = (value: string): void => {
 export const getTestPath = (dir: string, name: string): string =>
   Path.Combine(dir, name);
 
-export function assertThrows(action: () => void): JsValue;
-export function assertThrows(action: () => JsValue): JsValue;
+export function assertThrows(action: () => void): RuntimeValue;
+export function assertThrows(action: () => RuntimeValue): RuntimeValue;
 export function assertThrows(_action: any): any {
   throw new Error("stub");
 }
 
-function assertThrows_void(action: () => void): JsValue {
+function assertThrows_void(action: () => void): RuntimeValue {
   try {
     action();
   } catch (error) {
@@ -42,7 +43,7 @@ function assertThrows_void(action: () => void): JsValue {
   throw new Error("Expected action to throw");
 }
 
-function assertThrows_value(action: () => JsValue): JsValue {
+function assertThrows_value(action: () => RuntimeValue): RuntimeValue {
   try {
     action();
   } catch (error) {
@@ -52,17 +53,17 @@ function assertThrows_value(action: () => JsValue): JsValue {
   throw new Error("Expected action to throw");
 }
 
-export function assertThrowsAsync(action: () => Promise<void>): Promise<JsValue>;
+export function assertThrowsAsync(action: () => Promise<void>): Promise<RuntimeValue>;
 export function assertThrowsAsync(
-  action: () => Promise<JsValue>,
-): Promise<JsValue>;
+  action: () => Promise<RuntimeValue>,
+): Promise<RuntimeValue>;
 export async function assertThrowsAsync(_action: any): Promise<any> {
   throw new Error("stub");
 }
 
 async function assertThrowsAsync_void(
   action: () => Promise<void>,
-): Promise<JsValue> {
+): Promise<RuntimeValue> {
   try {
     await action();
   } catch (error) {
@@ -73,8 +74,8 @@ async function assertThrowsAsync_void(
 }
 
 async function assertThrowsAsync_value(
-  action: () => Promise<JsValue>,
-): Promise<JsValue> {
+  action: () => Promise<RuntimeValue>,
+): Promise<RuntimeValue> {
   try {
     await action();
   } catch (error) {

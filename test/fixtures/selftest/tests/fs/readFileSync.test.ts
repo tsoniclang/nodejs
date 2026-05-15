@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readFileSyncTests {
-  public readFileSync_ShouldReadTextFile(): void {
+  readFileSync_ShouldReadTextFile(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -20,7 +20,7 @@ export class readFileSyncTests {
     }
   }
 
-  public readFileSync_NonExistentFile_ShouldThrow(): void {
+  readFileSync_NonExistentFile_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "nonexistent.txt");
@@ -31,7 +31,7 @@ export class readFileSyncTests {
     }
   }
 
-  public readFileSync_WithoutEncoding_ShouldReturnBuffer(): void {
+  readFileSync_WithoutEncoding_ShouldReturnBuffer(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "buffer.bin");

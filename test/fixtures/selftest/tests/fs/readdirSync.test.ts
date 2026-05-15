@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readdirSyncTests {
-  public readdirSync_ShouldListDirectoryContents(): void {
+  readdirSync_ShouldListDirectoryContents(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "read-dir");
@@ -24,7 +24,7 @@ export class readdirSyncTests {
     }
   }
 
-  public readdirSync_EmptyDirectory_ShouldReturnEmptyArray(): void {
+  readdirSync_EmptyDirectory_ShouldReturnEmptyArray(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "empty-dir");

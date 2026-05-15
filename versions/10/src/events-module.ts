@@ -1,10 +1,11 @@
 
 import type {} from "./type-bootstrap.ts";
 
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import { Console as DotnetConsole } from "@tsonic/dotnet/System.js";
+import type { RuntimeValue } from "./runtime-value.ts";
 
-export type EventListener = (...args: JsValue[]) => void;
+export type EventListener = (...args: RuntimeValue[]) => void;
 
 export const toEventListener = (
   listener: (() => void) | null | undefined
@@ -13,7 +14,7 @@ export const toEventListener = (
     return undefined;
   }
 
-  return (..._args: JsValue[]): void => {
+  return (..._args: RuntimeValue[]): void => {
     listener();
   };
 };
@@ -25,7 +26,7 @@ export const toUnaryEventListener = <T>(
     return undefined;
   }
 
-  return (...args: JsValue[]): void => {
+  return (...args: RuntimeValue[]): void => {
     listener(args[0] as T);
   };
 };
@@ -37,22 +38,22 @@ export const toBinaryEventListener = <T1, T2>(
     return undefined;
   }
 
-  return (...args: JsValue[]): void => {
+  return (...args: RuntimeValue[]): void => {
     listener(args[0] as T1, args[1] as T2);
   };
 };
 
 type ListenerRegistration = {
-  readonly original: EventListener;
-  readonly invoke: EventListener;
-  readonly once: boolean;
+  original: EventListener;
+  invoke: EventListener;
+  once: boolean;
 };
 
 const ERROR_EVENT = "error";
 const NEW_LISTENER_EVENT = "newListener";
 const REMOVE_LISTENER_EVENT = "removeListener";
 
-const throwUnhandledError = (value?: JsValue): never => {
+const throwUnhandledError = (value?: RuntimeValue): never => {
   if (value instanceof Error) {
     throw value;
   }
@@ -61,12 +62,12 @@ const throwUnhandledError = (value?: JsValue): never => {
 };
 
 export class EventEmitter {
-  private static _defaultMaxListeners: int = 10 as int;
+  static _defaultMaxListeners: int = 10 as int;
 
-  public static once(
+  static once(
     emitter: EventEmitter,
     eventName: string
-  ): Promise<JsValue[]> {
+  ): Promise<RuntimeValue[]> {
     if (emitter === undefined || emitter === null) {
       throw new Error("EventEmitter.once requires an emitter");
     }
@@ -78,16 +79,16 @@ export class EventEmitter {
     return once(emitter, eventName);
   }
 
-  private readonly listenersByEvent: Map<string, ListenerRegistration[]> =
+  listenersByEvent: Map<string, ListenerRegistration[]> =
     new Map<string, ListenerRegistration[]>();
-  private readonly knownEventNames: string[] = [];
-  private _maxListeners: int = EventEmitter._defaultMaxListeners;
+  knownEventNames: string[] = [];
+  _maxListeners: int = EventEmitter._defaultMaxListeners;
 
-  public static get defaultMaxListeners(): int {
+  static get defaultMaxListeners(): int {
     return EventEmitter._defaultMaxListeners;
   }
 
-  public static set defaultMaxListeners(value: int) {
+  static set defaultMaxListeners(value: int) {
     if (value < 0) {
       throw new Error("Max listeners must be non-negative");
     }
@@ -95,37 +96,37 @@ export class EventEmitter {
     EventEmitter._defaultMaxListeners = value;
   }
 
-  public addListener(eventName: string, listener: EventListener): EventEmitter {
+  addListener(eventName: string, listener: EventListener): EventEmitter {
     return this.on(eventName, listener);
   }
 
-  public on(eventName: string, listener: EventListener): EventEmitter {
+  on(eventName: string, listener: EventListener): EventEmitter {
     return this.insertListener(eventName, listener, false, false);
   }
 
-  public once(eventName: string, listener: EventListener): EventEmitter {
+  once(eventName: string, listener: EventListener): EventEmitter {
     return this.insertListener(eventName, listener, true, false);
   }
 
-  public prependListener(
+  prependListener(
     eventName: string,
     listener: EventListener
   ): EventEmitter {
     return this.insertListener(eventName, listener, false, true);
   }
 
-  public prependOnceListener(
+  prependOnceListener(
     eventName: string,
     listener: EventListener
   ): EventEmitter {
     return this.insertListener(eventName, listener, true, true);
   }
 
-  public off(eventName: string, listener: EventListener): EventEmitter {
+  off(eventName: string, listener: EventListener): EventEmitter {
     return this.removeListener(eventName, listener);
   }
 
-  public removeListener(eventName: string, listener: EventListener): EventEmitter {
+  removeListener(eventName: string, listener: EventListener): EventEmitter {
     const registrations = this.listenersByEvent.get(eventName);
     if (registrations === undefined || registrations.length === 0) {
       return this;
@@ -160,7 +161,7 @@ export class EventEmitter {
     return this;
   }
 
-  public removeAllListeners(eventName?: string): EventEmitter {
+  removeAllListeners(eventName?: string): EventEmitter {
     if (eventName === undefined) {
       const names = this.eventNames();
       for (const name of names) {
@@ -184,7 +185,7 @@ export class EventEmitter {
     return this;
   }
 
-  public emit(eventName: string, ...args: JsValue[]): boolean {
+  emit(eventName: string, ...args: RuntimeValue[]): boolean {
     const registrations = this.listenersByEvent.get(eventName);
     if (registrations === undefined || registrations.length === 0) {
       if (eventName === ERROR_EVENT) {
@@ -199,22 +200,11 @@ export class EventEmitter {
         registration.invoke(...args);
       } catch (error) {
         if (eventName !== ERROR_EVENT) {
-          if (error === undefined) {
-            this.emit(ERROR_EVENT, new Error("Unknown event handler error"));
-          } else if (
-            error === null ||
-            typeof error === "string" ||
-            typeof error === "number" ||
-            typeof error === "boolean" ||
-            typeof error === "bigint" ||
-            typeof error === "symbol" ||
-            typeof error === "object" ||
-            typeof error === "function"
-          ) {
-            this.emit(ERROR_EVENT, error);
-          } else {
-            this.emit(ERROR_EVENT, new Error("Unknown event handler error"));
-          }
+          const eventError =
+            error instanceof Error
+              ? error
+              : new Error("Unknown event handler error");
+          this.emit(ERROR_EVENT, eventError);
         } else {
           throw error;
         }
@@ -224,7 +214,7 @@ export class EventEmitter {
     return true;
   }
 
-  public listeners(eventName: string): EventListener[] {
+  listeners(eventName: string): EventListener[] {
     const registrations = this.listenersByEvent.get(eventName);
     if (registrations === undefined) {
       return [];
@@ -233,7 +223,7 @@ export class EventEmitter {
     return registrations.map((registration) => registration.original);
   }
 
-  public rawListeners(eventName: string): EventListener[] {
+  rawListeners(eventName: string): EventListener[] {
     const registrations = this.listenersByEvent.get(eventName);
     if (registrations === undefined) {
       return [];
@@ -242,20 +232,20 @@ export class EventEmitter {
     return registrations.map((registration) => registration.invoke);
   }
 
-  public listenerCount(eventName: string): int {
+  listenerCount(eventName: string): int {
     const registrations = this.listenersByEvent.get(eventName);
     return registrations?.length ?? 0;
   }
 
-  public eventNames(): string[] {
+  eventNames(): string[] {
     return [...this.knownEventNames];
   }
 
-  public getMaxListeners(): int {
+  getMaxListeners(): int {
     return this._maxListeners;
   }
 
-  public setMaxListeners(value: int): EventEmitter {
+  setMaxListeners(value: int): EventEmitter {
     if (value < 0) {
       throw new Error("Max listeners must be non-negative");
     }
@@ -264,7 +254,7 @@ export class EventEmitter {
     return this;
   }
 
-  private insertListener(
+  insertListener(
     eventName: string,
     listener: EventListener,
     once: boolean,
@@ -293,7 +283,7 @@ export class EventEmitter {
     return this;
   }
 
-  private createRegistration(
+  createRegistration(
     eventName: string,
     listener: EventListener,
     once: boolean
@@ -302,15 +292,21 @@ export class EventEmitter {
       return { original: listener, invoke: listener, once: false };
     }
 
-    const invoke: EventListener = (...args: JsValue[]): void => {
+    let invoked = false;
+    const invoke: EventListener = (...args: RuntimeValue[]): void => {
+      if (invoked) {
+        return;
+      }
+      invoked = true;
+      const forwardedArgs = args;
+      listener(...forwardedArgs);
       this.removeListener(eventName, invoke);
-      listener(...args);
     };
 
     return { original: listener, invoke, once: true };
   }
 
-  private removeKnownEventName(eventName: string): void {
+  removeKnownEventName(eventName: string): void {
     const index = this.knownEventNames.indexOf(eventName);
     if (index >= 0) {
       this.knownEventNames.splice(index, 1);
@@ -324,7 +320,7 @@ export const errorMonitor = "errorMonitor";
 let captureRejections: boolean = false;
 
 export const addAbortListener = (
-  _signal: JsValue,
+  _signal: RuntimeValue,
   listener: () => void
 ): (() => void) => listener;
 
@@ -342,7 +338,7 @@ export const listenerCount = (emitter: EventEmitter, eventName: string): int =>
 export const once = (
   emitter: EventEmitter,
   eventName: string
-): Promise<JsValue[]> => {
+): Promise<RuntimeValue[]> => {
   if (emitter === undefined || emitter === null) {
     throw new Error("EventEmitter.once requires an emitter");
   }
@@ -351,8 +347,8 @@ export const once = (
     throw new Error("EventEmitter.once requires a non-empty event name");
   }
 
-  return new Promise<JsValue[]>((resolve) => {
-    emitter.once(eventName, (...args: JsValue[]) => {
+  return new Promise<RuntimeValue[]>((resolve) => {
+    emitter.once(eventName, (...args: RuntimeValue[]) => {
       resolve(args);
     });
   });
@@ -368,57 +364,57 @@ export const setMaxListeners = (
 };
 
 export class EventsModule {
-  public get captureRejections(): boolean {
+  get captureRejections(): boolean {
     return captureRejections;
   }
 
-  public set captureRejections(value: boolean) {
+  set captureRejections(value: boolean) {
     captureRejections = value;
   }
 
-  public get defaultMaxListeners(): int {
+  get defaultMaxListeners(): int {
     return EventEmitter.defaultMaxListeners;
   }
 
-  public set defaultMaxListeners(value: int) {
+  set defaultMaxListeners(value: int) {
     EventEmitter.defaultMaxListeners = value;
   }
 
-  public get captureRejectionSymbol(): string {
+  get captureRejectionSymbol(): string {
     return captureRejectionSymbol;
   }
 
-  public get errorMonitor(): string {
+  get errorMonitor(): string {
     return errorMonitor;
   }
 
-  public addAbortListener(signal: JsValue, listener: () => void): () => void {
+  addAbortListener(signal: RuntimeValue, listener: () => void): () => void {
     return addAbortListener(signal, listener);
   }
 
-  public getEventListeners(
+  getEventListeners(
     emitter: EventEmitter,
     eventName: string
   ): EventListener[] {
     return getEventListeners(emitter, eventName);
   }
 
-  public getMaxListeners(emitter: EventEmitter): int {
+  getMaxListeners(emitter: EventEmitter): int {
     return getMaxListeners(emitter);
   }
 
-  public listenerCount(emitter: EventEmitter, eventName: string): int {
+  listenerCount(emitter: EventEmitter, eventName: string): int {
     return listenerCount(emitter, eventName);
   }
 
-  public async once(
+  async once(
     emitter: EventEmitter,
     eventName: string
-  ): Promise<JsValue[]> {
+  ): Promise<RuntimeValue[]> {
     return await once(emitter, eventName);
   }
 
-  public setMaxListeners(value: int, ...emitters: EventEmitter[]): void {
+  setMaxListeners(value: int, ...emitters: EventEmitter[]): void {
     setMaxListeners(value, ...emitters);
   }
 }

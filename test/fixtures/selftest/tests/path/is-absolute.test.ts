@@ -6,7 +6,7 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { isPosix } from "./helpers.ts";
 
 export class IsAbsoluteTests {
-  public isAbsolute_detects_platform_paths(): void {
+  isAbsolute_detects_platform_paths(): void {
     if (isPosix()) {
       Assert.True(nodePath.isAbsolute("/foo/bar"));
       Assert.True(!nodePath.isAbsolute("foo/bar"));
@@ -19,7 +19,7 @@ export class IsAbsoluteTests {
     Assert.True(!nodePath.isAbsolute(".\\foo"));
   }
 
-  public isAbsolute_empty_path_returns_false(): void {
+  isAbsolute_empty_path_returns_false(): void {
     Assert.True(!nodePath.isAbsolute(""));
   }
 }

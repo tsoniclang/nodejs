@@ -3,7 +3,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { ServerResponse } from "@tsonic/nodejs/http.js";
 
 export class ResponseBinaryBodyTests {
-  public end_accepts_uint8_array_chunks(): void {
+  end_accepts_uint8_array_chunks(): void {
     const response = new ServerResponse();
 
     response.write(new Uint8Array([1, 2]));

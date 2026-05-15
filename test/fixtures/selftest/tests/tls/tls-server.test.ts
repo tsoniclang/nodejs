@@ -8,33 +8,33 @@ import {
 } from "@tsonic/nodejs/tls.js";
 
 export class TLSServerTests {
-  public TLSServer_Constructor_CreatesInstance(): void {
+  TLSServer_Constructor_CreatesInstance(): void {
     const server = new TLSServer();
     Assert.NotNull(server);
   }
 
-  public TLSServer_ConstructorWithListener_AttachesListener(): void {
+  TLSServer_ConstructorWithListener_AttachesListener(): void {
     const server = new TLSServer((_socket) => {
       // listener
     });
     Assert.NotNull(server);
   }
 
-  public TLSServer_ConstructorWithOptions_CreatesInstance(): void {
+  TLSServer_ConstructorWithOptions_CreatesInstance(): void {
     const options = new TlsOptions();
     options.cert = "test-cert";
     const server = new TLSServer(options, null);
     Assert.NotNull(server);
   }
 
-  public TLSServer_GetTicketKeys_Returns48Bytes(): void {
+  TLSServer_GetTicketKeys_Returns48Bytes(): void {
     const server = new TLSServer();
     const keys = server.getTicketKeys();
     Assert.NotNull(keys);
     Assert.Equal(48, keys.length);
   }
 
-  public TLSServer_SetTicketKeys_AcceptsValidKeys(): void {
+  TLSServer_SetTicketKeys_AcceptsValidKeys(): void {
     const server = new TLSServer();
     const keys = new Uint8Array(48);
 
@@ -47,7 +47,7 @@ export class TLSServerTests {
     Assert.False(threw);
   }
 
-  public TLSServer_SetTicketKeys_InvalidLength_Throws(): void {
+  TLSServer_SetTicketKeys_InvalidLength_Throws(): void {
     const server = new TLSServer();
     const keys = new Uint8Array(32);
 
@@ -60,7 +60,7 @@ export class TLSServerTests {
     Assert.True(threw);
   }
 
-  public TLSServer_SetSecureContext_AcceptsOptions(): void {
+  TLSServer_SetSecureContext_AcceptsOptions(): void {
     const server = new TLSServer();
     const opts = new SecureContextOptions();
     opts.cert = "test-cert";
@@ -74,7 +74,7 @@ export class TLSServerTests {
     Assert.False(threw);
   }
 
-  public TLSServer_AddContext_DoesNotThrow(): void {
+  TLSServer_AddContext_DoesNotThrow(): void {
     const server = new TLSServer();
 
     let threw = false;

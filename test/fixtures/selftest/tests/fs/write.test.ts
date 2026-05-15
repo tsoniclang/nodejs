@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class writeTests {
-  public async write_WithBytes_ShouldWriteToFile(): Promise<void> {
+  async write_WithBytes_ShouldWriteToFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class writeTests {
     }
   }
 
-  public async write_WithString_ShouldWriteToFile(): Promise<void> {
+  async write_WithString_ShouldWriteToFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -36,7 +36,7 @@ export class writeTests {
     }
   }
 
-  public async write_WithPosition_ShouldWriteAtSpecificPosition(): Promise<void> {
+  async write_WithPosition_ShouldWriteAtSpecificPosition(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -51,12 +51,12 @@ export class writeTests {
     }
   }
 
-  public async write_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
+  async write_WithInvalidDescriptor_ShouldThrow(): Promise<void> {
     const data = Buffer.from("test", "utf8");
     await assertThrowsAsync(() => fs.write(999, data, 0, data.length, null));
   }
 
-  public async write_EmptyString_ShouldCreateEmptyFile(): Promise<void> {
+  async write_EmptyString_ShouldCreateEmptyFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

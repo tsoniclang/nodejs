@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { console, ConsoleConstructor } from "@tsonic/nodejs/console.js";
 
 export class ConsoleConstructorTests {
-  public console_property_should_be_available(): void {
+  console_property_should_be_available(): void {
     const ctor = console.Console;
     Assert.True(ctor !== undefined);
     if (ctor === undefined) {
@@ -13,7 +13,7 @@ export class ConsoleConstructorTests {
     ctor.log("from constructor export");
   }
 
-  public ConsoleConstructor_instance_should_forward_methods(): void {
+  ConsoleConstructor_instance_should_forward_methods(): void {
     const instance = new ConsoleConstructor();
     instance.info("hello");
     instance.warn("warn");

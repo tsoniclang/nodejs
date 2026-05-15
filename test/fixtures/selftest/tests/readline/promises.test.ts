@@ -5,7 +5,7 @@ import { Readable } from "@tsonic/nodejs/stream.js";
 import { Writable } from "@tsonic/nodejs/stream.js";
 
 export class PromisesTests {
-  public createInterface_ShouldCreateInterface(): void {
+  createInterface_ShouldCreateInterface(): void {
     const input = new Readable();
     const output = new Writable();
 
@@ -13,7 +13,7 @@ export class PromisesTests {
     Assert.NotNull(rl);
   }
 
-  public async question_ShouldResolveAnswer(): Promise<void> {
+  async question_ShouldResolveAnswer(): Promise<void> {
     const input = new Readable();
     const output = new Writable();
     const rl = promises.createInterfaceFromStreams(input, output);

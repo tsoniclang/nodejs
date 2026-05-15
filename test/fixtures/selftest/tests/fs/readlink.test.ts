@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readlinkTests {
-  public async readlink_ShouldReturnTargetPath(): Promise<void> {
+  async readlink_ShouldReturnTargetPath(): Promise<void> {
     const dir = createTempDir();
     try {
       const targetPath = getTestPath(dir, "readlink-target-async.txt");
@@ -20,7 +20,7 @@ export class readlinkTests {
     }
   }
 
-  public async readlink_NonSymlink_ShouldThrow(): Promise<void> {
+  async readlink_NonSymlink_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "regular-file-async.txt");
@@ -31,7 +31,7 @@ export class readlinkTests {
     }
   }
 
-  public async readlink_NonExistent_ShouldThrow(): Promise<void> {
+  async readlink_NonExistent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const linkPath = getTestPath(dir, "nonexistent-link-async.txt");

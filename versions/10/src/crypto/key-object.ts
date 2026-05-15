@@ -2,7 +2,8 @@
  * Node.js crypto KeyObject types.
  *
  */
-import type { int, out, JsValue } from "@tsonic/core/types.js";
+import type { int, out } from "@tsonic/core/types.js";
+import { overloads as O } from "@tsonic/core/lang.js";
 import {
   DSA,
   ECDsa,
@@ -17,6 +18,8 @@ import {
 import { base64ToBytes } from "../buffer/buffer-encoding.ts";
 
 export type NativeAsymmetricKey = RSA | DSA | ECDsa | null;
+export type KeyExportValue = string | Uint8Array | NativeAsymmetricKey;
+export type KeyExportOptions = object | null | undefined;
 
 export const isRsaKey = (value: NativeAsymmetricKey): value is RSA =>
   value instanceof RSA;
@@ -31,12 +34,12 @@ export const isEcDsaKey = (value: NativeAsymmetricKey): value is ECDsa =>
  * Represents a cryptographic key.
  */
 export class KeyObject {
-  protected constructor() {}
+  constructor() {}
 
   /**
    * The type of the key: 'secret', 'public', or 'private'.
    */
-  public get type(): string {
+  get type(): string {
     throw new Error("KeyObject.type must be implemented by a subclass");
   }
 
@@ -44,7 +47,7 @@ export class KeyObject {
    * For asymmetric keys, this property returns the type of the key (e.g., 'rsa', 'ec', 'ed25519').
    * For secret keys, this property is undefined.
    */
-  public get asymmetricKeyType(): string | null {
+  get asymmetricKeyType(): string | null {
     throw new Error(
       "KeyObject.asymmetricKeyType must be implemented by a subclass",
     );
@@ -54,17 +57,17 @@ export class KeyObject {
    * For secret keys, this property returns the size of the key in bytes.
    * For asymmetric keys, this property is undefined.
    */
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     throw new Error(
       "KeyObject.symmetricKeySize must be implemented by a subclass",
     );
   }
 
-  public ["export"](options?: JsValue): JsValue {
+  ["export"](options?: KeyExportOptions): KeyExportValue {
     return this.exportCore(options);
   }
 
-  protected exportCore(_options?: JsValue): JsValue {
+  exportCore(_options?: KeyExportOptions): KeyExportValue {
     throw new Error("KeyObject.exportCore must be implemented by a subclass");
   }
 }
@@ -73,30 +76,30 @@ export class KeyObject {
  * Represents a secret (symmetric) key.
  */
 export class SecretKeyObject extends KeyObject {
-  private readonly _keyData: Uint8Array;
+  _keyData: Uint8Array;
 
-  public constructor(keyData: Uint8Array) {
+  constructor(keyData: Uint8Array) {
     super();
     this._keyData = keyData;
   }
 
-  public get type(): string {
+  get type(): string {
     return "secret";
   }
 
-  public get asymmetricKeyType(): string | null {
+  get asymmetricKeyType(): string | null {
     return null;
   }
 
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     return this._keyData.length;
   }
 
-  public ["export"](_options?: JsValue): Uint8Array {
+  ["export"](_options?: KeyExportOptions): Uint8Array {
     return this._keyData;
   }
 
-  protected exportCore(_options?: JsValue): Uint8Array {
+  exportCore(_options?: KeyExportOptions): Uint8Array {
     return this._keyData;
   }
 }
@@ -105,11 +108,11 @@ export class SecretKeyObject extends KeyObject {
  * Represents a public key.
  */
 export class PublicKeyObject extends KeyObject {
-  private readonly _keyType: string;
-  private readonly _keyData: NativeAsymmetricKey;
-  private readonly _pem: string | null;
+  _keyType: string;
+  _keyData: NativeAsymmetricKey;
+  _pem: string | null;
 
-  public constructor(
+  constructor(
     keyData: NativeAsymmetricKey,
     keyType: string,
     pem: string | null = null
@@ -120,27 +123,27 @@ export class PublicKeyObject extends KeyObject {
     this._pem = pem;
   }
 
-  public get type(): string {
+  get type(): string {
     return "public";
   }
 
-  public get asymmetricKeyType(): string {
+  get asymmetricKeyType(): string {
     return this._keyType;
   }
 
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     return null;
   }
 
-  public get nativeKeyData(): NativeAsymmetricKey {
+  get nativeKeyData(): NativeAsymmetricKey {
     return this._keyData;
   }
 
-  public get pem(): string | null {
+  get pem(): string | null {
     return this._pem;
   }
 
-  protected exportCore(_options?: JsValue): JsValue {
+  exportCore(_options?: KeyExportOptions): KeyExportValue {
     if (this._pem !== null) {
       return this._pem;
     }
@@ -148,7 +151,7 @@ export class PublicKeyObject extends KeyObject {
     return this._keyData;
   }
 
-  public exportFormatted(format: string, _type?: string): string {
+  exportFormatted(format: string, _type?: string): string {
     if (this._pem !== null && format.toLowerCase() === "pem") {
       return this._pem;
     }
@@ -161,13 +164,13 @@ export class PublicKeyObject extends KeyObject {
  * Represents a private key.
  */
 export class PrivateKeyObject extends KeyObject {
-  private readonly _keyType: string;
-  private readonly _keyData: NativeAsymmetricKey;
-  private readonly _pem: string | null;
-  private readonly _publicKeyData: NativeAsymmetricKey;
-  private readonly _publicPem: string | null;
+  _keyType: string;
+  _keyData: NativeAsymmetricKey;
+  _pem: string | null;
+  _publicKeyData: NativeAsymmetricKey;
+  _publicPem: string | null;
 
-  public constructor(
+  constructor(
     keyData: NativeAsymmetricKey,
     keyType: string,
     pem: string | null = null,
@@ -182,35 +185,35 @@ export class PrivateKeyObject extends KeyObject {
     this._publicPem = publicPem;
   }
 
-  public get type(): string {
+  get type(): string {
     return "private";
   }
 
-  public get asymmetricKeyType(): string {
+  get asymmetricKeyType(): string {
     return this._keyType;
   }
 
-  public get symmetricKeySize(): int | null {
+  get symmetricKeySize(): int | null {
     return null;
   }
 
-  public get nativeKeyData(): NativeAsymmetricKey {
+  get nativeKeyData(): NativeAsymmetricKey {
     return this._keyData;
   }
 
-  public get pem(): string | null {
+  get pem(): string | null {
     return this._pem;
   }
 
-  public get publicKeyData(): NativeAsymmetricKey {
+  get publicKeyData(): NativeAsymmetricKey {
     return this._publicKeyData;
   }
 
-  public get publicPem(): string | null {
+  get publicPem(): string | null {
     return this._publicPem;
   }
 
-  protected exportCore(_options?: JsValue): JsValue {
+  exportCore(_options?: KeyExportOptions): KeyExportValue {
     if (this._pem !== null) {
       return this._pem;
     }
@@ -218,7 +221,7 @@ export class PrivateKeyObject extends KeyObject {
     return this._keyData;
   }
 
-  public exportFormatted(
+  exportFormatted(
     format: string,
     _type?: string,
     _cipher?: string,
@@ -262,12 +265,6 @@ const emptyPlaceholderPublicKey = (): PublicKeyObject => {
 
 const emptyPlaceholderPrivateKey = (): PrivateKeyObject => {
   return new PrivateKeyObject(null, "rsa");
-};
-
-const isStringOrBytesKey = (
-  key: string | Uint8Array | KeyObject,
-): key is string | Uint8Array => {
-  return typeof key === "string" || key instanceof Uint8Array;
 };
 
 const tryImportRsaPublic = (
@@ -357,12 +354,24 @@ const tryImportEcPrivate = (
   }
 };
 
-export const importPublicKey = (
-  key: string | Uint8Array,
-): PublicKeyObject => {
-  const pem = typeof key === "string" ? key : null;
-  const bytes = typeof key === "string" ? pemToBytes(key) : key;
+export function importPublicKey(key: string): PublicKeyObject;
+export function importPublicKey(key: Uint8Array): PublicKeyObject;
+export function importPublicKey(_key: any): any {
+  throw new Error("Unreachable overload stub");
+}
 
+export function importPublicKey_string(key: string): PublicKeyObject {
+  return importPublicKeyBytes(pemToBytes(key), key);
+}
+
+export function importPublicKey_bytes(key: Uint8Array): PublicKeyObject {
+  return importPublicKeyBytes(key, null);
+}
+
+const importPublicKeyBytes = (
+  bytes: Uint8Array,
+  pem: string | null,
+): PublicKeyObject => {
   if (bytes.length === 0) {
     return emptyPlaceholderPublicKey();
   }
@@ -385,12 +394,24 @@ export const importPublicKey = (
   throw new Error("Unsupported public key format");
 };
 
-export const importPrivateKey = (
-  key: string | Uint8Array,
-): PrivateKeyObject => {
-  const pem = typeof key === "string" ? key : null;
-  const bytes = typeof key === "string" ? pemToBytes(key) : key;
+export function importPrivateKey(key: string): PrivateKeyObject;
+export function importPrivateKey(key: Uint8Array): PrivateKeyObject;
+export function importPrivateKey(_key: any): any {
+  throw new Error("Unreachable overload stub");
+}
 
+export function importPrivateKey_string(key: string): PrivateKeyObject {
+  return importPrivateKeyBytes(pemToBytes(key), key);
+}
+
+export function importPrivateKey_bytes(key: Uint8Array): PrivateKeyObject {
+  return importPrivateKeyBytes(key, null);
+}
+
+const importPrivateKeyBytes = (
+  bytes: Uint8Array,
+  pem: string | null,
+): PrivateKeyObject => {
   if (bytes.length === 0) {
     return emptyPlaceholderPrivateKey();
   }
@@ -449,8 +470,8 @@ export const extractPublicKey = (
 export const coercePublicKeyObject = (
   key: string | Uint8Array | KeyObject,
 ): PublicKeyObject => {
-  if (isStringOrBytesKey(key)) {
-    return importPublicKey(key);
+  if (key instanceof Uint8Array) {
+    return importPublicKey_bytes(key);
   }
 
   if (key instanceof PublicKeyObject) {
@@ -469,14 +490,14 @@ export const coercePublicKeyObject = (
     throw new Error("Key must be a private or public key");
   }
 
-  throw new Error("Unexpected key shape");
+  return importPublicKey_string(key as string);
 };
 
 export const coercePrivateKeyObject = (
   key: string | Uint8Array | KeyObject,
 ): PrivateKeyObject => {
-  if (isStringOrBytesKey(key)) {
-    return importPrivateKey(key);
+  if (key instanceof Uint8Array) {
+    return importPrivateKey_bytes(key);
   }
 
   if (key instanceof PrivateKeyObject) {
@@ -491,5 +512,10 @@ export const coercePrivateKeyObject = (
     throw new Error("Key must be a private key");
   }
 
-  throw new Error("Unexpected key shape");
+  return importPrivateKey_string(key as string);
 };
+
+O(importPublicKey_string).family(importPublicKey);
+O(importPublicKey_bytes).family(importPublicKey);
+O(importPrivateKey_string).family(importPrivateKey);
+O(importPrivateKey_bytes).family(importPrivateKey);

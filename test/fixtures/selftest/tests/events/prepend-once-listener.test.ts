@@ -1,11 +1,11 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class PrependOnceListenerTests {
-  public prependOnceListener_executes_only_once(): void {
+  prependOnceListener_executes_only_once(): void {
     const emitter = new EventEmitter();
     let count = 0;
 
@@ -18,7 +18,7 @@ export class PrependOnceListenerTests {
     Assert.Equal(1, count);
   }
 
-  public prependOnceListener_adds_to_the_beginning(): void {
+  prependOnceListener_adds_to_the_beginning(): void {
     const emitter = new EventEmitter();
     const order: number[] = [];
 
@@ -33,13 +33,13 @@ export class PrependOnceListenerTests {
     Assert.Equal(2, order[2]);
   }
 
-  public prependOnceListener_returns_the_emitter(): void {
+  prependOnceListener_returns_the_emitter(): void {
     const emitter = new EventEmitter();
     const result = emitter.prependOnceListener("test", () => undefined);
     Assert.True(result === emitter);
   }
 
-  public prependOnceListener_removes_itself_after_execution(): void {
+  prependOnceListener_removes_itself_after_execution(): void {
     const emitter = new EventEmitter();
     emitter.prependOnceListener("test", () => undefined);
 
@@ -47,11 +47,11 @@ export class PrependOnceListenerTests {
     Assert.Equal(0, emitter.listenerCount("test"));
   }
 
-  public prependOnceListener_passes_through_arguments(): void {
+  prependOnceListener_passes_through_arguments(): void {
     const emitter = new EventEmitter();
     let received = 0;
 
-    emitter.prependOnceListener("test", (value: JsValue) => {
+    emitter.prependOnceListener("test", (value: RuntimeValue) => {
       if (typeof value === "number") {
         received = value;
       }

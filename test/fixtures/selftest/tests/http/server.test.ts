@@ -24,7 +24,7 @@ import {
 } from "@tsonic/nodejs/http.js";
 
 export class HttpServerTests {
-  public createServer_returns_server_instance(): void {
+  createServer_returns_server_instance(): void {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.end("OK");
@@ -34,7 +34,7 @@ export class HttpServerTests {
     Assert.False(server.listening);
   }
 
-  public server_listen_sets_listening_property(): void {
+  server_listen_sets_listening_property(): void {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.end("OK");
@@ -51,7 +51,7 @@ export class HttpServerTests {
     Assert.False(server.listening);
   }
 
-  public server_address_returns_bound_address_info(): void {
+  server_address_returns_bound_address_info(): void {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.end("OK");
@@ -76,7 +76,7 @@ export class HttpServerTests {
     server.close();
   }
 
-  public server_close_stops_listening(): void {
+  server_close_stops_listening(): void {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.end("OK");
@@ -91,7 +91,7 @@ export class HttpServerTests {
     Assert.Null(server.address());
   }
 
-  public server_listen_callback_is_invoked(): void {
+  server_listen_callback_is_invoked(): void {
     let callbackInvoked = false;
 
     const server = createServer(
@@ -108,7 +108,7 @@ export class HttpServerTests {
     server.close();
   }
 
-  public async server_round_trips_real_http_requests(): Promise<void> {
+  async server_round_trips_real_http_requests(): Promise<void> {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -141,7 +141,7 @@ export class HttpServerTests {
     }
   }
 
-  public async server_round_trips_localhost_when_host_is_unspecified(): Promise<void> {
+  async server_round_trips_localhost_when_host_is_unspecified(): Promise<void> {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -174,7 +174,7 @@ export class HttpServerTests {
     }
   }
 
-  public server_listen_with_out_of_range_port_throws(): void {
+  server_listen_with_out_of_range_port_throws(): void {
     const server = createServer(
       (_req: IncomingMessage, res: ServerResponse) => {
         res.end("OK");
@@ -191,7 +191,7 @@ export class HttpServerTests {
     Assert.True(threw);
   }
 
-  public server_timeout_properties_have_correct_defaults(): void {
+  server_timeout_properties_have_correct_defaults(): void {
     const server = new Server();
 
     Assert.Equal(0, server.timeout);
@@ -200,7 +200,7 @@ export class HttpServerTests {
     Assert.Equal(5000, server.keepAliveTimeout);
   }
 
-  public requestFromUrl_parses_hostname_path_port_and_auth(): void {
+  requestFromUrl_parses_hostname_path_port_and_auth(): void {
     const request = requestFromUrl(
       "https://user:pass@example.com:8443/a/b?x=1"
     );
@@ -211,7 +211,7 @@ export class HttpServerTests {
     Assert.Equal("Basic dXNlcjpwYXNz", request.getHeader("Authorization"));
   }
 
-  public server_timeout_properties_are_settable(): void {
+  server_timeout_properties_are_settable(): void {
     const server = new Server();
 
     server.timeout = 10000 as int;
@@ -225,12 +225,12 @@ export class HttpServerTests {
     Assert.Equal(2000, server.keepAliveTimeout);
   }
 
-  public server_response_status_code_default_is_200(): void {
+  server_response_status_code_default_is_200(): void {
     const response = new ServerResponse();
     Assert.Equal(200, response.statusCode);
   }
 
-  public server_response_writeHead_sets_status_and_headers(): void {
+  server_response_writeHead_sets_status_and_headers(): void {
     const response = new ServerResponse();
 
     const headers = new Map<string, string>();
@@ -244,7 +244,7 @@ export class HttpServerTests {
     Assert.Equal("text/plain", response.getHeader("Content-Type"));
   }
 
-  public server_response_setHeader_and_getHeader(): void {
+  server_response_setHeader_and_getHeader(): void {
     const response = new ServerResponse();
 
     response.setHeader("X-Custom", "value");
@@ -257,7 +257,7 @@ export class HttpServerTests {
     Assert.Null(response.getHeader("X-Custom"));
   }
 
-  public server_response_end_sets_finished(): void {
+  server_response_end_sets_finished(): void {
     const response = new ServerResponse();
     Assert.False(response.finished);
 
@@ -265,7 +265,7 @@ export class HttpServerTests {
     Assert.True(response.finished);
   }
 
-  public server_response_end_emits_finish_event(): void {
+  server_response_end_emits_finish_event(): void {
     const response = new ServerResponse();
     let finishEmitted = false;
 
@@ -277,7 +277,7 @@ export class HttpServerTests {
     Assert.True(finishEmitted);
   }
 
-  public validate_header_name_rejects_empty_string(): void {
+  validate_header_name_rejects_empty_string(): void {
     let threw = false;
     try {
       validateHeaderName("");
@@ -287,7 +287,7 @@ export class HttpServerTests {
     Assert.True(threw);
   }
 
-  public validate_header_name_accepts_valid_names(): void {
+  validate_header_name_accepts_valid_names(): void {
     // Should not throw
     validateHeaderName("Content-Type");
     validateHeaderName("X-Custom-Header");
@@ -295,7 +295,7 @@ export class HttpServerTests {
     Assert.True(true);
   }
 
-  public validate_header_value_rejects_control_characters(): void {
+  validate_header_value_rejects_control_characters(): void {
     let threw = false;
     try {
       validateHeaderValue("X-Bad", "\x00bad");
@@ -305,11 +305,11 @@ export class HttpServerTests {
     Assert.True(threw);
   }
 
-  public max_header_size_is_16kb(): void {
+  max_header_size_is_16kb(): void {
     Assert.Equal(16384, maxHeaderSize);
   }
 
-  public client_request_properties_reflect_options(): void {
+  client_request_properties_reflect_options(): void {
     const options = new RequestOptions();
     options.hostname = "example.com";
     options.port = 8080 as int;
@@ -325,7 +325,7 @@ export class HttpServerTests {
     Assert.False(req.aborted);
   }
 
-  public client_request_set_and_get_headers(): void {
+  client_request_set_and_get_headers(): void {
     const options = new RequestOptions();
     const req = new ClientRequest(options);
 
@@ -339,7 +339,7 @@ export class HttpServerTests {
     Assert.Null(req.getHeader("Content-Type"));
   }
 
-  public client_request_abort_sets_aborted_flag(): void {
+  client_request_abort_sets_aborted_flag(): void {
     const options = new RequestOptions();
     const req = new ClientRequest(options);
 
@@ -348,7 +348,7 @@ export class HttpServerTests {
     Assert.True(req.aborted);
   }
 
-  public client_request_abort_emits_event(): void {
+  client_request_abort_emits_event(): void {
     const options = new RequestOptions();
     const req = new ClientRequest(options);
     let abortEmitted = false;
@@ -361,7 +361,7 @@ export class HttpServerTests {
     Assert.True(abortEmitted);
   }
 
-  public incoming_message_defaults(): void {
+  incoming_message_defaults(): void {
     const msg = new IncomingMessage();
 
     Assert.Null(msg.method);
@@ -372,7 +372,7 @@ export class HttpServerTests {
     Assert.False(msg.complete);
   }
 
-  public incoming_message_destroy_marks_complete(): void {
+  incoming_message_destroy_marks_complete(): void {
     const msg = new IncomingMessage();
     let closeEmitted = false;
 
@@ -385,7 +385,7 @@ export class HttpServerTests {
     Assert.True(closeEmitted);
   }
 
-  public incoming_message_buffered_body_emits_bytes(): void {
+  incoming_message_buffered_body_emits_bytes(): void {
     const msg = new IncomingMessage();
     let dataChunk: Uint8Array | undefined = undefined;
     let endEmitted = false;

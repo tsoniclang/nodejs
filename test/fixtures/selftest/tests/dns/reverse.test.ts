@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ReverseTests {
-  public reverse_ValidIPv4_CallsCallback(): void {
+  reverse_ValidIPv4_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     let count = 0;
@@ -18,7 +18,7 @@ export class ReverseTests {
     Assert.True(count > 0);
   }
 
-  public reverse_ValidIPv6_CallsCallback(): void {
+  reverse_ValidIPv6_CallsCallback(): void {
     let called = false;
     dns.reverse("::1", (err, hosts) => {
       called = true;
@@ -26,7 +26,7 @@ export class ReverseTests {
     Assert.True(called);
   }
 
-  public reverse_InvalidIP_CallsCallback(): void {
+  reverse_InvalidIP_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     dns.reverse("invalid-ip", (err, hosts) => {

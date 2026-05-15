@@ -43,18 +43,18 @@ import type {
 } from "./performance-entry.ts";
 
 class PerformanceApi {
-  public now(): number {
+  now(): number {
     return performanceModule.now();
   }
 
-  public mark(
+  mark(
     name: string,
     options?: MarkOptions | null,
   ): PerformanceMark {
     return performanceModule.mark(name, options);
   }
 
-  public measure(
+  measure(
     name: string,
     startOrOptions?: string | MeasureOptions | null,
     endMark?: string | null,
@@ -62,26 +62,26 @@ class PerformanceApi {
     return performanceModule.measure(name, startOrOptions, endMark);
   }
 
-  public getEntries(): PerformanceEntry[] {
+  getEntries(): PerformanceEntry[] {
     return performanceModule.getEntries();
   }
 
-  public getEntriesByName(
+  getEntriesByName(
     name: string,
     type?: string | null,
   ): PerformanceEntry[] {
     return performanceModule.getEntriesByName(name, type);
   }
 
-  public getEntriesByType(type: string): PerformanceEntry[] {
+  getEntriesByType(type: string): PerformanceEntry[] {
     return performanceModule.getEntriesByType(type);
   }
 
-  public clearMarks(name?: string | null): void {
+  clearMarks(name?: string | null): void {
     performanceModule.clearMarks(name);
   }
 
-  public clearMeasures(name?: string | null): void {
+  clearMeasures(name?: string | null): void {
     performanceModule.clearMeasures(name);
   }
 }

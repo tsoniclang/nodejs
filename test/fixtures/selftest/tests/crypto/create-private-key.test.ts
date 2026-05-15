@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { createPrivateKey, generateKeyPairSync } from "@tsonic/nodejs/crypto.js";
 
 export class CreatePrivateKeyTests {
-  public createPrivateKey_from_bytes_works(): void {
+  createPrivateKey_from_bytes_works(): void {
     const { privateKey } = generateKeyPairSync("rsa");
     void privateKey;
     // TODO: actual DER export and reimport

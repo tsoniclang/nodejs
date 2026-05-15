@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessSpawnSyncTests {
-  public spawnSync_SimpleCommand_ReturnsResult(): void {
+  spawnSync_SimpleCommand_ReturnsResult(): void {
     const command = "echo";
     const args = ["Hello"];
     const result = child_process.spawnSync(command, args);
@@ -14,7 +14,7 @@ export class ChildProcessSpawnSyncTests {
     Assert.NotNull(result.stdout);
   }
 
-  public spawnSync_HasPid(): void {
+  spawnSync_HasPid(): void {
     const command = "echo";
     const args = ["test"];
     const result = child_process.spawnSync(command, args);
@@ -22,13 +22,13 @@ export class ChildProcessSpawnSyncTests {
     Assert.True(result.pid > 0);
   }
 
-  public spawnSync_WithInvalidCommand_SetsError(): void {
+  spawnSync_WithInvalidCommand_SetsError(): void {
     const result = child_process.spawnSync("nonexistent_command_xyz");
 
     Assert.NotNull(result.error);
   }
 
-  public spawnSync_OutputArray_ContainsStdoutStderr(): void {
+  spawnSync_OutputArray_ContainsStdoutStderr(): void {
     const command = "echo";
     const args = ["test"];
     const result = child_process.spawnSync(command, args);

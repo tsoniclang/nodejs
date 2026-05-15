@@ -6,19 +6,19 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { assertContains } from "./helpers.ts";
 
 export class JoinTests {
-  public join_combines_segments(): void {
+  join_combines_segments(): void {
     const result = nodePath.join("/foo", "bar", "baz");
     assertContains("foo", result);
     assertContains("bar", result);
     assertContains("baz", result);
   }
 
-  public join_without_segments_returns_dot(): void {
+  join_without_segments_returns_dot(): void {
     Assert.Equal(".", nodePath.join());
     Assert.Equal(".", nodePath.join("", ""));
   }
 
-  public join_filters_empty_segments(): void {
+  join_filters_empty_segments(): void {
     const result = nodePath.join("/foo", "", "bar");
     assertContains("foo", result);
     assertContains("bar", result);

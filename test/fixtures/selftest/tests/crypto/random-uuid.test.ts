@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { randomUUID } from "@tsonic/nodejs/crypto.js";
 
 export class RandomUUIDTests {
-  public randomUUID_generates_valid_uuid(): void {
+  randomUUID_generates_valid_uuid(): void {
     const uuid = randomUUID();
     // UUID v4 format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
     Assert.Equal(36, uuid.length);

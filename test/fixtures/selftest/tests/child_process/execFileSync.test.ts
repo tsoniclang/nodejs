@@ -5,7 +5,7 @@ import { ExecOptions } from "@tsonic/nodejs/child_process.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessExecFileSyncTests {
-  public execFileSync_SimpleCommand_ReturnsOutput(): void {
+  execFileSync_SimpleCommand_ReturnsOutput(): void {
     const file = "/bin/echo";
     const args = ["Hello"];
     const result = child_process.execFileSync(file, args);
@@ -13,7 +13,7 @@ export class ChildProcessExecFileSyncTests {
     Assert.NotNull(result);
   }
 
-  public execFileSync_WithStringEncoding_ReturnsString(): void {
+  execFileSync_WithStringEncoding_ReturnsString(): void {
     const file = "/bin/echo";
     const args = ["Hello"];
     const options = new ExecOptions();

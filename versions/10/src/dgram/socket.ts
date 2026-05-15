@@ -8,48 +8,43 @@
 
 import { overloads as O } from "@tsonic/core/lang.js";
 import { EventEmitter } from "../events-module.ts";
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
 import { RemoteInfo } from "./remote-info.ts";
 import { SocketOptions, BindOptions } from "./socket-options.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 /** Address information returned by socket.address() and socket.remoteAddress(). */
 export class AddressInfo {
-  public address: string = "";
-  public family: string = "IPv4";
-  public port: int = 0;
+  address: string = "";
+  family: string = "IPv4";
+  port: int = 0;
 }
 
 export class DgramSocket extends EventEmitter {
-  private readonly _type: string;
-  private readonly _options: SocketOptions;
-  private _isBound: boolean = false;
-  private _isClosed: boolean = false;
-  private _isConnected: boolean = false;
-  private _localAddress: AddressInfo | undefined = undefined;
-  private _remoteAddress: AddressInfo | undefined = undefined;
-  private _recvBufferSize: int = 65536 as int;
-  private _sendBufferSize: int = 65536 as int;
-  private readonly _sourceSpecificMemberships: string[] = [];
-  private _boundFileDescriptor: int | undefined = undefined;
+  _type: string;
+  _options: SocketOptions;
+  _isBound: boolean = false;
+  _isClosed: boolean = false;
+  _isConnected: boolean = false;
+  _localAddress: AddressInfo | undefined = undefined;
+  _remoteAddress: AddressInfo | undefined = undefined;
+  _recvBufferSize: int = 65536 as int;
+  _sendBufferSize: int = 65536 as int;
+  _sourceSpecificMemberships: string[] = [];
+  _boundFileDescriptor: int | undefined = undefined;
 
   constructor(
-    typeOrOptions: string | SocketOptions,
+    options: SocketOptions,
     callback?: (msg: Uint8Array, rinfo: RemoteInfo) => void,
   ) {
     super();
 
-    if (typeof typeOrOptions === "string") {
-      this._type = typeOrOptions;
-      this._options = new SocketOptions();
-      this._options.type = typeOrOptions;
-    } else {
-      this._type = typeOrOptions.type;
-      this._options = typeOrOptions;
-    }
+    this._type = options.type;
+    this._options = options;
 
     if (callback !== undefined) {
-      this.on("message", (...args: JsValue[]) => {
+      this.on("message", (...args: RuntimeValue[]) => {
         callback(args[0] as Uint8Array, args[1] as RemoteInfo);
       });
     }
@@ -75,28 +70,16 @@ export class DgramSocket extends EventEmitter {
   bind(port: int, callback: () => void): DgramSocket;
   bind(callback: () => void): DgramSocket;
   bind(options: BindOptions, callback?: () => void): DgramSocket;
-  bind(portOrCallbackOrOptions?: any, addressOrCallback?: any, callback?: any): any {
-    if (portOrCallbackOrOptions === undefined) {
-      return this.bind_empty();
-    }
-
-    if (typeof portOrCallbackOrOptions === "function") {
-      return this.bind_callback(portOrCallbackOrOptions);
-    }
-
-    if (typeof portOrCallbackOrOptions === "object") {
-      return this.bind_options(portOrCallbackOrOptions, addressOrCallback);
-    }
-
-    if (typeof addressOrCallback === "function") {
-      return this.bind_port_callback(portOrCallbackOrOptions, addressOrCallback);
-    }
-
-    return this.bind_port_address(portOrCallbackOrOptions, addressOrCallback, callback);
+  bind(
+    _portOrCallbackOrOptions?: any,
+    _addressOrCallback?: any,
+    _callback?: any,
+  ): any {
+    throw new Error("Unreachable overload stub");
   }
 
   bind_empty(): DgramSocket {
-    return this.bindImpl();
+    return this.bindSocket(0 as int, undefined, undefined);
   }
 
   bind_port_address(
@@ -104,19 +87,22 @@ export class DgramSocket extends EventEmitter {
     address?: string,
     callback?: () => void,
   ): DgramSocket {
-    return this.bindImpl(port, address, callback);
+    return this.bindSocket(port, address, callback);
   }
 
   bind_port_callback(port: int, callback: () => void): DgramSocket {
-    return this.bindImpl(port, callback);
+    return this.bindSocket(port, undefined, callback);
   }
 
   bind_callback(callback: () => void): DgramSocket {
-    return this.bindImpl(callback);
+    return this.bindSocket(0 as int, undefined, callback);
   }
 
   bind_options(options: BindOptions, callback?: () => void): DgramSocket {
-    return this.bindImpl(options, callback);
+    if (options.fd !== undefined) {
+      this._boundFileDescriptor = options.fd;
+    }
+    return this.bindSocket(options.port ?? (0 as int), options.address, callback);
   }
 
   /**
@@ -146,12 +132,8 @@ export class DgramSocket extends EventEmitter {
    */
   connect(port: int, address?: string, callback?: () => void): void;
   connect(port: int, callback: () => void): void;
-  connect(port: any, addressOrCallback?: any, callback?: any): any {
-    if (typeof addressOrCallback === "function") {
-      return this.connect_port_callback(port, addressOrCallback);
-    }
-
-    return this.connect_port_address(port, addressOrCallback, callback);
+  connect(_port: any, _addressOrCallback?: any, _callback?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
   connect_port_address(
@@ -159,11 +141,11 @@ export class DgramSocket extends EventEmitter {
     address?: string,
     callback?: () => void,
   ): void {
-    this.connectImpl(port, address, callback);
+    this.connectSocket(port, address, callback);
   }
 
   connect_port_callback(port: int, callback: () => void): void {
-    this.connectImpl(port, callback);
+    this.connectSocket(port, undefined, callback);
   }
 
   /**
@@ -213,42 +195,14 @@ export class DgramSocket extends EventEmitter {
     arg4?: any,
     arg5?: any,
   ): any {
-    if (typeof arg1 === "function") {
-      return this.send_message_callback(msg, arg1);
-    }
-
-    if (typeof msg === "string") {
-      if (typeof arg2 === "function") {
-        return this.send_message_port_callback(msg, arg1, arg2);
-      }
-
-      return this.send_message_port_address(msg, arg1, arg2, arg3);
-    }
-
-    if (typeof arg1 === "number" && typeof arg2 === "number") {
-      if (typeof arg3 === "number") {
-        if (typeof arg4 === "string") {
-          return this.send_buffer_offset_length_port_address(msg, arg1, arg2, arg3, arg4, arg5);
-        }
-
-        return this.send_buffer_offset_length_port(msg, arg1, arg2, arg3, arg4);
-      }
-
-      return this.send_buffer_offset_length(msg, arg1, arg2, arg3);
-    }
-
-    if (typeof arg2 === "function") {
-      return this.send_message_port_callback(msg, arg1, arg2);
-    }
-
-    return this.send_message_port_address(msg, arg1, arg2, arg3);
+    throw new Error("Unreachable overload stub");
   }
 
   send_message_callback(
     msg: Uint8Array | string,
     callback: (error: Error | null, bytes: number) => void,
   ): void {
-    this.sendImpl(msg, [callback]);
+    this.sendPrepared(toBytes(msg), undefined, undefined, callback);
   }
 
   send_message_port_callback(
@@ -256,7 +210,7 @@ export class DgramSocket extends EventEmitter {
     port: int,
     callback: (error: Error | null, bytes: number) => void,
   ): void {
-    this.sendImpl(msg, [port, callback]);
+    this.sendPrepared(toBytes(msg), port, undefined, callback);
   }
 
   send_message_port_address(
@@ -265,11 +219,7 @@ export class DgramSocket extends EventEmitter {
     address: string,
     callback?: (error: Error | null, bytes: number) => void,
   ): void {
-    const args: JsValue[] = [port, address];
-    if (callback !== undefined) {
-      args.push(callback);
-    }
-    this.sendImpl(msg, args);
+    this.sendPrepared(toBytes(msg), port, address, callback);
   }
 
   send_buffer_offset_length(
@@ -278,11 +228,8 @@ export class DgramSocket extends EventEmitter {
     length: int,
     callback?: (error: Error | null, bytes: number) => void,
   ): void {
-    const args: JsValue[] = [offset, length];
-    if (callback !== undefined) {
-      args.push(callback);
-    }
-    this.sendImpl(msg, args);
+    const data = copyRange(msg, offset, toInt32(offset + length));
+    this.sendPrepared(data, undefined, undefined, callback);
   }
 
   send_buffer_offset_length_port(
@@ -292,11 +239,8 @@ export class DgramSocket extends EventEmitter {
     port: int,
     callback?: (error: Error | null, bytes: number) => void,
   ): void {
-    const args: JsValue[] = [offset, length, port];
-    if (callback !== undefined) {
-      args.push(callback);
-    }
-    this.sendImpl(msg, args);
+    const data = copyRange(msg, offset, toInt32(offset + length));
+    this.sendPrepared(data, port, undefined, callback);
   }
 
   send_buffer_offset_length_port_address(
@@ -307,61 +251,17 @@ export class DgramSocket extends EventEmitter {
     address: string,
     callback?: (error: Error | null, bytes: number) => void,
   ): void {
-    const args: JsValue[] = [offset, length, port, address];
-    if (callback !== undefined) {
-      args.push(callback);
-    }
-    this.sendImpl(msg, args);
+    const data = copyRange(msg, offset, toInt32(offset + length));
+    this.sendPrepared(data, port, address, callback);
   }
 
-  private bindImpl(
-    portOrCallbackOrOptions?: int | (() => void) | BindOptions,
-    addressOrCallback?: string | (() => void),
+  bindSocket(
+    port: int,
+    address: string | undefined,
     callback?: () => void,
   ): DgramSocket {
     if (this._isBound) {
       throw new Error("Socket is already bound");
-    }
-
-    let port: int = 0;
-    let address: string | undefined = undefined;
-    let cb: (() => void) | undefined = undefined;
-
-    if (portOrCallbackOrOptions === undefined) {
-      cb = typeof addressOrCallback === "function" ? addressOrCallback : callback;
-    } else if (typeof portOrCallbackOrOptions === "function") {
-      // bind(callback)
-      cb = portOrCallbackOrOptions;
-    } else if (
-      typeof portOrCallbackOrOptions === "object" &&
-      portOrCallbackOrOptions !== null &&
-      portOrCallbackOrOptions !== undefined
-    ) {
-      // bind(options, callback?)
-      const options = portOrCallbackOrOptions as BindOptions;
-
-      if (options.fd !== undefined) {
-        this._boundFileDescriptor = options.fd;
-      }
-
-      port = options.port ?? 0;
-      address = options.address;
-      cb = typeof addressOrCallback === "function" ? addressOrCallback : callback;
-    } else {
-      // bind(port?, address?, callback?)
-      if (typeof portOrCallbackOrOptions === "number") {
-        const numericPort: int = portOrCallbackOrOptions;
-        port = numericPort;
-      } else {
-        port = 0;
-      }
-
-      if (typeof addressOrCallback === "function") {
-        cb = addressOrCallback;
-      } else {
-        address = addressOrCallback;
-        cb = callback;
-      }
     }
 
     try {
@@ -386,8 +286,8 @@ export class DgramSocket extends EventEmitter {
 
       this.emit("listening");
 
-      if (cb !== undefined) {
-        cb();
+      if (callback !== undefined) {
+        callback();
       }
     } catch (ex) {
       const error: Error = ex instanceof Error ? ex : new Error(String(ex));
@@ -397,23 +297,13 @@ export class DgramSocket extends EventEmitter {
     return this;
   }
 
-  private connectImpl(
+  connectSocket(
     port: int,
-    addressOrCallback?: string | (() => void),
+    address: string | undefined,
     callback?: () => void,
   ): void {
     if (this._isConnected) {
       throw new Error("Socket is already connected");
-    }
-
-    let address: string | undefined = undefined;
-    let cb: (() => void) | undefined = undefined;
-
-    if (typeof addressOrCallback === "function") {
-      cb = addressOrCallback;
-    } else {
-      address = addressOrCallback;
-      cb = callback;
     }
 
     try {
@@ -423,7 +313,7 @@ export class DgramSocket extends EventEmitter {
 
       // Auto-bind if not already bound
       if (!this._isBound) {
-        this.bindImpl();
+        this.bind_empty();
       }
 
       // TODO: OS interop — connect native UDP socket to remote endpoint
@@ -436,51 +326,48 @@ export class DgramSocket extends EventEmitter {
 
       this.emit("connect");
 
-      if (cb !== undefined) {
-        cb();
+      if (callback !== undefined) {
+        callback();
       }
     } catch (ex) {
       const error: Error = ex instanceof Error ? ex : new Error(String(ex));
       this.emit("error", error);
 
-      if (cb !== undefined) {
-        cb();
+      if (callback !== undefined) {
+        callback();
       }
     }
   }
   
-  private sendImpl(msg: Uint8Array | string, args: readonly JsValue[]): void {
-    // Parse the complex overloaded signature
-    const parsed = parseSendArgs(msg, args);
-
+  sendPrepared(
+    data: Uint8Array,
+    port: number | undefined,
+    address: string | undefined,
+    callback: ((error: Error | null, bytes: number) => void) | undefined,
+  ): void {
     try {
       if (!this._isBound) {
-        // Auto-bind if not bound
-        this.bindImpl();
+        this.bind_empty();
       }
 
-      const bytes = parsed.data;
-      const bytesSent: number = bytes.length;
+      const bytesSent: number = data.length;
 
       if (this._isConnected) {
-        // TODO: OS interop — send data via connected native UDP socket
       } else {
-        if (parsed.port === undefined) {
+        if (port === undefined) {
           throw new Error("Port must be specified for unconnected socket");
         }
-
-        // TODO: OS interop — send data to specified endpoint via native UDP socket
       }
 
-      if (parsed.callback !== undefined) {
-        parsed.callback(null, bytesSent);
+      if (callback !== undefined) {
+        callback(null, bytesSent);
       }
     } catch (ex) {
       const error: Error = ex instanceof Error ? ex : new Error(String(ex));
       this.emit("error", error);
 
-      if (parsed.callback !== undefined) {
-        parsed.callback(error, 0);
+      if (callback !== undefined) {
+        callback(error, 0);
       }
     }
   }
@@ -530,8 +417,7 @@ export class DgramSocket extends EventEmitter {
    */
   addMembership(multicastAddress: string, multicastInterface?: string): void {
     if (!this._isBound) {
-      // Auto-bind if not bound
-      this.bindImpl();
+      this.bind_empty();
     }
 
     // TODO: OS interop — join multicast group on native socket
@@ -620,7 +506,7 @@ export class DgramSocket extends EventEmitter {
     multicastInterface?: string,
   ): void {
     if (!this._isBound) {
-      this.bindImpl();
+      this.bind_empty();
     }
 
     const key = buildSourceMembershipKey(
@@ -727,14 +613,6 @@ O<DgramSocket>().method(x => x.send_buffer_offset_length).family(x => x.send);
 O<DgramSocket>().method(x => x.send_buffer_offset_length_port).family(x => x.send);
 O<DgramSocket>().method(x => x.send_buffer_offset_length_port_address).family(x => x.send);
 
-/** Parsed arguments for the send() method. */
-type ParsedSendArgs = {
-  readonly data: Uint8Array;
-  readonly port: number | undefined;
-  readonly address: string | undefined;
-  readonly callback: ((error: Error | null, bytes: number) => void) | undefined;
-};
-
 const toInt32 = (value: number): int => {
   if (
     Number.isInteger(value) &&
@@ -747,14 +625,6 @@ const toInt32 = (value: number): int => {
   throw new RangeError("Expected Int32-compatible numeric value");
 };
 
-const toNumberArg = (value: JsValue): number => {
-  const numeric = Number(value);
-  if (Number.isNaN(numeric)) {
-    throw new RangeError("Expected numeric argument");
-  }
-  return numeric;
-};
-
 const copyRange = (data: Uint8Array, start: int, end: int): Uint8Array => {
   const result = new Uint8Array(end - start);
   for (let index = 0; index < result.length; index += 1) {
@@ -764,139 +634,11 @@ const copyRange = (data: Uint8Array, start: int, end: int): Uint8Array => {
 };
 
 const toBytes = (msg: Uint8Array | string): Uint8Array => {
-  if (typeof msg === "string") {
-    return stringToBytes(msg, "utf8");
-  }
-  return msg;
-};
-
-/**
- * Parses the complex overloaded send() arguments into a normalized structure.
- */
-const parseSendArgs = (
-  msg: Uint8Array | string,
-  args: readonly JsValue[],
-): ParsedSendArgs => {
-  const arg0 = args.length > 0 ? args[0] : undefined;
-  const arg1 = args.length > 1 ? args[1] : undefined;
-  const arg2 = args.length > 2 ? args[2] : undefined;
-  const arg3 = args.length > 3 ? args[3] : undefined;
-  const arg4 = args.length > 4 ? args[4] : undefined;
-
-  // send(msg) — no extra args
-  if (args.length === 0) {
-    return { data: toBytes(msg), port: undefined, address: undefined, callback: undefined };
+  if (msg instanceof Uint8Array) {
+    return msg;
   }
 
-  // send(msg, callback)
-  if (args.length === 1 && typeof arg0 === "function") {
-    return {
-      data: toBytes(msg),
-      port: undefined,
-      address: undefined,
-      callback: arg0 as (error: Error | null, bytes: number) => void,
-    };
-  }
-
-  // Check if this is the offset/length form: send(msg, offset, length, ...)
-  // This form is only valid when msg is Uint8Array and args[0] and args[1] are numbers
-  if (
-    msg instanceof Uint8Array &&
-    args.length >= 2 &&
-    typeof arg0 === "number" &&
-    typeof arg1 === "number"
-  ) {
-    const buffer = msg as Uint8Array;
-    const offset = toInt32(toNumberArg(arg0));
-    const length = toInt32(toNumberArg(arg1));
-
-    if (offset < 0 || offset >= buffer.length) {
-      throw new RangeError("Offset must be within buffer bounds");
-    }
-    if (length < 0 || offset + length > buffer.length) {
-      throw new RangeError("Length must be within buffer bounds");
-    }
-
-    const slice = copyRange(buffer, offset, toInt32(offset + length));
-
-    // send(msg, offset, length)
-    if (args.length === 2) {
-      return { data: slice, port: undefined, address: undefined, callback: undefined };
-    }
-
-    // send(msg, offset, length, callback)
-    if (args.length === 3 && typeof arg2 === "function") {
-      return {
-        data: slice,
-        port: undefined,
-        address: undefined,
-        callback: arg2 as (error: Error | null, bytes: number) => void,
-      };
-    }
-
-    // send(msg, offset, length, port, ...)
-    if (typeof arg2 === "number") {
-      const port = toNumberArg(arg2);
-
-      // send(msg, offset, length, port)
-      if (args.length === 3) {
-        return { data: slice, port, address: undefined, callback: undefined };
-      }
-
-      // send(msg, offset, length, port, callback)
-      if (args.length === 4 && typeof arg3 === "function") {
-        return {
-          data: slice,
-          port,
-          address: undefined,
-          callback: arg3 as (error: Error | null, bytes: number) => void,
-        };
-      }
-
-      // send(msg, offset, length, port, address, callback?)
-      const address = typeof arg3 === "string" ? arg3 : undefined;
-      const cb =
-        typeof arg4 === "function"
-          ? (arg4 as (error: Error | null, bytes: number) => void)
-          : undefined;
-      return { data: slice, port, address, callback: cb };
-    }
-
-    return { data: slice, port: undefined, address: undefined, callback: undefined };
-  }
-
-  // Non-offset form: send(msg, port?, address?, callback?)
-  const data = toBytes(msg);
-
-  // send(msg, port, ...)
-  if (typeof arg0 === "number") {
-    const port = toNumberArg(arg0);
-
-    // send(msg, port)
-    if (args.length === 1) {
-      return { data, port, address: undefined, callback: undefined };
-    }
-
-    // send(msg, port, callback)
-    if (args.length === 2 && typeof arg1 === "function") {
-      return {
-        data,
-        port,
-        address: undefined,
-        callback: arg1 as (error: Error | null, bytes: number) => void,
-      };
-    }
-
-    // send(msg, port, address, callback?)
-    const address = typeof arg1 === "string" ? arg1 : undefined;
-    const cb =
-      typeof arg2 === "function"
-        ? (arg2 as (error: Error | null, bytes: number) => void)
-        : undefined;
-    return { data, port, address, callback: cb };
-  }
-
-  return { data, port: undefined, address: undefined, callback: undefined };
+  return stringToBytes(msg as string, "utf8");
 };
 
 const buildSourceMembershipKey = (

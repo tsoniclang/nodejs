@@ -4,18 +4,18 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SecureContext } from "@tsonic/nodejs/tls.js";
 
 export class SecureContextTests {
-  public SecureContext_Constructor_CreatesInstance(): void {
+  SecureContext_Constructor_CreatesInstance(): void {
     const context = new SecureContext();
     Assert.NotNull(context);
   }
 
-  public SecureContext_LoadCertificate_StoresCertificate(): void {
+  SecureContext_LoadCertificate_StoresCertificate(): void {
     const context = new SecureContext();
     context.loadCertificate("test-pem-data", null, null);
     Assert.True(context.hasCertificate);
   }
 
-  public SecureContext_SetProtocols_ConfiguresProtocols(): void {
+  SecureContext_SetProtocols_ConfiguresProtocols(): void {
     const context = new SecureContext();
     context.setProtocols("TLSv1.2", "TLSv1.3");
     Assert.Equal("TLSv1.2", context.minVersion);

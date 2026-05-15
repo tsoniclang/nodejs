@@ -10,27 +10,27 @@ import {
 } from "@tsonic/nodejs/net.js";
 
 export class CreateServerTests {
-  public create_server_no_args_returns_server(): void {
+  create_server_no_args_returns_server(): void {
     const server: Server = createServer();
     Assert.NotNull(server);
     Assert.True(server instanceof Server);
   }
 
-  public create_server_with_connection_listener_attaches_listener(): void {
+  create_server_with_connection_listener_attaches_listener(): void {
     const server: Server = createServer((_socket: Socket) => {
       // Listener attached
     });
     Assert.NotNull(server);
   }
 
-  public create_server_with_options_returns_server(): void {
+  create_server_with_options_returns_server(): void {
     const options: ServerOpts = new ServerOpts();
     options.allowHalfOpen = true;
     const server: Server = createServer(options);
     Assert.NotNull(server);
   }
 
-  public create_server_listens_on_ipc_path_options(): void {
+  create_server_listens_on_ipc_path_options(): void {
     const server: Server = createServer();
     const options = new ListenOptions();
     options.path = "/tmp/tsonic-nodejs.sock";

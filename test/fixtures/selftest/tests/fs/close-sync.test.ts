@@ -7,7 +7,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class closeSyncTests {
-  public closeSync_ShouldCloseValidDescriptor(): void {
+  closeSync_ShouldCloseValidDescriptor(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -20,11 +20,11 @@ export class closeSyncTests {
     }
   }
 
-  public closeSync_WithInvalidDescriptor_ShouldThrow(): void {
+  closeSync_WithInvalidDescriptor_ShouldThrow(): void {
     assertThrows(() => fs.closeSync(999));
   }
 
-  public closeSync_CalledTwice_ShouldThrowSecondTime(): void {
+  closeSync_CalledTwice_ShouldThrowSecondTime(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -37,7 +37,7 @@ export class closeSyncTests {
     }
   }
 
-  public closeSync_AfterWrite_ShouldFlushAndClose(): void {
+  closeSync_AfterWrite_ShouldFlushAndClose(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

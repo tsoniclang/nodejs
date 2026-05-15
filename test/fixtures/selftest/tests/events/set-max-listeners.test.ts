@@ -6,27 +6,27 @@ import { EventEmitter } from "@tsonic/nodejs/events.js";
 import { assertThrows } from "./helpers.ts";
 
 export class SetMaxListenersTests {
-  public setMaxListeners_sets_the_limit(): void {
+  setMaxListeners_sets_the_limit(): void {
     const emitter = new EventEmitter();
     emitter.setMaxListeners(5);
     Assert.Equal(5, emitter.getMaxListeners());
   }
 
-  public setMaxListeners_rejects_negative_values(): void {
+  setMaxListeners_rejects_negative_values(): void {
     const emitter = new EventEmitter();
     assertThrows(() => emitter.setMaxListeners(-1));
   }
 
-  public getMaxListeners_defaults_to_ten(): void {
+  getMaxListeners_defaults_to_ten(): void {
     const emitter = new EventEmitter();
     Assert.Equal(10, emitter.getMaxListeners());
   }
 
-  public defaultMaxListeners_defaults_to_ten(): void {
+  defaultMaxListeners_defaults_to_ten(): void {
     Assert.Equal(10, EventEmitter.defaultMaxListeners);
   }
 
-  public defaultMaxListeners_can_be_modified(): void {
+  defaultMaxListeners_can_be_modified(): void {
     const original = EventEmitter.defaultMaxListeners;
 
     try {

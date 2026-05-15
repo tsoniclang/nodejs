@@ -4,12 +4,12 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { Resolver, ResolverOptions } from "@tsonic/nodejs/dns.js";
 
 export class ResolverTests {
-  public Resolver_Constructor_CreatesInstance(): void {
+  Resolver_Constructor_CreatesInstance(): void {
     const resolver = new Resolver();
     Assert.NotNull(resolver);
   }
 
-  public Resolver_ConstructorWithOptions_CreatesInstance(): void {
+  Resolver_ConstructorWithOptions_CreatesInstance(): void {
     const options = new ResolverOptions();
     options.timeout = 5000;
     options.tries = 3;
@@ -17,14 +17,14 @@ export class ResolverTests {
     Assert.NotNull(resolver);
   }
 
-  public Resolver_Cancel_DoesNotThrow(): void {
+  Resolver_Cancel_DoesNotThrow(): void {
     const resolver = new Resolver();
     resolver.cancel();
     // If we got here, no exception was thrown
     Assert.True(true);
   }
 
-  public Resolver_Cancel_SubsequentCallsReturnCancelledError(): void {
+  Resolver_Cancel_SubsequentCallsReturnCancelledError(): void {
     const resolver = new Resolver();
     resolver.cancel();
 
@@ -37,7 +37,7 @@ export class ResolverTests {
     Assert.True(error!.message.includes("ECANCELLED"));
   }
 
-  public Resolver_Resolve4_CallsCallback(): void {
+  Resolver_Resolve4_CallsCallback(): void {
     const resolver = new Resolver();
     let called = false;
     resolver.resolve4("localhost", (err, addrs) => {
@@ -46,7 +46,7 @@ export class ResolverTests {
     Assert.True(called);
   }
 
-  public Resolver_Resolve6_CallsCallback(): void {
+  Resolver_Resolve6_CallsCallback(): void {
     const resolver = new Resolver();
     let called = false;
     resolver.resolve6("localhost", (err, addrs) => {
@@ -55,7 +55,7 @@ export class ResolverTests {
     Assert.True(called);
   }
 
-  public Resolver_ResolveMx_CallsCallback(): void {
+  Resolver_ResolveMx_CallsCallback(): void {
     const resolver = new Resolver();
     let called = false;
     resolver.resolveMx("localhost", (err, recs) => {
@@ -64,7 +64,7 @@ export class ResolverTests {
     Assert.True(called);
   }
 
-  public Resolver_ResolveSoa_CallsCallbackWithRecord(): void {
+  Resolver_ResolveSoa_CallsCallbackWithRecord(): void {
     const resolver = new Resolver();
     let called = false;
     let error: Error | null = null;
@@ -79,7 +79,7 @@ export class ResolverTests {
     Assert.Equal("localhost", nsname);
   }
 
-  public Resolver_Reverse_CallsCallback(): void {
+  Resolver_Reverse_CallsCallback(): void {
     const resolver = new Resolver();
     let called = false;
     resolver.reverse("127.0.0.1", (err, hosts) => {
@@ -88,20 +88,20 @@ export class ResolverTests {
     Assert.True(called);
   }
 
-  public Resolver_SetLocalAddress_DoesNotThrow(): void {
+  Resolver_SetLocalAddress_DoesNotThrow(): void {
     const resolver = new Resolver();
     resolver.setLocalAddress("0.0.0.0", "::0");
     // If we got here, no exception was thrown
     Assert.True(true);
   }
 
-  public Resolver_GetServers_ReturnsArray(): void {
+  Resolver_GetServers_ReturnsArray(): void {
     const resolver = new Resolver();
     const servers = resolver.getServers();
     Assert.NotNull(servers);
   }
 
-  public Resolver_SetServers_DoesNotThrow(): void {
+  Resolver_SetServers_DoesNotThrow(): void {
     const resolver = new Resolver();
     resolver.setServers(["8.8.8.8"]);
     // If we got here, no exception was thrown

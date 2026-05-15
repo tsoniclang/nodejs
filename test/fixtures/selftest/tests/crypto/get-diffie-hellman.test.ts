@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { getDiffieHellman } from "@tsonic/nodejs/crypto.js";
 
 export class GetDiffieHellmanTests {
-  public getDiffieHellman_creates_group_instance(): void {
+  getDiffieHellman_creates_group_instance(): void {
     const dh = getDiffieHellman("modp1");
     Assert.NotNull(dh);
     Assert.NotNull(dh.getPrime());

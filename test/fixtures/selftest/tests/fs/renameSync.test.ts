@@ -11,7 +11,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class renameSyncTests {
-  public renameSync_File_ShouldRenameFile(): void {
+  renameSync_File_ShouldRenameFile(): void {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "old-name.txt");
@@ -27,7 +27,7 @@ export class renameSyncTests {
     }
   }
 
-  public renameSync_Directory_ShouldRenameDirectory(): void {
+  renameSync_Directory_ShouldRenameDirectory(): void {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "old-dir");
@@ -43,7 +43,7 @@ export class renameSyncTests {
     }
   }
 
-  public renameSync_NonExistent_ShouldThrow(): void {
+  renameSync_NonExistent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const oldPath = getTestPath(dir, "nonexistent.txt");

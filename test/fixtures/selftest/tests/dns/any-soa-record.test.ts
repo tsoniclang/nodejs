@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { AnySoaRecord } from "@tsonic/nodejs/dns.js";
 
 export class AnySoaRecordTests {
-  public AnySoaRecord_HasCorrectType(): void {
+  AnySoaRecord_HasCorrectType(): void {
     const record = new AnySoaRecord();
     Assert.Equal("SOA", record.type);
   }

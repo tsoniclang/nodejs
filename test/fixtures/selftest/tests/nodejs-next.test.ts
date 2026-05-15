@@ -5,7 +5,7 @@ import { EventEmitter, process as nodeProcess } from "@tsonic/nodejs/index.js";
 import * as nodePath from "@tsonic/nodejs/path.js";
 
 export class NodejsNextIntegrationTests {
-  public path_subpath_namespace_import_smoke(): void {
+  path_subpath_namespace_import_smoke(): void {
     const joined = nodePath.join("root", "sub", "file.txt");
     const parsed = nodePath.parse(joined);
 
@@ -14,7 +14,7 @@ export class NodejsNextIntegrationTests {
     Assert.Equal("file.txt", parsed.base);
   }
 
-  public root_exports_process_and_events(): void {
+  root_exports_process_and_events(): void {
     const emitter = new EventEmitter();
     let called = false;
 

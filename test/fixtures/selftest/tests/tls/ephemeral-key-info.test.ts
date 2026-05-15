@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EphemeralKeyInfo } from "@tsonic/nodejs/tls.js";
 
 export class EphemeralKeyInfoTests {
-  public EphemeralKeyInfo_AllProperties_CanBeSet(): void {
+  EphemeralKeyInfo_AllProperties_CanBeSet(): void {
     const info = new EphemeralKeyInfo();
     info.type = "ECDH";
     info.name = "prime256v1";

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class LookupServiceTests {
-  public lookupService_ValidIPAndPort_CallsCallback(): void {
+  lookupService_ValidIPAndPort_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     let service = "";
@@ -18,7 +18,7 @@ export class LookupServiceTests {
     Assert.Equal("ssh", service);
   }
 
-  public lookupService_InvalidIP_CallsCallback(): void {
+  lookupService_InvalidIP_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     dns.lookupService("invalid-ip", 22, (err, host, svc) => {
@@ -29,7 +29,7 @@ export class LookupServiceTests {
     Assert.NotNull(error);
   }
 
-  public lookupService_InvalidPort_CallsCallback(): void {
+  lookupService_InvalidPort_CallsCallback(): void {
     let called = false;
     let error: Error | null = null;
     dns.lookupService("127.0.0.1", 99999, (err, host, svc) => {

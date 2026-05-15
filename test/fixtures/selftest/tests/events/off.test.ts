@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter, type EventListener } from "@tsonic/nodejs/events.js";
 
 export class OffTests {
-  public off_is_an_alias_for_removeListener(): void {
+  off_is_an_alias_for_removeListener(): void {
     const emitter = new EventEmitter();
     let called = false;
     const listener: EventListener = () => {
@@ -18,7 +18,7 @@ export class OffTests {
     Assert.False(called);
   }
 
-  public off_returns_the_emitter_for_chaining(): void {
+  off_returns_the_emitter_for_chaining(): void {
     const emitter = new EventEmitter();
     const listener: EventListener = () => undefined;
     emitter.on("test", listener);
@@ -27,7 +27,7 @@ export class OffTests {
     Assert.True(result === emitter);
   }
 
-  public off_removes_only_the_target_listener(): void {
+  off_removes_only_the_target_listener(): void {
     const emitter = new EventEmitter();
     let count = 0;
     const listener1: EventListener = () => {
@@ -45,7 +45,7 @@ export class OffTests {
     Assert.Equal(1, count);
   }
 
-  public off_tolerates_missing_listeners(): void {
+  off_tolerates_missing_listeners(): void {
     const emitter = new EventEmitter();
     emitter.off("test", (): undefined => undefined);
   }

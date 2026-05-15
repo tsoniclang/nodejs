@@ -2,8 +2,9 @@
  * Promise-based DNS APIs.
  *
  */
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import * as dns from "./index.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 import { LookupAddress, LookupOptions } from "./options.ts";
 import {
   SoaRecord,
@@ -18,15 +19,15 @@ import {
  * Result of a lookupService call.
  */
 export class LookupServiceResult {
-  public hostname: string = "";
-  public service: string = "";
+  hostname: string = "";
+  service: string = "";
 }
 
 /**
  * Promise-based wrappers over dns callback APIs.
  */
 export class DnsPromises {
-  public lookup(hostname: string, options: LookupOptions | null = null): Promise<LookupAddress> {
+  lookup(hostname: string, options: LookupOptions | null = null): Promise<LookupAddress> {
     return new Promise((resolve, reject) => {
       dns.lookup(hostname, options, (err, address, family) => {
         if (err !== null) {
@@ -42,7 +43,7 @@ export class DnsPromises {
     });
   }
 
-  public lookupAll(hostname: string, options: LookupOptions | null = null): Promise<Array<LookupAddress>> {
+  lookupAll(hostname: string, options: LookupOptions | null = null): Promise<Array<LookupAddress>> {
     return new Promise((resolve, reject) => {
       dns.lookupAll(hostname, options, (err, addresses) => {
         if (err !== null) {
@@ -55,7 +56,7 @@ export class DnsPromises {
     });
   }
 
-  public lookupService(address: string, port: int): Promise<LookupServiceResult> {
+  lookupService(address: string, port: int): Promise<LookupServiceResult> {
     return new Promise((resolve, reject) => {
       dns.lookupService(address, port, (err, hostname, service) => {
         if (err !== null) {
@@ -71,7 +72,7 @@ export class DnsPromises {
     });
   }
 
-  public resolve(hostname: string): Promise<Array<string>> {
+  resolve(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolve(hostname, (err, addresses) => {
         if (err !== null) {
@@ -84,7 +85,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveWithRrtype(hostname: string, rrtype: string): Promise<JsValue> {
+  resolveWithRrtype(hostname: string, rrtype: string): Promise<RuntimeValue> {
     return new Promise((resolve, reject) => {
       dns.resolveWithRrtype(hostname, rrtype, (err, records) => {
         if (err !== null) {
@@ -97,7 +98,7 @@ export class DnsPromises {
     });
   }
 
-  public resolve4(hostname: string): Promise<Array<string>> {
+  resolve4(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolve4(hostname, (err, addresses) => {
         if (err !== null) {
@@ -110,7 +111,7 @@ export class DnsPromises {
     });
   }
 
-  public resolve6(hostname: string): Promise<Array<string>> {
+  resolve6(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolve6(hostname, (err, addresses) => {
         if (err !== null) {
@@ -123,7 +124,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveCname(hostname: string): Promise<Array<string>> {
+  resolveCname(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolveCname(hostname, (err, addresses) => {
         if (err !== null) {
@@ -136,7 +137,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveCaa(hostname: string): Promise<Array<CaaRecord>> {
+  resolveCaa(hostname: string): Promise<Array<CaaRecord>> {
     return new Promise((resolve, reject) => {
       dns.resolveCaa(hostname, (err, records) => {
         if (err !== null) {
@@ -149,7 +150,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveMx(hostname: string): Promise<Array<MxRecord>> {
+  resolveMx(hostname: string): Promise<Array<MxRecord>> {
     return new Promise((resolve, reject) => {
       dns.resolveMx(hostname, (err, records) => {
         if (err !== null) {
@@ -162,7 +163,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveNaptr(hostname: string): Promise<Array<NaptrRecord>> {
+  resolveNaptr(hostname: string): Promise<Array<NaptrRecord>> {
     return new Promise((resolve, reject) => {
       dns.resolveNaptr(hostname, (err, records) => {
         if (err !== null) {
@@ -175,7 +176,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveNs(hostname: string): Promise<Array<string>> {
+  resolveNs(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolveNs(hostname, (err, addresses) => {
         if (err !== null) {
@@ -188,7 +189,7 @@ export class DnsPromises {
     });
   }
 
-  public resolvePtr(hostname: string): Promise<Array<string>> {
+  resolvePtr(hostname: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.resolvePtr(hostname, (err, addresses) => {
         if (err !== null) {
@@ -201,7 +202,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveSoa(hostname: string): Promise<SoaRecord> {
+  resolveSoa(hostname: string): Promise<SoaRecord> {
     return new Promise((resolve, reject) => {
       dns.resolveSoa(hostname, (err, record) => {
         if (err !== null) {
@@ -214,7 +215,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveSrv(hostname: string): Promise<Array<SrvRecord>> {
+  resolveSrv(hostname: string): Promise<Array<SrvRecord>> {
     return new Promise((resolve, reject) => {
       dns.resolveSrv(hostname, (err, records) => {
         if (err !== null) {
@@ -227,7 +228,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveTlsa(hostname: string): Promise<Array<TlsaRecord>> {
+  resolveTlsa(hostname: string): Promise<Array<TlsaRecord>> {
     return new Promise((resolve, reject) => {
       dns.resolveTlsa(hostname, (err, records) => {
         if (err !== null) {
@@ -240,7 +241,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveTxt(hostname: string): Promise<Array<Array<string>>> {
+  resolveTxt(hostname: string): Promise<Array<Array<string>>> {
     return new Promise((resolve, reject) => {
       dns.resolveTxt(hostname, (err, records) => {
         if (err !== null) {
@@ -253,7 +254,7 @@ export class DnsPromises {
     });
   }
 
-  public resolveAny(hostname: string): Promise<Array<JsValue>> {
+  resolveAny(hostname: string): Promise<Array<RuntimeValue>> {
     return new Promise((resolve, reject) => {
       dns.resolveAny(hostname, (err, records) => {
         if (err !== null) {
@@ -266,7 +267,7 @@ export class DnsPromises {
     });
   }
 
-  public reverse(ip: string): Promise<Array<string>> {
+  reverse(ip: string): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
       dns.reverse(ip, (err, hostnames) => {
         if (err !== null) {
@@ -279,19 +280,19 @@ export class DnsPromises {
     });
   }
 
-  public getDefaultResultOrder(): string {
+  getDefaultResultOrder(): string {
     return dns.getDefaultResultOrder();
   }
 
-  public setDefaultResultOrder(order: string): void {
+  setDefaultResultOrder(order: string): void {
     dns.setDefaultResultOrder(order);
   }
 
-  public getServers(): Array<string> {
+  getServers(): Array<string> {
     return dns.getServers();
   }
 
-  public setServers(servers: Array<string>): void {
+  setServers(servers: Array<string>): void {
     dns.setServers(servers);
   }
 }

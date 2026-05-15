@@ -6,7 +6,7 @@ import * as nodePath from "@tsonic/nodejs/path.js";
 import { isWindows } from "./helpers.ts";
 
 export class BasenameTests {
-  public basename_returns_file_name(): void {
+  basename_returns_file_name(): void {
     Assert.Equal("file.txt", nodePath.basename("/foo/bar/file.txt"));
     Assert.Equal("file.txt", nodePath.basename("file.txt"));
 
@@ -15,13 +15,13 @@ export class BasenameTests {
     }
   }
 
-  public basename_removes_matching_suffix(): void {
+  basename_removes_matching_suffix(): void {
     Assert.Equal("file", nodePath.basename("/foo/bar/file.txt", ".txt"));
     Assert.Equal("file.txt", nodePath.basename("/foo/bar/file.txt", ".html"));
     Assert.Equal("index", nodePath.basename("index.html", ".html"));
   }
 
-  public basename_empty_path_returns_empty_string(): void {
+  basename_empty_path_returns_empty_string(): void {
     Assert.Equal("", nodePath.basename(""));
   }
 }

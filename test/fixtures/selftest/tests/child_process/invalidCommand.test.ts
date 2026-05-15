@@ -5,7 +5,7 @@ import * as child_process from "@tsonic/nodejs/child_process.js";
 import { assertThrows } from "./helpers.ts";
 
 export class ChildProcessInvalidCommandTests {
-  public invalidCommand_ThrowsException(): void {
+  invalidCommand_ThrowsException(): void {
     // Invalid commands should throw when process exits with non-zero code
     const command = "exit 99";
 

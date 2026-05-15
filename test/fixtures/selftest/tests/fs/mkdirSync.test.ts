@@ -6,7 +6,7 @@ import { fs, MkdirOptions } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class mkdirSyncTests {
-  public mkdirSync_ShouldCreateDirectory(): void {
+  mkdirSync_ShouldCreateDirectory(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "new-dir");
@@ -17,7 +17,7 @@ export class mkdirSyncTests {
     }
   }
 
-  public mkdirSync_Recursive_ShouldCreateNestedDirectories(): void {
+  mkdirSync_Recursive_ShouldCreateNestedDirectories(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "parent/child/grandchild");
@@ -28,7 +28,7 @@ export class mkdirSyncTests {
     }
   }
 
-  public mkdirSync_NonRecursive_MissingParent_ShouldThrow(): void {
+  mkdirSync_NonRecursive_MissingParent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "missing-parent/child");
@@ -39,7 +39,7 @@ export class mkdirSyncTests {
     }
   }
 
-  public mkdirSync_MkdirOptions_Recursive_ShouldCreateNestedDirectories(): void {
+  mkdirSync_MkdirOptions_Recursive_ShouldCreateNestedDirectories(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "opts-parent/child/grandchild");
@@ -52,7 +52,7 @@ export class mkdirSyncTests {
     }
   }
 
-  public mkdirSync_MkdirOptions_NonRecursive_MissingParent_ShouldThrow(): void {
+  mkdirSync_MkdirOptions_NonRecursive_MissingParent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "opts-missing-parent/child");
@@ -65,7 +65,7 @@ export class mkdirSyncTests {
     }
   }
 
-  public mkdirSync_ObjectOptions_Recursive_ShouldCreateNestedDirectories(): void {
+  mkdirSync_ObjectOptions_Recursive_ShouldCreateNestedDirectories(): void {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "obj-parent/child/grandchild");

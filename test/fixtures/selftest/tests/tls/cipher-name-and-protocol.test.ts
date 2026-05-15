@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { CipherNameAndProtocol } from "@tsonic/nodejs/tls.js";
 
 export class CipherNameAndProtocolTests {
-  public CipherNameAndProtocol_AllProperties_CanBeSet(): void {
+  CipherNameAndProtocol_AllProperties_CanBeSet(): void {
     const cipher = new CipherNameAndProtocol();
     cipher.name = "AES256-GCM-SHA384";
     cipher.version = "TLSv1.3";

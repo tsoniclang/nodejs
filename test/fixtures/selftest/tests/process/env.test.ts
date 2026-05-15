@@ -7,17 +7,17 @@ import { process } from "@tsonic/nodejs/process.js";
 import { isWindows } from "./helpers.ts";
 
 export class ProcessEnvTests {
-  public env_returns_a_valid_object(): void {
+  env_returns_a_valid_object(): void {
     Assert.True(process.env !== undefined);
   }
 
-  public env_contains_system_environment_variables(): void {
+  env_contains_system_environment_variables(): void {
     Assert.True(
       process.env.containsKey("PATH") || process.env.containsKey("Path")
     );
   }
 
-  public env_allows_setting_values(): void {
+  env_allows_setting_values(): void {
     const key = "TSONIC_TEST_VAR";
     const original = process.env.get(key);
 
@@ -35,7 +35,7 @@ export class ProcessEnvTests {
     }
   }
 
-  public env_allows_removing_values(): void {
+  env_allows_removing_values(): void {
     const key = "TSONIC_TEST_VAR_REMOVE";
     const original = process.env.get(key);
 
@@ -56,7 +56,7 @@ export class ProcessEnvTests {
     }
   }
 
-  public env_windows_lookup_is_case_insensitive(): void {
+  env_windows_lookup_is_case_insensitive(): void {
     if (!isWindows()) {
       return;
     }
@@ -78,7 +78,7 @@ export class ProcessEnvTests {
     }
   }
 
-  public env_unix_lookup_is_case_sensitive(): void {
+  env_unix_lookup_is_case_sensitive(): void {
     if (isWindows()) {
       return;
     }
@@ -109,7 +109,7 @@ export class ProcessEnvTests {
     }
   }
 
-  public env_setting_undefined_removes_the_key(): void {
+  env_setting_undefined_removes_the_key(): void {
     const key = "TSONIC_NULL_TEST";
     const original = process.env.get(key);
 

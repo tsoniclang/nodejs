@@ -5,28 +5,28 @@ import { createDiffieHellman, randomBytes } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class CreateDiffieHellmanTests {
-  public createDiffieHellman_with_prime_and_generator(): void {
+  createDiffieHellman_with_prime_and_generator(): void {
     const prime = randomBytes(256 as int);
     const dh = createDiffieHellman(prime, 2);
     const publicKey = dh.generateKeys();
     Assert.True(publicKey.length > 0);
   }
 
-  public createDiffieHellman_get_prime(): void {
+  createDiffieHellman_get_prime(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     const retrievedPrime = dh.getPrime();
     Assert.Equal(prime, retrievedPrime);
   }
 
-  public createDiffieHellman_get_generator(): void {
+  createDiffieHellman_get_generator(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     const generator = dh.getGenerator();
     Assert.True(generator.length > 0);
   }
 
-  public createDiffieHellman_get_public_key(): void {
+  createDiffieHellman_get_public_key(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     dh.generateKeys();
@@ -34,7 +34,7 @@ export class CreateDiffieHellmanTests {
     Assert.True(publicKey.length > 0);
   }
 
-  public createDiffieHellman_get_private_key(): void {
+  createDiffieHellman_get_private_key(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     dh.generateKeys();
@@ -42,7 +42,7 @@ export class CreateDiffieHellmanTests {
     Assert.True(privateKey.length > 0);
   }
 
-  public createDiffieHellman_set_get_keys(): void {
+  createDiffieHellman_set_get_keys(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     dh.generateKeys();
@@ -53,7 +53,7 @@ export class CreateDiffieHellmanTests {
     Assert.Equal(publicKey, dh2.getPublicKey());
   }
 
-  public createDiffieHellman_with_encoded_keys(): void {
+  createDiffieHellman_with_encoded_keys(): void {
     const prime = randomBytes(128 as int);
     const dh = createDiffieHellman(prime, 2);
     const publicKeyHex = dh.generateKeys("hex");
@@ -62,7 +62,7 @@ export class CreateDiffieHellmanTests {
     Assert.True(publicKeyBase64.length > 0);
   }
 
-  public createDiffieHellman_with_generated_prime_works(): void {
+  createDiffieHellman_with_generated_prime_works(): void {
     const dh = createDiffieHellman(512);
     const prime = dh.getPrime();
     const generator = dh.getGenerator();

@@ -5,7 +5,7 @@ import { scrypt } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class ScryptTests {
-  public scrypt_callback_generates_key(): void {
+  scrypt_callback_generates_key(): void {
     let caughtError: Error | null = null;
     let resultKey: Uint8Array | null = null;
     scrypt("password", "salt", 32 as int, null, (err, key) => {

@@ -5,7 +5,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class fsPromisesTests {
-  public async writeFile_And_readFile_ShouldRoundTrip(): Promise<void> {
+  async writeFile_And_readFile_ShouldRoundTrip(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "promises.txt");
@@ -17,7 +17,7 @@ export class fsPromisesTests {
     }
   }
 
-  public async stat_ShouldReturnFileInfo(): Promise<void> {
+  async stat_ShouldReturnFileInfo(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "stats.txt");

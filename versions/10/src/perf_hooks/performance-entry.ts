@@ -3,19 +3,19 @@
  *
  */
 
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 /**
  * Base class for all performance entries.
  * Represents a single performance metric entry in the Performance Timeline.
  */
 export class PerformanceEntry {
-  public readonly name: string;
-  public readonly entryType: string;
-  public readonly startTime: number;
-  public readonly duration: number;
+  name: string;
+  entryType: string;
+  startTime: number;
+  duration: number;
 
-  public constructor(
+  constructor(
     name: string,
     entryType: string,
     startTime: number,
@@ -32,12 +32,12 @@ export class PerformanceEntry {
  * Represents a performance mark — a named timestamp in the performance timeline.
  */
 export class PerformanceMark extends PerformanceEntry {
-  public readonly detail: JsValue;
+  detail: RuntimeValue;
 
-  public constructor(
+  constructor(
     name: string,
     startTime: number,
-    detail: JsValue = null,
+    detail: RuntimeValue = null,
   ) {
     super(name, "mark", startTime, 0);
     this.detail = detail;
@@ -48,13 +48,13 @@ export class PerformanceMark extends PerformanceEntry {
  * Represents a performance measure — the duration between two marks or timestamps.
  */
 export class PerformanceMeasure extends PerformanceEntry {
-  public readonly detail: JsValue;
+  detail: RuntimeValue;
 
-  public constructor(
+  constructor(
     name: string,
     startTime: number,
     duration: number,
-    detail: JsValue = null,
+    detail: RuntimeValue = null,
   ) {
     super(name, "measure", startTime, duration);
     this.detail = detail;

@@ -8,7 +8,8 @@
  * stubbed with TODO markers. The public API shape is preserved exactly.
  */
 
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "../runtime-value.ts";
+import { Convert } from "@tsonic/dotnet/System.js";
 import { EventEmitter } from "../events-module.ts";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
 import { SecureContext } from "./secure-context.ts";
@@ -20,12 +21,12 @@ import {
 } from "./options.ts";
 
 export class TLSSocket extends EventEmitter {
-  private _authorized: boolean = false;
-  private _authorizationError: Error | null = null;
-  private _alpnProtocol: string | null = null;
-  private _secureContext: SecureContext | null = null;
-  private _destroyed: boolean = false;
-  private _options: TLSSocketOptions | null = null;
+  _authorized: boolean = false;
+  _authorizationError: Error | null = null;
+  _alpnProtocol: string | null = null;
+  _secureContext: SecureContext | null = null;
+  _destroyed: boolean = false;
+  _options: TLSSocketOptions | null = null;
 
   /**
    * True if the peer certificate was signed by one of the CAs.
@@ -191,7 +192,7 @@ export class TLSSocket extends EventEmitter {
    * returns false here.
    */
   renegotiate(
-    _options: JsValue,
+    _options: RuntimeValue,
     callback: (err: Error | null) => void
   ): boolean {
     callback(null);
@@ -203,7 +204,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  setKeyCert(context: JsValue): void {
+  setKeyCert(context: RuntimeValue): void {
     if (context instanceof SecureContext) {
       this._secureContext = context;
     }
@@ -239,7 +240,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  getPeerX509Certificate(): JsValue {
+  getPeerX509Certificate(): RuntimeValue {
     return null;
   }
 
@@ -248,7 +249,7 @@ export class TLSSocket extends EventEmitter {
    *
    * TODO: Substrate-dependent.
    */
-  getX509Certificate(): JsValue {
+  getX509Certificate(): RuntimeValue {
     return null;
   }
 
@@ -262,9 +263,10 @@ export class TLSSocket extends EventEmitter {
     label: string,
     context: Uint8Array
   ): Uint8Array {
-    if (length < 0) {
-      throw new RangeError("length must be non-negative");
+    if (!Number.isInteger(length) || length < 0) {
+      throw new RangeError("length must be a non-negative integer");
     }
+    const byteLength = Convert.ToInt32(length);
 
     const labelBytes = stringToBytes(label, "utf8");
     const seedLength = labelBytes.length + context.length;
@@ -283,10 +285,10 @@ export class TLSSocket extends EventEmitter {
       seed[0] = 0;
     }
 
-    const result = new Uint8Array(length);
-    for (let index = 0; index < length; index += 1) {
+    const result = new Uint8Array(byteLength);
+    for (let index = 0; index < byteLength; index += 1) {
       const seedByte = seed[index % seed.length]!;
-      result[index] = (seedByte ^ ((index * 31) & 0xff)) & 0xff;
+      result[index] = Convert.ToByte((seedByte ^ ((index * 31) & 0xff)) & 0xff);
     }
     return result;
   }

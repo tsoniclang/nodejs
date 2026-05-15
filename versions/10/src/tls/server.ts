@@ -7,11 +7,11 @@
  * are substrate-dependent, so they are stubbed with TODO markers.
  */
 
-import type { JsValue } from "@tsonic/core/types.js";
 import { EventEmitter } from "../events-module.ts";
 import { SecureContext } from "./secure-context.ts";
 import { SecureContextOptions, TlsOptions } from "./options.ts";
 import { TLSSocket } from "./tlssocket.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 // Forward-reference: the module-level createSecureContext is used here.
 // Importing from index.ts would be circular, so we inline the logic.
@@ -26,9 +26,9 @@ const createSecureContextFromOptions = (
 };
 
 export class TLSServer extends EventEmitter {
-  private _secureContext: SecureContext | null = null;
-  private _options: TlsOptions | null = null;
-  private _ticketKeys: Uint8Array | null = null;
+  _secureContext: SecureContext | null = null;
+  _options: TlsOptions | null = null;
+  _ticketKeys: Uint8Array | null = null;
 
   constructor(
     optionsOrListener?: TlsOptions | ((socket: TLSSocket) => void) | null,
@@ -36,16 +36,14 @@ export class TLSServer extends EventEmitter {
   ) {
     super();
 
-    // Overload resolution: (listener), (options, listener), or ()
-    const options: TlsOptions | null =
-      optionsOrListener instanceof TlsOptions
-        ? optionsOrListener
-        : null;
-
-    const listener: ((socket: TLSSocket) => void) | null =
-      typeof optionsOrListener === "function"
-        ? optionsOrListener
-        : secureConnectionListener ?? null;
+    let options: TlsOptions | null = null;
+    let listener: ((socket: TLSSocket) => void) | null = null;
+    if (typeof optionsOrListener === "function") {
+      listener = optionsOrListener;
+    } else {
+      options = optionsOrListener ?? null;
+      listener = secureConnectionListener ?? null;
+    }
 
     this._options = options;
 
@@ -60,9 +58,10 @@ export class TLSServer extends EventEmitter {
       this._secureContext = createSecureContextFromOptions(ctxOpts);
     }
 
-    if (listener !== null) {
-      this.on("secureConnection", (...args: JsValue[]) => {
-        listener(args[0] as TLSSocket);
+    const activeListener = listener;
+    if (activeListener !== null) {
+      this.on("secureConnection", (...args: RuntimeValue[]) => {
+        activeListener(args[0] as TLSSocket);
       });
     }
 
@@ -75,7 +74,7 @@ export class TLSServer extends EventEmitter {
    *
    * TODO: Implement SNI context switching.
    */
-  addContext(_hostname: string, _context: JsValue): void {
+  addContext(_hostname: string, _context: RuntimeValue): void {
     // TODO: map hostname to SecureContext for SNI
   }
 

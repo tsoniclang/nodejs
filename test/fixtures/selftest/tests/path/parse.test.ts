@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as nodePath from "@tsonic/nodejs/path.js";
 
 export class ParseTests {
-  public parse_returns_components(): void {
+  parse_returns_components(): void {
     const result = nodePath.parse("/home/user/dir/file.txt");
 
     Assert.Equal("file.txt", result.base);
@@ -13,7 +13,7 @@ export class ParseTests {
     Assert.True(result.dir.length > 0);
   }
 
-  public parse_empty_path_returns_empty_components(): void {
+  parse_empty_path_returns_empty_components(): void {
     const result = nodePath.parse("");
 
     Assert.Equal("", result.root);

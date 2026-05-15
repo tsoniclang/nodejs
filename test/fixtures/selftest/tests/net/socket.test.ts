@@ -8,52 +8,52 @@ import {
 } from "@tsonic/nodejs/net.js";
 
 export class SocketTests {
-  public constructor_creates_instance(): void {
+  constructor_creates_instance(): void {
     const socket: Socket = new Socket();
     Assert.NotNull(socket);
     Assert.Equal("closed", socket.readyState);
   }
 
-  public constructor_with_options_creates_instance(): void {
+  constructor_with_options_creates_instance(): void {
     const options: SocketConstructorOpts = new SocketConstructorOpts();
     options.allowHalfOpen = true;
     const socket: Socket = new Socket(options);
     Assert.NotNull(socket);
   }
 
-  public bytes_read_initially_zero(): void {
+  bytes_read_initially_zero(): void {
     const socket: Socket = new Socket();
     Assert.Equal(0, socket.bytesRead);
   }
 
-  public bytes_written_initially_zero(): void {
+  bytes_written_initially_zero(): void {
     const socket: Socket = new Socket();
     Assert.Equal(0, socket.bytesWritten);
   }
 
-  public connecting_initially_false(): void {
+  connecting_initially_false(): void {
     const socket: Socket = new Socket();
     Assert.False(socket.connecting);
   }
 
-  public destroyed_initially_false(): void {
+  destroyed_initially_false(): void {
     const socket: Socket = new Socket();
     Assert.False(socket.destroyed);
   }
 
-  public ready_state_initially_closed(): void {
+  ready_state_initially_closed(): void {
     const socket: Socket = new Socket();
     Assert.Equal("closed", socket.readyState);
   }
 
-  public destroy_marks_as_destroyed(): void {
+  destroy_marks_as_destroyed(): void {
     const socket: Socket = new Socket();
     socket.destroy();
     Assert.True(socket.destroyed);
     Assert.Equal("closed", socket.readyState);
   }
 
-  public destroy_emits_close_event(): void {
+  destroy_emits_close_event(): void {
     const socket: Socket = new Socket();
     let closeEmitted = false;
 
@@ -65,7 +65,7 @@ export class SocketTests {
     Assert.True(closeEmitted);
   }
 
-  public destroy_with_error_emits_error(): void {
+  destroy_with_error_emits_error(): void {
     const socket: Socket = new Socket();
     let errorEmitted = false;
 
@@ -77,7 +77,7 @@ export class SocketTests {
     Assert.True(errorEmitted);
   }
 
-  public set_timeout_does_not_throw(): void {
+  set_timeout_does_not_throw(): void {
     const socket: Socket = new Socket();
     let threw = false;
     try {
@@ -88,7 +88,7 @@ export class SocketTests {
     Assert.False(threw);
   }
 
-  public set_no_delay_does_not_throw(): void {
+  set_no_delay_does_not_throw(): void {
     const socket: Socket = new Socket();
     let threw = false;
     try {
@@ -99,7 +99,7 @@ export class SocketTests {
     Assert.False(threw);
   }
 
-  public set_keep_alive_does_not_throw(): void {
+  set_keep_alive_does_not_throw(): void {
     const socket: Socket = new Socket();
     let threw = false;
     try {
@@ -110,56 +110,56 @@ export class SocketTests {
     Assert.False(threw);
   }
 
-  public address_returns_null_when_not_connected(): void {
+  address_returns_null_when_not_connected(): void {
     const socket: Socket = new Socket();
     const address: AddressInfo | null = socket.address();
     Assert.Null(address);
   }
 
-  public unref_returns_socket(): void {
+  unref_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.unref();
     Assert.Equal(socket, result);
   }
 
-  public ref_returns_socket(): void {
+  ref_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.ref();
     Assert.Equal(socket, result);
   }
 
-  public pause_returns_socket(): void {
+  pause_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.pause();
     Assert.Equal(socket, result);
   }
 
-  public resume_returns_socket(): void {
+  resume_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.resume();
     Assert.Equal(socket, result);
   }
 
-  public set_encoding_returns_socket(): void {
+  set_encoding_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.setEncoding("utf8");
     Assert.Equal(socket, result);
   }
 
-  public end_returns_socket(): void {
+  end_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.end();
     Assert.Equal(socket, result);
   }
 
-  public reset_and_destroy_returns_socket(): void {
+  reset_and_destroy_returns_socket(): void {
     const socket: Socket = new Socket();
     const result: Socket = socket.resetAndDestroy();
     Assert.Equal(socket, result);
     Assert.True(socket.destroyed);
   }
 
-  public connect_path_transitions_socket_to_open(): void {
+  connect_path_transitions_socket_to_open(): void {
     const socket: Socket = new Socket();
     let connected = false;
 

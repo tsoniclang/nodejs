@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class EventNamesTests {
-  public eventNames_returns_registered_events(): void {
+  eventNames_returns_registered_events(): void {
     const emitter = new EventEmitter();
 
     emitter.on("event1", () => undefined);
@@ -18,7 +18,7 @@ export class EventNamesTests {
     Assert.True(names.includes("event3"));
   }
 
-  public eventNames_returns_empty_for_an_idle_emitter(): void {
+  eventNames_returns_empty_for_an_idle_emitter(): void {
     const emitter = new EventEmitter();
     Assert.Equal(0, emitter.eventNames().length);
   }

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { NaptrRecord } from "@tsonic/nodejs/dns.js";
 
 export class NaptrRecordTests {
-  public NaptrRecord_AllProperties_CanBeSet(): void {
+  NaptrRecord_AllProperties_CanBeSet(): void {
     const record = new NaptrRecord();
     record.flags = "s";
     record.service = "SIP+D2U";

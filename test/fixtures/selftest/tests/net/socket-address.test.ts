@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { SocketAddress, SocketAddressInitOptions } from "@tsonic/nodejs/net.js";
 
 export class SocketAddressTests {
-  public constructor_creates_instance(): void {
+  constructor_creates_instance(): void {
     const options = new SocketAddressInitOptions();
     options.address = "127.0.0.1";
     options.family = "ipv4";
@@ -17,7 +17,7 @@ export class SocketAddressTests {
     Assert.Equal(8080, socketAddress.port);
   }
 
-  public constructor_default_values(): void {
+  constructor_default_values(): void {
     const options = new SocketAddressInitOptions();
     const socketAddress = new SocketAddress(options);
 
@@ -26,7 +26,7 @@ export class SocketAddressTests {
     Assert.Equal(0, socketAddress.port);
   }
 
-  public flowlabel_can_be_set(): void {
+  flowlabel_can_be_set(): void {
     const options = new SocketAddressInitOptions();
     options.address = "::1";
     options.family = "ipv6";

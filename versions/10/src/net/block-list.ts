@@ -9,10 +9,10 @@ import { SocketAddressInitOptions } from "./options.ts";
  * Represents a socket address.
  */
 export class SocketAddress {
-  public readonly address: string;
-  public readonly family: string;
-  public readonly flowlabel: number | undefined;
-  public readonly port: number;
+  address: string;
+  family: string;
+  flowlabel: number | undefined;
+  port: number;
 
   constructor(options: SocketAddressInitOptions) {
     this.address = options.address ?? "0.0.0.0";
@@ -23,15 +23,15 @@ export class SocketAddress {
 }
 
 type BlockedRange = {
-  readonly start: string;
-  readonly end: string;
-  readonly type: string;
+  start: string;
+  end: string;
+  type: string;
 };
 
 type BlockedSubnet = {
-  readonly network: string;
-  readonly prefix: number;
-  readonly type: string;
+  network: string;
+  prefix: number;
+  type: string;
 };
 
 const parseIPv4Octets = (address: string): number[] | undefined => {
@@ -123,15 +123,15 @@ const isInSubnet = (
  * or IP subnets.
  */
 export class BlockList {
-  private readonly blockedAddresses: Set<string> = new Set<string>();
-  private readonly blockedAddressList: string[] = [];
-  private readonly blockedRanges: BlockedRange[] = [];
-  private readonly blockedSubnets: BlockedSubnet[] = [];
+  blockedAddresses: Set<string> = new Set<string>();
+  blockedAddressList: string[] = [];
+  blockedRanges: BlockedRange[] = [];
+  blockedSubnets: BlockedSubnet[] = [];
 
   /**
    * Adds a rule to block the given IP address.
    */
-  public addAddress(address: string, type: string = "ipv4"): void {
+  addAddress(address: string, type: string = "ipv4"): void {
     if (!this.blockedAddresses.has(address)) {
       this.blockedAddressList.push(address);
     }
@@ -141,7 +141,7 @@ export class BlockList {
   /**
    * Adds a rule to block a range of IP addresses from start (inclusive) to end (inclusive).
    */
-  public addRange(
+  addRange(
     start: string,
     end: string,
     type: string = "ipv4"
@@ -152,7 +152,7 @@ export class BlockList {
   /**
    * Adds a rule to block a range of IP addresses specified as a subnet mask.
    */
-  public addSubnet(
+  addSubnet(
     network: string,
     prefix: number,
     type: string = "ipv4"
@@ -163,7 +163,7 @@ export class BlockList {
   /**
    * Returns true if the given IP address matches any of the rules added to the BlockList.
    */
-  public check(address: string, type: string = "ipv4"): boolean {
+  check(address: string, type: string = "ipv4"): boolean {
     if (this.blockedAddresses.has(address)) {
       return true;
     }
@@ -191,7 +191,7 @@ export class BlockList {
   /**
    * Returns an array of rules added to the blocklist.
    */
-  public getRules(): string[] {
+  getRules(): string[] {
     const rules: string[] = [];
     rules.push(...this.blockedAddressList);
     for (let index = 0; index < this.blockedRanges.length; index += 1) {

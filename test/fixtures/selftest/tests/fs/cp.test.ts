@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrowsAsync, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class cpTests {
-  public async cp_File_ShouldCopyFile(): Promise<void> {
+  async cp_File_ShouldCopyFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src-async.txt");
@@ -20,7 +20,7 @@ export class cpTests {
     }
   }
 
-  public async cp_ShouldOverwriteDestination(): Promise<void> {
+  async cp_ShouldOverwriteDestination(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src2-async.txt");
@@ -34,7 +34,7 @@ export class cpTests {
     }
   }
 
-  public async cp_Directory_NonRecursive_ShouldThrow(): Promise<void> {
+  async cp_Directory_NonRecursive_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src-dir-async");
@@ -47,7 +47,7 @@ export class cpTests {
     }
   }
 
-  public async cp_Directory_Recursive_ShouldCopyAll(): Promise<void> {
+  async cp_Directory_Recursive_ShouldCopyAll(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src-tree-async");
@@ -72,7 +72,7 @@ export class cpTests {
     }
   }
 
-  public async cp_NonExistentSource_ShouldThrow(): Promise<void> {
+  async cp_NonExistentSource_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "nonexistent-cp-async.txt");

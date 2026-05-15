@@ -5,7 +5,7 @@ import { createSocket } from "@tsonic/nodejs/dgram.js";
 import { assertThrows } from "./helpers.ts";
 
 export class SetTTLTests {
-  public setTTL_SetsTTL(): void {
+  setTTL_SetsTTL(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 
@@ -15,7 +15,7 @@ export class SetTTLTests {
     socket.close();
   }
 
-  public setTTL_InvalidValue_ThrowsException(): void {
+  setTTL_InvalidValue_ThrowsException(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 

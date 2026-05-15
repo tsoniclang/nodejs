@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class cpSyncTests {
-  public cpSync_File_ShouldCopyFile(): void {
+  cpSync_File_ShouldCopyFile(): void {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src.txt");
@@ -20,7 +20,7 @@ export class cpSyncTests {
     }
   }
 
-  public cpSync_ShouldOverwriteDestination(): void {
+  cpSync_ShouldOverwriteDestination(): void {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src2.txt");
@@ -34,7 +34,7 @@ export class cpSyncTests {
     }
   }
 
-  public cpSync_Directory_NonRecursive_ShouldThrow(): void {
+  cpSync_Directory_NonRecursive_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src-dir");
@@ -47,7 +47,7 @@ export class cpSyncTests {
     }
   }
 
-  public cpSync_Directory_Recursive_ShouldCopyAll(): void {
+  cpSync_Directory_Recursive_ShouldCopyAll(): void {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "cp-src-tree");
@@ -72,7 +72,7 @@ export class cpSyncTests {
     }
   }
 
-  public cpSync_NonExistentSource_ShouldThrow(): void {
+  cpSync_NonExistentSource_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "nonexistent-cp.txt");

@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class readlinkSyncTests {
-  public readlinkSync_ShouldReturnTargetPath(): void {
+  readlinkSync_ShouldReturnTargetPath(): void {
     const dir = createTempDir();
     try {
       const targetPath = getTestPath(dir, "readlink-target.txt");
@@ -20,7 +20,7 @@ export class readlinkSyncTests {
     }
   }
 
-  public readlinkSync_NonSymlink_ShouldThrow(): void {
+  readlinkSync_NonSymlink_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "regular-file.txt");
@@ -31,7 +31,7 @@ export class readlinkSyncTests {
     }
   }
 
-  public readlinkSync_NonExistent_ShouldThrow(): void {
+  readlinkSync_NonExistent_ShouldThrow(): void {
     const dir = createTempDir();
     try {
       const linkPath = getTestPath(dir, "nonexistent-link.txt");

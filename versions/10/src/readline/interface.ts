@@ -5,39 +5,40 @@
  *
  */
 import { EventEmitter } from "../events-module.ts";
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 import type { Readable } from "../stream/readable.ts";
 import type { Writable } from "../stream/writable.ts";
 import { InterfaceOptions, CursorPosition } from "./interface-options.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export class Interface extends EventEmitter {
-  private readonly _input: Readable | undefined;
-  private readonly _output: Writable | undefined;
-  private readonly _terminal: boolean;
-  private _prompt: string = "> ";
-  private readonly _history: string[] = [];
-  private readonly _historySize: int;
-  private readonly _removeHistoryDuplicates: boolean;
-  private _line: string = "";
-  private _cursor: int = 0;
-  private _closed: boolean = false;
-  private _paused: boolean = false;
-  private readonly _dataListener: ((...args: JsValue[]) => void) | undefined;
-  private readonly _endListener: ((...args: JsValue[]) => void) | undefined;
-  private _historyIndex: int = -1;
-  private _savedLine: string = "";
+  _input: Readable | undefined;
+  _output: Writable | undefined;
+  _terminal: boolean;
+  _prompt: string = "> ";
+  _history: string[] = [];
+  _historySize: int;
+  _removeHistoryDuplicates: boolean;
+  _line: string = "";
+  _cursor: int = 0;
+  _closed: boolean = false;
+  _paused: boolean = false;
+  _dataListener: ((...args: RuntimeValue[]) => void) | undefined;
+  _endListener: ((...args: RuntimeValue[]) => void) | undefined;
+  _historyIndex: int = -1;
+  _savedLine: string = "";
 
   /** Current line being processed. */
-  public get line(): string {
+  get line(): string {
     return this._line;
   }
 
   /** Cursor position in current line. */
-  public get cursor(): int {
+  get cursor(): int {
     return this._cursor;
   }
 
-  public constructor(options: InterfaceOptions) {
+  constructor(options: InterfaceOptions) {
     super();
 
     this._input = options.input;
@@ -59,13 +60,13 @@ export class Interface extends EventEmitter {
     // integration. The listener wiring below is structurally correct but
     // depends on Readable emitting 'data' and 'end' events at runtime.
     if (this._input !== undefined) {
-      const dataListener = (...args: JsValue[]): void => {
+      const dataListener = (...args: RuntimeValue[]): void => {
         if (!this._paused && args.length > 0 && args[0] !== undefined && args[0] !== null) {
           this.processInput(String(args[0]));
         }
       };
 
-      const endListener = (..._args: JsValue[]): void => {
+      const endListener = (..._args: RuntimeValue[]): void => {
         if (!this._closed) {
           this.close();
         }
@@ -83,7 +84,7 @@ export class Interface extends EventEmitter {
    * Prompts the user for input by writing the configured prompt string to
    * output.
    */
-  public prompt(preserveCursor?: boolean): void {
+  prompt(preserveCursor?: boolean): void {
     if (this._closed) {
       throw new Error("Cannot prompt on closed interface");
     }
@@ -103,7 +104,7 @@ export class Interface extends EventEmitter {
    * Prompts the user with a query string and calls the callback with the
    * user's response.
    */
-  public question(query: string, callback: (answer: string) => void): void {
+  question(query: string, callback: (answer: string) => void): void {
     if (this._closed) {
       throw new Error("Cannot question on closed interface");
     }
@@ -119,9 +120,9 @@ export class Interface extends EventEmitter {
     }
 
     // Set up a one-time listener for the next line
-    const lineListener = (...args: JsValue[]): void => {
-      if (args.length > 0 && typeof args[0] === "string") {
-        callback(args[0]);
+    const lineListener = (...args: RuntimeValue[]): void => {
+      if (args.length > 0 && args[0] !== undefined && args[0] !== null) {
+        callback(String(args[0]));
       }
     };
 
@@ -132,7 +133,7 @@ export class Interface extends EventEmitter {
    * Prompts the user with a query string and returns a Promise that resolves
    * with the user's response. Promise-based version of question().
    */
-  public questionAsync(query: string): Promise<string> {
+  questionAsync(query: string): Promise<string> {
     if (this._closed) {
       throw new Error("Cannot question on closed interface");
     }
@@ -144,8 +145,8 @@ export class Interface extends EventEmitter {
     }
 
     return new Promise<string>((resolve) => {
-      const lineListener = (...args: JsValue[]): void => {
-        if (args.length > 0 && typeof args[0] === "string") {
+      const lineListener = (...args: RuntimeValue[]): void => {
+        if (args.length > 0 && args[0] !== undefined && args[0] !== null) {
           resolve(String(args[0]));
         }
       };
@@ -157,7 +158,7 @@ export class Interface extends EventEmitter {
   /**
    * Writes data to output stream or simulates keypresses.
    */
-  public write(data: JsValue, key?: JsValue): void {
+  write(data: RuntimeValue, key?: RuntimeValue): void {
     if (this._closed) {
       throw new Error("Cannot write on closed interface");
     }
@@ -180,7 +181,7 @@ export class Interface extends EventEmitter {
   /**
    * Pauses the input stream, allowing it to be resumed later.
    */
-  public pause(): Interface {
+  pause(): Interface {
     if (this._closed || this._paused) {
       return this;
     }
@@ -196,7 +197,7 @@ export class Interface extends EventEmitter {
   /**
    * Resumes the input stream if it has been paused.
    */
-  public resume(): Interface {
+  resume(): Interface {
     if (this._closed || !this._paused) {
       return this;
     }
@@ -213,7 +214,7 @@ export class Interface extends EventEmitter {
    * Closes the Interface instance and relinquishes control over input/output
    * streams.
    */
-  public close(): void {
+  close(): void {
     if (this._closed) {
       return;
     }
@@ -237,14 +238,14 @@ export class Interface extends EventEmitter {
    * Sets the prompt string that will be written to output when prompt() is
    * called.
    */
-  public setPrompt(prompt: string): void {
+  setPrompt(prompt: string): void {
     this._prompt = prompt ?? "";
   }
 
   /**
    * Returns the current prompt used by the interface.
    */
-  public getPrompt(): string {
+  getPrompt(): string {
     return this._prompt;
   }
 
@@ -252,7 +253,7 @@ export class Interface extends EventEmitter {
    * Returns the real position of the cursor in relation to the input
    * prompt + string.
    */
-  public getCursorPos(): CursorPosition {
+  getCursorPos(): CursorPosition {
     // Simplified: just return cursor position relative to current line
     const promptLength = this._prompt.length;
     const totalLength = promptLength + this._cursor;
@@ -264,7 +265,7 @@ export class Interface extends EventEmitter {
     return pos;
   }
 
-  private processInput(input: string): void {
+  processInput(input: string): void {
     let i = 0;
     while (i < input.length) {
       const ch = input.charAt(i);
@@ -407,7 +408,7 @@ export class Interface extends EventEmitter {
     }
   }
 
-  private navigateHistory(previous: boolean): void {
+  navigateHistory(previous: boolean): void {
     if (this._history.length === 0) {
       return;
     }
@@ -441,7 +442,7 @@ export class Interface extends EventEmitter {
     }
   }
 
-  private deleteWordBeforeCursor(): void {
+  deleteWordBeforeCursor(): void {
     if (this._cursor === 0) {
       return;
     }
@@ -469,7 +470,7 @@ export class Interface extends EventEmitter {
     this._cursor = wordStart;
   }
 
-  private addToHistory(line: string): void {
+  addToHistory(line: string): void {
     if (this._removeHistoryDuplicates) {
       // Remove existing duplicates
       const filtered: string[] = [];

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { EventEmitter } from "@tsonic/nodejs/events.js";
 
 export class OnceTests {
-  public once_invokes_the_listener_only_once(): void {
+  once_invokes_the_listener_only_once(): void {
     const emitter = new EventEmitter();
     let count = 0;
 

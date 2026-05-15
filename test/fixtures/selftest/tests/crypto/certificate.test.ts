@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { Certificate, X509CertificateInfo } from "@tsonic/nodejs/crypto.js";
 
 export class CertificateTests {
-  public exportChallenge_string_extracts_tagged_value(): void {
+  exportChallenge_string_extracts_tagged_value(): void {
     const challenge = Certificate.exportChallenge("challenge=hello");
     Assert.Equal(5, challenge.length);
     Assert.Equal(104, challenge[0]);
@@ -14,12 +14,12 @@ export class CertificateTests {
     Assert.Equal(111, challenge[4]);
   }
 
-  public exportChallenge_bytes_without_tag_returns_empty_bytes(): void {
+  exportChallenge_bytes_without_tag_returns_empty_bytes(): void {
     const challenge = Certificate.exportChallenge(new Uint8Array([0x30, 0x01, 0x00]));
     Assert.Equal(0, challenge.length);
   }
 
-  public exportPublicKey_string_extracts_tagged_value(): void {
+  exportPublicKey_string_extracts_tagged_value(): void {
     const publicKey = Certificate.exportPublicKey("publicKey=aGVsbG8=");
     Assert.Equal(5, publicKey.length);
     Assert.Equal(104, publicKey[0]);
@@ -29,22 +29,22 @@ export class CertificateTests {
     Assert.Equal(111, publicKey[4]);
   }
 
-  public exportPublicKey_der_payload_round_trips_bytes(): void {
+  exportPublicKey_der_payload_round_trips_bytes(): void {
     const source = new Uint8Array([0x30, 0x01, 0x00]);
     const publicKey = Certificate.exportPublicKey(source);
     Assert.Equal(source.length, publicKey.length);
     Assert.Equal(source[0], publicKey[0]);
   }
 
-  public verifySpkac_string_without_structure_returns_false(): void {
+  verifySpkac_string_without_structure_returns_false(): void {
     Assert.False(Certificate.verifySpkac("test"));
   }
 
-  public verifySpkac_bytes_with_der_sequence_returns_true(): void {
+  verifySpkac_bytes_with_der_sequence_returns_true(): void {
     Assert.True(Certificate.verifySpkac(new Uint8Array([0x30, 0x01, 0x00])));
   }
 
-  public x509_certificate_info_matches_subject_fields_and_pem_output(): void {
+  x509_certificate_info_matches_subject_fields_and_pem_output(): void {
     const cert = new X509CertificateInfo(
       "CN=example.com, emailAddress=ops@example.com, IP Address=127.0.0.1",
       "CN=Example CA",
@@ -64,7 +64,7 @@ export class CertificateTests {
     Assert.Contains("BEGIN CERTIFICATE", cert.toPEM());
   }
 
-  public x509_certificate_info_verifies_issuer_relationship(): void {
+  x509_certificate_info_verifies_issuer_relationship(): void {
     const issuer = new X509CertificateInfo(
       "CN=Example CA",
       "CN=Example Root",

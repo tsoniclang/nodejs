@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { RecordWithTtl } from "@tsonic/nodejs/dns.js";
 
 export class RecordWithTtlTests {
-  public RecordWithTtl_AllProperties_CanBeSet(): void {
+  RecordWithTtl_AllProperties_CanBeSet(): void {
     const record = new RecordWithTtl();
     record.address = "127.0.0.1";
     record.ttl = 300;

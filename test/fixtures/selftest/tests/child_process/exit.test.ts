@@ -1,17 +1,17 @@
 import { attributes as A } from "@tsonic/core/lang.js";
-import type { JsValue } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "@tsonic/nodejs/index.js";
 import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessExitTests {
-  public exit_ExitEvent_ContainsExitCode(): void {
+  exit_ExitEvent_ContainsExitCode(): void {
     const command = "sh";
     const args = ["-c", "exit 0"];
     let capturedExitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (code: JsValue, _signal: JsValue) => {
+    child.on("exit", (code: RuntimeValue, _signal: RuntimeValue) => {
       capturedExitCode = code as number | null;
     });
 
@@ -20,13 +20,13 @@ export class ChildProcessExitTests {
     Assert.True(capturedExitCode === null || capturedExitCode !== null); // placeholder
   }
 
-  public exit_ExitEvent_NonZeroExitCode(): void {
+  exit_ExitEvent_NonZeroExitCode(): void {
     const command = "sh";
     const args = ["-c", "exit 42"];
     let capturedExitCode: number | null = null;
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (code: JsValue, _signal: JsValue) => {
+    child.on("exit", (code: RuntimeValue, _signal: RuntimeValue) => {
       capturedExitCode = code as number | null;
     });
 
@@ -34,12 +34,12 @@ export class ChildProcessExitTests {
     Assert.True(capturedExitCode === null || capturedExitCode !== null); // placeholder
   }
 
-  public exit_ExitCodeProperty_SetAfterExit(): void {
+  exit_ExitCodeProperty_SetAfterExit(): void {
     const command = "echo";
     const args = ["test"];
 
     const child = child_process.spawn(command, args);
-    child.on("exit", (_code: JsValue, _signal: JsValue) => {
+    child.on("exit", (_code: RuntimeValue, _signal: RuntimeValue) => {
       // exit event fired
     });
 

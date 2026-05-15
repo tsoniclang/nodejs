@@ -10,14 +10,10 @@ import {
 } from "./crypto-helpers.ts";
 
 function toDiffieHellmanPublicKeyBytes(
-  otherPublicKey: string | Uint8Array,
+  otherPublicKey: string,
   inputEncoding?: string,
 ): Uint8Array {
-  if (typeof otherPublicKey === "string") {
-    return decodeInputBytes(otherPublicKey, inputEncoding ?? "base64");
-  }
-
-  return otherPublicKey;
+  return decodeInputBytes(otherPublicKey, inputEncoding ?? "base64");
 }
 
 const encodeDiffieHellmanSecret = (
@@ -32,14 +28,10 @@ const resolveDiffieHellmanPrimeByteLength = (primeLength: number): number => {
 };
 
 const resolveDiffieHellmanGeneratorBytes = (
-  generatorOrValue?: Uint8Array | number,
+  generatorOrValue?: Uint8Array,
 ): Uint8Array => {
   if (generatorOrValue === undefined) {
     return numberToBytes(2);
-  }
-
-  if (typeof generatorOrValue === "number") {
-    return numberToBytes(generatorOrValue);
   }
 
   return generatorOrValue;
@@ -54,77 +46,55 @@ const resolveDiffieHellmanGeneratorBytes = (
  * The DiffieHellman class is a utility for creating Diffie-Hellman key exchanges.
  */
 export class DiffieHellman {
-  private readonly _prime: Uint8Array;
-  private readonly _generator: Uint8Array;
-  private _privateKey: Uint8Array | null = null;
-  private _publicKey: Uint8Array | null = null;
+  _prime: Uint8Array;
+  _generator: Uint8Array;
+  _privateKey: Uint8Array | null = null;
+  _publicKey: Uint8Array | null = null;
 
-  public constructor(
-    primeOrLength: Uint8Array | number,
-    generatorOrValue?: Uint8Array | number
+  constructor(
+    prime: Uint8Array,
+    generator?: Uint8Array
   ) {
-    if (typeof primeOrLength === "number") {
-      const byteLength = resolveDiffieHellmanPrimeByteLength(primeOrLength);
-      this._prime = randomBytesExact(byteLength);
-      this._prime[0] = this._prime[0]! | 0x80;
-      this._prime[this._prime.length - 1] = this._prime[this._prime.length - 1]! | 0x01;
-      this._generator = resolveDiffieHellmanGeneratorBytes(generatorOrValue);
-    } else {
-      this._prime = primeOrLength;
-      this._generator = resolveDiffieHellmanGeneratorBytes(generatorOrValue);
-    }
+    this._prime = prime;
+    this._generator = resolveDiffieHellmanGeneratorBytes(generator);
   }
 
   /**
    * Generates private and public Diffie-Hellman key values.
    */
-  public generateKeys(encoding?: undefined): Uint8Array;
-  public generateKeys(encoding: string): string;
-  public generateKeys(encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.generateKeys_string(encoding);
-    }
-
-    return this.generateKeys_bytes(encoding);
+  generateKeys(encoding?: undefined): Uint8Array;
+  generateKeys(encoding: string): string;
+  generateKeys(encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public generateKeys_bytes(_encoding?: undefined): Uint8Array {
+  generateKeys_bytes(_encoding?: undefined): Uint8Array {
     return this.generateKeysBytes();
   }
 
-  public generateKeys_string(encoding: string): string {
+  generateKeys_string(encoding: string): string {
     return encodeOutputBytes(this.generateKeysBytes(), encoding) as string;
   }
 
   /**
    * Computes the shared secret using the other party's public key.
    */
-  public computeSecret(
+  computeSecret(
     otherPublicKey: string,
     inputEncoding?: string,
     outputEncoding?: string
   ): string;
-  public computeSecret(otherPublicKey: Uint8Array, outputEncoding?: undefined): Uint8Array;
-  public computeSecret(otherPublicKey: Uint8Array, outputEncoding: string): string;
-  public computeSecret(
+  computeSecret(otherPublicKey: Uint8Array, outputEncoding?: undefined): Uint8Array;
+  computeSecret(otherPublicKey: Uint8Array, outputEncoding: string): string;
+  computeSecret(
     otherPublicKey: string | Uint8Array,
     inputOrOutputEncoding?: string,
     outputEncoding?: string
   ): any {
-    if (typeof otherPublicKey === "string") {
-      return this.computeSecret_string(
-        otherPublicKey,
-        inputOrOutputEncoding,
-        outputEncoding
-      );
-    }
-
-    return typeof inputOrOutputEncoding === "string"
-      ? this.computeSecret_bytes_string(otherPublicKey, inputOrOutputEncoding)
-      : this.computeSecret_bytes(otherPublicKey, undefined);
+    throw new Error("Unreachable overload stub");
   }
 
-  public computeSecret_string(
+  computeSecret_string(
     otherPublicKey: string,
     inputEncoding?: string,
     outputEncoding?: string
@@ -137,14 +107,14 @@ export class DiffieHellman {
     );
   }
 
-  public computeSecret_bytes(
+  computeSecret_bytes(
     otherPublicKey: Uint8Array,
     _outputEncoding?: undefined
   ): Uint8Array {
     return this.computeSecretBytes(otherPublicKey);
   }
 
-  public computeSecret_bytes_string(
+  computeSecret_bytes_string(
     otherPublicKey: Uint8Array,
     outputEncoding: string
   ): string {
@@ -157,130 +127,106 @@ export class DiffieHellman {
   /**
    * Returns the Diffie-Hellman prime.
    */
-  public getPrime(encoding?: undefined): Uint8Array;
-  public getPrime(encoding: string): string;
-  public getPrime(encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.getPrime_string(encoding);
-    }
-
-    return this.getPrime_bytes(encoding);
+  getPrime(encoding?: undefined): Uint8Array;
+  getPrime(encoding: string): string;
+  getPrime(encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public getPrime_bytes(_encoding?: undefined): Uint8Array {
+  getPrime_bytes(_encoding?: undefined): Uint8Array {
     return this._prime;
   }
 
-  public getPrime_string(encoding: string): string {
+  getPrime_string(encoding: string): string {
     return encodeOutputBytes(this._prime, encoding) as string;
   }
 
   /**
    * Returns the Diffie-Hellman generator.
    */
-  public getGenerator(encoding?: undefined): Uint8Array;
-  public getGenerator(encoding: string): string;
-  public getGenerator(encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.getGenerator_string(encoding);
-    }
-
-    return this.getGenerator_bytes(encoding);
+  getGenerator(encoding?: undefined): Uint8Array;
+  getGenerator(encoding: string): string;
+  getGenerator(encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public getGenerator_bytes(_encoding?: undefined): Uint8Array {
+  getGenerator_bytes(_encoding?: undefined): Uint8Array {
     return this._generator;
   }
 
-  public getGenerator_string(encoding: string): string {
+  getGenerator_string(encoding: string): string {
     return encodeOutputBytes(this._generator, encoding) as string;
   }
 
   /**
    * Returns the Diffie-Hellman public key.
    */
-  public getPublicKey(encoding?: undefined): Uint8Array;
-  public getPublicKey(encoding: string): string;
-  public getPublicKey(encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.getPublicKey_string(encoding);
-    }
-
-    return this.getPublicKey_bytes(encoding);
+  getPublicKey(encoding?: undefined): Uint8Array;
+  getPublicKey(encoding: string): string;
+  getPublicKey(encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public getPublicKey_bytes(_encoding?: undefined): Uint8Array {
+  getPublicKey_bytes(_encoding?: undefined): Uint8Array {
     return this.requirePublicKey();
   }
 
-  public getPublicKey_string(encoding: string): string {
+  getPublicKey_string(encoding: string): string {
     return encodeOutputBytes(this.requirePublicKey(), encoding) as string;
   }
 
   /**
    * Returns the Diffie-Hellman private key.
    */
-  public getPrivateKey(encoding?: undefined): Uint8Array;
-  public getPrivateKey(encoding: string): string;
-  public getPrivateKey(encoding?: any): any {
-    if (typeof encoding === "string") {
-      return this.getPrivateKey_string(encoding);
-    }
-
-    return this.getPrivateKey_bytes(encoding);
+  getPrivateKey(encoding?: undefined): Uint8Array;
+  getPrivateKey(encoding: string): string;
+  getPrivateKey(encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public getPrivateKey_bytes(_encoding?: undefined): Uint8Array {
+  getPrivateKey_bytes(_encoding?: undefined): Uint8Array {
     return this.requirePrivateKey();
   }
 
-  public getPrivateKey_string(encoding: string): string {
+  getPrivateKey_string(encoding: string): string {
     return encodeOutputBytes(this.requirePrivateKey(), encoding) as string;
   }
 
   /**
    * Sets the Diffie-Hellman public key.
    */
-  public setPublicKey(publicKey: string, encoding?: string): void;
-  public setPublicKey(publicKey: Uint8Array): void;
-  public setPublicKey(publicKey: any, encoding?: any): any {
-    if (typeof publicKey === "string") {
-      return this.setPublicKey_string(publicKey, encoding);
-    }
-
-    return this.setPublicKey_bytes(publicKey);
+  setPublicKey(publicKey: string, encoding?: string): void;
+  setPublicKey(publicKey: Uint8Array): void;
+  setPublicKey(publicKey: any, encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public setPublicKey_string(publicKey: string, encoding?: string): void {
+  setPublicKey_string(publicKey: string, encoding?: string): void {
     this._publicKey = decodeInputBytes(publicKey, encoding ?? "base64");
   }
 
-  public setPublicKey_bytes(publicKey: Uint8Array): void {
+  setPublicKey_bytes(publicKey: Uint8Array): void {
     this._publicKey = publicKey;
   }
 
   /**
    * Sets the Diffie-Hellman private key.
    */
-  public setPrivateKey(privateKey: string, encoding?: string): void;
-  public setPrivateKey(privateKey: Uint8Array): void;
-  public setPrivateKey(privateKey: any, encoding?: any): any {
-    if (typeof privateKey === "string") {
-      return this.setPrivateKey_string(privateKey, encoding);
-    }
-
-    return this.setPrivateKey_bytes(privateKey);
+  setPrivateKey(privateKey: string, encoding?: string): void;
+  setPrivateKey(privateKey: Uint8Array): void;
+  setPrivateKey(privateKey: any, encoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public setPrivateKey_string(privateKey: string, encoding?: string): void {
+  setPrivateKey_string(privateKey: string, encoding?: string): void {
     this.setPrivateKeyBytes(decodeInputBytes(privateKey, encoding ?? "base64"));
   }
 
-  public setPrivateKey_bytes(privateKey: Uint8Array): void {
+  setPrivateKey_bytes(privateKey: Uint8Array): void {
     this.setPrivateKeyBytes(privateKey);
   }
 
-  private generateKeysBytes(): Uint8Array {
+  generateKeysBytes(): Uint8Array {
     this._privateKey = randomUnsignedLessThan(this._prime);
     this._publicKey = modPowBytes(
       this._generator,
@@ -291,7 +237,7 @@ export class DiffieHellman {
     return this._publicKey;
   }
 
-  private computeSecretBytes(otherPublicKey: Uint8Array): Uint8Array {
+  computeSecretBytes(otherPublicKey: Uint8Array): Uint8Array {
     if (this._privateKey === null) {
       throw new Error("Must call generateKeys() first");
     }
@@ -304,7 +250,7 @@ export class DiffieHellman {
     );
   }
 
-  private requirePublicKey(): Uint8Array {
+  requirePublicKey(): Uint8Array {
     if (this._publicKey === null) {
       throw new Error("Must call generateKeys() first");
     }
@@ -312,7 +258,7 @@ export class DiffieHellman {
     return this._publicKey;
   }
 
-  private requirePrivateKey(): Uint8Array {
+  requirePrivateKey(): Uint8Array {
     if (this._privateKey === null) {
       throw new Error("Must call generateKeys() first");
     }
@@ -320,7 +266,7 @@ export class DiffieHellman {
     return this._privateKey;
   }
 
-  private setPrivateKeyBytes(privateKey: Uint8Array): void {
+  setPrivateKeyBytes(privateKey: Uint8Array): void {
     this._privateKey = privateKey;
     this._publicKey = modPowBytes(
       this._generator,
@@ -333,7 +279,7 @@ export class DiffieHellman {
   /**
    * Returns the DH validation error code.
    */
-  public getVerifyError(): number {
+  getVerifyError(): number {
     return 0;
   }
 }

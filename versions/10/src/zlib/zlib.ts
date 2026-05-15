@@ -17,6 +17,7 @@ import {
   DeflateStream,
   GZipStream,
 } from "@tsonic/dotnet/System.IO.Compression.js";
+import { List } from "@tsonic/dotnet/System.Collections.Generic.js";
 import { MemoryStream } from "@tsonic/dotnet/System.IO.js";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
 
@@ -25,16 +26,16 @@ import { stringToBytes } from "../buffer/buffer-encoding.ts";
 // ---------------------------------------------------------------------------
 
 const buildCrc32Table = (): number[] => {
-  const table: number[] = new Array<number>(256);
+  const table = new List<number>();
   const polynomial = 0xedb88320;
   for (let i = 0; i < 256; i += 1) {
     let crc = i;
     for (let j = 0; j < 8; j += 1) {
       crc = (crc & 1) === 1 ? (crc >>> 1) ^ polynomial : crc >>> 1;
     }
-    table[i] = crc < 0 ? crc + 4294967296 : crc;
+    table.Add(crc < 0 ? crc + 4294967296 : crc);
   }
-  return table;
+  return table.ToArray();
 };
 
 const CRC32_TABLE: number[] = buildCrc32Table();
@@ -52,11 +53,11 @@ const toInt = (value: number): int => {
 };
 
 const toByteArray = (buffer: Uint8Array): byte[] => {
-  const result: byte[] = new Array<byte>(buffer.length);
+  const result = new List<byte>();
   for (let index = 0; index < buffer.length; index += 1) {
-    result[index] = buffer[index]! as byte;
+    result.Add(buffer[index]! as byte);
   }
-  return result;
+  return result.ToArray();
 };
 
 const fromByteArray = (buffer: byte[]): Uint8Array => {

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { privateEncrypt, publicDecrypt, generateKeyPairSync } from "@tsonic/nodejs/crypto.js";
 
 export class PrivateEncryptTests {
-  public privateEncrypt_publicDecrypt_roundtrip(): void {
+  privateEncrypt_publicDecrypt_roundtrip(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const plaintext = new Uint8Array(32);
     // TODO: fill with random data
@@ -13,7 +13,7 @@ export class PrivateEncryptTests {
     Assert.Equal(plaintext, decrypted);
   }
 
-  public privateEncrypt_publicDecrypt_with_key_objects(): void {
+  privateEncrypt_publicDecrypt_with_key_objects(): void {
     const { publicKey, privateKey } = generateKeyPairSync("rsa");
     const plaintext = new Uint8Array(32);
     const encrypted = privateEncrypt(privateKey, plaintext);

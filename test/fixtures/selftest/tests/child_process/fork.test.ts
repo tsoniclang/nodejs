@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessForkTests {
-  public fork_CreatesChildProcess(): void {
+  fork_CreatesChildProcess(): void {
     // Fork needs a valid module path
     const modulePath = "/usr/bin/echo";
     const child = child_process.fork(modulePath);
@@ -17,7 +17,7 @@ export class ChildProcessForkTests {
     child.kill();
   }
 
-  public fork_WithArgs_PassesArguments(): void {
+  fork_WithArgs_PassesArguments(): void {
     const modulePath = "/usr/bin/echo";
     const args = ["--version"];
     const child = child_process.fork(modulePath, args);

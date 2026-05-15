@@ -2,30 +2,31 @@
  * A readable stream is an abstraction for a source from which data is read.
  *
  */
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
 
 import { Stream } from "./stream.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export class Readable extends Stream {
-  private _buffer: JsValue[] = [];
-  private _ended = false;
-  private _flowing = false;
-  private _encoding: string | undefined;
-  private _paused = true;
-  private _destroyed = false;
+  _buffer: RuntimeValue[] = [];
+  _ended = false;
+  _flowing = false;
+  _encoding: string | undefined;
+  _paused = true;
+  _destroyed = false;
 
   /** Is true if it is safe to call read(). */
-  public get readable(): boolean {
+  get readable(): boolean {
     return !this._ended && !this._destroyed;
   }
 
   /** Becomes true when 'end' event is emitted. */
-  public get readableEnded(): boolean {
+  get readableEnded(): boolean {
     return this._ended;
   }
 
   /** Current operating state of the Readable stream. */
-  public get readableFlowing(): boolean | null {
+  get readableFlowing(): boolean | null {
     if (this._flowing) {
       return true;
     }
@@ -38,12 +39,12 @@ export class Readable extends Stream {
   /**
    * Number of bytes (or objects) in the queue ready to be read.
    */
-  public get readableLength(): int {
+  get readableLength(): int {
     return this._buffer.length;
   }
 
   /** Is true after destroy() has been called. */
-  public get destroyed(): boolean {
+  get destroyed(): boolean {
     return this._destroyed;
   }
 
@@ -53,7 +54,7 @@ export class Readable extends Stream {
    * @param _size - Optional argument to specify how much data to read.
    * @returns The data read, or null if no data is available.
    */
-  public read(_size?: int): JsValue | null {
+  read(_size?: int): RuntimeValue | null {
     if (this._buffer.length === 0) {
       if (this._ended) {
         this.emit("end");
@@ -76,7 +77,7 @@ export class Readable extends Stream {
    * @param encoding - The encoding to use.
    * @returns This stream.
    */
-  public setEncoding(encoding: string): Readable {
+  setEncoding(encoding: string): Readable {
     this._encoding = encoding;
     return this;
   }
@@ -87,7 +88,7 @@ export class Readable extends Stream {
    *
    * @returns This stream.
    */
-  public pause(): Readable {
+  pause(): Readable {
     this._paused = true;
     this._flowing = false;
     return this;
@@ -99,7 +100,7 @@ export class Readable extends Stream {
    *
    * @returns This stream.
    */
-  public resume(): Readable {
+  resume(): Readable {
     this._paused = false;
     this._flowing = true;
 
@@ -123,7 +124,7 @@ export class Readable extends Stream {
    *
    * @returns True if the stream is paused.
    */
-  public isPaused(): boolean {
+  isPaused(): boolean {
     return this._paused;
   }
 
@@ -133,7 +134,7 @@ export class Readable extends Stream {
    * @param _destination - Optional specific stream to unpipe.
    * @returns This stream.
    */
-  public unpipe(_destination?: Stream): Readable {
+  unpipe(_destination?: Stream): Readable {
     // TODO: Full implementation needs to track piped destinations
     return this;
   }
@@ -143,7 +144,7 @@ export class Readable extends Stream {
    *
    * @param chunk - Chunk of data to unshift onto the read queue.
    */
-  public unshift(chunk: JsValue): void {
+  unshift(chunk: RuntimeValue): void {
     if (chunk !== null && chunk !== undefined) {
       this._buffer.unshift(chunk);
     }
@@ -157,7 +158,7 @@ export class Readable extends Stream {
    * @param _encoding - Optional encoding for string chunks.
    * @returns True if the internal buffer has not exceeded highWaterMark.
    */
-  public push(chunk: JsValue | null, _encoding?: string): boolean {
+  push(chunk: RuntimeValue | null, _encoding?: string): boolean {
     if (chunk === null) {
       // Pushing null signals end of stream
       this._ended = true;
@@ -194,7 +195,7 @@ export class Readable extends Stream {
    *
    * @param error - Optional error to emit.
    */
-  public override destroy(error?: Error): void {
+  override destroy(error?: Error): void {
     if (this._destroyed) {
       return;
     }
@@ -212,7 +213,7 @@ export class Readable extends Stream {
    *
    * @param _size - Number of bytes to read.
    */
-  protected _read(_size: int): void {
+  _read(_size: int): void {
     // To be implemented by subclasses
   }
 }

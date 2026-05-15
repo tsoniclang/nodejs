@@ -5,7 +5,7 @@ import { createSocket } from "@tsonic/nodejs/dgram.js";
 import { assertThrows } from "./helpers.ts";
 
 export class AddressTests {
-  public address_UnboundSocket_ThrowsException(): void {
+  address_UnboundSocket_ThrowsException(): void {
     const socket = createSocket("udp4");
     assertThrows(() => socket.address());
     socket.close();

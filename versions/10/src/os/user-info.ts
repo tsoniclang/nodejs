@@ -9,11 +9,11 @@ import {
 } from "@tsonic/dotnet/System.Runtime.InteropServices.js";
 
 export interface UserInfo {
-  readonly username: string;
-  readonly uid: number;
-  readonly gid: number;
-  readonly shell: string | null;
-  readonly homedir: string;
+  username: string;
+  uid: number;
+  gid: number;
+  shell: string | null;
+  homedir: string;
 }
 
 export const userInfo = (): UserInfo => {

@@ -3,8 +3,8 @@
  * input.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { Duplex } from "./duplex.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 export class Transform extends Duplex {
   /**
@@ -15,10 +15,10 @@ export class Transform extends Duplex {
    * @param callback - Callback for when transform is complete. Call with
    *   (error, data).
    */
-  protected _transform(
-    chunk: JsValue,
+  _transform(
+    chunk: RuntimeValue,
     encoding: string | undefined,
-    callback: (error: Error | null, data: JsValue | null | undefined) => void,
+    callback: (error: Error | null, data: RuntimeValue | null | undefined) => void,
   ): void {
     // Default implementation: pass through
     callback(null, chunk);
@@ -30,7 +30,7 @@ export class Transform extends Duplex {
    *
    * @param callback - Callback for when flush is complete.
    */
-  protected _flush(callback: (error: Error | null) => void): void {
+  _flush(callback: (error: Error | null) => void): void {
     // To be implemented by subclasses
     callback(null);
   }
@@ -42,8 +42,8 @@ export class Transform extends Duplex {
    * @param encoding - Encoding if chunk is a string.
    * @param callback - Callback for when write is complete.
    */
-  protected override _write(
-    chunk: JsValue,
+  override _write(
+    chunk: RuntimeValue,
     encoding: string | undefined,
     callback: () => void,
   ): void {

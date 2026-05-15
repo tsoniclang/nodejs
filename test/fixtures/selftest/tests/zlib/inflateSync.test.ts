@@ -11,7 +11,7 @@ import { assertThrows, utf8Bytes, utf8String } from "./helpers.ts";
  * These tests will pass once the native implementation is provided.
  */
 export class Zlib_inflateSyncTests {
-  public inflateSync_ShouldDecompressData(): void {
+  inflateSync_ShouldDecompressData(): void {
     const original = utf8Bytes("Hello, World!");
     const compressed = deflateSync(original);
     const decompressed = inflateSync(compressed);
@@ -19,7 +19,7 @@ export class Zlib_inflateSyncTests {
     Assert.Equal(original.length, decompressed.length);
   }
 
-  public inflateSync_ShouldRestoreOriginalText(): void {
+  inflateSync_ShouldRestoreOriginalText(): void {
     const originalText = "The quick brown fox jumps over the lazy dog";
     const original = utf8Bytes(originalText);
 
@@ -30,11 +30,11 @@ export class Zlib_inflateSyncTests {
     Assert.Equal(originalText, resultText);
   }
 
-  public inflateSync_WithNullBuffer_ShouldThrow(): void {
+  inflateSync_WithNullBuffer_ShouldThrow(): void {
     assertThrows(() => inflateSync(asinterface<Uint8Array>(null)));
   }
 
-  public inflateSync_WithInvalidData_ShouldThrow(): void {
+  inflateSync_WithInvalidData_ShouldThrow(): void {
     const invalidData = utf8Bytes("This is not compressed");
 
     assertThrows(() => inflateSync(invalidData));

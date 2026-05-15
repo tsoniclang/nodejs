@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { TcpSocketConnectOpts } from "@tsonic/nodejs/net.js";
 
 export class TcpSocketConnectOptsTests {
-  public all_properties_can_be_set(): void {
+  all_properties_can_be_set(): void {
     const opts = new TcpSocketConnectOpts();
     opts.port = 8080;
     opts.host = "localhost";

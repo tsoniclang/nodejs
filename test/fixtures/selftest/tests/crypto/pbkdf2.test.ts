@@ -5,7 +5,7 @@ import { pbkdf2 } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class Pbkdf2Tests {
-  public pbkdf2_async_works(): void {
+  pbkdf2_async_works(): void {
     let result: Uint8Array | null = null;
     let error: Error | null = null;
     pbkdf2("password", "salt", 1000 as int, 32 as int, "sha256", (err, key) => {
@@ -17,7 +17,7 @@ export class Pbkdf2Tests {
     Assert.Equal(32, result!.length);
   }
 
-  public pbkdf2_callback_works(): void {
+  pbkdf2_callback_works(): void {
     let result: Uint8Array | null = null;
     let error: Error | null = null;
     pbkdf2("password", "salt", 1000 as int, 32 as int, "sha256", (err, key) => {

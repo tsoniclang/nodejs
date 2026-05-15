@@ -3,9 +3,12 @@
  *
  */
 
+import { Convert } from "@tsonic/dotnet/System.js";
+import type { byte } from "@tsonic/core/types.js";
+
 type MODPGroupEntry = {
-  readonly prime: string;
-  readonly generator: number;
+  prime: string;
+  generator: byte;
 };
 
 const GROUPS: Record<string, MODPGroupEntry> = {
@@ -16,7 +19,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "29024E088A67CC74020BBEA63B139B22514A08798E3404DD" +
       "EF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245" +
       "E485B576625E7EC6F44C42E9A63A3620FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 2409 - modp2 (1024 bits)
@@ -28,7 +31,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED" +
       "EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE65381" +
       "FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp5 (1536 bits)
@@ -42,7 +45,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "C2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F" +
       "83655D23DCA3AD961C62F356208552BB9ED529077096966D" +
       "670C354E4ABC9804F1746C08CA237327FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp14 (2048 bits)
@@ -59,7 +62,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "E39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9" +
       "DE2BCBF6955817183995497CEA956AE515D2261898FA0510" +
       "15728E5A8AACAA68FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp15 (3072 bits)
@@ -81,7 +84,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "F12FFA06D98A0864D87602733EC86A64521F2B18177B200C" +
       "BBE117577A615D6C770988C0BAD946E208E24FA074E5AB31" +
       "43DB5BFCE0FD108E4B82D120A93AD2CAFFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp16 (4096 bits)
@@ -109,7 +112,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "1F612970CEE2D7AFB81BDD762170481CD0069127D5B05AA9" +
       "93B4EA988D8FDDC186FFB7DC90A6C08F4DF435C934063199" +
       "FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp17 (6144 bits)
@@ -143,7 +146,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "B7C5DA76F550AA3D8A1FBFF0EB19CCB1A313D55CDA56C9EC2EF29632" +
       "387FE8D76E3C0468043E8F663F4860EE12BF2D5B0B7474D6E694F91E" +
       "6DCC4024FFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 
   // RFC 3526 - modp18 (8192 bits)
@@ -186,7 +189,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
       "359046F4EB879F924009438B481C6CD7889A002ED5EE382BC9190DA6" +
       "FC026E479558E4475677E9AA9E3050E2765694DFC81F56E880B96E71" +
       "60C980DD98EDD3DFFFFFFFFFFFFFFFFF",
-    generator: 2,
+    generator: 2 as byte,
   },
 };
 
@@ -203,7 +206,8 @@ export const getGroup = (
 
   // TODO: convert hex string to Uint8Array
   const primeBytes = hexToBytes(group.prime);
-  const generatorBytes = new Uint8Array([group.generator]);
+  const generatorBytes = new Uint8Array(1);
+  generatorBytes[0] = group.generator;
 
   return { prime: primeBytes, generator: generatorBytes };
 };
@@ -221,7 +225,7 @@ export const isValidGroup = (groupName: string): boolean => {
 const hexToBytes = (hex: string): Uint8Array => {
   const bytes = new Uint8Array(hex.length / 2);
   for (let i = 0; i < hex.length; i += 2) {
-    bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
+    bytes[i / 2] = Convert.ToByte(parseInt(hex.substring(i, i + 2), 16));
   }
   return bytes;
 };

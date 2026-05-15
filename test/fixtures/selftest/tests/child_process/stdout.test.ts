@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessStdoutTests {
-  public stdout_StdoutProperty_IsAccessible(): void {
+  stdout_StdoutProperty_IsAccessible(): void {
     const command = "echo";
     const args = ["test"];
     const child = child_process.spawn(command, args);

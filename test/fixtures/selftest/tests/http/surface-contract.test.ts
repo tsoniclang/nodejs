@@ -13,17 +13,17 @@ import {
 } from "@tsonic/nodejs/http.js";
 
 export class HttpSurfaceContractTests {
-  public integer_backed_members_compile_against_exact_numeric_contracts(): void {
+  integer_backed_members_compile_against_exact_numeric_contracts(): void {
     const server = new Server();
     const response = new ServerResponse();
     const incoming = new IncomingMessage();
 
-    const timeout: number = server.timeout;
-    const headersTimeout: number = server.headersTimeout;
-    const requestTimeout: number = server.requestTimeout;
-    const keepAliveTimeout: number = server.keepAliveTimeout;
-    const statusCode: number = response.statusCode;
-    const incomingStatusCode: number | null = incoming.statusCode;
+    const timeout: int = server.timeout;
+    const headersTimeout: int = server.headersTimeout;
+    const requestTimeout: int = server.requestTimeout;
+    const keepAliveTimeout: int = server.keepAliveTimeout;
+    const statusCode: int = response.statusCode;
+    const incomingStatusCode: int | null = incoming.statusCode;
     const address = server.address();
 
     server.timeout = timeout;
@@ -37,7 +37,7 @@ export class HttpSurfaceContractTests {
     Assert.Null(address);
   }
 
-  public integer_backed_methods_compile_against_exact_numeric_contracts(): void {
+  integer_backed_methods_compile_against_exact_numeric_contracts(): void {
     const server = new Server();
     const response = new ServerResponse();
     const incoming = new IncomingMessage();

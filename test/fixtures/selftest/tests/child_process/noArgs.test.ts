@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessNoArgsTests {
-  public noArgs_SpawnSync_Works(): void {
+  noArgs_SpawnSync_Works(): void {
     const command = "pwd";
     const result = child_process.spawnSync(command);
 
@@ -12,7 +12,7 @@ export class ChildProcessNoArgsTests {
     Assert.True(result.pid > 0);
   }
 
-  public noArgs_ExecFileSync_Works(): void {
+  noArgs_ExecFileSync_Works(): void {
     const file = "/bin/pwd";
     const result = child_process.execFileSync(file);
 

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { TlsOptions } from "@tsonic/nodejs/tls.js";
 
 export class TlsOptionsTests {
-  public TlsOptions_AllProperties_CanBeSet(): void {
+  TlsOptions_AllProperties_CanBeSet(): void {
     const opts = new TlsOptions();
     opts.handshakeTimeout = 120000;
     opts.sessionTimeout = 300;

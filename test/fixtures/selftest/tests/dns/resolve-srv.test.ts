@@ -4,9 +4,9 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class ResolveSrvTests {
-  public resolveSrv_ValidDomain_CallsCallback(): void {
+  resolveSrv_ValidDomain_CallsCallback(): void {
     let called = false;
-    let port = -1;
+    let port: number = -1;
     dns.resolveSrv("localhost", (err, recs) => {
       called = true;
       if (err === null && recs.length > 0) {

@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { getCACertificates } from "@tsonic/nodejs/tls.js";
 
 export class getCACertificatesTests {
-  public getCACertificates_ReturnsArray(): void {
+  getCACertificates_ReturnsArray(): void {
     const certs = getCACertificates();
     Assert.NotNull(certs);
     // May be empty depending on substrate

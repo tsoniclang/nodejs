@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class SetDefaultResultOrderTests {
-  public setDefaultResultOrder_IPv4First_UpdatesOrder(): void {
+  setDefaultResultOrder_IPv4First_UpdatesOrder(): void {
     dns.setDefaultResultOrder("ipv4first");
     const order = dns.getDefaultResultOrder();
     Assert.Equal("ipv4first", order);
@@ -13,7 +13,7 @@ export class SetDefaultResultOrderTests {
     dns.setDefaultResultOrder("verbatim");
   }
 
-  public setDefaultResultOrder_IPv6First_UpdatesOrder(): void {
+  setDefaultResultOrder_IPv6First_UpdatesOrder(): void {
     dns.setDefaultResultOrder("ipv6first");
     const order = dns.getDefaultResultOrder();
     Assert.Equal("ipv6first", order);
@@ -22,13 +22,13 @@ export class SetDefaultResultOrderTests {
     dns.setDefaultResultOrder("verbatim");
   }
 
-  public setDefaultResultOrder_Verbatim_UpdatesOrder(): void {
+  setDefaultResultOrder_Verbatim_UpdatesOrder(): void {
     dns.setDefaultResultOrder("verbatim");
     const order = dns.getDefaultResultOrder();
     Assert.Equal("verbatim", order);
   }
 
-  public setDefaultResultOrder_InvalidValue_ThrowsError(): void {
+  setDefaultResultOrder_InvalidValue_ThrowsError(): void {
     let threw = false;
     try {
       dns.setDefaultResultOrder("invalid");

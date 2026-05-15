@@ -8,12 +8,12 @@ import type { MeasureOptions } from "@tsonic/nodejs/perf_hooks.js";
 import { assertThrows } from "./helpers.ts";
 
 export class PerformanceTests {
-  public now_should_return_positive_number(): void {
+  now_should_return_positive_number(): void {
     const timestamp = performance.now();
     Assert.True(timestamp > 0);
   }
 
-  public now_should_be_monotonic_increasing(): void {
+  now_should_be_monotonic_increasing(): void {
     const t1 = performance.now();
     Thread.Sleep(10 as int);
     const t2 = performance.now();
@@ -22,7 +22,7 @@ export class PerformanceTests {
     Assert.True(t2 - t1 >= 10);
   }
 
-  public mark_should_create_mark(): void {
+  mark_should_create_mark(): void {
     performance.clearMarks();
 
     const entry = performance.mark("test-mark");
@@ -34,15 +34,15 @@ export class PerformanceTests {
     Assert.True(entry.startTime > 0);
   }
 
-  public mark_with_null_name_should_throw(): void {
+  mark_with_null_name_should_throw(): void {
     assertThrows(() => performance.mark(null!));
   }
 
-  public mark_with_empty_name_should_throw(): void {
+  mark_with_empty_name_should_throw(): void {
     assertThrows(() => performance.mark(""));
   }
 
-  public mark_with_detail_should_store_detail(): void {
+  mark_with_detail_should_store_detail(): void {
     performance.clearMarks();
 
     const detail = "test-detail-value";
@@ -52,7 +52,7 @@ export class PerformanceTests {
     Assert.Equal(detail, (entry as PerformanceMark).detail);
   }
 
-  public mark_with_custom_start_time_should_use_provided_time(): void {
+  mark_with_custom_start_time_should_use_provided_time(): void {
     performance.clearMarks();
 
     const customTime = 12345.678;
@@ -61,7 +61,7 @@ export class PerformanceTests {
     Assert.Equal(customTime, entry.startTime);
   }
 
-  public measure_between_marks_should_calculate_duration(): void {
+  measure_between_marks_should_calculate_duration(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -78,15 +78,15 @@ export class PerformanceTests {
     Assert.True(entry.duration < 200);
   }
 
-  public measure_with_null_name_should_throw(): void {
+  measure_with_null_name_should_throw(): void {
     assertThrows(() => performance.measure(null!));
   }
 
-  public measure_with_empty_name_should_throw(): void {
+  measure_with_empty_name_should_throw(): void {
     assertThrows(() => performance.measure(""));
   }
 
-  public measure_with_missing_start_mark_should_use_zero(): void {
+  measure_with_missing_start_mark_should_use_zero(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -96,7 +96,7 @@ export class PerformanceTests {
     Assert.Equal(0, entry.startTime);
   }
 
-  public measure_with_missing_end_mark_should_use_now(): void {
+  measure_with_missing_end_mark_should_use_now(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -110,7 +110,7 @@ export class PerformanceTests {
     Assert.True(entry.startTime + entry.duration <= beforeMeasure + 5);
   }
 
-  public measure_with_no_marks_should_work_with_current_time(): void {
+  measure_with_no_marks_should_work_with_current_time(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -121,7 +121,7 @@ export class PerformanceTests {
     Assert.True(entry.duration > 0);
   }
 
-  public measure_with_options_should_work(): void {
+  measure_with_options_should_work(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -142,7 +142,7 @@ export class PerformanceTests {
     Assert.True(entry.duration >= 50);
   }
 
-  public measure_with_explicit_times_should_work(): void {
+  measure_with_explicit_times_should_work(): void {
     performance.clearMeasures();
 
     const options: MeasureOptions = {
@@ -155,7 +155,7 @@ export class PerformanceTests {
     Assert.Equal(150.5, entry.duration);
   }
 
-  public get_entries_should_return_all_entries(): void {
+  get_entries_should_return_all_entries(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -171,7 +171,7 @@ export class PerformanceTests {
     Assert.True(allEntries.some((e) => e.name === "measure1"));
   }
 
-  public get_entries_by_name_should_filter_by_name(): void {
+  get_entries_by_name_should_filter_by_name(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -185,11 +185,11 @@ export class PerformanceTests {
     Assert.True(filtered.every((e) => e.name === "test"));
   }
 
-  public get_entries_by_name_with_null_name_should_throw(): void {
+  get_entries_by_name_with_null_name_should_throw(): void {
     assertThrows(() => performance.getEntriesByName(null!));
   }
 
-  public get_entries_by_name_with_type_should_filter_by_both(): void {
+  get_entries_by_name_with_type_should_filter_by_both(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -203,7 +203,7 @@ export class PerformanceTests {
     Assert.Equal("mark", filtered[0].entryType);
   }
 
-  public get_entries_by_type_should_filter_by_type(): void {
+  get_entries_by_type_should_filter_by_type(): void {
     performance.clearMarks();
     performance.clearMeasures();
 
@@ -220,11 +220,11 @@ export class PerformanceTests {
     Assert.True(measures.every((e) => e.entryType === "measure"));
   }
 
-  public get_entries_by_type_with_null_type_should_throw(): void {
+  get_entries_by_type_with_null_type_should_throw(): void {
     assertThrows(() => performance.getEntriesByType(null!));
   }
 
-  public clear_marks_should_remove_all_marks(): void {
+  clear_marks_should_remove_all_marks(): void {
     performance.clearMarks();
 
     performance.mark("mark1");
@@ -236,7 +236,7 @@ export class PerformanceTests {
     Assert.Equal(0, marks.length);
   }
 
-  public clear_marks_with_name_should_remove_specific_mark(): void {
+  clear_marks_with_name_should_remove_specific_mark(): void {
     performance.clearMarks();
 
     performance.mark("keep");
@@ -249,7 +249,7 @@ export class PerformanceTests {
     Assert.Equal("keep", marks[0].name);
   }
 
-  public clear_measures_should_remove_all_measures(): void {
+  clear_measures_should_remove_all_measures(): void {
     performance.clearMeasures();
 
     performance.measure("measure1");
@@ -261,7 +261,7 @@ export class PerformanceTests {
     Assert.Equal(0, measures.length);
   }
 
-  public clear_measures_with_name_should_remove_specific_measure(): void {
+  clear_measures_with_name_should_remove_specific_measure(): void {
     performance.clearMeasures();
 
     performance.measure("keep");

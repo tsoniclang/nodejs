@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as dns from "@tsonic/nodejs/dns.js";
 
 export class GetDefaultResultOrderTests {
-  public getDefaultResultOrder_ReturnsVerbatim(): void {
+  getDefaultResultOrder_ReturnsVerbatim(): void {
     const order = dns.getDefaultResultOrder();
     Assert.Equal("verbatim", order);
   }

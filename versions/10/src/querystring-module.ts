@@ -4,7 +4,6 @@
  */
 
 import type {} from "./type-bootstrap.ts";
-import type { JsValue } from "@tsonic/core/types.js";
 
 /**
  * Performs URL percent-encoding on the given string.
@@ -30,7 +29,11 @@ export const unescape = (str: string): string => {
   }
 };
 
-const convertToString = (value: JsValue): string => {
+export type QueryStringValue = string | string[] | null | undefined;
+export type QueryStringInput = Map<string, QueryStringValue>;
+export type QueryStringOutput = Map<string, string | string[]>;
+
+const convertToString = (value: string | null | undefined): string => {
   if (value === null || value === undefined) {
     return "";
   }
@@ -46,16 +49,11 @@ const convertToString = (value: JsValue): string => {
  * @returns A URL query string.
  */
 export const stringify = (
-  obj: Record<string, JsValue> | null | undefined,
+  obj: QueryStringInput | null | undefined,
   sep?: string | null,
   eq?: string | null
 ): string => {
   if (obj === null || obj === undefined) {
-    return "";
-  }
-
-  const keys = Object.keys(obj);
-  if (keys.length === 0) {
     return "";
   }
 
@@ -64,19 +62,22 @@ export const stringify = (
 
   const parts: string[] = [];
 
-  for (let i = 0; i < keys.length; i += 1) {
-    const rawKey = keys[i]!;
+  for (const rawKey of obj.keys()) {
     const key = escape(rawKey);
-    const value = obj[rawKey];
+    const value = obj.get(rawKey);
+    if (value === undefined || value === null) {
+      parts.push(key + actualEq);
+      continue;
+    }
 
     if (Array.isArray(value)) {
-      const values = value as JsValue[];
-      for (let j = 0; j < values.length; j += 1) {
-        parts.push(key + actualEq + escape(convertToString(values[j])));
+      for (const item of value) {
+        parts.push(key + actualEq + escape(convertToString(item)));
       }
-    } else {
-      parts.push(key + actualEq + escape(convertToString(value)));
+      continue;
     }
+
+    parts.push(key + actualEq + escape(convertToString(value)));
   }
 
   return parts.join(actualSep);
@@ -96,8 +97,8 @@ export const parse = (
   sep?: string | null,
   eq?: string | null,
   maxKeys?: number
-): Record<string, string | string[]> => {
-  const result: Record<string, string | string[]> = {};
+): QueryStringOutput => {
+  const result: QueryStringOutput = new Map<string, string | string[]>();
 
   if (str === null || str === undefined || str.length === 0) {
     return result;
@@ -136,15 +137,15 @@ export const parse = (
       value = "";
     }
 
-    const existing = result[key];
+    const existing = result.get(key);
     if (existing !== undefined) {
       if (Array.isArray(existing)) {
-        (existing as string[]).push(value);
+        existing.push(value);
       } else {
-        result[key] = [existing as string, value];
+        result.set(key, [existing, value]);
       }
     } else {
-      result[key] = value;
+      result.set(key, value);
     }
 
     count += 1;
@@ -157,7 +158,7 @@ export const parse = (
  * Alias for stringify().
  */
 export const encode = (
-  obj: Record<string, JsValue> | null | undefined,
+  obj: QueryStringInput | null | undefined,
   sep?: string | null,
   eq?: string | null
 ): string => stringify(obj, sep, eq);
@@ -170,4 +171,4 @@ export const decode = (
   sep?: string | null,
   eq?: string | null,
   maxKeys?: number
-): Record<string, string | string[]> => parse(str, sep, eq, maxKeys);
+): QueryStringOutput => parse(str, sep, eq, maxKeys);

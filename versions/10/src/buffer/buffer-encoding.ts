@@ -5,6 +5,7 @@
  */
 
 import type { byte, int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 
 export type BufferEncoding =
   | "utf8"
@@ -63,12 +64,7 @@ const toUint8Array = (values: readonly number[]): Uint8Array => {
   return bytes;
 };
 
-const fromCharCode = (code: int): string =>
-  JSON.parse(
-    `"\\u${HEX_DIGITS.charAt((code >> 12) & 0x0f)}${HEX_DIGITS.charAt(
-      (code >> 8) & 0x0f
-    )}${HEX_DIGITS.charAt((code >> 4) & 0x0f)}${HEX_DIGITS.charAt(code & 0x0f)}"`
-  ) as string;
+const fromCharCode = (code: int): string => Convert.ToChar(code).toString();
 
 const utf8StringToBytes = (value: string): Uint8Array => {
   const encoded = encodeURIComponent(value);
@@ -78,7 +74,7 @@ const utf8StringToBytes = (value: string): Uint8Array => {
     const char = encoded.charAt(index);
     if (char === "%") {
       const hex = encoded.substring(index + 1, index + 3);
-      bytes.push(parseInt(hex, 16));
+      bytes.push(Convert.ToByte(parseInt(hex, 16)));
       index += 2;
       continue;
     }
@@ -267,7 +263,7 @@ export const hexToBytes = (hex: string): Uint8Array => {
   const cleaned = stripCharacters(hex, (char) => char === " " || char === "\n" || char === "\r" || char === "\t");
   const bytes = new Uint8Array(cleaned.length >> 1);
   for (let i = 0; i < bytes.length; i += 1) {
-    bytes[i] = parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0;
+    bytes[i] = Convert.ToByte(parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0);
   }
   return bytes;
 };

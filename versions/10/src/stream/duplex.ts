@@ -3,39 +3,39 @@
  * interfaces.
  *
  */
-import type { JsValue } from "@tsonic/core/types.js";
 import { Readable } from "./readable.ts";
 import { toEventListener } from "../events-module.ts";
+import type { RuntimeValue } from "../runtime-value.ts";
 
 type WriteRequest = {
-  readonly chunk: JsValue;
-  readonly encoding: string | undefined;
-  readonly callback: (() => void) | undefined;
+  chunk: RuntimeValue;
+  encoding: string | undefined;
+  callback: (() => void) | undefined;
 };
 
 export class Duplex extends Readable {
-  private readonly _writeBuffer: WriteRequest[] = [];
-  private _writableEnded = false;
-  private _writing = false;
-  private _corked = false;
+  _writeBuffer: WriteRequest[] = [];
+  _writableEnded = false;
+  _writing = false;
+  _corked = false;
 
   /** Is true if it is safe to call write(). */
-  public get writable(): boolean {
+  get writable(): boolean {
     return !this._writableEnded && !this.destroyed;
   }
 
   /** Is true after writable.end() has been called. */
-  public get writableEnded(): boolean {
+  get writableEnded(): boolean {
     return this._writableEnded;
   }
 
   /** Number of bytes (or objects) in the write queue ready to be written. */
-  public get writableLength(): number {
+  get writableLength(): number {
     return this._writeBuffer.length;
   }
 
   /** Is true if the stream's buffer has been corked. */
-  public get writableCorked(): boolean {
+  get writableCorked(): boolean {
     return this._corked;
   }
 
@@ -48,8 +48,8 @@ export class Duplex extends Readable {
    * @returns False if the stream wishes for the calling code to wait for the
    *   'drain' event to be emitted before continuing to write.
    */
-  public write(
-    chunk: JsValue,
+  write(
+    chunk: RuntimeValue,
     encoding?: string,
     callback?: () => void,
   ): boolean {
@@ -79,8 +79,8 @@ export class Duplex extends Readable {
    * @param encoding - The encoding if chunk is a string.
    * @param callback - Optional callback for when the stream has finished.
    */
-  public end(
-    chunk?: JsValue,
+  end(
+    chunk?: RuntimeValue,
     encoding?: string,
     callback?: () => void,
   ): Duplex {
@@ -109,14 +109,14 @@ export class Duplex extends Readable {
    * Forces all written data to be buffered in memory. The buffered data will
    * be flushed when uncork() is called.
    */
-  public cork(): void {
+  cork(): void {
     this._corked = true;
   }
 
   /**
    * Flushes all data buffered since cork() was called.
    */
-  public uncork(): void {
+  uncork(): void {
     this._corked = false;
     this.processWrites();
   }
@@ -126,14 +126,14 @@ export class Duplex extends Readable {
    *
    * @param error - Optional error to emit.
    */
-  public override destroy(error?: Error): void {
+  override destroy(error?: Error): void {
     while (this._writeBuffer.length > 0) {
       this._writeBuffer.pop();
     }
     super.destroy(error);
   }
 
-  private processWrites(): void {
+  processWrites(): void {
     if (this._writing || this._writeBuffer.length === 0) {
       return;
     }
@@ -163,8 +163,8 @@ export class Duplex extends Readable {
    * @param _encoding - Encoding if chunk is a string.
    * @param callback - Callback for when write is complete.
    */
-  protected _write(
-    _chunk: JsValue,
+  _write(
+    _chunk: RuntimeValue,
     _encoding: string | undefined,
     callback: () => void,
   ): void {

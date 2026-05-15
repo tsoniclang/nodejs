@@ -7,7 +7,9 @@
  * Uint8Array, which is the natural JS equivalent.
  */
 
-import type { byte, int, JsValue, long, ulong } from "@tsonic/core/types.js";
+import { overloads as O } from "@tsonic/core/lang.js";
+import type { byte, int, long, ulong } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 
 import {
   byteLengthOfString,
@@ -161,17 +163,17 @@ class BufferInternals {
     littleEndian: boolean,
   ): void {
     if (littleEndian) {
-      bytes[offset] = value & 0xff;
-      bytes[offset + 1] = (value >>> 8) & 0xff;
-      bytes[offset + 2] = (value >>> 16) & 0xff;
-      bytes[offset + 3] = (value >>> 24) & 0xff;
+      bytes[offset] = Convert.ToByte(value & 0xff);
+      bytes[offset + 1] = Convert.ToByte((value >>> 8) & 0xff);
+      bytes[offset + 2] = Convert.ToByte((value >>> 16) & 0xff);
+      bytes[offset + 3] = Convert.ToByte((value >>> 24) & 0xff);
       return;
     }
 
-    bytes[offset] = (value >>> 24) & 0xff;
-    bytes[offset + 1] = (value >>> 16) & 0xff;
-    bytes[offset + 2] = (value >>> 8) & 0xff;
-    bytes[offset + 3] = value & 0xff;
+    bytes[offset] = Convert.ToByte((value >>> 24) & 0xff);
+    bytes[offset + 1] = Convert.ToByte((value >>> 16) & 0xff);
+    bytes[offset + 2] = Convert.ToByte((value >>> 8) & 0xff);
+    bytes[offset + 3] = Convert.ToByte(value & 0xff);
   }
 
   static writeInt32(
@@ -181,26 +183,26 @@ class BufferInternals {
     littleEndian: boolean,
   ): void {
     if (littleEndian) {
-      bytes[offset] = value & 0xff;
-      bytes[offset + 1] = (value >> 8) & 0xff;
-      bytes[offset + 2] = (value >> 16) & 0xff;
-      bytes[offset + 3] = (value >> 24) & 0xff;
+      bytes[offset] = Convert.ToByte(value & 0xff);
+      bytes[offset + 1] = Convert.ToByte((value >> 8) & 0xff);
+      bytes[offset + 2] = Convert.ToByte((value >> 16) & 0xff);
+      bytes[offset + 3] = Convert.ToByte((value >> 24) & 0xff);
       return;
     }
 
-    bytes[offset] = (value >> 24) & 0xff;
-    bytes[offset + 1] = (value >> 16) & 0xff;
-    bytes[offset + 2] = (value >> 8) & 0xff;
-    bytes[offset + 3] = value & 0xff;
+    bytes[offset] = Convert.ToByte((value >> 24) & 0xff);
+    bytes[offset + 1] = Convert.ToByte((value >> 16) & 0xff);
+    bytes[offset + 2] = Convert.ToByte((value >> 8) & 0xff);
+    bytes[offset + 3] = Convert.ToByte(value & 0xff);
   }
 
   static readIeee754(
     bytes: Uint8Array,
     littleEndian: boolean,
-    mantissaBits: number,
+    mantissaBits: int,
     byteLength: int,
   ): number {
-    const exponentBits = byteLength * 8 - mantissaBits - 1;
+    const exponentBits: int = (byteLength * 8 - mantissaBits - 1) as int;
     const maxExponent = (1 << exponentBits) - 1;
     const exponentBias = maxExponent >> 1;
     let remainingBits = -7;
@@ -219,7 +221,7 @@ class BufferInternals {
       index = (index + delta) as int;
     }
 
-    let mantissa = exponent & ((1 << (-remainingBits)) - 1);
+    let mantissa: number = exponent & ((1 << (-remainingBits)) - 1);
     exponent >>= -remainingBits;
     remainingBits += mantissaBits;
 
@@ -244,11 +246,11 @@ class BufferInternals {
   static writeIeee754(
     value: number,
     littleEndian: boolean,
-    mantissaBits: number,
+    mantissaBits: int,
     byteLength: int,
   ): Uint8Array {
     const bytes = new Uint8Array(byteLength);
-    const exponentBits = byteLength * 8 - mantissaBits - 1;
+    const exponentBits: int = (byteLength * 8 - mantissaBits - 1) as int;
     const maxExponent = (1 << exponentBits) - 1;
     const exponentBias = maxExponent >> 1;
     const roundingTerm =
@@ -303,10 +305,10 @@ class BufferInternals {
       }
     }
 
-    let remainingMantissaBits: number = mantissaBits;
+    let remainingMantissaBits: int = mantissaBits;
     let mantissaRemainder: number = mantissa;
     for (; remainingMantissaBits >= 8; remainingMantissaBits -= 8) {
-      const mantissaByte = Math.trunc(mantissaRemainder) & 0xff;
+      const mantissaByte = Convert.ToByte(Math.trunc(mantissaRemainder) & 0xff);
       bytes[index] = mantissaByte;
       index = (index + delta) as int;
       mantissaRemainder = Math.floor(mantissaRemainder / 256);
@@ -315,16 +317,16 @@ class BufferInternals {
     let combined: number =
       (Math.trunc(exponent) << remainingMantissaBits) |
       Math.trunc(mantissaRemainder);
-    let remainingExponentBits: number = exponentBits + remainingMantissaBits;
+    let remainingExponentBits: int = (exponentBits + remainingMantissaBits) as int;
     for (; remainingExponentBits > 0; remainingExponentBits -= 8) {
-      const combinedByte = Math.trunc(combined) & 0xff;
+      const combinedByte = Convert.ToByte(Math.trunc(combined) & 0xff);
       bytes[index] = combinedByte;
       index = (index + delta) as int;
       combined = Math.floor(combined / 256);
     }
 
     const signIndex = (index - delta) as int;
-    bytes[signIndex] = bytes[signIndex]! | (sign * 128);
+    bytes[signIndex] = Convert.ToByte(bytes[signIndex]! | (sign * 128));
 
     return bytes;
   }
@@ -336,7 +338,7 @@ class BufferInternals {
     const high = littleEndian
       ? BufferInternals.readUInt32(bytes, 4, true)
       : BufferInternals.readUInt32(bytes, 0, false);
-    const value: ulong = (high * UINT32_FACTOR) + low;
+    const value: ulong = Convert.ToUInt64((high * UINT32_FACTOR) + low);
     return value;
   }
 
@@ -347,7 +349,7 @@ class BufferInternals {
     const high = littleEndian
       ? BufferInternals.readInt32(bytes, 4, true)
       : BufferInternals.readInt32(bytes, 0, false);
-    const value: long = (high * UINT32_FACTOR) + low;
+    const value: long = Convert.ToInt64((high * UINT32_FACTOR) + low);
     return value;
   }
 
@@ -390,7 +392,7 @@ export class Buffer {
   [index: number]: byte;
 
   /** The underlying typed array. */
-  private readonly _data: Uint8Array;
+  _data: Uint8Array;
 
   /** Gets the length of the buffer in bytes. */
   get length(): int {
@@ -403,7 +405,7 @@ export class Buffer {
    */
   static poolSize: int = 8192;
 
-  private constructor(data: Uint8Array) {
+  constructor(data: Uint8Array) {
     this._data = data;
   }
 
@@ -443,7 +445,7 @@ export class Buffer {
    * Sets the byte at `index` (value is truncated to 0-255).
    */
   set(index: int, value: number): void {
-    this._data[index] = value & 0xff;
+    this._data[index] = Convert.ToByte(value & 0xff);
   }
 
   /**
@@ -471,7 +473,13 @@ export class Buffer {
     const buf = new Buffer(new Uint8Array(size));
 
     if (fill !== undefined) {
-      buf.fill(fill, 0, size, encoding ?? "utf8");
+      if (typeof fill === "number") {
+        buf.fill_number(fill, 0, size);
+      } else if (fill instanceof Buffer) {
+        buf.fill_buffer(fill, 0, size);
+      } else {
+        buf.fill_string(fill, 0, size, encoding ?? "utf8");
+      }
     }
 
     return buf;
@@ -503,8 +511,8 @@ export class Buffer {
   /**
    * Creates a new Buffer from a string.
    */
-  static fromString(str: string, encoding: string = "utf8"): Buffer {
-    const bytes = stringToBytes(str, encoding);
+  static fromString(str: string, encoding?: string): Buffer {
+    const bytes = stringToBytes(str, encoding ?? "utf8");
     return new Buffer(bytes);
   }
 
@@ -514,7 +522,7 @@ export class Buffer {
   static fromArray(array: number[]): Buffer {
     const bytes = new Uint8Array(array.length);
     for (let i = 0; i < array.length; i += 1) {
-      bytes[i] = (array[i]!) & 0xff;
+      bytes[i] = Convert.ToByte((array[i]!) & 0xff);
     }
     return new Buffer(bytes);
   }
@@ -537,38 +545,15 @@ export class Buffer {
     return new Buffer(copy);
   }
 
-  private static isNumberArray(
-    value: number[] | Buffer | Uint8Array,
-  ): value is number[] {
-    return Array.isArray(value);
-  }
-
-  private static fromNonString(
-    value: number[] | Buffer | Uint8Array,
-  ): Buffer {
-    if (value instanceof Buffer) {
-      return Buffer.fromBuffer(value);
-    }
-    if (Buffer.isNumberArray(value)) {
-      return Buffer.fromArray(value);
-    }
-    return Buffer.fromUint8Array(value);
-  }
-
   /**
    * Overloaded `from` matching Node.js signatures.
    */
-  static from(
-    value: string | number[] | Buffer | Uint8Array,
-    encodingOrOffset?: string | number,
-  ): Buffer {
-    if (typeof value === "string") {
-      return Buffer.fromString(
-        value,
-        typeof encodingOrOffset === "string" ? encodingOrOffset : "utf8",
-      );
-    }
-    return Buffer.fromNonString(value);
+  static from(value: string, encoding?: string): Buffer;
+  static from(value: number[]): Buffer;
+  static from(value: Buffer): Buffer;
+  static from(value: Uint8Array): Buffer;
+  static from(_value: any, _encoding?: any): Buffer {
+    throw new Error("Unreachable overload stub");
   }
 
   static fromBytes(bytes: byte[]): Buffer {
@@ -587,7 +572,7 @@ export class Buffer {
   /**
    * Returns true if obj is a Buffer.
    */
-  static isBuffer(obj: JsValue): obj is Buffer {
+  static isBuffer(obj: object | null | undefined): obj is Buffer {
     return obj instanceof Buffer;
   }
 
@@ -636,7 +621,7 @@ export class Buffer {
 
     let len = 0;
     if (totalLength !== undefined) {
-      len = totalLength;
+      len = BufferInternals.toInt(totalLength);
     } else {
       for (let i = 0; i < list.length; i += 1) {
         len += list[i]!.length;
@@ -712,17 +697,39 @@ export class Buffer {
   /**
    * Returns the index of the first occurrence of `value`, or -1.
    */
-  indexOf(
-    value: string | number | Buffer,
-    byteOffset: int = 0,
-    encoding: string = "utf8",
+  indexOf(value: string, byteOffset?: int, encoding?: string): number;
+  indexOf(value: number, byteOffset?: int): number;
+  indexOf(value: Buffer, byteOffset?: int): number;
+  indexOf(_value: any, _byteOffset?: any, _encoding?: any): number {
+    throw new Error("Unreachable overload stub");
+  }
+
+  indexOf_string(
+    value: string,
+    byteOffset?: int,
+    encoding?: string,
+  ): number {
+    return this.indexOfBytes(stringToBytes(value, encoding ?? "utf8"), byteOffset ?? (0 as int));
+  }
+
+  indexOf_number(value: number, byteOffset?: int): number {
+    const byteCell = new Uint8Array(1);
+    byteCell[0] = Convert.ToByte(value & 0xff);
+    return this.indexOfBytes(byteCell, byteOffset ?? (0 as int));
+  }
+
+  indexOf_buffer(value: Buffer, byteOffset?: int): number {
+    return this.indexOfBytes(value._data, byteOffset ?? (0 as int));
+  }
+
+  indexOfBytes(
+    searchBytes: Uint8Array,
+    byteOffset: int,
   ): number {
     let offset = byteOffset;
     if (offset < 0) offset = BufferInternals.maxInt(0 as int, (this.length + offset) as int);
     if (offset >= this.length) return -1;
 
-    const searchBytes = this.toSearchBytes(value, encoding);
-    if (searchBytes === null) return -1;
     if (searchBytes.length === 0) return offset;
 
     for (let i = offset; i <= this.length - searchBytes.length; i += 1) {
@@ -742,17 +749,39 @@ export class Buffer {
   /**
    * Returns the index of the last occurrence of `value`, or -1.
    */
-  lastIndexOf(
-    value: string | number | Buffer,
+  lastIndexOf(value: string, byteOffset?: int, encoding?: string): number;
+  lastIndexOf(value: number, byteOffset?: int): number;
+  lastIndexOf(value: Buffer, byteOffset?: int): number;
+  lastIndexOf(_value: any, _byteOffset?: any, _encoding?: any): number {
+    throw new Error("Unreachable overload stub");
+  }
+
+  lastIndexOf_string(
+    value: string,
     byteOffset?: int,
-    encoding: string = "utf8",
+    encoding?: string,
+  ): number {
+    return this.lastIndexOfBytes(stringToBytes(value, encoding ?? "utf8"), byteOffset);
+  }
+
+  lastIndexOf_number(value: number, byteOffset?: int): number {
+    const byteCell = new Uint8Array(1);
+    byteCell[0] = Convert.ToByte(value & 0xff);
+    return this.lastIndexOfBytes(byteCell, byteOffset);
+  }
+
+  lastIndexOf_buffer(value: Buffer, byteOffset?: int): number {
+    return this.lastIndexOfBytes(value._data, byteOffset);
+  }
+
+  lastIndexOfBytes(
+    searchBytes: Uint8Array,
+    byteOffset: int | undefined,
   ): number {
     let offset = byteOffset ?? this.length - 1;
     if (offset < 0) offset = BufferInternals.maxInt(0 as int, (this.length + offset) as int);
     if (offset >= this.length) offset = this.length - 1;
 
-    const searchBytes = this.toSearchBytes(value, encoding);
-    if (searchBytes === null) return -1;
     if (searchBytes.length === 0) return offset;
 
     for (let i = offset; i >= 0; i -= 1) {
@@ -775,12 +804,27 @@ export class Buffer {
   /**
    * Equivalent to indexOf(value) !== -1.
    */
-  includes(
-    value: string | number | Buffer,
-    byteOffset: int = 0,
-    encoding: string = "utf8",
+  includes(value: string, byteOffset?: int, encoding?: string): boolean;
+  includes(value: number, byteOffset?: int): boolean;
+  includes(value: Buffer, byteOffset?: int): boolean;
+  includes(_value: any, _byteOffset?: any, _encoding?: any): boolean {
+    throw new Error("Unreachable overload stub");
+  }
+
+  includes_string(
+    value: string,
+    byteOffset?: int,
+    encoding?: string,
   ): boolean {
-    return this.indexOf(value, byteOffset, encoding) !== -1;
+    return this.indexOf_string(value, byteOffset, encoding) !== -1;
+  }
+
+  includes_number(value: number, byteOffset?: int): boolean {
+    return this.indexOf_number(value, byteOffset) !== -1;
+  }
+
+  includes_buffer(value: Buffer, byteOffset?: int): boolean {
+    return this.indexOf_buffer(value, byteOffset) !== -1;
   }
 
   // ---- instance: fill ----
@@ -788,38 +832,70 @@ export class Buffer {
   /**
    * Fills the buffer with the specified value.
    */
-  fill(
-    value: number | string | Buffer,
-    offset: int = 0,
+  fill(value: string, offset?: int, end?: int, encoding?: string): Buffer;
+  fill(value: number, offset?: int, end?: int): Buffer;
+  fill(value: Buffer, offset?: int, end?: int): Buffer;
+  fill(_value: any, _offset?: any, _end?: any, _encoding?: any): Buffer {
+    throw new Error("Unreachable overload stub");
+  }
+
+  fill_string(
+    value: string,
+    offset?: int,
     end?: int,
-    encoding: string = "utf8",
+    encoding?: string,
   ): Buffer {
+    let startIndex = offset ?? (0 as int);
     let endIndex = end ?? this.length;
-    offset = BufferInternals.clampInt(offset, 0 as int, this.length);
-    endIndex = BufferInternals.maxInt(offset, BufferInternals.minInt(endIndex, this.length));
+    startIndex = BufferInternals.clampInt(startIndex, 0 as int, this.length);
+    endIndex = BufferInternals.maxInt(startIndex, BufferInternals.minInt(endIndex, this.length));
 
-    if (offset >= endIndex) return this;
+    if (startIndex >= endIndex) return this;
 
-    if (typeof value === "string") {
-      if (value.length === 0) return this;
-      const bytes = stringToBytes(value, encoding);
-      if (bytes.length === 0) return this;
-      for (let i = offset; i < endIndex; i += 1) {
-        this._data[i] = bytes[(i - offset) % bytes.length]!;
-      }
-    } else if (typeof value === "number") {
-      const byteCell = new Uint8Array(1);
-      byteCell[0] = value;
-      const byteValue = byteCell[0]!;
-      for (let i = offset; i < endIndex; i += 1) {
-        this._data[i] = byteValue;
-      }
-    } else if (value instanceof Buffer) {
-      const sourceLength = value._data.length;
-      if (sourceLength === 0) return this;
-      for (let i = offset; i < endIndex; i += 1) {
-        this._data[i] = value._data[(i - offset) % sourceLength]!;
-      }
+    if (value.length === 0) return this;
+    const bytes = stringToBytes(value, encoding ?? "utf8");
+    if (bytes.length === 0) return this;
+    for (let i = startIndex; i < endIndex; i += 1) {
+      this._data[i] = bytes[(i - startIndex) % bytes.length]!;
+    }
+
+    return this;
+  }
+
+  fill_number(
+    value: number,
+    offset?: int,
+    end?: int,
+  ): Buffer {
+    let startIndex = offset ?? (0 as int);
+    let endIndex = end ?? this.length;
+    startIndex = BufferInternals.clampInt(startIndex, 0 as int, this.length);
+    endIndex = BufferInternals.maxInt(startIndex, BufferInternals.minInt(endIndex, this.length));
+
+    const byteCell = new Uint8Array(1);
+    byteCell[0] = Convert.ToByte(value & 0xff);
+    const byteValue = byteCell[0]!;
+    for (let i = startIndex; i < endIndex; i += 1) {
+      this._data[i] = byteValue;
+    }
+
+    return this;
+  }
+
+  fill_buffer(
+    value: Buffer,
+    offset?: int,
+    end?: int,
+  ): Buffer {
+    let startIndex = offset ?? (0 as int);
+    let endIndex = end ?? this.length;
+    startIndex = BufferInternals.clampInt(startIndex, 0 as int, this.length);
+    endIndex = BufferInternals.maxInt(startIndex, BufferInternals.minInt(endIndex, this.length));
+
+    const sourceLength = value._data.length;
+    if (sourceLength === 0) return this;
+    for (let i = startIndex; i < endIndex; i += 1) {
+      this._data[i] = value._data[(i - startIndex) % sourceLength]!;
     }
 
     return this;
@@ -1175,7 +1251,7 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let value = 0;
+    let value: number = 0;
     for (let i = 0; i < byteLength; i += 1) {
       value += this._data[offset + i]! * BufferInternals.pow256(i);
     }
@@ -1193,7 +1269,7 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let value = 0;
+    let value: number = 0;
     for (let i = 0; i < byteLength; i += 1) {
       value += this._data[offset + i]! * BufferInternals.pow256(i);
     }
@@ -1212,7 +1288,7 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let value = 0;
+    let value: number = 0;
     for (let i = 0; i < byteLength; i += 1) {
       value = value * 256 + this._data[offset + i]!;
     }
@@ -1230,7 +1306,7 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let value = 0;
+    let value: number = 0;
     for (let i = 0; i < byteLength; i += 1) {
       value = value * 256 + this._data[offset + i]!;
     }
@@ -1244,7 +1320,7 @@ export class Buffer {
   // ---- instance: write* methods ----
 
   writeUInt8(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
     return offset + 1;
   }
 
@@ -1253,13 +1329,13 @@ export class Buffer {
   }
 
   writeInt8(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
     return offset + 1;
   }
 
   writeUInt16LE(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
-    this._data[offset + 1] = (value >> 8) & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >> 8) & 0xff);
     return offset + 2;
   }
 
@@ -1268,14 +1344,14 @@ export class Buffer {
   }
 
   writeInt16LE(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
-    this._data[offset + 1] = (value >> 8) & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >> 8) & 0xff);
     return offset + 2;
   }
 
   writeUInt16BE(value: number, offset: int = 0): number {
-    this._data[offset] = (value >> 8) & 0xff;
-    this._data[offset + 1] = value & 0xff;
+    this._data[offset] = Convert.ToByte((value >> 8) & 0xff);
+    this._data[offset + 1] = Convert.ToByte(value & 0xff);
     return offset + 2;
   }
 
@@ -1284,16 +1360,16 @@ export class Buffer {
   }
 
   writeInt16BE(value: number, offset: int = 0): number {
-    this._data[offset] = (value >> 8) & 0xff;
-    this._data[offset + 1] = value & 0xff;
+    this._data[offset] = Convert.ToByte((value >> 8) & 0xff);
+    this._data[offset + 1] = Convert.ToByte(value & 0xff);
     return offset + 2;
   }
 
   writeUInt32LE(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
-    this._data[offset + 1] = (value >>> 8) & 0xff;
-    this._data[offset + 2] = (value >>> 16) & 0xff;
-    this._data[offset + 3] = (value >>> 24) & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >>> 8) & 0xff);
+    this._data[offset + 2] = Convert.ToByte((value >>> 16) & 0xff);
+    this._data[offset + 3] = Convert.ToByte((value >>> 24) & 0xff);
     return offset + 4;
   }
 
@@ -1302,18 +1378,18 @@ export class Buffer {
   }
 
   writeInt32LE(value: number, offset: int = 0): number {
-    this._data[offset] = value & 0xff;
-    this._data[offset + 1] = (value >>> 8) & 0xff;
-    this._data[offset + 2] = (value >>> 16) & 0xff;
-    this._data[offset + 3] = (value >>> 24) & 0xff;
+    this._data[offset] = Convert.ToByte(value & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >>> 8) & 0xff);
+    this._data[offset + 2] = Convert.ToByte((value >>> 16) & 0xff);
+    this._data[offset + 3] = Convert.ToByte((value >>> 24) & 0xff);
     return offset + 4;
   }
 
   writeUInt32BE(value: number, offset: int = 0): number {
-    this._data[offset] = (value >>> 24) & 0xff;
-    this._data[offset + 1] = (value >>> 16) & 0xff;
-    this._data[offset + 2] = (value >>> 8) & 0xff;
-    this._data[offset + 3] = value & 0xff;
+    this._data[offset] = Convert.ToByte((value >>> 24) & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >>> 16) & 0xff);
+    this._data[offset + 2] = Convert.ToByte((value >>> 8) & 0xff);
+    this._data[offset + 3] = Convert.ToByte(value & 0xff);
     return offset + 4;
   }
 
@@ -1322,10 +1398,10 @@ export class Buffer {
   }
 
   writeInt32BE(value: number, offset: int = 0): number {
-    this._data[offset] = (value >>> 24) & 0xff;
-    this._data[offset + 1] = (value >>> 16) & 0xff;
-    this._data[offset + 2] = (value >>> 8) & 0xff;
-    this._data[offset + 3] = value & 0xff;
+    this._data[offset] = Convert.ToByte((value >>> 24) & 0xff);
+    this._data[offset + 1] = Convert.ToByte((value >>> 16) & 0xff);
+    this._data[offset + 2] = Convert.ToByte((value >>> 8) & 0xff);
+    this._data[offset + 3] = Convert.ToByte(value & 0xff);
     return offset + 4;
   }
 
@@ -1416,9 +1492,9 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let v = value;
+    let v: number = value;
     for (let i = 0; i < byteLength; i += 1) {
-      this._data[offset + i] = v & 0xff;
+      this._data[offset + i] = Convert.ToByte(v & 0xff);
       v = Math.floor(v / 256);
     }
     return offset + byteLength;
@@ -1435,9 +1511,9 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let v = value < 0 ? value + BufferInternals.pow2(byteLength * 8) : value;
+    let v: number = value < 0 ? value + BufferInternals.pow2(byteLength * 8) : value;
     for (let i = 0; i < byteLength; i += 1) {
-      this._data[offset + i] = v & 0xff;
+      this._data[offset + i] = Convert.ToByte(v & 0xff);
       v = Math.floor(v / 256);
     }
     return offset + byteLength;
@@ -1450,9 +1526,9 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let v = value;
+    let v: number = value;
     for (let i = byteLength - 1; i >= 0; i -= 1) {
-      this._data[offset + i] = v & 0xff;
+      this._data[offset + i] = Convert.ToByte(v & 0xff);
       v = Math.floor(v / 256);
     }
     return offset + byteLength;
@@ -1469,9 +1545,9 @@ export class Buffer {
     if (byteLength < 1 || byteLength > 6) {
       throw new RangeError("byteLength must be between 1 and 6");
     }
-    let v = value < 0 ? value + BufferInternals.pow2(byteLength * 8) : value;
+    let v: number = value < 0 ? value + BufferInternals.pow2(byteLength * 8) : value;
     for (let i = byteLength - 1; i >= 0; i -= 1) {
-      this._data[offset + i] = v & 0xff;
+      this._data[offset + i] = Convert.ToByte(v & 0xff);
       v = Math.floor(v / 256);
     }
     return offset + byteLength;
@@ -1479,38 +1555,22 @@ export class Buffer {
 
   // ---- private helpers ----
 
-  private toSearchBytes(
-    value: string | number | Buffer,
-    encoding: string,
-  ): Uint8Array | null {
-    if (typeof value === "string") {
-      return stringToBytes(value, encoding);
-    }
-    if (typeof value === "number") {
-      const byteCell = new Uint8Array(1);
-      byteCell[0] = value;
-      return byteCell;
-    }
-    if (value instanceof Buffer) {
-      return value._data;
-    }
-    return null;
-  }
-
-  private writeHex(hex: string, offset: int, maxLength: int): number {
+  writeHex(hex: string, offset: int, maxLength: int): number {
     const cleaned = BufferInternals.stripWhitespace(hex);
-    const wholeHexBytes = Math.floor(cleaned.length / 2.0);
+    const wholeHexBytes: number = Math.floor(cleaned.length / 2.0);
     const bytesToWrite = BufferInternals.toInt(
       wholeHexBytes < maxLength ? wholeHexBytes : maxLength
     );
     for (let i = 0; i < bytesToWrite; i += 1) {
       this._data[offset + i] =
-        parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0;
+        Convert.ToByte(
+          (parseInt(cleaned.substring(i * 2, i * 2 + 2), 16) ?? 0) & 0xff
+        );
     }
     return bytesToWrite;
   }
 
-  private writeBase64(
+  writeBase64(
     b64: string,
     offset: int,
     maxLength: int,
@@ -1524,3 +1584,20 @@ export class Buffer {
     return bytesToWrite;
   }
 }
+
+O<typeof Buffer>().method((buffer) => buffer.fromString).family((buffer) => buffer.from);
+O<typeof Buffer>().method((buffer) => buffer.fromArray).family((buffer) => buffer.from);
+O<typeof Buffer>().method((buffer) => buffer.fromBuffer).family((buffer) => buffer.from);
+O<typeof Buffer>().method((buffer) => buffer.fromUint8Array).family((buffer) => buffer.from);
+O<Buffer>().method((buffer) => buffer.indexOf_string).family((buffer) => buffer.indexOf);
+O<Buffer>().method((buffer) => buffer.indexOf_number).family((buffer) => buffer.indexOf);
+O<Buffer>().method((buffer) => buffer.indexOf_buffer).family((buffer) => buffer.indexOf);
+O<Buffer>().method((buffer) => buffer.lastIndexOf_string).family((buffer) => buffer.lastIndexOf);
+O<Buffer>().method((buffer) => buffer.lastIndexOf_number).family((buffer) => buffer.lastIndexOf);
+O<Buffer>().method((buffer) => buffer.lastIndexOf_buffer).family((buffer) => buffer.lastIndexOf);
+O<Buffer>().method((buffer) => buffer.includes_string).family((buffer) => buffer.includes);
+O<Buffer>().method((buffer) => buffer.includes_number).family((buffer) => buffer.includes);
+O<Buffer>().method((buffer) => buffer.includes_buffer).family((buffer) => buffer.includes);
+O<Buffer>().method((buffer) => buffer.fill_string).family((buffer) => buffer.fill);
+O<Buffer>().method((buffer) => buffer.fill_number).family((buffer) => buffer.fill);
+O<Buffer>().method((buffer) => buffer.fill_buffer).family((buffer) => buffer.fill);

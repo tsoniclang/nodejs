@@ -6,7 +6,7 @@ import { EventEmitter } from "@tsonic/nodejs/events.js";
 import { assertThrows } from "./helpers.ts";
 
 export class EventEmitterOnceStaticTests {
-  public async once_static_resolves_when_the_event_is_emitted(): Promise<void> {
+  async once_static_resolves_when_the_event_is_emitted(): Promise<void> {
     const emitter = new EventEmitter();
     const task = EventEmitter.once(emitter, "test");
 
@@ -18,7 +18,7 @@ export class EventEmitterOnceStaticTests {
     Assert.Equal("arg2", args[1]);
   }
 
-  public async once_static_works_with_no_arguments(): Promise<void> {
+  async once_static_works_with_no_arguments(): Promise<void> {
     const emitter = new EventEmitter();
     const task = EventEmitter.once(emitter, "noargs");
 
@@ -28,7 +28,7 @@ export class EventEmitterOnceStaticTests {
     Assert.Equal(0, args.length);
   }
 
-  public async once_static_only_observes_the_first_emission(): Promise<void> {
+  async once_static_only_observes_the_first_emission(): Promise<void> {
     const emitter = new EventEmitter();
     const task = EventEmitter.once(emitter, "once");
 
@@ -40,11 +40,11 @@ export class EventEmitterOnceStaticTests {
     Assert.Equal(1 as number, args[0] as number);
   }
 
-  public once_static_rejects_missing_emitter(): void {
+  once_static_rejects_missing_emitter(): void {
     assertThrows(() => EventEmitter.once(undefined as never, "test"));
   }
 
-  public once_static_rejects_missing_event_name(): void {
+  once_static_rejects_missing_event_name(): void {
     const emitter = new EventEmitter();
     assertThrows(() => EventEmitter.once(emitter, undefined as never));
   }

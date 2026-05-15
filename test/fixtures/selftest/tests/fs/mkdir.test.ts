@@ -11,7 +11,7 @@ import {
 } from "./helpers.ts";
 
 export class mkdirTests {
-  public async mkdir_ShouldCreateDirectory(): Promise<void> {
+  async mkdir_ShouldCreateDirectory(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "new-dir-async");
@@ -22,7 +22,7 @@ export class mkdirTests {
     }
   }
 
-  public async mkdir_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
+  async mkdir_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "parent-async/child/grandchild");
@@ -33,7 +33,7 @@ export class mkdirTests {
     }
   }
 
-  public async mkdir_NonRecursive_MissingParent_ShouldThrow(): Promise<void> {
+  async mkdir_NonRecursive_MissingParent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "missing-parent-async/child");
@@ -44,7 +44,7 @@ export class mkdirTests {
     }
   }
 
-  public async mkdir_MkdirOptions_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
+  async mkdir_MkdirOptions_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "opts-parent-async/child/grandchild");
@@ -57,7 +57,7 @@ export class mkdirTests {
     }
   }
 
-  public async mkdir_MkdirOptions_NonRecursive_MissingParent_ShouldThrow(): Promise<void> {
+  async mkdir_MkdirOptions_NonRecursive_MissingParent_ShouldThrow(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "opts-missing-parent-async/child");
@@ -70,7 +70,7 @@ export class mkdirTests {
     }
   }
 
-  public async mkdir_ObjectOptions_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
+  async mkdir_ObjectOptions_Recursive_ShouldCreateNestedDirectories(): Promise<void> {
     const dir = createTempDir();
     try {
       const dirPath = getTestPath(dir, "obj-parent-async/child/grandchild");

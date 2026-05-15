@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessDisconnectTests {
-  public disconnect_SetsConnectedFalse(): void {
+  disconnect_SetsConnectedFalse(): void {
     const child = child_process.spawn("echo", ["test"]);
 
     child.disconnect();

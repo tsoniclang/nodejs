@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class writeFileTests {
-  public async writeFile_ShouldCreateAndWriteFile(): Promise<void> {
+  async writeFile_ShouldCreateAndWriteFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "write-test-async.txt");
@@ -19,7 +19,7 @@ export class writeFileTests {
     }
   }
 
-  public async writeFile_ShouldOverwriteExistingFile(): Promise<void> {
+  async writeFile_ShouldOverwriteExistingFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "overwrite-test-async.txt");

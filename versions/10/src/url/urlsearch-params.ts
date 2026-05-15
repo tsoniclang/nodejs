@@ -4,12 +4,12 @@
  */
 
 type SearchParamEntry = {
-  readonly name: string;
-  readonly value: string;
+  name: string;
+  value: string;
 };
 
 export class URLSearchParams {
-  private readonly params: SearchParamEntry[] = [];
+  params: SearchParamEntry[] = [];
 
   get size(): number {
     return this.params.length;
@@ -116,7 +116,7 @@ export class URLSearchParams {
     return parts.join("&");
   }
 
-  private parseQueryString(query: string): void {
+  parseQueryString(query: string): void {
     let input = query;
     if (input.startsWith("?")) {
       input = input.slice(1);

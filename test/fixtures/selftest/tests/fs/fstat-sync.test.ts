@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { assertThrows, createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class fstatSyncTests {
-  public fstatSync_ShouldReturnStats(): void {
+  fstatSync_ShouldReturnStats(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -22,7 +22,7 @@ export class fstatSyncTests {
     }
   }
 
-  public fstatSync_ShouldReturnCorrectSize(): void {
+  fstatSync_ShouldReturnCorrectSize(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -36,7 +36,7 @@ export class fstatSyncTests {
     }
   }
 
-  public fstatSync_ShouldHaveValidTimestamps(): void {
+  fstatSync_ShouldHaveValidTimestamps(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -59,11 +59,11 @@ export class fstatSyncTests {
     }
   }
 
-  public fstatSync_WithInvalidDescriptor_ShouldThrow(): void {
+  fstatSync_WithInvalidDescriptor_ShouldThrow(): void {
     assertThrows(() => fs.fstatSync(999));
   }
 
-  public fstatSync_AfterWrite_ShouldReflectNewSize(): void {
+  fstatSync_AfterWrite_ShouldReflectNewSize(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");
@@ -79,7 +79,7 @@ export class fstatSyncTests {
     }
   }
 
-  public fstatSync_EmptyFile_ShouldHaveZeroSize(): void {
+  fstatSync_EmptyFile_ShouldHaveZeroSize(): void {
     const dir = createTempDir();
     try {
       const filePath = getTestPath(dir, "test.txt");

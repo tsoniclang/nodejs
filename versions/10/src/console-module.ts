@@ -1,9 +1,9 @@
 
 import type {} from "./type-bootstrap.ts";
 
-import type { JsValue } from "@tsonic/core/types.js";
 import { Console as DotnetConsole } from "@tsonic/dotnet/System.js";
 import { Stopwatch } from "@tsonic/dotnet/System.Diagnostics.js";
+import type { RuntimeValue } from "./runtime-value.ts";
 
 import * as util from "./util-module.ts";
 
@@ -29,16 +29,26 @@ const writeError = (message: string): void => {
 };
 
 const formatConsoleMessage = (
-  message?: JsValue,
-  optionalParams: readonly JsValue[] = []
+  message?: RuntimeValue,
+  optionalParams: readonly RuntimeValue[] = []
 ): string => {
-  if (typeof message === "string") {
-    return util.format(message, ...optionalParams);
+  let result = "";
+  let hasValue = false;
+
+  if (message !== undefined) {
+    result = util.inspect(message);
+    hasValue = true;
   }
 
-  const values =
-    message === undefined ? [...optionalParams] : [message, ...optionalParams];
-  return values.map((value) => util.inspect(value)).join(" ");
+  for (let index = 0; index < optionalParams.length; index += 1) {
+    if (hasValue) {
+      result += " ";
+    }
+    result += util.inspect(optionalParams[index]!);
+    hasValue = true;
+  }
+
+  return result;
 };
 
 const formatElapsed = (stopwatch: Stopwatch): string => {
@@ -56,90 +66,90 @@ const formatElapsed = (stopwatch: Stopwatch): string => {
 };
 
 export class ConsoleConstructor {
-  public constructor(
-    _stdout?: JsValue,
-    _stderr?: JsValue,
+  constructor(
+    _stdout?: object,
+    _stderr?: object,
     _ignoreErrors: boolean = true,
-    _colorMode?: JsValue,
-    _inspectOptions?: JsValue,
+    _colorMode?: object,
+    _inspectOptions?: object,
     _groupIndentation: boolean = true
   ) {}
 
-  public assert(value: boolean, message?: string, ...optionalParams: JsValue[]): void {
+  assert(value: boolean, message?: string, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.assert(value, message, ...optionalParams);
   }
-  public clear(): void {
+  clear(): void {
     consoleModuleInstance.clear();
   }
-  public count(label?: string): void {
+  count(label?: string): void {
     consoleModuleInstance.count(label);
   }
-  public countReset(label?: string): void {
+  countReset(label?: string): void {
     consoleModuleInstance.countReset(label);
   }
-  public debug(message?: JsValue, ...optionalParams: JsValue[]): void {
+  debug(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.debug(message, ...optionalParams);
   }
-  public dir(value?: JsValue, ...options: JsValue[]): void {
+  dir(value?: RuntimeValue, ...options: RuntimeValue[]): void {
     consoleModuleInstance.dir(value, ...options);
   }
-  public dirxml(...data: JsValue[]): void {
+  dirxml(...data: RuntimeValue[]): void {
     consoleModuleInstance.dirxml(...data);
   }
-  public error(message?: JsValue, ...optionalParams: JsValue[]): void {
+  error(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.error(message, ...optionalParams);
   }
-  public group(...label: JsValue[]): void {
+  group(...label: RuntimeValue[]): void {
     consoleModuleInstance.group(...label);
   }
-  public groupCollapsed(...label: JsValue[]): void {
+  groupCollapsed(...label: RuntimeValue[]): void {
     consoleModuleInstance.groupCollapsed(...label);
   }
-  public groupEnd(): void {
+  groupEnd(): void {
     consoleModuleInstance.groupEnd();
   }
-  public info(message?: JsValue, ...optionalParams: JsValue[]): void {
+  info(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.info(message, ...optionalParams);
   }
-  public log(message?: JsValue, ...optionalParams: JsValue[]): void {
+  log(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.log(message, ...optionalParams);
   }
-  public profile(label?: string): void {
+  profile(label?: string): void {
     consoleModuleInstance.profile(label);
   }
-  public profileEnd(label?: string): void {
+  profileEnd(label?: string): void {
     consoleModuleInstance.profileEnd(label);
   }
-  public table(tabularData?: JsValue, properties?: string[]): void {
+  table(tabularData?: RuntimeValue, properties?: string[]): void {
     consoleModuleInstance.table(tabularData, properties);
   }
-  public time(label?: string): void {
+  time(label?: string): void {
     consoleModuleInstance.time(label);
   }
-  public timeEnd(label?: string): void {
+  timeEnd(label?: string): void {
     consoleModuleInstance.timeEnd(label);
   }
-  public timeLog(label?: string, ...data: JsValue[]): void {
+  timeLog(label?: string, ...data: RuntimeValue[]): void {
     consoleModuleInstance.timeLog(label, ...data);
   }
-  public timeStamp(label?: string): void {
+  timeStamp(label?: string): void {
     consoleModuleInstance.timeStamp(label);
   }
-  public trace(message?: JsValue, ...optionalParams: JsValue[]): void {
+  trace(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.trace(message, ...optionalParams);
   }
-  public warn(message?: JsValue, ...optionalParams: JsValue[]): void {
+  warn(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     consoleModuleInstance.warn(message, ...optionalParams);
   }
 }
 
 class ConsoleModule {
-  public readonly Console: ConsoleConstructor = new ConsoleConstructor();
+  Console: ConsoleConstructor = new ConsoleConstructor();
 
-  public assert(
+  assert(
     value: boolean,
     message?: string,
-    ...optionalParams: JsValue[]
+    ...optionalParams: RuntimeValue[]
   ): void {
     if (value) {
       return;
@@ -152,7 +162,7 @@ class ConsoleModule {
     writeError(fullMessage);
   }
 
-  public clear(): void {
+  clear(): void {
     try {
       DotnetConsole.Clear();
     } catch {
@@ -160,62 +170,66 @@ class ConsoleModule {
     }
   }
 
-  public count(label: string = "default"): void {
+  count(label: string = "default"): void {
     const next = (counters.get(label) ?? 0) + 1;
     counters.set(label, next);
     writeLine(`${label}: ${String(next)}`);
   }
 
-  public countReset(label: string = "default"): void {
+  countReset(label: string = "default"): void {
     counters.set(label, 0);
   }
 
-  public debug(message?: JsValue, ...optionalParams: JsValue[]): void {
+  debug(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     this.log(message, ...optionalParams);
   }
 
-  public dir(value?: JsValue, ..._options: JsValue[]): void {
+  dir(value?: RuntimeValue, ..._options: RuntimeValue[]): void {
     writeLine(util.inspect(value));
   }
 
-  public dirxml(...data: JsValue[]): void {
+  dirxml(...data: RuntimeValue[]): void {
     this.log(undefined, ...data);
   }
 
-  public error(message?: JsValue, ...optionalParams: JsValue[]): void {
+  error(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     writeError(formatConsoleMessage(message, optionalParams));
   }
 
-  public group(...label: JsValue[]): void {
+  group(...label: RuntimeValue[]): void {
     if (label.length > 0) {
-      writeLine(formatConsoleMessage(label[0], label.slice(1)));
+      let rendered = util.inspect(label[0]!);
+      for (let index = 1; index < label.length; index += 1) {
+        rendered += ` ${util.inspect(label[index]!)}`;
+      }
+      writeLine(rendered);
     }
     groupIndentation += 1;
   }
 
-  public groupCollapsed(...label: JsValue[]): void {
+  groupCollapsed(...label: RuntimeValue[]): void {
     this.group(...label);
   }
 
-  public groupEnd(): void {
+  groupEnd(): void {
     if (groupIndentation > 0) {
       groupIndentation -= 1;
     }
   }
 
-  public info(message?: JsValue, ...optionalParams: JsValue[]): void {
+  info(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     this.log(message, ...optionalParams);
   }
 
-  public log(message?: JsValue, ...optionalParams: JsValue[]): void {
+  log(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     writeLine(formatConsoleMessage(message, optionalParams));
   }
 
-  public table(tabularData?: JsValue, _properties?: string[]): void {
+  table(tabularData?: RuntimeValue, _properties?: string[]): void {
     writeLine(util.inspect(tabularData));
   }
 
-  public time(label: string = "default"): void {
+  time(label: string = "default"): void {
     if (timers.has(label)) {
       return;
     }
@@ -225,7 +239,7 @@ class ConsoleModule {
     timers.set(label, stopwatch);
   }
 
-  public timeEnd(label: string = "default"): void {
+  timeEnd(label: string = "default"): void {
     const stopwatch = timers.get(label);
     if (stopwatch === undefined) {
       return;
@@ -236,31 +250,33 @@ class ConsoleModule {
     timers.delete(label);
   }
 
-  public timeLog(label: string = "default", ...data: JsValue[]): void {
+  timeLog(label: string = "default", ...data: RuntimeValue[]): void {
     const stopwatch = timers.get(label);
     if (stopwatch === undefined) {
       return;
     }
 
-    const extras =
-      data.length === 0 ? "" : ` ${data.map((value) => util.inspect(value)).join(" ")}`;
+    let extras = "";
+    for (let index = 0; index < data.length; index += 1) {
+      extras += ` ${util.inspect(data[index]!)}`;
+    }
     writeLine(`${label}: ${formatElapsed(stopwatch)}${extras}`);
   }
 
-  public trace(message?: JsValue, ...optionalParams: JsValue[]): void {
+  trace(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     const rendered = formatConsoleMessage(message, optionalParams);
     writeError(`Trace: ${rendered}`);
   }
 
-  public warn(message?: JsValue, ...optionalParams: JsValue[]): void {
+  warn(message?: RuntimeValue, ...optionalParams: RuntimeValue[]): void {
     this.error(message, ...optionalParams);
   }
 
-  public profile(_label?: string): void {}
+  profile(_label?: string): void {}
 
-  public profileEnd(_label?: string): void {}
+  profileEnd(_label?: string): void {}
 
-  public timeStamp(_label?: string): void {}
+  timeStamp(_label?: string): void {}
 }
 
 const consoleModuleInstance = new ConsoleModule();

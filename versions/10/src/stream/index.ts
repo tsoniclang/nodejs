@@ -19,11 +19,11 @@ export { Transform } from "./transform.ts";
 export { PassThrough } from "./pass-through.ts";
 export { pipeline, finished } from "./utilities.ts";
 class StreamPromisesNamespace {
-  public finished(stream: Stream): Promise<void> {
+  finished(stream: Stream): Promise<void> {
     return finishedPromise(stream);
   }
 
-  public pipeline(...streams: Stream[]): Promise<void> {
+  pipeline(...streams: Stream[]): Promise<void> {
     return pipelinePromise(...streams);
   }
 }

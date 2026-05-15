@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { TLSSocketOptions } from "@tsonic/nodejs/tls.js";
 
 export class TLSSocketOptionsTests {
-  public TLSSocketOptions_AllProperties_CanBeSet(): void {
+  TLSSocketOptions_AllProperties_CanBeSet(): void {
     const opts = new TLSSocketOptions();
     opts.isServer = true;
     opts.servername = "example.com";

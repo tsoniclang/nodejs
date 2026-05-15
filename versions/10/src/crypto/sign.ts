@@ -31,33 +31,29 @@ import {
  * The Sign class is a utility for generating signatures.
  */
 export class Sign {
-  private readonly _algorithm: string;
-  private readonly _chunks: Uint8Array[] = [];
-  private _finalized: boolean = false;
+  _algorithm: string;
+  _chunks: Uint8Array[] = [];
+  _finalized: boolean = false;
 
-  public constructor(algorithm: string) {
+  constructor(algorithm: string) {
     this._algorithm = algorithm;
   }
 
   /**
    * Updates the Sign content with the given data.
    */
-  public update(data: string, inputEncoding?: string): Sign;
-  public update(data: Uint8Array): Sign;
-  public update(data: any, inputEncoding?: any): any {
-    if (typeof data === "string") {
-      return this.update_string(data, inputEncoding);
-    }
-
-    return this.update_bytes(data);
+  update(data: string, inputEncoding?: string): Sign;
+  update(data: Uint8Array): Sign;
+  update(_data: any, _inputEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public update_string(data: string, inputEncoding?: string): Sign {
+  update_string(data: string, inputEncoding?: string): Sign {
     this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
     return this;
   }
 
-  public update_bytes(data: Uint8Array): Sign {
+  update_bytes(data: Uint8Array): Sign {
     this.pushChunk(data);
     return this;
   }
@@ -65,42 +61,34 @@ export class Sign {
   /**
    * Calculates the signature using a PEM private key string.
    */
-  public sign(privateKey: string, outputEncoding: string): string;
-  public sign(privateKey: string): Uint8Array;
+  sign(privateKey: string, outputEncoding: string): string;
+  sign(privateKey: string): Uint8Array;
   /**
    * Calculates the signature using a KeyObject.
    */
-  public sign(privateKey: KeyObject, outputEncoding: string): string;
-  public sign(privateKey: KeyObject): Uint8Array;
-  public sign(privateKey: any, outputEncoding?: any): any {
-    if (typeof privateKey === "string") {
-      return typeof outputEncoding === "string"
-        ? this.sign_string_string(privateKey, outputEncoding)
-        : this.sign_string_bytes(privateKey);
-    }
-
-    return typeof outputEncoding === "string"
-      ? this.sign_key_string(privateKey, outputEncoding)
-      : this.sign_key_bytes(privateKey);
+  sign(privateKey: KeyObject, outputEncoding: string): string;
+  sign(privateKey: KeyObject): Uint8Array;
+  sign(_privateKey: any, _outputEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public sign_string_string(privateKey: string, outputEncoding: string): string {
+  sign_string_string(privateKey: string, outputEncoding: string): string {
     return encodeOutputString(this.finalizeSignature(privateKey), outputEncoding);
   }
 
-  public sign_string_bytes(privateKey: string): Uint8Array {
+  sign_string_bytes(privateKey: string): Uint8Array {
     return this.finalizeSignature(privateKey);
   }
 
-  public sign_key_string(privateKey: KeyObject, outputEncoding: string): string {
+  sign_key_string(privateKey: KeyObject, outputEncoding: string): string {
     return encodeOutputString(this.finalizeSignature(privateKey), outputEncoding);
   }
 
-  public sign_key_bytes(privateKey: KeyObject): Uint8Array {
+  sign_key_bytes(privateKey: KeyObject): Uint8Array {
     return this.finalizeSignature(privateKey);
   }
 
-  private pushChunk(chunk: Uint8Array): void {
+  pushChunk(chunk: Uint8Array): void {
     if (this._finalized) {
       throw new Error("Sign already finalized");
     }
@@ -108,7 +96,7 @@ export class Sign {
     this._chunks.push(chunk);
   }
 
-  private finalizeSignature(privateKey: string | KeyObject): Uint8Array {
+  finalizeSignature(privateKey: string | KeyObject): Uint8Array {
     if (this._finalized) {
       throw new Error("Sign already finalized");
     }

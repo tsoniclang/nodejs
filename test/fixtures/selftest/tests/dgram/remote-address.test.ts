@@ -5,7 +5,7 @@ import { createSocket } from "@tsonic/nodejs/dgram.js";
 import { assertThrows } from "./helpers.ts";
 
 export class RemoteAddressTests {
-  public remoteAddress_UnconnectedSocket_ThrowsException(): void {
+  remoteAddress_UnconnectedSocket_ThrowsException(): void {
     const socket = createSocket("udp4");
     socket.bind(0, "127.0.0.1");
 

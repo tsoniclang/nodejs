@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class copyFileTests {
-  public async copyFile_ShouldCopyFile(): Promise<void> {
+  async copyFile_ShouldCopyFile(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "copy-src-async.txt");
@@ -20,7 +20,7 @@ export class copyFileTests {
     }
   }
 
-  public async copyFile_ShouldOverwriteDestination(): Promise<void> {
+  async copyFile_ShouldOverwriteDestination(): Promise<void> {
     const dir = createTempDir();
     try {
       const sourcePath = getTestPath(dir, "copy-src2-async.txt");

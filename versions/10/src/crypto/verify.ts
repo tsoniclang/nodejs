@@ -29,33 +29,29 @@ import {
  * The Verify class is a utility for verifying signatures.
  */
 export class Verify {
-  private readonly _algorithm: string;
-  private readonly _chunks: Uint8Array[] = [];
-  private _finalized: boolean = false;
+  _algorithm: string;
+  _chunks: Uint8Array[] = [];
+  _finalized: boolean = false;
 
-  public constructor(algorithm: string) {
+  constructor(algorithm: string) {
     this._algorithm = algorithm;
   }
 
   /**
    * Updates the Verify content with the given data.
    */
-  public update(data: string, inputEncoding?: string): Verify;
-  public update(data: Uint8Array): Verify;
-  public update(data: any, inputEncoding?: any): any {
-    if (typeof data === "string") {
-      return this.update_string(data, inputEncoding);
-    }
-
-    return this.update_bytes(data);
+  update(data: string, inputEncoding?: string): Verify;
+  update(data: Uint8Array): Verify;
+  update(_data: any, _inputEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public update_string(data: string, inputEncoding?: string): Verify {
+  update_string(data: string, inputEncoding?: string): Verify {
     this.pushChunk(decodeInputBytes(data, inputEncoding ?? "utf8"));
     return this;
   }
 
-  public update_bytes(data: Uint8Array): Verify {
+  update_bytes(data: Uint8Array): Verify {
     this.pushChunk(data);
     return this;
   }
@@ -63,26 +59,18 @@ export class Verify {
   /**
    * Verifies the provided data using a PEM public key string and signature.
    */
-  public verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
-  public verify(publicKey: string, signature: Uint8Array): boolean;
+  verify(publicKey: string, signature: string, signatureEncoding?: string): boolean;
+  verify(publicKey: string, signature: Uint8Array): boolean;
   /**
    * Verifies the provided data using a KeyObject and signature.
    */
-  public verify(publicKey: KeyObject, signature: string, signatureEncoding?: string): boolean;
-  public verify(publicKey: KeyObject, signature: Uint8Array): boolean;
-  public verify(publicKey: any, signature: any, signatureEncoding?: any): any {
-    if (typeof publicKey === "string") {
-      return typeof signature === "string"
-        ? this.verify_string_string(publicKey, signature, signatureEncoding)
-        : this.verify_string_bytes(publicKey, signature);
-    }
-
-    return typeof signature === "string"
-      ? this.verify_key_string(publicKey, signature, signatureEncoding)
-      : this.verify_key_bytes(publicKey, signature);
+  verify(publicKey: KeyObject, signature: string, signatureEncoding?: string): boolean;
+  verify(publicKey: KeyObject, signature: Uint8Array): boolean;
+  verify(_publicKey: any, _signature: any, _signatureEncoding?: any): any {
+    throw new Error("Unreachable overload stub");
   }
 
-  public verify_string_string(
+  verify_string_string(
     publicKey: string,
     signature: string,
     signatureEncoding?: string
@@ -90,14 +78,14 @@ export class Verify {
     return this.finalizeVerification(publicKey, signature, signatureEncoding);
   }
 
-  public verify_string_bytes(
+  verify_string_bytes(
     publicKey: string,
     signature: Uint8Array
   ): boolean {
     return this.finalizeVerification(publicKey, signature);
   }
 
-  public verify_key_string(
+  verify_key_string(
     publicKey: KeyObject,
     signature: string,
     signatureEncoding?: string
@@ -105,14 +93,14 @@ export class Verify {
     return this.finalizeVerification(publicKey, signature, signatureEncoding);
   }
 
-  public verify_key_bytes(
+  verify_key_bytes(
     publicKey: KeyObject,
     signature: Uint8Array
   ): boolean {
     return this.finalizeVerification(publicKey, signature);
   }
 
-  private pushChunk(chunk: Uint8Array): void {
+  pushChunk(chunk: Uint8Array): void {
     if (this._finalized) {
       throw new Error("Verify already finalized");
     }
@@ -120,7 +108,7 @@ export class Verify {
     this._chunks.push(chunk);
   }
 
-  private finalizeVerification(
+  finalizeVerification(
     publicKey: string | KeyObject,
     signature: string | Uint8Array,
     signatureEncoding?: string

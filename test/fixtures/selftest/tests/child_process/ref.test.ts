@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import * as child_process from "@tsonic/nodejs/child_process.js";
 
 export class ChildProcessRefTests {
-  public ref_RefUnref_UpdatesReferencedProperty(): void {
+  ref_RefUnref_UpdatesReferencedProperty(): void {
     const command = "echo";
     const args = ["test"];
     const child = child_process.spawn(command, args);

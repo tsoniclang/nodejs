@@ -1,47 +1,48 @@
-import type { int, JsValue } from "@tsonic/core/types.js";
+import type { int } from "@tsonic/core/types.js";
+import type { RuntimeValue } from "./src/runtime-value.ts";
 import type { Immediate, Timeout } from "./src/timers-module.js";
 
 declare global {
   interface Console {
-    trace(...data: JsValue[]): void;
+    trace(...data: RuntimeValue[]): void;
     assert(
       condition: boolean,
       message?: string,
-      ...optionalParams: JsValue[]
+      ...optionalParams: RuntimeValue[]
     ): void;
     clear(): void;
     count(label?: string): void;
     countReset(label?: string): void;
-    dir(obj?: JsValue, ...options: JsValue[]): void;
-    dirxml(...data: JsValue[]): void;
-    group(...data: JsValue[]): void;
-    groupCollapsed(...data: JsValue[]): void;
+    dir(obj?: RuntimeValue, ...options: RuntimeValue[]): void;
+    dirxml(...data: RuntimeValue[]): void;
+    group(...data: RuntimeValue[]): void;
+    groupCollapsed(...data: RuntimeValue[]): void;
     groupEnd(): void;
-    table(data?: JsValue, properties?: string[]): void;
+    table(data?: RuntimeValue, properties?: string[]): void;
     time(label?: string): void;
     timeEnd(label?: string): void;
-    timeLog(label?: string, ...data: JsValue[]): void;
+    timeLog(label?: string, ...data: RuntimeValue[]): void;
   }
 
   function setTimeout(
-    handler: (...args: JsValue[]) => void,
+    handler: (...args: RuntimeValue[]) => void,
     timeout?: int,
-    ...args: JsValue[]
+    ...args: RuntimeValue[]
   ): Timeout;
 
   function clearTimeout(timeout?: Timeout): void;
 
   function setInterval(
-    handler: (...args: JsValue[]) => void,
+    handler: (...args: RuntimeValue[]) => void,
     timeout?: int,
-    ...args: JsValue[]
+    ...args: RuntimeValue[]
   ): Timeout;
 
   function clearInterval(timeout?: Timeout): void;
 
   function setImmediate(
-    callback: (...args: JsValue[]) => void,
-    ...args: JsValue[]
+    callback: (...args: RuntimeValue[]) => void,
+    ...args: RuntimeValue[]
   ): Immediate;
 
   function clearImmediate(immediate?: Immediate): void;

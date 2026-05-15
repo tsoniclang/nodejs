@@ -4,7 +4,7 @@ import { Assert, FactAttribute } from "xunit-types/Xunit.js";
 import { ConnectionOptions } from "@tsonic/nodejs/tls.js";
 
 export class ConnectionOptionsTests {
-  public ConnectionOptions_AllProperties_CanBeSet(): void {
+  ConnectionOptions_AllProperties_CanBeSet(): void {
     const opts = new ConnectionOptions();
     opts.host = "example.com";
     opts.port = 443;

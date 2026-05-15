@@ -5,7 +5,7 @@ import { randomFill } from "@tsonic/nodejs/crypto.js";
 import type { int } from "@tsonic/core/types.js";
 
 export class RandomFillTests {
-  public randomFill_async_works(): void {
+  randomFill_async_works(): void {
     const buffer = new Uint8Array(32);
     let result: Uint8Array | null = null;
     let error: Error | null = null;
@@ -17,7 +17,7 @@ export class RandomFillTests {
     Assert.NotNull(result);
   }
 
-  public randomFill_works(): void {
+  randomFill_works(): void {
     const buffer = new Uint8Array(32);
     let result: Uint8Array | null = null;
     let error: Error | null = null;

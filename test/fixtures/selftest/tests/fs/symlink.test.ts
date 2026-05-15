@@ -6,7 +6,7 @@ import { fs } from "@tsonic/nodejs/fs.js";
 import { createTempDir, deleteIfExists, getTestPath } from "./helpers.ts";
 
 export class symlinkTests {
-  public async symlink_File_ShouldCreateSymbolicLink(): Promise<void> {
+  async symlink_File_ShouldCreateSymbolicLink(): Promise<void> {
     const dir = createTempDir();
     try {
       const targetPath = getTestPath(dir, "symlink-target-async.txt");
@@ -20,7 +20,7 @@ export class symlinkTests {
     }
   }
 
-  public async symlink_Directory_ShouldCreateSymbolicLink(): Promise<void> {
+  async symlink_Directory_ShouldCreateSymbolicLink(): Promise<void> {
     const dir = createTempDir();
     try {
       const targetPath = getTestPath(dir, "symlink-target-dir-async");
