@@ -62,6 +62,24 @@ plus the required type package `@tsonic/aspnetcore`.
 That keeps the authoring model source-first even when CLR frameworks are part of
 the implementation underneath.
 
+## Runtime values
+
+Node-style APIs include values whose precise shape depends on the event or
+module call. The package models those slots with `RuntimeValue` rather than
+`any`.
+
+Common examples:
+
+- `EventEmitter.emit(name, ...args)`
+- stream chunk buffers and object-mode values
+- DNS `resolveAny` records
+- URL formatter inputs
+- assertion and utility formatting values
+
+This keeps the package source-owned and strict while still allowing Node-style
+APIs to represent broad data. Application code narrows broad values before
+member access.
+
 ## Scope
 
 This package aims for practical Node-style APIs for Tsonic projects. It is not a
