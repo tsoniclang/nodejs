@@ -10,3 +10,5 @@ The package provides:
 - explicit ESM subpaths under `@tsonic/nodejs/...`
 - source-package metadata in `tsonic.package.json`
 - runtime framework/package metadata consumed by the Tsonic compiler
+- package-owned `RuntimeValue` carriers for broad Node-style event, stream,
+  assertion, DNS, URL, and utility slots

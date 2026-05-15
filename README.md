@@ -56,10 +56,16 @@ Publish with:
 npm run publish:10
 ```
 
-## Core Modules (what you get)
+## Core Modules
 
-- `fs`, `path`, `events`, `crypto`, `process`
-- `http` (separate module entrypoint)
+- `assert`, `buffer`, `child_process`, `console`, `crypto`
+- `dgram`, `dns`, `events`, `fs`, `http`, `net`, `os`
+- `path`, `perf_hooks`, `process`, `querystring`, `readline`
+- `stream`, `string_decoder`, `timers`, `tls`, `url`, `util`, `zlib`
+
+The package implements practical Node-style behavior for native Tsonic
+programs. It is a curated first-party source package, not an embedded Node.js
+runtime.
 
 ## Usage
 
@@ -147,6 +153,13 @@ Direct ESM imports from `@tsonic/nodejs/index.js` are still supported.
 ## Naming Conventions
 
 - `@tsonic/nodejs` intentionally uses **Node/JS-style naming** (camelCase members).
+
+## Runtime values
+
+Node APIs often accept or emit broad event, stream, DNS, URL, and utility
+values. The package uses a source-owned `RuntimeValue` union for those broad
+slots instead of exposing an unbounded `any` surface. Application code should
+prefer concrete module types and narrow broad values before member access.
 
 ## Development
 

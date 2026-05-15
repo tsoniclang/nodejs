@@ -13,6 +13,7 @@ Tsonic.
 - used alongside `@tsonic/js`
 - provides `node:*` module aliases and package-root entry points
 - carries manifest metadata that can add CLR framework/runtime requirements
+- uses package-owned runtime value carriers for broad Node slots
 
 ## What it is not
 
@@ -54,6 +55,14 @@ export function main(): void {
 
 After installation, run `tsonic restore` or `tsonic build` so the workspace
 materializes the CLR dependencies declared by the package manifest.
+
+## Runtime value model
+
+Node APIs contain intentionally broad slots: event arguments, stream chunks, DNS
+records, URL formatting inputs, assertion values, and utility formatting
+arguments. `@tsonic/nodejs` models those through a package-owned `RuntimeValue`
+union. Use concrete module types where they exist, and narrow broad values
+explicitly before member access.
 
 ## Pages
 

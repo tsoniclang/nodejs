@@ -24,6 +24,10 @@
 The package is not documented here as a byte-for-byte clone of Node. It is a
 curated first-party source package for Tsonic.
 
+Broad module slots use `RuntimeValue` and concrete module types instead of
+unbounded `any`. Examples include event arguments, stream chunks, DNS
+`resolveAny` results, assertion values, and URL formatter inputs.
+
 ## Pages
 
 - [`fs`](fs.md)
