@@ -6,6 +6,10 @@
 import { EventEmitter } from "../events-module.ts";
 import type { RuntimeValue } from "../runtime-value.ts";
 
+export interface PipeOptions {
+  readonly end?: boolean;
+}
+
 export class Stream extends EventEmitter {
   write(
     _chunk: RuntimeValue,
@@ -35,7 +39,7 @@ export class Stream extends EventEmitter {
    */
   pipe(
     destination: Stream,
-    options?: { readonly end?: boolean },
+    options?: PipeOptions,
   ): Stream {
     const end = options?.end !== false;
 

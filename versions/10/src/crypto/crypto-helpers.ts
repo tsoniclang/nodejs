@@ -11,6 +11,7 @@ import {
   DSA,
   ECCurve,
   ECCurve_NamedCurves,
+  Aes,
   AesGcm,
   HKDF,
   HMACMD5,
@@ -278,31 +279,15 @@ export const randomBytesExact = (size: number): Uint8Array => {
 };
 
 export const createAesAlgorithm = (): SymmetricAlgorithm => {
-  const aes = SymmetricAlgorithm.Create("Aes");
-  if (aes === null || aes === undefined) {
-    throw new Error("AES is unavailable");
-  }
-  return aes;
+  return Aes.Create();
 };
 
 export const createRsaAlgorithm = (): RSA => {
-  const rsa = RSA.Create("RSA");
-  if (rsa === null || rsa === undefined) {
-    throw new Error("RSA is unavailable");
-  }
-  return rsa;
+  return RSA.Create();
 };
 
 export const createDsaAlgorithm = (): DSA => {
-  const providers = ["DSAOpenSsl", "DSACng", "DSA"];
-  for (let index = 0; index < providers.length; index += 1) {
-    const dsa = DSA.Create(providers[index]!);
-    if (dsa !== null && dsa !== undefined) {
-      return dsa;
-    }
-  }
-
-  throw new Error("DSA is unavailable");
+  return DSA.Create();
 };
 
 export const fillRandomBytes = (
@@ -369,6 +354,16 @@ export interface AesGcmTransformOptions {
   aad?: Uint8Array | null;
   authTag?: Uint8Array | null;
   authTagLength?: int;
+}
+
+export class AesGcmEncryptResult {
+  ciphertext: Uint8Array;
+  authTag: Uint8Array;
+
+  constructor(ciphertext: Uint8Array, authTag: Uint8Array) {
+    this.ciphertext = ciphertext;
+    this.authTag = authTag;
+  }
 }
 
 const parseAesAlgorithm = (algorithm: string): AesConfig => {
@@ -472,7 +467,7 @@ export const transformAesGcmEncrypt = (
   iv: Uint8Array,
   data: Uint8Array,
   options: AesGcmTransformOptions = {},
-): { ciphertext: Uint8Array; authTag: Uint8Array } => {
+): AesGcmEncryptResult => {
   const config = parseAesAlgorithm(algorithm);
   if (config.mode !== "gcm") {
     throw new Error(`Algorithm ${algorithm} is not an AES-GCM cipher`);
@@ -497,10 +492,10 @@ export const transformAesGcmEncrypt = (
       authTagBytes,
       options.aad ? toByteArray(options.aad) : null,
     );
-    return {
-      ciphertext: fromByteArray(ciphertextBytes),
-      authTag: fromByteArray(authTagBytes),
-    };
+    return new AesGcmEncryptResult(
+      fromByteArray(ciphertextBytes),
+      fromByteArray(authTagBytes),
+    );
   } finally {
     aes.Dispose();
   }

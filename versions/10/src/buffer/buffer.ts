@@ -23,6 +23,16 @@ import {
 
 const UINT32_FACTOR = 4294967296;
 
+export class BufferJson {
+  type: string;
+  data: number[];
+
+  constructor(type: string, data: number[]) {
+    this.type = type;
+    this.data = data;
+  }
+}
+
 class BufferInternals {
   static toInt(value: number): int {
     if (Number.isInteger(value) && value >= -2147483648 && value <= 2147483647) {
@@ -980,12 +990,12 @@ export class Buffer {
   /**
    * Returns a JSON representation of the buffer.
    */
-  toJSON(): { type: string; data: number[] } {
+  toJSON(): BufferJson {
     const data: number[] = [];
     for (let i = 0; i < this._data.length; i += 1) {
       data.push(this._data[i]!);
     }
-    return { type: "Buffer", data };
+    return new BufferJson("Buffer", data);
   }
 
   /**

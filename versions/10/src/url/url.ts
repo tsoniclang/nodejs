@@ -27,18 +27,28 @@ const parsePort = (value: string): int => {
   return -1 as int;
 };
 
-const splitUserInfo = (userInfo: string): { username: string; password: string } => {
+class UserInfoParts {
+  username: string;
+  password: string;
+
+  constructor(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+}
+
+const splitUserInfo = (userInfo: string): UserInfoParts => {
   if (userInfo.length === 0) {
-    return { username: "", password: "" };
+    return new UserInfoParts("", "");
   }
   const separatorIndex = userInfo.indexOf(":");
   if (separatorIndex < 0) {
-    return { username: userInfo, password: "" };
+    return new UserInfoParts(userInfo, "");
   }
-  return {
-    username: userInfo.slice(0, separatorIndex),
-    password: userInfo.slice(separatorIndex + 1),
-  };
+  return new UserInfoParts(
+    userInfo.slice(0, separatorIndex),
+    userInfo.slice(separatorIndex + 1),
+  );
 };
 
 const buildUriBuilder = (input: string, base?: string): UriBuilder => {

@@ -11,6 +11,16 @@ type MODPGroupEntry = {
   generator: byte;
 };
 
+export class DiffieHellmanGroupParameters {
+  prime: Uint8Array;
+  generator: Uint8Array;
+
+  constructor(prime: Uint8Array, generator: Uint8Array) {
+    this.prime = prime;
+    this.generator = generator;
+  }
+}
+
 const GROUPS: Record<string, MODPGroupEntry> = {
   // RFC 2409 - modp1 (768 bits) - DEPRECATED, included for compatibility
   modp1: {
@@ -198,7 +208,7 @@ const GROUPS: Record<string, MODPGroupEntry> = {
  */
 export const getGroup = (
   groupName: string
-): { prime: Uint8Array; generator: Uint8Array } => {
+): DiffieHellmanGroupParameters => {
   const group = GROUPS[groupName.toLowerCase()];
   if (group === undefined) {
     throw new Error(`Unknown DH group: ${groupName}`);
@@ -209,7 +219,7 @@ export const getGroup = (
   const generatorBytes = new Uint8Array(1);
   generatorBytes[0] = group.generator;
 
-  return { prime: primeBytes, generator: generatorBytes };
+  return new DiffieHellmanGroupParameters(primeBytes, generatorBytes);
 };
 
 /**

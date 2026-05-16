@@ -133,6 +133,8 @@ npm --prefix "$WORK_DIR" install \
 
 PACKAGE_TGZ="$(npm pack --silent --pack-destination "$WORK_DIR" "$PROJECT_ROOT/versions/$DOTNET_MAJOR")"
 PACKAGE_SPEC="$WORK_DIR/$PACKAGE_TGZ"
+tar -tzf "$PACKAGE_SPEC" | grep -Fxq "package/index.d.ts"
+tar -tzf "$PACKAGE_SPEC" | grep -Fxq "package/node-builtins.d.ts"
 
 npm --prefix "$WORK_DIR" install "$PACKAGE_SPEC" >/dev/null
 
