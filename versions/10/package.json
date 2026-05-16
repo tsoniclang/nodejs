@@ -39,6 +39,8 @@
     "./zlib.js": "./src/zlib/index.ts"
   },
   "files": [
+    "index.d.ts",
+    "node-builtins.d.ts",
     "globals.ts",
     "src/**/*.ts",
     "tsonic.package.json",

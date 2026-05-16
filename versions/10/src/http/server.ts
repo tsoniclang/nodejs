@@ -511,6 +511,30 @@ const normalizePortNumber = (value: number): int => {
   throw new RangeError(`port must be an Int32-compatible integer. Received ${String(value)}`);
 };
 
+class ListenerBinding {
+  listener: HttpListener;
+  address: string;
+  family: string;
+
+  constructor(listener: HttpListener, address: string, family: string) {
+    this.listener = listener;
+    this.address = address;
+    this.family = family;
+  }
+}
+
+class ListenerAttempt {
+  prefixes: string[];
+  address: string;
+  family: string;
+
+  constructor(prefixes: string[], address: string, family: string) {
+    this.prefixes = prefixes;
+    this.address = address;
+    this.family = family;
+  }
+}
+
 const resolveIPAddress = (hostname: string | undefined): IPAddress => {
   if (
     hostname === undefined ||
@@ -545,7 +569,7 @@ const resolveIPAddress = (hostname: string | undefined): IPAddress => {
 const createListener = (
   hostname: string | undefined,
   port: int
-): { listener: HttpListener; address: string; family: string } => {
+): ListenerBinding => {
   const attempts = buildListenerAttempts(hostname, port);
 
   for (const attempt of attempts) {
@@ -557,11 +581,7 @@ const createListener = (
 
     try {
       listener.Start();
-      return {
-        listener,
-        address: attempt.address,
-        family: attempt.family,
-      };
+      return new ListenerBinding(listener, attempt.address, attempt.family);
     } catch {
       try {
         listener.Close();
@@ -579,22 +599,18 @@ const createListener = (
 const buildListenerAttempts = (
   hostname: string | undefined,
   port: int
-): { prefixes: string[]; address: string; family: string }[] => {
+): ListenerAttempt[] => {
   if (hostname === undefined || hostname === null || hostname.length === 0) {
     return [
-      {
-        prefixes: [`http://*:${String(port)}/`],
-        address: "0.0.0.0",
-        family: "IPv4",
-      },
-      {
-        prefixes: [
+      new ListenerAttempt([`http://*:${String(port)}/`], "0.0.0.0", "IPv4"),
+      new ListenerAttempt(
+        [
           `http://127.0.0.1:${String(port)}/`,
           `http://localhost:${String(port)}/`,
         ],
-        address: "127.0.0.1",
-        family: "IPv4",
-      },
+        "127.0.0.1",
+        "IPv4",
+      ),
     ];
   }
 
@@ -603,11 +619,11 @@ const buildListenerAttempts = (
   const prefixHost = family === "IPv6" ? `[${normalized}]` : normalized;
 
   return [
-    {
-      prefixes: [`http://${prefixHost}:${String(port)}/`],
-      address: normalized,
+    new ListenerAttempt(
+      [`http://${prefixHost}:${String(port)}/`],
+      normalized,
       family,
-    },
+    ),
   ];
 };
 

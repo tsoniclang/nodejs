@@ -56,6 +56,16 @@ import {
   toReadOnlyByteSpan,
 } from "./crypto-helpers.ts";
 
+export class KeyPairSyncResult {
+  publicKey: KeyObject;
+  privateKey: KeyObject;
+
+  constructor(publicKey: KeyObject, privateKey: KeyObject) {
+    this.publicKey = publicKey;
+    this.privateKey = privateKey;
+  }
+}
+
 const createDiffieHellmanFromLength = (
   primeLength: number,
   generatorNumber: number
@@ -563,7 +573,7 @@ export const createPrivateKey = (key: string | Uint8Array): KeyObject => {
 export const generateKeyPairSync = (
   type: string,
   _options?: KeyExportOptions
-): { publicKey: KeyObject; privateKey: KeyObject } => {
+): KeyPairSyncResult => {
   const keyType = type.toLowerCase();
 
   if (keyType === "rsa") {
@@ -571,10 +581,10 @@ export const generateKeyPairSync = (
     privateRsa.KeySize = 2048 as int;
     const publicRsa = createRsaAlgorithm();
     publicRsa.ImportParameters(privateRsa.ExportParameters(false));
-    return {
-      publicKey: new PublicKeyObject(publicRsa, "rsa"),
-      privateKey: new PrivateKeyObject(privateRsa, "rsa", null, publicRsa, null),
-    };
+    return new KeyPairSyncResult(
+      new PublicKeyObject(publicRsa, "rsa"),
+      new PrivateKeyObject(privateRsa, "rsa", null, publicRsa, null),
+    );
   }
 
   if (keyType === "ec" || keyType === "ecdsa") {
@@ -585,10 +595,10 @@ export const generateKeyPairSync = (
       toReadOnlyByteSpan(privateEc.ExportSubjectPublicKeyInfo()),
       0 as out<int>,
     );
-    return {
-      publicKey: new PublicKeyObject(publicEc, "ec"),
-      privateKey: new PrivateKeyObject(privateEc, "ec", null, publicEc, null),
-    };
+    return new KeyPairSyncResult(
+      new PublicKeyObject(publicEc, "ec"),
+      new PrivateKeyObject(privateEc, "ec", null, publicEc, null),
+    );
   }
 
   if (
@@ -597,20 +607,20 @@ export const generateKeyPairSync = (
     keyType === "x25519" ||
     keyType === "x448"
   ) {
-    return {
-      publicKey: new PublicKeyObject(null, keyType),
-      privateKey: new PrivateKeyObject(null, keyType),
-    };
+    return new KeyPairSyncResult(
+      new PublicKeyObject(null, keyType),
+      new PrivateKeyObject(null, keyType),
+    );
   }
 
   if (keyType === "dsa") {
     const privateDsa = createDsaAlgorithm();
     const publicDsa = createDsaAlgorithm();
     publicDsa.ImportParameters(privateDsa.ExportParameters(false));
-    return {
-      publicKey: new PublicKeyObject(publicDsa, "dsa"),
-      privateKey: new PrivateKeyObject(privateDsa, "dsa", null, publicDsa, null),
-    };
+    return new KeyPairSyncResult(
+      new PublicKeyObject(publicDsa, "dsa"),
+      new PrivateKeyObject(privateDsa, "dsa", null, publicDsa, null),
+    );
   }
 
   if (keyType === "dh") {
@@ -618,10 +628,10 @@ export const generateKeyPairSync = (
     dh.generateKeys();
     const pub = dh.getPublicKey();
     const priv = dh.getPrivateKey();
-    return {
-      publicKey: new SecretKeyObject(pub as Uint8Array),
-      privateKey: new SecretKeyObject(priv as Uint8Array),
-    };
+    return new KeyPairSyncResult(
+      new SecretKeyObject(pub as Uint8Array),
+      new SecretKeyObject(priv as Uint8Array),
+    );
   }
 
   throw new Error(`Unknown key type: ${type}`);

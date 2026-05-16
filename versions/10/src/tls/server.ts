@@ -25,6 +25,18 @@ const createSecureContextFromOptions = (
   return context;
 };
 
+export class TLSServerAddress {
+  port: number;
+  family: string;
+  address: string;
+
+  constructor(port: number, family: string, address: string) {
+    this.port = port;
+    this.family = family;
+    this.address = address;
+  }
+}
+
 export class TLSServer extends EventEmitter {
   _secureContext: SecureContext | null = null;
   _options: TlsOptions | null = null;
@@ -137,7 +149,7 @@ export class TLSServer extends EventEmitter {
    *
    * TODO: Delegate to substrate TCP server.
    */
-  address(): { port: number; family: string; address: string } | null {
+  address(): TLSServerAddress | null {
     // TODO: substrate-dependent
     return null;
   }

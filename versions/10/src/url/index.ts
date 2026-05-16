@@ -77,9 +77,7 @@ export const fileURLToPath = (input: string | URL): string => {
   return new Uri(href).LocalPath;
 };
 
-export const urlToHttpOptions = (
-  input: URL,
-): {
+export class HttpUrlOptions {
   protocol: string;
   hostname: string;
   hash: string;
@@ -89,21 +87,47 @@ export const urlToHttpOptions = (
   href: string;
   port?: number;
   auth?: string;
-} => {
+
+  constructor(
+    protocol: string,
+    hostname: string,
+    hash: string,
+    search: string,
+    pathname: string,
+    path: string,
+    href: string,
+    port?: number,
+    auth?: string,
+  ) {
+    this.protocol = protocol;
+    this.hostname = hostname;
+    this.hash = hash;
+    this.search = search;
+    this.pathname = pathname;
+    this.path = path;
+    this.href = href;
+    this.port = port;
+    this.auth = auth;
+  }
+}
+
+export const urlToHttpOptions = (
+  input: URL,
+): HttpUrlOptions => {
   const auth =
     input.username.length > 0
       ? `${input.username}:${input.password}`
       : undefined;
 
-  return {
-    protocol: input.protocol,
-    hostname: input.hostname,
-    hash: input.hash,
-    search: input.search,
-    pathname: input.pathname,
-    path: `${input.pathname}${input.search}`,
-    href: input.href,
-    port: input.port.length > 0 ? parseInt(input.port, 10) : undefined,
+  return new HttpUrlOptions(
+    input.protocol,
+    input.hostname,
+    input.hash,
+    input.search,
+    input.pathname,
+    `${input.pathname}${input.search}`,
+    input.href,
+    input.port.length > 0 ? parseInt(input.port, 10) : undefined,
     auth,
-  };
+  );
 };
