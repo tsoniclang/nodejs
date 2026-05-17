@@ -14,6 +14,7 @@ import {
 } from "@tsonic/dotnet/System.Runtime.InteropServices.js";
 
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
+import { errorFromUnknown } from "../error-from-unknown.ts";
 import { ChildProcess, ExecOptions } from "./child-process.ts";
 import { SpawnSyncReturns } from "./spawn-sync-returns.ts";
 
@@ -101,7 +102,7 @@ const createExecutableStartInfo = (
 
 const startProcess = (startInfo: ProcessStartInfo): Process => {
   const process = Process.Start(startInfo);
-  if (process === undefined) {
+  if (process === null) {
     throw new Error(`Failed to start process: ${startInfo.FileName}`);
   }
   return process;
@@ -168,8 +169,7 @@ const toStringResult = (
     result.signal = finished.signal;
     result.error = finished.error;
   } catch (error) {
-    result.error =
-      error instanceof Error ? error : new Error(String(error));
+    result.error = errorFromUnknown(error, "Failed to spawn process");
   }
 
   return result;
@@ -194,8 +194,7 @@ const toBinaryResult = (
     result.signal = finished.signal;
     result.error = finished.error;
   } catch (error) {
-    result.error =
-      error instanceof Error ? error : new Error(String(error));
+    result.error = errorFromUnknown(error, "Failed to spawn process");
   }
 
   return result;
@@ -302,8 +301,7 @@ function exec_callback(
     const finished = execWithShell(command, null);
     callback(finished.error, finished.stdout, finished.stderr);
   } catch (error) {
-    const resolvedError: Error =
-      error instanceof Error ? error : new Error(String(error));
+    const resolvedError: Error = errorFromUnknown(error, "Failed to execute process");
     callback(resolvedError, "", "");
   }
 }
@@ -317,8 +315,7 @@ function exec_options(
     const finished = execWithShell(command, options);
     callback(finished.error, finished.stdout, finished.stderr);
   } catch (error) {
-    const resolvedError: Error =
-      error instanceof Error ? error : new Error(String(error));
+    const resolvedError: Error = errorFromUnknown(error, "Failed to execute process");
     callback(resolvedError, "", "");
   }
 }

@@ -310,7 +310,7 @@ const getLookupAddresses = (
 
 const callbackError = <TResult>(
   callback: (err: Error | null, result: TResult) => void,
-  error: RuntimeValue,
+  error: unknown,
   fallback: TResult
 ): void => {
   callback(error instanceof Error ? error : new Error("DNS resolution failed"), fallback);
@@ -318,7 +318,7 @@ const callbackError = <TResult>(
 
 const callbackLookupError = (
   callback: (err: Error | null, address: string, family: int) => void,
-  error: RuntimeValue
+  error: unknown
 ): void => {
   callback(error instanceof Error ? error : new Error("DNS lookup failed"), "", 0 as int);
 };

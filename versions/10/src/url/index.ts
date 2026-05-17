@@ -85,8 +85,8 @@ export class HttpUrlOptions {
   pathname: string;
   path: string;
   href: string;
-  port?: number;
-  auth?: string;
+  port: number | undefined;
+  auth: string | undefined;
 
   constructor(
     protocol: string,

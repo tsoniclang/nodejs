@@ -180,7 +180,7 @@ export const checkServerIdentity = (
     const sans = cert.subjectaltname.split(",");
     const count = sans.length;
     for (let i = 0; i < count; i = i + 1) {
-      const san = sans[i].trim();
+      const san = sans[i]!.trim();
       if (san.startsWith("DNS:")) {
         const dnsName = san.substring(4);
         if (dnsName === hostname || matchesWildcard(dnsName, hostname)) {

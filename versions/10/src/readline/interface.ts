@@ -423,7 +423,7 @@ export class Interface extends EventEmitter {
       if (this._historyIndex < this._history.length - 1) {
         this._historyIndex += 1;
         this._line =
-          this._history[this._history.length - 1 - this._historyIndex];
+          this._history[this._history.length - 1 - this._historyIndex]!;
         this._cursor = this._line.length;
       }
     } else {
@@ -431,7 +431,7 @@ export class Interface extends EventEmitter {
       if (this._historyIndex > 0) {
         this._historyIndex -= 1;
         this._line =
-          this._history[this._history.length - 1 - this._historyIndex];
+          this._history[this._history.length - 1 - this._historyIndex]!;
         this._cursor = this._line.length;
       } else if (this._historyIndex === 0) {
         // Restore saved line

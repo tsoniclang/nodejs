@@ -40,7 +40,7 @@ const getMarkTime = (markName: string | null | undefined): number | null => {
   }
 
   for (let i = entries.length - 1; i >= 0; i -= 1) {
-    const entry = entries[i];
+    const entry = entries[i]!;
     if (entry.entryType === "mark" && entry.name === markName) {
       return entry.startTime;
     }
@@ -202,13 +202,13 @@ export const getEntriesByType = (type: string): PerformanceEntry[] => {
 export const clearMarks = (name?: string | null): void => {
   if (name === null || name === undefined || name.length === 0) {
     for (let i = entries.length - 1; i >= 0; i -= 1) {
-      if (entries[i].entryType === "mark") {
+      if (entries[i]!.entryType === "mark") {
         entries.splice(i, 1);
       }
     }
   } else {
     for (let i = entries.length - 1; i >= 0; i -= 1) {
-      if (entries[i].entryType === "mark" && entries[i].name === name) {
+      if (entries[i]!.entryType === "mark" && entries[i]!.name === name) {
         entries.splice(i, 1);
       }
     }
@@ -221,13 +221,13 @@ export const clearMarks = (name?: string | null): void => {
 export const clearMeasures = (name?: string | null): void => {
   if (name === null || name === undefined || name.length === 0) {
     for (let i = entries.length - 1; i >= 0; i -= 1) {
-      if (entries[i].entryType === "measure") {
+      if (entries[i]!.entryType === "measure") {
         entries.splice(i, 1);
       }
     }
   } else {
     for (let i = entries.length - 1; i >= 0; i -= 1) {
-      if (entries[i].entryType === "measure" && entries[i].name === name) {
+      if (entries[i]!.entryType === "measure" && entries[i]!.name === name) {
         entries.splice(i, 1);
       }
     }
