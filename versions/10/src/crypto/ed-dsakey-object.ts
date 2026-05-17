@@ -19,19 +19,19 @@ export class EdDSAPublicKeyObject extends KeyObject {
     this._keyType = keyType;
   }
 
-  get type(): string {
+  override get type(): string {
     return "public";
   }
 
-  get asymmetricKeyType(): string | null {
+  override get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._publicKeyData;
   }
 }
@@ -49,19 +49,19 @@ export class EdDSAPrivateKeyObject extends KeyObject {
     this._keyType = keyType;
   }
 
-  get type(): string {
+  override get type(): string {
     return "private";
   }
 
-  get asymmetricKeyType(): string | null {
+  override get asymmetricKeyType(): string | null {
     return this._keyType;
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._privateKeyData;
   }
 }

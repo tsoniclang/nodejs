@@ -83,23 +83,23 @@ export class SecretKeyObject extends KeyObject {
     this._keyData = keyData;
   }
 
-  get type(): string {
+  override get type(): string {
     return "secret";
   }
 
-  get asymmetricKeyType(): string | null {
+  override get asymmetricKeyType(): string | null {
     return null;
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return this._keyData.length;
   }
 
-  ["export"](_options?: KeyExportOptions): Uint8Array {
+  override ["export"](_options?: KeyExportOptions): Uint8Array {
     return this._keyData;
   }
 
-  exportCore(_options?: KeyExportOptions): Uint8Array {
+  override exportCore(_options?: KeyExportOptions): Uint8Array {
     return this._keyData;
   }
 }
@@ -123,15 +123,15 @@ export class PublicKeyObject extends KeyObject {
     this._pem = pem;
   }
 
-  get type(): string {
+  override get type(): string {
     return "public";
   }
 
-  get asymmetricKeyType(): string {
+  override get asymmetricKeyType(): string {
     return this._keyType;
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
@@ -143,7 +143,7 @@ export class PublicKeyObject extends KeyObject {
     return this._pem;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     if (this._pem !== null) {
       return this._pem;
     }
@@ -185,15 +185,15 @@ export class PrivateKeyObject extends KeyObject {
     this._publicPem = publicPem;
   }
 
-  get type(): string {
+  override get type(): string {
     return "private";
   }
 
-  get asymmetricKeyType(): string {
+  override get asymmetricKeyType(): string {
     return this._keyType;
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
@@ -213,7 +213,7 @@ export class PrivateKeyObject extends KeyObject {
     return this._publicPem;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     if (this._pem !== null) {
       return this._pem;
     }

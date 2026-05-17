@@ -17,19 +17,19 @@ export class DSAPublicKeyObject extends KeyObject {
     this._publicKeyData = publicKeyData;
   }
 
-  get type(): string {
+  override get type(): string {
     return "public";
   }
 
-  get asymmetricKeyType(): string | null {
+  override get asymmetricKeyType(): string | null {
     return "dsa";
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._publicKeyData;
   }
 }
@@ -45,19 +45,19 @@ export class DSAPrivateKeyObject extends KeyObject {
     this._privateKeyData = privateKeyData;
   }
 
-  get type(): string {
+  override get type(): string {
     return "private";
   }
 
-  get asymmetricKeyType(): string | null {
+  override get asymmetricKeyType(): string | null {
     return "dsa";
   }
 
-  get symmetricKeySize(): int | null {
+  override get symmetricKeySize(): int | null {
     return null;
   }
 
-  exportCore(_options?: KeyExportOptions): KeyExportValue {
+  override exportCore(_options?: KeyExportOptions): KeyExportValue {
     return this._privateKeyData;
   }
 }

@@ -52,10 +52,10 @@ const parseIPv4Octets = (address: string): number[] | undefined => {
 
 const compareIPv4 = (a: number[], b: number[]): number => {
   for (let i = 0; i < 4; i = i + 1) {
-    if (a[i] < b[i]) {
+    if (a[i]! < b[i]!) {
       return -1;
     }
-    if (a[i] > b[i]) {
+    if (a[i]! > b[i]!) {
       return 1;
     }
   }
@@ -102,14 +102,14 @@ const isInSubnet = (
   }
 
   for (let i = 0; i < fullBytes; i = i + 1) {
-    if (addrOctets[i] !== networkOctets[i]) {
+    if (addrOctets[i]! !== networkOctets[i]!) {
       return false;
     }
   }
 
   if (remainingBits > 0) {
     const mask = (0xff << (8 - remainingBits)) & 0xff;
-    if ((addrOctets[fullBytes] & mask) !== (networkOctets[fullBytes] & mask)) {
+    if ((addrOctets[fullBytes]! & mask) !== (networkOctets[fullBytes]! & mask)) {
       return false;
     }
   }

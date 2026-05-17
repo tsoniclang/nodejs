@@ -48,7 +48,7 @@ export class Duplex extends Readable {
    * @returns False if the stream wishes for the calling code to wait for the
    *   'drain' event to be emitted before continuing to write.
    */
-  write(
+  override write(
     chunk: RuntimeValue,
     encoding?: string,
     callback?: () => void,
@@ -79,7 +79,7 @@ export class Duplex extends Readable {
    * @param encoding - The encoding if chunk is a string.
    * @param callback - Optional callback for when the stream has finished.
    */
-  end(
+  override end(
     chunk?: RuntimeValue,
     encoding?: string,
     callback?: () => void,

@@ -10,6 +10,7 @@ import { overloads as O } from "@tsonic/core/lang.js";
 import { EventEmitter } from "../events-module.ts";
 import type { int } from "@tsonic/core/types.js";
 import { stringToBytes } from "../buffer/buffer-encoding.ts";
+import { errorFromUnknown } from "../error-from-unknown.ts";
 import { RemoteInfo } from "./remote-info.ts";
 import { SocketOptions, BindOptions } from "./socket-options.ts";
 import type { RuntimeValue } from "../runtime-value.ts";
@@ -290,7 +291,7 @@ export class DgramSocket extends EventEmitter {
         callback();
       }
     } catch (ex) {
-      const error: Error = ex instanceof Error ? ex : new Error(String(ex));
+      const error: Error = errorFromUnknown(ex, "Failed to bind UDP socket");
       this.emit("error", error);
     }
 
@@ -330,7 +331,7 @@ export class DgramSocket extends EventEmitter {
         callback();
       }
     } catch (ex) {
-      const error: Error = ex instanceof Error ? ex : new Error(String(ex));
+      const error: Error = errorFromUnknown(ex, "Failed to connect UDP socket");
       this.emit("error", error);
 
       if (callback !== undefined) {
@@ -363,7 +364,7 @@ export class DgramSocket extends EventEmitter {
         callback(null, bytesSent);
       }
     } catch (ex) {
-      const error: Error = ex instanceof Error ? ex : new Error(String(ex));
+      const error: Error = errorFromUnknown(ex, "Failed to send UDP datagram");
       this.emit("error", error);
 
       if (callback !== undefined) {

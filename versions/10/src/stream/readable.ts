@@ -100,7 +100,7 @@ export class Readable extends Stream {
    *
    * @returns This stream.
    */
-  resume(): Readable {
+  override resume(): Readable {
     this._paused = false;
     this._flowing = true;
 
