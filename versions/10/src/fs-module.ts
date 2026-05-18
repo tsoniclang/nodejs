@@ -20,6 +20,7 @@ import {
 } from "@tsonic/dotnet/System.IO.js";
 import { List } from "@tsonic/dotnet/System.Collections.Generic.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
+import { Monitor } from "@tsonic/dotnet/System.Threading.js";
 
 const parseEncoding = (value?: string): Encoding => {
   const normalized = value === undefined || value === null ? "utf-8" : value.toLowerCase();
@@ -97,29 +98,51 @@ type OpenDescriptor = {
 
 type WritableFsBuffer = Buffer | byte[];
 const openDescriptors = new Map<int, OpenDescriptor>();
+const openDescriptorsSync = {};
 let nextDescriptor = 3 as int;
 
 const registerDescriptor = (stream: FileStream, appendMode: boolean): int => {
-  const fd = nextDescriptor;
-  nextDescriptor = (nextDescriptor + 1) as int;
-  openDescriptors.set(fd, { stream, appendMode });
-  return fd;
+  Monitor.Enter(openDescriptorsSync);
+  try {
+    const fd = nextDescriptor;
+    nextDescriptor = (nextDescriptor + 1) as int;
+    openDescriptors.set(fd, { stream, appendMode });
+    return fd;
+  } finally {
+    Monitor.Exit(openDescriptorsSync);
+  }
 };
 
 const getDescriptor = (fd: int): OpenDescriptor => {
-  const descriptor = openDescriptors.get(fd);
-  if (descriptor === undefined) {
-    throw new Error(`Bad file descriptor: ${fd.toString()}`);
-  }
+  Monitor.Enter(openDescriptorsSync);
+  try {
+    const descriptor = openDescriptors.get(fd);
+    if (descriptor === undefined) {
+      throw new Error(`Bad file descriptor: ${fd.toString()}`);
+    }
 
-  return descriptor;
+    return descriptor;
+  } finally {
+    Monitor.Exit(openDescriptorsSync);
+  }
 };
 
 const closeDescriptor = (fd: int): void => {
-  const descriptor = getDescriptor(fd);
+  let descriptor: OpenDescriptor;
+  Monitor.Enter(openDescriptorsSync);
+  try {
+    const current = openDescriptors.get(fd);
+    if (current === undefined) {
+      throw new Error(`Bad file descriptor: ${fd.toString()}`);
+    }
+    openDescriptors.delete(fd);
+    descriptor = current;
+  } finally {
+    Monitor.Exit(openDescriptorsSync);
+  }
+
   descriptor.stream.Flush();
   descriptor.stream.Dispose();
-  openDescriptors.delete(fd);
 };
 
 const getBufferLength = (buffer: WritableFsBuffer): int => {

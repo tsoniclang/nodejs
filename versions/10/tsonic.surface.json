@@ -1,6 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "@tsonic/nodejs",
+  "supportedTargets": [
+    "csharp"
+  ],
   "extends": [
     "@tsonic/js"
   ],
