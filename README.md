@@ -6,6 +6,14 @@ This package is part of Tsonic: https://tsonic.org.
 
 Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
 
+## Target support
+
+`@tsonic/nodejs` supports the default C# target. The package declares this in
+`tsonic.package.json` and `tsonic.surface.json` with
+`"supportedTargets": ["csharp"]`. User code imports stay target-neutral:
+applications use `@tsonic/nodejs` and Node-style module specifiers such as
+`node:fs`.
+
 ## Prerequisites
 
 - Install the .NET 10 SDK (required by Tsonic): https://dotnet.microsoft.com/download
@@ -40,7 +48,7 @@ npm run dev
 npx --yes tsonic@latest add npm @tsonic/nodejs
 ```
 
-`@tsonic/nodejs` is a regular package, not a surface. Use `@tsonic/js` for the ambient JavaScript world, and add `@tsonic/nodejs` when you want `node:*` module imports. If your workspace is still on CLR, switch its `surface` to `@tsonic/js` first.
+`@tsonic/nodejs` is a regular package, not a surface. Use `@tsonic/js` for the ambient JavaScript world, and add `@tsonic/nodejs` when you want `node:*` module imports. Workspaces that use Node-style packages set `surface` to `@tsonic/js`.
 
 ## Versioning
 
