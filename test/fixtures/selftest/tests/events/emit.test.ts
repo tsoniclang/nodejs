@@ -57,7 +57,7 @@ export class EmitTests {
     emitter.emit("test", "arg1", 42, true);
 
     Assert.Equal("arg1", first);
-    Assert.Equal(42, second);
+    Assert.Equal(42.0, second);
     Assert.Equal(true, third);
   }
 }
