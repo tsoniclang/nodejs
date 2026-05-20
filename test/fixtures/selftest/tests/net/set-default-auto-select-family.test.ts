@@ -6,10 +6,12 @@ import * as net from "@tsonic/nodejs/net.js";
 export class SetDefaultAutoSelectFamilyTests {
   set_default_auto_select_family_updates_value(): void {
     const original = net.getDefaultAutoSelectFamily();
-    net.setDefaultAutoSelectFamily(!original);
-    Assert.Equal(!original, net.getDefaultAutoSelectFamily());
-    // Reset to original
-    net.setDefaultAutoSelectFamily(original);
+    try {
+      net.setDefaultAutoSelectFamily(!original);
+      Assert.Equal(!original, net.getDefaultAutoSelectFamily());
+    } finally {
+      net.setDefaultAutoSelectFamily(original);
+    }
   }
 }
 
