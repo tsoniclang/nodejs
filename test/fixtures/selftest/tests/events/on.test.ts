@@ -44,7 +44,7 @@ export class OnTests {
     });
     emitter.emit("test", 42);
 
-    Assert.Equal(42, received);
+    Assert.Equal(42.0, received);
   }
 
   on_returns_the_emitter(): void {
