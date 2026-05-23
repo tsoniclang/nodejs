@@ -1,6 +1,6 @@
 {
   "name": "@tsonic/nodejs",
-  "version": "10.0.53",
+  "version": "10.0.54",
   "description": "Native Tsonic implementation of Node.js APIs",
   "type": "module",
   "types": "./index.d.ts",
@@ -62,6 +62,6 @@
   "peerDependencies": {
     "@tsonic/core": "10.0.45",
     "@tsonic/dotnet": "10.0.45",
-    "@tsonic/js": "10.0.52"
+    "@tsonic/js": "10.0.53"
   }
 }
