@@ -51,7 +51,7 @@ export const toInt = (value: number): int => {
 };
 
 export const toByteArray = (buffer: Uint8Array): byte[] => {
-  return Array.from(buffer, (value) => value as byte);
+  return Array.from(buffer, (value) => Convert.ToByte(value));
 };
 
 export const toReadOnlyByteSpan = (
@@ -65,11 +65,7 @@ export const toReadOnlyByteSpan = (
 };
 
 export const fromByteArray = (buffer: byte[]): Uint8Array => {
-  const result = new Uint8Array(buffer.length);
-  for (let index = 0; index < buffer.length; index += 1) {
-    result[index] = buffer[index]!;
-  }
-  return result;
+  return new Uint8Array(buffer);
 };
 
 const createByteArray = (length: int): byte[] => {
