@@ -9,6 +9,7 @@
  */
 
 import type { byte, int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 import { MemoryStream } from "@tsonic/dotnet/System.IO.js";
 import type { HttpListenerRequest } from "@tsonic/dotnet/System.Net.js";
 import { Encoding } from "@tsonic/dotnet/System.Text.js";
@@ -350,7 +351,7 @@ export class IncomingMessage extends EventEmitter {
 }
 
 function toByteArray(bytes: Uint8Array): byte[] {
-  return Array.from(bytes, (value) => value as byte);
+  return Array.from(bytes, (value) => Convert.ToByte(value));
 }
 
 function toUint8Array(bytes: byte[]): Uint8Array {

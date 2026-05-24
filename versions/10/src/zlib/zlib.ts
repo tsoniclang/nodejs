@@ -10,6 +10,7 @@
 import type { BrotliOptions } from "./brotli-options.ts";
 import type { ZlibOptions } from "./zlib-options.ts";
 import type { byte, int } from "@tsonic/core/types.js";
+import { Convert } from "@tsonic/dotnet/System.js";
 import {
   BrotliStream,
   CompressionLevel,
@@ -53,19 +54,11 @@ const toInt = (value: number): int => {
 };
 
 const toByteArray = (buffer: Uint8Array): byte[] => {
-  const result = new List<byte>();
-  for (let index = 0; index < buffer.length; index += 1) {
-    result.Add(buffer[index]! as byte);
-  }
-  return result.ToArray();
+  return Array.from(buffer, (value) => Convert.ToByte(value));
 };
 
 const fromByteArray = (buffer: byte[]): Uint8Array => {
-  const result = new Uint8Array(buffer.length);
-  for (let index = 0; index < buffer.length; index += 1) {
-    result[index] = buffer[index]!;
-  }
-  return result;
+  return new Uint8Array(buffer);
 };
 
 const toCompressionLevel = (level?: number): CompressionLevel => {
