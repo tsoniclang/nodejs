@@ -85,6 +85,32 @@ const buildDirectoryStats = (info: DirectoryInfo): Stats =>
     toJsDate(info.CreationTime)
   );
 
+export class Dirent {
+  name: string;
+  path: string;
+  directoryEntry: boolean;
+  fileEntry: boolean;
+
+  constructor(name: string, path: string, directoryEntry: boolean, fileEntry: boolean) {
+    this.name = name;
+    this.path = path;
+    this.directoryEntry = directoryEntry;
+    this.fileEntry = fileEntry;
+  }
+
+  isDirectory(): boolean {
+    return this.directoryEntry;
+  }
+
+  isFile(): boolean {
+    return this.fileEntry;
+  }
+}
+
+export type ReaddirSyncOptions = {
+  readonly withFileTypes?: boolean;
+};
+
 const deleteDirectoryIfExists = (path: string, recursive: boolean): void => {
   if (Directory.Exists(path)) {
     Directory.Delete(path, recursive);
@@ -864,10 +890,40 @@ O(readFileSync_text).family(readFileSync);
 O(readFile_buffer).family(readFile);
 O(readFile_text).family(readFile);
 
-export const readdirSync = (path: string): string[] =>
-  Directory.GetFileSystemEntries(path)
+export function readdirSync(path: string): string[];
+export function readdirSync(
+  path: string,
+  options: { readonly withFileTypes: true },
+): Dirent[];
+export function readdirSync(_path: any, _options?: any): any {
+  throw new Error("Unreachable overload stub");
+}
+
+function readdirSync_names(path: string): string[] {
+  return Directory.GetFileSystemEntries(path)
     .map((entry) => Path.GetFileName(entry) ?? "")
     .filter((entry) => entry.length > 0);
+}
+
+function readdirSync_dirents(
+  path: string,
+  _options: { readonly withFileTypes: true },
+): Dirent[] {
+  return Directory.GetFileSystemEntries(path)
+    .map((entry) => {
+      const name = Path.GetFileName(entry) ?? "";
+      return new Dirent(
+        name,
+        entry,
+        Directory.Exists(entry),
+        File.Exists(entry),
+      );
+    })
+    .filter((entry) => entry.name.length > 0);
+}
+
+O(readdirSync_names).family(readdirSync);
+O(readdirSync_dirents).family(readdirSync);
 
 export const readdir = async (path: string): Promise<string[]> =>
   readdirSync(path);
