@@ -1,4 +1,6 @@
 import type { int } from "@tsonic/core/types.js";
+import { Buffer as SourceBuffer } from "./src/buffer/index.ts";
+import { process as SourceProcess } from "./src/process-module.ts";
 import type { RuntimeValue } from "./src/runtime-value.ts";
 import type { Immediate, Timeout } from "./src/timers-module.js";
 
@@ -48,6 +50,10 @@ declare global {
   function clearImmediate(immediate?: Immediate): void;
 
   function queueMicrotask(callback: () => void): void;
+
+  const Buffer: typeof SourceBuffer;
+
+  const process: typeof SourceProcess;
 }
 
 export {};
