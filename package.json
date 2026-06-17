@@ -1,14 +1,145 @@
 {
-  "name": "tsonic-nodejs-workspace",
-  "private": true,
-  "description": "Repo for @tsonic/nodejs portable source surface",
+  "name": "@tsonic/nodejs",
+  "version": "10.0.55",
+  "description": "Portable Node.js source surface for Tsonic",
   "type": "module",
-  "scripts": {
-    "generate:10": "echo '@tsonic/nodejs is source-authored; no generation step'",
-    "selftest": "node --check versions/10/runtime/index.js",
-    "publish:10": "npm run selftest && npm publish ./versions/10 --access public"
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./runtime/index.js"
+    },
+    "./assert.js": {
+      "types": "./types/assert.d.ts",
+      "default": "./runtime/assert.js"
+    },
+    "./buffer.js": {
+      "types": "./types/buffer.d.ts",
+      "default": "./runtime/buffer.js"
+    },
+    "./child_process.js": {
+      "types": "./types/child_process.d.ts",
+      "default": "./runtime/child_process.js"
+    },
+    "./console.js": {
+      "types": "./types/console.d.ts",
+      "default": "./runtime/console.js"
+    },
+    "./crypto.js": {
+      "types": "./types/crypto.d.ts",
+      "default": "./runtime/crypto.js"
+    },
+    "./dgram.js": {
+      "types": "./types/dgram.d.ts",
+      "default": "./runtime/dgram.js"
+    },
+    "./dns.js": {
+      "types": "./types/dns.d.ts",
+      "default": "./runtime/dns.js"
+    },
+    "./events.js": {
+      "types": "./types/events.d.ts",
+      "default": "./runtime/events.js"
+    },
+    "./fs.js": {
+      "types": "./types/fs.d.ts",
+      "default": "./runtime/fs.js"
+    },
+    "./http.js": {
+      "types": "./types/http.d.ts",
+      "default": "./runtime/http.js"
+    },
+    "./index.js": {
+      "types": "./index.d.ts",
+      "default": "./runtime/index.js"
+    },
+    "./os.js": {
+      "types": "./types/os.d.ts",
+      "default": "./runtime/os.js"
+    },
+    "./path.js": {
+      "types": "./types/path.d.ts",
+      "default": "./runtime/path.js"
+    },
+    "./perf_hooks.js": {
+      "types": "./types/perf_hooks.d.ts",
+      "default": "./runtime/perf_hooks.js"
+    },
+    "./process.js": {
+      "types": "./types/process.d.ts",
+      "default": "./runtime/process.js"
+    },
+    "./querystring.js": {
+      "types": "./types/querystring.d.ts",
+      "default": "./runtime/querystring.js"
+    },
+    "./readline.js": {
+      "types": "./types/readline.d.ts",
+      "default": "./runtime/readline.js"
+    },
+    "./stream.js": {
+      "types": "./types/stream.d.ts",
+      "default": "./runtime/stream.js"
+    },
+    "./string_decoder.js": {
+      "types": "./types/string_decoder.d.ts",
+      "default": "./runtime/string_decoder.js"
+    },
+    "./timers.js": {
+      "types": "./types/timers.d.ts",
+      "default": "./runtime/timers.js"
+    },
+    "./url.js": {
+      "types": "./types/url.d.ts",
+      "default": "./runtime/url.js"
+    },
+    "./net.js": {
+      "types": "./types/net.d.ts",
+      "default": "./runtime/net.js"
+    },
+    "./tls.js": {
+      "types": "./types/tls.d.ts",
+      "default": "./runtime/tls.js"
+    },
+    "./util.js": {
+      "types": "./types/util.d.ts",
+      "default": "./runtime/util.js"
+    },
+    "./zlib.js": {
+      "types": "./types/zlib.d.ts",
+      "default": "./runtime/zlib.js"
+    }
   },
-  "devDependencies": {
+  "files": [
+    "index.d.ts",
+    "globals.ts",
+    "runtime/**/*.js",
+    "types/**/*.d.ts",
+    "tsonic.package.json",
+    "tsonic.surface.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "generate": "echo '@tsonic/nodejs is source-authored; no generation step'",
+    "selftest": "node --check runtime/index.js",
+    "publish:npm": "npm run selftest && npm publish --access public"
+  },
+  "keywords": [
+    "nodejs",
+    "tsonic",
+    "typescript",
+    "source-package",
+    "native"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsoniclang/nodejs.git"
+  },
+  "dependencies": {
+    "@tsonic/core": "10.0.46",
+    "@tsonic/js": "10.0.54",
     "@types/node": "^20.14.0"
   }
 }
