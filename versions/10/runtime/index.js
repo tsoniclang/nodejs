@@ -1,4 +1,3 @@
-import "./globals.js";
 export * as assert from "node:assert";
 export * as buffer from "node:buffer";
 export * as child_process from "node:child_process";
