@@ -4,20 +4,13 @@ Node-style APIs for **Tsonic**.
 
 This package is part of Tsonic: https://tsonic.org.
 
-Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while still compiling to a native binary with `tsonic`.
+Use `@tsonic/nodejs` when you want Node-like modules (`fs`, `path`, `events`, `crypto`, `process`, `http`, …) while compiling with Tsonic.
 
 ## Target support
 
-`@tsonic/nodejs` supports the default C# target. The package declares this in
-`tsonic.package.json` and `tsonic.surface.json` with
-`"supportedTargets": ["csharp"]`. User code imports stay target-neutral:
-applications use `@tsonic/nodejs` and Node-style module specifiers such as
-`node:fs`.
-
-## Prerequisites
-
-- Install the .NET 10 SDK (required by Tsonic): https://dotnet.microsoft.com/download
-- Verify: `dotnet --version`
+`@tsonic/nodejs` is target-neutral. User code imports `@tsonic/nodejs` or
+Node-style specifiers such as `node:fs`; the active Tsonic target chooses the
+implementation package for that surface.
 
 ## Quick Start
 
@@ -71,9 +64,8 @@ npm run publish:10
 - `path`, `perf_hooks`, `process`, `querystring`, `readline`
 - `stream`, `string_decoder`, `timers`, `tls`, `url`, `util`, `zlib`
 
-The package implements practical Node-style behavior for native Tsonic
-programs. It is a curated first-party source package, not an embedded Node.js
-runtime.
+The package declares practical Node-style APIs for Tsonic programs. It is a
+curated first-party source surface, not an embedded Node.js runtime.
 
 ## Usage
 
@@ -151,13 +143,6 @@ Direct ESM imports from `@tsonic/nodejs/index.js` are still supported.
 - `@tsonic/js` provides JavaScript runtime APIs (JS-style `console`, `JSON`, timers, etc.)
 - `@tsonic/nodejs` provides Node-style modules (`fs`, `path`, `crypto`, `http`, etc.)
 
-## Documentation
-
-- [docs/getting-started.md](docs/getting-started.md)
-- [docs/imports.md](docs/imports.md)
-- Module docs: [fs](docs/modules/fs.md), [path](docs/modules/path.md), [crypto](docs/modules/crypto.md), [http](docs/modules/http.md), [events](docs/modules/events.md), [process](docs/modules/process.md)
-- https://tsonic.org/nodejs/
-
 ## Naming Conventions
 
 - `@tsonic/nodejs` intentionally uses **Node/JS-style naming** (camelCase members).
@@ -171,15 +156,14 @@ prefer concrete module types and narrow broad values before member access.
 
 ## Development
 
-See `__build/` for regeneration scripts.
-
-Run the publish-gated validation suite with:
+Run the package validation check:
 
 ```bash
 npm run selftest
 ```
 
-When sibling `@tsonic/*` repos are checked out locally, the selftest installs those local packages first, whether they are versioned package repos (for example `../js/versions/10`) or root-package repos (for example `../aspnetcore`). That keeps consumer validation coherent across a local release wave instead of mixing local packages with incompatible published transitive dependencies. The selftest also fails on peer-dependency warnings, so inconsistent package waves are caught before publish.
+The selftest verifies that the portable runtime forwarding entrypoint is valid
+ESM. Target implementation packages own target-specific behavior tests.
 
 ## License
 

@@ -1,15 +1,15 @@
-# `@tsonic/nodejs`
+# @tsonic/nodejs
 
-Native Tsonic source-package implementation of Node.js APIs.
+Portable Node-style source surface for Tsonic.
 
-This package is the canonical first-party source implementation for the Node-style surface in Tsonic.
+This package is the canonical first-party declaration surface for Node-style APIs in Tsonic.
 
 Key points:
 
 - Node imports such as `node:fs`, `node:path`, `node:crypto`, and `node:http` resolve through this package.
-- The package supports the default C# target through `supportedTargets` metadata; user imports stay target-neutral.
-- Runtime behavior is authored here in TypeScript source under `src/`, not in a separate CLR mirror package.
+- User imports stay target-neutral. The active Tsonic target chooses the implementation package.
+- Runtime behavior belongs to target implementation packages.
 - Crypto key APIs expose `KeyObject`-based overloads for `createPublicKey`, `createPrivateKey`, `createSecretKey`, `sign`, and `verify`.
 - Broad event, stream, DNS, URL, and utility slots use the package-owned `RuntimeValue` union.
 
-Validation lives in the checked-in selftest suites under `test/fixtures/selftest`.
+Validation for this package verifies portable declarations and ESM forwarding. Target implementation packages own behavior tests.
